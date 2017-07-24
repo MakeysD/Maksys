@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.duan.chao">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".DCZ_application.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".DCZ_application.MyApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -17,9 +19,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".DCZ_activity.WelcomeActivity">
-        </activity>
+        <activity android:name=".DCZ_activity.WelcomeActivity" />
+        <activity android:name=".DCZ_activity.SecurityProtectActivity" />
+        <activity android:name=".DCZ_activity.ZhangHuSercurityActivity" />
+        <activity android:name=".DCZ_activity.GesturesLockActivity" />
+        <activity android:name=".DCZ_activity.FingerprinProtectActivity" />
+        <activity android:name=".DCZ_activity.GuanYuActivity" />
+        <activity android:name=".DCZ_activity.LoginActivity" />
+        <activity android:name=".DCZ_activity.ScanActivity" />
+        <activity android:name=".DCZ_activity.ChangePasswordActivity" />
+        <activity android:name=".DCZ_activity.SecurityPhoneActivity" />
+        <activity android:name=".DCZ_activity.SecurityEmailActivity" />
+        <activity android:name=".DCZ_activity.PersonDataActivity" />
+        <activity android:name=".DCZ_activity.SuohaoActivity" />
+        <activity android:name=".DCZ_activity.EquipmentManageActivity" />
+        <activity android:name=".DCZ_activity.OperationRecordActivity" />
+        <activity android:name=".DCZ_activity.FootprintsActivity" />
+        <activity android:name=".DCZ_activity.ChangeLoginPasswordActivity" />
+        <activity android:name=".DCZ_activity.ChangePayPasswordActivity"></activity>
     </application>
 
 </manifest>

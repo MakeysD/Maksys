@@ -22,7 +22,7 @@ android {
 
     //APK打包过程中出现Error:"app_name" is not translated in "zh" (Chinese)[Missing Translation]就添加
     lintOptions {
-      //  disable 'InvalidPackage'
+        //  disable 'InvalidPackage'
         //只要添加下面这一句就可以了
         disable 'MissingTranslation'
     }
@@ -36,20 +36,20 @@ dependencies {
     //上拉与下拉加载view
     compile project(':xrecyclerview')
     //百分比布局
+    //图片加载神器
+
+    //网络框架
+    //butterknife框架
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    //图片加载神器
     compile 'com.facebook.fresco:fresco:0.5.2'
-
     compile 'com.android.support:percent:25.3.1'
-    //网络框架
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
     compile 'com.android.support:support-v4:25.3.1'
-    testCompile 'junit:junit:4.12'
-    //butterknife框架
     compile 'com.jakewharton:butterknife:8.4.0'
+    testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 }

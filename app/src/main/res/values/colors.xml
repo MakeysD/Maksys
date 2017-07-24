@@ -12,10 +12,16 @@
     <color name="text_lv">#9fd1f7</color>
     <color name="xian1">#b2b2b2</color>
     <color name="white">#FFFFFF</color>
+
+
     <color name="bg1">#333333</color>
+    <color name="bg2">#e5e5e5</color>
 
     <color name="bg_title1">#366cf4</color>
     <color name="text_title1">#FFFFFF</color>
     <color name="bg_title2">#FFFFFF</color>
     <color name="text_title2">#333333</color>
+
+    <color name="button1">#368bf4</color>
+    <color name="button2">#01a0f3</color>
 </resources>
