@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.duan.duan">
+    package="com.example.duan.chao">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"

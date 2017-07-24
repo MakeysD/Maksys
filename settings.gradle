@@ -1,1 +1,1 @@
-include ':app', ':xrecyclerview', ':FlycoTabLayout_Lib'
+include ':app', ':xrecyclerview'

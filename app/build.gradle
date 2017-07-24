@@ -6,7 +6,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.example.duan.duan"
+        applicationId "com.example.duan.chao"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -35,8 +35,6 @@ dependencies {
     })
     //上拉与下拉加载view
     compile project(':xrecyclerview')
-    //TabLayout
-    compile project(path: ':FlycoTabLayout_Lib')
     //百分比布局
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
