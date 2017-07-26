@@ -27,10 +27,15 @@ public class ChangePasswordActivity extends BaseActivity {
         setListener();
     }
 
+    /**
+     *  初始化
+     * */
     private void setViews() {
 
     }
-
+    /**
+     *  监听
+     * */
     private void setListener() {
         back.setOnClickListener(new View.OnClickListener() {
             @Override

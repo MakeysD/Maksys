@@ -3,12 +3,29 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="mp_touming">#00000000</color>
+    <color name="yellow">#366cf4</color><!--黄色 -->
+    <color name="red">#ff0000</color><!--红色 -->
+
+    <color name="ksw_md_ripple_normal">#1E000000</color>
+    <color name="ksw_md_ripple_checked">#33019285</color>
+    <color name="ksw_md_solid_shadow">#33000000</color>
+    <color name="ksw_md_solid_normal">#ECECEC</color>
+    <color name="ksw_md_solid_checked">#019285</color>
+    <color name="ksw_md_solid_disable">#FFFFFF</color>
+    <color name="ksw_md_solid_checked_disable">#aaaaaa</color>
 
     <color name="alpha">#000000</color>
     <color name="text01">#333333</color>
     <color name="text02">#999999</color>
     <color name="text03">#998b7c</color>
     <color name="text04">#c7c7c7</color>
+
+
+    <color name="text05">#366cf4</color>
+    <color name="text06">#303030</color><!--列表项标题-->
+    <color name="text07">#a2a2a2</color><!--列表项内容-->
+
     <color name="text_lv">#9fd1f7</color>
     <color name="xian1">#b2b2b2</color>
     <color name="white">#FFFFFF</color>

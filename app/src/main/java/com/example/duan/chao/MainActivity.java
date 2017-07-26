@@ -12,6 +12,7 @@ import com.example.duan.chao.DCZ_activity.BaseActivity;
 import com.example.duan.chao.DCZ_activity.FingerprinProtectActivity;
 import com.example.duan.chao.DCZ_activity.GesturesLockActivity;
 import com.example.duan.chao.DCZ_activity.GuanYuActivity;
+import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
@@ -96,7 +97,7 @@ public class MainActivity extends BaseActivity {
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, GesturesLockActivity.class);
+                Intent intent=new Intent(INSTANCE, LockActivity.class);
                 startActivity(intent);
             }
         });

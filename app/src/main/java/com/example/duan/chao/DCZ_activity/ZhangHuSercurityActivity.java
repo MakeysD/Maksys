@@ -44,12 +44,22 @@ public class ZhangHuSercurityActivity extends BaseActivity {
         setViews();
         setListener();
     }
-
+    /**
+     *  初始化
+     * */
     private void setViews() {
 
     }
-
+    /**
+     *  监听
+     * */
     private void setListener() {
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         //修改密码
         rl1.setOnClickListener(new View.OnClickListener() {
             @Override

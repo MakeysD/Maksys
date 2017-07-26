@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".DCZ_activity.AppStartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,7 @@
         <activity android:name=".DCZ_activity.GesturesLockActivity" />
         <activity android:name=".DCZ_activity.FingerprinProtectActivity" />
         <activity android:name=".DCZ_activity.GuanYuActivity" />
-        <activity android:name=".DCZ_activity.LoginActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".DCZ_activity.ScanActivity" />
         <activity android:name=".DCZ_activity.ChangePasswordActivity" />
         <activity android:name=".DCZ_activity.SecurityPhoneActivity" />
@@ -36,7 +36,12 @@
         <activity android:name=".DCZ_activity.OperationRecordActivity" />
         <activity android:name=".DCZ_activity.FootprintsActivity" />
         <activity android:name=".DCZ_activity.ChangeLoginPasswordActivity" />
-        <activity android:name=".DCZ_activity.ChangePayPasswordActivity"></activity>
+        <activity android:name=".DCZ_activity.ChangePayPasswordActivity" />
+        <activity android:name=".DCZ_activity.LookPasswordActivity" />
+        <activity android:name=".DCZ_activity.SmsActivity" />
+        <activity android:name=".DCZ_activity.LoginLockActivity" />
+        <activity android:name=".DCZ_activity.LoginActivity" />
+        <activity android:name=".DCZ_activity.LockActivity"></activity>
     </application>
 
 </manifest>
