@@ -4,4 +4,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">你好</string>
     <string name="loaddings">努力加载...</string>
+
+    <string name="scan_text">将二维码放入框内,即可自动扫描</string>
 </resources>

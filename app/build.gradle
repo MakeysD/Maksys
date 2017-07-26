@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -37,7 +37,6 @@ dependencies {
     compile project(':xrecyclerview')
     //百分比布局
     //图片加载神器
-
     //网络框架
     //butterknife框架
     compile 'com.android.support:appcompat-v7:25.3.1'
@@ -52,4 +51,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile files('libs/zxing.jar')
 }

@@ -5,41 +5,42 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- *      安全手机
+ *  更换密保手机（验证原手机号）
  *
  * */
-public class SecurityPhoneActivity extends BaseActivity {
-    private SecurityPhoneActivity INSTANCE;
+public class ChangePhone1Activity extends BaseActivity {
+    private ChangePhone1Activity INSTANCE;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.button)
-    TextView button;        //更换
-    @BindView(R.id.change)
-    TextView change;        //已换号
+    TextView button;           //下一步
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_security_phone);
-        INSTANCE=this;
+        setContentView(R.layout.activity_change_phone1);
         ButterKnife.bind(this);
+        INSTANCE=this;
         setViews();
         setListener();
     }
 
+
     /**
-     *  初始化
+     *  数据初始化
      * */
     private void setViews() {
 
     }
     /**
-     *  监听
+     * 监听
+     *
      * */
     private void setListener() {
         back.setOnClickListener(new View.OnClickListener() {
@@ -48,21 +49,12 @@ public class SecurityPhoneActivity extends BaseActivity {
                 finish();
             }
         });
-        //更换
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, ChangePhone1Activity.class);
-                startActivity(intent);
-            }
-        });
-        change.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, ChangePhone3Activity.class);
+                Intent intent=new Intent(INSTANCE, ChangePhone2Activity.class);
                 startActivity(intent);
             }
         });
     }
-
 }

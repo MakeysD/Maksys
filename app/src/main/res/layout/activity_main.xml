@@ -2,29 +2,88 @@
 <com.example.duan.chao.DCZ_selft.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/dsl"
-    android:background="@color/bg2"
+    android:background="@color/bg1"
     tools:context=".MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/bg3">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8.3"
             android:orientation="vertical">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp">
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="@dimen/left"
+                android:paddingRight="@dimen/right">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:background="@mipmap/tou"/>
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginLeft="50dp"
+                            android:background="@mipmap/tou"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text02"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/text01"
+                        android:text="这是我的账号"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text02"
+                        android:layout_marginTop="5dp"
+                        android:textSize="@dimen/text02"
+                        android:text="857999639@qq.com"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentRight="true">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/jia"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="12dp"
+                        android:textSize="@dimen/text03"
+                        android:text="添加账号"/>
+                </LinearLayout>
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/bg2"
                 android:gravity="center_vertical"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -33,7 +92,7 @@
                     android:id="@+id/sdv1"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    fresco:placeholderImage="@mipmap/zhanwei"
+                    fresco:placeholderImage="@mipmap/shezhi1"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
                     fresco:roundTopLeft="true"
@@ -47,59 +106,38 @@
                     android:layout_centerVertical="true"
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/text01"
+                    android:textColor="@color/white"
                     android:text="安全保护"/>
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/right"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/you"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/rl2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:layout_marginTop="1dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="@dimen/left">
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/sdv2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    fresco:placeholderImage="@mipmap/zhanwei"
-                    fresco:placeholderImageScaleType="fitCenter"
-                    fresco:roundedCornerRadius="5dp"
-                    fresco:roundTopLeft="true"
-                    fresco:roundTopRight="true"
-                    fresco:roundBottomLeft="true"
-                    fresco:roundBottomRight="true"/>
-                <TextView
-                    android:layout_toRightOf="@id/sdv2"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/text01"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/text01"
-                    android:text="账户安全"/>
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/right"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/you"/>
+                    android:gravity="center_vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text02"
+                        android:textSize="@dimen/text02"
+                        android:text="未开启" />
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@mipmap/you" />
+                </LinearLayout>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/bg2"
                 android:gravity="center_vertical"
                 android:layout_marginTop="1dp"
                 android:paddingTop="10dp"
@@ -109,7 +147,7 @@
                     android:id="@+id/sdv3"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    fresco:placeholderImage="@mipmap/zhanwei"
+                    fresco:placeholderImage="@mipmap/shezhi6"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
                     fresco:roundTopLeft="true"
@@ -123,21 +161,85 @@
                     android:layout_centerVertical="true"
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/text01"
+                    android:textColor="@color/white"
                     android:text="手势锁"/>
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
+                <LinearLayout
+                    android:id="@+id/lock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/right"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/you"/>
+                    android:gravity="center_vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_suo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text02"
+                        android:textSize="@dimen/text02"
+                        android:text="未开启" />
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@mipmap/you" />
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg2"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="@dimen/left">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    fresco:placeholderImage="@mipmap/shezhi3"
+                    fresco:placeholderImageScaleType="fitCenter"
+                    fresco:roundedCornerRadius="5dp"
+                    fresco:roundTopLeft="true"
+                    fresco:roundTopRight="true"
+                    fresco:roundBottomLeft="true"
+                    fresco:roundBottomRight="true"/>
+                <TextView
+                    android:layout_toRightOf="@id/sdv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/text01"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:text="账户安全"/>
+                <com.example.duan.chao.DCZ_selft.SwitchButton
+                    android:id="@+id/button1"
+                    style="@style/SwitchButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:checked="true"
+                    android:textColor="@color/custom_text_state_color"
+                    android:textSize="16dp"
+                    app:kswBackDrawable="@drawable/ios_back_drawable"
+                    app:kswTextOff="off"
+                    app:kswTextOn="on"
+                    app:kswTintColor="@color/white" />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/bg2"
                 android:gravity="center_vertical"
                 android:layout_marginTop="1dp"
                 android:paddingTop="10dp"
@@ -147,7 +249,7 @@
                     android:id="@+id/sdv4"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    fresco:placeholderImage="@mipmap/zhanwei"
+                    fresco:placeholderImage="@mipmap/shezhi2"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
                     fresco:roundTopLeft="true"
@@ -161,23 +263,31 @@
                     android:layout_centerVertical="true"
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/text01"
-                    android:text="开启指纹解锁"/>
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
+                    android:textColor="@color/white"
+                    android:text="指纹密码"/>
+                <com.example.duan.chao.DCZ_selft.SwitchButton
+                    android:id="@+id/button2"
+                    style="@style/SwitchButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/right"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/you"/>
+                    android:checked="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/custom_text_state_color"
+                    android:textSize="16dp"
+                    app:kswBackDrawable="@drawable/ios_back_drawable"
+                    app:kswTextOff="off"
+                    app:kswTextOn="on"
+                    app:kswTintColor="@color/white" />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/bg2"
                 android:gravity="center_vertical"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingLeft="@dimen/left">
@@ -185,7 +295,7 @@
                     android:id="@+id/sdv5"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    fresco:placeholderImage="@mipmap/zhanwei"
+                    fresco:placeholderImage="@mipmap/shezhi4"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
                     fresco:roundTopLeft="true"
@@ -199,13 +309,14 @@
                     android:layout_centerVertical="true"
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/text01"
+                    android:textColor="@color/white"
                     android:text="关于"/>
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/right"
+                    android:visibility="gone"
                     android:layout_centerVertical="true"
                     android:src="@mipmap/you"/>
             </RelativeLayout>
@@ -213,7 +324,7 @@
                 android:id="@+id/rl6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/bg2"
                 android:gravity="center_vertical"
                 android:layout_marginTop="1dp"
                 android:paddingTop="10dp"
@@ -223,7 +334,7 @@
                     android:id="@+id/sdv6"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    fresco:placeholderImage="@mipmap/zhanwei"
+                    fresco:placeholderImage="@mipmap/shezhi5"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
                     fresco:roundTopLeft="true"
@@ -237,7 +348,7 @@
                     android:layout_centerVertical="true"
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/text01"
+                    android:textColor="@color/white"
                     android:text="退出当前账户"/>
                 <ImageView
                     android:layout_width="15dp"
@@ -245,6 +356,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/right"
                     android:layout_centerVertical="true"
+                    android:visibility="gone"
                     android:src="@mipmap/you"/>
             </RelativeLayout>
         </LinearLayout>
@@ -279,7 +391,7 @@
                 style="@style/Title">
                 <include
                     android:id="@+id/back"
-                    layout="@layout/layout_back"/>
+                    layout="@layout/layout_back2" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -295,11 +407,6 @@
                     android:layout_marginRight="@dimen/right"
                     android:layout_centerVertical="true"
                     android:src="@mipmap/saoma"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/xian"
-                    android:background="@color/xian1"
-                    android:layout_alignParentBottom="true"/>
             </RelativeLayout>
         </LinearLayout>
         <RelativeLayout

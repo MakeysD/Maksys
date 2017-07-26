@@ -27,14 +27,16 @@
     <color name="text07">#a2a2a2</color><!--列表项内容-->
 
     <color name="text_lv">#9fd1f7</color>
-    <color name="xian1">#b2b2b2</color>
+    <color name="xian1">#343436</color>
+    <color name="xian2">#0581c6</color>
     <color name="white">#FFFFFF</color>
 
 
-    <color name="bg1">#333333</color>
-    <color name="bg2">#e5e5e5</color>
+    <color name="bg1">#0f0f10</color>
+    <color name="bg2">#252527</color>
+    <color name="bg3">#131315</color>
 
-    <color name="bg_title1">#366cf4</color>
+    <color name="bg_title1">#0f0f10</color>
     <color name="text_title1">#FFFFFF</color>
     <color name="bg_title2">#FFFFFF</color>
     <color name="text_title2">#333333</color>

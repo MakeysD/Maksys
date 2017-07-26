@@ -27,7 +27,7 @@
     <dimen name="text05">10sp</dimen>
     <!--说明文字-->
     <dimen name="size_middle">12sp</dimen>
-    <dimen name="title">14sp</dimen>
+    <dimen name="title">16sp</dimen>
     <dimen name="biaoti">14sp</dimen>
     <dimen name="neirong">12sp</dimen>
 </resources>

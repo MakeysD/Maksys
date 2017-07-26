@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg1"
     tools:context="com.example.duan.chao.DCZ_activity.ScanActivity">
     <TextView
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="关于我们"
+            android:text="扫码认证"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -28,5 +29,18 @@
             android:layout_height="@dimen/xian"
             android:background="@color/xian1"
             android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <SurfaceView
+            android:id="@+id/capture_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.duan.chao.zxing_code.view.ViewfinderView
+            android:id="@+id/capture_viewfinder"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
     </RelativeLayout>
 </LinearLayout>
