@@ -2,9 +2,11 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.duan.chao.DCZ_adapter.CityAdapter;
@@ -37,6 +39,8 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
     View back;
     @BindView(R.id.lv)
     ListView lv;
+    @BindView(R.id.et)
+    EditText et;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,20 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 
@@ -108,6 +126,7 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
     @Override
     public void addAction(CityBean bean) {
         ChangePhone3Activity.content="+"+bean.getCountry_code()+" ";
+        LoginActivity.code=bean.getCountry_code()+"";
         finish();
     }
 }

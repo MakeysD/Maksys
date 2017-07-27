@@ -40,6 +40,7 @@
                         <com.facebook.drawee.view.SimpleDraweeView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
+                            android:visibility="gone"
                             android:layout_marginLeft="50dp"
                             android:background="@mipmap/tou"/>
                     </LinearLayout>
@@ -119,12 +120,12 @@
                     android:paddingTop="5dp">
 
                     <TextView
-
+                        android:id="@+id/tv_anquan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:textSize="@dimen/text02"
-                        android:text="未开启" />
+                        android:text="已开启" />
 
                     <ImageView
                         android:layout_width="15dp"
@@ -181,7 +182,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:textSize="@dimen/text02"
-                        android:text="未开启" />
+                        android:text="已开启" />
 
                     <ImageView
                         android:layout_width="15dp"
@@ -276,7 +277,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:checked="true"
+                    android:checked="false"
+                    android:enabled="false"
                     android:layout_marginRight="10dp"
                     android:textColor="@color/custom_text_state_color"
                     android:textSize="16dp"

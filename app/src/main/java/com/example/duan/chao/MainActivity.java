@@ -12,9 +12,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
@@ -26,8 +29,10 @@ import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
+import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.DragLayout;
 import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
+import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.nineoldandroids.view.ViewHelper;
 
 import butterknife.BindView;
@@ -55,6 +60,15 @@ public class MainActivity extends BaseActivity {
     ImageView scan;
     @BindView(R.id.add)
     LinearLayout add;
+
+    @BindView(R.id.tv_suo)
+    TextView tv_suo;
+    @BindView(R.id.tv_anquan)
+    TextView tv_anquan;
+    @BindView(R.id.button1)
+    SwitchButton button1;     //退出当前账户
+    @BindView(R.id.button2)
+    SwitchButton button2;     //指纹锁
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,14 +117,6 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        //账户安全
-        rl2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, ZhangHuSercurityActivity.class);
-                startActivity(intent);
-            }
-        });
         //手势锁
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,20 +125,30 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        //账户安全
+        rl2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE, ZhangHuSercurityActivity.class);
+                startActivity(intent);
+            }
+        });
         //指纹锁
         rl4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, FingerprinProtectActivity.class);
-                startActivity(intent);
+                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
+             /*   Intent intent=new Intent(INSTANCE, FingerprinProtectActivity.class);
+                startActivity(intent);*/
             }
         });
         //关于
         rl5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, GuanYuActivity.class);
-                startActivity(intent);
+                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
+              /*  Intent intent=new Intent(INSTANCE, GuanYuActivity.class);
+                startActivity(intent);*/
             }
         });
         //退出当前账户
@@ -141,6 +157,30 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(INSTANCE, LoginActivity.class);
                 startActivity(intent);
+            }
+        });
+        //账户安全的开关
+        button1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked==true){
+                    Toast.makeText(INSTANCE, "已开启", Toast.LENGTH_SHORT).show();
+                    rl2.setEnabled(true);
+                } else {
+                    Toast.makeText(INSTANCE, "已关闭", Toast.LENGTH_SHORT).show();
+                    rl2.setEnabled(false);
+                }
+            }
+        });
+        //指纹锁的开关
+        button2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked==true){
+                    Toast.makeText(INSTANCE, "已开启", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(INSTANCE, "已关闭", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -164,6 +204,18 @@ public class MainActivity extends BaseActivity {
         }
     };
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(LockUtil.getPwdStatus(INSTANCE)==true){
+            tv_suo.setText("已开启");
+        }else {
+            tv_suo.setText("未开启");
+        }
+    }
+
+
+    //手动开启相机权限
     private void quan(){
         if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);

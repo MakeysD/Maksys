@@ -2,19 +2,33 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.R;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 /**
  *     登录
@@ -22,6 +36,8 @@ import butterknife.ButterKnife;
  * */
 public class LoginActivity extends BaseActivity {
     private LoginActivity INSTANCE;
+    private List<CityBean> list;
+    public static String code="86";
     @BindView(R.id.back)
     View back;
     @BindView(R.id.xian1)
@@ -42,13 +58,16 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.button2)
     TextView button2;       //忘记密码
     @BindView(R.id.et_guo)
-    EditText guo;           //国家
+    TextView guo;           //国家
     @BindView(R.id.quhao)
     EditText quhao;         //区号
     @BindView(R.id.et_phone)
     EditText phone;         //手机
     @BindView(R.id.et_mima)
     EditText mima;          //密码
+
+    @BindView(R.id.button1)
+    SwitchButton button1;   //密码显示开关
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +83,7 @@ public class LoginActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-
+        quhao.setFocusable(true);
     }
     /**
      *  监听
@@ -91,22 +110,35 @@ public class LoginActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        button1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mima.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    //替换成*号
+                   // mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+                }
+            }
+        });
 
         //国家
         guo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
-                    iv1.setImageResource(R.mipmap.login1);
-                    xian1.setBackgroundColor(Color.parseColor("#0581c6"));
-                    iv2.setImageResource(R.mipmap.login02);
-                    xian2.setBackgroundColor(Color.parseColor("#343436"));
-                    iv3.setImageResource(R.mipmap.login03);
-                    xian3.setBackgroundColor(Color.parseColor("#343436"));
+                    type1();
                 }
             }
         });
-        guo.addTextChangedListener(new TextWatcher() {
+        guo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type1();
+            }
+        });
+       /* guo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -125,7 +157,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });
+        });*/
         //区号
         quhao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -136,6 +168,29 @@ public class LoginActivity extends BaseActivity {
                 xian2.setBackgroundColor(Color.parseColor("#0581c6"));
                 iv3.setImageResource(R.mipmap.login03);
                 xian3.setBackgroundColor(Color.parseColor("#343436"));
+            }
+        });
+        quhao.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    String content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+                    list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+                    Log.i("dcz",list.toString());
+                    for(int i=0;i<list.size();i++){
+                        if(s.toString().equals(String.valueOf(list.get(i).getCountry_code()))){
+                            guo.setText(list.get(i).getCountry_name_cn());
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 
@@ -206,5 +261,65 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void type1(){
+        iv1.setImageResource(R.mipmap.login1);
+        xian1.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        iv3.setImageResource(R.mipmap.login03);
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        Intent intent=new Intent(INSTANCE, CityListActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        quhao.setText(code);
+    }
+
+    public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
+        @Override
+        public CharSequence getTransformation(CharSequence source, View view) {
+            return new PasswordCharSequence(source);
+        }
+
+        private class PasswordCharSequence implements CharSequence {
+            private CharSequence mSource;
+            public PasswordCharSequence(CharSequence source) {
+                mSource = source;
+            }
+            public char charAt(int index) {
+                return '*';
+            }
+            public int length() {
+                return mSource.length();
+            }
+            public CharSequence subSequence(int start, int end) {
+                return mSource.subSequence(start, end); // Return default
+            }
+        }
+    };
+
+    public static String ToString(InputStream is, String charset) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                } else {
+                    sb.append(line).append("\n");
+                }
+            }
+            reader.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 }

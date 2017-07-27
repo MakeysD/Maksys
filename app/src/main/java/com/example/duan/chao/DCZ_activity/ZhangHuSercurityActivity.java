@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.duan.chao.R;
 
@@ -80,14 +81,16 @@ public class ZhangHuSercurityActivity extends BaseActivity {
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE,SecurityEmailActivity.class);
-                startActivity(intent);
+                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
+               /* Intent intent=new Intent(INSTANCE,SecurityEmailActivity.class);
+                startActivity(intent);*/
             }
         });
         //实名信息
         rl4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
                 startActivity(intent);
             }
@@ -96,6 +99,7 @@ public class ZhangHuSercurityActivity extends BaseActivity {
         rl5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(INSTANCE,SuohaoActivity.class);
                 startActivity(intent);
             }
