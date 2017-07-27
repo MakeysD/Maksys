@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg1"
     tools:context="com.example.duan.chao.DCZ_activity.GuanYuActivity">
     <TextView
         android:layout_width="match_parent"
@@ -27,6 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/xian"
             android:background="@color/xian1"
+            android:layout_marginLeft="@dimen/xian_left"
+            android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </LinearLayout>

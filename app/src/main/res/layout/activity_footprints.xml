@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg1"
     tools:context="com.example.duan.chao.DCZ_activity.FootprintsActivity">
     <TextView
         android:layout_width="match_parent"
@@ -27,6 +28,53 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/xian"
             android:background="@color/xian1"
+            android:layout_marginLeft="@dimen/xian_left"
+            android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
+    <com.example.duan.chao.DCZ_selft.BounceScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/text02"
+                android:paddingLeft="@dimen/left"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:text="当前登录"/>
+            <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+                android:id="@+id/lv1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:clickable="false"
+                android:scrollbars="none">
+            </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/text02"
+                android:paddingLeft="@dimen/left"
+                android:paddingTop="7dp"
+                android:text="最近登录记录"/>
+            <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+                android:id="@+id/lv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:listSelector="@color/bg1"
+                android:divider="@null"
+                android:clickable="false"
+                android:scrollbars="none">
+            </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
+        </LinearLayout>
+    </com.example.duan.chao.DCZ_selft.BounceScrollView>
 </LinearLayout>

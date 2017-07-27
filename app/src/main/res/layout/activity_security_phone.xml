@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg1"
     tools:context="com.example.duan.chao.DCZ_activity.SecurityPhoneActivity">
     <TextView
         android:layout_width="match_parent"
@@ -27,6 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/xian"
             android:background="@color/xian1"
+            android:layout_marginLeft="@dimen/xian_left"
+            android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
     <LinearLayout
@@ -41,15 +44,15 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="30dp"
-            android:background="@mipmap/zhanwei" />
+            android:background="@mipmap/anquan2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="当前绑定的密保手机：132****8723"
-            android:textColor="@color/text05"
-            android:textSize="17sp" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/title" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -89,7 +92,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="如果当前手机已换号，请及时更换"
-            android:textColor="@color/text06"
+            android:textColor="@color/text02"
             android:textSize="@dimen/text02" />
 
         <View
@@ -104,7 +107,7 @@
             android:layout_marginBottom="20dp"
             android:padding="10dp"
             android:text="已换号"
-            android:textColor="@color/text07"
+            android:textColor="@color/text05"
             android:textSize="15sp" />
     </LinearLayout>
 </LinearLayout>

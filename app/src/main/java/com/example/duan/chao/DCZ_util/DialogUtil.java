@@ -26,12 +26,16 @@ import com.example.duan.chao.R;
  * 功能描述：  得到自定义的进度条
  */
 public class DialogUtil {
-
-    public static Dialog createLoadingDialog(Context context, String msg) {
+    public static Dialog createLoadingDialog(Context context, String msg,String type) {
+        View v;
         final AnimationDrawable animationDrawable;
         LayoutInflater inflater = LayoutInflater.from(context);
        // View v = inflater.inflate(R.layout.loaddialog, null);// 得到加载view
-        View v=inflater.inflate(R.layout.loaddialog,null);
+        if(type.equals("2")){
+            v=inflater.inflate(R.layout.loaddialog2,null);
+        }else {
+            v=inflater.inflate(R.layout.loaddialog,null);
+        }
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);// 加载布局
         final ImageView spaceshipImage = (ImageView) v.findViewById(R.id.img);
         TextView tipTextView = (TextView) v.findViewById(R.id.text);// 提示文字

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg1"
     tools:context="com.example.duan.chao.DCZ_activity.SecurityProtectActivity">
     <TextView
         android:layout_width="match_parent"
@@ -28,20 +29,22 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/xian"
             android:background="@color/xian1"
+            android:layout_marginLeft="@dimen/xian_left"
+            android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/left"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text01"
-            android:textColor="@color/text06"
+            android:textColor="@color/white"
             android:text="已开启3类业务账户授权保护"/>
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +57,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/bg2"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/left"
         android:paddingTop="10dp">
@@ -78,7 +81,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/sdv1"
             android:text="钱包"
-            android:textColor="@color/text06"
+            android:textColor="@color/white"
             android:textSize="@dimen/text01" />
 
         <com.example.duan.chao.DCZ_selft.SwitchButton
@@ -88,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
             android:checked="true"
             android:textColor="@color/custom_text_state_color"
             android:textSize="16dp"
@@ -96,11 +100,15 @@
             app:kswTextOn="on"
             app:kswTintColor="@color/white" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xian"
+        android:background="@color/xian1"
+        android:layout_alignParentBottom="true"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@color/white"
+        android:background="@color/bg2"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/left"
         android:paddingTop="10dp">
@@ -124,7 +132,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/sdv2"
             android:text="撮合交易平台"
-            android:textColor="@color/text06"
+            android:textColor="@color/white"
             android:textSize="@dimen/text01" />
 
         <com.example.duan.chao.DCZ_selft.SwitchButton
@@ -133,6 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
             android:checked="true"
             android:textColor="@color/custom_text_state_color"
@@ -142,11 +151,15 @@
             app:kswTextOn="on"
             app:kswTintColor="@color/white" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xian"
+        android:background="@color/xian1"
+        android:layout_alignParentBottom="true"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginTop="1dp"
+        android:background="@color/bg2"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/left"
         android:paddingTop="10dp">
@@ -170,12 +183,13 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/sdv3"
             android:text="王者荣耀"
-            android:textColor="@color/text06"
+            android:textColor="@color/white"
             android:textSize="@dimen/text01" />
 
         <com.example.duan.chao.DCZ_selft.SwitchButton
             android:id="@+id/button3"
             style="@style/SwitchButtonStyle"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -188,12 +202,16 @@
             app:kswTextOn="on"
             app:kswTintColor="@color/white" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xian"
+        android:background="@color/xian1"
+        android:layout_alignParentBottom="true"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/bg2"
         android:paddingBottom="10dp"
-        android:layout_marginTop="1dp"
         android:paddingLeft="@dimen/left"
         android:paddingTop="10dp">
 
@@ -216,7 +234,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/sdv4"
             android:text="淘宝商城"
-            android:textColor="@color/text06"
+            android:textColor="@color/white"
             android:textSize="@dimen/text01" />
 
         <com.example.duan.chao.DCZ_selft.SwitchButton
@@ -225,6 +243,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
             android:checked="true"
             android:textColor="@color/custom_text_state_color"
@@ -234,12 +253,16 @@
             app:kswTextOn="on"
             app:kswTintColor="@color/white" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xian"
+        android:background="@color/xian1"
+        android:layout_alignParentBottom="true"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/bg2"
         android:paddingBottom="10dp"
-        android:layout_marginTop="1dp"
         android:paddingLeft="@dimen/left"
         android:paddingTop="10dp">
 
@@ -262,7 +285,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/sdv5"
             android:text="竞技运动场"
-            android:textColor="@color/text06"
+            android:textColor="@color/white"
             android:textSize="@dimen/text01" />
 
         <com.example.duan.chao.DCZ_selft.SwitchButton
@@ -270,14 +293,16 @@
             style="@style/SwitchButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
             android:checked="true"
             android:textColor="@color/custom_text_state_color"
             android:textSize="16dp"
             app:kswBackDrawable="@drawable/ios_back_drawable"
             app:kswTextOff="off"
             app:kswTextOn="on"
-            app:kswTintColor="@color/white" />
+            app:kswTintColor="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 </LinearLayout>

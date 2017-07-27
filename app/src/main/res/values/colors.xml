@@ -17,16 +17,19 @@
 
     <color name="alpha">#000000</color>
     <color name="text01">#333333</color>
-    <color name="text02">#999999</color>
+    <color name="text02">#6a6a6a</color>
     <color name="text03">#998b7c</color>
-    <color name="text04">#c7c7c7</color>
+    <color name="text04">#a2a2a2</color>
 
 
     <color name="text05">#366cf4</color>
     <color name="text06">#303030</color><!--列表项标题-->
     <color name="text07">#a2a2a2</color><!--列表项内容-->
+    <color name="text08">#ffffff</color><!--输入框输入的内容-->
 
     <color name="text_lv">#9fd1f7</color>
+    <color name="text_red">#db4739</color>
+    <color name="text_blue">#00a446</color>
     <color name="xian1">#343436</color>
     <color name="xian2">#0581c6</color>
     <color name="white">#FFFFFF</color>
@@ -35,6 +38,7 @@
     <color name="bg1">#0f0f10</color>
     <color name="bg2">#252527</color>
     <color name="bg3">#131315</color>
+    <color name="bg4">#3b3a3f</color><!--button灰色-->
 
     <color name="bg_title1">#0f0f10</color>
     <color name="text_title1">#FFFFFF</color>

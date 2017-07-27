@@ -1,8 +1,16 @@
 package com.example.duan.chao;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -76,8 +84,7 @@ public class MainActivity extends BaseActivity {
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, ScanActivity.class);
-                startActivity(intent);
+                quan();
             }
         });
 
@@ -149,11 +156,36 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onDrag(final float percent) {
             /*主界面左上角头像渐渐消失*/
-            ViewHelper.setAlpha(back, 1 - percent);
+           // ViewHelper.setAlpha(back, 1 - percent);
         }
         @Override
         public void onStartOpen(DragLayout.Direction direction) {
            // Utils.showToast(getApplicationContext(), "onStartOpen: " + direction.toString());
         }
     };
+
+    private void quan(){
+        if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
+        } else {
+            Intent intent=new Intent(INSTANCE, ScanActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 1) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //权限获取成功
+                Log.i("dcz","权限获取成功");
+                Intent intent=new Intent(INSTANCE, ScanActivity.class);
+                startActivity(intent);
+            }else{
+                //权限被拒绝
+                Log.i("dcz","权限被拒绝");
+            }
+        }
+    }
 }

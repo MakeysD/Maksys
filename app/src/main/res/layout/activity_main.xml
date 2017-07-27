@@ -90,8 +90,9 @@
                 android:paddingLeft="@dimen/left">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/sdv1"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
                     fresco:placeholderImage="@mipmap/shezhi1"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
@@ -145,8 +146,9 @@
                 android:paddingLeft="@dimen/left">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/sdv3"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
                     fresco:placeholderImage="@mipmap/shezhi6"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
@@ -201,8 +203,9 @@
                 android:paddingLeft="@dimen/left">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/sdv2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
                     fresco:placeholderImage="@mipmap/shezhi3"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
@@ -247,8 +250,9 @@
                 android:paddingLeft="@dimen/left">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/sdv4"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
                     fresco:placeholderImage="@mipmap/shezhi2"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
@@ -293,8 +297,9 @@
                 android:paddingLeft="@dimen/left">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/sdv5"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
                     fresco:placeholderImage="@mipmap/shezhi4"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
@@ -332,8 +337,9 @@
                 android:paddingLeft="@dimen/left">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/sdv6"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
                     fresco:placeholderImage="@mipmap/shezhi5"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"

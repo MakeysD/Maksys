@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -85,7 +87,7 @@ public class LoginActivity extends BaseActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, SmsActivity.class);
+                Intent intent=new Intent(INSTANCE, LookPasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -102,6 +104,26 @@ public class LoginActivity extends BaseActivity {
                     iv3.setImageResource(R.mipmap.login03);
                     xian3.setBackgroundColor(Color.parseColor("#343436"));
                 }
+            }
+        });
+        guo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(phone.getText().toString().length()>0&&mima.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
         //区号
@@ -129,7 +151,28 @@ public class LoginActivity extends BaseActivity {
                 xian3.setBackgroundColor(Color.parseColor("#343436"));
             }
         });
+        phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&mima.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
+        //密码
         mima.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -139,6 +182,27 @@ public class LoginActivity extends BaseActivity {
                 xian2.setBackgroundColor(Color.parseColor("#343436"));
                 iv3.setImageResource(R.mipmap.login3);
                 xian3.setBackgroundColor(Color.parseColor("#0581c6"));
+            }
+        });
+
+        mima.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&phone.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 

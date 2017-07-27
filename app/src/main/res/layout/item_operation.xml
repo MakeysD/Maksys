@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/left"
+    android:paddingRight="@dimen/right">
+    <RelativeLayout
+        android:id="@+id/rlTimeline"
+        android:orientation="vertical"
+        android:layout_width="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/xian1"
+            android:layout_width="@dimen/xian2"
+            android:layout_height="10dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/text01" />
+        <TextView
+            android:id="@+id/tvDot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xian1"
+            android:visibility="invisible"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="今"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/yuanjiao" />
+        <TextView
+            android:layout_width="@dimen/xian2"
+            android:layout_centerHorizontal="true"
+            android:background="@color/text01"
+            android:layout_below="@id/tvDot"
+            android:layout_height="10dp" />
+    </RelativeLayout>
+    <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rlTimeline"
+        android:divider="@null"
+        android:clickable="false"
+        android:scrollbars="none">
+    </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
+    <TextView
+        android:id="@+id/xian3"
+        android:layout_width="@dimen/xian2"
+        android:layout_height="10dp" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xian3"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize="@dimen/text02"
+        android:textColor="@color/text02"
+        android:text="今天"
+        android:background="@drawable/yuanjiao" />
+</RelativeLayout>
