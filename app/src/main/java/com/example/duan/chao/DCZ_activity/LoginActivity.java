@@ -141,6 +141,27 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
+        guo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&mima.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
         ll_guo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

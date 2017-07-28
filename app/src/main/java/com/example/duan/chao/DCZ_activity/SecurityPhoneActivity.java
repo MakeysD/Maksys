@@ -20,8 +20,6 @@ public class SecurityPhoneActivity extends BaseActivity {
     View back;
     @BindView(R.id.button)
     TextView button;        //更换
-    @BindView(R.id.change)
-    TextView change;        //已换号
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +54,5 @@ public class SecurityPhoneActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        change.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, ChangePhone3Activity.class);
-                startActivity(intent);
-            }
-        });
     }
-
 }

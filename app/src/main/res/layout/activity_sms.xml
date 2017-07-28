@@ -80,33 +80,49 @@
         android:background="@color/xian2" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/left"
-        android:paddingRight="@dimen/right">
-        <TextView
-            android:id="@+id/button_hui"
+        android:layout_height="match_parent">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="下一步"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/yuanjiaohui"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textSize="@dimen/title"
-            android:textColor="@color/text02"/>
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right">
+            <TextView
+                android:id="@+id/button_hui"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="下一步"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/yuanjiaohui"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="@dimen/title"
+                android:textColor="@color/text02"/>
+            <TextView
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="下一步"
+                android:visibility="gone"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/yuanjiaolan2"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="@dimen/title"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
         <TextView
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下一步"
-            android:visibility="gone"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/yuanjiaolan2"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textSize="@dimen/title"
-            android:textColor="@color/white"/>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:text="已换号"
+            android:textColor="@color/text05"
+            android:textSize="15sp" />
     </RelativeLayout>
+
 </LinearLayout>

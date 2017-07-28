@@ -33,6 +33,8 @@ public class SmsActivity extends BaseActivity {
     TextView code;       //验证码
     @BindView(R.id.et_code)
     EditText et_code;
+    @BindView(R.id.change)
+    TextView change;        //已换号
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,13 @@ public class SmsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE, ChangePhone3Activity.class);
+                startActivity(intent);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {

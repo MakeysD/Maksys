@@ -106,6 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:padding="10dp"
+            android:visibility="gone"
             android:text="已换号"
             android:textColor="@color/text05"
             android:textSize="15sp" />
