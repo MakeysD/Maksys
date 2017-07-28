@@ -26,6 +26,12 @@ android {
         //只要添加下面这一句就可以了
         disable 'MissingTranslation'
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -52,4 +58,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile files('libs/jpush-android-3.0.8.jar')
 }

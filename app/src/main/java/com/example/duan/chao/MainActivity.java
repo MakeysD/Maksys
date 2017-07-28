@@ -2,8 +2,11 @@ package com.example.duan.chao;
 
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +34,8 @@ import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
+import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.DragLayout;
 import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
@@ -45,9 +50,18 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity{
     private final String TAG = "MainActivity";
     private TextView result = null;
+
+    //下面的是极光需要
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_EXTRAS = "extras";
     private FingerprintManagerCompat fingerprintManager = null;
     private MyAuthCallback myAuthCallback = null;
     private CancellationSignal cancellationSignal = null;
+    public static boolean isForeground = false;
+    //上面的是极光需要
 
     private Handler handler = null;
     public static final int MSG_AUTH_SUCCESS = 100;
@@ -56,6 +70,8 @@ public class MainActivity extends BaseActivity{
     public static final int MSG_AUTH_HELP = 103;
     private MainActivity INSTANCE;
     private DragLayout mDragLayout;
+
+
     @BindView(R.id.back)
     View back;
     @BindView(R.id.rl1)
@@ -88,6 +104,7 @@ public class MainActivity extends BaseActivity{
         setContentView(R.layout.activity_main);
         INSTANCE=this;
         ButterKnife.bind(this);
+        registerMessageReceiver();
         setViews();
         setListener();
     }
@@ -214,6 +231,7 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected void onResume() {
+        isForeground = true;
         super.onResume();
         if(LockUtil.getPwdStatus(INSTANCE)==true){
             tv_suo.setText("已开启");
@@ -295,25 +313,44 @@ public class MainActivity extends BaseActivity{
                 e.printStackTrace();
             }
         }
-        /*//开始指纹设置
-        try {
-            CryptoObjectHelper cryptoObjectHelper = new CryptoObjectHelper();
-            if (cancellationSignal == null) {
-                cancellationSignal = new CancellationSignal();
-            }
-            fingerprintManager.authenticate(cryptoObjectHelper.buildCryptoObject(), 0,
-                    cancellationSignal, myAuthCallback, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            button2.setChecked(false);
-            Toast.makeText(MainActivity.this, "指纹初始化失败!再试一次!", Toast.LENGTH_SHORT).show();
-        }*/
     }
-  /*  *//**
-     *   取消指纹身份验证。
-     * *//*
-    private void cancelZhiwen(){
-        cancellationSignal.cancel();
-        cancellationSignal = null;
-    }*/
+
+    @Override
+    protected void onPause() {
+        isForeground = false;
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        super.onDestroy();
+    }
+
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
+    }
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                    String messge = intent.getStringExtra(KEY_MESSAGE);
+                    String extras = intent.getStringExtra(KEY_EXTRAS);
+                    StringBuilder showMsg = new StringBuilder();
+                    showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                    if (!ExampleUtil.isEmpty(extras)) {
+                        showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                    }
+                    Log.i("dcz",showMsg.toString());
+                }
+            } catch (Exception e){
+            }
+        }
+    }
 }

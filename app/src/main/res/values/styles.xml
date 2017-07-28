@@ -69,4 +69,13 @@
         <item name="kswThumbWidth">@dimen/ksw_md_thumb_ripple_size</item>
         <item name="kswThumbHeight">@dimen/ksw_md_thumb_ripple_size</item>
     </style>
+
+    <style name="push_alias">
+        <item name="android:hint">@string/alias_hint</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="push_tag">
+        <item name="android:hint">@string/tag_hint</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>
