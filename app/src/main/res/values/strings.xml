@@ -6,4 +6,47 @@
     <string name="loaddings">努力加载...</string>
 
     <string name="scan_text">将二维码放入框内,即可自动扫描</string>
+
+    <string name="start_btn">开始</string>
+    <string name="cancel_btn">取消</string>
+
+    <string name="fingerprint_success">指纹识别成功.</string>
+    <string name="fingerprint_not_recognized">指纹不认可。再试一次.</string>
+
+    <!-- Dialog info -->
+    <string name="no_sensor_dialog_title">没有指纹传感器</string>
+    <string name="no_sensor_dialog_message">在你的设备上没有指纹传感器，点击取消退出.</string>
+    <string name="no_fingerprint_enrolled_dialog_title">没有指纹登记</string>
+    <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
+        <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>
+    <string name="ok_btn_dialog">OK</string>
+    <string name="cancel_btn_dialog">取消</string>
+
+    <!-- auth result error amd help code warning -->
+    <string name="AcquiredGood_warning">获得的图像很好.</string>
+
+    <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘，指纹图像太吵了。例如，在多次获得
+                                                足够或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或
+                                                多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多
+                                                或多或对传感器上的灰尘进行实际的检测(卡在像素、大片区域等)。当用户返回时，用户将会采取行动来清除传感器.</string>
+    <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂，无法处理检测到的情况(即干性皮肤)或可能是脏的传感器。</string>
+
+    <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来。在注册过程中，用户应该了解需要发生什么才能解决这个问题。“紧紧地压在传感器上。”</string>
+
+    <string name="AcquiredTooFast_warning">由于快速移动，指纹图像不完整。虽然大多数情况下都适用于线性阵列传感器，但如果在采集过程中手指被移动，这种情况也可能发生。
+                                            用户应该被要求移动手指的速度较慢(线性)，或者将手指放在传感器上的时间更长。</string>
+
+    <string name="AcquiredToSlow_warning">由于缺乏运动，指纹图像难以辨认。这对于需要滑动动作的线性阵列传感器来说是最合适的</string>
+
+    <string name="ErrorCanceled_warning">由于指纹传感器无法使用，该操作被取消。例如，当用户切换时，这可能会发生，设备被锁定，或另一个正在运行的操作阻止或禁用它.</string>
+
+    <string name="ErrorHwUnavailable_warning">硬件不可用。稍后再试.</string>
+
+    <string name="ErrorLockout_warning">这个操作被取消了，因为API因为太多的尝试而被锁定了。</string>
+
+    <string name="ErrorTimeout_warning">当当前请求运行得太长时，会返回错误状态。这是为了防止程序无限期地等待指纹传感器。超时是基于平台和传感器的，但通常是30秒。</string>
+
+    <string name="ErrorUnableToProcess_warning">当传感器无法处理当前图像时，会返回错误状态。</string>
+
+    <string name="ErrorNoSpace_warning">返回的错误状态，如注册;操作无法完成，因为没有足够的存储空间来完成操作.</string>
 </resources>

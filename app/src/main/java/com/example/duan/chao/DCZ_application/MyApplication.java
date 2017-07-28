@@ -13,6 +13,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
  */
 
 public class MyApplication extends Application{
+    public static boolean zhiwen=false;
     private static Context context;
     public static boolean first=true;//是否为第一次登录
     public static boolean isLogin=false;
@@ -33,6 +34,7 @@ public class MyApplication extends Application{
         DependencyInjector.configureForProductionIfNotConfigured(getApplicationContext());*/
         sf= PreferenceManager.getDefaultSharedPreferences(this);
         first = sf.getBoolean("first",true);
+        zhiwen=sf.getBoolean("zhiwen",false);
         Log.i("dcz_first",first+"");
     }
     public static Context getContext(){

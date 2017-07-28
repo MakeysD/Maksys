@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.duan.chao">
 
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -24,8 +25,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".DCZ_application.MyApplication"
         android:allowBackup="true"
@@ -68,7 +69,9 @@
         <activity android:name=".DCZ_activity.ChangePhone2Activity" />
         <activity android:name=".DCZ_activity.ChangePhone3Activity" />
         <activity android:name=".DCZ_activity.ChangePhone4Activity" />
-        <activity android:name=".DCZ_activity.CityListActivity"></activity>
+        <activity android:name=".DCZ_activity.CityListActivity" />
+        <activity android:name=".DCZ_activity.ZhiwenActivity" />
+        <activity android:name=".DCZ_activity.HaveActivity"></activity>
     </application>
 
 </manifest>

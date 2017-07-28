@@ -39,6 +39,7 @@ dependencies {
     //图片加载神器
     //网络框架
     //butterknife框架
+    compile files('libs/zxing.jar')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.facebook.fresco:fresco:0.5.2'
@@ -51,5 +52,4 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile files('libs/zxing.jar')
 }

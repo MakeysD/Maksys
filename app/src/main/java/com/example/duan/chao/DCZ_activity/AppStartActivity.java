@@ -24,15 +24,20 @@ public class AppStartActivity extends Activity {
     }
 
     private void suo() {
-  //      if(MyApplication.isLogin==true){
-            //判断当前是否设置过密码
-            if(LockUtil.getPwdStatus(this)==true&& MyApplication.suo==true){
+    //    if(MyApplication.isLogin==true){
+            //判断是否设置过指纹锁
+            if(MyApplication.zhiwen==true){
+                Intent intent = new Intent(AppStartActivity.this, ZhiwenActivity.class);
+                startActivity(intent);
+                //判断当前是否设置过手势锁密码
+            }else if(LockUtil.getPwdStatus(this)==true&& MyApplication.suo==true){
                 Intent intent=new Intent(this,LoginLockActivity.class);
                 intent.putExtra("type","1");
                 startActivity(intent);
                 finish();
             }else {
-               /* if(MyApplication.first){
+                //判断是否是第一次登录
+            /*    if(MyApplication.first){
                     Intent intent = new Intent(AppStartActivity.this, WelcomeActivity.class);
                     startActivity(intent);
                 }else {
@@ -41,9 +46,8 @@ public class AppStartActivity extends Activity {
                 }*/
                 Intent intent = new Intent(AppStartActivity.this, MainActivity.class);
                 startActivity(intent);
-                finish();
             }
- /*       }else {
+    /*    }else {
             Intent intent = new Intent(AppStartActivity.this, LoginActivity.class);
             startActivity(intent);
         }*/

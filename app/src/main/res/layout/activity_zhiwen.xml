@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg1"
+    android:orientation="vertical"
+    tools:context="com.example.duan.chao.DCZ_activity.ZhiwenActivity">
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@color/red"
+        android:textColor="@color/white"
+        android:text="请按指纹解锁"/>
+
+    <TextView
+        android:id="@+id/change"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更换手势解锁"/>
+</LinearLayout>

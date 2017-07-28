@@ -2,16 +2,20 @@ package com.example.duan.chao;
 
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
+import android.support.v4.os.CancellationSignal;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,25 +25,35 @@ import android.widget.Toast;
 
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
-import com.example.duan.chao.DCZ_activity.FingerprinProtectActivity;
-import com.example.duan.chao.DCZ_activity.GesturesLockActivity;
-import com.example.duan.chao.DCZ_activity.GuanYuActivity;
 import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.DragLayout;
 import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
-import com.nineoldandroids.view.ViewHelper;
+import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
+import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity{
+    private final String TAG = "MainActivity";
+    private TextView result = null;
+    private FingerprintManagerCompat fingerprintManager = null;
+    private MyAuthCallback myAuthCallback = null;
+    private CancellationSignal cancellationSignal = null;
+
+    private Handler handler = null;
+    public static final int MSG_AUTH_SUCCESS = 100;
+    public static final int MSG_AUTH_FAILED = 101;
+    public static final int MSG_AUTH_ERROR = 102;
+    public static final int MSG_AUTH_HELP = 103;
     private MainActivity INSTANCE;
     private DragLayout mDragLayout;
     @BindView(R.id.back)
@@ -65,8 +79,6 @@ public class MainActivity extends BaseActivity {
     TextView tv_suo;
     @BindView(R.id.tv_anquan)
     TextView tv_anquan;
-    @BindView(R.id.button1)
-    SwitchButton button1;     //退出当前账户
     @BindView(R.id.button2)
     SwitchButton button2;     //指纹锁
 
@@ -86,6 +98,13 @@ public class MainActivity extends BaseActivity {
         mDragLayout.setDragListener(mDragListener);
         DragRelativeLayout mMainView = (DragRelativeLayout) findViewById(R.id.rl_main);
         mMainView.setDragLayout(mDragLayout);
+        if(MyApplication.zhiwen==true){
+            button2.setChecked(true);
+        }else {
+            button2.setChecked(false);
+        }
+        //初始化指纹.
+        fingerprintManager = FingerprintManagerCompat.from(this);
     }
 
     private void setListener() {
@@ -137,7 +156,6 @@ public class MainActivity extends BaseActivity {
         rl4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
              /*   Intent intent=new Intent(INSTANCE, FingerprinProtectActivity.class);
                 startActivity(intent);*/
             }
@@ -159,26 +177,16 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        //账户安全的开关
-        button1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked==true){
-                    Toast.makeText(INSTANCE, "已开启", Toast.LENGTH_SHORT).show();
-                    rl2.setEnabled(true);
-                } else {
-                    Toast.makeText(INSTANCE, "已关闭", Toast.LENGTH_SHORT).show();
-                    rl2.setEnabled(false);
-                }
-            }
-        });
         //指纹锁的开关
         button2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked==true){
-                    Toast.makeText(INSTANCE, "已开启", Toast.LENGTH_SHORT).show();
+                    //开启指纹锁
+                    startZhiwen();
                 } else {
+                    //关闭指纹锁
+                    MyApplication.zhiwen=false;
                     Toast.makeText(INSTANCE, "已关闭", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -240,4 +248,72 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
+    /**
+     *   指纹身份验证这里开始
+     * */
+    private void startZhiwen(){
+        //先判断有没有指纹传感器
+        if (!fingerprintManager.isHardwareDetected()) {
+            // 没有检测到指纹传感器，显示对话框告诉用户
+            button2.setChecked(false);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("没有指纹传感器");
+            builder.setMessage("在你的设备上没有指纹传感器，点击取消退出");
+            builder.setIcon(android.R.drawable.stat_sys_warning);
+            builder.setCancelable(false);
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            //显示提示框
+            builder.create().show();
+        } else if (!fingerprintManager.hasEnrolledFingerprints()) {
+            // 没有一个指纹图像被登记
+            button2.setChecked(false);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("没有指纹登记");
+            builder.setMessage("没有指纹登记,输入\\ n");
+            builder.setIcon(android.R.drawable.stat_sys_warning);
+            builder.setCancelable(false);
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            //显示提示框
+            builder.create().show();
+        } else {
+            try {
+                myAuthCallback = new MyAuthCallback(handler);
+                MyApplication.sf.edit().putBoolean("zhiwen", true).commit();
+                MyApplication.zhiwen=true;
+                Toast.makeText(INSTANCE, "已开启指纹验证", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        /*//开始指纹设置
+        try {
+            CryptoObjectHelper cryptoObjectHelper = new CryptoObjectHelper();
+            if (cancellationSignal == null) {
+                cancellationSignal = new CancellationSignal();
+            }
+            fingerprintManager.authenticate(cryptoObjectHelper.buildCryptoObject(), 0,
+                    cancellationSignal, myAuthCallback, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            button2.setChecked(false);
+            Toast.makeText(MainActivity.this, "指纹初始化失败!再试一次!", Toast.LENGTH_SHORT).show();
+        }*/
+    }
+  /*  *//**
+     *   取消指纹身份验证。
+     * *//*
+    private void cancelZhiwen(){
+        cancellationSignal.cancel();
+        cancellationSignal = null;
+    }*/
 }
