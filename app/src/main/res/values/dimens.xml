@@ -17,8 +17,8 @@
     <dimen name="left">20dp</dimen>
     <dimen name="right">20dp</dimen>
 
-    <dimen name="xian_left">20dp</dimen>
-    <dimen name="xian_right">20dp</dimen>
+    <dimen name="xian_left">0dp</dimen>
+    <dimen name="xian_right">0dp</dimen>
 
     <dimen name="top">19dp</dimen>
     <dimen name="xian">0.2dp</dimen>

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,6 +36,8 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
     private CityListActivity INSTANCE;
     private CityAdapter adapter;
     private List<CityBean> list;
+    private List<CityBean> list_serch=new ArrayList<>();
+    private String content;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.lv)
@@ -53,7 +56,7 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
 
     private void setViews(){
         try {
-            String content = toString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+            content = toString(INSTANCE.getAssets().open("city.json"), "UTF-8");
             list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
             Log.i("dcz",list.toString());
         } catch (IOException e) {
@@ -77,7 +80,18 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+                Log.i("dcz",list.toString());
+                if(list_serch!=null){
+                    list_serch.clear();
+                }
+                int length=s.length();
+                for(int i=0;i<list.size();i++){
+                    if(list.get(i).getCountry_name_cn().contains(s)){
+                       list_serch.add(list.get(i));
+                    }
+                }
+                adapter.notify(list_serch);
             }
 
             @Override

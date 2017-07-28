@@ -58,6 +58,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/et_guo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -70,19 +71,31 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="10dp"
                     android:src="@mipmap/login1" />
-
-                <EditText
-                    android:id="@+id/et_guo"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text04"
+                    android:textStyle="bold"
+                    android:text="国家 / 地区"/>
+                <TextView
+                    android:id="@+id/tv_guo"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:paddingLeft="17dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:background="@null"
-                    android:hint="国家 / 地区"
                     android:singleLine="true"
-                    android:textColor="@color/text08"
-                    android:textColorHint="@color/text04"
-                    android:textCursorDrawable="@null"
                     android:textSize="@dimen/text01" />
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/you" />
             </LinearLayout>
 
             <TextView
@@ -107,11 +120,12 @@
                     android:src="@mipmap/login02" />
 
                 <TextView
+                    android:id="@+id/jia"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="+"
-                    android:textColor="@color/text04"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text01" />
 
                 <EditText
@@ -121,6 +135,7 @@
                     android:background="@null"
                     android:hint="86         "
                     android:inputType="number"
+                    android:textStyle="bold"
                     android:maxLength="4"
                     android:paddingLeft="5dp"
                     android:singleLine="true"
@@ -133,18 +148,19 @@
                     android:layout_width="1dp"
                     android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="11dp"
                     android:background="@color/text04"></View>
 
                 <EditText
                     android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@null"
                     android:hint="请输入绑定手机号"
                     android:inputType="number"
                     android:maxLength="13"
+                    android:textStyle="bold"
                     android:phoneNumber="true"
                     android:singleLine="true"
                     android:textColor="@color/text08"
@@ -181,27 +197,23 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="请输入登录密码"
+                    android:textStyle="bold"
                     android:inputType="number"
                     android:singleLine="true"
                     android:textColor="@color/text08"
                     android:textColorHint="@color/text04"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/text01" />
-
-                <com.example.duan.chao.DCZ_selft.SwitchButton
-                    android:id="@+id/button1"
-                    style="@style/SwitchButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:checked="true"
-                    android:textColor="@color/custom_text_state_color"
-                    android:textSize="16dp"
-                    app:kswBackDrawable="@drawable/ios_back_drawable"
-                    app:kswTextOff="off"
-                    app:kswTextOn="on"
-                    app:kswTintColor="@color/white" />
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/selector_check"
+                    android:button="@null"
+                    android:checked="true" />
 
             </LinearLayout>
 

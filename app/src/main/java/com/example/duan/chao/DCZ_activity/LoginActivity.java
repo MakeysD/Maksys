@@ -8,13 +8,18 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
@@ -37,7 +42,7 @@ import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 public class LoginActivity extends BaseActivity {
     private LoginActivity INSTANCE;
     private List<CityBean> list;
-    public static String code="86";
+    public static String code="";
     @BindView(R.id.back)
     View back;
     @BindView(R.id.xian1)
@@ -58,6 +63,8 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.button2)
     TextView button2;       //忘记密码
     @BindView(R.id.et_guo)
+    LinearLayout ll_guo;    //国家
+    @BindView(R.id.tv_guo)
     TextView guo;           //国家
     @BindView(R.id.quhao)
     EditText quhao;         //区号
@@ -65,9 +72,10 @@ public class LoginActivity extends BaseActivity {
     EditText phone;         //手机
     @BindView(R.id.et_mima)
     EditText mima;          //密码
-
-    @BindView(R.id.button1)
-    SwitchButton button1;   //密码显示开关
+    @BindView(R.id.jia)
+    TextView jia;           //+
+    @BindView(R.id.checkBox)
+    CheckBox yan;           //眼睛
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +91,8 @@ public class LoginActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        quhao.setFocusable(true);
+        guo.setFocusable(false);
+        CanRippleLayout.Builder.on(button).rippleCorner(dp2Px(5)).create();
     }
     /**
      *  监听
@@ -110,7 +119,7 @@ public class LoginActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        button1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        yan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
@@ -132,42 +141,23 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
-        guo.setOnClickListener(new View.OnClickListener() {
+        ll_guo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 type1();
             }
         });
-       /* guo.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length()>0){
-                    if(phone.getText().toString().length()>0&&mima.getText().toString().length()>0){
-                        button.setVisibility(View.VISIBLE);
-                    }else {
-                        button.setVisibility(View.GONE);
-                    }
-                }else {
-                    button.setVisibility(View.GONE);
-                }
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });*/
         //区号
         quhao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                iv1.setImageResource(R.mipmap.login01);
-                xian1.setBackgroundColor(Color.parseColor("#343436"));
-                iv2.setImageResource(R.mipmap.login2);
-                xian2.setBackgroundColor(Color.parseColor("#0581c6"));
-                iv3.setImageResource(R.mipmap.login03);
-                xian3.setBackgroundColor(Color.parseColor("#343436"));
+                type2();
+            }
+        });
+        quhao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type2();
             }
         });
         quhao.addTextChangedListener(new TextWatcher() {
@@ -198,12 +188,13 @@ public class LoginActivity extends BaseActivity {
         phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                iv1.setImageResource(R.mipmap.login01);
-                xian1.setBackgroundColor(Color.parseColor("#343436"));
-                iv2.setImageResource(R.mipmap.login2);
-                xian2.setBackgroundColor(Color.parseColor("#0581c6"));
-                iv3.setImageResource(R.mipmap.login03);
-                xian3.setBackgroundColor(Color.parseColor("#343436"));
+               type2();
+            }
+        });
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type2();
             }
         });
         phone.addTextChangedListener(new TextWatcher() {
@@ -231,12 +222,7 @@ public class LoginActivity extends BaseActivity {
         mima.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                iv1.setImageResource(R.mipmap.login01);
-                xian1.setBackgroundColor(Color.parseColor("#343436"));
-                iv2.setImageResource(R.mipmap.login02);
-                xian2.setBackgroundColor(Color.parseColor("#343436"));
-                iv3.setImageResource(R.mipmap.login3);
-                xian3.setBackgroundColor(Color.parseColor("#0581c6"));
+               type3();
             }
         });
 
@@ -270,14 +256,36 @@ public class LoginActivity extends BaseActivity {
         xian2.setBackgroundColor(Color.parseColor("#343436"));
         iv3.setImageResource(R.mipmap.login03);
         xian3.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
         Intent intent=new Intent(INSTANCE, CityListActivity.class);
         startActivity(intent);
+    }
+
+    private void type2(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login2);
+        xian2.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv3.setImageResource(R.mipmap.login03);
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#ffffff"));
+    }
+
+    private void type3(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        iv3.setImageResource(R.mipmap.login3);
+        xian3.setBackgroundColor(Color.parseColor("#0581c6"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         quhao.setText(code);
+        jia.setTextColor(Color.parseColor("#ffffff"));
     }
 
     public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
@@ -321,5 +329,8 @@ public class LoginActivity extends BaseActivity {
             e.printStackTrace();
         }
         return sb.toString();
+    }
+    float dp2Px(float dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 }
