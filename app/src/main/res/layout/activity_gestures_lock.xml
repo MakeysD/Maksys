@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg1"
     tools:context="com.example.duan.chao.DCZ_activity.GesturesLockActivity">
     <TextView
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="手势锁"
+            android:text="手势锁设置"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -36,14 +37,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="20dp">
+
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/left"
             android:paddingRight="100dp"
-            android:textSize="@dimen/text01"
-            android:textColor="@color/text06"
-            android:text="启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心"/>
+            android:text="启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心"
+            android:textColor="@color/text02"
+            android:textSize="@dimen/text01" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -60,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:text="绘制解锁图案"
                     android:textSize="@dimen/text01"
-                    android:textColor="@color/text05"/>
+                    android:textColor="@color/white"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

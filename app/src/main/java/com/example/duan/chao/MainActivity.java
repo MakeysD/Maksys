@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
+import com.example.duan.chao.DCZ_activity.GesturesLockActivity;
 import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_activity.ScanActivity;
@@ -157,8 +158,15 @@ public class MainActivity extends BaseActivity{
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, LockActivity.class);
-                startActivity(intent);
+                //如果手势密码为0
+                if(LockUtil.getPwdStatus(INSTANCE)==true){
+                    Intent intent=new Intent(INSTANCE, LockActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent=new Intent(INSTANCE, GesturesLockActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
         //账户安全

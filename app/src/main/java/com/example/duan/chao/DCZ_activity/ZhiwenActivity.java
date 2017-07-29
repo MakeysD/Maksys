@@ -11,6 +11,8 @@ import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +40,14 @@ public class ZhiwenActivity extends BaseActivity {
     TextView result;
     @BindView(R.id.change)
     TextView change;        //去进行手势解锁
+    @BindView(R.id.wangji)
+    TextView wangji;        //忘记密码
+    @BindView(R.id.cancle)
+    TextView cancle;        //取消
+    @BindView(R.id.zhiwen)
+    RelativeLayout zhiwen;
+    @BindView(R.id.zhiwen_start)
+    LinearLayout start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +55,7 @@ public class ZhiwenActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         setViews();
+        setListener();
     }
 
     private void setViews() {
@@ -62,6 +74,7 @@ public class ZhiwenActivity extends BaseActivity {
                     case MSG_AUTH_FAILED:
                         result.setText("指纹识别失败，请再试一次！");
                         cancellationSignal = null;
+                        start();
                         break;
                     case MSG_AUTH_ERROR:
                         handleErrorCode(msg.arg1);
@@ -113,21 +126,36 @@ public class ZhiwenActivity extends BaseActivity {
                 e.printStackTrace();
             }
         }
-        // 指纹身份验证这里开始。
-        try {
-            CryptoObjectHelper cryptoObjectHelper = new CryptoObjectHelper();
-            if (cancellationSignal == null) {
-                cancellationSignal = new CancellationSignal();
-            }
-            fingerprintManager.authenticate(cryptoObjectHelper.buildCryptoObject(), 0,
-                    cancellationSignal, myAuthCallback, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(INSTANCE, "指纹初始化失败!再试一次!", Toast.LENGTH_SHORT).show();
-        }
+        start();
     }
 
+    private void setListener() {
+        cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancellationSignal.cancel();
+                cancellationSignal = null;
+                zhiwen.setVisibility(View.GONE);
+            }
+        });
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zhiwen.setVisibility(View.VISIBLE);
+                start();
+            }
+        });
 
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE,LoginLockActivity.class);
+                intent.putExtra("type","1");
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
     private void handleHelpCode(int code) {
         switch (code) {
             case FingerprintManager.FINGERPRINT_ACQUIRED_GOOD:
@@ -153,8 +181,9 @@ public class ZhiwenActivity extends BaseActivity {
 
     private void handleErrorCode(int code) {
         switch (code) {
+            //取消了传感器的使用
             case FingerprintManager.FINGERPRINT_ERROR_CANCELED:
-                result.setText(R.string.ErrorCanceled_warning);
+               // result.setText(R.string.ErrorCanceled_warning);
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_HW_UNAVAILABLE:
                 result.setText(R.string.ErrorHwUnavailable_warning);
@@ -173,7 +202,20 @@ public class ZhiwenActivity extends BaseActivity {
                 break;
         }
     }
-
+    private void start(){
+        // 指纹身份验证这里开始。
+        try {
+            CryptoObjectHelper cryptoObjectHelper = new CryptoObjectHelper();
+            if (cancellationSignal == null) {
+                cancellationSignal = new CancellationSignal();
+            }
+            fingerprintManager.authenticate(cryptoObjectHelper.buildCryptoObject(), 0,
+                    cancellationSignal, myAuthCallback, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(INSTANCE, "指纹初始化失败!再试一次!", Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
