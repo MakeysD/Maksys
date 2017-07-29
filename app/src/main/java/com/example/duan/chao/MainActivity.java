@@ -203,6 +203,7 @@ public class MainActivity extends BaseActivity{
                     startZhiwen();
                 } else {
                     //关闭指纹锁
+                    MyApplication.sf.edit().putBoolean("zhiwen", false).commit();
                     MyApplication.zhiwen=false;
                     Toast.makeText(INSTANCE, "已关闭", Toast.LENGTH_SHORT).show();
                 }

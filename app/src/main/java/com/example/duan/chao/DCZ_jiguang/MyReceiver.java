@@ -1,6 +1,8 @@
 package com.example.duan.chao.DCZ_jiguang;
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,11 +27,11 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class MyReceiver extends BroadcastReceiver {
 	private static final String TAG = "JIGUANG-Example";
-
+	private Bundle bundle;
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		try {
-			Bundle bundle = intent.getExtras();
+			bundle = intent.getExtras();
 			Logger.d(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
 
 			if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
@@ -49,8 +51,8 @@ public class MyReceiver extends BroadcastReceiver {
 				intent2.putExtras(bundle);
 				intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
 				context.startActivity(intent2);*/
-
-				Logger.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
+				isRunningForeground(context);
+                Logger.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
 			} else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
 				Logger.d(TAG, "[MyReceiver] 用户点击打开了通知");
@@ -131,6 +133,27 @@ public class MyReceiver extends BroadcastReceiver {
 
 			}
 			LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
+		}
+	}
+
+	private boolean isRunningForeground (Context context) {
+		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+		ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
+		String currentPackageName = cn.getPackageName();
+		//判断APP是否在前台
+		if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(context.getPackageName())) {
+			Intent i = new Intent(context, HaveActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+			context.startActivity(i);
+			return true ;
+		}else {
+			/*Intent intent2 = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+			context.startActivity(intent2 );*/
+			Intent i = new Intent(context, HaveActivity.class);
+			i.putExtras(bundle);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(i);
+			return false ;
 		}
 	}
 }
