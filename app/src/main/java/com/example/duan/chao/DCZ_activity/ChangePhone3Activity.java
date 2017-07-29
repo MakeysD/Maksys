@@ -21,7 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -85,7 +87,10 @@ public class ChangePhone3Activity extends BaseActivity {
      *  数据初始化
      * */
     private void setViews() {
-
+        CanRippleLayout.Builder.on(zheng).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(fan).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(shou).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
     }
     /**
      * 监听

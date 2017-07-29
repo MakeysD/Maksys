@@ -11,6 +11,7 @@ public class ColorUtils {
 	private static final int CHECKED_ATTR = android.R.attr.state_checked;
 	private static final int PRESSED_ATTR = android.R.attr.state_pressed;
 
+
 	public static ColorStateList generateThumbColorWithTintColor(final int tintColor) {
 		int[][] states = new int[][]{
 				{-ENABLE_ATTR, CHECKED_ATTR},

@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -91,8 +93,8 @@ public class ZhangHuSercurityActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
-                startActivity(intent);
+               /* Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
+                startActivity(intent);*/
             }
         });
         //一键锁号
@@ -100,8 +102,8 @@ public class ZhangHuSercurityActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(INSTANCE,SuohaoActivity.class);
-                startActivity(intent);
+                /*Intent intent=new Intent(INSTANCE,SuohaoActivity.class);
+                startActivity(intent);*/
             }
         });
         //设备管理

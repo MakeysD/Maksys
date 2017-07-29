@@ -66,7 +66,7 @@
             android:id="@+id/sdv1"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            fresco:placeholderImage="@mipmap/zhanwei"
+            fresco:placeholderImage="@mipmap/fei1"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:roundedCornerRadius="5dp"
             fresco:roundTopLeft="true"
@@ -96,8 +96,8 @@
             android:textColor="@color/custom_text_state_color"
             android:textSize="16dp"
             app:kswBackDrawable="@drawable/ios_back_drawable"
-            app:kswTextOff="off"
-            app:kswTextOn="on"
+            app:kswTextOff="o"
+            app:kswTextOn="o"
             app:kswTintColor="@color/white" />
     </RelativeLayout>
     <TextView
@@ -117,7 +117,7 @@
             android:id="@+id/sdv2"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            fresco:placeholderImage="@mipmap/zhanwei"
+            fresco:placeholderImage="@mipmap/fei2"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:roundedCornerRadius="5dp"
             fresco:roundTopLeft="true"
@@ -147,8 +147,8 @@
             android:textColor="@color/custom_text_state_color"
             android:textSize="16dp"
             app:kswBackDrawable="@drawable/ios_back_drawable"
-            app:kswTextOff="off"
-            app:kswTextOn="on"
+            app:kswTextOff="o"
+            app:kswTextOn="o"
             app:kswTintColor="@color/white" />
     </RelativeLayout>
     <TextView
@@ -168,7 +168,7 @@
             android:id="@+id/sdv3"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            fresco:placeholderImage="@mipmap/zhanwei"
+            fresco:placeholderImage="@mipmap/fei3"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:roundedCornerRadius="5dp"
             fresco:roundTopLeft="true"
@@ -198,8 +198,8 @@
             android:textColor="@color/custom_text_state_color"
             android:textSize="16dp"
             app:kswBackDrawable="@drawable/ios_back_drawable"
-            app:kswTextOff="off"
-            app:kswTextOn="on"
+            app:kswTextOff="o"
+            app:kswTextOn="o"
             app:kswTintColor="@color/white" />
     </RelativeLayout>
     <TextView
@@ -219,7 +219,7 @@
             android:id="@+id/sdv4"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            fresco:placeholderImage="@mipmap/zhanwei"
+            fresco:placeholderImage="@mipmap/fei4"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:roundedCornerRadius="5dp"
             fresco:roundTopLeft="true"
@@ -249,8 +249,8 @@
             android:textColor="@color/custom_text_state_color"
             android:textSize="16dp"
             app:kswBackDrawable="@drawable/ios_back_drawable"
-            app:kswTextOff="off"
-            app:kswTextOn="on"
+            app:kswTextOff="o"
+            app:kswTextOn="o"
             app:kswTintColor="@color/white" />
     </RelativeLayout>
     <TextView
@@ -270,7 +270,7 @@
             android:id="@+id/sdv5"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            fresco:placeholderImage="@mipmap/zhanwei"
+            fresco:placeholderImage="@mipmap/fei5"
             fresco:placeholderImageScaleType="fitCenter"
             fresco:roundedCornerRadius="5dp"
             fresco:roundTopLeft="true"
@@ -298,8 +298,8 @@
             android:textColor="@color/custom_text_state_color"
             android:textSize="16dp"
             app:kswBackDrawable="@drawable/ios_back_drawable"
-            app:kswTextOff="off"
-            app:kswTextOn="on"
+            app:kswTextOff="o"
+            app:kswTextOn="o"
             app:kswTintColor="@color/white"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
@@ -49,6 +50,7 @@ public class SmsActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         newhandler();                                       //新建handler处理消息
     }
     /**

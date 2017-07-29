@@ -59,4 +59,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile files('libs/jpush-android-3.0.8.jar')
+    compile files('libs/AMap_Location_V3.4.1_20170629.jar')
+    //高德定位
+    compile fileTree(include: ['*.jar'], dir: 'libs')
 }

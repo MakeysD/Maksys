@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -37,7 +39,8 @@ public class ChangePasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-
+        CanRippleLayout.Builder.on(button1).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(button2).rippleCorner(MyApplication.dp2Px()).create();
     }
     /**
      *  监听

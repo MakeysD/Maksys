@@ -17,10 +17,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_bean.NewsBean;
+import com.example.duan.chao.DCZ_bean.StatusBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,6 +37,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
@@ -92,7 +100,7 @@ public class LoginActivity extends BaseActivity {
      * */
     private void setViews() {
         guo.setFocusable(false);
-        CanRippleLayout.Builder.on(button).rippleCorner(dp2Px(5)).create();
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
     }
     /**
      *  监听
@@ -107,6 +115,7 @@ public class LoginActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //getData();
                 Intent intent=new Intent(INSTANCE,SmsActivity.class);
                 startActivity(intent);
                 finish();
@@ -351,7 +360,24 @@ public class LoginActivity extends BaseActivity {
         }
         return sb.toString();
     }
-    float dp2Px(float dp) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+
+    /***
+     * 调取接口拿到服务器数据
+     * */
+    public void getData(){
+        HttpServiceClient.getInstance().login("en","test","123","123456").enqueue(new Callback<StatusBean>() {
+            @Override
+            public void onResponse(Call<StatusBean> call, Response<StatusBean> response) {
+                if(response.isSuccessful()){
+
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<StatusBean> call, Throwable t) {
+                Toast.makeText(INSTANCE, "解析异常", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
