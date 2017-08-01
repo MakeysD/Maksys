@@ -17,7 +17,6 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,11 +58,11 @@ public class ChangePhone3Activity extends BaseActivity {
     @BindView(R.id.city)
     TextView city;           //选择地区和国家
     @BindView(R.id.rl_zheng)
-    ImageView zheng;   //身份证正面
+    SimpleDraweeView zheng;   //身份证正面
     @BindView(R.id.rl_fan)
-    ImageView fan;
+    SimpleDraweeView fan;
     @BindView(R.id.rl_shou)
-    ImageView shou;
+    SimpleDraweeView shou;
     @BindView(R.id.pup)
     RelativeLayout pup;        //弹框
     @BindView(R.id.pup2)
