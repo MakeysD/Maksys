@@ -126,8 +126,8 @@ public class CustomLockView extends View {
         // 纵屏
         x = (w - h) / 2;
         w = h;
-        locus_round_original = BitmapFactory.decodeResource(getResources(), R.mipmap.unselected);
-        locus_round_click = BitmapFactory.decodeResource(getResources(), R.mipmap.selected);
+        locus_round_original = BitmapFactory.decodeResource(getResources(), R.mipmap.yuanxiao);
+        locus_round_click = BitmapFactory.decodeResource(getResources(), R.mipmap.yuanda);
         locus_arrow = BitmapFactory.decodeResource(getResources(), R.mipmap.gesturetrianglebrown);
         locus_round_error= BitmapFactory.decodeResource(getResources(),R.mipmap.selected_error);
         locus_arrow_error= BitmapFactory.decodeResource(getResources(),R.mipmap.gesturetrianglebrownerror);
@@ -142,7 +142,7 @@ public class CustomLockView extends View {
         x += deviation;
         if (locus_round_original != null) {
             if (locus_round_original.getWidth() > roundMinW) {
-                roundW = locus_round_original.getWidth() / 2;
+                roundW = locus_round_original.getWidth() / 4;
             }
             mPoints[0][0] = new Point(roundW, y + 0 + roundW);
             mPoints[0][1] = new Point(x + w / 2-5, y + 0 + roundW);

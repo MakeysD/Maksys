@@ -159,9 +159,9 @@
 
                 <com.example.duan.chao.DCZ_lockdemo.CustomLockView
                     android:id="@+id/cl"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="80dp" />
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="40dp" />
 
             </LinearLayout>
         </LinearLayout>

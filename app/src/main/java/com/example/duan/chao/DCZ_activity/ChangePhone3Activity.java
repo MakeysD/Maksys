@@ -1,12 +1,18 @@
 package com.example.duan.chao.DCZ_activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -38,6 +44,10 @@ import butterknife.ButterKnife;
  * */
 public class ChangePhone3Activity extends BaseActivity {
     private ChangePhone3Activity INSTANCE;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE" };
     public static CityBean bean;
     public static String content="+86 ";
     private String type="1";    //1:正面，2：反面，3：手持
@@ -86,7 +96,7 @@ public class ChangePhone3Activity extends BaseActivity {
      *  数据初始化
      * */
     private void setViews() {
-
+        verifyStoragePermissions(INSTANCE);
     }
     /**
      * 监听
@@ -137,12 +147,7 @@ public class ChangePhone3Activity extends BaseActivity {
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createCameraTempFile(savedInstanceState);
-                //跳转到调用系统相机
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
-                startActivityForResult(intent, REQUEST_CAPTURE);
-                shou();
+                quan();
             }
         });
         photo.setOnClickListener(new View.OnClickListener() {
@@ -167,15 +172,30 @@ public class ChangePhone3Activity extends BaseActivity {
         super.onResume();
         city.setText(content);
     }
-
+    public static void verifyStoragePermissions(Activity activity) {
+        try {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(activity,
+                    "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_CAPTURE: //调用系统相机返回
+                Log.i("dcz",resultCode+"");
                 if (resultCode == RESULT_OK) {
-                    uri = Uri.fromFile(tempFile);
-                    Log.i("Dcz",uri+"");
+                    Bundle bundle = data.getExtras();
+                    Bitmap bitmap = (Bitmap) bundle.get("data");
+                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null,null));
+                    Log.i("dcz",uri+"");
                     switch (type){
                         case "1":
                             zheng.setImageURI(uri);
@@ -206,6 +226,36 @@ public class ChangePhone3Activity extends BaseActivity {
                     }
                 }
                 break;
+        }
+    }
+
+    //手动开启相机权限
+    private void quan(){
+        if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
+        } else {
+            //跳转到调用系统相机
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, REQUEST_CAPTURE);
+            shou();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 1) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //权限获取成功
+                Log.i("dcz","权限获取成功");
+                //跳转到调用系统相机
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, REQUEST_CAPTURE);
+                shou();
+            }else{
+                //权限被拒绝
+                Log.i("dcz","权限被拒绝");
+            }
         }
     }
 

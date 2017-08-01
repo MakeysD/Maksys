@@ -18,6 +18,9 @@ import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -100,6 +103,9 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.button2)
     SwitchButton button2;     //指纹锁
 
+    @BindView(R.id.iv)
+    ImageView iv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,10 +119,11 @@ public class MainActivity extends BaseActivity{
 
 
     private void setViews() {
+        setAnimation(R.anim.rotate,iv);
         CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(rl4).rippleCorner(MyApplication.dp2Px()).create();
+       // CanRippleLayout.Builder.on(rl4).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         mDragLayout = (DragLayout) findViewById(R.id.dsl);
@@ -335,6 +342,14 @@ public class MainActivity extends BaseActivity{
     protected void onPause() {
         isForeground = false;
         super.onPause();
+    }
+    private void setAnimation(int id,ImageView iv){
+        Animation operatingAnim = AnimationUtils.loadAnimation(INSTANCE, id);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        if (operatingAnim != null) {
+            iv.startAnimation(operatingAnim);
+        }
     }
 
     @Override

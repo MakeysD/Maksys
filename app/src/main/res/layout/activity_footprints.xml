@@ -32,7 +32,7 @@
             android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
-    <com.example.duan.chao.DCZ_selft.BounceScrollView
+    <com.example.duan.chao.DCZ_selft.PushView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -76,5 +76,5 @@
                 android:scrollbars="none">
             </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
         </LinearLayout>
-    </com.example.duan.chao.DCZ_selft.BounceScrollView>
+    </com.example.duan.chao.DCZ_selft.PushView>
 </LinearLayout>

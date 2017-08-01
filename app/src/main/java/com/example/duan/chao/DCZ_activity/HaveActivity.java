@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -16,6 +18,10 @@ public class HaveActivity extends BaseActivity {
     private HaveActivity INSTANCE;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.ok)
+    TextView ok;
+    @BindView(R.id.no)
+    TextView no;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +36,9 @@ public class HaveActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        TextView tv = new TextView(this);
+        CanRippleLayout.Builder.on(ok).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(no).rippleCorner(MyApplication.dp2Px()).create();
+        /*TextView tv = new TextView(this);
         tv.setText("用户自定义打开的Activity");
         Intent intent = getIntent();
         if (null != intent) {
@@ -43,7 +51,7 @@ public class HaveActivity extends BaseActivity {
             }
             tv.setText("");
         }
-        addContentView(tv, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+        addContentView(tv, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));*/
     }
     /**
      *  监听
@@ -53,6 +61,18 @@ public class HaveActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
