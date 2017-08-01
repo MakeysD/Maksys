@@ -25,6 +25,7 @@ import com.example.duan.chao.DCZ_bean.NewsBean;
 import com.example.duan.chao.DCZ_bean.StatusBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
@@ -99,6 +100,7 @@ public class LoginActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
+        code="";
         guo.setFocusable(false);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
     }
@@ -116,9 +118,14 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //getData();
-                Intent intent=new Intent(INSTANCE,SmsActivity.class);
-                startActivity(intent);
-                finish();
+                if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
+                    Intent intent=new Intent(INSTANCE,SmsActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Toast.makeText(INSTANCE, "请输入有效手机号", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {

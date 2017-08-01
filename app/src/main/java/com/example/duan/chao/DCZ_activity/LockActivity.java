@@ -7,7 +7,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
 
@@ -40,7 +42,8 @@ public class LockActivity extends BaseActivity {
     }
 
     private void setViews() {
-
+        CanRippleLayout.Builder.on(button1).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(button2).rippleCorner(MyApplication.dp2Px()).create();
     }
 
     private void setListener() {

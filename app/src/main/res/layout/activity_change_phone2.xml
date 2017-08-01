@@ -31,10 +31,12 @@
             android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +45,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/et_guo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -56,18 +59,33 @@
                     android:layout_marginRight="10dp"
                     android:src="@mipmap/login1" />
 
-                <EditText
-                    android:id="@+id/et_guo"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="国家 / 地区"
+                    android:textColor="@color/text04"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_guo"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="国家 / 地区"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="17dp"
                     android:singleLine="true"
-                    android:textColor="@color/text08"
-                    android:textColorHint="@color/text04"
-                    android:textCursorDrawable="@null"
-                    android:textSize="@dimen/text01" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text01"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/you" />
             </LinearLayout>
 
             <TextView
@@ -92,11 +110,12 @@
                     android:src="@mipmap/login02" />
 
                 <TextView
+                    android:id="@+id/jia"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="+"
-                    android:textColor="@color/text04"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text01" />
 
                 <EditText
@@ -112,22 +131,23 @@
                     android:textColor="@color/text08"
                     android:textColorHint="@color/text04"
                     android:textCursorDrawable="@null"
-                    android:textSize="@dimen/text01" />
+                    android:textSize="@dimen/text01"
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="11dp"
                     android:background="@color/text04"></View>
 
                 <EditText
                     android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@null"
-                    android:hint="请输入绑定手机号"
+                    android:hint="请输入新手机号"
                     android:inputType="number"
                     android:maxLength="13"
                     android:phoneNumber="true"
@@ -135,7 +155,8 @@
                     android:textColor="@color/text08"
                     android:textColorHint="@color/text04"
                     android:textCursorDrawable="@null"
-                    android:textSize="@dimen/text01" />
+                    android:textSize="@dimen/text01"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
@@ -174,17 +195,18 @@
                     android:textSize="@dimen/text01" />
 
                 <TextView
+                    android:id="@+id/code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/yuanjiaolan2"
+                    android:gravity="center"
+                    android:paddingBottom="7dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="7dp"
-                    android:paddingBottom="7dp"
-                    android:background="@drawable/yuanjiaolan2"
+                    android:text="获取验证码"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text02"
-                    android:gravity="center"
-                    android:text="获取验证码"/>
+                    android:textSize="@dimen/text02" />
 
             </LinearLayout>
 

@@ -389,7 +389,7 @@ public class CustomLockView extends View {
      * @param b
      */
     private void drawLine(Canvas canvas, Point a, Point b) {
-        int color=R.color.yellow;
+        int color=R.color.hui;
         mPaint.setColor(getResources().getColor(color));
         mPaint.setStrokeWidth(3);
         canvas.drawLine(a.x, a.y, b.x, b.y, mPaint);

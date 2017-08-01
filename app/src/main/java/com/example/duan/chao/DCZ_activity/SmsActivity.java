@@ -9,9 +9,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
@@ -82,12 +84,12 @@ public class SmsActivity extends BaseActivity {
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
-                code.setTextColor(getResources().getColor(R.color.white));
-                code.setEnabled(false);                     //设置不可点击
-                thread = null;
-                thread = new timeThread();
-                thread.start();
+                    code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
+                    code.setTextColor(getResources().getColor(R.color.white));
+                    code.setEnabled(false);                     //设置不可点击
+                    thread = null;
+                    thread = new timeThread();
+                    thread.start();
             }
         });
         et_code.addTextChangedListener(new TextWatcher() {

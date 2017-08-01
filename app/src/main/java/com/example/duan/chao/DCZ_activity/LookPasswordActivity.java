@@ -1,20 +1,42 @@
 package com.example.duan.chao.DCZ_activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.R;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 /**
  *      找回密码
@@ -22,24 +44,59 @@ import butterknife.ButterKnife;
  * */
 public class LookPasswordActivity extends BaseActivity {
     private LookPasswordActivity INSTANCE;
+    public static String code="";
+    private Handler handler;
+    private List<CityBean> list;
+    private timeThread thread;
     @BindView(R.id.back)
     View back;
-    @BindView(R.id.et_phone)
-    EditText et_phone;
-    @BindView(R.id.quhao)
-    EditText quhao;
-    @BindView(R.id.et_code)
-    EditText et_code;
-    @BindView(R.id.et_mima)
-    EditText et_mima;
-    @BindView(R.id.et_mima2)
-    EditText et_mima2;
-    @BindView(R.id.select1)
-    SwitchButton select1;
-    @BindView(R.id.select2)
-    SwitchButton select2;
+    @BindView(R.id.xian1)
+    TextView xian1;
+    @BindView(R.id.xian2)
+    TextView xian2;
+    @BindView(R.id.xian3)
+    TextView xian3;
+    @BindView(R.id.xian4)
+    TextView xian4;
+    @BindView(R.id.xian5)
+    TextView xian5;
+    @BindView(R.id.iv1)
+    ImageView iv1;
+    @BindView(R.id.iv2)
+    ImageView iv2;
+    @BindView(R.id.iv3)
+    ImageView iv3;
+    @BindView(R.id.iv4)
+    ImageView iv4;
+    @BindView(R.id.iv5)
+    ImageView iv5;
+
     @BindView(R.id.button)
-    TextView button;
+    TextView button;        //下一步
+    @BindView(R.id.button2)
+    TextView button2;       //忘记密码
+    @BindView(R.id.et_guo)
+    LinearLayout ll_guo;    //国家
+    @BindView(R.id.tv_guo)
+    TextView guo;           //国家
+    @BindView(R.id.quhao)
+    EditText quhao;         //区号
+    @BindView(R.id.et_phone)
+    EditText phone;         //手机
+    @BindView(R.id.et_code)
+    EditText ed_code;       //验证码
+    @BindView(R.id.code)
+    TextView tv_code;       //验证码
+    @BindView(R.id.et_mima4)
+    EditText mima;          //密码
+    @BindView(R.id.et_mima5)
+    EditText mima2;         //确定密码
+    @BindView(R.id.jia)
+    TextView jia;           //+
+    @BindView(R.id.checkBox)
+    CheckBox yan;           //眼睛
+    @BindView(R.id.checkBox2)
+    CheckBox yan2;           //眼睛
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +111,10 @@ public class LookPasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
+        code="";
+        guo.setFocusable(false);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        newhandler();                                       //新建handler处理消息
     }
     /**
      *  监听
@@ -66,43 +126,334 @@ public class LookPasswordActivity extends BaseActivity {
                 finish();
             }
         });
-        //密码开关
-        select1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    et_mima.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }else {
-                    //替换成*号
-                    et_mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
-                }
-            }
-        });
-        //确认密码开关
-        select2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    et_mima2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }else {
-                    //替换成*号
-                    et_mima2.setTransformationMethod(new AsteriskPasswordTransformationMethod());
-                }
-            }
-        });
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //getData();
+                if(mima.getText().toString().equals(mima2.getText().toString())){
+                    Intent intent=new Intent(INSTANCE,SmsActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Toast.makeText(INSTANCE, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE, LookPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+        yan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mima.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    //替换成*号
+                    // mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+                }
+            }
+        });
+        yan2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mima2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    //替换成*号
+                    // mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    mima2.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+                }
+            }
+        });
+
+        //国家
+        guo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    type1();
+                }
+            }
+        });
+        guo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(phone.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            mima.getText().toString().length()>0&&
+                            mima2.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        ll_guo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type1();
+            }
+        });
+        //区号
+        quhao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type2();
+            }
+        });
+        quhao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type2();
+            }
+        });
+        quhao.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    String content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+                    list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+                    Log.i("dcz",list.toString());
+                    for(int i=0;i<list.size();i++){
+                        if(s.toString().equals(String.valueOf(list.get(i).getCountry_code()))){
+                            guo.setText(list.get(i).getCountry_name_cn());
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        //手机
+        phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type2();
+            }
+        });
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type2();
+            }
+        });
+        phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            mima.getText().toString().length()>0&&
+                            mima2.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        //验证码
+        ed_code.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type3();
+            }
+        });
+        //密码
+        mima.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type4();
+            }
+        });
+        mima.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            phone.getText().toString().length()>0&&
+                            mima2.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        //确认密码
+        mima2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type5();
+            }
+        });
+        mima2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            mima.getText().toString().length()>0&&
+                            phone.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        tv_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
+                    tv_code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
+                    tv_code.setTextColor(getResources().getColor(R.color.white));
+                    tv_code.setEnabled(false);                     //设置不可点击
+                    thread = null;
+                    thread = new timeThread();
+                    thread.start();
+                }else {
+                    Toast.makeText(INSTANCE, "请输入有效手机号", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+
+    private void type1(){
+        iv1.setImageResource(R.mipmap.login1);
+        xian1.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        iv3.setImageResource(R.mipmap.login04);
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
+        iv4.setImageResource(R.mipmap.login03);
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        iv5.setImageResource(R.mipmap.login03);
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+
+        Intent intent=new Intent(INSTANCE, CityListActivity.class);
+        startActivity(intent);
+    }
+
+    private void type2(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login2);
+        xian2.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv3.setImageResource(R.mipmap.login04);
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#ffffff"));
+        iv4.setImageResource(R.mipmap.login03);
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        iv5.setImageResource(R.mipmap.login03);
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+    }
+
+    private void type3(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        iv3.setImageResource(R.mipmap.login4);
+        xian3.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv4.setImageResource(R.mipmap.login03);
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        iv5.setImageResource(R.mipmap.login03);
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
+    }
+    private void type4(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        iv3.setImageResource(R.mipmap.login04);
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        iv4.setImageResource(R.mipmap.login3);
+        xian4.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv5.setImageResource(R.mipmap.login03);
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
+    }
+    private void type5(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        iv3.setImageResource(R.mipmap.login04);
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        iv4.setImageResource(R.mipmap.login03);
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        iv5.setImageResource(R.mipmap.login3);
+        xian5.setBackgroundColor(Color.parseColor("#0581c6"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        quhao.setText(code);
+        jia.setTextColor(Color.parseColor("#ffffff"));
     }
 
     public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {
-            return new PasswordCharSequence(source);
+            return new AsteriskPasswordTransformationMethod.PasswordCharSequence(source);
         }
 
         private class PasswordCharSequence implements CharSequence {
@@ -121,4 +472,66 @@ public class LookPasswordActivity extends BaseActivity {
             }
         }
     };
+
+    public static String ToString(InputStream is, String charset) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                } else {
+                    sb.append(line).append("\n");
+                }
+            }
+            reader.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
+
+
+    private class timeThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            for (int i = 60; i >= 0; i--) {
+                try {
+                    Message msg = handler.obtainMessage();
+                    msg.what = 0;
+                    msg.arg1 = i;         //秒数赋值给消息
+                    handler.sendMessage(msg);
+                    Thread.sleep(1000l);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void newhandler() {
+        handler = new Handler(INSTANCE.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (msg.what == 0) {
+                    int num = msg.arg1;   //得到剩余秒数
+                    if (num > 0) {
+                        tv_code.setBackgroundResource(R.drawable.yuanjiaohui);
+                        tv_code.setTextColor(getResources().getColor(R.color.text02));
+                        tv_code.setText(num + "秒后重发");
+                        tv_code.setEnabled(false);                     //设置不可点击
+                    } else {             //如果剩余秒数为0，设置按钮可点击
+                        tv_code.setBackgroundResource(R.drawable.yuanjiaolan);
+                        tv_code.setTextColor(0xffffffff);
+                        tv_code.setText("重新获取");
+                        tv_code.setEnabled(true);                     //设置可点击
+                    }
+                }
+            }
+        };
+    }
 }

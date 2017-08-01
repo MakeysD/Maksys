@@ -38,6 +38,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
 import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.DragLayout;
 import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
@@ -112,6 +113,12 @@ public class MainActivity extends BaseActivity{
 
 
     private void setViews() {
+        CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl4).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         mDragLayout = (DragLayout) findViewById(R.id.dsl);
         mDragLayout.setDragListener(mDragListener);
         DragRelativeLayout mMainView = (DragRelativeLayout) findViewById(R.id.rl_main);

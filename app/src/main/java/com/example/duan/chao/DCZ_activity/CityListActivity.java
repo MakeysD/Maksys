@@ -141,6 +141,8 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
     public void addAction(CityBean bean) {
         ChangePhone3Activity.content="+"+bean.getCountry_code()+" ";
         LoginActivity.code=bean.getCountry_code()+"";
+        LookPasswordActivity.code=bean.getCountry_code()+"";
+        ChangePhone2Activity.code=bean.getCountry_code()+"";
         finish();
     }
 }

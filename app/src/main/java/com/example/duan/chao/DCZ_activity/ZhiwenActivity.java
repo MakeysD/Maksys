@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.example.duan.chao.MainActivity;
@@ -30,7 +31,7 @@ public class ZhiwenActivity extends BaseActivity {
     private FingerprintManagerCompat fingerprintManager = null;
     private MyAuthCallback myAuthCallback = null;
     private CancellationSignal cancellationSignal = null;
-
+    private int[] mIndexs;
     private Handler handler = null;
     public static final int MSG_AUTH_SUCCESS = 100;
     public static final int MSG_AUTH_FAILED = 101;
@@ -59,6 +60,7 @@ public class ZhiwenActivity extends BaseActivity {
     }
 
     private void setViews() {
+        mIndexs= LockUtil.getPwd(this);
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -149,10 +151,15 @@ public class ZhiwenActivity extends BaseActivity {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE,LoginLockActivity.class);
-                intent.putExtra("type","1");
-                startActivity(intent);
-                finish();
+                //判断当前是否设置过密码
+                if(mIndexs.length>1){
+                    Intent intent=new Intent(INSTANCE,StartLockActivity.class);
+                    intent.putExtra("type","1");
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Toast.makeText(INSTANCE, "您未设置过手势密码", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ public class ChangePhone3Activity extends BaseActivity {
     private static final int REQUEST_PICK = 101;
     //请求截图
     private static final int REQUEST_CROP_PHOTO = 102;
+    private Uri uri;
     private Bundle savedInstanceState;
     @BindView(R.id.back)
     View back;
@@ -56,14 +58,12 @@ public class ChangePhone3Activity extends BaseActivity {
     View button;
     @BindView(R.id.city)
     TextView city;           //选择地区和国家
-    @BindView(R.id.quhao)
-    EditText quhao;
     @BindView(R.id.rl_zheng)
-    SimpleDraweeView zheng;   //身份证正面
+    ImageView zheng;   //身份证正面
     @BindView(R.id.rl_fan)
-    SimpleDraweeView fan;
+    ImageView fan;
     @BindView(R.id.rl_shou)
-    SimpleDraweeView shou;
+    ImageView shou;
     @BindView(R.id.pup)
     RelativeLayout pup;        //弹框
     @BindView(R.id.pup2)
@@ -87,10 +87,7 @@ public class ChangePhone3Activity extends BaseActivity {
      *  数据初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(zheng).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(fan).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(shou).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+
     }
     /**
      * 监听
@@ -142,7 +139,11 @@ public class ChangePhone3Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 createCameraTempFile(savedInstanceState);
-                quan();
+                //跳转到调用系统相机
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
+                startActivityForResult(intent, REQUEST_CAPTURE);
+                shou();
             }
         });
         photo.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +175,7 @@ public class ChangePhone3Activity extends BaseActivity {
         switch (requestCode) {
             case REQUEST_CAPTURE: //调用系统相机返回
                 if (resultCode == RESULT_OK) {
-                    Uri uri = Uri.fromFile(tempFile);
+                    uri = Uri.fromFile(tempFile);
                     Log.i("Dcz",uri+"");
                     switch (type){
                         case "1":
@@ -271,36 +272,5 @@ public class ChangePhone3Activity extends BaseActivity {
             }
         });
         pup2.startAnimation(a);
-    }
-
-    private void quan(){
-        if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
-        }else {
-            //跳转到调用系统相机
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
-            startActivityForResult(intent, REQUEST_CAPTURE);
-            shou();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 1) {
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //权限获取成功
-                Log.i("dcz","权限获取成功");
-                //跳转到调用系统相机
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
-                startActivityForResult(intent, REQUEST_CAPTURE);
-                shou();
-            }else{
-                //权限被拒绝
-                Log.i("dcz","权限被拒绝");
-            }
-        }
     }
 }
