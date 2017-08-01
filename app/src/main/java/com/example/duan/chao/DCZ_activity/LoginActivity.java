@@ -118,13 +118,10 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //getData();
-                if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
+            //    if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
                     Intent intent=new Intent(INSTANCE,SmsActivity.class);
                     startActivity(intent);
                     finish();
-                }else {
-                    Toast.makeText(INSTANCE, "请输入有效手机号", Toast.LENGTH_SHORT).show();
-                }
 
             }
         });
