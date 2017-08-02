@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -40,7 +42,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
     }
     /**
      *  监听
