@@ -23,7 +23,7 @@
             <com.facebook.drawee.view.SimpleDraweeView
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                fresco:placeholderImage="@mipmap/zhanwei"
+                fresco:placeholderImage="@mipmap/fei1"
                 fresco:placeholderImageScaleType="fitCenter"
                 fresco:roundBottomLeft="true"
                 fresco:roundBottomRight="true"

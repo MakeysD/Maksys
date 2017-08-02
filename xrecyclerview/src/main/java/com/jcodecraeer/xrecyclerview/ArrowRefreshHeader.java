@@ -2,6 +2,7 @@ package com.jcodecraeer.xrecyclerview;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -66,6 +67,7 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
 
 		mArrowImageView = (ImageView)findViewById(R.id.listview_header_arrow);
 		mStatusTextView = (TextView)findViewById(R.id.refresh_status_textview);
+        mStatusTextView.setTextColor(Color.parseColor("#ffffff"));
 
         //init the progress view
 		mProgressBar = (SimpleViewSwithcer)findViewById(R.id.listview_header_progressbar);
