@@ -93,7 +93,8 @@
         <activity android:name=".DCZ_activity.LockActivity" />
         <activity android:name=".DCZ_activity.ChangePhone1Activity" />
         <activity android:name=".DCZ_activity.ChangePhone2Activity" />
-        <activity android:name=".DCZ_activity.ChangePhone3Activity" />
+        <activity android:name=".DCZ_activity.ChangePhone3Activity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
         <activity android:name=".DCZ_activity.ChangePhone4Activity" />
         <activity android:name=".DCZ_activity.CityListActivity" />
         <activity android:name=".DCZ_activity.ZhiwenActivity" />

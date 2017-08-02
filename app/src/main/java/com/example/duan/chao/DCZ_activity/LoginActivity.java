@@ -27,6 +27,7 @@ import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
 
@@ -103,6 +104,8 @@ public class LoginActivity extends BaseActivity {
         code="";
         guo.setFocusable(false);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+      //  Log.i("",);
+        ShebeiUtil.getDeviceId(INSTANCE);
     }
     /**
      *  监听

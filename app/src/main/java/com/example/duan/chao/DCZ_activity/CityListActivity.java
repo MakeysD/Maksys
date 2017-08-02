@@ -139,7 +139,8 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
 
     @Override
     public void addAction(CityBean bean) {
-        ChangePhone3Activity.content="+"+bean.getCountry_code()+" ";
+        ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
+        ChangePhone3Activity.code=bean.getCountry_code()+" ";
         LoginActivity.code=bean.getCountry_code()+"";
         LookPasswordActivity.code=bean.getCountry_code()+"";
         ChangePhone2Activity.code=bean.getCountry_code()+"";

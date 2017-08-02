@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -16,13 +17,16 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,11 +36,19 @@ import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 /**
  *  更换密保手机（身份证验证）
@@ -44,12 +56,14 @@ import butterknife.ButterKnife;
  * */
 public class ChangePhone3Activity extends BaseActivity {
     private ChangePhone3Activity INSTANCE;
+    private List<CityBean> list;
+    public static String guo_name;
+    public static String code="";
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE" };
     public static CityBean bean;
-    public static String content="+86 ";
     private String type="1";    //1:正面，2：反面，3：手持
     //调用照相机返回图片临时文件
     private File tempFile;
@@ -63,10 +77,27 @@ public class ChangePhone3Activity extends BaseActivity {
     private Bundle savedInstanceState;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.xian1)
+    TextView xian1;
+    @BindView(R.id.xian2)
+    TextView xian2;
+    @BindView(R.id.iv1)
+    ImageView iv1;
+    @BindView(R.id.iv2)
+    ImageView iv2;
+    @BindView(R.id.jia)
+    TextView jia;           //+
+    @BindView(R.id.et_guo)
+    LinearLayout ll_guo;
+    @BindView(R.id.tv_guo)
+    TextView guo;           //国家
+    @BindView(R.id.quhao)
+    EditText quhao;         //区号
+    @BindView(R.id.et_phone)
+    EditText phone;         //手机
+
     @BindView(R.id.button)
     View button;
-    @BindView(R.id.city)
-    TextView city;           //选择地区和国家
     @BindView(R.id.rl_zheng)
     SimpleDraweeView zheng;   //身份证正面
     @BindView(R.id.rl_fan)
@@ -81,6 +112,13 @@ public class ChangePhone3Activity extends BaseActivity {
     TextView camera;            //拍照
     @BindView(R.id.btn_photo)
     TextView photo;             //相册
+
+    @BindView(R.id.x1)
+    ImageView x1;
+    @BindView(R.id.x2)
+    ImageView x2;
+    @BindView(R.id.x3)
+    ImageView x3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +134,11 @@ public class ChangePhone3Activity extends BaseActivity {
      *  数据初始化
      * */
     private void setViews() {
+      /*  if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
+        }*/
+        code="";
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         verifyStoragePermissions(INSTANCE);
     }
     /**
@@ -109,17 +152,109 @@ public class ChangePhone3Activity extends BaseActivity {
                 finish();
             }
         });
+        //国家名
+        guo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&phone.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        ll_guo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type1();
+            }
+        });
+        //区号
+        quhao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type2();
+            }
+        });
+        quhao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type2();
+            }
+        });
+        quhao.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    String content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+                    list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+                    Log.i("dcz","执行");
+                    Log.i("dcz",list.toString());
+                    for(int i=0;i<list.size();i++){
+                        if(s.toString().equals(String.valueOf(list.get(i).getCountry_code()))){
+                            guo.setText(list.get(i).getCountry_name_cn());
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        //手机
+        phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type2();
+            }
+        });
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type2();
+            }
+        });
+        phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&phone.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(INSTANCE, ChangePhone4Activity.class);
-                startActivity(intent);
-            }
-        });
-        city.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, CityListActivity.class);
                 startActivity(intent);
             }
         });
@@ -165,12 +300,72 @@ public class ChangePhone3Activity extends BaseActivity {
                 shou();
             }
         });
+        x1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zheng.setImageURI(null);
+                x1.setVisibility(View.GONE);
+            }
+        });
+        x2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fan.setImageURI(null);
+                x2.setVisibility(View.GONE);
+            }
+        });
+        x3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shou.setImageURI(null);
+                x3.setVisibility(View.GONE);
+            }
+        });
+
+    }
+    private void type1(){
+        iv1.setImageResource(R.mipmap.login1);
+        xian1.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
+        Intent intent=new Intent(INSTANCE, CityListActivity.class);
+        startActivity(intent);
     }
 
+    private void type2(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login2);
+        xian2.setBackgroundColor(Color.parseColor("#0581c6"));
+        jia.setTextColor(Color.parseColor("#ffffff"));
+    }
     @Override
     protected void onResume() {
         super.onResume();
-        city.setText(content);
+        quhao.setText(code);
+        guo.setText(guo_name);
+        jia.setTextColor(Color.parseColor("#ffffff"));
+    }
+
+    public static String ToString(InputStream is, String charset) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                } else {
+                    sb.append(line).append("\n");
+                }
+            }
+            reader.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
     public static void verifyStoragePermissions(Activity activity) {
         try {
@@ -199,12 +394,15 @@ public class ChangePhone3Activity extends BaseActivity {
                     switch (type){
                         case "1":
                             zheng.setImageURI(uri);
+                            x1.setVisibility(View.VISIBLE);
                             break;
                         case "2":
                             fan.setImageURI(uri);
+                            x2.setVisibility(View.VISIBLE);
                             break;
                         case "3":
                             shou.setImageURI(uri);
+                            x3.setVisibility(View.VISIBLE);
                             break;
                     }
                 }
@@ -216,12 +414,15 @@ public class ChangePhone3Activity extends BaseActivity {
                     switch (type){
                         case "1":
                             zheng.setImageURI(uri);
+                            x1.setVisibility(View.VISIBLE);
                             break;
                         case "2":
                             fan.setImageURI(uri);
+                            x2.setVisibility(View.VISIBLE);
                             break;
                         case "3":
                             shou.setImageURI(uri);
+                            x3.setVisibility(View.VISIBLE);
                             break;
                     }
                 }
@@ -249,9 +450,9 @@ public class ChangePhone3Activity extends BaseActivity {
                 //权限获取成功
                 Log.i("dcz","权限获取成功");
                 //跳转到调用系统相机
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+          /*      Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, REQUEST_CAPTURE);
-                shou();
+                shou();*/
             }else{
                 //权限被拒绝
                 Log.i("dcz","权限被拒绝");

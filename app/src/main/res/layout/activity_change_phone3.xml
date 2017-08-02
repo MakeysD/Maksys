@@ -8,285 +8,320 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="@color/bg_title1"/>
-        <RelativeLayout
-            style="@style/Title"
-            android:background="@color/bg_title1">
-            <include
-                android:id="@+id/back"
-                layout="@layout/layout_back" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="更换密保手机"
-                android:textColor="@color/text_title1"
-                android:textSize="@dimen/title" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/xian"
-                android:background="@color/xian1"
-                android:layout_marginLeft="@dimen/xian_left"
-                android:layout_marginRight="@dimen/xian_right"
-                android:layout_alignParentBottom="true"/>
-        </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:textColor="@color/text02"
-            android:textSize="@dimen/text01"
-            android:text="如果原密保手机已换号或不能接收到短信验证码，需提供一个能收验证码的新手机号和个人实名有效资料提交工作人员审核通过后才能更换新密保手机"/>
-        <TextView
-            android:id="@+id/xian1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/xian"
-            android:layout_marginLeft="@dimen/left"
-            android:layout_marginRight="@dimen/right"
-            android:background="@color/xian1" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="@dimen/left"
-            android:layout_marginRight="@dimen/right"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:id="@+id/iv1"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/login1" />
-
-            <TextView
-                android:id="@+id/city"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="国家 / 地区"
-                android:singleLine="true"
-                android:textColor="@color/text08"
-                android:textColorHint="@color/text04"
-                android:textCursorDrawable="@null"
-                android:textSize="@dimen/text01" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/xian2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/xian"
-            android:layout_marginLeft="@dimen/left"
-            android:layout_marginRight="@dimen/right"
-            android:layout_marginTop="15dp"
-            android:background="@color/xian2" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="@dimen/left"
-            android:layout_marginRight="@dimen/right"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:id="@+id/iv2"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/login02" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="+"
-                android:textColor="@color/text04"
-                android:textSize="@dimen/text01" />
-
-            <EditText
-                android:id="@+id/quhao"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:hint="86         "
-                android:inputType="number"
-                android:maxLength="4"
-                android:paddingLeft="5dp"
-                android:singleLine="true"
-                android:textColor="@color/text08"
-                android:textColorHint="@color/text04"
-                android:textCursorDrawable="@null"
-                android:textSize="@dimen/text01" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:background="@color/text04"></View>
-
-            <EditText
-                android:id="@+id/et_phone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:hint="请输入绑定手机号"
-                android:inputType="number"
-                android:maxLength="13"
-                android:phoneNumber="true"
-                android:singleLine="true"
-                android:textColor="@color/text08"
-                android:textColorHint="@color/text04"
-                android:textCursorDrawable="@null"
-                android:textSize="@dimen/text01" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/xian3"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/xian"
-            android:layout_marginLeft="@dimen/left"
-            android:layout_marginRight="@dimen/right"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@color/xian1" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/left"
-            android:layout_marginRight="@dimen/left">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_weight="1">
-
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/rl_zheng"
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_weight="1"
-                    android:background="@mipmap/shenfenzheng"
-                    fresco:placeholderImageScaleType="fitCenter"
-                    android:gravity="center"
-                    fresco:roundBottomLeft="true"
-                    fresco:roundBottomRight="true"
-                    fresco:roundTopLeft="true"
-                    fresco:roundTopRight="true"
-                    fresco:roundedCornerRadius="5dp">
-                </com.facebook.drawee.view.SimpleDraweeView>
-
+                android:layout_height="20dp"
+                android:background="@color/bg_title1"/>
+            <RelativeLayout
+                style="@style/Title"
+                android:background="@color/bg_title1">
+                <include
+                    android:id="@+id/back"
+                    layout="@layout/layout_back" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="6dp"
-                    android:textColor="@color/text06"
-                    android:textSize="@dimen/text01"
-                    android:text="身份证正面"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_horizontal"
-                android:layout_weight="1">
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/rl_fan"
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    fresco:placeholderImageScaleType="fitCenter"
-                    fresco:roundBottomLeft="true"
-                    fresco:roundBottomRight="true"
-                    fresco:roundTopLeft="true"
-                    fresco:roundTopRight="true"
-                    fresco:roundedCornerRadius="5dp"
-                    android:background="@mipmap/shenfenzheng">
-                </com.facebook.drawee.view.SimpleDraweeView>
+                    android:layout_centerInParent="true"
+                    android:text="更换密保手机"
+                    android:textColor="@color/text_title1"
+                    android:textSize="@dimen/title" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="6dp"
-                    android:textColor="@color/text06"
-                    android:textSize="@dimen/text01"
-                    android:text="身份证反面"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_horizontal"
-                android:layout_weight="1">
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/rl_shou"
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    fresco:placeholderImageScaleType="fitCenter"
-                    fresco:roundBottomLeft="true"
-                    fresco:roundBottomRight="true"
-                    fresco:roundTopLeft="true"
-                    fresco:roundTopRight="true"
-                    fresco:roundedCornerRadius="5dp"
-                    android:background="@mipmap/shenfenzheng">
-                </com.facebook.drawee.view.SimpleDraweeView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="6dp"
-                    android:textColor="@color/text06"
-                    android:textSize="@dimen/text01"
-                    android:text="手持身份证"/>
-            </LinearLayout>
+                    android:layout_height="@dimen/xian"
+                    android:background="@color/xian1"
+                    android:layout_marginLeft="@dimen/xian_left"
+                    android:layout_marginRight="@dimen/xian_right"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+            <com.example.duan.chao.DCZ_selft.BounceScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:textColor="@color/text02"
+                        android:textSize="@dimen/text01"
+                        android:text="如果原密保手机已换号或不能接收到短信验证码，需提供一个能收验证码的新手机号和个人实名有效资料提交工作人员审核通过后才能更换新密保手机"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/xian"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:background="@color/xian1" />
+                    <LinearLayout
+                        android:id="@+id/et_guo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/iv1"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@mipmap/login1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="国家 / 地区"
+                            android:textColor="@color/text04"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_guo"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="17dp"
+                            android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text01"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@mipmap/you" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/xian1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/xian"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/xian2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/iv2"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@mipmap/login02" />
+
+                        <TextView
+                            android:id="@+id/jia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/text04"
+                            android:textSize="@dimen/text01" />
+
+                        <EditText
+                            android:id="@+id/quhao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="86         "
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:paddingLeft="5dp"
+                            android:singleLine="true"
+                            android:textColor="@color/text08"
+                            android:textColorHint="@color/text04"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/text01"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/text04"></View>
+
+                        <EditText
+                            android:id="@+id/et_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:hint="请输入绑定手机号"
+                            android:inputType="number"
+                            android:maxLength="13"
+                            android:phoneNumber="true"
+                            android:singleLine="true"
+                            android:textColor="@color/text08"
+                            android:textColorHint="@color/text04"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/text01" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/xian2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/xian"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/xian1" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/left">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/rl_zheng"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_weight="1"
+                                android:background="@mipmap/shenfenzheng"
+                                android:gravity="center"
+                                fresco:placeholderImageScaleType="fitCenter"
+                                fresco:roundBottomLeft="true"
+                                fresco:roundBottomRight="true"
+                                fresco:roundTopLeft="true"
+                                fresco:roundTopRight="true"
+                                fresco:roundedCornerRadius="5dp">
+                            </com.facebook.drawee.view.SimpleDraweeView>
+                            <ImageView
+                                android:id="@+id/x1"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:visibility="gone"
+                                android:src="@mipmap/shenfenzheng4"
+                                android:layout_centerInParent="true"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1">
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/rl_fan"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@mipmap/shenfenzheng2"
+                                fresco:placeholderImageScaleType="fitCenter"
+                                fresco:roundBottomLeft="true"
+                                fresco:roundBottomRight="true"
+                                fresco:roundTopLeft="true"
+                                fresco:roundTopRight="true"
+                                fresco:roundedCornerRadius="5dp">
+                            </com.facebook.drawee.view.SimpleDraweeView>
+                            <ImageView
+                                android:id="@+id/x2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:visibility="gone"
+                                android:src="@mipmap/shenfenzheng4"
+                                android:layout_centerInParent="true"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1">
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/rl_shou"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                fresco:placeholderImageScaleType="fitCenter"
+                                fresco:roundBottomLeft="true"
+                                fresco:roundBottomRight="true"
+                                fresco:roundTopLeft="true"
+                                fresco:roundTopRight="true"
+                                fresco:roundedCornerRadius="5dp"
+                                android:background="@mipmap/shenfenzheng3">
+                            </com.facebook.drawee.view.SimpleDraweeView>
+                            <ImageView
+                                android:id="@+id/x3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:visibility="gone"
+                                android:src="@mipmap/shenfenzheng4"
+                                android:layout_centerInParent="true"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/button_hui"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="确定"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/yuanjiaohui"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textSize="@dimen/title"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"
+                            android:text="确定"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/yuanjiaolan2"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:textSize="@dimen/title"
+                            android:textColor="@color/white"/>
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </View>
+                </LinearLayout>
+            </com.example.duan.chao.DCZ_selft.BounceScrollView>
+
         </LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/button_hui"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="确定"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/yuanjiaohui"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textSize="@dimen/title"
-                android:textColor="@color/white"/>
-            <TextView
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="确定"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/yuanjiaolan2"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textSize="@dimen/title"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
     </LinearLayout>
+
 
     <RelativeLayout
         android:id="@+id/pup"
