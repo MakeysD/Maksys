@@ -17,7 +17,7 @@ public class HttpServiceClient {
      */
     public static InterfaceService getInstance(){
 
-        RetrofitUtils.setUrl_ROOT("http://api.yueyetv.com/a1/");
+        RetrofitUtils.setUrl_ROOT("http://192.168.2.111:8088/user-safe-api/");
         interfaceService=RetrofitUtils.createApiForGson(InterfaceService.class);
         return  interfaceService;
     }

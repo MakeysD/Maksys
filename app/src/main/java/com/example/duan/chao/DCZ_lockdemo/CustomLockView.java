@@ -126,8 +126,8 @@ public class CustomLockView extends View {
         // 纵屏
         x = (w - h) / 2;
         w = h;
-        locus_round_original = BitmapFactory.decodeResource(getResources(), R.mipmap.yuanxiao);
-        locus_round_click = BitmapFactory.decodeResource(getResources(), R.mipmap.yuanda);
+        locus_round_original = BitmapFactory.decodeResource(getResources(), R.mipmap.unselected);
+        locus_round_click = BitmapFactory.decodeResource(getResources(), R.mipmap.selected);
         locus_arrow = BitmapFactory.decodeResource(getResources(), R.mipmap.gesturetrianglebrown);
         locus_round_error= BitmapFactory.decodeResource(getResources(),R.mipmap.selected_error);
         locus_arrow_error= BitmapFactory.decodeResource(getResources(),R.mipmap.gesturetrianglebrownerror);

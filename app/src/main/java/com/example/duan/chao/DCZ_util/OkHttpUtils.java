@@ -1,6 +1,12 @@
 package com.example.duan.chao.DCZ_util;
 
 
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -23,20 +29,25 @@ public class OkHttpUtils {
 
     private static final long   OKCLIENT_DISK_CACHE_SIZE = 20 * 1024 * 1024;
     private static final String OKCLIENT_DISK_CACHE_NAME = "http-cache";
-
     public static OkHttpClient getInstance() {
+
         if (singleton == null) {
             synchronized (OkHttpUtils.class) {
                 if (singleton == null) {
+                    ClearableCookieJar cookieJar =
+                            new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(MyApplication.getContext()));
                     OkHttpClient.Builder builder = new OkHttpClient.Builder()
                             .connectTimeout(15000L, TimeUnit.MILLISECONDS)
+                            .cookieJar(cookieJar)
                             .readTimeout(20000L, TimeUnit.MILLISECONDS)
                             .writeTimeout(15000L, TimeUnit.MILLISECONDS);
-                        builder.addInterceptor(new HttpLoggingInterceptor()
-                                        .setLevel(HttpLoggingInterceptor.Level.BODY))
-                                .cache(new Cache(
-                                        new File("../", OKCLIENT_DISK_CACHE_NAME),
-                                        OKCLIENT_DISK_CACHE_SIZE));
+                    builder.addInterceptor(new HttpLoggingInterceptor()
+                            .setLevel(HttpLoggingInterceptor.Level.BODY))
+                          //  .addInterceptor
+                            .cache(new Cache(
+                                    new File("../", OKCLIENT_DISK_CACHE_NAME),
+                                    OKCLIENT_DISK_CACHE_SIZE));
+//                    singleton=builder.build();
                     singleton=builder.build();
                 }
             }

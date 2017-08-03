@@ -8,6 +8,7 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import com.example.duan.chao.DCZ_jiguang.Logger;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import cn.jpush.android.api.JPushInterface;
@@ -17,6 +18,7 @@ import cn.jpush.android.api.JPushInterface;
  */
 
 public class MyApplication extends Application{
+    public static String uri="http://192.168.2.171:9898/";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
     private static Context context;
@@ -24,6 +26,11 @@ public class MyApplication extends Application{
     public static boolean isLogin=false;
     public static Boolean suo=true;     //是否打开手势解锁页面
     public static String qiniu="https://pic.bincrea.com/";
+    public static String token="";
+
+    public static String device;
+    public static String xinghao;
+    public static String brand;
     //偏好设置
     public static SharedPreferences sf;
     @Override
@@ -43,6 +50,7 @@ public class MyApplication extends Application{
         sf= PreferenceManager.getDefaultSharedPreferences(this);
         first = sf.getBoolean("first",true);
         zhiwen=sf.getBoolean("zhiwen",false);
+        token=sf.getString("token","");
         Log.i("dcz_first",first+"");
     }
     public static Context getContext(){

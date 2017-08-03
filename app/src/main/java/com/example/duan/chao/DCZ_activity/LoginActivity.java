@@ -1,5 +1,6 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,27 +9,25 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
-import com.example.duan.chao.DCZ_bean.NewsBean;
-import com.example.duan.chao.DCZ_bean.StatusBean;
+import com.example.duan.chao.DCZ_bean.LoginBean;
+import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
-import com.example.duan.chao.DCZ_selft.SwitchButton;
-import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
-import com.example.duan.chao.DCZ_util.ShebeiUtil;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
@@ -53,6 +52,8 @@ public class LoginActivity extends BaseActivity {
     private LoginActivity INSTANCE;
     private List<CityBean> list;
     public static String code="";
+    private LoginOkBean data;
+    private Dialog dialog;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.xian1)
@@ -104,8 +105,7 @@ public class LoginActivity extends BaseActivity {
         code="";
         guo.setFocusable(false);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
-      //  Log.i("",);
-        ShebeiUtil.getDeviceId(INSTANCE);
+
     }
     /**
      *  监听
@@ -120,12 +120,7 @@ public class LoginActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getData();
-            //    if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
-                    Intent intent=new Intent(INSTANCE,SmsActivity.class);
-                    startActivity(intent);
-                    finish();
-
+                getData();
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
@@ -372,17 +367,55 @@ public class LoginActivity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getData(){
-        HttpServiceClient.getInstance().login("en","test","123","123456").enqueue(new Callback<StatusBean>() {
+      /*  new Thread(new Runnable() {
             @Override
-            public void onResponse(Call<StatusBean> call, Response<StatusBean> response) {
+            public void run() {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("username","admin");
+                map.put("password", "123456");
+                map.put("code","");
+                map.put("deviceUUID","866145033751781");
+                map.put("deviceName","Redmi Note 4X");
+                String response = OkHttpClientHelper.postKeyValuePair(INSTANCE,MyApplication.uri+"login", map, "getcode");
+                Log.i("dcz_返回数据",response);
+            }
+        }).start();*/
+       /* dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();*/
+//       Gson mGson = new Gson();
+//        String kkk ="{\n" +
+//                "  \"code\": \"20002\",\n" +
+//                "  \"msg\": null,\n" +
+//                "  \"desc\": \"错误\",\n" +
+//                "  \"data\": \"http://192.168.2.111:8088/login\",\n" +
+//                "  \"ok\": false\n" +
+//                "}";
+  //      mGson.fromJson(kkk,LoginOkBean.class);
+        HttpServiceClient.getInstance().login("admin","123456",MyApplication.device,MyApplication.xinghao).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+               // dialog.dismiss();
                 if(response.isSuccessful()){
-
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        data=response.body().getData();
+                        MyApplication.token=data.getRefreshToken();
+                        MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
+                        Intent intent=new Intent(INSTANCE,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
+                    }
                 }else {
                     Log.d("dcz","获取数据失败");
                 }
             }
             @Override
-            public void onFailure(Call<StatusBean> call, Throwable t) {
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+              //  dialog.dismiss();
+                Log.i("dcz异常",call.toString());
                 Toast.makeText(INSTANCE, "解析异常", Toast.LENGTH_SHORT).show();
             }
         });

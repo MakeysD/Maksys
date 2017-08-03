@@ -2,6 +2,7 @@ package com.example.duan.chao;
 
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,6 +39,9 @@ import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.ExitBean;
+import com.example.duan.chao.DCZ_bean.LoginBean;
+import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
 import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
@@ -45,16 +49,22 @@ import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.DragLayout;
 import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
+import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends BaseActivity{
     private final String TAG = "MainActivity";
     private TextView result = null;
+    private Dialog dialog;
 
     //下面的是极光需要
     private MessageReceiver mMessageReceiver;
@@ -212,8 +222,7 @@ public class MainActivity extends BaseActivity{
         rl6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, LoginActivity.class);
-                startActivity(intent);
+                getData();
             }
         });
         //指纹锁的开关
@@ -337,7 +346,39 @@ public class MainActivity extends BaseActivity{
             }
         }
     }
-
+    /***
+     * 调取接口拿到服务器数据
+     * */
+    public void getData(){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        HttpServiceClient.getInstance().exit_login(MyApplication.device).enqueue(new Callback<LoginBean>() {
+            @Override
+            public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(INSTANCE, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(INSTANCE,"尚未登录设备", Toast.LENGTH_SHORT).show();
+                    Log.d("dcz_数据获取失败",response.message());
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                Toast.makeText(INSTANCE, "解析异常", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     @Override
     protected void onPause() {
         isForeground = false;
