@@ -8,7 +8,6 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import com.example.duan.chao.DCZ_jiguang.Logger;
-import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import cn.jpush.android.api.JPushInterface;
@@ -57,9 +56,6 @@ public class MyApplication extends Application{
         return context;
     }
 
-   /* public static float dp2Px(float dp) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
-    }*/
    public static float dp2Px() {
        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, context.getResources().getDisplayMetrics());
    }

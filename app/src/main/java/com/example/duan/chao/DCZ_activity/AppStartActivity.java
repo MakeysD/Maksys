@@ -38,7 +38,8 @@ public class AppStartActivity extends Activity {
         Log.i("dcz_手机品牌",ShebeiUtil.getPhoneBrand());
         MyApplication.device=ShebeiUtil.getDeviceId(this);
         MyApplication.xinghao=ShebeiUtil.getPhoneModel();
-    //    if(MyApplication.isLogin==true){
+        //判断是否登录
+        if(MyApplication.token.equals("")){
             //判断是否设置过指纹锁
             if(MyApplication.zhiwen==true){
                 Intent intent = new Intent(AppStartActivity.this, ZhiwenActivity.class);
@@ -51,20 +52,18 @@ public class AppStartActivity extends Activity {
                 finish();
             }else {
                 //判断是否是第一次登录
-            /*    if(MyApplication.first){
+                if(MyApplication.first){
                     Intent intent = new Intent(AppStartActivity.this, WelcomeActivity.class);
                     startActivity(intent);
                 }else {
-                    Intent intent = new Intent(AppStartActivity.this, MainActivity.class);
+                    Intent intent = new Intent(AppStartActivity.this, LoginActivity.class);
                     startActivity(intent);
-                }*/
-                Intent intent = new Intent(AppStartActivity.this, MainActivity.class);
-                startActivity(intent);
+                }
             }
-    /*    }else {
-            Intent intent = new Intent(AppStartActivity.this, LoginActivity.class);
+        }else {
+            Intent intent = new Intent(AppStartActivity.this, MainActivity.class);
             startActivity(intent);
-        }*/
+        }
         finish();
 
         //mIndexs= LockUtil.getPwd(this);

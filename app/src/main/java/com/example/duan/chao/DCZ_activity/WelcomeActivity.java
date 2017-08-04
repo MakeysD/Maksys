@@ -27,7 +27,7 @@ import java.util.List;
 
 public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     //引导图片资源
-    private static final int[] pics = {R.mipmap.bg01, R.mipmap.bg01,R.mipmap.bg01, R.mipmap.bg01,};
+    private static final int[] pics = {R.mipmap.bg01, R.mipmap.bg02,R.mipmap.bg03, R.mipmap.bg04,};
     //底部小点图片
     private ImageView[] dots;
     //记录当前选中位置
@@ -92,7 +92,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
             @Override
             public boolean onDrag(View view, DragEvent dragEvent) {//（控件和拖拽事件）
                 if (dragEvent.getAction() == DragEvent.ACTION_DRAG_ENDED && dragEvent.getY() < -20) {//如果拖拽事件的动作是拖拽结束并且y比例小于20
-                    Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                    Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                     startActivity(intent);//跳转到登录页面
                     finish();       //结束
                 }
@@ -103,7 +103,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//给图片控件设置点击监听
-                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);           //跳转到登录页面
                 finish();                       //关闭
             }

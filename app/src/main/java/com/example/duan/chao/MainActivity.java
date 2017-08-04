@@ -409,6 +409,7 @@ public class MainActivity extends BaseActivity{
                         Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(INSTANCE, LoginActivity.class);
                         startActivity(intent);
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                         finish();
                     }else {
                         Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
