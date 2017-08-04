@@ -391,10 +391,13 @@ public class LoginActivity extends BaseActivity {
 //                "  \"ok\": false\n" +
 //                "}";
   //      mGson.fromJson(kkk,LoginOkBean.class);
-        HttpServiceClient.getInstance().login("admin","123456",MyApplication.device,MyApplication.xinghao).enqueue(new Callback<LoginOkBean>() {
+
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        HttpServiceClient.getInstance().login(phone.getText().toString(),mima.getText().toString(),MyApplication.device,MyApplication.xinghao).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
-               // dialog.dismiss();
+                dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
@@ -406,7 +409,7 @@ public class LoginActivity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }else {
-                        Toast.makeText(INSTANCE,data.getDesc(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Log.d("dcz","获取数据失败");
@@ -414,7 +417,7 @@ public class LoginActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
-              //  dialog.dismiss();
+                dialog.dismiss();
                 Log.i("dcz异常",call.toString());
                 Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
             }

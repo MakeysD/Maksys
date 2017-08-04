@@ -45,7 +45,8 @@ public interface InterfaceService {
      * */
     @FormUrlEncoded
     @POST("login")
-    Call<LoginOkBean> login(@Field("username") String username, @Field("password") String password,
+    Call<LoginOkBean> login(@Field("username") String username,
+                            @Field("password") String password,
                             @Field("deviceUUID") String deviceUUID,
                             @Field("deviceName") String deviceName);
 
@@ -57,10 +58,37 @@ public interface InterfaceService {
     Call<LoginBean> exit_login(@Field("deviceUUID") String deviceUUID);
 
     /**
+     *  修改登录密码
+     */
+    @FormUrlEncoded
+    @POST("user/changePwd ")
+    Call<LoginOkBean>login_password(@Field("code") String code,
+                                    @Field("oldPwd") String oldPwd,
+                                    @Field("newPwd")String newPwd,
+                                    @Field("confirmNewPwd")String confirmNewPwd);
+
+    /**
+     *  修改安全密码
+     */
+    @FormUrlEncoded
+    @POST("user/updateSecPwd")
+    Call<LoginOkBean>anquan_password(@Field("oldSecPwd") String oldSecPwd,
+                                   @Field("newSecPwd") String newSecPwd,
+                                   @Field("confirmNewSecPwd")String confirmNewSecPwd,
+                                   @Field("code")String code);
+
+    /**
      *  设备列表
      */
     @FormUrlEncoded
     @POST("device/getAuthorizedList")
     Call<EquipmentBean> getEquipent(@Field("deviceUUID") String deviceUUID);
+
+    /**
+     *  删除设备
+     */
+    @FormUrlEncoded
+    @POST("device/delete")
+    Call<EquipmentBean> deleteEquipent(@Field("id") Long id);
 
 }

@@ -154,6 +154,8 @@
                     android:layout_marginLeft="11dp"
                     android:background="@color/text04"></View>
 
+                    <!--android:inputType="number"
+                        android:phoneNumber="true"-->
                 <EditText
                     android:id="@+id/et_phone"
                     android:layout_width="match_parent"
@@ -161,9 +163,7 @@
                     android:layout_marginLeft="15dp"
                     android:background="@null"
                     android:hint="请输入绑定手机号"
-                    android:inputType="number"
                     android:maxLength="13"
-                    android:phoneNumber="true"
                     android:singleLine="true"
                     android:textColor="@color/text08"
                     android:textColorHint="@color/text04"

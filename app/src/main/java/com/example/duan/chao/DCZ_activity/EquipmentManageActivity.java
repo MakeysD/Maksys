@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.EquipmentAdapter;
@@ -40,6 +41,8 @@ public class EquipmentManageActivity extends BaseActivity {
     XRecyclerView lv;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.tv)
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +56,14 @@ public class EquipmentManageActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
+        if(list.size()>0){
+            tv.setText("已授权设备");
+        }else {
+            tv.setText("暂无授权设备");
+        }
         if(adapter!=null){
             lv.loadMoreComplete();
-            adapter.notify(list);
+            adapter.Notify(list);
         }else {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(INSTANCE);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
