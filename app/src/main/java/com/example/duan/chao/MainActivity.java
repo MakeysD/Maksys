@@ -9,8 +9,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Animatable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -19,6 +22,7 @@ import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -32,6 +36,7 @@ import android.widget.Toast;
 
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
+import com.example.duan.chao.DCZ_activity.ChangePhone1Activity;
 import com.example.duan.chao.DCZ_activity.GesturesLockActivity;
 import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
@@ -53,6 +58,14 @@ import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.controller.ControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
+
+import java.lang.reflect.Field;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,6 +98,8 @@ public class MainActivity extends BaseActivity{
     public static final int MSG_AUTH_HELP = 103;
     private MainActivity INSTANCE;
     private DragLayout mDragLayout;
+    private DraweeController dra;
+    private timeThread thread;
 
 
     @BindView(R.id.back)
@@ -114,7 +129,7 @@ public class MainActivity extends BaseActivity{
     SwitchButton button2;     //指纹锁
 
     @BindView(R.id.iv)
-    ImageView iv;
+    SimpleDraweeView iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,14 +141,48 @@ public class MainActivity extends BaseActivity{
         setViews();
         setListener();
     }
-
-
+    private class timeThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            for (int i = 2; i > 0; i--) {
+                try {
+                    Message msg = handler.obtainMessage();
+                    msg.what=0;
+                    msg.arg1 = i;         //秒数赋值给消息
+                    handler.sendMessage(msg);
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    private void newhandler() {
+        handler = new Handler(INSTANCE.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if(msg.what==0){
+                    if(msg.arg1==1){
+                        dra.getAnimatable().stop();
+                    }else {
+                        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/agif.gif")).build();
+                        iv.setController(dra);
+                    }
+                }
+            }
+        };
+    }
     private void setViews() {
-        setAnimation(R.anim.rotate,iv);
+        //setAnimation(R.anim.rotate,iv);
+        newhandler();
+        thread = null;
+        thread = new timeThread();
+        thread.start();
         CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
-       // CanRippleLayout.Builder.on(rl4).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         mDragLayout = (DragLayout) findViewById(R.id.dsl);
@@ -160,6 +209,13 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 quan();
+            }
+        });
+
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dra.getAnimatable().stop();
             }
         });
 
