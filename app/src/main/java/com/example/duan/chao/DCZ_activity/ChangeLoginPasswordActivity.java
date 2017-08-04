@@ -1,6 +1,7 @@
 package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +16,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
@@ -137,7 +139,9 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
-                            finish();
+                            Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                            startActivity(intent);
+                            ActivityUtils.getInstance().popAllActivities();
                         }else {
                             Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                             finish();

@@ -36,7 +36,6 @@ public class LockActivity extends BaseActivity {
         setContentView(R.layout.activity_lock);
         ButterKnife.bind(this);
         INSTANCE=this;
-        ActivityUtils.getInstance().pushActivity(INSTANCE);
         setViews();
         setListener();
     }
