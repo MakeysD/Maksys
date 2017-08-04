@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,11 +21,9 @@ import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,7 +33,6 @@ import android.widget.Toast;
 
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
-import com.example.duan.chao.DCZ_activity.ChangePhone1Activity;
 import com.example.duan.chao.DCZ_activity.GesturesLockActivity;
 import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
@@ -44,9 +40,7 @@ import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.ExitBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
-import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
 import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
@@ -56,16 +50,10 @@ import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
-import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.controller.BaseControllerListener;
-import com.facebook.drawee.controller.ControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.image.ImageInfo;
-
-import java.lang.reflect.Field;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -130,6 +118,8 @@ public class MainActivity extends BaseActivity{
 
     @BindView(R.id.iv)
     SimpleDraweeView iv;
+    @BindView(R.id.tv)
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +141,7 @@ public class MainActivity extends BaseActivity{
                     msg.what=0;
                     msg.arg1 = i;         //秒数赋值给消息
                     handler.sendMessage(msg);
-                    Thread.sleep(3000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -166,6 +156,7 @@ public class MainActivity extends BaseActivity{
                 if(msg.what==0){
                     if(msg.arg1==1){
                         dra.getAnimatable().stop();
+                        tv.setVisibility(View.VISIBLE);
                     }else {
                         dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/agif.gif")).build();
                         iv.setController(dra);
@@ -431,7 +422,7 @@ public class MainActivity extends BaseActivity{
             public void onFailure(Call<LoginBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE, "解析异常", Toast.LENGTH_SHORT).show();
+                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
             }
         });
     }

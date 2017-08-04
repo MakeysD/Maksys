@@ -406,7 +406,7 @@ public class LoginActivity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }else {
-                        Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(INSTANCE,data.getDesc(), Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Log.d("dcz","获取数据失败");
@@ -416,7 +416,7 @@ public class LoginActivity extends BaseActivity {
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
               //  dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE, "解析异常", Toast.LENGTH_SHORT).show();
+                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
             }
         });
     }

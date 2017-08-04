@@ -1,6 +1,7 @@
 package com.example.duan.chao.DCZ_util;
 
 
+import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.ExitBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
@@ -54,5 +55,12 @@ public interface InterfaceService {
     @FormUrlEncoded
     @POST("logout")
     Call<LoginBean> exit_login(@Field("deviceUUID") String deviceUUID);
+
+    /**
+     *  设备列表
+     */
+    @FormUrlEncoded
+    @POST("device/getAuthorizedList")
+    Call<EquipmentBean> getEquipent(@Field("deviceUUID") String deviceUUID);
 
 }

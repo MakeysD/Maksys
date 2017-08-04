@@ -17,9 +17,9 @@ import java.util.List;
 
 public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.ViewHolder>{
     private Context context;
-    private List<EquipmentBean> list;
+    private List<EquipmentBean.ListBean> list;
 
-    public EquipmentAdapter(Context context, List<EquipmentBean>list){
+    public EquipmentAdapter(Context context, List<EquipmentBean.ListBean>list){
         this.context=context;
         this.list=list;
     }
@@ -32,6 +32,10 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.tv1.setText(list.get(position).getGratSysName());
+        holder.tv2.setText(list.get(position).getOs()+"");
+        holder.tv3.setText(list.get(position).getGratTime()+"");
+        holder.tv4.setText(list.get(position).getLastLoginTime()+"");
 
     }
 
@@ -44,14 +48,18 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
         TextView tv1;
         TextView tv2;
         TextView tv3;
+        TextView tv4;
+        TextView button;
         public ViewHolder(View view) {
             super(view);
             tv1=(TextView)view.findViewById(R.id.tv1);
             tv2=(TextView)view.findViewById(R.id.tv2);
             tv3=(TextView)view.findViewById(R.id.tv3);
+            tv4=(TextView)view.findViewById(R.id.tv4);
+            button=(TextView)view.findViewById(R.id.button);
         }
     }
-    public void notify(List<EquipmentBean>list){
+    public void notify(List<EquipmentBean.ListBean>list){
         this.list=list;
         notifyDataSetChanged();
     }

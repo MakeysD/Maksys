@@ -35,7 +35,7 @@ public class EquipmentManageActivity extends BaseActivity {
     private Dialog dialog;
     private int pageNumber=1;
     private int pageSize=5;
-    private List<EquipmentBean> list=new ArrayList();
+    private List<EquipmentBean.ListBean> list=new ArrayList();
     @BindView(R.id.listview)
     XRecyclerView lv;
     @BindView(R.id.back)
@@ -46,8 +46,7 @@ public class EquipmentManageActivity extends BaseActivity {
         setContentView(R.layout.activity_equipment_manage);
         INSTANCE=this;
         ButterKnife.bind(this);
-        setViews();
-        setListener();
+        getData();
     }
 
     /**
@@ -96,22 +95,21 @@ public class EquipmentManageActivity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getData(){
-        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),null);
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().getNews("",pageNumber,pageSize).enqueue(new Callback<NewsBean>() {
+        HttpServiceClient.getInstance().getEquipent("").enqueue(new Callback<EquipmentBean>() {
             @Override
-            public void onResponse(Call<NewsBean> call, Response<NewsBean> response) {
+            public void onResponse(Call<EquipmentBean> call, Response<EquipmentBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     if(response.body()!=null){
-                        if(response.body().getCode()==200){
-                            //     list = response.body().getData().getList();
-                            pageNumber++;
-                            pageSize=pageSize+5;
+                        if(response.body().getCode().equals("20000")){
+                            list = response.body().getData().getList();
                             setViews();
                             setListener();
                         }else {
-                            Toast.makeText(INSTANCE, "未知错误", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");
@@ -121,8 +119,9 @@ public class EquipmentManageActivity extends BaseActivity {
                 }
             }
             @Override
-            public void onFailure(Call<NewsBean> call, Throwable t) {
-                Toast.makeText(INSTANCE, "解析异常", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<EquipmentBean> call, Throwable t) {
+                dialog.dismiss();
+                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
             }
         });
     }
