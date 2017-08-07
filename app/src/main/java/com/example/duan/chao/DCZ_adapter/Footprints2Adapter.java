@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_selft.GridViewForScrollView;
 import com.example.duan.chao.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -19,16 +21,15 @@ import java.util.List;
 
 public class Footprints2Adapter extends BaseAdapter{
     private Context context;
-    private List<FootprintsBean> list;
-    private Footprints3Adapter adapter;
+    private List<FootprintsBean.ListBean> list;
 
-    public Footprints2Adapter(Context context, List<FootprintsBean>list){
+    public Footprints2Adapter(Context context, List<FootprintsBean.ListBean> list){
         this.context=context;
         this.list=list;
     }
     @Override
     public int getCount() {
-        return 3;
+        return list.size();
     }
 
     @Override
@@ -45,35 +46,59 @@ public class Footprints2Adapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_footprints2, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_operation2, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        Long time = list.get(position).getCreateTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String datetime = format.format(time);
+
         if(position==0){
-            viewHolder.xian1.setVisibility(View.GONE);
+            viewHolder.tou.setVisibility(View.VISIBLE);
+            viewHolder.title.setText(datetime);
         }else {
-            viewHolder.xian1.setVisibility(View.VISIBLE);
+            Long btime = list.get(position-1).getCreateTime();
+            SimpleDateFormat bformat = new SimpleDateFormat("yyyy-MM-dd");
+            String bdatetime = bformat.format(btime);
+
+            if(bdatetime.equals(datetime)){
+                viewHolder.tou.setVisibility(View.GONE);
+            }else {
+                viewHolder.tou.setVisibility(View.VISIBLE);
+                viewHolder.title.setText(datetime);
+            }
         }
-        adapter=new Footprints3Adapter(context,list);
-        viewHolder.lv.setAdapter(adapter);
+        viewHolder.name.setText(list.get(position).getSystemName());
+        viewHolder.ip.setText(list.get(position).getIpAddr());
+
+        Long timec = list.get(position).getCreateTime();
+        SimpleDateFormat formatc = new SimpleDateFormat("HH:mm:ss");
+        String datetimec = formatc.format(timec);
+        /*String[] strs = datetimec.toString().split(" ");
+        String timeb = strs[1];*/
+        viewHolder.time.setText(datetimec);
+
         return convertView;
     }
 
     public class ViewHolder {
-        GridViewForScrollView lv;
-        TextView tv1;
-        TextView tv2;
-        TextView xian1;
+        LinearLayout tou;
+        TextView title;
+        TextView time;
+        TextView name;
+        TextView ip;
         public ViewHolder(View view) {
-            lv=(GridViewForScrollView)view.findViewById(R.id.lv);
-            tv1=(TextView)view.findViewById(R.id.tv1);
-            tv2=(TextView)view.findViewById(R.id.tv2);
-            xian1=(TextView)view.findViewById(R.id.xian1);
+            tou=(LinearLayout)view.findViewById(R.id.tou);
+            title=(TextView)view.findViewById(R.id.title);
+            time=(TextView)view.findViewById(R.id.time);
+            name=(TextView)view.findViewById(R.id.name);
+            ip=(TextView)view.findViewById(R.id.ip);
         }
     }
-    public void notify(List<FootprintsBean> list){
+    public void notify(List<FootprintsBean.ListBean> list){
         this.list=list;
         notifyDataSetChanged();
     }
@@ -81,17 +106,17 @@ public class Footprints2Adapter extends BaseAdapter{
  *      嵌套的listview
  *
  * */
-    private class Footprints3Adapter extends BaseAdapter{
+ /*   private class Footprints3Adapter extends BaseAdapter{
         private Context context;
-        private List<FootprintsBean> list;
+        private List<FootprintsBean.ListBean> list;
 
-        public Footprints3Adapter(Context context, List<FootprintsBean>list){
+        public Footprints3Adapter(Context context, List<FootprintsBean.ListBean> list){
             this.context=context;
             this.list=list;
         }
         @Override
         public int getCount() {
-            return 3;
+            return list.size();
         }
 
         @Override
@@ -124,5 +149,5 @@ public class Footprints2Adapter extends BaseAdapter{
         public ViewHolder2(View convertView) {
 
         }
-    }
+    }*/
 }

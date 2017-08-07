@@ -3,9 +3,12 @@ package com.example.duan.chao.DCZ_util;
 
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.ExitBean;
+import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.NewsBean;
+import com.example.duan.chao.DCZ_bean.OperationRecordBean;
+import com.example.duan.chao.DCZ_bean.SecurityBean;
 import com.example.duan.chao.DCZ_bean.StatusBean;
 
 import retrofit2.Call;
@@ -90,5 +93,64 @@ public interface InterfaceService {
     @FormUrlEncoded
     @POST("device/delete")
     Call<EquipmentBean> deleteEquipent(@Field("id") Long id);
+
+    /**
+     *  刷新Token
+     */
+    @FormUrlEncoded
+    @POST("loginByRefreshToken")
+    Call<EquipmentBean> getToken(@Field("username") String id,
+                                 @Field("refreshToken") Long refreshToken,
+                                 @Field("deviceUUID") Long deviceUUID);
+
+    /**
+     *  账户足迹
+     */
+    @FormUrlEncoded
+    @POST("getLatestLoginLogList")
+    Call<FootprintsBean> getFoot(@Field("pageNumber") int pageNumber,
+                                 @Field("pageSize") int pageSize,
+                                 @Field("orderBy") String orderBy,
+                                 @Field("startTime") String startTime,
+                                 @Field("endTime") String endTime);
+
+    /**
+     *  获取用户在各子系统的在线情况
+     */
+    @FormUrlEncoded
+    @POST("getOnLineList")
+    Call<EquipmentBean> getOnline(@Field("deviceUUID") String deviceUUID);
+
+    /**
+     *  踢出用户在某个系统的登录情况
+     */
+    @FormUrlEncoded
+    @POST("kickout ")
+    Call<EquipmentBean> kickout(@Field("systemId") String systemId,
+                                 @Field("username")String username,
+                                 @Field("sessionid")String sessionid);
+
+    /**
+     *  操作记录
+     */
+    @FormUrlEncoded
+    @POST("getOperationList")
+    Call<OperationRecordBean> getOperation(@Field("startTime") String startTime,
+                                           @Field("endTime")String endTime);
+
+    /**
+     *  安全保护列表
+     */
+    @FormUrlEncoded
+    @POST("safe/getProtectedSystemList")
+    Call<SecurityBean> protect(@Field("deviceUUID") String deviceUUID);
+
+    /**
+     *  开启或关闭保护（1开启，2关闭）
+     */
+    @FormUrlEncoded
+    @POST("safe/updateProtectedEnable")
+    Call<EquipmentBean> updateProtect(@Field("id") Long id,
+                                     @Field("enable")String enable);
 
 }

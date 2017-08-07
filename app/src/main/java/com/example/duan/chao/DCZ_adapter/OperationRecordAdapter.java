@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -20,54 +22,83 @@ import java.util.List;
 
 public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecordAdapter.ViewHolder>{
     private Context context;
-    private List<OperationRecordBean> list;
-    private OperationRecord2Adapter adapter;
-    private List<OperationRecordBean> list2;
-    public OperationRecordAdapter(Context context, List<OperationRecordBean>list){
+    private  List<OperationRecordBean.ListBean> list;
+   /* private OperationRecord2Adapter adapter;
+    private List<OperationRecordBean> list2;*/
+    public OperationRecordAdapter(Context context,  List<OperationRecordBean.ListBean> list){
         this.context=context;
         this.list=list;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view=View.inflate(context, R.layout.item_operation,null);
+        View view=View.inflate(context, R.layout.item_operation2,null);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        Long time = list.get(position).getCreateTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String datetime = format.format(time);
+
         if(position==0){
-            holder.xian1.setVisibility(View.GONE);
+           // holder.xian1.setVisibility(View.GONE);
+            holder.tou.setVisibility(View.VISIBLE);
+            holder.title.setText(datetime);
         }else {
-            holder.xian1.setVisibility(View.VISIBLE);
+            Long btime = list.get(position-1).getCreateTime();
+            SimpleDateFormat bformat = new SimpleDateFormat("yyyy-MM-dd");
+            String bdatetime = bformat.format(btime);
+
+            if(bdatetime.equals(datetime)){
+                holder.tou.setVisibility(View.GONE);
+            }else {
+                holder.tou.setVisibility(View.VISIBLE);
+                holder.title.setText(datetime);
+            }
+           // holder.xian1.setVisibility(View.VISIBLE);
         }
-            adapter=new OperationRecord2Adapter(context,list);
-            holder.lv.setAdapter(adapter);
+        holder.name.setText(list.get(position).getSystemName());
+        holder.ip.setText(list.get(position).getIpAddr());
+        holder.time.setText(list.get(position).getCreateTime()+"");
+        /*    adapter=new OperationRecord2Adapter(context,list);
+            holder.lv.setAdapter(adapter);*/
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView xian1;
-        ListView lv;
+        /*TextView xian1;
+        ListView lv;*/
+        LinearLayout tou;
+        TextView title;
+        TextView time;
+        TextView name;
+        TextView ip;
         public ViewHolder(View view) {
             super(view);
-            xian1=(TextView)view.findViewById(R.id.xian1);
-            lv=(ListView) view.findViewById(R.id.lv);
+           /* xian1=(TextView)view.findViewById(R.id.xian1);
+            lv=(ListView) view.findViewById(R.id.lv);*/
+            tou=(LinearLayout)view.findViewById(R.id.tou);
+            title=(TextView)view.findViewById(R.id.title);
+            time=(TextView)view.findViewById(R.id.time);
+            name=(TextView)view.findViewById(R.id.name);
+            ip=(TextView)view.findViewById(R.id.ip);
         }
     }
-    public void notify(List<OperationRecordBean> list){
+    public void notify( List<OperationRecordBean.ListBean> list){
         this.list=list;
         notifyDataSetChanged();
     }
 
-    private class OperationRecord2Adapter extends BaseAdapter{
+  /*  private class OperationRecord2Adapter extends BaseAdapter{
         private Context context;
-        private List<OperationRecordBean> list;
+        private  List<OperationRecordBean.ListBean> list;
 
-        public OperationRecord2Adapter(Context context, List<OperationRecordBean>list){
+        public OperationRecord2Adapter(Context context,  List<OperationRecordBean.ListBean> list){
             this.context=context;
             this.list=list;
         }
@@ -108,5 +139,5 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
         public ViewHolder2(View convertView) {
 
         }
-    }
+    }*/
 }

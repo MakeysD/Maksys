@@ -1,12 +1,19 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.OperationRecordAdapter;
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
+import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -16,6 +23,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *      操作记录
@@ -24,7 +34,8 @@ import butterknife.ButterKnife;
 public class OperationRecordActivity extends BaseActivity {
     private OperationRecordActivity INSTANCE;
     private OperationRecordAdapter adapter;
-    private List<OperationRecordBean> list=new ArrayList();
+    private List<OperationRecordBean.ListBean> list=new ArrayList();
+    private Dialog dialog;
     @BindView(R.id.listview)
     XRecyclerView lv;
     @BindView(R.id.back)
@@ -35,8 +46,7 @@ public class OperationRecordActivity extends BaseActivity {
         setContentView(R.layout.activity_operation_record);
         INSTANCE=this;
         ButterKnife.bind(this);
-        setViews();
-        setListener();
+        getData();
     }
 
     /**
@@ -77,6 +87,42 @@ public class OperationRecordActivity extends BaseActivity {
             @Override
             public void onLoadMore() {
                 lv.refreshComplete();
+            }
+        });
+    }
+
+    /***
+     * 调取接口拿到服务器数据
+     * */
+    public void getData(){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        HttpServiceClient.getInstance().getOperation(null,null).enqueue(new Callback<OperationRecordBean>() {
+            @Override
+            public void onResponse(Call<OperationRecordBean> call, Response<OperationRecordBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    if(response.body()!=null){
+                        if(response.body().getCode().equals("20000")){
+                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            list=response.body().getData().getList();
+                            setViews();
+                            setListener();
+                        }else {
+                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }else {
+                        Log.d("dcz","返回的数据是空的");
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<OperationRecordBean> call, Throwable t) {
+                dialog.dismiss();
+                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
             }
         });
     }

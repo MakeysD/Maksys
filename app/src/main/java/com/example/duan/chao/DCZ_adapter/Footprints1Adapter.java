@@ -18,9 +18,9 @@ import java.util.List;
 
 public class Footprints1Adapter extends BaseAdapter{
     private Context context;
-    private List<FootprintsBean> list;
+    private List<FootprintsBean.ListBean> list;
 
-    public Footprints1Adapter(Context context, List<FootprintsBean>list){
+    public Footprints1Adapter(Context context, List<FootprintsBean.ListBean> list){
         this.context=context;
         this.list=list;
     }
@@ -61,7 +61,7 @@ public class Footprints1Adapter extends BaseAdapter{
             tv2=(TextView)view.findViewById(R.id.tv2);
         }
     }
-    public void notify(List<FootprintsBean>list){
+    public void notify(List<FootprintsBean.ListBean> list){
         this.list=list;
         notifyDataSetChanged();
     }
