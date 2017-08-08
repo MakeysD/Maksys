@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.example.duan.chao"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -47,7 +47,6 @@ dependencies {
     //butterknife框架
     compile files('libs/zxing.jar')
     compile files('libs/jpush-android-3.0.8.jar')
-    compile files('libs/AMap_Location_V3.4.1_20170629.jar')
     //高德定位
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.3.1'

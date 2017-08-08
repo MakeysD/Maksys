@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="60dp"
-                android:background="@mipmap/loading1"
+                android:background="@mipmap/loading"
                 android:visibility="gone" />
 
             <TextView

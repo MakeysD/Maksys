@@ -26,6 +26,7 @@ public class MyApplication extends Application{
     public static Boolean suo=true;     //是否打开手势解锁页面
     public static String qiniu="https://pic.bincrea.com/";
     public static String token="";
+    public static String city="中国";
 
     public static String device;
     public static String xinghao;
@@ -50,6 +51,7 @@ public class MyApplication extends Application{
         first = sf.getBoolean("first",true);
         zhiwen=sf.getBoolean("zhiwen",false);
         token=sf.getString("token","");
+        city=sf.getString("city","");
         Log.i("dcz_first",first+"");
     }
     public static Context getContext(){

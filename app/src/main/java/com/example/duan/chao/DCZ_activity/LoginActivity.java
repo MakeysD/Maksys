@@ -54,6 +54,7 @@ public class LoginActivity extends BaseActivity {
     public static String code="";
     private LoginOkBean data;
     private Dialog dialog;
+    private String content;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.xian1)
@@ -103,7 +104,21 @@ public class LoginActivity extends BaseActivity {
      * */
     private void setViews() {
         code="";
+        try {
+            content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+            list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+            Log.i("dcz",list.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         guo.setFocusable(false);
+        for(int i=0;i<list.size();i++){
+            if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))){
+                Log.i("dcz",list.get(i).getCountry_name_cn());
+                Log.i("dcz",list.get(i).getCountry_code()+"");
+                code=list.get(i).getCountry_code()+"";
+            }
+        }
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
 
     }
