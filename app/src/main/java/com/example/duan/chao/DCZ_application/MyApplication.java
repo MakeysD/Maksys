@@ -25,10 +25,11 @@ public class MyApplication extends Application{
     public static boolean isLogin=false;
     public static Boolean suo=true;     //是否打开手势解锁页面
     public static String qiniu="https://pic.bincrea.com/";
-    public static String token="";
     public static String city="中国";
 
     public static String device;
+    public static String username;
+    public static String token;
     public static String xinghao;
     public static String brand;
     //偏好设置
@@ -51,6 +52,7 @@ public class MyApplication extends Application{
         first = sf.getBoolean("first",true);
         zhiwen=sf.getBoolean("zhiwen",false);
         token=sf.getString("token","");
+        username=sf.getString("username","");
         city=sf.getString("city","");
         Log.i("dcz_first",first+"");
     }

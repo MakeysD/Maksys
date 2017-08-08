@@ -419,7 +419,9 @@ public class LoginActivity extends BaseActivity {
                         Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         data=response.body().getData();
                         MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
+                        Log.i("dcz_token",MyApplication.token);
                         MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
+                        MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
                         Intent intent=new Intent(INSTANCE,MainActivity.class);
                         startActivity(intent);
                         finish();

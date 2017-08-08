@@ -43,7 +43,8 @@ public class OkHttpUtils {
                             .writeTimeout(15000L, TimeUnit.MILLISECONDS);
                     builder.addInterceptor(new HttpLoggingInterceptor()
                             .setLevel(HttpLoggingInterceptor.Level.BODY))
-                          //  .addInterceptor
+                            .addInterceptor(new AddUpdate())
+                            //.addInterceptor(new AddParamInterceptor())
                             .cache(new Cache(
                                     new File("../", OKCLIENT_DISK_CACHE_NAME),
                                     OKCLIENT_DISK_CACHE_SIZE));
