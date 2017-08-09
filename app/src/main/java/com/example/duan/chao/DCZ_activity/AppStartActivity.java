@@ -25,6 +25,8 @@ import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
@@ -47,6 +49,7 @@ public class AppStartActivity extends Activity {
 
     private void suo() {
         Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));
+        Log.i("dcz_设备md5", md5(ShebeiUtil.getDeviceId(this)));
         Log.i("dcz_设备型号",ShebeiUtil.getPhoneModel());
         Log.i("dcz_手机品牌",ShebeiUtil.getPhoneBrand());
         MyApplication.device=ShebeiUtil.getDeviceId(this);
@@ -218,6 +221,29 @@ public class AppStartActivity extends Activity {
                 return sAddress;
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static String md5(String string) {
+        if (TextUtils.isEmpty(string)) {
+            return "";
+        }
+        MessageDigest md5 = null;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+            byte[] bytes = md5.digest(string.getBytes());
+            String result = "";
+            for (byte b : bytes) {
+                String temp = Integer.toHexString(b & 0xff);
+                if (temp.length() == 1) {
+                    temp = "0" + temp;
+                }
+                result += temp;
+            }
+            return result;
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return "";

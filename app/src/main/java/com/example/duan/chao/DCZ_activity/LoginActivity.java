@@ -39,6 +39,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -121,6 +122,8 @@ public class LoginActivity extends BaseActivity {
             }
         }
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        String rid = JPushInterface.getRegistrationID(getApplicationContext());
+        Log.i("dcz",rid);
 
     }
     /**
