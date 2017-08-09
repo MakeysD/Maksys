@@ -32,6 +32,7 @@ public class MyApplication extends Application{
     public static String nickname;
     public static String token;
     public static String xinghao;
+    public static String rid;
     public static String brand;
     //偏好设置
     public static SharedPreferences sf;

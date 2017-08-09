@@ -29,6 +29,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  *  APP启动页
@@ -48,6 +50,7 @@ public class AppStartActivity extends Activity {
     }
 
     private void suo() {
+        MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));
         Log.i("dcz_设备md5", md5(ShebeiUtil.getDeviceId(this)));
         Log.i("dcz_设备型号",ShebeiUtil.getPhoneModel());

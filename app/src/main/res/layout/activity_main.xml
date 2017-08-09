@@ -407,7 +407,7 @@
                     android:id="@+id/scan"
                     android:layout_width="23dp"
                     android:layout_height="23dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="@dimen/right"
                     android:layout_centerVertical="true"
                     android:src="@mipmap/saoma"/>
@@ -420,6 +420,10 @@
                         layout="@layout/layout_back2"/>
                 </RelativeLayout>
             </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:background="@color/xian1"/>
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"

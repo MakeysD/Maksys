@@ -51,7 +51,8 @@ public interface InterfaceService {
     Call<LoginOkBean> login(@Field("username") String username,
                             @Field("password") String password,
                             @Field("deviceUUID") String deviceUUID,
-                            @Field("deviceName") String deviceName);
+                            @Field("deviceName") String deviceName,
+                            @Field("registrationId")String registrationId);
 
     /**
      *  退出登录
@@ -152,5 +153,15 @@ public interface InterfaceService {
     @POST("safe/updateProtectedEnable")
     Call<EquipmentBean> updateProtect(@Field("id") Long id,
                                      @Field("enable")String enable);
+
+    /**
+     *  授权
+     */
+    @FormUrlEncoded
+    @POST("safe/authorize")
+    Call<LoginOkBean> have(@Field("username") String username,
+                            @Field("reqSysId") String reqSysId,
+                            @Field("reqFlowId") String reqFlowId,
+                            @Field("agreement") String agreement);
 
 }

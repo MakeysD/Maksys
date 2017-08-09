@@ -122,8 +122,6 @@ public class LoginActivity extends BaseActivity {
             }
         }
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
-        String rid = JPushInterface.getRegistrationID(getApplicationContext());
-        Log.i("dcz",rid);
 
     }
     /**
@@ -403,7 +401,7 @@ public class LoginActivity extends BaseActivity {
         dialog.show();*/
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().login(phone.getText().toString(),mima.getText().toString(),MyApplication.device,MyApplication.xinghao).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login(phone.getText().toString(),mima.getText().toString(),MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
