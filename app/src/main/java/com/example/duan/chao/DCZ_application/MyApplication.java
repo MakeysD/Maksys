@@ -29,6 +29,7 @@ public class MyApplication extends Application{
 
     public static String device;
     public static String username;
+    public static String nickname;
     public static String token;
     public static String xinghao;
     public static String brand;
@@ -54,6 +55,7 @@ public class MyApplication extends Application{
         token=sf.getString("token","");
         username=sf.getString("username","");
         city=sf.getString("city","");
+        nickname=sf.getString("nickname","");
         Log.i("dcz_first",first+"");
     }
     public static Context getContext(){

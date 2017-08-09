@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -397,16 +398,6 @@ public class LoginActivity extends BaseActivity {
         }).start();*/
        /* dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();*/
-//       Gson mGson = new Gson();
-//        String kkk ="{\n" +
-//                "  \"code\": \"20002\",\n" +
-//                "  \"msg\": null,\n" +
-//                "  \"desc\": \"错误\",\n" +
-//                "  \"data\": \"http://192.168.2.111:8088/login\",\n" +
-//                "  \"ok\": false\n" +
-//                "}";
-  //      mGson.fromJson(kkk,LoginOkBean.class);
-
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().login(phone.getText().toString(),mima.getText().toString(),MyApplication.device,MyApplication.xinghao).enqueue(new Callback<LoginOkBean>() {
@@ -418,9 +409,18 @@ public class LoginActivity extends BaseActivity {
                     if(response.body().getCode().equals("20000")){
                         Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         data=response.body().getData();
-                        MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
-                        Log.i("dcz_token",MyApplication.token);
                         MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
+                        if(MyApplication.token!=null&&!(MyApplication.token.equals(""))){
+                            SharedPreferences sf2 = INSTANCE.getSharedPreferences("user2",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sf2.edit();
+                            editor.putString("token",MyApplication.token);
+                            editor.putString("nickname",MyApplication.nickname);
+                            editor.putString("username",MyApplication.username);
+                            editor.putString("mima",mima.getText().toString());
+                            editor.commit();
+                        }
+                        MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
+                        MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
                         MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
                         Intent intent=new Intent(INSTANCE,MainActivity.class);
                         startActivity(intent);

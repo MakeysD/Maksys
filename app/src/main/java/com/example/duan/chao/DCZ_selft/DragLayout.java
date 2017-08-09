@@ -26,7 +26,7 @@ public class DragLayout extends FrameLayout{
     private int mRangeLeft;
     private ViewDragHelper mDragHelper;
     private Status mStatus = Status.Close;
-    private Direction mDirction = Direction.Left;
+    private Direction mDirction = Direction.Right;//如果要更改侧滑方向就要修改Right
     private OnDragListener mDragListener;
     private boolean mScaleEnable = true;
     private int mRightWidth;
@@ -165,8 +165,8 @@ public class DragLayout extends FrameLayout{
         @Override
         public void onViewDragStateChanged(int state) {
             if (mStatus == Status.Close && state == ViewDragHelper.STATE_IDLE
-                    && mDirction == Direction.Right) {
-                mDirction = Direction.Left;
+                    && mDirction == Direction.Left) { //如果要更改侧滑方向就要修改Left
+                mDirction = Direction.Right;        //如果要更改侧滑方向就要修改Right
             }
         }
 
@@ -283,7 +283,8 @@ public class DragLayout extends FrameLayout{
         if (mDirction == Direction.Right) {/*右边栏X, Y放大，向左移动, 逐渐显示*/
             ViewHelper.setScaleX(mRightContent, 0.5f + 0.5f * percent);
             ViewHelper.setScaleY(mRightContent, 0.5f + 0.5f * percent);
-            ViewHelper.setTranslationX(mRightContent, evaluate(percent, mRightWidth + mRightWidth / 2.0f, 0.0f));
+            ViewHelper.setTranslationX(mRightContent, evaluate(percent,10.0f, 0.0f));
+            //ViewHelper.setTranslationX(mRightContent, evaluate(percent, mRightWidth + mRightWidth / 2.0f, 0.0f));
             ViewHelper.setAlpha(mRightContent, percent);
         } else {/*左边栏X, Y放大，向右移动, 逐渐显示*/
             ViewHelper.setScaleX(mLeftContent, 0.5f + 0.5f * percent);
@@ -350,7 +351,7 @@ public class DragLayout extends FrameLayout{
                     break;
                 case MotionEvent.ACTION_MOVE:
                     float delta = ev.getRawX() - mDownX;
-                    if(delta < 0){
+                    if(delta > 0){          //如果要更改侧滑方向就要修改大于号
                         return false;
                     }
                     break;

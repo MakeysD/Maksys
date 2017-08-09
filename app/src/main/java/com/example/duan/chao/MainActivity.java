@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginBean;
+import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
 import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
@@ -66,6 +68,7 @@ public class MainActivity extends BaseActivity{
     private final String TAG = "MainActivity";
     private TextView result = null;
     private Dialog dialog;
+    private LoginOkBean data;
 
     //下面的是极光需要
     private MessageReceiver mMessageReceiver;
@@ -106,8 +109,6 @@ public class MainActivity extends BaseActivity{
     RelativeLayout rl6;
     @BindView(R.id.scan)
     ImageView scan;
-    @BindView(R.id.add)
-    LinearLayout add;
 
     @BindView(R.id.tv_suo)
     TextView tv_suo;
@@ -120,6 +121,16 @@ public class MainActivity extends BaseActivity{
     SimpleDraweeView iv;
     @BindView(R.id.tv)
     TextView tv;
+    @BindView(R.id.name)
+    TextView name;
+    @BindView(R.id.zhanghao)
+    TextView zhanghao;
+    @BindView(R.id.add)     //添加账号
+    LinearLayout add;
+    @BindView(R.id.iv1)
+    SimpleDraweeView iv1;
+    @BindView(R.id.iv2)
+    SimpleDraweeView iv2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +166,9 @@ public class MainActivity extends BaseActivity{
                 super.handleMessage(msg);
                 if(msg.what==0){
                     if(msg.arg1==1){
+                        if(dra.getAnimatable()==null){
+                            return;
+                        }
                         dra.getAnimatable().stop();
                         tv.setVisibility(View.VISIBLE);
                     }else {
@@ -167,15 +181,43 @@ public class MainActivity extends BaseActivity{
     }
     private void setViews() {
         //setAnimation(R.anim.rotate,iv);
+        tv.setVisibility(View.GONE);
+        SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
+        final String token = sf2.getString("token","");//第二个参数为默认值
+        final String username = sf2.getString("username","");//第二个参数为默认值
+        final String mima = sf2.getString("mima","");//第二个参数为默认值
+        if(token==null||token.equals("")){
+            Log.i("dcz","只有一个账号");
+            iv2.setVisibility(View.GONE);
+            add.setVisibility(View.VISIBLE);
+        }else {
+            Log.i("dcz","有两个账号");
+            iv2.setVisibility(View.VISIBLE);
+            add.setVisibility(View.GONE);
+        }
         newhandler();
         thread = null;
         thread = new timeThread();
         thread.start();
+        iv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(dra.getAnimatable()==null){
+                    Toast.makeText(INSTANCE, "切换太快", Toast.LENGTH_SHORT).show();
+                }else if(dra.getAnimatable().isRunning()){
+                    Toast.makeText(INSTANCE, "切换太快", Toast.LENGTH_SHORT).show();
+                }else {
+                    login(username,mima);
+                }
+            }
+        });
         CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
+        name.setText(MyApplication.nickname);
+        zhanghao.setText(MyApplication.username);
         mDragLayout = (DragLayout) findViewById(R.id.dsl);
         mDragLayout.setDragListener(mDragListener);
         DragRelativeLayout mMainView = (DragRelativeLayout) findViewById(R.id.rl_main);
@@ -193,7 +235,8 @@ public class MainActivity extends BaseActivity{
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDragLayout.open(true);
+               // mDragLayout.open(true);
+                mDragLayout.open(true, DragLayout.Direction.Right);
             }
         });
         scan.setOnClickListener(new View.OnClickListener() {
@@ -206,7 +249,6 @@ public class MainActivity extends BaseActivity{
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dra.getAnimatable().stop();
             }
         });
 
@@ -407,10 +449,25 @@ public class MainActivity extends BaseActivity{
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
                         Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(INSTANCE, LoginActivity.class);
-                        startActivity(intent);
-                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                        finish();
+                        SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
+                        final String username = sf2.getString("username","");//第二个参数为默认值
+                        final String token = sf2.getString("token","");
+                        final String nickname = sf2.getString("nickname","");
+                        if(token==null||token.equals("")){
+                            Log.i("dcz","只有一个账号");
+                            MyApplication.token=token;MyApplication.sf.edit().putString("token","").commit();
+                            Intent intent=new Intent(INSTANCE, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            sf2.edit().putString("token","").commit();
+                            Log.i("dcz","有两个账号");
+                            MyApplication.token=token;MyApplication.sf.edit().putString("token",token).commit();
+                            MyApplication.nickname=nickname;MyApplication.sf.edit().putString("nickname",nickname).commit();
+                            MyApplication.username=username;MyApplication.sf.edit().putString("username",username).commit();
+                            setViews();
+                            setListener();
+                        }
                     }else {
                         Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
                     }
@@ -421,6 +478,51 @@ public class MainActivity extends BaseActivity{
             }
             @Override
             public void onFailure(Call<LoginBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /***
+     *  登录
+     * */
+    public void login(String a,String b){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        HttpServiceClient.getInstance().login(a,b,MyApplication.device,MyApplication.xinghao).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        data=response.body().getData();
+                        MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
+                        if(MyApplication.token!=null&&!(MyApplication.token.equals(""))){
+                            SharedPreferences sf2 = INSTANCE.getSharedPreferences("user2",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sf2.edit();
+                            editor.putString("token",MyApplication.token);
+                            editor.putString("nickname",MyApplication.nickname);
+                            editor.putString("username",MyApplication.username);
+                            editor.commit();
+                        }
+                        MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
+                        MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
+                        MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
+                        setViews();
+                        setListener();
+                    }else {
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
                 Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
