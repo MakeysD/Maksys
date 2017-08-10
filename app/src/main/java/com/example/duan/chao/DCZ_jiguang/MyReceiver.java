@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.duan.chao.DCZ_activity.HaveActivity;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.MainActivity;
 
 import org.json.JSONException;
@@ -41,6 +43,8 @@ public class MyReceiver extends BroadcastReceiver {
 
 			} else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
+				Logger.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息2: " + bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE));
+
 				processCustomMessage(context, bundle);
 
 			} else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
@@ -114,8 +118,10 @@ public class MyReceiver extends BroadcastReceiver {
 		if (MainActivity.isForeground) {
 			String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 			String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+			String content_type=bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE);
 			Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
 			msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);
+			msgIntent.putExtra(MainActivity.KEY_CONTENT_TYPE,content_type);
 			if (!ExampleUtil.isEmpty(extras)) {
 				try {
 					JSONObject extraJson = new JSONObject(extras);
@@ -127,6 +133,7 @@ public class MyReceiver extends BroadcastReceiver {
 				}
 
 			}
+			Log.i("dcz","发送广播");
 			LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
 		}
 	}

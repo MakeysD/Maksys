@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +40,29 @@ public class HaveActivity extends BaseActivity {
     TextView ok;
     @BindView(R.id.no)
     TextView no;
+    @BindView(R.id.anima)
+    RelativeLayout anima;
+    @BindView(R.id.iv1)
+    ImageView iv1;
+    @BindView(R.id.iv2)
+    ImageView iv2;
+    @BindView(R.id.iv3)
+    ImageView iv3;
+    @BindView(R.id.iv4)
+    ImageView iv4;
+    @BindView(R.id.iv5)
+    ImageView iv5;
+    @BindView(R.id.iv6)
+    ImageView iv6;
+    @BindView(R.id.tv)
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_have);
         INSTANCE=this;
         ButterKnife.bind(this);
+        start();
         setViews();
         setListener();
     }
@@ -49,20 +73,6 @@ public class HaveActivity extends BaseActivity {
     private void setViews() {
         CanRippleLayout.Builder.on(ok).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(no).rippleCorner(MyApplication.dp2Px()).create();
-        /*TextView tv = new TextView(this);
-        tv.setText("用户自定义打开的Activity");
-        Intent intent = getIntent();
-        if (null != intent) {
-            Bundle bundle = getIntent().getExtras();
-            String title = null;
-            String content = null;
-            if(bundle!=null){
-                title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
-                content = bundle.getString(JPushInterface.EXTRA_ALERT);
-            }
-            tv.setText("");
-        }
-        addContentView(tv, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));*/
     }
     /**
      *  监听
@@ -77,24 +87,46 @@ public class HaveActivity extends BaseActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getData("1");
             }
         });
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getData("2");
             }
         });
     }
-
+    private void start(){
+        setAnimation(R.anim.rotate,tv);
+        setAnimation(R.anim.rotate,iv1);
+        setAnimation(R.anim.rotate2,iv2);
+        setAnimation(R.anim.rotate,iv3);
+        setAnimation(R.anim.rotate2,iv4);
+        setAnimation(R.anim.rotate,iv5);
+    }
+    private void stop(){
+        iv1.clearAnimation();
+        iv2.clearAnimation();
+        iv3.clearAnimation();
+        iv4.clearAnimation();
+        iv5.clearAnimation();
+    }
+    private void setAnimation(int id,View iv){
+        Animation operatingAnim = AnimationUtils.loadAnimation(INSTANCE, id);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        if (operatingAnim != null) {
+            iv.startAnimation(operatingAnim);
+        }
+    }
     /***
      * 调取接口拿到服务器数据
      * */
     public void getData(String string){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().have(null,null,null,string).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().have(MyApplication.username,MyApplication.reqSysId, MyApplication.reqFlowId,string).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
@@ -102,6 +134,8 @@ public class HaveActivity extends BaseActivity {
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            anima.setVisibility(View.VISIBLE);
+                            start();
                         }else {
                             Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                             finish();

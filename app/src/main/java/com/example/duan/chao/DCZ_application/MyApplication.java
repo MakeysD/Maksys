@@ -34,6 +34,8 @@ public class MyApplication extends Application{
     public static String xinghao;
     public static String rid;
     public static String brand;
+    public static String reqSysId;
+    public static String reqFlowId;
     //偏好设置
     public static SharedPreferences sf;
     @Override

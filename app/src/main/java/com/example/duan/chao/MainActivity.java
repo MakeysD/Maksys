@@ -41,6 +41,7 @@ import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
@@ -50,12 +51,14 @@ import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.DragLayout;
 import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,11 +78,12 @@ public class MainActivity extends BaseActivity{
     public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
     public static final String KEY_TITLE = "title";
     public static final String KEY_MESSAGE = "message";
+    public static final String KEY_CONTENT_TYPE = "content_type";
     public static final String KEY_EXTRAS = "extras";
     private FingerprintManagerCompat fingerprintManager = null;
     private MyAuthCallback myAuthCallback = null;
     private CancellationSignal cancellationSignal = null;
-    public static boolean isForeground = false;
+    public static boolean isForeground = true;
     //上面的是极光需要
 
     private Handler handler = null;
@@ -531,7 +535,7 @@ public class MainActivity extends BaseActivity{
     }
     @Override
     protected void onPause() {
-        isForeground = false;
+        isForeground = true;
         super.onPause();
     }
     private void setAnimation(int id,ImageView iv){
@@ -561,15 +565,30 @@ public class MainActivity extends BaseActivity{
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
+                Log.i("dcz","接收到广播");
                 if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
                     String messge = intent.getStringExtra(KEY_MESSAGE);
                     String extras = intent.getStringExtra(KEY_EXTRAS);
+                    String type = intent.getStringExtra(KEY_CONTENT_TYPE);
                     StringBuilder showMsg = new StringBuilder();
                     showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
                     if (!ExampleUtil.isEmpty(extras)) {
                         showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
                     }
-                    Log.i("dcz",showMsg.toString());
+                    Log.i("dcz",messge);
+                    Gson mGson = new Gson();
+                    HaveBean result = mGson.fromJson(messge, HaveBean.class);
+                    MyApplication.reqFlowId=result.getReqFlowId();
+                    MyApplication.reqSysId=result.getReqSysId();
+                    Log.i("dcz",result.getReqSysId());
+                    if(type.equals("2")){//下线通知
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
+                        MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
+                        ActivityUtils.getInstance().popAllActivities();
+                        Intent inten=new Intent(INSTANCE, LoginActivity.class);
+                        startActivity(inten);
+                    }
                 }
             } catch (Exception e){
             }

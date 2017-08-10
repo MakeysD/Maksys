@@ -55,6 +55,7 @@ public class AppStartActivity extends Activity {
         Log.i("dcz_设备md5", md5(ShebeiUtil.getDeviceId(this)));
         Log.i("dcz_设备型号",ShebeiUtil.getPhoneModel());
         Log.i("dcz_手机品牌",ShebeiUtil.getPhoneBrand());
+        Log.i("dcz_rid",MyApplication.rid);
         MyApplication.device=ShebeiUtil.getDeviceId(this);
         MyApplication.xinghao=ShebeiUtil.getPhoneModel();
         //判断是否登录
