@@ -95,7 +95,7 @@ public class DSA {
         SecureRandom secureRandom = new SecureRandom();
         secureRandom.setSeed(seed.getBytes());
         //Modulus size must range from 512 to 1024 and be a multiple of 64
-        keygen.initialize(640, secureRandom);
+        keygen.initialize(1024, secureRandom);
         KeyPair keys = keygen.genKeyPair();
         PrivateKey privateKey = keys.getPrivate();
         PublicKey publicKey = keys.getPublic();

@@ -75,8 +75,6 @@ import retrofit2.Response;
 
 
 public class MainActivity extends BaseActivity{
-    private final String TAG = "MainActivity";
-    private TextView result = null;
     private Dialog dialog;
     private LoginOkBean data;
     private MediaPlayer player;
@@ -144,6 +142,11 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.iv2)
     SimpleDraweeView iv2;
 
+    @BindView(R.id.shuaxin)
+    ImageView shuaxin;
+    @BindView(R.id.bangzhu)
+    ImageView bangzhu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,6 +197,8 @@ public class MainActivity extends BaseActivity{
     private void setViews() {
         //setAnimation(R.anim.rotate,iv);
         tv.setVisibility(View.GONE);
+        newhandler();
+        Mp3();
         SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
         final String token = sf2.getString("token","");//第二个参数为默认值
         final String username = sf2.getString("username","");//第二个参数为默认值
@@ -219,20 +224,6 @@ public class MainActivity extends BaseActivity{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        newhandler();
-        thread = null;
-        thread = new timeThread();
-        thread.start();
-
-        Timer timer=new Timer();
-        TimerTask task=new TimerTask() {
-            @Override
-            public void run() {
-                player.start();
-            }
-        };
-        timer.schedule(task,1200);
-
         iv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -283,6 +274,18 @@ public class MainActivity extends BaseActivity{
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            }
+        });
+        shuaxin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Mp3();
+            }
+        });
+        bangzhu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -525,7 +528,7 @@ public class MainActivity extends BaseActivity{
     public void login(String a,String b){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().login(a,b,null,MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login(a,b,null,MyApplication.private_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
@@ -568,6 +571,21 @@ public class MainActivity extends BaseActivity{
     protected void onPause() {
         isForeground = true;
         super.onPause();
+    }
+
+    private void Mp3(){
+        tv.setVisibility(View.GONE);
+        thread = null;
+        thread = new timeThread();
+        thread.start();
+        Timer timer=new Timer();
+        TimerTask task=new TimerTask() {
+            @Override
+            public void run() {
+                player.start();
+            }
+        };
+        timer.schedule(task,1200);
     }
     private void setAnimation(int id,ImageView iv){
         Animation operatingAnim = AnimationUtils.loadAnimation(INSTANCE, id);
