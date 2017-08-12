@@ -49,6 +49,8 @@ public class EquipmentManageActivity extends BaseActivity {
         setContentView(R.layout.activity_equipment_manage);
         INSTANCE=this;
         ButterKnife.bind(this);
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
         getData();
     }
 
@@ -89,12 +91,12 @@ public class EquipmentManageActivity extends BaseActivity {
         lv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                lv.refreshComplete();
+                getData();
             }
 
             @Override
             public void onLoadMore() {
-                lv.refreshComplete();
+                getData();
             }
         });
     }
@@ -103,12 +105,14 @@ public class EquipmentManageActivity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getData(){
-        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
-        dialog.show();
         HttpServiceClient.getInstance().getEquipent("").enqueue(new Callback<EquipmentBean>() {
             @Override
             public void onResponse(Call<EquipmentBean> call, Response<EquipmentBean> response) {
-                dialog.dismiss();
+                if(dialog.isShowing()){
+                    dialog.dismiss();
+                }
+                lv.refreshComplete();
+                lv.loadMoreComplete();
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
@@ -128,7 +132,9 @@ public class EquipmentManageActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<EquipmentBean> call, Throwable t) {
-                dialog.dismiss();
+                if(dialog.isShowing()){
+                    dialog.dismiss();
+                }
                 Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
             }
         });

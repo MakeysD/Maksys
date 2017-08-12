@@ -3,6 +3,7 @@ package com.example.duan.chao.DCZ_util;
 
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.ExitBean;
+import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
@@ -50,6 +51,8 @@ public interface InterfaceService {
     @POST("login")
     Call<LoginOkBean> login(@Field("username") String username,
                             @Field("password") String password,
+                            @Field("code") String code,
+                            @Field("publicKey")String publicKey,
                             @Field("deviceUUID") String deviceUUID,
                             @Field("deviceName") String deviceName,
                             @Field("registrationId")String registrationId);
@@ -80,6 +83,22 @@ public interface InterfaceService {
                                    @Field("newSecPwd") String newSecPwd,
                                    @Field("confirmNewSecPwd")String confirmNewSecPwd,
                                    @Field("code")String code);
+
+    /**
+     *  校验登录密码
+     */
+    @FormUrlEncoded
+    @POST("user/checkLoginPwd")
+    Call<LoginOkBean> checklogin(@Field("username") String username,
+                                      @Field("password")String password);
+
+    /**
+     *  发送短信
+     */
+    @FormUrlEncoded
+    @POST("user/sendSMS")
+    Call<EquipmentBean> sendsms(@Field("mobile") String mobile,
+                                   @Field("areaCode")String areaCode);
 
     /**
      *  设备列表
@@ -120,7 +139,7 @@ public interface InterfaceService {
      */
     @FormUrlEncoded
     @POST("getOnLineList")
-    Call<EquipmentBean> getOnline(@Field("deviceUUID") String deviceUUID);
+    Call<Footprints2Bean> getOnline(@Field("deviceUUID") String deviceUUID);
 
     /**
      *  踢出用户在某个系统的登录情况
@@ -161,7 +180,9 @@ public interface InterfaceService {
     @POST("safe/authorize")
     Call<LoginOkBean> have(@Field("username") String username,
                             @Field("reqSysId") String reqSysId,
+                           @Field("srcReqSysId")String srcReqSysId,
                             @Field("reqFlowId") String reqFlowId,
-                            @Field("agreement") String agreement);
+                            @Field("agreement") String agreement,
+                           @Field("sign") String sign);
 
 }

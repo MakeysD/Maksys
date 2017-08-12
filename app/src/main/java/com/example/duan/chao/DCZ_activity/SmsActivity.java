@@ -1,24 +1,35 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *      短信验证
@@ -28,6 +39,11 @@ public class SmsActivity extends BaseActivity {
     private SmsActivity INSTANCE;
     private Handler handler;
     private timeThread thread;
+    private Dialog dialog;
+    private String phone;
+    private String password;
+    private LoginOkBean data;
+
     @BindView(R.id.back)
     View back;
     @BindView(R.id.button)
@@ -44,6 +60,8 @@ public class SmsActivity extends BaseActivity {
         setContentView(R.layout.activity_sms);
         INSTANCE=this;
         ButterKnife.bind(this);
+        phone=getIntent().getStringExtra("phone");
+        password=getIntent().getStringExtra("password");
         setViews();
         setListener();
     }
@@ -75,10 +93,7 @@ public class SmsActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE,MainActivity.class);
-                startActivity(intent);
-                MyApplication.isLogin=true;
-                finish();
+                getData();
             }
         });
         code.setOnClickListener(new View.OnClickListener() {
@@ -149,5 +164,55 @@ public class SmsActivity extends BaseActivity {
                 }
             }
         };
+    }
+
+
+    /***
+     * 调取接口拿到服务器数据
+     * */
+    public void getData(){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
+        HttpServiceClient.getInstance().login(phone,password,null,MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        data=response.body().getData();
+                        MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
+                        if(MyApplication.token!=null&&!(MyApplication.token.equals(""))){
+                            SharedPreferences sf2 = INSTANCE.getSharedPreferences("user2",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sf2.edit();
+                            editor.putString("token",MyApplication.token);
+                            editor.putString("nickname",MyApplication.nickname);
+                            editor.putString("username",MyApplication.username);
+                            editor.putString("mima",password);
+                            editor.commit();
+                        }
+                        MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
+                        MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
+                        MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
+                        MyApplication.password=password;MyApplication.sf.edit().putString("password",password);
+                        Intent intent=new Intent(INSTANCE,MainActivity.class);
+                        startActivity(intent);
+                        ActivityUtils.getInstance().popAllActivities();
+                    }else {
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -8,6 +8,8 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import com.example.duan.chao.DCZ_jiguang.Logger;
+import com.example.duan.chao.DCZ_util.DSA;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import cn.jpush.android.api.JPushInterface;
@@ -17,6 +19,9 @@ import cn.jpush.android.api.JPushInterface;
  */
 
 public class MyApplication extends Application{
+    public static String private_key="MIIBSwIBADCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoEFgIURzpbXinUx4Naitrwd3YkbzFp6Wo=";
+    public static String pri_key;//私钥
+    public static String pub_key;//公钥
     public static String uri="http://192.168.2.171:9898/";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
@@ -33,9 +38,11 @@ public class MyApplication extends Application{
     public static String token;
     public static String xinghao;
     public static String rid;
+    public static String password;
     public static String brand;
     public static String reqSysId;
     public static String reqFlowId;
+    public static String sms_type="1";//是需要验证短信，0是不需要验证短信
     //偏好设置
     public static SharedPreferences sf;
     @Override
@@ -46,12 +53,7 @@ public class MyApplication extends Application{
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
         Fresco.initialize(this);
-       /* try {
-            FileUtilities.restrictAccessToOwnerOnly(
-                    getApplicationContext().getApplicationInfo().dataDir);
-        } catch (Throwable e) {
-        }
-        DependencyInjector.configureForProductionIfNotConfigured(getApplicationContext());*/
+
         sf= PreferenceManager.getDefaultSharedPreferences(this);
         first = sf.getBoolean("first",true);
         zhiwen=sf.getBoolean("zhiwen",false);
@@ -59,7 +61,18 @@ public class MyApplication extends Application{
         username=sf.getString("username","");
         city=sf.getString("city","");
         nickname=sf.getString("nickname","");
+        password=sf.getString("password","");
+        sms_type=sf.getString("sms_type","1");
+        pri_key=sf.getString("pri_key","");
+        pub_key=sf.getString("pub_key","");
         Log.i("dcz_first",first+"");
+
+        Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));
+        Log.i("dcz_设备md5", DSA.md5(ShebeiUtil.getDeviceId(this)));
+        Log.i("dcz_设备型号",ShebeiUtil.getPhoneModel());
+        Log.i("dcz_手机品牌",ShebeiUtil.getPhoneBrand());
+        device=ShebeiUtil.getDeviceId(this);
+        xinghao=ShebeiUtil.getPhoneModel();
     }
     public static Context getContext(){
         return context;

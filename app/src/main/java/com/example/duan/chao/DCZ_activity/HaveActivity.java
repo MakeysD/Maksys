@@ -20,6 +20,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
@@ -87,18 +88,31 @@ public class HaveActivity extends BaseActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData("1");
+                String str ="agreement=1"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
+                byte[] data = str.getBytes();
+                try {
+                    String sign = DSA.sign(data, MyApplication.private_key);
+                    getData("1",sign);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData("2");
+                String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
+                byte[] data = str.getBytes();
+                try {
+                    String sign = DSA.sign(data, MyApplication.private_key);
+                    getData("2",sign);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
     private void start(){
-        setAnimation(R.anim.rotate,tv);
         setAnimation(R.anim.rotate,iv1);
         setAnimation(R.anim.rotate2,iv2);
         setAnimation(R.anim.rotate,iv3);
@@ -123,10 +137,10 @@ public class HaveActivity extends BaseActivity {
     /***
      * 调取接口拿到服务器数据
      * */
-    public void getData(String string){
+    public void getData(String string,String sign){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().have(MyApplication.username,MyApplication.reqSysId, MyApplication.reqFlowId,string).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().have(MyApplication.username,"2001",MyApplication.reqSysId,MyApplication.reqFlowId,string,sign).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

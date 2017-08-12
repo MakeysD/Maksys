@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -60,6 +63,10 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -72,6 +79,7 @@ public class MainActivity extends BaseActivity{
     private TextView result = null;
     private Dialog dialog;
     private LoginOkBean data;
+    private MediaPlayer player;
 
     //下面的是极光需要
     private MessageReceiver mMessageReceiver;
@@ -193,16 +201,38 @@ public class MainActivity extends BaseActivity{
         if(token==null||token.equals("")){
             Log.i("dcz","只有一个账号");
             iv2.setVisibility(View.GONE);
-            add.setVisibility(View.VISIBLE);
+            //add.setVisibility(View.VISIBLE);
+            add.setVisibility(View.GONE);
         }else {
             Log.i("dcz","有两个账号");
             iv2.setVisibility(View.VISIBLE);
             add.setVisibility(View.GONE);
         }
+        AssetManager assetManager = this.getAssets();
+        try {
+            AssetFileDescriptor afd = assetManager.openFd("mp3.mp3");
+            player = new MediaPlayer();
+            player.setDataSource(afd.getFileDescriptor(),
+                    afd.getStartOffset(), afd.getLength());
+            // player.setLooping(true);//循环播放
+            player.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         newhandler();
         thread = null;
         thread = new timeThread();
         thread.start();
+
+        Timer timer=new Timer();
+        TimerTask task=new TimerTask() {
+            @Override
+            public void run() {
+                player.start();
+            }
+        };
+        timer.schedule(task,1200);
+
         iv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -466,13 +496,13 @@ public class MainActivity extends BaseActivity{
                         }else {
                             sf2.edit().putString("token","").commit();
                             Log.i("dcz","有两个账号");
-                            MyApplication.token=token;MyApplication.sf.edit().putString("token",token).commit();
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                             MyApplication.nickname=nickname;MyApplication.sf.edit().putString("nickname",nickname).commit();
                             MyApplication.username=username;MyApplication.sf.edit().putString("username",username).commit();
                             setViews();
                             setListener();
                         }
-                    }else {
+                    } else {
                         Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
                     }
                 }else {
@@ -495,13 +525,14 @@ public class MainActivity extends BaseActivity{
     public void login(String a,String b){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().login(a,b,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login(a,b,null,MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
+                        MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
                         Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         data=response.body().getData();
                         MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();

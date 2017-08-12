@@ -1,11 +1,23 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -24,6 +36,8 @@ import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.MainActivity;
@@ -52,11 +66,14 @@ import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
  * */
 public class LoginActivity extends BaseActivity {
     private LoginActivity INSTANCE;
-    private List<CityBean> list;
+    private static List<CityBean> list;
     public static String code="";
     private LoginOkBean data;
     private Dialog dialog;
     private String content;
+    //定位都要通过LocationManager这个类实现
+    private LocationManager locationManager;
+    private String provider;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.xian1)
@@ -97,14 +114,6 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         INSTANCE=this;
         ButterKnife.bind(this);
-        setViews();
-        setListener();
-    }
-
-    /**
-     *  初始化
-     * */
-    private void setViews() {
         code="";
         try {
             content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
@@ -113,14 +122,23 @@ public class LoginActivity extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        guo.setFocusable(false);
-        for(int i=0;i<list.size();i++){
-            if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))){
-                Log.i("dcz",list.get(i).getCountry_name_cn());
-                Log.i("dcz",list.get(i).getCountry_code()+"");
-                code=list.get(i).getCountry_code()+"";
+        GPS();
+        setViews();
+        setListener();
+    }
+
+    /**
+     *  初始化
+     * */
+    private void setViews() {
+        try {
+            if(MyApplication.pub_key.equals("")||MyApplication.pub_key==null){
+                DSA.intkey();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        guo.setFocusable(false);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
 
     }
@@ -137,7 +155,12 @@ public class LoginActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData();
+                if(MyApplication.sms_type.equals("1")){
+                    login();
+                }else {
+                    login2();
+                }
+
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
@@ -380,29 +403,135 @@ public class LoginActivity extends BaseActivity {
         return sb.toString();
     }
 
-    /***
-     * 调取接口拿到服务器数据
-     * */
-    public void getData(){
-      /*  new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("username","admin");
-                map.put("password", "123456");
-                map.put("code","");
-                map.put("deviceUUID","866145033751781");
-                map.put("deviceName","Redmi Note 4X");
-                String response = OkHttpClientHelper.postKeyValuePair(INSTANCE,MyApplication.uri+"login", map, "getcode");
-                Log.i("dcz_返回数据",response);
+    private void GPS() {
+        //获取定位服务
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //获取当前可用的位置控制器
+        List<String> list = locationManager.getProviders(true);
+        if (list.contains(LocationManager.NETWORK_PROVIDER)) {
+            //是否为网络位置控制器
+            provider = LocationManager.NETWORK_PROVIDER;
+            Log.i("dcz","网络位置控制器");
+        } else if (list.contains(LocationManager.GPS_PROVIDER)) {
+            //是否为GPS位置控制器
+            Log.i("dcz","GPS位置控制器");
+            provider = LocationManager.GPS_PROVIDER;
+        } else {
+            Toast.makeText(this, "请检查网络或GPS是否打开", Toast.LENGTH_LONG).show();
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(provider);
+        if(location==null){
+            Log.i("dcz","location是空的");
+            Toast.makeText(this, "请检查网络或GPS是否打开", Toast.LENGTH_LONG).show();
+        }else {
+            Log.i("dcz",location.toString());
+        }
+        if (location != null) {
+            //获取当前位置，这里只用到了经纬度
+            String string = "纬度为：" + location.getLatitude() + ",经度为："
+                    + location.getLongitude();
+            Log.i("dcz",string);
+            try {
+                Log.i("dcz",getAddressFromLocation(this,location));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }).start();*/
-       /* dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
-        dialog.show();*/
+        }
+        //绑定定位事件，监听位置是否改变
+        //第一个参数为控制器类型第二个参数为监听位置变化的时间间隔（单位：毫秒）
+        //第三个参数为位置变化的间隔（单位：米）第四个参数为位置监听器
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.requestLocationUpdates(provider, 2000, 2, locationListener);
+    }
+    LocationListener locationListener = new LocationListener() {
+
+        @Override
+        public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onProviderEnabled(String arg0) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onProviderDisabled(String arg0) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onLocationChanged(Location arg0) {
+            // TODO Auto-generated method stub
+            // 更新当前经纬度
+        }
+    };
+    //关闭时解除监听器
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        if (locationManager != null) {
+            locationManager.removeUpdates(locationListener);
+        }
+    }
+    /**
+     * 根据经纬度解码地理位置
+     *
+     * @param activity
+     * @param location
+     * @return
+     */
+
+    private static String getAddressFromLocation(final Activity activity, Location location) throws IOException {
+        Geocoder geocoder = new Geocoder(activity);
+        try {
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+            Log.d("dcz", "getAddressFromLocation->lat:" + latitude + ", long:" + longitude);
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses.size() > 0) {
+                //返回当前位置，精度可调
+                Address address = addresses.get(0);
+                Log.i("dcz1",address.getCountryName());
+                MyApplication.city=address.getCountryName();MyApplication.sf.edit().putString("city",address.getCountryName()).commit();
+                for(int i=0;i<list.size();i++){
+                    if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))){
+                        Log.i("dcz",list.get(i).getCountry_name_cn());
+                        Log.i("dcz",list.get(i).getCountry_code()+"");
+                        code=list.get(i).getCountry_code()+"";
+                    }
+                }
+                Log.i("dcz2",address.getFeatureName());
+                Log.i("dcz3",address.getSubLocality());
+                Log.i("dcz4",address.getAdminArea());
+                address.getCountryName();
+                String sAddress;
+                if (!TextUtils.isEmpty(address.getLocality())) {
+                    sAddress = address.getLocality();
+                } else {
+                    sAddress = "定位失败";
+                }
+                return sAddress;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    /***
+     *  密码验证
+     * */
+    public void login(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
-        HttpServiceClient.getInstance().login(phone.getText().toString(),mima.getText().toString(),MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().checklogin(phone.getText().toString(),mima.getText().toString()).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
@@ -411,16 +540,40 @@ public class LoginActivity extends BaseActivity {
                     if(response.body().getCode().equals("20000")){
                         Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         data=response.body().getData();
-                        MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
-                        if(MyApplication.token!=null&&!(MyApplication.token.equals(""))){
-                            SharedPreferences sf2 = INSTANCE.getSharedPreferences("user2",MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sf2.edit();
-                            editor.putString("token",MyApplication.token);
-                            editor.putString("nickname",MyApplication.nickname);
-                            editor.putString("username",MyApplication.username);
-                            editor.putString("mima",mima.getText().toString());
-                            editor.commit();
-                        }
+                        Intent intent=new Intent(INSTANCE,SmsActivity.class);
+                        intent.putExtra("phone",phone.getText().toString());
+                        intent.putExtra("password",mima.getText().toString());
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    /***
+     *  登录
+     * */
+    public void login2(){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        HttpServiceClient.getInstance().login(phone.getText().toString(),mima.getText().toString(),null,MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        data=response.body().getData();
                         MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
                         MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
                         MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();

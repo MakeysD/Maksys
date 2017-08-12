@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 
 
 import com.example.duan.chao.DCZ_adapter.ViewPagerApdater;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_util.DisplayUtil;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
@@ -53,10 +54,13 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
         zong = (RelativeLayout) findViewById(R.id.welcome_Rl);
         pointContainer = (LinearLayout) findViewById(R.id.ll_viewpage_image);
         viewPager = (ViewPager) findViewById(R.id.welcome_viewpager);//初始化ViewPager对象
+      /*  MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+        Intent intent=new Intent(WelcomeActivity.this, LoginActivity.class);
+        startActivity(intent);*/
 
-     /**
-      * 下面是添加欢迎页面的图片对象部分
-      * */
+        /**
+         * 下面是添加欢迎页面的图片对象部分
+         * */
         LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);//用代码直接创建一个线性布局
         //初始化引导图片列表

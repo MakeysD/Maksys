@@ -11,6 +11,7 @@ import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -75,6 +76,7 @@ public class ZhiwenActivity extends BaseActivity {
                         break;
                     case MSG_AUTH_FAILED:
                         result.setText("指纹识别失败，请再试一次！");
+                        result.startAnimation(AnimationUtils.loadAnimation(INSTANCE, R.anim.shake));
                         cancellationSignal = null;
                         start();
                         break;
