@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="账号登录"
+            android:text="@string/title13"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -46,7 +46,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:padding="20dp"
-            android:text="找回密码"
+            android:text="@string/tishi44"
             android:textColor="@color/text05"
             android:textSize="@dimen/text02" />
 
@@ -75,7 +75,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="国家 / 地区"
+                    android:text="@string/tishi13"
                     android:textColor="@color/text04"
                     android:textStyle="bold" />
 
@@ -162,7 +162,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:background="@null"
-                    android:hint="请输入绑定手机号"
+                    android:hint="@string/tishi16"
                     android:maxLength="13"
                     android:singleLine="true"
                     android:textColor="@color/text08"
@@ -199,7 +199,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="请输入登录密码"
+                    android:hint="@string/tishi43"
                     android:inputType="number"
                     android:singleLine="true"
                     android:textColor="@color/text08"
@@ -241,7 +241,7 @@
                     android:gravity="center"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:text="下一步"
+                    android:text="@string/tishi12"
                     android:textColor="@color/text02"
                     android:textSize="@dimen/title" />
 
@@ -254,7 +254,7 @@
                     android:gravity="center"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:text="下一步"
+                    android:text="@string/tishi12"
                     android:textColor="@color/white"
                     android:textSize="@dimen/title"
                     android:visibility="gone" />

@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="关于"
+            android:text="@string/title11"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -59,7 +59,7 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:layout_marginLeft="30dp"
-            android:text="检查新版本"/>
+            android:text="@string/tishi27"/>
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -85,7 +85,7 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:layout_marginLeft="30dp"
-            android:text="去评价"/>
+            android:text="@string/tishi28"/>
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"

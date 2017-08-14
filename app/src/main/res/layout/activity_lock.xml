@@ -48,21 +48,21 @@
             android:layout_marginTop="10dp"
             android:textSize="@dimen/text00"
             android:textColor="@color/text_blue"
-            android:text="安全锁手势密码已启动"/>
+            android:text="@string/tishi39"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textSize="@dimen/text02"
             android:textColor="@color/text02"
-            android:text="定期修改手势密码有效的保护账户安全"/>
+            android:text="@string/tishi40"/>
         <TextView
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/left"
             android:layout_marginRight="20dp"
-            android:text="修改手势启动密码"
+            android:text="@string/tishi41"
             android:layout_marginTop="25dp"
             android:background="@drawable/yuanjiaolan2"
             android:gravity="center"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/left"
             android:layout_marginRight="20dp"
-            android:text="删除手势启动密码"
+            android:text="@string/tishi42"
             android:layout_marginTop="15dp"
             android:background="@drawable/yuanjiaolan2"
             android:gravity="center"

@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="选择地区和国家"
+            android:text="@string/title6"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:gravity="center"
-            android:hint="输入国家名查询"
+            android:hint="@string/tishi20"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/white"

@@ -508,9 +508,9 @@ public class LoginActivity extends BaseActivity {
                         code=list.get(i).getCountry_code()+"";
                     }
                 }
-                Log.i("dcz2",address.getFeatureName());
+             /*   Log.i("dcz2",address.getFeatureName());
                 Log.i("dcz3",address.getSubLocality());
-                Log.i("dcz4",address.getAdminArea());
+                Log.i("dcz4",address.getAdminArea());*/
                 address.getCountryName();
                 String sAddress;
                 if (!TextUtils.isEmpty(address.getLocality())) {

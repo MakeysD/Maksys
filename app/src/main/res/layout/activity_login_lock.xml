@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="绘制解锁图案"
+            android:text="@string/tishi26"
             android:textColor="@color/white"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"

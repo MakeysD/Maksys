@@ -72,4 +72,88 @@
     <string name="load_succeed">加载成功</string>
     <string name="load_fail">加载失败</string>
     <string name="loading">数据加载中...</string>
+
+    <string name="title1">安全邮箱</string>
+    <string name="title2">修改登录密码</string>
+    <string name="title3">修改密码</string>
+    <string name="title4">修改支付密码</string>
+    <string name="title5">更换密保手机</string>
+    <string name="title6">选择地区和国家</string>
+    <string name="title7">设备管理</string>
+    <string name="title8">指纹保护</string>
+    <string name="title9">我的足迹</string>
+    <string name="title10">手势锁设置</string>
+    <string name="title11">关于</string>
+    <string name="title12">语言</string>
+    <string name="title13">账号登录</string>
+    <string name="title14">安全邮箱</string>
+    <string name="title15">安全邮箱</string>
+    <string name="title16">安全邮箱</string>
+    <string name="title17">安全邮箱</string>
+    <string name="title18">安全邮箱</string>
+    <string name="title19">安全邮箱</string>
+
+
+
+    <string name="button">确定</string>
+    <string name="tishi1">请输入原安全邮箱</string>
+    <string name="tishi2">请输入原始密码</string>
+    <string name="tishi3">6-18位新登录密码，区分大小写</string>
+    <string name="tishi4">确认登录密码</string>
+    <string name="tishi5">账户存在严重风险</string>
+    <string name="tishi6">请尽快修改密码</string>
+    <string name="tishi7">修改登录密码</string>
+    <string name="tishi8">修改支付密码</string>
+    <string name="tishi9">请验证原支付密码</string>
+    <string name="tishi10">请输入验证码</string>
+    <string name="tishi11">获取验证码</string>
+    <string name="tishi12">下一步</string>
+    <string name="tishi13">国家 / 地区</string>
+    <string name="tishi14">请输入新手机号</string>
+    <string name="tishi15">如果原密保手机已换号或不能接收到短信验证码，需提供一个能收验证码的新手机号和个人实名有效资料提交工作人员审核通过后才能更换新密保手机</string>
+    <string name="tishi16">请输入绑定手机号</string>
+    <string name="tishi17">拍照</string>
+    <string name="tishi18">从相册选择</string>
+    <string name="tishi19">验证密保手机</string>
+    <string name="tishi20">输入国家名查询</string>
+    <string name="tishi21">已授权设备</string>
+    <string name="tishi22">暂无授权设备</string>
+    <string name="tishi23">当前登录</string>
+    <string name="tishi24">最近登录记录</string>
+    <string name="tishi25">启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心</string>
+    <string name="tishi26">绘制解锁图案</string>
+    <string name="tishi27">检查新版本</string>
+    <string name="tishi28">去评价</string>
+    <string name="tishi29">授权登录</string>
+    <string name="tishi30">正在请求网页登录</string>
+    <string name="tishi31">为了确保账户安全，请确认是本人操作</string>
+    <string name="tishi32">确认授权</string>
+    <string name="tishi33">拒绝授权</string>
+    <string name="tishi34">支持语言</string>
+    <string name="tishi35">简体中文</string>
+    <string name="tishi36">繁体中文</string>
+    <string name="tishi37">英语</string>
+    <string name="tishi38">泰语</string>
+    <string name="tishi39">安全锁手势密码已启动</string>
+    <string name="tishi40">定期修改手势密码有效的保护账户安全</string>
+    <string name="tishi41">修改手势启动密码</string>
+    <string name="tishi42">删除手势启动密码</string>
+    <string name="tishi43">请输入登录密码</string>
+    <string name="tishi44">找回密码</string>
+    <string name="tishi45">请再次输入密码</string>
+    <string name="tishi46">下一步</string>
+    <string name="tishi47">下一步</string>
+    <string name="tishi48">下一步</string>
+    <string name="tishi49">下一步</string>
+    <string name="tishi50">下一步</string>
+
+
+
+
+
+
+
+
+
+
 </resources>

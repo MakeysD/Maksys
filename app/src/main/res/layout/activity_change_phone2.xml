@@ -62,7 +62,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="国家 / 地区"
+                    android:text="@string/tishi13"
                     android:textColor="@color/text04"
                     android:textStyle="bold" />
 
@@ -147,7 +147,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:background="@null"
-                    android:hint="请输入新手机号"
+                    android:hint="@string/tishi14"
                     android:inputType="number"
                     android:maxLength="13"
                     android:phoneNumber="true"
@@ -186,7 +186,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="请输入验证码"
+                    android:hint="tishi10"
                     android:inputType="number"
                     android:singleLine="true"
                     android:textColor="@color/text08"
@@ -204,7 +204,7 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="7dp"
-                    android:text="获取验证码"
+                    android:text="@string/tishi11"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text02" />
 
@@ -230,7 +230,7 @@
                     android:gravity="center"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:text="确定"
+                    android:text="@string/button"
                     android:textColor="@color/text02"
                     android:textSize="@dimen/title" />
 
@@ -243,7 +243,7 @@
                     android:gravity="center"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:text="确定"
+                    android:text="@string/button"
                     android:textColor="@color/white"
                     android:textSize="@dimen/title"
                     android:visibility="gone" />

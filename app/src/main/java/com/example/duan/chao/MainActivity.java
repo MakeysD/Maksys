@@ -158,8 +158,6 @@ public class MainActivity extends BaseActivity{
         INSTANCE=this;
         ButterKnife.bind(this);
         registerMessageReceiver();
-        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/cgif.gif")).build();
-        iv.setController(dra);
         setViews();
         setListener();
     }
@@ -173,7 +171,7 @@ public class MainActivity extends BaseActivity{
                     msg.what=0;
                     msg.arg1 = i;         //秒数赋值给消息
                     handler.sendMessage(msg);
-                    Thread.sleep(5000);
+                    Thread.sleep(4000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -190,11 +188,11 @@ public class MainActivity extends BaseActivity{
                         if(dra.getAnimatable()==null){
                             return;
                         }
-                        /*dra.getAnimatable().stop();
-                        tv.setVisibility(View.VISIBLE);*/
+                        dra.getAnimatable().stop();
+                        tv.setVisibility(View.VISIBLE);
                     }else {
-                        /*dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/cgif.gif")).build();
-                        iv.setController(dra);*/
+                        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/bgif.gif")).build();
+                        iv.setController(dra);
                     }
                 }
             }
@@ -345,7 +343,7 @@ public class MainActivity extends BaseActivity{
         rl5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(INSTANCE, GuanYuActivity.class);
                 startActivity(intent);
             }
@@ -599,7 +597,7 @@ public class MainActivity extends BaseActivity{
                 player.start();
             }
         };
-        timer.schedule(task,1200);
+        timer.schedule(task,200);
     }
     private void setAnimation(int id,ImageView iv){
         Animation operatingAnim = AnimationUtils.loadAnimation(INSTANCE, id);

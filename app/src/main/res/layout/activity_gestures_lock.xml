@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="手势锁设置"
+            android:text="@string/title10"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/left"
             android:paddingRight="100dp"
-            android:text="启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心"
+            android:text="@string/tishi25"
             android:textColor="@color/text02"
             android:textSize="@dimen/text01" />
 
@@ -62,7 +62,7 @@
                     android:id="@+id/tvWarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="绘制解锁图案"
+                    android:text="@string/tishi26"
                     android:textSize="@dimen/text01"
                     android:textColor="@color/white"/>
                 <LinearLayout

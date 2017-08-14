@@ -59,9 +59,9 @@ public class EquipmentManageActivity extends BaseActivity {
      * */
     private void setViews() {
         if(list.size()>0){
-            tv.setText("已授权设备");
+            tv.setText(R.string.tishi21);
         }else {
-            tv.setText("暂无授权设备");
+            tv.setText(R.string.tishi22);
         }
         if(adapter!=null){
             lv.loadMoreComplete();

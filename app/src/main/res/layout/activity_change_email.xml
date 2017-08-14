@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="安全邮箱"
+            android:text="@string/tishi1"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -54,7 +54,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:background="@null"
-        android:hint="请输入原安全邮箱"
+        android:hint="@string/tishi1"
         android:inputType="number"
         android:maxLength="4"
         android:paddingLeft="@dimen/left"
@@ -85,7 +85,7 @@
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="确定"
+            android:text="@string/button"
             android:textColor="@color/text02"
             android:textSize="@dimen/title" />
 
@@ -98,7 +98,7 @@
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="确定"
+            android:text="@string/button"
             android:textColor="@color/white"
             android:textSize="@dimen/title"/>
     </RelativeLayout>
