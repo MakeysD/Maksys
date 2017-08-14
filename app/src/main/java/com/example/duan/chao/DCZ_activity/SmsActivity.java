@@ -174,7 +174,7 @@ public class SmsActivity extends BaseActivity {
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
-        HttpServiceClient.getInstance().login(phone,password,null,MyApplication.private_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login(phone,password,null,MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

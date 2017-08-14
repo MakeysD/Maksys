@@ -44,7 +44,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tv1.setText(list.get(position).getGratSysName());
-        holder.tv2.setText(list.get(position).getOs()+"");
+        holder.tv2.setText(list.get(position).getDeviceName()+"");
 
         Long updateTime = list.get(position).getGratTime();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");

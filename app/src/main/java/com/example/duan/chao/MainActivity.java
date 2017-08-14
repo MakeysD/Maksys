@@ -285,7 +285,7 @@ public class MainActivity extends BaseActivity{
         bangzhu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(INSTANCE, "开发中...", Toast.LENGTH_SHORT).show();
             }
         });
 

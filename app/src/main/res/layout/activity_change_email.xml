@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg1"
+    tools:context="com.example.duan.chao.DCZ_activity.ChangeEmailActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/bg_title1"/>
+    <RelativeLayout
+        style="@style/Title"
+        android:background="@color/bg_title1">
+        <include
+            android:id="@+id/back"
+            layout="@layout/layout_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="安全邮箱"
+            android:textColor="@color/text_title1"
+            android:textSize="@dimen/title" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/xian"
+            android:background="@color/xian1"
+            android:layout_marginLeft="@dimen/xian_left"
+            android:layout_marginRight="@dimen/xian_right"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/left"
+        android:layout_marginTop="30dp"
+        android:textSize="@dimen/text00"
+        android:text="请补全原绑定安全邮箱：857999639@qq.com"/>
+    <TextView
+        android:id="@+id/xian1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xian"
+        android:layout_marginTop="20dp"
+        android:background="@color/xian1" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@null"
+        android:hint="请输入原安全邮箱"
+        android:inputType="number"
+        android:maxLength="4"
+        android:paddingLeft="@dimen/left"
+        android:singleLine="true"
+        android:textColor="@color/text08"
+        android:textColorHint="@color/text04"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/text01"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/xian2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xian"
+        android:layout_marginBottom="30dp"
+        android:background="@color/xian1" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left"
+        android:layout_marginRight="@dimen/right">
+
+        <TextView
+            android:id="@+id/button_hui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/yuanjiaohui"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="确定"
+            android:textColor="@color/text02"
+            android:textSize="@dimen/title" />
+
+        <TextView
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/yuanjiaolan"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title"/>
+    </RelativeLayout>
+</LinearLayout>

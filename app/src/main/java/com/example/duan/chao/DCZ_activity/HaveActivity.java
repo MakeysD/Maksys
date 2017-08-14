@@ -85,6 +85,7 @@ public class HaveActivity extends BaseActivity {
                 finish();
             }
         });
+        anima.setEnabled(false);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +112,7 @@ public class HaveActivity extends BaseActivity {
                 }
             }
         });
+
     }
     private void start(){
         setAnimation(R.anim.rotate,iv1);

@@ -83,18 +83,18 @@ public class ZhangHuSercurityActivity extends BaseActivity {
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
-               /* Intent intent=new Intent(INSTANCE,SecurityEmailActivity.class);
-                startActivity(intent);*/
+                //Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(INSTANCE,SecurityEmailActivity.class);
+                startActivity(intent);
             }
         });
         //实名信息
         rl4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
-               /* Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
-                startActivity(intent);*/
+               // Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
+                startActivity(intent);
             }
         });
         //一键锁号
