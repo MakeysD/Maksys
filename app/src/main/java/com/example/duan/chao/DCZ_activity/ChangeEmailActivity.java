@@ -17,14 +17,13 @@ public class ChangeEmailActivity extends BaseActivity {
     View back;
     @BindView(R.id.button)
     TextView button;
-    @BindView(R.id.time)
-    LinearLayout time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_email);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -33,7 +32,7 @@ public class ChangeEmailActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+
     }
     /**
      *  监听
@@ -46,12 +45,6 @@ public class ChangeEmailActivity extends BaseActivity {
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

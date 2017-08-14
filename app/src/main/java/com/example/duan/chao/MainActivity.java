@@ -38,6 +38,8 @@ import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
 import com.example.duan.chao.DCZ_activity.GesturesLockActivity;
+import com.example.duan.chao.DCZ_activity.GuanYuActivity;
+import com.example.duan.chao.DCZ_activity.LanguageActivity;
 import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_activity.ScanActivity;
@@ -117,6 +119,8 @@ public class MainActivity extends BaseActivity{
     RelativeLayout rl5;
     @BindView(R.id.rl6)
     RelativeLayout rl6;
+    @BindView(R.id.rl7)
+    RelativeLayout rl7;
     @BindView(R.id.scan)
     ImageView scan;
 
@@ -154,6 +158,8 @@ public class MainActivity extends BaseActivity{
         INSTANCE=this;
         ButterKnife.bind(this);
         registerMessageReceiver();
+        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/cgif.gif")).build();
+        iv.setController(dra);
         setViews();
         setListener();
     }
@@ -184,11 +190,11 @@ public class MainActivity extends BaseActivity{
                         if(dra.getAnimatable()==null){
                             return;
                         }
-                        dra.getAnimatable().stop();
-                        tv.setVisibility(View.VISIBLE);
+                        /*dra.getAnimatable().stop();
+                        tv.setVisibility(View.VISIBLE);*/
                     }else {
-                        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/agif.gif")).build();
-                        iv.setController(dra);
+                        /*dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/cgif.gif")).build();
+                        iv.setController(dra);*/
                     }
                 }
             }
@@ -340,8 +346,8 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
-              /*  Intent intent=new Intent(INSTANCE, GuanYuActivity.class);
-                startActivity(intent);*/
+                Intent intent=new Intent(INSTANCE, GuanYuActivity.class);
+                startActivity(intent);
             }
         });
         //退出当前账户
@@ -349,6 +355,14 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 getData();
+            }
+        });
+        //语言
+        rl7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE, LanguageActivity.class);
+                startActivity(intent);
             }
         });
         //指纹锁的开关

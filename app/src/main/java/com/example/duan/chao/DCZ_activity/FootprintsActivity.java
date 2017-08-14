@@ -58,7 +58,7 @@ public class FootprintsActivity extends BaseActivity {
         setListener();
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        getData2();
+        //getData2();
         getData();
     }
 
@@ -85,7 +85,7 @@ public class FootprintsActivity extends BaseActivity {
             @Override
             public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
                 getData();
-                getData2();
+                //getData2();
             }
         });
         pullToRefreshLayout.setOnChangeListener(new PullToRefreshLayout.OnChangeListener() {

@@ -301,6 +301,61 @@
                     app:kswTintColor="@color/white" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/rl7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg2"
+                android:gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="@dimen/left">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv7"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
+                    fresco:placeholderImage="@mipmap/shezhi6"
+                    fresco:placeholderImageScaleType="fitCenter"
+                    fresco:roundedCornerRadius="5dp"
+                    fresco:roundTopLeft="true"
+                    fresco:roundTopRight="true"
+                    fresco:roundBottomLeft="true"
+                    fresco:roundBottomRight="true"/>
+                <TextView
+                    android:layout_toRightOf="@id/sdv7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/text01"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:text="手势锁"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text02"
+                        android:textSize="@dimen/text02"
+                        android:text="简体中文" />
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@mipmap/you" />
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
                 android:id="@+id/rl5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

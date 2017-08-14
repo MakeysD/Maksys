@@ -166,14 +166,15 @@ public class SmsActivity extends BaseActivity {
         };
     }
 
-
     /***
      * 调取接口拿到服务器数据
      * */
     public void getData(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
+        if(MyApplication.rid==null||MyApplication.rid.equals("")){
+            MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
+        }
         HttpServiceClient.getInstance().login(phone,password,null,MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {

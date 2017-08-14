@@ -303,21 +303,21 @@ public class ChangePhone3Activity extends BaseActivity {
         x1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                zheng.setImageURI(null);
+                //zheng.setImageURI(null);
                 x1.setVisibility(View.GONE);
             }
         });
         x2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fan.setImageURI(null);
+                //fan.setImageURI(null);
                 x2.setVisibility(View.GONE);
             }
         });
         x3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shou.setImageURI(null);
+                //shou.setImageURI(null);
                 x3.setVisibility(View.GONE);
             }
         });
