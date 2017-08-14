@@ -50,11 +50,10 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
+    <!--android:hardwareAccelerated="false"-->
     <application
         android:name=".DCZ_application.MyApplication"
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
