@@ -55,6 +55,7 @@ import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.DragLayout;
 import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -648,12 +649,18 @@ public class MainActivity extends BaseActivity{
                     MyApplication.reqSysId=result.getReqSysId();
                     Log.i("dcz",result.getReqSysId());
                     if(type.equals("2")){//下线通知
-                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                        MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
-                        MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
-                        ActivityUtils.getInstance().popAllActivities();
-                        Intent inten=new Intent(INSTANCE, LoginActivity.class);
-                        startActivity(inten);
+                        new MiddleDialog(INSTANCE, "提示", "您的账号已在另一台设备登录",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+                                MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                                MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
+                                MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
+                                ActivityUtils.getInstance().popAllActivities();
+                                Intent inten=new Intent(INSTANCE, LoginActivity.class);
+                                startActivity(inten);
+                            }
+                        }, R.style.registDialog).show();
                     }
                 }
             } catch (Exception e){

@@ -205,5 +205,6 @@
     <string name="tishi78">当前绑定的密保手机：</string>
     <string name="tishi79">安全锁的ID</string>
     <string name="tishi80">通过验证已有手机指纹</string>
+    <string name="tishi81">您的账号已在另一台设备登录</string>
 
 </resources>

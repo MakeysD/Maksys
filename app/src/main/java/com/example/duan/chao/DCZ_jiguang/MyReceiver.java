@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_activity.HaveActivity;
+import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.MainActivity;
 
 import org.json.JSONException;
@@ -45,13 +48,17 @@ public class MyReceiver extends BroadcastReceiver {
 			} else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息2: " + bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE));
-
+				//下线通知
+				if(bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE).equals("2")){
+				}else {
+					isRunningForeground(context);
+				}
 				processCustomMessage(context, bundle);
 
 			} else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的通知");
 				int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-				isRunningForeground(context);
+				//isRunningForeground(context);
                 Logger.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
 			} else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
