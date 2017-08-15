@@ -17,6 +17,8 @@ public class ChangeEmailActivity extends BaseActivity {
     View back;
     @BindView(R.id.button)
     TextView button;
+    @BindView(R.id.tv)
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class ChangeEmailActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-
+        tv.setText(this.getString(R.string.tishi66)+"857999639@qq.com");
     }
     /**
      *  监听

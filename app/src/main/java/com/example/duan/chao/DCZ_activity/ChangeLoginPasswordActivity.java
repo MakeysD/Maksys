@@ -38,6 +38,8 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
     View back;
     @BindView(R.id.button)
     TextView button;
+    @BindView(R.id.textView5)
+    TextView tv5;
     @BindView(R.id.et1)
     EditText et1;
     @BindView(R.id.et2)
@@ -50,6 +52,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
         setContentView(R.layout.activity_change_login_password);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -57,7 +60,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        tv5.setText(this.getString(R.string.tishi67)+"132****8723"+this.getString(R.string.tishi68));
     }
     /**
      *  监听

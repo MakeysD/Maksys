@@ -42,12 +42,15 @@ public class ChangePayPasswordActivity extends BaseActivity {
     EditText et3;
     @BindView(R.id.button)
     TextView button;
+    @BindView(R.id.textView5)
+    TextView tv5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_pay_password);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -56,7 +59,7 @@ public class ChangePayPasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        tv5.setText(this.getString(R.string.tishi67)+"132****8723"+this.getString(R.string.tishi68));
     }
     /**
      *  监听

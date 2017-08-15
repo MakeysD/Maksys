@@ -39,7 +39,7 @@ public class FootprintsActivity extends BaseActivity {
     private Footprints2Adapter adapter2;
     private Dialog dialog;
     private List<FootprintsBean.ListBean> list=new ArrayList<>();
-    private int num=0;
+    private int num=1;
     private int size=5;
     @BindView(R.id.back)
     View back;

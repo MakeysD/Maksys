@@ -126,6 +126,7 @@ public class ChangePhone3Activity extends BaseActivity {
         this.savedInstanceState=savedInstanceState;
         ButterKnife.bind(this);
         INSTANCE=this;
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -138,7 +139,6 @@ public class ChangePhone3Activity extends BaseActivity {
             ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
         }*/
         code="";
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         verifyStoragePermissions(INSTANCE);
     }
     /**

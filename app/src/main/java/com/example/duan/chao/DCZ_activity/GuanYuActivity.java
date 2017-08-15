@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
@@ -20,6 +21,8 @@ public class GuanYuActivity extends BaseActivity {
     private GuanYuActivity INSTANCE;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.tv)
+    TextView tv;
     @BindView(R.id.rl1)
     RelativeLayout rl1;
     @BindView(R.id.rl2)
@@ -39,7 +42,7 @@ public class GuanYuActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-
+        tv.setText(this.getString(R.string.tishi70)+"1.5.4");
     }
     /**
      *  监听

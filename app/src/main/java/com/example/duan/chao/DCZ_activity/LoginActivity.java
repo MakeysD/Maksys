@@ -114,6 +114,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         code="";
         try {
             content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
@@ -139,7 +140,6 @@ public class LoginActivity extends BaseActivity {
             e.printStackTrace();
         }
         guo.setFocusable(false);
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
 
     }
     /**
@@ -417,13 +417,13 @@ public class LoginActivity extends BaseActivity {
             Log.i("dcz","GPS位置控制器");
             provider = LocationManager.GPS_PROVIDER;
         } else {
-            Toast.makeText(this, "请检查网络或GPS是否打开", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.tishi71, Toast.LENGTH_LONG).show();
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider);
         if(location==null){
             Log.i("dcz","location是空的");
-            Toast.makeText(this, "请检查网络或GPS是否打开", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.tishi71, Toast.LENGTH_LONG).show();
         }else {
             Log.i("dcz",location.toString());
         }
@@ -555,7 +555,7 @@ public class LoginActivity extends BaseActivity {
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                Toast.makeText(INSTANCE,R.string.tishi72, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -594,7 +594,7 @@ public class LoginActivity extends BaseActivity {
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                Toast.makeText(INSTANCE,R.string.tishi72, Toast.LENGTH_SHORT).show();
             }
         });
     }

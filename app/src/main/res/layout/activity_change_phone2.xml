@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="绑定新手机"
+            android:text="@string/title23"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView

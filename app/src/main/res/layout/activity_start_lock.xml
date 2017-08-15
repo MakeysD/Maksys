@@ -56,8 +56,16 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="30dp"
                 android:textStyle="bold"
-                android:layout_marginBottom="40dp"
                 android:text="857999639@qq.com"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/tishi26"
+                android:textColor="@color/white"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/tvWarn"/>
             <LinearLayout
                 android:id="@+id/zhiwen_start"
                 android:layout_width="wrap_content"

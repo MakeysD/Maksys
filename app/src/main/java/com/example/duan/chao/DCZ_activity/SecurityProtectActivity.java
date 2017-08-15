@@ -132,7 +132,7 @@ public class SecurityProtectActivity extends BaseActivity {
             @Override
             public void onFailure(Call<SecurityBean> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                Toast.makeText(INSTANCE,R.string.tishi72, Toast.LENGTH_SHORT).show();
             }
         });
     }

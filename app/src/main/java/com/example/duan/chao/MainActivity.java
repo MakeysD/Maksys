@@ -133,8 +133,8 @@ public class MainActivity extends BaseActivity{
 
     @BindView(R.id.iv)
     SimpleDraweeView iv;
-    @BindView(R.id.tv)
-    TextView tv;
+   /* @BindView(R.id.tv)
+    TextView tv;*/
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.zhanghao)
@@ -157,6 +157,11 @@ public class MainActivity extends BaseActivity{
         setContentView(R.layout.activity_main);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
         setViews();
         setListener();
@@ -189,9 +194,9 @@ public class MainActivity extends BaseActivity{
                             return;
                         }
                         dra.getAnimatable().stop();
-                        tv.setVisibility(View.VISIBLE);
+                      //  tv.setVisibility(View.VISIBLE);
                     }else {
-                        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/bgif.gif")).build();
+                        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/agif.gif")).build();
                         iv.setController(dra);
                     }
                 }
@@ -200,7 +205,7 @@ public class MainActivity extends BaseActivity{
     }
     private void setViews() {
         //setAnimation(R.anim.rotate,iv);
-        tv.setVisibility(View.GONE);
+     //   tv.setVisibility(View.GONE);
         newhandler();
         Mp3();
         SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
@@ -240,11 +245,6 @@ public class MainActivity extends BaseActivity{
                 }
             }
         });
-        CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         name.setText(MyApplication.nickname);
         zhanghao.setText(MyApplication.username);
         mDragLayout = (DragLayout) findViewById(R.id.dsl);
@@ -586,7 +586,7 @@ public class MainActivity extends BaseActivity{
     }
 
     private void Mp3(){
-        tv.setVisibility(View.GONE);
+       // tv.setVisibility(View.GONE);
         thread = null;
         thread = new timeThread();
         thread.start();

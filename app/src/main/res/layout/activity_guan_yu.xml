@@ -40,6 +40,7 @@
         android:layout_marginBottom="20dp"
         android:background="@mipmap/zhanwei"/>
     <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"

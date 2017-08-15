@@ -135,7 +135,7 @@ public class LookPasswordActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 }else {
-                    Toast.makeText(INSTANCE, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(INSTANCE,R.string.lock9, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -364,7 +364,7 @@ public class LookPasswordActivity extends BaseActivity {
                     thread = new timeThread();
                     thread.start();
                 }else {
-                    Toast.makeText(INSTANCE, "请输入有效手机号", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(INSTANCE,R.string.tishi74, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -522,12 +522,12 @@ public class LookPasswordActivity extends BaseActivity {
                     if (num > 0) {
                         tv_code.setBackgroundResource(R.drawable.yuanjiaohui);
                         tv_code.setTextColor(getResources().getColor(R.color.text02));
-                        tv_code.setText(num + "秒后重发");
+                        tv_code.setText(num +INSTANCE.getString(R.string.tishi75));
                         tv_code.setEnabled(false);                     //设置不可点击
                     } else {             //如果剩余秒数为0，设置按钮可点击
                         tv_code.setBackgroundResource(R.drawable.yuanjiaolan);
                         tv_code.setTextColor(0xffffffff);
-                        tv_code.setText("重新获取");
+                        tv_code.setText(R.string.tishi76);
                         tv_code.setEnabled(true);                     //设置可点击
                     }
                 }

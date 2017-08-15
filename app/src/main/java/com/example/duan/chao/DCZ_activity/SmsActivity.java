@@ -153,12 +153,12 @@ public class SmsActivity extends BaseActivity {
                     if (num > 0) {
                         code.setBackgroundResource(R.drawable.yuanjiaohui);
                         code.setTextColor(getResources().getColor(R.color.text02));
-                        code.setText(num + "秒后重发");
+                        code.setText(num +INSTANCE.getString(R.string.tishi75));
                         code.setEnabled(false);                     //设置不可点击
                     } else {             //如果剩余秒数为0，设置按钮可点击
                         code.setBackgroundResource(R.drawable.yuanjiaolan);
                         code.setTextColor(0xffffffff);
-                        code.setText("重新获取");
+                        code.setText(R.string.tishi76);
                         code.setEnabled(true);                     //设置可点击
                     }
                 }
@@ -212,7 +212,7 @@ public class SmsActivity extends BaseActivity {
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                Toast.makeText(INSTANCE,R.string.tishi72, Toast.LENGTH_SHORT).show();
             }
         });
     }

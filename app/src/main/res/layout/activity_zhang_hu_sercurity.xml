@@ -259,6 +259,7 @@
         android:background="@color/xian1"
         android:layout_marginLeft="@dimen/left"
         android:layout_marginRight="@dimen/right"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"/>
     <RelativeLayout
         android:id="@+id/rl5"
@@ -266,6 +267,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:layout_marginTop="1dp"
+        android:visibility="gone"
         android:paddingBottom="17dp"
         android:paddingTop="17dp"
         android:paddingLeft="@dimen/left">

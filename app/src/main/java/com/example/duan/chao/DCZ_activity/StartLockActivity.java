@@ -61,7 +61,7 @@ public class StartLockActivity extends BaseActivity {
                 @Override
                 public void onComplete(int[] indexs) {
                     //修改密码或设置密码进来
-                    Toast.makeText(INSTANCE,"输入正确",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(INSTANCE, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -69,7 +69,7 @@ public class StartLockActivity extends BaseActivity {
                 @Override
                 public void onError() {
                     if (cl.getErrorTimes() > 0) {
-                        tvWarn.setText("密码错误，还可以再输入" + cl.getErrorTimes() + "次");
+                        tvWarn.setText(INSTANCE.getString(R.string.lock7) + String.valueOf(cl.getErrorTimes()) +INSTANCE.getString(R.string.lock8));
                         tvWarn.setTextColor(getResources().getColor(R.color.red));
                     }
                 }

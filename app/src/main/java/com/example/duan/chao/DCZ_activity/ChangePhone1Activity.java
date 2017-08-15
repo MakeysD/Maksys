@@ -28,6 +28,8 @@ public class ChangePhone1Activity extends BaseActivity {
     private timeThread thread;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.tv)
+    TextView tv;
     @BindView(R.id.button)
     TextView button;           //下一步
     @BindView(R.id.et_code)
@@ -40,6 +42,7 @@ public class ChangePhone1Activity extends BaseActivity {
         setContentView(R.layout.activity_change_phone1);
         ButterKnife.bind(this);
         INSTANCE=this;
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -49,7 +52,7 @@ public class ChangePhone1Activity extends BaseActivity {
      *  数据初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        tv.setText(this.getString(R.string.tishi69)+"********8723");
         newhandler();
     }
     /**

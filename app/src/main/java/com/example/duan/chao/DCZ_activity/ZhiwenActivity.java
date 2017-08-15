@@ -68,14 +68,14 @@ public class ZhiwenActivity extends BaseActivity {
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case MSG_AUTH_SUCCESS:
-                        result.setText("指纹识别成功");
+                        result.setText(R.string.fingerprint_success);
                         cancellationSignal = null;
                         Intent intent=new Intent(INSTANCE, MainActivity.class);
                         startActivity(intent);
                         finish();
                         break;
                     case MSG_AUTH_FAILED:
-                        result.setText("指纹识别失败，请再试一次！");
+                        result.setText(R.string.fingerprint_not_recognized);
                         result.startAnimation(AnimationUtils.loadAnimation(INSTANCE, R.anim.shake));
                         cancellationSignal = null;
                         start();
@@ -96,11 +96,11 @@ public class ZhiwenActivity extends BaseActivity {
         if (!fingerprintManager.isHardwareDetected()) {
             // 没有检测到指纹传感器，显示对话框告诉用户
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("没有指纹传感器");
-            builder.setMessage("在你的设备上没有指纹传感器，点击取消退出");
+            builder.setTitle(R.string.no_sensor_dialog_title);
+            builder.setMessage(R.string.no_sensor_dialog_message);
             builder.setIcon(android.R.drawable.stat_sys_warning);
             builder.setCancelable(false);
-            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.cancel_btn, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finish();
@@ -111,11 +111,11 @@ public class ZhiwenActivity extends BaseActivity {
         } else if (!fingerprintManager.hasEnrolledFingerprints()) {
             // 没有一个指纹图像被登记
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("没有指纹登记");
-            builder.setMessage("没有指纹登记,输入\\ n");
+            builder.setTitle(R.string.no_fingerprint_enrolled_dialog_title);
+            builder.setMessage(R.string.no_fingerprint_enrolled_dialog_message);
             builder.setIcon(android.R.drawable.stat_sys_warning);
             builder.setCancelable(false);
-            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.cancel_btn, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finish();
@@ -160,7 +160,7 @@ public class ZhiwenActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 }else {
-                    Toast.makeText(INSTANCE, "您未设置过手势密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(INSTANCE,R.string.setti, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -222,7 +222,7 @@ public class ZhiwenActivity extends BaseActivity {
                     cancellationSignal, myAuthCallback, null);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(INSTANCE, "指纹初始化失败!再试一次!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(INSTANCE,R.string.setting_error, Toast.LENGTH_SHORT).show();
         }
     }
     @Override

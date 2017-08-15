@@ -23,6 +23,8 @@ public class ChangePhone4Activity extends BaseActivity {
     private ChangePhone4Activity INSTANCE;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.tv)
+    TextView tv;
     @BindView(R.id.button)
     TextView button;
     @Override
@@ -31,6 +33,7 @@ public class ChangePhone4Activity extends BaseActivity {
         setContentView(R.layout.activity_change_phone4);
         ButterKnife.bind(this);
         INSTANCE=this;
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -39,7 +42,7 @@ public class ChangePhone4Activity extends BaseActivity {
      *  数据初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        tv.setText(this.getString(R.string.tishi69)+"********8723");
     }
     /**
      * 监听

@@ -64,7 +64,7 @@ public class GesturesLockActivity extends BaseActivity {
                     for(int i=0;i<indexs.length;i++){
                         list.get(indexs[i]).setImageDrawable(getResources().getDrawable(R.mipmap.gesturecirlebrownsmall));
                     }
-                    tvWarn.setText("请再次绘制解锁图案");
+                    tvWarn.setText(R.string.lock1);
                     tvWarn.setTextColor(getResources().getColor(R.color.text05));
                     times++;
                     Log.i("dcz",mIndexs.length+"");
@@ -79,7 +79,7 @@ public class GesturesLockActivity extends BaseActivity {
 
             @Override
             public void onError() {
-                tvWarn.setText("与上一次绘制不一致，请重新绘制");
+                tvWarn.setText(R.string.lock2);
                 tvWarn.setTextColor(getResources().getColor(R.color.red));
             }
         });

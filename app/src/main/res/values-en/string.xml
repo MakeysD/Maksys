@@ -3,73 +3,204 @@
     <string name="app_name">安全锁</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">你好</string>
-    <string name="loaddings">努力加载...</string>
+    <string name="hello_blank_fragment">hello</string>
+    <string name="loaddings">loaddings...</string>
 
-    <string name="scan_text">将二维码放入框内,即可自动扫描</string>
+    <string name="scan_text">Insert the qr code into the box and scan automatically</string>
 
-    <string name="start_btn">开始</string>
-    <string name="cancel_btn">取消</string>
+    <string name="start_btn">start</string>
+    <string name="cancel_btn">cancel</string>
 
-    <string name="fingerprint_success">指纹识别成功.</string>
-    <string name="fingerprint_not_recognized">指纹不认可。再试一次.</string>
+    <string name="fingerprint_success">Fingerprint identification success.</string>
+    <string name="fingerprint_not_recognized">Fingerprints are not approved. Try one more time.</string>
 
     <!-- Dialog info -->
-    <string name="no_sensor_dialog_title">没有指纹传感器</string>
-    <string name="no_sensor_dialog_message">在你的设备上没有指纹传感器，点击取消退出.</string>
-    <string name="no_fingerprint_enrolled_dialog_title">没有指纹登记</string>
-    <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
-        <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>
+    <string name="no_sensor_dialog_title">No fingerprint sensor</string>
+    <string name="no_sensor_dialog_message">There is no fingerprint sensor on your device and click cancel.</string>
+    <string name="no_fingerprint_enrolled_dialog_title">No fingerprint registration</string>
+    <string name="no_fingerprint_enrolled_dialog_message">No fingerprint registration, input \ n
+        <font fgcolor="green">Set - > security - > Nexus \ n mark</font>Exit by registering or clicking cancel</string>
     <string name="ok_btn_dialog">OK</string>
-    <string name="cancel_btn_dialog">取消</string>
+    <string name="cancel_btn_dialog">cancel</string>
 
     <!-- auth result error amd help code warning -->
-    <string name="AcquiredGood_warning">获得的图像很好.</string>
+    <string name="AcquiredGood_warning">The obtained images are good.</string>
 
-    <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘，指纹图像太吵了。例如，在多次获得
-                                                足够或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或
-                                                多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多或多
-                                                或多或对传感器上的灰尘进行实际的检测(卡在像素、大片区域等)。当用户返回时，用户将会采取行动来清除传感器.</string>
-    <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂，无法处理检测到的情况(即干性皮肤)或可能是脏的传感器。</string>
+    <string name="AcquiredImageDirty_warning">The fingerprint image is too noisy due to the suspicious or detected dust of the sensor.</string>
+    <string name="AcquiredInsufficient_warning">The fingerprint image is too noisy to handle the detected (dry skin) or possibly dirty sensor</string>
 
-    <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来。在注册过程中，用户应该了解需要发生什么才能解决这个问题。“紧紧地压在传感器上。”</string>
+    <string name="AcquiredPartial_warning">Only partial fingerprint images are detected. In the registration process, the user should know what needs to happen to solve the problem.</string>
 
-    <string name="AcquiredTooFast_warning">由于快速移动，指纹图像不完整。虽然大多数情况下都适用于线性阵列传感器，但如果在采集过程中手指被移动，这种情况也可能发生。
-                                            用户应该被要求移动手指的速度较慢(线性)，或者将手指放在传感器上的时间更长。</string>
+    <string name="AcquiredTooFast_warning">The fingerprint image is incomplete due to rapid movement. Although most cases are applied to linear array sensor, but if the finger is moved in the process of acquisition, it is also possible. Users should be required to move the fingers of slower (linear), or put the finger on the sensor for longer periods of time.</string>
 
-    <string name="AcquiredToSlow_warning">由于缺乏运动，指纹图像难以辨认。这对于需要滑动动作的线性阵列传感器来说是最合适的</string>
+    <string name="AcquiredToSlow_warning">Because of the lack of movement, fingerprint images are difficult to identify, which is best for linear array sensors that require sliding motion</string>
 
-    <string name="ErrorCanceled_warning">由于指纹传感器无法使用，该操作被取消。例如，当用户切换时，这可能会发生，设备被锁定，或另一个正在运行的操作阻止或禁用它.</string>
+    <string name="ErrorCanceled_warning">Because the fingerprint sensor is not available, the operation is canceled. For example, when the user switches, this can happen, the device is locked, or another operation is running to prevent or disable it.</string>
 
-    <string name="ErrorHwUnavailable_warning">硬件不可用。稍后再试.</string>
+    <string name="ErrorHwUnavailable_warning">The hardware is not available, try again later.</string>
 
-    <string name="ErrorLockout_warning">这个操作被取消了，因为API因为太多的尝试而被锁定了。</string>
+    <string name="ErrorLockout_warning">This operation was canceled because the API was locked out for too many attempts.</string>
 
-    <string name="ErrorTimeout_warning">当当前请求运行得太长时，会返回错误状态。这是为了防止程序无限期地等待指纹传感器。超时是基于平台和传感器的，但通常是30秒。</string>
+    <string name="ErrorTimeout_warning">When the current request runs too long, the error status is returned. This is to prevent the program waiting indefinitely for the fingerprint sensor. The timeout is based on the platform and the sensor, but usually 30 seconds.</string>
 
-    <string name="ErrorUnableToProcess_warning">当传感器无法处理当前图像时，会返回错误状态。</string>
+    <string name="ErrorUnableToProcess_warning">When the sensor cannot process the current image, it will return the error status.</string>
 
-    <string name="ErrorNoSpace_warning">返回的错误状态，如注册;操作无法完成，因为没有足够的存储空间来完成操作.</string>
+    <string name="ErrorNoSpace_warning">The error state returned, such as registration; The operation cannot be completed because there is not enough storage space to complete the operation.</string>
 
-    <string name="tag_hint">Tag为大小写字母，数字，下划线,中文， 多个用以逗号分隔</string>
-    <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
-    <string name="style_hint">style为数字</string>
-    <string name="error_style_empty">style不能为空</string>
-    <string name="error_alias_empty">alias不能为空</string>
-    <string name="error_tag_empty">tag不能为空</string>
-    <string name="error_tag_gs_empty">格式不对</string>
-    <string name="error_network">网络连接异常,初始化失败 请检查网络！</string>
-    <string name="logining">程序在后台执行, 请查看日志！</string>
-    <string name="setting_su">设置成功</string>
+    <string name="tag_hint">Tags are case letters, Numbers, underscores, Chinese, multiple comma separated</string>
+    <string name="alias_hint">Alias is uppercase and lowercase letters, Numbers, underscores</string>
+    <string name="style_hint">Style for the digital</string>
+    <string name="error_style_empty">Style cannot be empty</string>
+    <string name="error_alias_empty">Alias cannot be empty</string>
+    <string name="error_tag_empty">Tag cannot be empty</string>
+    <string name="error_tag_gs_empty">Format is wrong</string>
+    <string name="error_network">Network connection exception, initialization failed please check the network!</string>
+    <string name="logining">The program is executed in the background, please check the log!</string>
+    <string name="setting_su">setting is successful</string>
 
-    <string name="pull_to_refresh">下拉刷新</string>
-    <string name="release_to_refresh">释放立即刷新</string>
-    <string name="refreshing">正在刷新...</string>
-    <string name="refresh_succeed">刷新成功</string>
-    <string name="refresh_fail">刷新失败</string>
-    <string name="pullup_to_load">上拉加载更多</string>
-    <string name="release_to_load">释放立即加载</string>
-    <string name="load_succeed">加载成功</string>
-    <string name="load_fail">加载失败</string>
-    <string name="loading">数据加载中...</string>
+    <string name="pull_to_refresh">The drop-down refresh</string>
+    <string name="release_to_refresh">Immediate refresh</string>
+    <string name="refreshing">Refresh...</string>
+    <string name="refresh_succeed">Refresh the success</string>
+    <string name="refresh_fail">Refresh the failure</string>
+    <string name="pullup_to_load">The top pull loads more</string>
+    <string name="release_to_load">Release immediate loading</string>
+    <string name="load_succeed">Load the success</string>
+    <string name="load_fail">Load failed</string>
+    <string name="loading">Data loading...</string>
+
+    <string name="title1">Secure email</string>
+    <string name="title2">Modify login password</string>
+    <string name="title3">Change the password</string>
+    <string name="title4">Change payment password</string>
+    <string name="title5">Replace the compact cell phone</string>
+    <string name="title6">Select regions and countries</string>
+    <string name="title7">Equipment management</string>
+    <string name="title8">Fingerprint protection</string>
+    <string name="title9">My footprint</string>
+    <string name="title10">Gesture lock setting</string>
+    <string name="title11">about</string>
+    <string name="title12">language</string>
+    <string name="title13">To login</string>
+    <string name="title14">Account security manager</string>
+    <string name="title15">Operation record</string>
+    <string name="title16">Real name information</string>
+    <string name="title17">Sweep code certification</string>
+    <string name="title18">Secure mobile phone</string>
+    <string name="title19">Set the real-name information</string>
+    <string name="title20">Message authentication</string>
+    <string name="title21">Welcome back</string>
+    <string name="title22">A key lock</string>
+    <string name="title23">Binding a new phone</string>
+
+
+    <string name="lock1">Please draw the unlocking diagram again案</string>
+    <string name="lock2">Not consistent with the previous drawing, please redraw</string>
+    <string name="lock3">You haven\'t opened the password yet</string>
+    <string name="lock4">The gesture start password is set</string>
+    <string name="lock5">The manual start password is not open</string>
+    <string name="lock6">The sign lock is off</string>
+    <string name="lock7">Password error, you can enter</string>
+    <string name="lock8">more</string>
+    <string name="lock9">The two input passwords do not match</string>
+    <string name="lock10">The manual start password is not open</string>
+
+
+
+    <string name="main1">Security and protection</string>
+    <string name="main2">Has been open</string>
+    <string name="main3">Did not open</string>
+    <string name="main4">Account security</string>
+    <string name="main5">Gestures to lock</string>
+    <string name="main6">Fingerprint password</string>
+    <string name="main7">language</string>
+    <string name="main8">about</string>
+    <string name="main9">Exit current account</string>
+    <string name="main10">Temporarily not authorized</string>
+
+
+
+
+    <string name="button">determine</string>
+    <string name="tishi1">Please enter the original secure mailbox</string>
+    <string name="tishi2">Please enter the original password</string>
+    <string name="tishi3">6-18 new login passwords, case sensitive</string>
+    <string name="tishi4">Confirm login password</string>
+    <string name="tishi5">There are serious risks to the account</string>
+    <string name="tishi6">Please change your password as soon as possible</string>
+    <string name="tishi7">Modify login password</string>
+    <string name="tishi8">Change payment password</string>
+    <string name="tishi9">Please verify the original payment password</string>
+    <string name="tishi10">Please enter the verification code</string>
+    <string name="tishi11">Get the verification code</string>
+    <string name="tishi12">The next step</string>
+    <string name="tishi13">Country/region</string>
+    <string name="tishi14">Please enter the new phone number</string>
+    <string name="tishi15">If the encrypted mobile phone number have change or not to receive message authentication code, need to offer a new phone number and receive verification code personally real-name effective information submitted staff approval before they can replace the new ones to protect mobile phone</string>
+    <string name="tishi16">Please enter the mobile phone number</string>
+    <string name="tishi17">Take pictures</string>
+    <string name="tishi18">Select from album</string>
+    <string name="tishi19">Verify the compact cell phone</string>
+    <string name="tishi20">Enter a country name query</string>
+    <string name="tishi21">Authorized equipment</string>
+    <string name="tishi22">Temporarily unauthorized equipment</string>
+    <string name="tishi23">Currently logged in</string>
+    <string name="tishi24">Recent login record</string>
+    <string name="tishi25">After enabling the gesture lock, the user will not be able to open the security account center without the password when using your phone</string>
+    <string name="tishi26">Draw unlocking pattern</string>
+    <string name="tishi27">Check the new version</string>
+    <string name="tishi28">To evaluate</string>
+    <string name="tishi29">Authorized to log in</string>
+    <string name="tishi30">The page is being requested to log in</string>
+    <string name="tishi31">In order to ensure the security of the account, please confirm that it is my operation</string>
+    <string name="tishi32">Confirm authorization</string>
+    <string name="tishi33">To authorize</string>
+    <string name="tishi34">Support language</string>
+    <string name="tishi35">Simplified Chinese</string>
+    <string name="tishi36">Traditional Chinese</string>
+    <string name="tishi37">English</string>
+    <string name="tishi38">Thai</string>
+    <string name="tishi39">The security lock password has been started</string>
+    <string name="tishi40">Make regular changes to your password to protect your account</string>
+    <string name="tishi41">Modify the gesture to start the password</string>
+    <string name="tishi42">Delete the gesture to start the password</string>
+    <string name="tishi43">Please enter the login password</string>
+    <string name="tishi44">Retrieve password</string>
+    <string name="tishi45">Please enter your password again</string>
+    <string name="tishi46">Immediately set</string>
+    <string name="tishi47">No real name information is set</string>
+    <string name="tishi48">The real-name information is set</string>
+    <string name="tishi49">replacement</string>
+    <string name="tishi50">Secure mailbox for the current binding</string>
+    <string name="tishi51">If the current mobile phone has changed, please replace it in time</string>
+    <string name="tishi52">Unopened protection, the system will default to the authorization of the system</string>
+    <string name="tishi53">Certificate information</string>
+    <string name="tishi54">Document type</string>
+    <string name="tishi55">name</string>
+    <string name="tishi56">I.d.</string>
+    <string name="tishi57">The period of validity</string>
+    <string name="tishi58">Has change</string>
+    <string name="tishi59">Switching login mode</string>
+    <string name="tishi60">Forget your password</string>
+    <string name="tishi61">Has been set</string>
+    <string name="tishi62">Is not set</string>
+    <string name="tishi63">No authentication</string>
+    <string name="tishi64">Click login</string>
+    <string name="tishi65">downline</string>
+    <string name="tishi66">Please complete the original binding security mailbox:</string>
+    <string name="tishi67">Please set the </string>
+    <string name="tishi68">new login password, it is recommended to use the combination of Numbers, letters, characters, password, password security levels</string>
+    <string name="tishi69">Please verify the original binding phone number:</string>
+    <string name="tishi70">Account security center</string>
+    <string name="tishi71">Please check whether the network or GPS is open</string>
+    <string name="tishi72">Server exception</string>
+    <string name="tishi73">Input the correct</string>
+    <string name="tishi74">Please enter the valid cell number</string>
+    <string name="tishi75">seconds later</string>
+    <string name="tishi76">To obtain</string>
+    <string name="tishi77">Input the correct</string>
+    <string name="tishi78">The current binding of the secure cell phone:</string>
+    <string name="tishi79">ID of security lock</string>
+    <string name="tishi80">Verify that you have a fingerprint on your phone</string>
+
 </resources>

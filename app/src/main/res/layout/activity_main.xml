@@ -399,7 +399,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/bg2"
                 android:gravity="center_vertical"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="10dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingLeft="@dimen/left">

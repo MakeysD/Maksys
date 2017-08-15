@@ -36,13 +36,14 @@ public class LockActivity extends BaseActivity {
         setContentView(R.layout.activity_lock);
         ButterKnife.bind(this);
         INSTANCE=this;
+        CanRippleLayout.Builder.on(button1).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(button2).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
 
     private void setViews() {
-        CanRippleLayout.Builder.on(button1).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(button2).rippleCorner(MyApplication.dp2Px()).create();
+
     }
 
     private void setListener() {
@@ -63,7 +64,7 @@ public class LockActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if(LockUtil.getPwdStatus(INSTANCE)==false){
-                    Toast.makeText(INSTANCE, "你还未开启手势密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(INSTANCE,R.string.lock3, Toast.LENGTH_SHORT).show();
                 }else {
                     Intent intent=new Intent(INSTANCE, LoginLockActivity.class);
                     intent.putExtra("type","2");
@@ -78,9 +79,9 @@ public class LockActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         if(LockUtil.getPwdStatus(INSTANCE)==true){
-            type.setText("手势启动密码已设置");
+            type.setText(R.string.lock4);
         }else {
-            type.setText("手势启动密码未开启");
+            type.setText(R.string.lock5);
         }
     }
 }

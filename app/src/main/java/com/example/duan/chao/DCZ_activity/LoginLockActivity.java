@@ -61,18 +61,18 @@ public class LoginLockActivity extends BaseActivity {
                         //刚进来或关锁进来
                         if(type.equals("1")){
                             //刚进来APP
-                            Toast.makeText(LoginLockActivity.this,"输入正确",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginLockActivity.this,R.string.tishi73,Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(LoginLockActivity.this, MainActivity.class);
                             startActivity(intent);
                             MyApplication.suo=false;
                         }else {
                             LockUtil.setPwdStatus(context,false);
                             ActivityUtils.getInstance().popAllActivities();
-                            Toast.makeText(LoginLockActivity.this,"手势锁已关闭",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginLockActivity.this,R.string.lock6,Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         //修改密码或设置密码进来
-                        Toast.makeText(LoginLockActivity.this,"输入正确",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginLockActivity.this,R.string.tishi73,Toast.LENGTH_SHORT).show();
                         ActivityUtils.getInstance().popAllActivities();
                     }
                     finish();
@@ -81,7 +81,7 @@ public class LoginLockActivity extends BaseActivity {
                 @Override
                 public void onError() {
                     if (cl.getErrorTimes() > 0) {
-                        tvWarn.setText("密码错误，还可以再输入" + cl.getErrorTimes() + "次");
+                        tvWarn.setText(context.getString(R.string.lock7) + cl.getErrorTimes() +context.getString(R.string.lock8));
                         tvWarn.setTextColor(getResources().getColor(R.color.red));
                     }
                 }

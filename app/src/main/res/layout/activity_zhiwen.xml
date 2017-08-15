@@ -144,14 +144,14 @@
                     android:layout_marginRight="10dp"
                     android:textSize="@dimen/text01"
                     android:layout_marginTop="16dp"
-                    android:text="安全锁的ID"/>
+                    android:text="@string/tishi79"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text02"
                     android:textSize="@dimen/text02"
                     android:layout_marginTop="5dp"
-                    android:text="通过Home键验证已有手机指纹"/>
+                    android:text="@string/tishi80"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/cancle"
@@ -162,7 +162,7 @@
                 android:padding="15dp"
                 android:textSize="@dimen/text01"
                 android:textColor="#f9f9f9"
-                android:text="取消"/>
+                android:text="@string/cancel_btn"/>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

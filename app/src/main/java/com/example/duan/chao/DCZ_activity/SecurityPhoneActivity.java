@@ -22,12 +22,15 @@ public class SecurityPhoneActivity extends BaseActivity {
     View back;
     @BindView(R.id.button)
     TextView button;        //更换
+    @BindView(R.id.tv)
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_security_phone);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -36,7 +39,7 @@ public class SecurityPhoneActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        tv.setText(this.getString(R.string.tishi78)+"132****8723");
     }
     /**
      *  监听
