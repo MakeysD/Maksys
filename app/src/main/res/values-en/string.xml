@@ -108,8 +108,8 @@
 
 
     <string name="main1">Security and protection</string>
-    <string name="main2">Has been open</string>
-    <string name="main3">Did not open</string>
+    <string name="main2">off</string>
+    <string name="main3">on</string>
     <string name="main4">Account security</string>
     <string name="main5">Gestures to lock</string>
     <string name="main6">Fingerprint password</string>

@@ -1,15 +1,15 @@
 package com.example.duan.chao.DCZ_activity;
 
-import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.R;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,17 +17,17 @@ import butterknife.ButterKnife;
 /**
  * 语言切换
  * */
-public class LanguageActivity extends Activity {
+public class LanguageActivity extends BaseActivity {
     private LanguageActivity INSTANCE;
     @BindView(R.id.back)
     View back;
-    @BindView(R.id.rl1)
+    @BindView(R.id.rl1)     //简体中文
     RelativeLayout rl1;
-    @BindView(R.id.rl2)
+    @BindView(R.id.rl2)     //繁体中文
     RelativeLayout rl2;
-    @BindView(R.id.rl3)
+    @BindView(R.id.rl3)     //英语
     RelativeLayout rl3;
-    @BindView(R.id.rl4)
+    @BindView(R.id.rl4)     //泰语
     RelativeLayout rl4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,9 @@ public class LanguageActivity extends Activity {
         rl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
+                recreate();
+                MyApplication.status=true;
             }
         });
         rl2.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +76,9 @@ public class LanguageActivity extends Activity {
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
+                recreate();//刷新页面
+                MyApplication.status=true;
             }
         });
         rl4.setOnClickListener(new View.OnClickListener() {

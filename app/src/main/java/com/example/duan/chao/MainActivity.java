@@ -165,6 +165,7 @@ public class MainActivity extends BaseActivity{
         registerMessageReceiver();
         setViews();
         setListener();
+        MyApplication.status=false;
     }
     private class timeThread extends Thread {
         @Override
@@ -283,7 +284,8 @@ public class MainActivity extends BaseActivity{
         shuaxin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Mp3();
+               // Mp3();
+                recreate();
             }
         });
         bangzhu.setOnClickListener(new View.OnClickListener() {
@@ -404,9 +406,12 @@ public class MainActivity extends BaseActivity{
         isForeground = true;
         super.onResume();
         if(LockUtil.getPwdStatus(INSTANCE)==true){
-            tv_suo.setText("已开启");
+            tv_suo.setText(R.string.main2);
         }else {
-            tv_suo.setText("未开启");
+            tv_suo.setText(R.string.main3);
+        }
+        if(MyApplication.status==true){
+            recreate();
         }
     }
 

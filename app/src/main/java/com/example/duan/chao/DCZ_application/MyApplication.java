@@ -32,6 +32,8 @@ public class MyApplication extends Application{
     public static Boolean suo=true;     //是否打开手势解锁页面
     public static String qiniu="https://pic.bincrea.com/";
     public static String city="中国";
+    public static String language="CHINESE";
+    public static Boolean status=false;
 
     public static String device;
     public static String username;
@@ -66,6 +68,7 @@ public class MyApplication extends Application{
         sms_type=sf.getString("sms_type","1");
         pri_key=sf.getString("pri_key","");
         pub_key=sf.getString("pub_key","");
+        language=sf.getString("language","");
         Log.i("dcz_first",first+"");
 
         Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));
