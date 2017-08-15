@@ -111,14 +111,15 @@ public class HaveActivity extends BaseActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
+                finish();
+            /*    String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
                 try {
                     String sign = DSA.sign(data, MyApplication.private_key);
                     getData("2",sign);
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         });
 
@@ -206,7 +207,7 @@ public class HaveActivity extends BaseActivity {
                 timer2();
             }
         };
-        timer.schedule(task,2000);
+        timer.schedule(task,4000);
     }
     private void timer2(){
         Timer timer=new Timer();
@@ -216,7 +217,7 @@ public class HaveActivity extends BaseActivity {
                 finish();
             }
         };
-        timer.schedule(task,1000);
+        timer.schedule(task,2000);
     }
 
     private void newhandler() {

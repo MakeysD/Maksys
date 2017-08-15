@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="安全手机"
+            android:text="@string/title18"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -67,7 +67,7 @@
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="更换"
+                android:text="@string/tishi49"
                 android:textColor="@color/text05"
                 android:textSize="@dimen/title" />
 
@@ -80,7 +80,7 @@
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="更换"
+                android:text="@string/tishi49"
                 android:textColor="@color/white"
                 android:textSize="@dimen/title" />
         </RelativeLayout>
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="如果当前手机已换号，请及时更换"
+            android:text="@string/tishi51"
             android:textColor="@color/text02"
             android:textSize="@dimen/text02" />
 

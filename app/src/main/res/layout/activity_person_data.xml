@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="实名信息"
+            android:text="@string/title16"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="@dimen/text00"
-        android:text="暂未设置实名信息"/>
+        android:text="@string/tishi47"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="立即设置"
+            android:text="@string/tishi46"
             android:textColor="@color/text02"
             android:textSize="@dimen/title" />
 
@@ -73,7 +73,7 @@
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="立即设置"
+            android:text="@string/tishi46"
             android:textColor="@color/white"
             android:textSize="@dimen/title"/>
     </RelativeLayout>

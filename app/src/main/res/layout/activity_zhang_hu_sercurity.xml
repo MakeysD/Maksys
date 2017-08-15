@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="账号安全"
+            android:text="@string/main4"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -64,7 +64,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/sdv1"
-            android:text="修改密码"
+            android:text="@string/title3"
             android:textColor="@color/white"
             android:textSize="@dimen/text01" />
         <ImageView
@@ -110,7 +110,7 @@
             android:textSize="@dimen/text01"
             android:layout_marginLeft="15dp"
             android:textColor="@color/white"
-            android:text="安全手机"/>
+            android:text="@string/title18"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/text07"
                 android:textSize="@dimen/text03"
-                android:text="已设置"/>
+                android:text="@string/tishi61"/>
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="12dp"
@@ -168,19 +168,22 @@
             android:textSize="@dimen/text01"
             android:layout_marginLeft="15dp"
             android:textColor="@color/white"
-            android:text="安全邮箱"/>
+            android:text="@string/title1"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:layout_alignParentRight="true">
+
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/tishi61"
                 android:textColor="@color/text07"
-                android:textSize="@dimen/text03"
-                android:text="已设置"/>
+                android:textSize="@dimen/text03" />
+
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="12dp"
@@ -225,19 +228,22 @@
             android:textSize="@dimen/text01"
             android:layout_marginLeft="15dp"
             android:textColor="@color/white"
-            android:text="实名信息"/>
+            android:text="@string/title16"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:layout_alignParentRight="true">
+
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/tishi63"
                 android:textColor="@color/text07"
-                android:textSize="@dimen/text03"
-                android:text="暂未认证"/>
+                android:textSize="@dimen/text03" />
+
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="12dp"
@@ -282,7 +288,7 @@
             android:textSize="@dimen/text01"
             android:layout_marginLeft="15dp"
             android:textColor="@color/white"
-            android:text="一键锁号"/>
+            android:text="@string/title22"/>
         <ImageView
             android:layout_width="10dp"
             android:layout_height="12dp"
@@ -324,7 +330,7 @@
             android:textSize="@dimen/text01"
             android:layout_marginLeft="15dp"
             android:textColor="@color/white"
-            android:text="设备管理"
+            android:text="@string/title7"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/sdv6"
             android:layout_toEndOf="@+id/sdv6"/>
@@ -371,7 +377,7 @@
             android:textSize="@dimen/text01"
             android:layout_marginLeft="15dp"
             android:textColor="@color/white"
-            android:text="操作记录"/>
+            android:text="@string/title15"/>
         <ImageView
             android:layout_width="10dp"
             android:layout_height="12dp"
@@ -411,21 +417,24 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
         <TextView
-            android:layout_toRightOf="@id/sdv8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:textSize="@dimen/text01"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="14dp"
             android:textColor="@color/white"
-            android:text="账户足迹"/>
+            android:layout_centerVertical="true"
+            android:text="@string/title9"
+            android:layout_toRightOf="@+id/sdv8"
+            android:layout_toEndOf="@+id/sdv8"
+            android:layout_marginStart="14dp" />
         <ImageView
             android:layout_width="10dp"
             android:layout_height="12dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/right"
             android:layout_centerVertical="true"
-            android:src="@mipmap/you"/>
+            android:src="@mipmap/you"
+            android:id="@+id/imageView3" />
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"

@@ -67,7 +67,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="7dp"
-                android:text="下线"
+                android:text="@string/tishi65"
                 android:textColor="@drawable/text_select"
                 android:textSize="@dimen/text01" />
         </LinearLayout>

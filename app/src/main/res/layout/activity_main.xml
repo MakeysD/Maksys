@@ -46,7 +46,7 @@
                             android:id="@+id/iv1"
                             android:layout_width="65dp"
                             android:layout_height="65dp"
-                            android:background="@mipmap/tou"/>
+                            android:background="@mipmap/tou2"/>
                         <com.facebook.drawee.view.SimpleDraweeView
                             android:id="@+id/iv2"
                             android:layout_width="45dp"
@@ -61,16 +61,14 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:layout_marginTop="10dp"
-                        android:textSize="@dimen/text01"
-                        android:text="这是我的账号"/>
+                        android:textSize="@dimen/text01" />
                     <TextView
                         android:id="@+id/zhanghao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:layout_marginTop="5dp"
-                        android:textSize="@dimen/text02"
-                        android:text="857999639@qq.com"/>
+                        android:textSize="@dimen/text02" />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/add"
@@ -123,7 +121,7 @@
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="安全保护"/>
+                    android:text="@string/main1"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:textSize="@dimen/text02"
-                        android:text="已开启" />
+                        android:text="@string/main2" />
 
                     <ImageView
                         android:layout_width="15dp"
@@ -179,7 +177,7 @@
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="账户安全"/>
+                    android:text="@string/main4"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -226,7 +224,7 @@
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="手势锁"/>
+                    android:text="@string/main5"/>
                 <LinearLayout
                     android:id="@+id/lock"
                     android:layout_width="wrap_content"
@@ -243,7 +241,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:textSize="@dimen/text02"
-                        android:text="已开启" />
+                        android:text="@string/main3" />
 
                     <ImageView
                         android:layout_width="15dp"
@@ -283,7 +281,7 @@
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="指纹密码"/>
+                    android:text="@string/main6"/>
                 <com.example.duan.chao.DCZ_selft.SwitchButton
                     android:id="@+id/button2"
                     style="@style/SwitchButtonStyle"
@@ -330,7 +328,7 @@
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="手势锁"/>
+                    android:text="@string/main7"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -345,7 +343,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:textSize="@dimen/text02"
-                        android:text="简体中文" />
+                        android:text="@string/tishi35" />
 
                     <ImageView
                         android:layout_width="15dp"
@@ -385,7 +383,7 @@
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="关于"/>
+                    android:text="@string/main8"/>
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="20dp"
@@ -425,7 +423,7 @@
                     android:textSize="@dimen/text01"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
-                    android:text="退出当前账户"/>
+                    android:text="@string/main9"/>
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="20dp"
@@ -456,7 +454,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="账户安全管家"
+                    android:text="@string/title14"
                     android:textColor="@color/white"
                     android:textSize="@dimen/title" />
                 <ImageView
@@ -510,7 +508,7 @@
                     android:visibility="gone"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:text="暂未授权"/>
+                    android:text="@string/main10"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/shuaxin"

@@ -86,12 +86,36 @@
     <string name="title11">关于</string>
     <string name="title12">语言</string>
     <string name="title13">账号登录</string>
-    <string name="title14">安全邮箱</string>
-    <string name="title15">安全邮箱</string>
-    <string name="title16">安全邮箱</string>
-    <string name="title17">安全邮箱</string>
-    <string name="title18">安全邮箱</string>
-    <string name="title19">安全邮箱</string>
+    <string name="title14">账户安全管家</string>
+    <string name="title15">操作记录</string>
+    <string name="title16">实名信息</string>
+    <string name="title17">扫码认证</string>
+    <string name="title18">安全手机</string>
+    <string name="title19">设置实名信息</string>
+    <string name="title20">短信验证</string>
+    <string name="title21">欢迎回来</string>
+    <string name="title22">一键锁号</string>
+    <string name="title23">修改登录密码</string>
+    <string name="title24">修改登录密码</string>
+    <string name="title25">修改登录密码</string>
+    <string name="title26">修改登录密码</string>
+    <string name="title27">修改登录密码</string>
+    <string name="title28">修改登录密码</string>
+
+
+
+
+    <string name="main1">安全保护</string>
+    <string name="main2">已开启</string>
+    <string name="main3">未开启</string>
+    <string name="main4">账户安全</string>
+    <string name="main5">手势锁</string>
+    <string name="main6">指纹密码</string>
+    <string name="main7">语言</string>
+    <string name="main8">关于</string>
+    <string name="main9">退出当前账户</string>
+    <string name="main10">暂未授权</string>
+
 
 
 
@@ -141,11 +165,32 @@
     <string name="tishi43">请输入登录密码</string>
     <string name="tishi44">找回密码</string>
     <string name="tishi45">请再次输入密码</string>
-    <string name="tishi46">下一步</string>
-    <string name="tishi47">下一步</string>
-    <string name="tishi48">下一步</string>
-    <string name="tishi49">下一步</string>
-    <string name="tishi50">下一步</string>
+    <string name="tishi46">立即设置</string>
+    <string name="tishi47">暂未设置实名信息</string>
+    <string name="tishi48">已设置实名信息</string>
+    <string name="tishi49">更换</string>
+    <string name="tishi50">当前绑定的安全邮箱</string>
+    <string name="tishi51">如果当前手机已换号，请及时更换</string>
+    <string name="tishi52">未开启保护，系统将默认禁止对该系统的授权</string>
+    <string name="tishi53">证件信息</string>
+    <string name="tishi54">证件类型</string>
+    <string name="tishi55">姓名</string>
+    <string name="tishi56">证件号码</string>
+    <string name="tishi57">有效期</string>
+    <string name="tishi58">已换号</string>
+    <string name="tishi59">切换登录方式</string>
+    <string name="tishi60">忘记手势密码</string>
+    <string name="tishi61">已设置</string>
+    <string name="tishi62">未设置</string>
+    <string name="tishi63">暂未认证</string>
+    <string name="tishi64">点击登录</string>
+    <string name="tishi65">下线</string>
+    <string name="tishi66"></string>
+    <string name="tishi67"></string>
+    <string name="tishi68"></string>
+    <string name="tishi69"></string>
+
+
 
 
 

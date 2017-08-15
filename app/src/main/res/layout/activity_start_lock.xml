@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="欢迎回来"
+                    android:text="@string/title21"
                     android:textColor="@color/text_title1"
                     android:textSize="@dimen/title" />
                 <TextView
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="切换登录方式"
+            android:text="@string/tishi59"
             android:textColor="#3c3c3c"
             android:layout_marginLeft="50px"
             android:layout_marginBottom="80px"/>
@@ -97,7 +97,7 @@
             android:padding="5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:text="忘记手势密码"
+            android:text="@string/tishi60"
             android:textColor="#3c3c3c"
             android:layout_marginRight="50px"
             android:layout_marginBottom="80px"/>
