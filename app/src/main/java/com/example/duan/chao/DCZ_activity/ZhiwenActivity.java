@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.example.duan.chao.MainActivity;
@@ -95,7 +96,7 @@ public class ZhiwenActivity extends BaseActivity {
         //先判断有没有指纹传感器
         if (!fingerprintManager.isHardwareDetected()) {
             // 没有检测到指纹传感器，显示对话框告诉用户
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+          /*  AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.no_sensor_dialog_title);
             builder.setMessage(R.string.no_sensor_dialog_message);
             builder.setIcon(android.R.drawable.stat_sys_warning);
@@ -107,10 +108,11 @@ public class ZhiwenActivity extends BaseActivity {
                 }
             });
             //显示提示框
-            builder.create().show();
+            builder.create().show();*/
+            new MiddleDialog(INSTANCE,this.getString(R.string.no_sensor_dialog_title),R.style.registDialog).show();
         } else if (!fingerprintManager.hasEnrolledFingerprints()) {
             // 没有一个指纹图像被登记
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+          /*  AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.no_fingerprint_enrolled_dialog_title);
             builder.setMessage(R.string.no_fingerprint_enrolled_dialog_message);
             builder.setIcon(android.R.drawable.stat_sys_warning);
@@ -122,7 +124,8 @@ public class ZhiwenActivity extends BaseActivity {
                 }
             });
             //显示提示框
-            builder.create().show();
+            builder.create().show();*/
+            new MiddleDialog(INSTANCE,this.getString(R.string.no_fingerprint_enrolled_dialog_title),R.style.registDialog).show();
         } else {
             try {
                 myAuthCallback = new MyAuthCallback(handler);

@@ -75,8 +75,6 @@ public class LoginActivity extends BaseActivity {
     //定位都要通过LocationManager这个类实现
     private LocationManager locationManager;
     private String provider;
-    @BindView(R.id.back)
-    View back;
     @BindView(R.id.xian1)
     TextView xian1;
     @BindView(R.id.xian2)
@@ -116,6 +114,7 @@ public class LoginActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         code="";
         try {
             content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
@@ -147,12 +146,12 @@ public class LoginActivity extends BaseActivity {
      *  监听
      * */
     private void setListener() {
-        back.setOnClickListener(new View.OnClickListener() {
+        /*back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -575,6 +574,7 @@ public class LoginActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
+                        MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
                         data=response.body().getData();
                         MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
                         MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();

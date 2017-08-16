@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -44,17 +45,17 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tv1.setText(list.get(position).getGratSysName());
-        holder.tv2.setText(list.get(position).getDeviceName()+"");
+        holder.tv2.setText(list.get(position).getDeviceName()+","+ MyApplication.currentapiVersion);
 
         Long updateTime = list.get(position).getGratTime();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String datetime = format.format(updateTime);
-        holder.tv3.setText(datetime);
+        holder.tv3.setText(context.getString(R.string.tishi86)+datetime);
 
         Long lasttime = list.get(position).getLastLoginTime();
         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String datetime2 = format2.format(lasttime);
-        holder.tv4.setText(datetime2);
+        holder.tv4.setText(context.getString(R.string.tishi87)+datetime2);
 
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override

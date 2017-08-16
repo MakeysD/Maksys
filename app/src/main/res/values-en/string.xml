@@ -17,7 +17,7 @@
     <!-- Dialog info -->
     <string name="no_sensor_dialog_title">No fingerprint sensor</string>
     <string name="no_sensor_dialog_message">There is no fingerprint sensor on your device and click cancel.</string>
-    <string name="no_fingerprint_enrolled_dialog_title">No fingerprint registration</string>
+    <string name="no_fingerprint_enrolled_dialog_title">Please go to system Settings to open your fingerprint </string>
     <string name="no_fingerprint_enrolled_dialog_message">No fingerprint registration, input \ n
         <font fgcolor="green">Set - > security - > Nexus \ n mark</font>Exit by registering or clicking cancel</string>
     <string name="ok_btn_dialog">OK</string>
@@ -139,7 +139,7 @@
     <string name="tishi13">Country/region</string>
     <string name="tishi14">Please enter the new phone number</string>
     <string name="tishi15">If the encrypted mobile phone number have change or not to receive message authentication code, need to offer a new phone number and receive verification code personally real-name effective information submitted staff approval before they can replace the new ones to protect mobile phone</string>
-    <string name="tishi16">Please enter the mobile phone number</string>
+    <string name="tishi16">Please enter your phone number </string>
     <string name="tishi17">Take pictures</string>
     <string name="tishi18">Select from album</string>
     <string name="tishi19">Verify the compact cell phone</string>
@@ -207,5 +207,9 @@
     <string name="tishi81">Your account has been logged in on another device</string>
     <string name="tishi82">提示</string>
     <string name="tishi83">数据获取失败</string>
+    <string name="tishi84">切换数据</string>
+    <string name="tishi85">账户登陆密码已修改，请重新登陆</string>
+    <string name="tishi86">授权时间：</string>
+    <string name="tishi87">最近登陆：</string>
 
 </resources>

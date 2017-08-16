@@ -450,35 +450,11 @@ public class MainActivity extends BaseActivity{
         if (!fingerprintManager.isHardwareDetected()) {
             // 没有检测到指纹传感器，显示对话框告诉用户
             button2.setChecked(false);
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("没有指纹传感器");
-            builder.setMessage("在你的设备上没有指纹传感器，点击取消退出");
-            builder.setIcon(android.R.drawable.stat_sys_warning);
-            builder.setCancelable(false);
-            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            //显示提示框
-            builder.create().show();
+            new MiddleDialog(INSTANCE,this.getString(R.string.no_sensor_dialog_title),R.style.registDialog).show();
         } else if (!fingerprintManager.hasEnrolledFingerprints()) {
             // 没有一个指纹图像被登记
             button2.setChecked(false);
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("没有指纹登记");
-            builder.setMessage("没有指纹登记,输入\\ n");
-            builder.setIcon(android.R.drawable.stat_sys_warning);
-            builder.setCancelable(false);
-            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            //显示提示框
-            builder.create().show();
+            new MiddleDialog(INSTANCE,this.getString(R.string.no_fingerprint_enrolled_dialog_title),R.style.registDialog).show();
         } else {
             try {
                 myAuthCallback = new MyAuthCallback(handler);
@@ -648,7 +624,7 @@ public class MainActivity extends BaseActivity{
                     MyApplication.reqSysId=result.getReqSysId();
                     Log.i("dcz",result.getReqSysId());
                     if(type.equals("2")){//下线通知
-                        new MiddleDialog(INSTANCE, "提示", "您的账号已在另一台设备登录",new MiddleDialog.onButtonCLickListener2() {
+                        new MiddleDialog(INSTANCE, "提示", "您的账号已在另一台设备登录","如果不是本人操作",new MiddleDialog.onButtonCLickListener2() {
                             @Override
                             public void onActivieButtonClick(Object bean, int position) {
                                 MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();

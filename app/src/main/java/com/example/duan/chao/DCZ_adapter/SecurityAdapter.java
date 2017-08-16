@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +11,13 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
@@ -32,6 +36,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
     private Context context;
     private List<SecurityBean.ListBean> list;
     private Dialog dialog;
+    private Boolean boo=true;
 
     public SecurityAdapter(Context context, List<SecurityBean.ListBean> list){
         this.context=context;
@@ -55,10 +60,34 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
         holder.button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked==false){
-                    getData((long) list.get(position).getId(), "2",position);
+                if(boo==true){      //是true才可以点击弹框
+                        if(isChecked==false){
+                        new MiddleDialog(context, "提示", "关闭对“"+list.get(position).getSystemName()+"”的所有授权？",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int po) {
+                                if(bean==null){
+                                    boo=false;
+                                    holder.button.setChecked(true);
+                                }else {
+                                    getData((long) list.get(position).getId(), "2",position);
+                                }
+                            }
+                        }, R.style.registDialog).show();
+                    }else {
+                        new MiddleDialog(context, "提示", "开启“"+list.get(position).getSystemName()+"”的授权保护？",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int po) {
+                                if(bean==null){
+                                    boo=false;
+                                    holder.button.setChecked(false);
+                                }else {
+                                    getData((long) list.get(position).getId(), "1",position);
+                                }
+                            }
+                        }, R.style.registDialog).show();
+                    }
                 }else {
-                    getData((long) list.get(position).getId(), "1",position);
+                    boo=true;
                 }
             }
         });
@@ -103,7 +132,6 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                             }else {
                                 list.get(postion).setEnable("2");
                             }
-                            new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
                         }else {
                             new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
                             Notify(list);

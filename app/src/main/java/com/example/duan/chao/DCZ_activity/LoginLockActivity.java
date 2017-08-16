@@ -1,5 +1,6 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -67,13 +68,13 @@ public class LoginLockActivity extends BaseActivity {
                             MyApplication.suo=false;
                         }else {
                             LockUtil.setPwdStatus(context,false);
-                            ActivityUtils.getInstance().popAllActivities();
+                            Activity ac = ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize() - 2);
+                            ActivityUtils.getInstance().popActivity(ac);
                             Toast.makeText(LoginLockActivity.this,R.string.lock6,Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         //修改密码或设置密码进来
-                        Toast.makeText(LoginLockActivity.this,R.string.tishi73,Toast.LENGTH_SHORT).show();
-                        ActivityUtils.getInstance().popAllActivities();
+                        Toast.makeText(LoginLockActivity.this,context.getString(R.string.tishi73),Toast.LENGTH_SHORT).show();
                     }
                     finish();
                 }

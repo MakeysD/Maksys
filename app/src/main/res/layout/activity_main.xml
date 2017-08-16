@@ -313,7 +313,7 @@
                     android:layout_width="23dp"
                     android:layout_height="23dp"
                     android:layout_centerVertical="true"
-                    fresco:placeholderImage="@mipmap/shezhi6"
+                    fresco:placeholderImage="@mipmap/shezhi7"
                     fresco:placeholderImageScaleType="fitCenter"
                     fresco:roundedCornerRadius="5dp"
                     fresco:roundTopLeft="true"

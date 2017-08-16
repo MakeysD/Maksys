@@ -20,7 +20,7 @@ public class MiddleDialog<E> extends Dialog {
     private int position;
     private View view;
     /**
-     *      下线通知
+     *     确认与取消
      *
      * */
     public MiddleDialog(Context context, String title,String content, final onButtonCLickListener2<E> listener, int theme) {
@@ -35,14 +35,14 @@ public class MiddleDialog<E> extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
-                listener2.onActivieButtonClick(bean, position);
+                listener2.onActivieButtonClick("1", position);
             }
         });
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {//取消
             @Override
             public void onClick(View v) {
                 dismiss();
-                listener2.onActivieButtonClick(bean, position);
+                listener2.onActivieButtonClick(null, position);
             }
         });
     /*    view.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {      //确定
@@ -69,6 +69,34 @@ public class MiddleDialog<E> extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+    }
+
+    /**
+     *      下线通知
+     *
+     * */
+    public MiddleDialog(Context context, String title,String content,String tishi, final onButtonCLickListener2<E> listener, int theme) {
+        super(context, theme);
+        view = View.inflate(context, R.layout.dialog_middle, null);
+        setContentView(view);
+        setCancelable(true);        //设置点击对话框以外的区域时，是否结束对话框
+        ((TextView) view.findViewById(R.id.title)).setText(title);       //设置对话框的标题内容
+        ((TextView) view.findViewById(R.id.content)).setText(content);
+        this.listener2 = listener;
+        view.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {//取消
+            @Override
+            public void onClick(View v) {
+                dismiss();
+                listener2.onActivieButtonClick(bean, position);
+            }
+        });
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {//取消
+            @Override
+            public void onClick(View v) {
+                dismiss();
+                listener2.onActivieButtonClick(null,0);
             }
         });
     }

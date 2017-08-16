@@ -40,7 +40,8 @@ public class MyApplication extends Application{
     public static String nickname;
     public static String token;
     public static String xinghao;
-    public static String rid;
+    public static String currentapiVersion="Android "+ShebeiUtil.getSystemVersion();
+    public static String rid="";
     public static String password;
     public static String brand;
     public static String reqSysId;
@@ -75,6 +76,7 @@ public class MyApplication extends Application{
         Log.i("dcz_设备md5", DSA.md5(ShebeiUtil.getDeviceId(this)));
         Log.i("dcz_设备型号",ShebeiUtil.getPhoneModel());
         Log.i("dcz_手机品牌",ShebeiUtil.getPhoneBrand());
+        Log.i("dcz_手机版本",ShebeiUtil.getSystemVersion());
         device=ShebeiUtil.getDeviceId(this);
         xinghao=ShebeiUtil.getPhoneModel();
     }

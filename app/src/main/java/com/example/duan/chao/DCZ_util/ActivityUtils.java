@@ -63,6 +63,10 @@ public class ActivityUtils {
 		activity = null;
 	}
 
+	public int ActivitySize(){
+		return activityStack.size();
+	}
+
 	/**
 	 * 获取当前activity
 	 * 

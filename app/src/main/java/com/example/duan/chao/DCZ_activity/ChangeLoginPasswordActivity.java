@@ -50,6 +50,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
         setContentView(R.layout.activity_change_login_password);
         INSTANCE=this;
         ButterKnife.bind(this);
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
@@ -130,7 +131,6 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getData(){
-        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().login_password("0",et1.getText().toString(),et2.getText().toString(),et3.getText().toString()).enqueue(new Callback<LoginOkBean>() {
             @Override
@@ -139,9 +139,19 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            Intent intent=new Intent(INSTANCE,LoginActivity.class);
-                            startActivity(intent);
-                            ActivityUtils.getInstance().popAllActivities();
+                            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi82),INSTANCE.getString(R.string.tishi85),new MiddleDialog.onButtonCLickListener2() {
+                                @Override
+                                public void onActivieButtonClick(Object bean, int po) {
+                                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                                    ActivityUtils.getInstance().popAllActivities();
+                                    if(bean==null){
+                                    }else {
+                                        Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    finish();
+                                }
+                            }, R.style.registDialog).show();
                         }else {
                            // if(MyApplication.language.equals("ENGLISH")){
                             new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();

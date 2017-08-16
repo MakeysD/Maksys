@@ -1,5 +1,6 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_lockdemo.CustomLockView;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
@@ -145,7 +147,8 @@ public class GesturesLockActivity extends BaseActivity {
       /*  Intent i=new Intent();
         i.setClass(this,LoginLockActivity.class);
         startActivity(i);*/
-        ActivityUtils.getInstance().popAllActivities();
+        Activity ac = ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize() - 2);
+        ActivityUtils.getInstance().popActivity(ac);
         finish();
     }
 }

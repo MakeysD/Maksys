@@ -36,7 +36,7 @@ public class FootprintsActivity extends BaseActivity {
     private Dialog dialog;
     private List<FootprintsBean.ListBean> list=new ArrayList<>();
     private int num=1;
-    private int size=5;
+    private int size=20;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.lv1)
@@ -106,6 +106,7 @@ public class FootprintsActivity extends BaseActivity {
                     dialog.dismiss();
                 }
                 pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){

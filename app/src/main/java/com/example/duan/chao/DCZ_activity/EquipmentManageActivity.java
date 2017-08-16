@@ -42,6 +42,8 @@ public class EquipmentManageActivity extends BaseActivity {
     View back;
     @BindView(R.id.tv)
     TextView tv;
+    @BindView(R.id.error)
+    TextView error;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +61,10 @@ public class EquipmentManageActivity extends BaseActivity {
     private void setViews() {
         if(list.size()>0){
             tv.setText(R.string.tishi21);
+            error.setVisibility(View.VISIBLE);
         }else {
             tv.setText(R.string.tishi22);
+            error.setVisibility(View.GONE);
         }
         if(adapter!=null){
             lv.loadMoreComplete();
@@ -116,8 +120,6 @@ public class EquipmentManageActivity extends BaseActivity {
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             list = response.body().getData().getList();
-                            setViews();
-                            setListener();
                         }else {
                             new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                             finish();
@@ -128,12 +130,16 @@ public class EquipmentManageActivity extends BaseActivity {
                 }else {
                     Log.d("dcz","获取数据失败");
                 }
+                setViews();
+                setListener();
             }
             @Override
             public void onFailure(Call<EquipmentBean> call, Throwable t) {
                 if(dialog.isShowing()){
                     dialog.dismiss();
                 }
+                setViews();
+                setListener();
                 new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
