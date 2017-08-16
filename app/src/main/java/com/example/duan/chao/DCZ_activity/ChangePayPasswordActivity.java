@@ -9,11 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
@@ -140,12 +140,11 @@ public class ChangePayPasswordActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(INSTANCE,LoginActivity.class);
                             startActivity(intent);
                             ActivityUtils.getInstance().popAllActivities();
                         }else {
-                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                             finish();
                         }
                     }else {
@@ -158,7 +157,7 @@ public class ChangePayPasswordActivity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

@@ -15,14 +15,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
-import com.example.duan.chao.DCZ_selft.SwitchButton;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
@@ -135,9 +133,8 @@ public class LookPasswordActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 }else {
-                    Toast.makeText(INSTANCE,R.string.lock9, Toast.LENGTH_SHORT).show();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.lock9),R.style.registDialog).show();
                 }
-
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
@@ -364,7 +361,7 @@ public class LookPasswordActivity extends BaseActivity {
                     thread = new timeThread();
                     thread.start();
                 }else {
-                    Toast.makeText(INSTANCE,R.string.tishi74, Toast.LENGTH_SHORT).show();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi74),R.style.registDialog).show();
                 }
             }
         });

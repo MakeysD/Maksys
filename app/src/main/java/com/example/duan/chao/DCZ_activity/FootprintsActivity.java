@@ -1,21 +1,17 @@
 package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.Footprints1Adapter;
 import com.example.duan.chao.DCZ_adapter.Footprints2Adapter;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
-import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.GridViewForScrollView;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
-import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
@@ -113,7 +109,6 @@ public class FootprintsActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                             Log.i("dcz","data1返回成功");
                             list=response.body().getData().getList();
                             if(adapter2==null){
@@ -124,7 +119,7 @@ public class FootprintsActivity extends BaseActivity {
                             }
                             setListener();
                         }else {
-                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");
@@ -136,7 +131,7 @@ public class FootprintsActivity extends BaseActivity {
             @Override
             public void onFailure(Call<FootprintsBean> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
@@ -163,7 +158,7 @@ public class FootprintsActivity extends BaseActivity {
                                 adapter1.notify(list);
                             }
                         }else {
-                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");
@@ -177,7 +172,7 @@ public class FootprintsActivity extends BaseActivity {
                 if(dialog.isShowing()){
                     dialog.dismiss();
                 }
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

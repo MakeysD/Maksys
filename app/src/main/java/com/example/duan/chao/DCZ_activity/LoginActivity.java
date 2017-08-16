@@ -36,6 +36,7 @@ import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -417,13 +418,13 @@ public class LoginActivity extends BaseActivity {
             Log.i("dcz","GPS位置控制器");
             provider = LocationManager.GPS_PROVIDER;
         } else {
-            Toast.makeText(this,R.string.tishi71, Toast.LENGTH_LONG).show();
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi71),R.style.registDialog).show();
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider);
         if(location==null){
             Log.i("dcz","location是空的");
-            Toast.makeText(this,R.string.tishi71, Toast.LENGTH_LONG).show();
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi71),R.style.registDialog).show();
         }else {
             Log.i("dcz",location.toString());
         }
@@ -538,24 +539,23 @@ public class LoginActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         data=response.body().getData();
                         Intent intent=new Intent(INSTANCE,SmsActivity.class);
                         intent.putExtra("phone",phone.getText().toString());
                         intent.putExtra("password",mima.getText().toString());
                         startActivity(intent);
                     }else {
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                     }
                 }else {
-                    Log.d("dcz","获取数据失败");
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
                 }
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE,R.string.tishi72, Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
@@ -575,7 +575,6 @@ public class LoginActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         data=response.body().getData();
                         MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
                         MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
@@ -584,17 +583,17 @@ public class LoginActivity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }else {
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                     }
                 }else {
-                    Log.d("dcz","获取数据失败");
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
                 }
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE,R.string.tishi72, Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

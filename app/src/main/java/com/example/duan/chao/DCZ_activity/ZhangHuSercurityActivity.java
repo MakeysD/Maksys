@@ -101,7 +101,6 @@ public class ZhangHuSercurityActivity extends BaseActivity {
         rl5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(INSTANCE, "暂未开启此功能", Toast.LENGTH_SHORT).show();
                 /*Intent intent=new Intent(INSTANCE,SuohaoActivity.class);
                 startActivity(intent);*/
             }

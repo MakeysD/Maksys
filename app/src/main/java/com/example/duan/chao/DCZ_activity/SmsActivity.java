@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -182,7 +183,6 @@ public class SmsActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         data=response.body().getData();
                         MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
                         if(MyApplication.token!=null&&!(MyApplication.token.equals(""))){
@@ -202,7 +202,7 @@ public class SmsActivity extends BaseActivity {
                         startActivity(intent);
                         ActivityUtils.getInstance().popAllActivities();
                     }else {
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                     }
                 }else {
                     Log.d("dcz","获取数据失败");
@@ -212,7 +212,7 @@ public class SmsActivity extends BaseActivity {
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE,R.string.tishi72, Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

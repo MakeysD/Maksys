@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
-import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;

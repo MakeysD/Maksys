@@ -239,9 +239,9 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 if(dra.getAnimatable()==null){
-                    Toast.makeText(INSTANCE, "切换太快", Toast.LENGTH_SHORT).show();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi84),R.style.registDialog).show();
                 }else if(dra.getAnimatable().isRunning()){
-                    Toast.makeText(INSTANCE, "切换太快", Toast.LENGTH_SHORT).show();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi84),R.style.registDialog).show();
                 }else {
                     login(username,mima);
                 }
@@ -377,7 +377,7 @@ public class MainActivity extends BaseActivity{
                     //关闭指纹锁
                     MyApplication.sf.edit().putBoolean("zhiwen", false).commit();
                     MyApplication.zhiwen=false;
-                    Toast.makeText(INSTANCE, "已关闭", Toast.LENGTH_SHORT).show();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.main11),R.style.registDialog).show();
                 }
             }
         });
@@ -484,7 +484,7 @@ public class MainActivity extends BaseActivity{
                 myAuthCallback = new MyAuthCallback(handler);
                 MyApplication.sf.edit().putBoolean("zhiwen", true).commit();
                 MyApplication.zhiwen=true;
-                Toast.makeText(INSTANCE, "已开启指纹验证", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.lock11),R.style.registDialog).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -503,7 +503,6 @@ public class MainActivity extends BaseActivity{
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
                         final String username = sf2.getString("username","");//第二个参数为默认值
                         final String token = sf2.getString("token","");
@@ -524,10 +523,10 @@ public class MainActivity extends BaseActivity{
                             setListener();
                         }
                     } else {
-                        Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                     }
                 }else {
-                    Toast.makeText(INSTANCE,"尚未登录设备", Toast.LENGTH_SHORT).show();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
                     Log.d("dcz_数据获取失败",response.message());
                 }
             }
@@ -535,7 +534,7 @@ public class MainActivity extends BaseActivity{
             public void onFailure(Call<LoginBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
@@ -554,7 +553,7 @@ public class MainActivity extends BaseActivity{
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
                         MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                         data=response.body().getData();
                         MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
                         if(MyApplication.token!=null&&!(MyApplication.token.equals(""))){
@@ -571,7 +570,7 @@ public class MainActivity extends BaseActivity{
                         setViews();
                         setListener();
                     }else {
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                     }
                 }else {
                     Log.d("dcz","获取数据失败");
@@ -581,7 +580,7 @@ public class MainActivity extends BaseActivity{
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

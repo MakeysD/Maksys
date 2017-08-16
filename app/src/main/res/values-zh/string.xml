@@ -107,7 +107,7 @@
     <string name="lock8">次</string>
     <string name="lock9">两次输入的密码不一致</string>
     <string name="lock10">手势启动密码未开启</string>
-
+    <string name="lock11">已开启指纹验证</string>
 
 
     <string name="main1">安全保护</string>
@@ -120,6 +120,7 @@
     <string name="main8">关于</string>
     <string name="main9">退出当前账户</string>
     <string name="main10">暂未授权</string>
+    <string name="main11">已关闭</string>
 
 
 
@@ -206,5 +207,8 @@
     <string name="tishi79">安全锁的ID</string>
     <string name="tishi80">通过验证已有手机指纹</string>
     <string name="tishi81">您的账号已在另一台设备登录</string>
+    <string name="tishi82">提示</string>
+    <string name="tishi83">数据获取失败</string>
+    <string name="tishi84">切换数据</string>
 
 </resources>

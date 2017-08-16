@@ -205,5 +205,7 @@
     <string name="tishi79">ID of security lock</string>
     <string name="tishi80">Verify that you have a fingerprint on your phone</string>
     <string name="tishi81">Your account has been logged in on another device</string>
+    <string name="tishi82">提示</string>
+    <string name="tishi83">数据获取失败</string>
 
 </resources>

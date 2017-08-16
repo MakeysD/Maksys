@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
@@ -102,9 +103,9 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                             }else {
                                 list.get(postion).setEnable("2");
                             }
-                            Toast.makeText(context,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
                         }else {
-                            Toast.makeText(context,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
                             Notify(list);
                         }
                     }else {
@@ -120,7 +121,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
             public void onFailure(Call<EquipmentBean> call, Throwable t) {
                 dialog.dismiss();
                 Notify(list);
-                Toast.makeText(context, "服务器异常", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

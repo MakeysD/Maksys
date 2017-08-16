@@ -16,11 +16,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
@@ -115,9 +115,8 @@ public class ChangePhone2Activity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 }else {
-                    Toast.makeText(INSTANCE,R.string.tishi74, Toast.LENGTH_SHORT).show();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi74),R.style.registDialog).show();
                 }
-
             }
         });
 

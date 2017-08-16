@@ -6,11 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.EquipmentAdapter;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
-import com.example.duan.chao.DCZ_bean.NewsBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
@@ -120,7 +119,7 @@ public class EquipmentManageActivity extends BaseActivity {
                             setViews();
                             setListener();
                         }else {
-                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                             finish();
                         }
                     }else {
@@ -135,7 +134,7 @@ public class EquipmentManageActivity extends BaseActivity {
                 if(dialog.isShowing()){
                     dialog.dismiss();
                 }
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

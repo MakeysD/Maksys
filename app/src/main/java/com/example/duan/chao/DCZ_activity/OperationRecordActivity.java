@@ -12,6 +12,7 @@ import com.example.duan.chao.DCZ_adapter.OperationRecordAdapter;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
@@ -104,12 +105,11 @@ public class OperationRecordActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                             list=response.body().getData().getList();
                             setViews();
                             setListener();
                         }else {
-                            Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                             finish();
                         }
                     }else {
@@ -122,7 +122,7 @@ public class OperationRecordActivity extends BaseActivity {
             @Override
             public void onFailure(Call<OperationRecordBean> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(INSTANCE,R.string.tishi72, Toast.LENGTH_SHORT).show();
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

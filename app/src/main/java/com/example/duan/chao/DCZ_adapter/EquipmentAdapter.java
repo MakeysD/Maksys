@@ -7,9 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
@@ -105,7 +105,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
                             list.remove(postion);
                             Notify(list);
                         }else {
-                            Toast.makeText(context,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                            new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");
@@ -117,7 +117,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
             @Override
             public void onFailure(Call<EquipmentBean> call, Throwable t) {
                 dialog.dismiss();
-                Toast.makeText(context, "服务器异常", Toast.LENGTH_SHORT).show();
+                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

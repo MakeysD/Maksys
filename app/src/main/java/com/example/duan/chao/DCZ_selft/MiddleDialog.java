@@ -19,6 +19,10 @@ public class MiddleDialog<E> extends Dialog {
     private E bean;
     private int position;
     private View view;
+    /**
+     *      下线通知
+     *
+     * */
     public MiddleDialog(Context context, String title,String content, final onButtonCLickListener2<E> listener, int theme) {
         super(context, theme);
         view = View.inflate(context, R.layout.dialog_middle, null);
@@ -50,6 +54,23 @@ public class MiddleDialog<E> extends Dialog {
                 // }
             }
         });*/
+    }
+    /**
+     *      提示
+     *
+     * */
+    public MiddleDialog(Context context,String content,int theme) {
+        super(context, theme);
+        view = View.inflate(context, R.layout.dialog, null);
+        setContentView(view);
+        setCancelable(false);        //设置点击对话框以外的区域时，是否结束对话框
+        ((TextView) view.findViewById(R.id.content)).setText(content);
+        view.findViewById(R.id.execute).setOnClickListener(new View.OnClickListener() {      //确定
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 
     public interface onOKListeners{
