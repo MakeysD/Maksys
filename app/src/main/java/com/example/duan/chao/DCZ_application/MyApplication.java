@@ -28,6 +28,7 @@ public class MyApplication extends Application{
     public static String uri="http://192.168.2.171:9898/";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
+    public static int zhiwen_namber=0;
     private static Context context;
     public static boolean first=true;//是否为第一次登录
     public static boolean isLogin=false;

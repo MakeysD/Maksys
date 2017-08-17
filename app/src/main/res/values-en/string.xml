@@ -12,7 +12,7 @@
     <string name="cancel_btn">cancel</string>
 
     <string name="fingerprint_success">Fingerprint identification success.</string>
-    <string name="fingerprint_not_recognized">Fingerprints are not approved. Try one more time.</string>
+    <string name="fingerprint_not_recognized">Try one more time </string>
 
     <!-- Dialog info -->
     <string name="no_sensor_dialog_title">No fingerprint sensor</string>

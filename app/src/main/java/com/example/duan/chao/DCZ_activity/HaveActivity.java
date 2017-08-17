@@ -73,7 +73,6 @@ public class HaveActivity extends BaseActivity {
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(ok).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(no).rippleCorner(MyApplication.dp2Px()).create();
-        start();
         setViews();
         setListener();
     }
@@ -111,15 +110,14 @@ public class HaveActivity extends BaseActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-            /*    String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
+                String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
                 try {
                     String sign = DSA.sign(data, MyApplication.private_key);
                     getData("2",sign);
                 } catch (Exception e) {
                     e.printStackTrace();
-                }*/
+                }
             }
         });
 
@@ -157,7 +155,7 @@ public class HaveActivity extends BaseActivity {
     /***
      * 调取接口拿到服务器数据
      * */
-    public void getData(String string,String sign){
+    public void getData(final String string, String sign){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().have(MyApplication.username,"2001",MyApplication.reqSysId,MyApplication.reqFlowId,string,sign).enqueue(new Callback<LoginOkBean>() {
@@ -168,7 +166,11 @@ public class HaveActivity extends BaseActivity {
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             anima.setVisibility(View.VISIBLE);
-                            timer("1",response.body().getDesc());
+                            if(string.equals("1")){
+                                timer("1",response.body().getDesc());
+                            }else {
+                                timer("2",response.body().getDesc());
+                            }
                         }else {
                             timer("2",response.body().getDesc());
                             finish();

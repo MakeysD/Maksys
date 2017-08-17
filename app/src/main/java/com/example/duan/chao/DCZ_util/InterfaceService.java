@@ -149,7 +149,7 @@ public interface InterfaceService {
     @POST("kickout ")
     Call<FootprintsBean> kickout(@Field("systemId") String systemId,
                                  @Field("username")String username,
-                                 @Field("sessionid")String sessionid,
+                                 @Field("sessionId")String sessionid,
                                 @Field("nonce") String nonce);
 
     /**

@@ -9,11 +9,11 @@ import java.util.List;
 public class Footprints2Bean {
 
     /**
-     * code : string
-     * msg : string
-     * desc : string
-     * ok : false
-     * data : [{"browser":"string","creationTime":0,"ip":"string","lastAccessedTime":0,"os":"string","sessionId":"string","systemId":"string","systemName":"string","username":"string"}]
+     * code : 20000
+     * msg : success
+     * desc : 成功
+     * data : [{"sessionId":"9fd0b98e-577e-49d2-a4b1-4bb50aa5986c","os":null,"browser":null,"username":"admin","ip":"192.168.2.111","systemId":"1002","systemName":"原力平台","creationTime":1502954367729,"lastAccessedTime":1502954367729}]
+     * ok : true
      */
 
     private String code;
@@ -64,66 +64,26 @@ public class Footprints2Bean {
 
     public static class DataBean {
         /**
-         * browser : string
-         * creationTime : 0
-         * ip : string
-         * lastAccessedTime : 0
-         * os : string
-         * sessionId : string
-         * systemId : string
-         * systemName : string
-         * username : string
+         * sessionId : 9fd0b98e-577e-49d2-a4b1-4bb50aa5986c
+         * os : null
+         * browser : null
+         * username : admin
+         * ip : 192.168.2.111
+         * systemId : 1002
+         * systemName : 原力平台
+         * creationTime : 1502954367729
+         * lastAccessedTime : 1502954367729
          */
 
-        private String browser;
-        private int creationTime;
-        private String ip;
-        private int lastAccessedTime;
-        private String os;
         private String sessionId;
-        private String systemId;
-        private String systemName;
-        private String username;
-
-        public String getBrowser() {
-            return browser;
-        }
-
-        public void setBrowser(String browser) {
-            this.browser = browser;
-        }
-
-        public int getCreationTime() {
-            return creationTime;
-        }
-
-        public void setCreationTime(int creationTime) {
-            this.creationTime = creationTime;
-        }
-
-        public String getIp() {
-            return ip;
-        }
-
-        public void setIp(String ip) {
-            this.ip = ip;
-        }
-
-        public int getLastAccessedTime() {
-            return lastAccessedTime;
-        }
-
-        public void setLastAccessedTime(int lastAccessedTime) {
-            this.lastAccessedTime = lastAccessedTime;
-        }
-
-        public String getOs() {
-            return os;
-        }
-
-        public void setOs(String os) {
-            this.os = os;
-        }
+        private Object os;
+        private Object browser;
+        private Object username;
+        private Object ip;
+        private Object systemId;
+        private Object systemName;
+        private long creationTime;
+        private long lastAccessedTime;
 
         public String getSessionId() {
             return sessionId;
@@ -133,7 +93,39 @@ public class Footprints2Bean {
             this.sessionId = sessionId;
         }
 
-        public String getSystemId() {
+        public Object getOs() {
+            return os;
+        }
+
+        public void setOs(Object os) {
+            this.os = os;
+        }
+
+        public Object getBrowser() {
+            return browser;
+        }
+
+        public void setBrowser(Object browser) {
+            this.browser = browser;
+        }
+
+        public Object getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public Object getIp() {
+            return ip;
+        }
+
+        public void setIp(String ip) {
+            this.ip = ip;
+        }
+
+        public Object getSystemId() {
             return systemId;
         }
 
@@ -141,7 +133,7 @@ public class Footprints2Bean {
             this.systemId = systemId;
         }
 
-        public String getSystemName() {
+        public Object getSystemName() {
             return systemName;
         }
 
@@ -149,12 +141,20 @@ public class Footprints2Bean {
             this.systemName = systemName;
         }
 
-        public String getUsername() {
-            return username;
+        public long getCreationTime() {
+            return creationTime;
         }
 
-        public void setUsername(String username) {
-            this.username = username;
+        public void setCreationTime(long creationTime) {
+            this.creationTime = creationTime;
+        }
+
+        public long getLastAccessedTime() {
+            return lastAccessedTime;
+        }
+
+        public void setLastAccessedTime(long lastAccessedTime) {
+            this.lastAccessedTime = lastAccessedTime;
         }
     }
 }

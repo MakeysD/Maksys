@@ -50,7 +50,7 @@ public class LoginLockActivity extends BaseActivity {
         initView();
         mIndexs= LockUtil.getPwd(this);
         //判断当前是否设置过密码，没有设置过，直接跳转到设置手势密码页面
-        if(mIndexs.length>1){
+        if(LockUtil.getPwdStatus(context)){
             final CustomLockView cl=(CustomLockView)findViewById(R.id.cl);
             cl.setmIndexs(mIndexs);
             cl.setErrorTimes(5);
@@ -86,6 +86,11 @@ public class LoginLockActivity extends BaseActivity {
                         tvWarn.setText(context.getString(R.string.lock7) + cl.getErrorTimes() +context.getString(R.string.lock8));
                         tvWarn.setTextColor(getResources().getColor(R.color.red));
                     }else {
+                        LockUtil.setPwdStatus(context,false);
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        Intent intent=new Intent(context,LoginActivity.class);
+                        startActivity(intent);
+                        finish();
                         Log.i("dcz","解锁已达到上限");
                     }
                 }

@@ -164,7 +164,7 @@ public class FootprintsActivity extends BaseActivity {
                                 adapter1=new Footprints1Adapter(INSTANCE,list2);
                                 lv1.setAdapter(adapter1);
                             }else {
-                                adapter1.notify(list2);
+                                adapter1.Notify(list2);
                             }
                         }else {
                             //new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();

@@ -11,8 +11,8 @@
     <string name="start_btn">开始</string>
     <string name="cancel_btn">取消</string>
 
-    <string name="fingerprint_success">指纹识别成功.</string>
-    <string name="fingerprint_not_recognized">指纹不认可,再试一次.</string>
+    <string name="fingerprint_success">指纹识别成功</string>
+    <string name="fingerprint_not_recognized">再试一次</string>
 
     <!-- Dialog info -->
     <string name="no_sensor_dialog_title">没有指纹传感器</string>
@@ -41,7 +41,7 @@
 
     <string name="ErrorHwUnavailable_warning">硬件不可用,稍后再试.</string>
 
-    <string name="ErrorLockout_warning">这个操作被取消了,因为API因为太多的尝试而被锁定了.</string>
+    <string name="ErrorLockout_warning">指纹验证已关闭</string>
 
     <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
 
@@ -205,7 +205,7 @@
     <string name="tishi77">输入正确</string>
     <string name="tishi78">当前绑定的密保手机：</string>
     <string name="tishi79">安全锁的ID</string>
-    <string name="tishi80">通过验证已有手机指纹</string>
+    <string name="tishi80">通过指纹键验证已有手机指纹</string>
     <string name="tishi81">您的账号已在另一台设备登录</string>
     <string name="tishi82">提示</string>
     <string name="tishi83">数据获取失败</string>账户登陆密码已修改，请重新登陆
@@ -213,5 +213,6 @@
     <string name="tishi85">账户登陆密码已修改，请重新登陆</string>
     <string name="tishi86">授权时间：</string>
     <string name="tishi87">最近登陆：</string>
+    <string name="tishi88">验证手势密码</string>
 
 </resources>

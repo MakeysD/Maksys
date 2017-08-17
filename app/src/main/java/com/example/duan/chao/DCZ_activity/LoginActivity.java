@@ -276,7 +276,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(guo.getText().toString().length()>0&&mima.getText().toString().length()>0){
+                    if(phone.getText().toString().length()>0&&mima.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
                     }else {
                         button.setVisibility(View.GONE);
@@ -305,7 +305,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(guo.getText().toString().length()>0&&phone.getText().toString().length()>0){
+                    if(mima.getText().toString().length()>0&&phone.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
                     }else {
                         button.setVisibility(View.GONE);

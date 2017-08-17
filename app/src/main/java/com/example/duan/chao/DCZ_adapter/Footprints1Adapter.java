@@ -52,7 +52,7 @@ public class Footprints1Adapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_footprints1, null);
@@ -61,12 +61,12 @@ public class Footprints1Adapter extends BaseAdapter{
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.tv1.setText(list.get(position).getSystemName());
-        viewHolder.tv2.setText(list.get(position).getIp());
+        viewHolder.tv1.setText(list.get(position).getSystemName().toString());
+        viewHolder.tv2.setText(list.get(position).getIp().toString());
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getData(list.get(position).getSystemId().toString(),list.get(position).getUsername().toString(),list.get(position).getSessionId(),position);
             }
         });
         return convertView;
@@ -82,7 +82,7 @@ public class Footprints1Adapter extends BaseAdapter{
             button=(TextView)view.findViewById(R.id.button);
         }
     }
-    public void notify(List<Footprints2Bean.DataBean> list){
+    public void Notify(List<Footprints2Bean.DataBean> list){
         this.list=list;
         notifyDataSetChanged();
     }
@@ -91,7 +91,7 @@ public class Footprints1Adapter extends BaseAdapter{
     /***
      * 踢出用户的登录
      * */
-    public void getData(String systemId,String username,String sessionid){
+    public void getData(String systemId, String username, String sessionid, final int postion){
         dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
         dialog.show();
         HttpServiceClient.getInstance().kickout(systemId,username,sessionid,"8579558852").enqueue(new Callback<FootprintsBean>() {
@@ -104,7 +104,8 @@ public class Footprints1Adapter extends BaseAdapter{
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz","data1返回成功");
-
+                            list.remove(postion);
+                            Notify(list);
                         }else {
                             new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
                         }

@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
@@ -35,6 +36,7 @@ public class ZhiwenActivity extends BaseActivity {
     private CancellationSignal cancellationSignal = null;
     private int[] mIndexs;
     private Handler handler = null;
+    private int number=0;
     public static final int MSG_AUTH_SUCCESS = 100;
     public static final int MSG_AUTH_FAILED = 101;
     public static final int MSG_AUTH_ERROR = 102;
@@ -51,6 +53,14 @@ public class ZhiwenActivity extends BaseActivity {
     RelativeLayout zhiwen;
     @BindView(R.id.zhiwen_start)
     LinearLayout start;
+    @BindView(R.id.ll_canale)   //验证错误一次后的弹框布局
+    LinearLayout ll_cancle;
+    @BindView(R.id.cancle2)
+    TextView cancle2;
+    @BindView(R.id.shoushi)
+    TextView shoushi;
+    @BindView(R.id.name)
+    TextView name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +72,7 @@ public class ZhiwenActivity extends BaseActivity {
     }
 
     private void setViews() {
+        name.setText(MyApplication.username);
         mIndexs= LockUtil.getPwd(this);
         handler = new Handler() {
             @Override
@@ -76,10 +87,17 @@ public class ZhiwenActivity extends BaseActivity {
                         finish();
                         break;
                     case MSG_AUTH_FAILED:
+                        number=number+1;
                         result.setText(R.string.fingerprint_not_recognized);
                         result.startAnimation(AnimationUtils.loadAnimation(INSTANCE, R.anim.shake));
                         cancellationSignal = null;
-                        start();
+                        ll_cancle.setVisibility(View.VISIBLE);
+                        if(number<3){
+                            start();
+                        }else {
+                            zhiwen.setVisibility(View.GONE);
+                            MyApplication.zhiwen_namber=MyApplication.zhiwen_namber+1;
+                        }
                         break;
                     case MSG_AUTH_ERROR:
                         handleErrorCode(msg.arg1);
@@ -95,36 +113,8 @@ public class ZhiwenActivity extends BaseActivity {
         fingerprintManager = FingerprintManagerCompat.from(this);
         //先判断有没有指纹传感器
         if (!fingerprintManager.isHardwareDetected()) {
-            // 没有检测到指纹传感器，显示对话框告诉用户
-          /*  AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.no_sensor_dialog_title);
-            builder.setMessage(R.string.no_sensor_dialog_message);
-            builder.setIcon(android.R.drawable.stat_sys_warning);
-            builder.setCancelable(false);
-            builder.setNegativeButton(R.string.cancel_btn, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            //显示提示框
-            builder.create().show();*/
             new MiddleDialog(INSTANCE,this.getString(R.string.no_sensor_dialog_title),R.style.registDialog).show();
         } else if (!fingerprintManager.hasEnrolledFingerprints()) {
-            // 没有一个指纹图像被登记
-          /*  AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.no_fingerprint_enrolled_dialog_title);
-            builder.setMessage(R.string.no_fingerprint_enrolled_dialog_message);
-            builder.setIcon(android.R.drawable.stat_sys_warning);
-            builder.setCancelable(false);
-            builder.setNegativeButton(R.string.cancel_btn, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            //显示提示框
-            builder.create().show();*/
             new MiddleDialog(INSTANCE,this.getString(R.string.no_fingerprint_enrolled_dialog_title),R.style.registDialog).show();
         } else {
             try {
@@ -145,18 +135,40 @@ public class ZhiwenActivity extends BaseActivity {
                 zhiwen.setVisibility(View.GONE);
             }
         });
+        cancle2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancellationSignal.cancel();
+                cancellationSignal = null;
+                zhiwen.setVisibility(View.GONE);
+            }
+        });
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                zhiwen.setVisibility(View.VISIBLE);
-                start();
+                if(MyApplication.zhiwen_namber>1){
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.ErrorLockout_warning),R.style.registDialog).show();
+                }else {
+                    ll_cancle.setVisibility(View.GONE);
+                    zhiwen.setVisibility(View.VISIBLE);
+                    start();
+                }
             }
         });
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //判断当前是否设置过密码
+                //判断当前是否开启密码
+                if(LockUtil.getPwdStatus(INSTANCE)){
+                    Intent intent=new Intent(INSTANCE,StartLockActivity.class);
+                    intent.putExtra("type","1");
+                    startActivity(intent);
+                    finish();
+                }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.setti),R.style.registDialog).show();
+                }
+             /*   //判断当前是否设置过密码
                 if(mIndexs.length>1){
                     Intent intent=new Intent(INSTANCE,StartLockActivity.class);
                     intent.putExtra("type","1");
@@ -164,6 +176,20 @@ public class ZhiwenActivity extends BaseActivity {
                     finish();
                 }else {
                     Toast.makeText(INSTANCE,R.string.setti, Toast.LENGTH_SHORT).show();
+                }*/
+            }
+        });
+        shoushi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //判断当前是否开启密码
+                if(LockUtil.getPwdStatus(INSTANCE)){
+                    Intent intent=new Intent(INSTANCE,StartLockActivity.class);
+                    intent.putExtra("type","1");
+                    startActivity(intent);
+                    finish();
+                }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.setti),R.style.registDialog).show();
                 }
             }
         });
@@ -201,6 +227,8 @@ public class ZhiwenActivity extends BaseActivity {
                 result.setText(R.string.ErrorHwUnavailable_warning);
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_LOCKOUT:
+                //指纹锁定了
+                MyApplication.zhiwen_namber=MyApplication.zhiwen_namber+1;
                 result.setText(R.string.ErrorLockout_warning);
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_NO_SPACE:
