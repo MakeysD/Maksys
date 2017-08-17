@@ -37,6 +37,7 @@ public class GesturesLockActivity extends BaseActivity {
     private TextView tvWarn;
     private int times=0;
     private int[] mIndexs=null;
+    private String type;
     @BindView(R.id.back)
     View back;
     @Override
@@ -44,6 +45,7 @@ public class GesturesLockActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestures_lock);
         ButterKnife.bind(this);
+        type=getIntent().getStringExtra("type");
         context=this;
         mScreenObserver = new ScreenObserver(this);
         mScreenObserver.requestScreenStateUpdate(new ScreenObserver.ScreenStateListener() {
@@ -147,8 +149,13 @@ public class GesturesLockActivity extends BaseActivity {
       /*  Intent i=new Intent();
         i.setClass(this,LoginLockActivity.class);
         startActivity(i);*/
-        Activity ac = ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize() - 2);
-        ActivityUtils.getInstance().popActivity(ac);
+      if(type!=null){
+          Activity ac = ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize() - 2);
+          ActivityUtils.getInstance().popActivity(ac);
+      }else {
+          Activity ac = ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize() - 1);
+          ActivityUtils.getInstance().popActivity(ac);
+      }
         finish();
     }
 }

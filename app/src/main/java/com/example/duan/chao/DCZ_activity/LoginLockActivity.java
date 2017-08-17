@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -52,7 +53,7 @@ public class LoginLockActivity extends BaseActivity {
         if(mIndexs.length>1){
             final CustomLockView cl=(CustomLockView)findViewById(R.id.cl);
             cl.setmIndexs(mIndexs);
-            cl.setErrorTimes(4);
+            cl.setErrorTimes(5);
             cl.setStatus(1);
             cl.setShow(false);
             cl.setOnCompleteListener(new CustomLockView.OnCompleteListener() {
@@ -84,6 +85,8 @@ public class LoginLockActivity extends BaseActivity {
                     if (cl.getErrorTimes() > 0) {
                         tvWarn.setText(context.getString(R.string.lock7) + cl.getErrorTimes() +context.getString(R.string.lock8));
                         tvWarn.setTextColor(getResources().getColor(R.color.red));
+                    }else {
+                        Log.i("dcz","解锁已达到上限");
                     }
                 }
             });

@@ -56,6 +56,7 @@ public class LockActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(INSTANCE, GesturesLockActivity.class);
+                intent.putExtra("type","1");
                 startActivity(intent);
             }
         });

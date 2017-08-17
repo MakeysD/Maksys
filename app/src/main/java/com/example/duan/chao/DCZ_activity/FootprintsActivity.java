@@ -36,7 +36,7 @@ public class FootprintsActivity extends BaseActivity {
     private Dialog dialog;
     private List<FootprintsBean.ListBean> list=new ArrayList<>();
     private int num=1;
-    private int size=20;
+    private int size=10;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.lv1)
@@ -80,16 +80,22 @@ public class FootprintsActivity extends BaseActivity {
         pullToRefreshLayout.setOnRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+                Log.i("dcz","onRefresh");
+                num=1;
+                size=10;
                 getData();
                 //getData2();
             }
-        });
-        pullToRefreshLayout.setOnChangeListener(new PullToRefreshLayout.OnChangeListener() {
+
             @Override
-            public void onStarRefresh() {
+            public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+                getData();
+                num++;
+                size=size+10;
             }
+
             @Override
-            public void onEndRefresh() {
+            public void onEvent() {
 
             }
         });
