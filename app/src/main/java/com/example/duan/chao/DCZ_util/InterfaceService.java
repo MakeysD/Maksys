@@ -138,17 +138,19 @@ public interface InterfaceService {
      *  获取用户在各子系统的在线情况
      */
     @FormUrlEncoded
-    @POST("getOnLineList")
-    Call<Footprints2Bean> getOnline(@Field("deviceUUID") String deviceUUID);
+    @POST("getUserOnLineList ")
+    Call<Footprints2Bean> getOnline(@Field("username") String username,
+                                    @Field("nonce") String nonce);
 
     /**
      *  踢出用户在某个系统的登录情况
      */
     @FormUrlEncoded
     @POST("kickout ")
-    Call<EquipmentBean> kickout(@Field("systemId") String systemId,
+    Call<FootprintsBean> kickout(@Field("systemId") String systemId,
                                  @Field("username")String username,
-                                 @Field("sessionid")String sessionid);
+                                 @Field("sessionid")String sessionid,
+                                @Field("nonce") String nonce);
 
     /**
      *  操作记录

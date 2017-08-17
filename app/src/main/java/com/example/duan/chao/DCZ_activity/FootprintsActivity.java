@@ -4,9 +4,11 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.Footprints1Adapter;
 import com.example.duan.chao.DCZ_adapter.Footprints2Adapter;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_selft.GridViewForScrollView;
@@ -14,6 +16,7 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.R;
 
 import java.util.ArrayList;
@@ -35,6 +38,7 @@ public class FootprintsActivity extends BaseActivity {
     private Footprints2Adapter adapter2;
     private Dialog dialog;
     private List<FootprintsBean.ListBean> list=new ArrayList<>();
+    private List<Footprints2Bean.DataBean> list2=new ArrayList<>();
     private int num=1;
     private int size=10;
     @BindView(R.id.back)
@@ -52,9 +56,9 @@ public class FootprintsActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         setListener();
+        RandomUtil.lo();
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        //getData2();
         getData();
     }
 
@@ -62,10 +66,7 @@ public class FootprintsActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        adapter1=new Footprints1Adapter(INSTANCE,list);
-        lv1.setAdapter(adapter1);
-        adapter2=new Footprints2Adapter(INSTANCE,list);
-        lv2.setAdapter(adapter2);
+
     }
     /**
      *  监听
@@ -84,7 +85,7 @@ public class FootprintsActivity extends BaseActivity {
                 num=1;
                 size=10;
                 getData();
-                //getData2();
+                getData2();
             }
 
             @Override
@@ -102,15 +103,13 @@ public class FootprintsActivity extends BaseActivity {
     }
 
     /***
-     * 调取接口拿到服务器数据
+     * 获取最近登录记录
      * */
     public void getData(){
         HttpServiceClient.getInstance().getFoot(num,size,"",null,null).enqueue(new Callback<FootprintsBean>() {
             @Override
             public void onResponse(Call<FootprintsBean> call, Response<FootprintsBean> response) {
-                if(dialog.isShowing()){
-                    dialog.dismiss();
-                }
+                getData2();
                 pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
                 if(response.isSuccessful()){
@@ -124,9 +123,11 @@ public class FootprintsActivity extends BaseActivity {
                             }else {
                                 adapter2.notify(list);
                             }
-                            setListener();
                         }else {
-                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                            if(!MyApplication.token.equals("")){
+                                new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                            }
+                            //Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");
@@ -144,10 +145,10 @@ public class FootprintsActivity extends BaseActivity {
     }
 
     /***
-     * 调取接口拿到服务器数据
+     * 获取各子系统的在线情况
      * */
     public void getData2(){
-        HttpServiceClient.getInstance().getOnline(null).enqueue(new Callback<Footprints2Bean>() {
+        HttpServiceClient.getInstance().getOnline(MyApplication.username,"5896523256").enqueue(new Callback<Footprints2Bean>() {
             @Override
             public void onResponse(Call<Footprints2Bean> call, Response<Footprints2Bean> response) {
                 if(dialog.isShowing()){
@@ -159,13 +160,14 @@ public class FootprintsActivity extends BaseActivity {
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz","data2返回成功");
                             if(adapter1==null){
-                                adapter1=new Footprints1Adapter(INSTANCE,list);
+                                list2 = response.body().getData();
+                                adapter1=new Footprints1Adapter(INSTANCE,list2);
                                 lv1.setAdapter(adapter1);
                             }else {
-                                adapter1.notify(list);
+                                adapter1.notify(list2);
                             }
                         }else {
-                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                            //new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

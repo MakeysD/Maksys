@@ -623,8 +623,16 @@ public class MainActivity extends BaseActivity{
                     MyApplication.reqFlowId=result.getReqFlowId();
                     MyApplication.reqSysId=result.getReqSysId();
                     Log.i("dcz",result.getReqSysId());
+                    Log.i("dcz",type+"type");
+                   /* MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                    MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
+                    MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
+                    ActivityUtils.getInstance().popAllActivities();
+                    Intent inten=new Intent(INSTANCE, LoginActivity.class);
+                    startActivity(inten);*/
                     if(type.equals("2")){//下线通知
-                        new MiddleDialog(INSTANCE, "提示", "您的账号已在另一台设备登录","如果不是本人操作",new MiddleDialog.onButtonCLickListener2() {
+                        new MiddleDialog( ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize()-1), "提示", "您的账号已在另一台设备登录","如果不是本人操作",new MiddleDialog.onButtonCLickListener2() {
                             @Override
                             public void onActivieButtonClick(Object bean, int position) {
                                 MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();

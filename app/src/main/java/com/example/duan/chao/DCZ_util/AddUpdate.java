@@ -32,23 +32,24 @@ public class AddUpdate implements Interceptor{
         Response originalResponse = chain.proceed(originalRequest);
         String s = originalResponse.body().string();
         LoginBean result = mGson.fromJson(s, LoginBean.class);
-        if(result.getCode().equals("20003")){
-            Request loginRequest = getLoginRequest();
-            Response loginResponse = chain.proceed(loginRequest);
-            String loginString = loginResponse.body().string();
-            HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
-            if(resultLogin.getCode().equals("10500")){
-                Log.i("dcz","安全中心不可用");
-            }
-            if(resultLogin.getCode().equals("20000")) {
-                return chain.proceed(originalRequest);
-            }else {
-                Log.i("dcz刷新token",resultLogin.getCode());
-                MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
-                MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginActivity.class));
-                ActivityUtils.getInstance().popAllActivities();
-            }
+        if(result.getCode()!=null){
+            if(result.getCode().equals("20003")){
+                Request loginRequest = getLoginRequest();
+                Response loginResponse = chain.proceed(loginRequest);
+                String loginString = loginResponse.body().string();
+                HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
+                if(resultLogin.getCode().equals("10500")){
+                    Log.i("dcz","安全中心不可用");
+                }
+                if(resultLogin.getCode().equals("20000")) {
+                    return chain.proceed(originalRequest);
+                }else {
+                    Log.i("dcz刷新token",resultLogin.getCode());
+                    MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
+                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginActivity.class));
+                    ActivityUtils.getInstance().popAllActivities();
+                }
           /*  if(resultLogin.getCode().equals("10029")){
                 Request result2 = Login();
                 Response loginResponse2 = chain.proceed(result2);
@@ -58,7 +59,9 @@ public class AddUpdate implements Interceptor{
                     return chain.proceed(originalRequest);
                 }
             }*/
+            }
         }
+
         originalResponse = originalResponse.newBuilder()
                 .body(ResponseBody.create(null, s))
                 .build();

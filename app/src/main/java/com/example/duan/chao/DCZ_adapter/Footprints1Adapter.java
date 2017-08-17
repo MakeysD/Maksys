@@ -1,16 +1,27 @@
 package com.example.duan.chao.DCZ_adapter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
+import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by DELL on 2017/7/12.
@@ -18,15 +29,16 @@ import java.util.List;
 
 public class Footprints1Adapter extends BaseAdapter{
     private Context context;
-    private List<FootprintsBean.ListBean> list;
+    private  List<Footprints2Bean.DataBean> list;
+    private Dialog dialog;
 
-    public Footprints1Adapter(Context context, List<FootprintsBean.ListBean> list){
+    public Footprints1Adapter(Context context, List<Footprints2Bean.DataBean> list){
         this.context=context;
         this.list=list;
     }
     @Override
     public int getCount() {
-        return 3;
+        return list.size();
     }
 
     @Override
@@ -49,20 +61,65 @@ public class Footprints1Adapter extends BaseAdapter{
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        viewHolder.tv1.setText(list.get(position).getSystemName());
+        viewHolder.tv2.setText(list.get(position).getIp());
+        viewHolder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         return convertView;
     }
 
     public class ViewHolder {
         TextView tv1;
         TextView tv2;
+        TextView button;
         public ViewHolder(View view) {
             tv1=(TextView)view.findViewById(R.id.tv1);
             tv2=(TextView)view.findViewById(R.id.tv2);
+            button=(TextView)view.findViewById(R.id.button);
         }
     }
-    public void notify(List<FootprintsBean.ListBean> list){
+    public void notify(List<Footprints2Bean.DataBean> list){
         this.list=list;
         notifyDataSetChanged();
+    }
+
+
+    /***
+     * 踢出用户的登录
+     * */
+    public void getData(String systemId,String username,String sessionid){
+        dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
+        dialog.show();
+        HttpServiceClient.getInstance().kickout(systemId,username,sessionid,"8579558852").enqueue(new Callback<FootprintsBean>() {
+            @Override
+            public void onResponse(Call<FootprintsBean> call, Response<FootprintsBean> response) {
+                if(dialog.isShowing()){
+                    dialog.dismiss();
+                }
+                if(response.isSuccessful()){
+                    if(response.body()!=null){
+                        if(response.body().getCode().equals("20000")){
+                            Log.i("dcz","data1返回成功");
+
+                        }else {
+                            new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
+                        }
+                    }else {
+                        Log.d("dcz","返回的数据是空的");
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<FootprintsBean> call, Throwable t) {
+                dialog.dismiss();
+                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+            }
+        });
     }
 }

@@ -58,8 +58,10 @@ public class Footprints2Adapter extends BaseAdapter{
 
         if(position==0){
             viewHolder.tou.setVisibility(View.VISIBLE);
+            viewHolder.xian.setVisibility(View.INVISIBLE);
             viewHolder.title.setText(datetime);
         }else {
+            viewHolder.xian.setVisibility(View.VISIBLE);
             Long btime = list.get(position-1).getCreateTime();
             SimpleDateFormat bformat = new SimpleDateFormat("yyyy-MM-dd");
             String bdatetime = bformat.format(btime);
@@ -90,12 +92,14 @@ public class Footprints2Adapter extends BaseAdapter{
         TextView time;
         TextView name;
         TextView ip;
+        TextView xian;
         public ViewHolder(View view) {
             tou=(LinearLayout)view.findViewById(R.id.tou);
             title=(TextView)view.findViewById(R.id.title);
             time=(TextView)view.findViewById(R.id.time);
             name=(TextView)view.findViewById(R.id.name);
             ip=(TextView)view.findViewById(R.id.ip);
+            xian=(TextView)view.findViewById(R.id.xian1);
         }
     }
     public void notify(List<FootprintsBean.ListBean> list){

@@ -55,8 +55,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text00"
-                    android:text="确认"/>
+                    android:textSize="@dimen/text01"
+                    android:text="@string/button"/>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
