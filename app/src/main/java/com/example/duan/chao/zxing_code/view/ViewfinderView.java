@@ -171,7 +171,7 @@ public final class ViewfinderView extends View {
             canvas.drawBitmap(resultBitmap, frame.left, frame.top, paint);
         } else {
 
-
+            //正方向框的颜色
             paint.setColor(Color.parseColor("#898b84"));
             canvas.drawRect(frame.left, frame.top, frame.right + 1,
                     frame.top + 2, paint);
@@ -182,7 +182,7 @@ public final class ViewfinderView extends View {
             canvas.drawRect(frame.left, frame.bottom - 1, frame.right + 1,
                     frame.bottom + 1, paint);
 
-            //��ɨ�����ϵĽǣ��ܹ�8������
+            //设置四个角的颜色
             paint.setColor(Color.parseColor("#02c7cd"));
             canvas.drawRect(frame.left, frame.top, frame.left + ScreenRate,
                     frame.top + CORNER_WIDTH, paint);
@@ -218,7 +218,7 @@ public final class ViewfinderView extends View {
             Rect laserRect = new Rect(frame.left, slideTop, frame.right, slideTop + h);
             canvas.drawBitmap(laserLineBitmap, null, laserRect, paint);
 
-            paint.setColor(Color.parseColor("#87d0f2"));
+            paint.setColor(Color.parseColor("#ffffff"));
             paint.setTextSize(TEXT_SIZE * density);
             paint.setAlpha(0x40);
             paint.setTypeface(Typeface.create("System", Typeface.BOLD));

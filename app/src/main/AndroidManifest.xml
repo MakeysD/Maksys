@@ -226,7 +226,9 @@
         <activity android:name=".DCZ_activity.StartLockActivity" />
         <activity android:name=".DCZ_activity.ChangeEmailActivity" />
         <activity android:name=".DCZ_activity.SettingDataActivity" />
-        <activity android:name=".DCZ_activity.LanguageActivity"></activity>
+        <activity android:name=".DCZ_activity.LanguageActivity" />
+        <activity android:name=".DCZ_activity.HaveScanActivity" />
+        <activity android:name=".DCZ_activity.HavaMoneyActivity"></activity>
     </application>
 
 </manifest>

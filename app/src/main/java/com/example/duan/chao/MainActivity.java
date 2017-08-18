@@ -134,8 +134,8 @@ public class MainActivity extends BaseActivity{
 
     @BindView(R.id.iv)
     SimpleDraweeView iv;
-   /* @BindView(R.id.tv)
-    TextView tv;*/
+    @BindView(R.id.tv)
+    TextView tv;
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.zhanghao)
@@ -178,7 +178,7 @@ public class MainActivity extends BaseActivity{
                     msg.what=0;
                     msg.arg1 = i;         //秒数赋值给消息
                     handler.sendMessage(msg);
-                    Thread.sleep(4000);
+                    Thread.sleep(3500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -196,7 +196,7 @@ public class MainActivity extends BaseActivity{
                             return;
                         }
                         dra.getAnimatable().stop();
-                      //  tv.setVisibility(View.VISIBLE);
+                        tv.setVisibility(View.VISIBLE);
                     }else {
                         dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/agif.gif")).build();
                         iv.setController(dra);
@@ -567,7 +567,7 @@ public class MainActivity extends BaseActivity{
     }
 
     private void Mp3(){
-       // tv.setVisibility(View.GONE);
+        tv.setVisibility(View.GONE);
         thread = null;
         thread = new timeThread();
         thread.start();
@@ -632,7 +632,7 @@ public class MainActivity extends BaseActivity{
                     Intent inten=new Intent(INSTANCE, LoginActivity.class);
                     startActivity(inten);*/
                     if(type.equals("2")){//下线通知
-                        new MiddleDialog( ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize()-1), "提示", "您的账号已在另一台设备登录","如果不是本人操作",new MiddleDialog.onButtonCLickListener2() {
+                        new MiddleDialog( ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize()-1), "提示", "您的账号于2015-07-07在另外一套设备登陆\n 如非本人操作，请及时修改密码或者重新登陆",new MiddleDialog.onButtonCLickListener2() {
                             @Override
                             public void onActivieButtonClick(Object bean, int position) {
                                 MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
