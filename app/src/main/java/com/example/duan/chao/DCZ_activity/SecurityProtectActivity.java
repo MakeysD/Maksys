@@ -112,6 +112,7 @@ public class SecurityProtectActivity extends BaseActivity {
             @Override
             public void onResponse(Call<SecurityBean> call, Response<SecurityBean> response) {
                 dialog.dismiss();
+                Log.i("dcz",response.body().getCode());
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){

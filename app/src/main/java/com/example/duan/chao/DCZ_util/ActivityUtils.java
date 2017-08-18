@@ -48,6 +48,11 @@ public class ActivityUtils {
 		}
 		activityStack.add(activity);
 	}
+	public void removeActivity(Activity activity){
+		if(activityStack.size()>0){
+			activityStack.remove(activity);
+		}
+	}
 
 	/**
 	 * 结束当前activity

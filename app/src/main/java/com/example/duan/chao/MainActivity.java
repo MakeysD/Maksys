@@ -632,7 +632,7 @@ public class MainActivity extends BaseActivity{
                     Intent inten=new Intent(INSTANCE, LoginActivity.class);
                     startActivity(inten);*/
                     if(type.equals("2")){//下线通知
-                        new MiddleDialog( ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize()-1), "提示", "您的账号于2015-07-07在另外一套设备登陆\n 如非本人操作，请及时修改密码或者重新登陆",new MiddleDialog.onButtonCLickListener2() {
+                        new MiddleDialog( ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize()-1), "提示", "您的账号于2015-07-07"+"在另外一套设备登陆"+"\n如非本人操作，请及时修改密码或者重新登陆",new MiddleDialog.onButtonCLickListener2() {
                             @Override
                             public void onActivieButtonClick(Object bean, int position) {
                                 MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();

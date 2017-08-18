@@ -27,7 +27,7 @@ public class MiddleDialog<E> extends Dialog {
         super(context, theme);
         view = View.inflate(context, R.layout.dialog_middle, null);
         setContentView(view);
-        setCancelable(true);        //设置点击对话框以外的区域时，是否结束对话框
+        setCancelable(false);        //设置点击对话框以外的区域时，是否结束对话框
         ((TextView) view.findViewById(R.id.title)).setText(title);       //设置对话框的标题内容
         ((TextView) view.findViewById(R.id.content)).setText(content);
         this.listener2 = listener;
