@@ -34,16 +34,16 @@
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
     <ImageView
-        android:layout_width="160dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        android:background="@mipmap/zhanwei"/>
+        android:layout_marginBottom="10dp"
+        android:background="@mipmap/logo2"/>
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/text07"
         android:textSize="@dimen/text00"
         android:layout_marginBottom="40dp"
         android:text="账户安全中心1.5.4"/>
@@ -51,19 +51,19 @@
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/bg2">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text01"
+            android:textColor="@color/text07"
             android:textSize="@dimen/text00"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:layout_marginLeft="30dp"
             android:text="@string/tishi27"/>
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
@@ -71,25 +71,24 @@
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/xian"
-        android:background="@color/xian1"/>
+        android:layout_height="@dimen/xian" />
     <RelativeLayout
         android:id="@+id/rl2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/bg2">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text01"
+            android:textColor="@color/text07"
             android:textSize="@dimen/text00"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:layout_marginLeft="30dp"
             android:text="@string/tishi28"/>
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"

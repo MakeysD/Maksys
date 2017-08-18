@@ -62,9 +62,9 @@ public class LanguageActivity extends BaseActivity {
         rl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
+         /*       MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
                 recreate();
-                MyApplication.status=true;
+                MyApplication.status=true;*/
             }
         });
         rl2.setOnClickListener(new View.OnClickListener() {
@@ -76,9 +76,9 @@ public class LanguageActivity extends BaseActivity {
         rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
+             /*   MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
                 recreate();//刷新页面
-                MyApplication.status=true;
+                MyApplication.status=true;*/
             }
         });
         rl4.setOnClickListener(new View.OnClickListener() {

@@ -29,6 +29,7 @@ public class SecurityEmailActivity extends BaseActivity {
         setContentView(R.layout.activity_security_email);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -37,7 +38,7 @@ public class SecurityEmailActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+
     }
     /**
      *  监听

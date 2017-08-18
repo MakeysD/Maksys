@@ -33,7 +33,8 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,17 +45,15 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="130dp"
-                android:layout_marginTop="50dp"
-                android:background="@mipmap/shouquan" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/shouquan" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="60dp"
                 android:gravity="center_horizontal">
 
                 <TextView
@@ -86,14 +85,16 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/tishi31"
                 android:textColor="#506f93"
-                android:textSize="@dimen/text01" />
+                android:textSize="@dimen/text02" />
 
             <TextView
                 android:id="@+id/ok"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:layout_marginTop="30dp"
-                android:background="@mipmap/shouquan1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/left"
+                android:layout_marginRight="@dimen/right"
+                android:layout_marginTop="90dp"
+                android:background="@mipmap/tongyi"
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
@@ -104,9 +105,11 @@
             <TextView
                 android:id="@+id/no"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:layout_marginTop="15dp"
-                android:background="@mipmap/shouquan2"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/jujue"
+                android:layout_marginLeft="@dimen/left"
+                android:layout_marginRight="@dimen/right"
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
@@ -153,5 +156,4 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
 </LinearLayout>

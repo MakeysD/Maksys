@@ -165,11 +165,12 @@ public class HaveActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            anima.setVisibility(View.VISIBLE);
                             if(string.equals("1")){
+                                anima.setVisibility(View.VISIBLE);
                                 timer("1",response.body().getDesc());
                             }else {
-                                timer("2",response.body().getDesc());
+                                //timer("2",response.body().getDesc());
+                                finish();
                             }
                         }else {
                             timer("2",response.body().getDesc());

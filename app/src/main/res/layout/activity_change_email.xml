@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/tishi1"
+            android:text="@string/tishi90"
             android:textColor="@color/text_title1"
             android:textSize="@dimen/title" />
         <TextView
@@ -37,39 +37,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:layout_marginLeft="@dimen/left"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:textSize="@dimen/text00"
         android:text="请补全原绑定安全邮箱：857999639@qq.com"/>
     <TextView
         android:id="@+id/xian1"
         android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_height="@dimen/xian"
         android:layout_marginTop="20dp"
         android:background="@color/xian1" />
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@null"
-        android:hint="@string/tishi1"
-        android:inputType="number"
-        android:maxLength="4"
-        android:paddingLeft="@dimen/left"
-        android:singleLine="true"
-        android:textColor="@color/text08"
-        android:textColorHint="@color/text04"
-        android:textCursorDrawable="@null"
-        android:textSize="@dimen/text01"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv3"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/email2" />
+
+        <EditText
+            android:id="@+id/et_mima"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/tishi91"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="@color/text08"
+            android:textColorHint="@color/text04"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/text01"
+            android:textStyle="bold" />
+
+    </LinearLayout>
     <TextView
         android:id="@+id/xian2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/xian"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp"
         android:background="@color/xian1" />
     <RelativeLayout
         android:layout_width="match_parent"

@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -103,8 +104,6 @@ public class MainActivity extends BaseActivity{
     private MainActivity INSTANCE;
     private DragLayout mDragLayout;
     private DraweeController dra;
-    private timeThread thread;
-
 
     @BindView(R.id.back)
     View back;
@@ -168,48 +167,23 @@ public class MainActivity extends BaseActivity{
         setListener();
         MyApplication.status=false;
     }
-    private class timeThread extends Thread {
-        @Override
-        public void run() {
-            super.run();
-            for (int i = 2; i > 0; i--) {
-                try {
-                    Message msg = handler.obtainMessage();
-                    msg.what=0;
-                    msg.arg1 = i;         //秒数赋值给消息
-                    handler.sendMessage(msg);
-                    Thread.sleep(3500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-    private void newhandler() {
-        handler = new Handler(INSTANCE.getMainLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if(msg.what==0){
-                    if(msg.arg1==1){
-                        if(dra.getAnimatable()==null){
-                            return;
-                        }
-                        dra.getAnimatable().stop();
-                        tv.setVisibility(View.VISIBLE);
-                    }else {
-                        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/agif.gif")).build();
-                        iv.setController(dra);
-                    }
-                }
-            }
-        };
-    }
     private void setViews() {
-        //setAnimation(R.anim.rotate,iv);
-     //   tv.setVisibility(View.GONE);
-        newhandler();
+        AssetManager assetManager = this.getAssets();
+        try {
+            AssetFileDescriptor afd = assetManager.openFd("mp3.mp3");
+            player = new MediaPlayer();
+            player.setDataSource(afd.getFileDescriptor(),
+                    afd.getStartOffset(), afd.getLength());
+            // player.setLooping(true);//循环播放
+            player.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        iv.setImageResource(R.drawable.progress);
+        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
         Mp3();
+        animationDrawable.start();
+
         SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
         final String token = sf2.getString("token","");//第二个参数为默认值
         final String username = sf2.getString("username","");//第二个参数为默认值
@@ -223,17 +197,6 @@ public class MainActivity extends BaseActivity{
             Log.i("dcz","有两个账号");
             iv2.setVisibility(View.VISIBLE);
             add.setVisibility(View.GONE);
-        }
-        AssetManager assetManager = this.getAssets();
-        try {
-            AssetFileDescriptor afd = assetManager.openFd("mp3.mp3");
-            player = new MediaPlayer();
-            player.setDataSource(afd.getFileDescriptor(),
-                    afd.getStartOffset(), afd.getLength());
-            // player.setLooping(true);//循环播放
-            player.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         iv2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -285,7 +248,6 @@ public class MainActivity extends BaseActivity{
         shuaxin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Mp3();
                 recreate();
             }
         });
@@ -338,8 +300,6 @@ public class MainActivity extends BaseActivity{
         rl4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*   Intent intent=new Intent(INSTANCE, FingerprinProtectActivity.class);
-                startActivity(intent);*/
             }
         });
         //关于
@@ -568,9 +528,9 @@ public class MainActivity extends BaseActivity{
 
     private void Mp3(){
         tv.setVisibility(View.GONE);
-        thread = null;
+        /*thread = null;
         thread = new timeThread();
-        thread.start();
+        thread.start();*/
         Timer timer=new Timer();
         TimerTask task=new TimerTask() {
             @Override
@@ -579,14 +539,6 @@ public class MainActivity extends BaseActivity{
             }
         };
         timer.schedule(task,200);
-    }
-    private void setAnimation(int id,ImageView iv){
-        Animation operatingAnim = AnimationUtils.loadAnimation(INSTANCE, id);
-        LinearInterpolator lin = new LinearInterpolator();
-        operatingAnim.setInterpolator(lin);
-        if (operatingAnim != null) {
-            iv.startAnimation(operatingAnim);
-        }
     }
 
     @Override
@@ -648,6 +600,51 @@ public class MainActivity extends BaseActivity{
                 }
             } catch (Exception e){
             }
+        }
+    }
+
+    private class timeThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            for (int i = 2; i > 0; i--) {
+                try {
+                    Message msg = handler.obtainMessage();
+                    msg.what=0;
+                    msg.arg1 = i;         //秒数赋值给消息
+                    handler.sendMessage(msg);
+                    Thread.sleep(3500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    private void newhandler() {
+        handler = new Handler(INSTANCE.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if(msg.what==0){
+                    if(msg.arg1==1){
+                        if(dra.getAnimatable()==null){
+                            return;
+                        }
+                        dra.getAnimatable().stop();
+                    }else {
+                        dra= Fresco.newDraweeControllerBuilder().setAutoPlayAnimations(true).setUri(Uri.parse("asset://com.example.duan.chao/agif.gif")).build();
+                        iv.setController(dra);
+                    }
+                }
+            }
+        };
+    }
+    private void setAnimation(int id,ImageView iv){
+        Animation operatingAnim = AnimationUtils.loadAnimation(INSTANCE, id);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        if (operatingAnim != null) {
+            iv.startAnimation(operatingAnim);
         }
     }
 }
