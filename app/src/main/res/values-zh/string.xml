@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">安全锁</string>
+    <string name="app_name">Makeys</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">你好</string>
@@ -217,5 +217,8 @@
     <string name="tishi89">当前绑定的安全邮箱</string>
     <string name="tishi90">更换安全邮箱</string>
     <string name="tishi91">请输入您的安全邮箱</string>
+    <string name="tishi92">请验证你的指纹</string>
+    <string name="tishi93">资料已提交</string>
+    <string name="tishi94">请耐心等待后台人员审核</string>
 
 </resources>

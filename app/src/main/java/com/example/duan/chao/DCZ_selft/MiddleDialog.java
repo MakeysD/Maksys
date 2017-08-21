@@ -1,11 +1,27 @@
 package com.example.duan.chao.DCZ_selft;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.HaveBean;
+import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
+import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.google.gson.Gson;
 
 
 /**
@@ -19,6 +35,7 @@ public class MiddleDialog<E> extends Dialog {
     private E bean;
     private int position;
     private View view;
+    private String content;
     /**
      *     确认与取消
      *
@@ -74,6 +91,25 @@ public class MiddleDialog<E> extends Dialog {
     }
 
     /**
+     *     指纹验证
+     *
+     * */
+    public MiddleDialog(Context context, final String content, int a, final onButtonCLickListener listener,int theme) {
+        super(context, theme);
+        view = View.inflate(context, R.layout.dialog_lock, null);
+        setContentView(view);
+        setCancelable(false);        //设置点击对话框以外的区域时，是否结束对话框
+        ((TextView) view.findViewById(R.id.content)).setText(content);
+        view.findViewById(R.id.execute).setOnClickListener(new View.OnClickListener() {      //确定
+            @Override
+            public void onClick(View v) {
+                dismiss();
+                listener.onButtonCancel();
+            }
+        });
+    }
+
+    /**
      *      下线通知
      *
      * */
@@ -111,7 +147,6 @@ public class MiddleDialog<E> extends Dialog {
 
     public interface onButtonCLickListener{
        public void onButtonCancel();
-       public void onButtonOK(String value);
     }
     public interface onButtonCLickListener2<E>{
         public void onActivieButtonClick(E bean, int position);

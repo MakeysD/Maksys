@@ -516,7 +516,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:src="@mipmap/shouye1"/>
             <ImageView
@@ -525,7 +525,7 @@
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginRight="20dp"
                 android:src="@mipmap/shouye2"/>
         </RelativeLayout>

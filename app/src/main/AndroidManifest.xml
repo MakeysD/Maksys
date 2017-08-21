@@ -228,7 +228,8 @@
         <activity android:name=".DCZ_activity.SettingDataActivity" />
         <activity android:name=".DCZ_activity.LanguageActivity" />
         <activity android:name=".DCZ_activity.HaveScanActivity" />
-        <activity android:name=".DCZ_activity.HavaMoneyActivity"></activity>
+        <activity android:name=".DCZ_activity.HavaMoneyActivity" />
+        <activity android:name=".DCZ_activity.SettingDataResultActivity"></activity>
     </application>
 
 </manifest>

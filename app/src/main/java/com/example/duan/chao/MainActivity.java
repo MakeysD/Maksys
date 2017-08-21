@@ -5,7 +5,6 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -13,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.drawable.AnimationDrawable;
+import android.hardware.fingerprint.FingerprintManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,7 +23,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.os.CancellationSignal;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -61,6 +60,7 @@ import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity{
     private Dialog dialog;
     private LoginOkBean data;
     private MediaPlayer player;
+    private MiddleDialog dia;
 
     //下面的是极光需要
     private MessageReceiver mMessageReceiver;
@@ -163,6 +164,7 @@ public class MainActivity extends BaseActivity{
         CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
+        Handle();
         setViews();
         setListener();
         MyApplication.status=false;
@@ -221,8 +223,6 @@ public class MainActivity extends BaseActivity{
         }else {
             button2.setChecked(false);
         }
-        //初始化指纹.
-        fingerprintManager = FingerprintManagerCompat.from(this);
     }
 
     private void setListener() {
@@ -406,6 +406,8 @@ public class MainActivity extends BaseActivity{
      *   指纹身份验证这里开始
      * */
     private void startZhiwen(){
+        //初始化指纹.
+        fingerprintManager = FingerprintManagerCompat.from(this);
         //先判断有没有指纹传感器
         if (!fingerprintManager.isHardwareDetected()) {
             // 没有检测到指纹传感器，显示对话框告诉用户
@@ -416,6 +418,10 @@ public class MainActivity extends BaseActivity{
             button2.setChecked(false);
             new MiddleDialog(INSTANCE,this.getString(R.string.no_fingerprint_enrolled_dialog_title),R.style.registDialog).show();
         } else {
+            //弹框让用户确认指纹
+       /*     start();    //开始验证指纹
+            setDialog(this.getString(R.string.tishi92));*/
+
             try {
                 myAuthCallback = new MyAuthCallback(handler);
                 MyApplication.sf.edit().putBoolean("zhiwen", true).commit();
@@ -544,6 +550,9 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onDestroy() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        if (cancellationSignal != null) {
+            cancellationSignal.cancel();
+        }
         super.onDestroy();
     }
 
@@ -600,6 +609,122 @@ public class MainActivity extends BaseActivity{
                 }
             } catch (Exception e){
             }
+        }
+    }
+
+    private void setDialog(String content){
+        if(dia!=null){
+            if(dia.isShowing()){
+                dia.dismiss();
+            }
+        }
+        dia=new MiddleDialog(INSTANCE,content,0,new MiddleDialog.onButtonCLickListener(){
+            @Override
+            public void onButtonCancel() {
+                if(cancellationSignal!=null){
+                    cancellationSignal.cancel();
+                }
+                cancellationSignal = null;
+                dia.dismiss();
+            }
+        },R.style.registDialog);
+        dia.show();
+    }
+
+    private void start(){
+        try {
+            myAuthCallback = new MyAuthCallback(handler);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 指纹身份验证这里开始。
+        try {
+            CryptoObjectHelper cryptoObjectHelper = new CryptoObjectHelper();
+            if (cancellationSignal == null) {
+                cancellationSignal = new CancellationSignal();
+            }
+            fingerprintManager.authenticate(cryptoObjectHelper.buildCryptoObject(), 0,
+                    cancellationSignal, myAuthCallback, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(INSTANCE,R.string.setting_error, Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void Handle(){
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what) {
+                    //识别成功
+                    case MSG_AUTH_SUCCESS:
+                        setDialog(INSTANCE.getString(R.string.fingerprint_success));
+                        cancellationSignal = null;
+                        MyApplication.sf.edit().putBoolean("zhiwen", true).commit();
+                        MyApplication.zhiwen=true;
+                        break;
+                    //识别失败
+                    case MSG_AUTH_FAILED:
+                        setDialog(INSTANCE.getString(R.string.fingerprint_not_recognized));
+                        break;
+                    case MSG_AUTH_ERROR:
+                        Log.i("dcz","MSG_AUTH_ERROR");
+                        handleErrorCode(msg.arg1);
+                        break;
+                    case MSG_AUTH_HELP:
+                        Log.i("dcz","MSG_AUTH_HELP");
+                        handleHelpCode(msg.arg1);
+                        break;
+                }
+            }
+        };
+    }
+    private void handleHelpCode(int code) {
+        switch (code) {
+            case FingerprintManager.FINGERPRINT_ACQUIRED_GOOD:
+                setDialog(INSTANCE.getString(R.string.AcquiredGood_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ACQUIRED_IMAGER_DIRTY:
+                setDialog(INSTANCE.getString(R.string.AcquiredImageDirty_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ACQUIRED_INSUFFICIENT:
+                setDialog(INSTANCE.getString(R.string.AcquiredGood_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ACQUIRED_PARTIAL:
+                setDialog(INSTANCE.getString(R.string.AcquiredPartial_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ACQUIRED_TOO_FAST:
+                setDialog(INSTANCE.getString(R.string.AcquiredTooFast_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ACQUIRED_TOO_SLOW:
+                setDialog(INSTANCE.getString(R.string.AcquiredToSlow_warning));
+                break;
+        }
+    }
+
+    private void handleErrorCode(int code) {
+        switch (code) {
+            //取消了传感器的使用
+            case FingerprintManager.FINGERPRINT_ERROR_CANCELED:
+                setDialog(INSTANCE.getString(R.string.ErrorCanceled_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ERROR_HW_UNAVAILABLE:
+                setDialog(INSTANCE.getString(R.string.ErrorHwUnavailable_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ERROR_LOCKOUT:
+                //指纹锁定了
+                MyApplication.zhiwen_namber=MyApplication.zhiwen_namber+1;
+                setDialog(INSTANCE.getString(R.string.ErrorLockout_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ERROR_NO_SPACE:
+                setDialog(INSTANCE.getString(R.string.ErrorNoSpace_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ERROR_TIMEOUT:
+                setDialog(INSTANCE.getString(R.string.ErrorTimeout_warning));
+                break;
+            case FingerprintManager.FINGERPRINT_ERROR_UNABLE_TO_PROCESS:
+                setDialog(INSTANCE.getString(R.string.ErrorUnableToProcess_warning));
+                break;
         }
     }
 

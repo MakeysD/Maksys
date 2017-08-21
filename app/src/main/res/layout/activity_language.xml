@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:background="@color/bg2">
             <TextView
+                android:id="@+id/tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text07"
@@ -49,12 +50,13 @@
                 android:layout_marginLeft="@dimen/left"
                 android:text="@string/tishi35"/>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/iv1"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/selector_check"/>
+                android:src="@mipmap/select"/>
         </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
@@ -65,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text07"
@@ -74,12 +77,14 @@
                 android:layout_marginLeft="@dimen/left"
                 android:text="@string/tishi36"/>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/iv2"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/selector_check"/>
+                android:src="@mipmap/select"
+                android:visibility="gone"
+                android:layout_marginRight="20dp" />
         </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
@@ -90,25 +95,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tv3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text07"
                 android:textSize="@dimen/text00"
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
-                android:layout_marginLeft="23dp"
-                android:text="@string/tishi36"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="23dp" />
+                android:layout_marginLeft="@dimen/left"
+                android:text="@string/tishi37"/>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/iv3"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/selector_check"/>
+                android:src="@mipmap/select"
+                android:visibility="gone"
+                android:layout_marginRight="20dp" />
         </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
@@ -119,6 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tv4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text07"
@@ -126,14 +131,16 @@
                 android:paddingTop="17dp"
                 android:paddingBottom="17dp"
                 android:layout_marginLeft="@dimen/left"
-                android:text="@string/tishi36"/>
+                android:text="@string/tishi38"/>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/iv4"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/selector_check"/>
+                android:src="@mipmap/select"
+                android:visibility="gone"
+                android:layout_marginRight="20dp" />
         </RelativeLayout>
         <TextView
             android:layout_width="match_parent"

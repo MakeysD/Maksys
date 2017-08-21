@@ -93,11 +93,11 @@ public class DialogUtil {
         /*if(lv.equals("ok")){
             v = inflater.inflate(R.layout.dialog, null);
         }else {*/
-            v = inflater.inflate(R.layout.dialog2, null);
+            v = inflater.inflate(R.layout.dialog_lock, null);
        // }
         RelativeLayout rl = (RelativeLayout) v.findViewById(R.id.dialog_rl);
-        TextView tv = (TextView) v.findViewById(R.id.dialog_tv);
-        tv.setText(msg);
+       /* TextView tv = (TextView) v.findViewById(R.id.dialog_tv);
+        tv.setText(msg);*/
         final Dialog dialog = new Dialog(context, R.style.loading_dialogs);
         dialog.setContentView(rl, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

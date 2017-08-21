@@ -1,5 +1,6 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -57,7 +58,9 @@ public class SettingDataActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(INSTANCE,SettingDataResultActivity.class);
+                finish();
+                startActivity(intent);
             }
         });
     }

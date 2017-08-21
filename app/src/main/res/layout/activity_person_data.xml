@@ -35,10 +35,10 @@
     </RelativeLayout>
     <ImageView
         android:layout_width="180dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="40dp"
-        android:background="@mipmap/zhanwei"/>
+        android:layout_height="120dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:src="@mipmap/shenfen"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:id="@+id/button_hui"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/yuanjiaohui"
             android:gravity="center"
             android:paddingBottom="10dp"
@@ -68,7 +68,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/yuanjiaolan"
             android:gravity="center"
             android:paddingBottom="10dp"

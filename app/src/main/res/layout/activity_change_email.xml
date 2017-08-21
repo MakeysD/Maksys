@@ -39,7 +39,7 @@
         android:textColor="@color/white"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
-        android:textSize="@dimen/text00"
+        android:textSize="@dimen/text01"
         android:text="请补全原绑定安全邮箱：857999639@qq.com"/>
     <TextView
         android:id="@+id/xian1"
@@ -66,7 +66,7 @@
             android:src="@mipmap/email2" />
 
         <EditText
-            android:id="@+id/et_mima"
+            android:id="@+id/et"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
@@ -122,6 +122,7 @@
             android:paddingTop="10dp"
             android:text="@string/button"
             android:textColor="@color/white"
+            android:visibility="gone"
             android:textSize="@dimen/title"/>
     </RelativeLayout>
 </LinearLayout>

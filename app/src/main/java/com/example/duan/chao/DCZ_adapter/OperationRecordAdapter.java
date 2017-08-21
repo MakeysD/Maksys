@@ -42,10 +42,11 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
         String datetime = format.format(time);
 
         if(position==0){
-           // holder.xian1.setVisibility(View.GONE);
             holder.tou.setVisibility(View.VISIBLE);
+            holder.xian.setVisibility(View.INVISIBLE);
             holder.title.setText(datetime);
         }else {
+            holder.xian.setVisibility(View.VISIBLE);
             Long btime = list.get(position-1).getCreateTime();
             SimpleDateFormat bformat = new SimpleDateFormat("yyyy-MM-dd");
             String bdatetime = bformat.format(btime);
@@ -56,11 +57,16 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
                 holder.tou.setVisibility(View.VISIBLE);
                 holder.title.setText(datetime);
             }
-           // holder.xian1.setVisibility(View.VISIBLE);
         }
         holder.name.setText(list.get(position).getSystemName());
         holder.ip.setText(list.get(position).getIpAddr());
-        holder.time.setText(list.get(position).getCreateTime()+"");
+
+        Long timec = list.get(position).getCreateTime();
+        SimpleDateFormat formatc = new SimpleDateFormat("HH:mm:ss");
+        String datetimec = formatc.format(timec);
+        /*String[] strs = datetimec.toString().split(" ");
+        String timeb = strs[1];*/
+        holder.time.setText(datetimec);
         /*    adapter=new OperationRecord2Adapter(context,list);
             holder.lv.setAdapter(adapter);*/
     }
@@ -71,8 +77,7 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        /*TextView xian1;
-        ListView lv;*/
+        TextView xian;
         LinearLayout tou;
         TextView title;
         TextView time;
@@ -80,8 +85,8 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
         TextView ip;
         public ViewHolder(View view) {
             super(view);
-           /* xian1=(TextView)view.findViewById(R.id.xian1);
-            lv=(ListView) view.findViewById(R.id.lv);*/
+            //lv=(ListView) view.findViewById(R.id.lv);
+            xian=(TextView)view.findViewById(R.id.xian1);
             tou=(LinearLayout)view.findViewById(R.id.tou);
             title=(TextView)view.findViewById(R.id.title);
             time=(TextView)view.findViewById(R.id.time);

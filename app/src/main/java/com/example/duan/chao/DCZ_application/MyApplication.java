@@ -80,7 +80,7 @@ public class MyApplication extends Application{
         Log.i("dcz_设备型号",ShebeiUtil.getPhoneModel());
         Log.i("dcz_手机品牌",ShebeiUtil.getPhoneBrand());
         Log.i("dcz_手机版本",ShebeiUtil.getSystemVersion());
-        device=ShebeiUtil.getDeviceId(this);
+        device=DSA.md5(ShebeiUtil.getDeviceId(this));
         xinghao=ShebeiUtil.getPhoneModel();
     }
     public static Context getContext(){
