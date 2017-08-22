@@ -15,7 +15,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
+import com.example.duan.chao.DCZ_bean.ScanBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -27,6 +29,7 @@ import com.example.duan.chao.zxing_code.camera.CameraManager;
 import com.example.duan.chao.zxing_code.decoding.CaptureActivityHandler;
 import com.example.duan.chao.zxing_code.decoding.InactivityTimer;
 import com.example.duan.chao.zxing_code.view.ViewfinderView;
+import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
@@ -261,38 +264,17 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
     private void getTicketInfo(String serial) {
         this.serial = serial;
         dialog.show();
-        Log.i("yc","扫二维码结果是："+serial);
-        if(serial!=null){
-            getData("");
-            if(serial.contains("indoor")){
-                //室内骑行
-                bindBike(serial.substring(serial.lastIndexOf(":")+1));
-            }else if(serial.contains("outdoor")){
-                //添加车辆
-                addBike(serial);
-            }else if (serial.contains("US")) {
-                //添加好友s
-                toUserInfo((Integer.parseInt(serial.substring(serial.lastIndexOf(":")+1))-100000));
-            }else if(serial.contains("qz")) {
-                //扫码充值
-                String user_id = serial.substring(serial.lastIndexOf(":") + 1);
-
+        Log.i("dcz","扫二维码结果是："+serial);
+        if(serial.contains("uuid")&&serial.contains("systemId")){
+            String systemId = serial.substring(serial.indexOf("=")+1,serial.indexOf("&"));
+            String uuid = serial.substring(serial.lastIndexOf("=")+1);
+            Log.i("dcz","uuid结果："+uuid);
+            Log.i("dcz","systemId："+systemId);
+            MyApplication.reqSysId=systemId;
+            if(serial!=null){
+                getData(uuid);
             }
         }
-
-    }
-
-    private void bindBike(String code){
-
-    }
-
-    private void addBike(String code){
-
-    }
-
-
-    private void toUserInfo(int code){
-
     }
 
     private void getData(String uuid){
@@ -311,16 +293,20 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        Intent intent=new Intent(INSTANCE,HaveScanActivity.class);
+                        Intent intent=new Intent(INSTANCE,HaveActivity.class);
+                        MyApplication.reqFlowId=response.body().getData().getAuthzId();
+                        Log.d("dcz_req",MyApplication.reqFlowId);
                         startActivity(intent);
                         finish();
                     }else {
                        // new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                         Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }else {
                    // new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
                     Toast.makeText(INSTANCE,"网络异常", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
             @Override
@@ -328,6 +314,7 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
                 Toast.makeText(INSTANCE,"解析", Toast.LENGTH_SHORT).show();
+                finish();
                 //new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });

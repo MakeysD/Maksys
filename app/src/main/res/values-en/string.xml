@@ -186,6 +186,7 @@
     <string name="tishi58">Has change</string>
     <string name="tishi59">Switching login mode</string>
     <string name="tishi60">Forget your password</string>
+    <string name="tishi60a">手势密码不可用</string>
     <string name="tishi61">Has been set</string>
     <string name="tishi62">Is not set</string>
     <string name="tishi63">No authentication</string>
@@ -217,5 +218,9 @@
     <string name="tishi89">当前绑定的安全邮箱</string>
     <string name="tishi90">更换安全邮箱</string>
     <string name="tishi91">请输入您的安全邮箱</string>
+    <string name="tishi92">请验证你的指纹</string>
+    <string name="tishi93">资料已提交</string>
+    <string name="tishi94">请耐心等待后台人员审核</string>
+    <string name="tishi95">重新登录</string>
 
 </resources>

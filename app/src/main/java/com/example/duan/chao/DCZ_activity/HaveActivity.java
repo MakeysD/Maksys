@@ -43,6 +43,7 @@ public class HaveActivity extends BaseActivity {
     private HaveActivity INSTANCE;
     private Dialog dialog;
     private Handler handler = null;
+    private String authzId;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.ok)

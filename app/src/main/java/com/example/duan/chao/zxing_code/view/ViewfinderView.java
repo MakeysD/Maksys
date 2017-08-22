@@ -210,7 +210,7 @@ public final class ViewfinderView extends View {
 //            canvas.drawRect(frame.left + MIDDLE_LINE_PADDING, slideTop - MIDDLE_LINE_WIDTH / 2, frame.right - MIDDLE_LINE_PADDING, slideTop + MIDDLE_LINE_WIDTH / 2, paint);
 
            Bitmap laserLineBitmap = BitmapFactory.decodeResource(getResources(), laserLineResId);
-            int h = laserLineBitmap.getHeight();//取原图高
+            int h = laserLineBitmap.getHeight()/2;//取原图高
             //如果没有设置线条高度，则用图片原始高度
 //            if (laserLineHeight == Scanner.dp2px(getContext(), DEFAULT_LASER_LINE_HEIGHT)) {
 //                laserLineHeight = laserLineBitmap.getHeight() / 2;

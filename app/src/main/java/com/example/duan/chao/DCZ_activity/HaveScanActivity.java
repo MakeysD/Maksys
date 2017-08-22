@@ -16,12 +16,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
+import com.google.gson.Gson;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,16 +34,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HaveScanActivity extends Activity {
+public class HaveScanActivity extends BaseActivity {
     private HaveScanActivity INSTANCE;
     private Dialog dialog;
     private Handler handler = null;
-    @BindView(R.id.back)
-    View back;
+    private String message;
+    private HaveBean result;
     @BindView(R.id.ok)
     TextView ok;
     @BindView(R.id.no)
     TextView no;
+    @BindView(R.id.sms)
+    TextView sms;
+    @BindView(R.id.business)
+    TextView business;
     @BindView(R.id.anima)
     RelativeLayout anima;
     @BindView(R.id.iv1)
@@ -64,6 +70,9 @@ public class HaveScanActivity extends Activity {
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(ok).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(no).rippleCorner(MyApplication.dp2Px()).create();
+        message=getIntent().getStringExtra("message");
+        Gson mGson = new Gson();
+        result = mGson.fromJson(message, HaveBean.class);
         setViews();
         setListener();
     }
@@ -73,17 +82,13 @@ public class HaveScanActivity extends Activity {
      * */
     private void setViews() {
         newhandler();
+        sms.setText(result.getRandomCode());
+        business.setText(result.getBusinessName());
     }
     /**
      *  监听
      * */
     private void setListener() {
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         anima.setEnabled(false);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,6 +10,7 @@ public class LoginOkBean extends LoginBean<LoginOkBean>{
     private String nickname;
     private String username;
     private String userId;
+    private String authzId;
 
     public String getRefreshToken() {
         return refreshToken;
@@ -41,5 +42,13 @@ public class LoginOkBean extends LoginBean<LoginOkBean>{
 
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
+    }
+
+    public String getAuthzId() {
+        return authzId;
+    }
+
+    public void setAuthzId(String authzId) {
+        this.authzId = authzId;
     }
 }

@@ -32,12 +32,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HavaMoneyActivity extends Activity {
+public class HavaMoneyActivity extends BaseActivity {
     private HavaMoneyActivity INSTANCE;
     private Dialog dialog;
     private Handler handler = null;
-    @BindView(R.id.back)
-    View back;
     @BindView(R.id.ok)
     TextView ok;
     @BindView(R.id.no)
@@ -77,12 +75,6 @@ public class HavaMoneyActivity extends Activity {
      *  监听
      * */
     private void setListener() {
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         anima.setEnabled(false);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

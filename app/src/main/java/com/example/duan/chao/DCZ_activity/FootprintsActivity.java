@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.Footprints1Adapter;
@@ -49,6 +50,10 @@ public class FootprintsActivity extends BaseActivity {
     GridViewForScrollView lv2;
     @BindView(R.id.refresh_view)
     PullToRefreshLayout pullToRefreshLayout;
+    @BindView(R.id.tv1)
+    TextView tv1;
+    @BindView(R.id.tv2)
+    TextView tv2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,12 +123,18 @@ public class FootprintsActivity extends BaseActivity {
                             for(int i=0;i<response.body().getData().getList().size();i++){
                                 list.add(response.body().getData().getList().get(i));
                             }
-                            if(adapter2==null){
-                                adapter2=new Footprints2Adapter(INSTANCE,list);
-                                lv2.setAdapter(adapter2);
+                            if(list.size()>0){
+                                tv2.setVisibility(View.VISIBLE);
+                                if(adapter2==null){
+                                    adapter2=new Footprints2Adapter(INSTANCE,list);
+                                    lv2.setAdapter(adapter2);
+                                }else {
+                                    adapter2.notify(list);
+                                }
                             }else {
-                                adapter2.notify(list);
+                                tv2.setVisibility(View.GONE);
                             }
+
                         }else {
                             if(!MyApplication.token.equals("")){
                                 new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
@@ -162,8 +173,14 @@ public class FootprintsActivity extends BaseActivity {
                             Log.i("dcz","data2返回成功");
                             if(adapter1==null){
                                 list2 = response.body().getData();
-                                adapter1=new Footprints1Adapter(INSTANCE,list2);
-                                lv1.setAdapter(adapter1);
+                                if(list2.size()>0){
+                                    adapter1=new Footprints1Adapter(INSTANCE,list2);
+                                    lv1.setAdapter(adapter1);
+                                    tv1.setVisibility(View.VISIBLE);
+                                }else {
+                                    tv1.setVisibility(View.GONE);
+                                }
+
                             }else {
                                 adapter1.Notify(list2);
                             }

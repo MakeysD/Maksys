@@ -17,6 +17,7 @@ public class HaveBean {
     private String reqFlowId;
     private String reqSysId;
     private String username;
+    private String randomCode;
 
     public String getBusinessName() {
         return businessName;
@@ -48,5 +49,13 @@ public class HaveBean {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getRandomCode() {
+        return randomCode;
+    }
+
+    public void setRandomCode(String randomCode) {
+        this.randomCode = randomCode;
     }
 }

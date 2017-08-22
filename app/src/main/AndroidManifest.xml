@@ -63,7 +63,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".DCZ_activity.AppStartActivity"
-            android:theme="@style/Theme.AppStartLoadTranslucent"> >
+            android:theme="@style/Theme.AppStartLoadTranslucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

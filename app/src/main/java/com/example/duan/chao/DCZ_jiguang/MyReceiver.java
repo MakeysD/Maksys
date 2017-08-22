@@ -8,13 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
-import com.example.duan.chao.DCZ_activity.HaveActivity;
-import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_activity.HaveScanActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.MainActivity;
 
 import org.json.JSONException;
@@ -51,12 +48,12 @@ public class MyReceiver extends BroadcastReceiver {
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息2: " + bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE));
 				//下线通知
 				if(bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE).equals("2")){
-					jiaoyi(context);
-				}else {
+					processCustomMessage(context, bundle);
+				}else if(bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE).equals("1")){
 					isRunningForeground(context);
+				}else {
+					jiaoyi(context);
 				}
-				processCustomMessage(context, bundle);
-
 			} else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的通知");
 				int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
@@ -152,17 +149,19 @@ public class MyReceiver extends BroadcastReceiver {
 		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
 		ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
 		String currentPackageName = cn.getPackageName();
+		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 		//判断APP是否在前台
 		if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(context.getPackageName())) {
-			Intent i = new Intent(context, HaveActivity.class);
+			Intent i = new Intent(context, HaveScanActivity.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+			i.putExtra("message",message);
 			context.startActivity(i);
 			return true ;
 		}else {
 			/*Intent intent2 = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
 			context.startActivity(intent2 );*/
-			Intent i = new Intent(context, HaveActivity.class);
-			i.putExtras(bundle);
+			Intent i = new Intent(context, HaveScanActivity.class);
+			i.putExtra("message",message);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 			return false ;
@@ -173,9 +172,11 @@ public class MyReceiver extends BroadcastReceiver {
 		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
 		ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
 		String currentPackageName = cn.getPackageName();
+		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 		//判断APP是否在前台
 		if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(context.getPackageName())) {
 			Intent i = new Intent(context, HavaMoneyActivity.class);
+			i.putExtra("message",message);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
 			context.startActivity(i);
 			return true ;
@@ -183,7 +184,7 @@ public class MyReceiver extends BroadcastReceiver {
 			/*Intent intent2 = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
 			context.startActivity(intent2 );*/
 			Intent i = new Intent(context, HavaMoneyActivity.class);
-			i.putExtras(bundle);
+			i.putExtra("message",message);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
 			return false ;
