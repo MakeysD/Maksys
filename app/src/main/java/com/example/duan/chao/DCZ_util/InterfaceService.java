@@ -189,4 +189,16 @@ public interface InterfaceService {
                             @Field("agreement") String agreement,
                            @Field("sign") String sign);
 
+    /**
+     *  扫码
+     */
+    @FormUrlEncoded
+    @POST("safe/boundQRCode ")
+    Call<LoginOkBean> scan(@Field("reqSysId") String reqSysId,
+                           @Field("srcReqSysId") String srcReqSysId,
+                           @Field("username")String username,
+                           @Field("uuid") String uuid,
+                           @Field("nonce") String nonce,
+                           @Field("sign") String sign);
+
 }

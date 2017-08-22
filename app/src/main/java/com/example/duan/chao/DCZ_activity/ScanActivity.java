@@ -12,8 +12,16 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.LoginOkBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_util.DSA;
+import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.StatusBarUtil;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 import com.example.duan.chao.zxing_code.camera.CameraManager;
 import com.example.duan.chao.zxing_code.decoding.CaptureActivityHandler;
@@ -27,6 +35,10 @@ import java.util.Vector;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.Field;
 
 
 /**
@@ -47,6 +59,7 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
     private static SurfaceView surfaceView;
     private static ScanActivity INSTANCE;
     public static Dialog dialog;
+    private String sign;
 
     @BindView(R.id.back)
     View back;
@@ -66,6 +79,7 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
      *  数据初始化
      * */
     private void setViews() {
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"2");
         viewfinderView = (ViewfinderView) findViewById(R.id.capture_viewfinder);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(INSTANCE);
@@ -246,18 +260,16 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
 
     private void getTicketInfo(String serial) {
         this.serial = serial;
+        dialog.show();
         Log.i("yc","扫二维码结果是："+serial);
         if(serial!=null){
+            getData("");
             if(serial.contains("indoor")){
-//                Intent intent=new Intent(INSTANCE,RoomCyclingActivity.class);
-//                startActivity(intent);
                 //室内骑行
                 bindBike(serial.substring(serial.lastIndexOf(":")+1));
-
             }else if(serial.contains("outdoor")){
                 //添加车辆
                 addBike(serial);
-
             }else if (serial.contains("US")) {
                 //添加好友s
                 toUserInfo((Integer.parseInt(serial.substring(serial.lastIndexOf(":")+1))-100000));
@@ -281,5 +293,43 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
 
     private void toUserInfo(int code){
 
+    }
+
+    private void getData(String uuid){
+        String max="8579996398";
+        String str ="nonce="+max+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username+"&uuid="+uuid;
+        byte[] data = str.getBytes();
+        try {
+            sign = DSA.sign(data, MyApplication.private_key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        HttpServiceClient.getInstance().scan("2001",MyApplication.reqSysId,MyApplication.username, uuid,"8579963998",sign).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        Intent intent=new Intent(INSTANCE,HaveScanActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                       // new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                   // new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
+                    Toast.makeText(INSTANCE,"网络异常", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                Toast.makeText(INSTANCE,"解析", Toast.LENGTH_SHORT).show();
+                //new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+            }
+        });
     }
 }
