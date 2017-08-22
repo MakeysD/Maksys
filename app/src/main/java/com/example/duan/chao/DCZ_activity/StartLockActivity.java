@@ -32,12 +32,20 @@ public class StartLockActivity extends BaseActivity {
     TextView change;        //去进行指纹解锁
     @BindView(R.id.wangji)
     TextView wangji;        //忘记密码
+    @BindView(R.id.name)
+    TextView name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_lock);
         INSTANCE=this;
         ButterKnife.bind(this);
+        //判断是否设置过指纹锁
+        if(MyApplication.zhiwen==true){
+            change.setVisibility(View.VISIBLE);
+        }else {
+            change.setVisibility(View.GONE);
+        }
         mScreenObserver = new ScreenObserver(this);
         mScreenObserver.requestScreenStateUpdate(new ScreenObserver.ScreenStateListener() {
             @Override
@@ -90,7 +98,13 @@ public class StartLockActivity extends BaseActivity {
         wangji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+                MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                MyApplication.zhiwen=false;MyApplication.sf.edit().putBoolean("zhiwen", false).commit();
+                LockUtil.setPwdStatus(INSTANCE,false);
+                Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -120,6 +134,7 @@ public class StartLockActivity extends BaseActivity {
      */
     private void initView(){
         tvWarn=getViewById(R.id.tvWarn);
+        name.setText(MyApplication.username);
     }
 
     @Override

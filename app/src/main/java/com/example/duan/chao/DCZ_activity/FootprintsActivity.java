@@ -83,7 +83,7 @@ public class FootprintsActivity extends BaseActivity {
             public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
                 Log.i("dcz","onRefresh");
                 num=1;
-                size=10;
+                list.clear();
                 getData();
                 getData2();
             }
@@ -92,7 +92,6 @@ public class FootprintsActivity extends BaseActivity {
             public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
                 getData();
                 num++;
-                size=size+10;
             }
 
             @Override
@@ -116,7 +115,9 @@ public class FootprintsActivity extends BaseActivity {
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz","data1返回成功");
-                            list=response.body().getData().getList();
+                            for(int i=0;i<response.body().getData().getList().size();i++){
+                                list.add(response.body().getData().getList().get(i));
+                            }
                             if(adapter2==null){
                                 adapter2=new Footprints2Adapter(INSTANCE,list);
                                 lv2.setAdapter(adapter2);
@@ -148,7 +149,7 @@ public class FootprintsActivity extends BaseActivity {
      * 获取各子系统的在线情况
      * */
     public void getData2(){
-        HttpServiceClient.getInstance().getOnline(MyApplication.username,"5896523256").enqueue(new Callback<Footprints2Bean>() {
+        HttpServiceClient.getInstance().getOnline(num,size,MyApplication.username,"5896523256").enqueue(new Callback<Footprints2Bean>() {
             @Override
             public void onResponse(Call<Footprints2Bean> call, Response<Footprints2Bean> response) {
                 if(dialog.isShowing()){

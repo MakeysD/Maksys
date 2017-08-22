@@ -185,7 +185,8 @@
     <string name="tishi57">有效期</string>
     <string name="tishi58">已换号</string>
     <string name="tishi59">切换登录方式</string>
-    <string name="tishi60">忘记手势密码</string>
+    <string name="tishi60">指纹锁不可用</string>
+    <string name="tishi60a">手势密码不可用</string>
     <string name="tishi61">已设置</string>
     <string name="tishi62">未设置</string>
     <string name="tishi63">暂未认证</string>
@@ -220,5 +221,6 @@
     <string name="tishi92">请验证你的指纹</string>
     <string name="tishi93">资料已提交</string>
     <string name="tishi94">请耐心等待后台人员审核</string>
+    <string name="tishi95">重新登录</string>
 
 </resources>

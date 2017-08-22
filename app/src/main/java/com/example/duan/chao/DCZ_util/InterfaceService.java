@@ -139,7 +139,9 @@ public interface InterfaceService {
      */
     @FormUrlEncoded
     @POST("getUserOnLineList ")
-    Call<Footprints2Bean> getOnline(@Field("username") String username,
+    Call<Footprints2Bean> getOnline(@Field("pageNumber") int pageNumber,
+                                    @Field("pageSize") int pageSize,
+                                    @Field("username") String username,
                                     @Field("nonce") String nonce);
 
     /**

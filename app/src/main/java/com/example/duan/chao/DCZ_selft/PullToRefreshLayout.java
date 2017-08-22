@@ -338,7 +338,7 @@ public class PullToRefreshLayout extends RelativeLayout
 		case REFRESHING:
 			// 正在刷新状态
 			pullView.clearAnimation();
-			refreshingView.setVisibility(View.VISIBLE);
+		//	refreshingView.setVisibility(View.VISIBLE);
 			pullView.setVisibility(View.INVISIBLE);
 			refreshingView.startAnimation(refreshingAnimation);
 			refreshStateTextView.setText(R.string.refreshing);

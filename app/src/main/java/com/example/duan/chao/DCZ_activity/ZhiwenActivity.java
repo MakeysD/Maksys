@@ -67,6 +67,11 @@ public class ZhiwenActivity extends BaseActivity {
         setContentView(R.layout.activity_zhiwen);
         INSTANCE=this;
         ButterKnife.bind(this);
+        if(LockUtil.getPwdStatus(INSTANCE)){
+            change.setVisibility(View.VISIBLE);
+        }else {
+            change.setVisibility(View.GONE);
+        }
         setViews();
         setListener();
     }
@@ -155,7 +160,18 @@ public class ZhiwenActivity extends BaseActivity {
                 }
             }
         });
-
+        wangji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+                MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                MyApplication.zhiwen=false;MyApplication.sf.edit().putBoolean("zhiwen", false).commit();
+                LockUtil.setPwdStatus(INSTANCE,false);
+                Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

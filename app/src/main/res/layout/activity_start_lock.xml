@@ -50,6 +50,7 @@
                 fresco:placeholderImageScaleType="fitCenter"
                 app:roundAsCircle="true"/>
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text01"
@@ -105,7 +106,7 @@
             android:padding="5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:text="@string/tishi60"
+            android:text="@string/tishi60a"
             android:textColor="#3c3c3c"
             android:layout_marginRight="50px"
             android:layout_marginBottom="80px"/>

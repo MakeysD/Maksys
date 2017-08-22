@@ -46,7 +46,7 @@ public class AppStartActivity extends BaseActivity {
          */
         setContentView(rootView);
         quan();
-        mHandler = new Handler();
+       /* mHandler = new Handler();
         //初始化渐变动画
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.alpha);
         //开始播放动画
@@ -76,7 +76,7 @@ public class AppStartActivity extends BaseActivity {
                     }
                 });
             }
-        });
+        });*/
     }
 
     private void suo() {
@@ -99,7 +99,7 @@ public class AppStartActivity extends BaseActivity {
                 startActivity(intent);
                 //判断当前是否设置过手势锁密码
             }else if(LockUtil.getPwdStatus(this)==true&& MyApplication.suo==true){
-                Intent intent=new Intent(this,LoginLockActivity.class);
+                Intent intent=new Intent(this,StartLockActivity.class);
                 intent.putExtra("type","1");
                 startActivity(intent);
                 finish();
@@ -119,12 +119,12 @@ public class AppStartActivity extends BaseActivity {
         } else {
             Log.i("dcz","执行2");
             //延迟2S跳转
-           /* new Handler().postDelayed(new Runnable() {
+            new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     suo();
                 }
-            }, 1000);*/
+            }, 700);
         }
     }
     @Override
