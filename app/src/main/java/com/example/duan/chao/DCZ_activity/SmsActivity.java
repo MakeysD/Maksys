@@ -100,6 +100,7 @@ public class SmsActivity extends BaseActivity {
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    getSms();
                     code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
                     code.setTextColor(getResources().getColor(R.color.white));
                     code.setEnabled(false);                     //设置不可点击
@@ -176,7 +177,7 @@ public class SmsActivity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
-        HttpServiceClient.getInstance().login(phone,password,null,MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login(phone,password,et_code.getText().toString(),MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
@@ -201,6 +202,39 @@ public class SmsActivity extends BaseActivity {
                         Intent intent=new Intent(INSTANCE,MainActivity.class);
                         startActivity(intent);
                         ActivityUtils.getInstance().popAllActivities();
+                    }else {
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+            }
+        });
+    }
+
+    /***
+     * 调取接口拿到服务器数据
+     * */
+    public void getSms(){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        if(MyApplication.rid==null||MyApplication.rid.equals("")){
+            MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
+        }
+        HttpServiceClient.getInstance().sendsms("13262638723","2",null).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+
                     }else {
                         new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                     }

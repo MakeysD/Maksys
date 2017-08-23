@@ -36,6 +36,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
 import com.example.duan.chao.zxing_code.camera.CameraManager;
 import com.example.duan.chao.zxing_code.decode.DecodeFormatManager;
@@ -83,6 +84,7 @@ public abstract class CaptureActivity extends BaseActivity implements SurfaceHol
     private BeepManager beepManager;
     private boolean mNeedFlashLightOpen = true;
     public FrameLayout lay_parent;
+    private View back;
 
     public ViewfinderView getViewfinderView() {
         return viewfinderView;
@@ -103,7 +105,13 @@ public abstract class CaptureActivity extends BaseActivity implements SurfaceHol
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.capture);
-
+        back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().popActivity(CaptureActivity.this);
+            }
+        });
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
         beepManager = new BeepManager(this);

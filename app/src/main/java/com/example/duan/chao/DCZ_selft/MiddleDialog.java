@@ -125,7 +125,7 @@ public class MiddleDialog<E> extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
-                listener2.onActivieButtonClick(bean, position);
+                listener2.onActivieButtonClick("2", position);
             }
         });
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {//取消

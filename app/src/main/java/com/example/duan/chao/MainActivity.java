@@ -598,6 +598,7 @@ public class MainActivity extends BaseActivity{
                     Log.i("dcz",result.getReqSysId());
                     Log.i("dcz",type+"type");
                     if(type.equals("2")){//下线通知
+                        ActivityUtils.getInstance().popAllActivities();
                         Intent inten=new Intent(INSTANCE, LoginActivity.class);
                         startActivity(inten);
                     }

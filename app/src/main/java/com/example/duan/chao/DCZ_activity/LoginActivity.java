@@ -158,7 +158,7 @@ public class LoginActivity extends BaseActivity {
                 if(MyApplication.sms_type.equals("1")){
                     login();
                 }else {
-                    login2();
+                    login();
                 }
 
             }
@@ -567,7 +567,7 @@ public class LoginActivity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
-        HttpServiceClient.getInstance().login(phone.getText().toString(),mima.getText().toString(),null,MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login(MyApplication.username,mima.getText().toString(),null,MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

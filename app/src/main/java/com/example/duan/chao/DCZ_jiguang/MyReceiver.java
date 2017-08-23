@@ -60,8 +60,8 @@ public class MyReceiver extends BroadcastReceiver {
 								MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
 								MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
 								MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
-								ActivityUtils.getInstance().popAllActivities();
 								if(bean==null){
+									ActivityUtils.getInstance().popAllActivities();
 								}else {
 									processCustomMessage(MyApplication.getContext(), bundle);
 								}

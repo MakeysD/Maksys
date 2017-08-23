@@ -60,15 +60,15 @@
             android:id="@+id/code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/yuanjiaolan2"
+            android:gravity="center"
+            android:paddingBottom="7dp"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:background="@drawable/yuanjiaolan2"
+            android:text="@string/tishi11"
             android:textColor="@color/white"
-            android:textSize="@dimen/text02"
-            android:gravity="center"
-            android:text="@string/tishi11"/>
+            android:textSize="@dimen/text02" />
     </LinearLayout>
 
     <RelativeLayout
