@@ -244,8 +244,8 @@ public final class CameraManager {
 //      Log.d(TAG, "Calculated framing rect: " + framingRect);
 //    }
 //    return framingRect;
-      int width = screenResolution.x * 7 / 10;
-      int height = screenResolution.y * 4 / 10;
+      int width = screenResolution.x * 7 / 12;
+      int height = screenResolution.y * 4 / 12;
 
       int leftOffset = (screenResolution.x - width) / 2;
       int topOffset = (screenResolution.y - height) / 3;

@@ -248,7 +248,10 @@ public class MainActivity extends BaseActivity{
         shuaxin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+                if(player.isPlaying()){
+                }else {
+                    recreate();
+                }
             }
         });
         bangzhu.setOnClickListener(new View.OnClickListener() {
