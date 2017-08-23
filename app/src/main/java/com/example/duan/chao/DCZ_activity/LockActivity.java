@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -49,7 +50,7 @@ public class LockActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         button1.setOnClickListener(new View.OnClickListener() {

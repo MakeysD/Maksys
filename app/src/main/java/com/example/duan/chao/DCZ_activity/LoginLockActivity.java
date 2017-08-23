@@ -77,7 +77,7 @@ public class LoginLockActivity extends BaseActivity {
                         //修改密码或设置密码进来
                         Toast.makeText(LoginLockActivity.this,context.getString(R.string.tishi73),Toast.LENGTH_SHORT).show();
                     }
-                    finish();
+                    ActivityUtils.getInstance().popActivity(LoginLockActivity.this);
                 }
 
                 @Override
@@ -90,7 +90,7 @@ public class LoginLockActivity extends BaseActivity {
                         MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                         Intent intent=new Intent(context,LoginActivity.class);
                         startActivity(intent);
-                        finish();
+                        ActivityUtils.getInstance().popActivity(LoginLockActivity.this);
                         Log.i("dcz","解锁已达到上限");
                     }
                 }
@@ -116,7 +116,7 @@ public class LoginLockActivity extends BaseActivity {
         intent.putExtra("current","resume");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        ActivityUtils.getInstance().popActivity(this);
     }
 
     /**
@@ -129,7 +129,7 @@ public class LoginLockActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            finish();
+            ActivityUtils.getInstance().popActivity(this);
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -137,6 +137,6 @@ public class LoginLockActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        ActivityUtils.getInstance().popActivity(this);
     }
 }

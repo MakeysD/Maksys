@@ -10,6 +10,7 @@ import android.widget.TextView;
  * */
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -52,7 +53,7 @@ public class ChangePhone4Activity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {

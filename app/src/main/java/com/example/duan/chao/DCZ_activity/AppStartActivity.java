@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
@@ -102,13 +103,12 @@ public class AppStartActivity extends BaseActivity {
                 Intent intent=new Intent(this,StartLockActivity.class);
                 intent.putExtra("type","1");
                 startActivity(intent);
-                finish();
             }else {
                 Intent intent = new Intent(AppStartActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         }
-        finish();
+        ActivityUtils.getInstance().popActivity(this);
     }
 
     private void quan(){
@@ -134,7 +134,7 @@ public class AppStartActivity extends BaseActivity {
                 if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Log.i("dcz","执行");
                 }else {
-                    finish();
+                    ActivityUtils.getInstance().popActivity(this);
                 }
                 break;
             default:

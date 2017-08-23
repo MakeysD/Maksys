@@ -81,7 +81,7 @@ public class SmsActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         change.setOnClickListener(new View.OnClickListener() {

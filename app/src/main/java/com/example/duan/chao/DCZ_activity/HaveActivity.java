@@ -23,6 +23,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
@@ -171,11 +172,11 @@ public class HaveActivity extends BaseActivity {
                                 timer("1",response.body().getDesc());
                             }else {
                                 //timer("2",response.body().getDesc());
-                                finish();
+                                ActivityUtils.getInstance().popActivity(INSTANCE);
                             }
                         }else {
                             timer("2",response.body().getDesc());
-                            finish();
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         timer("2",response.body().getDesc());
@@ -211,14 +212,14 @@ public class HaveActivity extends BaseActivity {
                 timer2();
             }
         };
-        timer.schedule(task,4000);
+        timer.schedule(task,800);
     }
     private void timer2(){
         Timer timer=new Timer();
         TimerTask task=new TimerTask() {
             @Override
             public void run() {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         };
         timer.schedule(task,2000);

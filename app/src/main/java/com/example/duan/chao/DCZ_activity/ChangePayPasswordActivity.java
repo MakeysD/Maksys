@@ -116,7 +116,7 @@ public class ChangePayPasswordActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +145,7 @@ public class ChangePayPasswordActivity extends BaseActivity {
                             ActivityUtils.getInstance().popAllActivities();
                         }else {
                             new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                            finish();
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

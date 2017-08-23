@@ -107,7 +107,7 @@ public class GesturesLockActivity extends BaseActivity {
         intent.putExtra("current","resume");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        ActivityUtils.getInstance().popActivity(this);
     }
 
     /**

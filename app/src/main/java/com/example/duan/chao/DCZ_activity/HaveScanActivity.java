@@ -19,6 +19,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
@@ -84,6 +85,9 @@ public class HaveScanActivity extends BaseActivity {
         newhandler();
         sms.setText(result.getRandomCode());
         business.setText(result.getBusinessName());
+        MyApplication.reqFlowId=result.getReqFlowId();
+        MyApplication.reqSysId=result.getReqSysId();
+
     }
     /**
      *  监听
@@ -166,11 +170,11 @@ public class HaveScanActivity extends BaseActivity {
                                 timer("1",response.body().getDesc());
                             }else {
                                 //timer("2",response.body().getDesc());
-                                finish();
+                                ActivityUtils.getInstance().popActivity(INSTANCE);
                             }
                         }else {
                             timer("2",response.body().getDesc());
-                            finish();
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         timer("2",response.body().getDesc());
@@ -206,7 +210,7 @@ public class HaveScanActivity extends BaseActivity {
                 timer2();
             }
         };
-        timer.schedule(task,4000);
+        timer.schedule(task,800);
     }
     private void timer2(){
         Timer timer=new Timer();

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.example.duan.chao.MainActivity;
@@ -169,7 +170,7 @@ public class ZhiwenActivity extends BaseActivity {
                 LockUtil.setPwdStatus(INSTANCE,false);
                 Intent intent=new Intent(INSTANCE,LoginActivity.class);
                 startActivity(intent);
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         change.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +181,7 @@ public class ZhiwenActivity extends BaseActivity {
                     Intent intent=new Intent(INSTANCE,StartLockActivity.class);
                     intent.putExtra("type","1");
                     startActivity(intent);
-                    finish();
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.setti),R.style.registDialog).show();
                 }
@@ -203,7 +204,7 @@ public class ZhiwenActivity extends BaseActivity {
                     Intent intent=new Intent(INSTANCE,StartLockActivity.class);
                     intent.putExtra("type","1");
                     startActivity(intent);
-                    finish();
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.setti),R.style.registDialog).show();
                 }

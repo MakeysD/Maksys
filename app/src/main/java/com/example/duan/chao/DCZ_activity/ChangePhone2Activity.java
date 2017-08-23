@@ -21,6 +21,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
@@ -103,7 +104,7 @@ public class ChangePhone2Activity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {

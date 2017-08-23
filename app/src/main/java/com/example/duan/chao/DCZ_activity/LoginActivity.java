@@ -581,7 +581,7 @@ public class LoginActivity extends BaseActivity {
                         MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
                         Intent intent=new Intent(INSTANCE,MainActivity.class);
                         startActivity(intent);
-                        finish();
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {
                         new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                     }

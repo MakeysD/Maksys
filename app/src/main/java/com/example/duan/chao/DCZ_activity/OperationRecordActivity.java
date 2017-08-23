@@ -13,6 +13,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
@@ -79,7 +80,7 @@ public class OperationRecordActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         lv.setLoadingListener(new XRecyclerView.LoadingListener() {
@@ -114,7 +115,7 @@ public class OperationRecordActivity extends BaseActivity {
                             setViews();
                         }else {
                             new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                            finish();
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

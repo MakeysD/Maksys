@@ -68,7 +68,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         et1.addTextChangedListener(new TextWatcher() {
@@ -149,7 +149,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                                         Intent intent=new Intent(INSTANCE,LoginActivity.class);
                                         startActivity(intent);
                                     }
-                                    finish();
+                                    ActivityUtils.getInstance().popActivity(INSTANCE);
                                 }
                             }, R.style.registDialog).show();
                         }else {
@@ -158,7 +158,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                            /* }else {
                                 new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                             }*/
-                            finish();
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

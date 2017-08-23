@@ -19,6 +19,7 @@ import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.ScanBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
@@ -297,16 +298,16 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
                         MyApplication.reqFlowId=response.body().getData().getAuthzId();
                         Log.d("dcz_req",MyApplication.reqFlowId);
                         startActivity(intent);
-                        finish();
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {
                        // new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                         Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
-                        finish();
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
                     }
                 }else {
                    // new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
                     Toast.makeText(INSTANCE,"网络异常", Toast.LENGTH_SHORT).show();
-                    finish();
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }
             }
             @Override
@@ -314,7 +315,7 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
                 Toast.makeText(INSTANCE,"解析", Toast.LENGTH_SHORT).show();
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
                 //new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });

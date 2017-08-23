@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -40,7 +41,7 @@ public class SuohaoActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
     }

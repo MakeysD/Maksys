@@ -23,6 +23,7 @@ public class BaseActivity extends Activity{
         StatusBarUtil.setImgTransparent(this);      //这行是让标题沉浸
         Log.i("BaseActivity",getClass().getSimpleName());
         ActivityUtils.getInstance().pushActivity(this);
+        Log.i("dcz",ActivityUtils.getInstance().ActivitySize()+"");
         if(MyApplication.language.equals("CHINESE")){
             Locale.setDefault(Locale.CHINESE);
             Configuration config = getBaseContext().getResources().getConfiguration();

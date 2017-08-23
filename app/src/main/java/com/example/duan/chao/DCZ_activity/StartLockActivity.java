@@ -72,7 +72,7 @@ public class StartLockActivity extends BaseActivity {
                     Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(INSTANCE, MainActivity.class);
                     startActivity(intent);
-                    finish();
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }
                 @Override
                 public void onError() {
@@ -92,7 +92,7 @@ public class StartLockActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(INSTANCE,ZhiwenActivity.class);
                 startActivity(intent);
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         wangji.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +104,7 @@ public class StartLockActivity extends BaseActivity {
                 LockUtil.setPwdStatus(INSTANCE,false);
                 Intent intent=new Intent(INSTANCE,LoginActivity.class);
                 startActivity(intent);
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
     }
@@ -140,7 +140,7 @@ public class StartLockActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            finish();
+            ActivityUtils.getInstance().popActivity(INSTANCE);
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -148,6 +148,6 @@ public class StartLockActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        ActivityUtils.getInstance().popActivity(INSTANCE);
     }
 }

@@ -21,6 +21,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
@@ -121,7 +122,7 @@ public class LookPasswordActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +132,7 @@ public class LookPasswordActivity extends BaseActivity {
                 if(mima.getText().toString().equals(mima2.getText().toString())){
                     Intent intent=new Intent(INSTANCE,SmsActivity.class);
                     startActivity(intent);
-                    finish();
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.lock9),R.style.registDialog).show();
                 }

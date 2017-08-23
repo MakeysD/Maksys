@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 
 import com.example.duan.chao.DCZ_adapter.ViewPagerApdater;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DisplayUtil;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
@@ -98,7 +99,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
                 if (dragEvent.getAction() == DragEvent.ACTION_DRAG_ENDED && dragEvent.getY() < -20) {//如果拖拽事件的动作是拖拽结束并且y比例小于20
                     Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                     startActivity(intent);//跳转到登录页面
-                    finish();       //结束
+                    ActivityUtils.getInstance().popActivity(WelcomeActivity.this);       //结束
                 }
                 return false;
             }
@@ -109,7 +110,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
             public void onClick(View v) {//给图片控件设置点击监听
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);           //跳转到登录页面
-                finish();                       //关闭
+                ActivityUtils.getInstance().popActivity(WelcomeActivity.this);                       //关闭
             }
         });
     }

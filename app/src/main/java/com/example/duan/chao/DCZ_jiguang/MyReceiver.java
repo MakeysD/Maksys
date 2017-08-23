@@ -11,8 +11,12 @@ import android.util.Log;
 
 import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
 import com.example.duan.chao.DCZ_activity.HaveScanActivity;
+import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.MainActivity;
+import com.example.duan.chao.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +52,22 @@ public class MyReceiver extends BroadcastReceiver {
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息2: " + bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE));
 				//下线通知
 				if(bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE).equals("2")){
-					processCustomMessage(context, bundle);
+					Log.i("dcz_当前界面",ActivityUtils.getInstance().getCurrentActivity()+"");
+						new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(), "提示", "您的账号于2015-07-07"+"在另外一套设备登陆"+"\n如非本人操作，请及时修改密码或者重新登陆","",new MiddleDialog.onButtonCLickListener2() {
+							@Override
+							public void onActivieButtonClick(Object bean, int position) {
+								MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+								MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+								MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
+								MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
+								ActivityUtils.getInstance().popAllActivities();
+								if(bean==null){
+								}else {
+									processCustomMessage(MyApplication.getContext(), bundle);
+								}
+
+							}
+						}, R.style.registDialog).show();
 				}else if(bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE).equals("1")){
 					isRunningForeground(context);
 				}else {

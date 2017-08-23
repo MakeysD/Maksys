@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.duan.chao.DCZ_adapter.CityAdapter;
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -70,7 +71,7 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         et.addTextChangedListener(new TextWatcher() {

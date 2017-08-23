@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
 
 import java.text.SimpleDateFormat;
@@ -52,15 +53,15 @@ public class SettingDataActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(INSTANCE,SettingDataResultActivity.class);
-                finish();
                 startActivity(intent);
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
     }
