@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg1"
+    tools:context="com.example.duan.chao.DCZ_activity.ScanActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/bg_title1"/>
+    <RelativeLayout
+        style="@style/Title"
+        android:background="@color/bg_title1">
+        <include
+            android:id="@+id/back"
+            layout="@layout/layout_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/title17"
+            android:textColor="@color/text_title1"
+            android:textSize="@dimen/title" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/xian"
+            android:background="@color/xian1"
+            android:layout_marginLeft="@dimen/xian_left"
+            android:layout_marginRight="@dimen/xian_right"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/lay_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <SurfaceView
+                android:id="@+id/preview_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+
+            <com.example.duan.chao.zxing_code.view.ViewfinderView
+                android:id="@+id/viewfinder_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+        </FrameLayout>
+    </RelativeLayout>
+</LinearLayout>

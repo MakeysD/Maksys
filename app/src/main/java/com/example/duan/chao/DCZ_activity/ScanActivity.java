@@ -21,14 +21,15 @@ import com.example.duan.chao.DCZ_bean.ScanBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
+import com.example.duan.chao.DCZ_util.DensityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ScreenUtils;
 import com.example.duan.chao.DCZ_util.StatusBarUtil;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
+import com.example.duan.chao.zxing_code.android.CaptureActivity;
 import com.example.duan.chao.zxing_code.camera.CameraManager;
-import com.example.duan.chao.zxing_code.decoding.CaptureActivityHandler;
-import com.example.duan.chao.zxing_code.decoding.InactivityTimer;
 import com.example.duan.chao.zxing_code.view.ViewfinderView;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -44,226 +45,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Field;
 
+import static com.example.duan.chao.DCZ_application.MyApplication.dialog;
+
 
 /**
  *  扫码验证
  *
  * */
-public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback{
-    public static CaptureActivityHandler handler;
-    private ViewfinderView viewfinderView;
-    private boolean hasSurface;
-    private static Vector<BarcodeFormat> decodeFormats;
-    private static String characterSet;
-    private InactivityTimer inactivityTimer;
-    private MediaPlayer mediaPlayer;
-    private boolean playBeep;
-    private static final float BEEP_VOLUME = 0.10f;
-    private boolean vibrate;
-    private static SurfaceView surfaceView;
-    private static ScanActivity INSTANCE;
-    public static Dialog dialog;
+public class ScanActivity extends CaptureActivity{
     private String sign;
-
-    @BindView(R.id.back)
-    View back;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan);
-        ButterKnife.bind(this);
-        INSTANCE = this;
-        CameraManager.init(INSTANCE);
-        setViews();
-        setListener();
-    }
-
-
-    /**
-     *  数据初始化
-     * */
-    private void setViews() {
-        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"2");
-        viewfinderView = (ViewfinderView) findViewById(R.id.capture_viewfinder);
-        hasSurface = false;
-        inactivityTimer = new InactivityTimer(INSTANCE);
-    }
-    /**
-     * 监听
-     *
-     * */
-    private void setListener() {
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        surfaceView = (SurfaceView) findViewById(R.id.capture_preview);
-        SurfaceHolder surfaceHolder = surfaceView.getHolder();
-        decodeFormats = null;
-        characterSet = null;
-        if (hasSurface) {
-            initCamera(surfaceHolder);
-        } else {
-            surfaceHolder.addCallback(INSTANCE);
-            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        }
-        playBeep = true;
-        AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            playBeep = false;
-        }
-        initBeepSound();
-        vibrate = true;
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (handler != null) {
-            handler.quitSynchronously();
-            handler = null;
-        }
-        CameraManager.get().closeDriver();
-    }
-
-    @Override
-    protected void onDestroy() {
-        inactivityTimer.shutdown();
-        super.onDestroy();
-    }
-
-
-    public void handleDecode(Result result, Bitmap barcode) {
-        inactivityTimer.onActivity();
-        String resultString = result.getText();
-        getTicketInfo(resultString);
-//        if (resultString.startsWith("meiyu://")) {
-//            resultString = resultString.substring(8);
-//            getTicketInfo(resultString);
-//            initCamera(surfaceView.getHolder());
-//            if (handler != null) {
-//                handler.restartPreviewAndDecode();
-//            }
-//
-//        } else {
-//            Toast.makeText(INSTANCE, "非美寓有效二维码！", Toast.LENGTH_LONG).show();
-//            SurfaceHolder surfaceHolder = surfaceView.getHolder();
-//            initCamera(surfaceHolder);
-//            if (handler != null)
-//                handler.restartPreviewAndDecode();
-//        }
-    }
-
-    private static void initCamera(SurfaceHolder surfaceHolder) {
-        try {
-            CameraManager.get().openDriver(surfaceHolder);
-        } catch (IOException ioe) {
-            return;
-        } catch (RuntimeException e) {
-            return;
-        }
-        if (handler == null) {
-            handler = new CaptureActivityHandler(INSTANCE, decodeFormats,
-                    characterSet);
-        }
-    }
-
-    private void initBeepSound() {
-        if (playBeep && mediaPlayer == null) {
-            // The volume on STREAM_SYSTEM is not adjustable, and users found it
-            // too loud,
-            // so we now play on the music stream.
-            setVolumeControlStream(AudioManager.STREAM_MUSIC);
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setOnCompletionListener(beepListener);
-
-//            AssetFileDescriptor file = getResources().openRawResourceFd(
-//                    R.raw.beep);
-//            try {
-//                mediaPlayer.setDataSource(file.getFileDescriptor(),
-//                        file.getStartOffset(), file.getLength());
-//                file.close();
-//                mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
-//                mediaPlayer.prepare();
-//            } catch (IOException e) {
-//                mediaPlayer = null;
-//            }
-        }
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        Log.i("holder==null?", holder + "");
-        if (!hasSurface) {
-            hasSurface = true;
-            initCamera(holder);
-        }
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        hasSurface = false;
-    }
-
-    public ViewfinderView getViewfinderView() {
-        return viewfinderView;
-    }
-
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public void drawViewfinder() {
-        viewfinderView.drawViewfinder();
-
-    }
-
-    private static final long VIBRATE_DURATION = 200L;
-
-    private void playBeepSoundAndVibrate() {
-        if (playBeep && mediaPlayer != null) {
-            mediaPlayer.start();
-        }
-        if (vibrate) {
-            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-            vibrator.vibrate(VIBRATE_DURATION);
-        }
-    }
-
-    /**
-     * When the beep has finished playing, rewind to queue up another one.
-     */
-    private final MediaPlayer.OnCompletionListener beepListener = new MediaPlayer.OnCompletionListener() {
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            mediaPlayer.seekTo(0);
-        }
-    };
-
-
-    private enum State {
-        PREVIEW,
-        SUCCESS,
-        DONE
-    }
-
-    private String serial;
-
     private void getTicketInfo(String serial) {
-        this.serial = serial;
+        /*this.serial = serial;
         dialog.show();
         Log.i("dcz","扫二维码结果是："+serial);
         if(serial.contains("uuid")&&serial.contains("systemId")){
@@ -275,8 +67,40 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
             if(serial!=null){
                 getData(uuid);
             }
+        }*/
+    }
+
+    @Override
+    public void addView() {
+
+    }
+
+    @Override
+    public void initBarcodelay() {
+        int screenHeight = DensityUtils.px2dp(ScanActivity.this, ScreenUtils.getScreenHeight(ScanActivity.this));
+        int recoderHeight = DensityUtils.px2dp(ScanActivity.this, ScreenUtils.getScreenWidth(ScanActivity.this)) / 3;
+        getCameraManager().setPoint_left(recoderHeight / 2);
+        getCameraManager().setPoint_top((int) (screenHeight / 2 - recoderHeight*1.5));
+        getCameraManager().setView_recoder_hight(recoderHeight*2);
+        getViewfinderView().setmTipText("将码放入框内，即可自动扫码");
+    }
+
+    @Override
+    public void decodeResult(String serial, Bitmap barcode) {
+        if(serial.contains("uuid")&&serial.contains("systemId")){
+            dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"2");
+            dialog.show();
+            String systemId = serial.substring(serial.indexOf("=")+1,serial.indexOf("&"));
+            String uuid = serial.substring(serial.lastIndexOf("=")+1);
+            Log.i("dcz","uuid结果："+uuid);
+            Log.i("dcz","systemId："+systemId);
+            MyApplication.reqSysId=systemId;
+            if(serial!=null){
+                getData(uuid);
+            }
         }
     }
+
 
     private void getData(String uuid){
         String max="8579996398";
@@ -294,28 +118,28 @@ public class ScanActivity extends BaseActivity implements SurfaceHolder.Callback
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        Intent intent=new Intent(INSTANCE,HaveActivity.class);
+                        Intent intent=new Intent(ScanActivity.this,HaveActivity.class);
                         MyApplication.reqFlowId=response.body().getData().getAuthzId();
                         Log.d("dcz_req",MyApplication.reqFlowId);
                         startActivity(intent);
-                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                        ActivityUtils.getInstance().popActivity(ScanActivity.this);
                     }else {
-                       // new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                        Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
-                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                        // new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        Toast.makeText(ScanActivity.this,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        ActivityUtils.getInstance().popActivity(ScanActivity.this);
                     }
                 }else {
-                   // new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
-                    Toast.makeText(INSTANCE,"网络异常", Toast.LENGTH_SHORT).show();
-                    ActivityUtils.getInstance().popActivity(INSTANCE);
+                    // new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
+                    Toast.makeText(ScanActivity.this,"网络异常", Toast.LENGTH_SHORT).show();
+                    ActivityUtils.getInstance().popActivity(ScanActivity.this);
                 }
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE,"解析", Toast.LENGTH_SHORT).show();
-                ActivityUtils.getInstance().popActivity(INSTANCE);
+                Toast.makeText(ScanActivity.this,"解析", Toast.LENGTH_SHORT).show();
+                ActivityUtils.getInstance().popActivity(ScanActivity.this);
                 //new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });

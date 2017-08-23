@@ -21,262 +21,230 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.duan.chao.DCZ_util.DisplayUtil;
+import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_util.DensityUtils;
+import com.example.duan.chao.DCZ_util.ScreenUtils;
 import com.example.duan.chao.R;
 import com.example.duan.chao.zxing_code.camera.CameraManager;
 import com.google.zxing.ResultPoint;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
- * This view is overlaid on top of the camera preview. It adds the viewfinder
- * rectangle and partial transparency outside it, as well as the laser scanner
- * animation and result points.
+ * This view is overlaid on top of the camera preview. It adds the viewfinder rectangle and partial
+ * transparency outside it, as well as the laser scanner animation and result points.
+ *
+ * @author dswitkin@google.com (Daniel Switkin)
  */
 public final class ViewfinderView extends View {
-    private static final String TAG = "log";
-    /**
-     * ˢ�½����ʱ��
-     */
-    private static final long ANIMATION_DELAY = 5L;
-    private static final int OPAQUE = 0xFF;
 
-    /**
-     * �ĸ���ɫ�߽Ƕ�Ӧ�ĳ���
-     */
-    private int ScreenRate;
+    private static final int[] SCANNER_ALPHA = {0, 64, 128, 192, 255, 192, 128, 64};
+    private static final long ANIMATION_DELAY = 80L;
+    private static final int MAX_RESULT_POINTS = 20;
+    private static final int POINT_SIZE = 6;
 
-    /**
-     * �ĸ���ɫ�߽Ƕ�Ӧ�Ŀ��
-     */
-    private static final int CORNER_WIDTH = 10;
-    /**
-     * ɨ����е��м��ߵĿ��
-     */
-    private static final int MIDDLE_LINE_WIDTH = 6;
-
-    /**
-     * ɨ����е��м��ߵ���ɨ������ҵļ�϶
-     */
-    private static final int MIDDLE_LINE_PADDING = 5;
-
-    /**
-     * �м�������ÿ��ˢ���ƶ��ľ���
-     */
-    private static final int SPEEN_DISTANCE = 5;
-
-    /**
-     * �ֻ����Ļ�ܶ�
-     */
-    private static float density;
-    /**
-     * �����С
-     */
-    private static final int TEXT_SIZE = 16;
-    /**
-     * �������ɨ�������ľ���
-     */
-    private static final int TEXT_PADDING_TOP = 30;
-
-    /**
-     * ���ʶ��������
-     */
-    private Paint paint;
-
-    /**
-     * �м们���ߵ����λ��
-     */
-    private int slideTop;
-
-    /**
-     * �м们���ߵ���׶�λ��
-     */
-    private int slideBottom;
-
-    /**
-     * ��ɨ��Ķ�ά��������������û��������ܣ���ʱ������
-     */
-    private Bitmap resultBitmap;
+    private CameraManager cameraManager;
+    private final Paint paint;
     private final int maskColor;
-    private final int resultColor;
+    private List<ResultPoint> possibleResultPoints;
+
+    // This constructor is used when the class is built from an XML resource.
+
+    private static final int OPAQUE = 0xFF;
+    private Paint mPaint;
+    private int mScannerAlpha;
+    private int mFrameColor;
+    private int mLaserColor;
+    private int mTextColor;
+    private int mFocusThick;
+    private int mAngleThick;
+    private int mAngleLength;
+    private String mTipText;
     private int laserLineResId;//扫描线图片资源
-
-    private final int resultPointColor;
-    private Collection<ResultPoint> possibleResultPoints;
-    private Collection<ResultPoint> lastPossibleResultPoints;
-
     boolean isFirst;
-    private int withs;
+    private int slideTop;
+    private static final int SPEEN_DISTANCE = 10;
+    public String getmTipText() {
+        return mTipText;
+    }
+
+    public void setmTipText(String mTipText) {
+        this.mTipText = mTipText;
+    }
 
     public ViewfinderView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        density = context.getResources().getDisplayMetrics().density;
-        //������ת����dp
-        ScreenRate = (int) (20 * density);
-
-        paint = new Paint();
+        // Initialize these once for performance rather than calling them every time in onDraw().
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         Resources resources = getResources();
         maskColor = resources.getColor(R.color.mp_touming);
-        resultColor = resources.getColor(R.color.mp_touming);
+        possibleResultPoints = new ArrayList<ResultPoint>(5);
+        mPaint = new Paint();
+
+
+        mFrameColor = resources.getColor(R.color.text02);
+        mLaserColor = resources.getColor(R.color.colorPrimaryDark);
+        mTextColor = resources.getColor(R.color.text02);
+        mFocusThick = 1;
+        mAngleThick = 8;
+        mAngleLength = 40;
+        mTipText = "";
 
         laserLineResId=resources.getIdentifier("chat_sao","mipmap","com.example.duan.chao");
-        resultPointColor = resources.getColor(R.color.white);
-        possibleResultPoints = new HashSet<ResultPoint>(5);
+    }
+
+    public void setCameraManager(CameraManager cameraManager) {
+        this.cameraManager = cameraManager;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        //�м��ɨ�����Ҫ�޸�ɨ���Ĵ�С��ȥCameraManager�����޸�
-        Rect frame = CameraManager.get().getFramingRect();
+        if (cameraManager == null) {
+            return; // not ready yet, early draw before done configuring
+        }
+        Rect frame = cameraManager.getFramingRect();
         if (frame == null) {
             return;
         }
-
-        //��ʼ���м��߻��������ϱߺ����±�
-        if (!isFirst) {
-            isFirst = true;
-            slideTop = frame.top;
-            slideBottom = frame.bottom;
-        }
-
-        //��ȡ��Ļ�Ŀ�͸�
         int width = canvas.getWidth();
         int height = canvas.getHeight();
-        withs = width;
 
-        paint.setColor(resultBitmap != null ? resultColor : maskColor);
-
-        //����ɨ����������Ӱ���֣����ĸ����֣�ɨ�������浽��Ļ���棬ɨ�������浽��Ļ����
-        //ɨ��������浽��Ļ��ߣ�ɨ�����ұߵ���Ļ�ұ�
+        // Draw the exterior (i.e. outside the framing rect) darkened
+        paint.setColor(maskColor);
         canvas.drawRect(0, 0, width, frame.top, paint);
         canvas.drawRect(0, frame.top, frame.left, frame.bottom + 1, paint);
-        canvas.drawRect(frame.right + 1, frame.top, width, frame.bottom + 1,
-                paint);
+        canvas.drawRect(frame.right + 1, frame.top, width, frame.bottom + 1, paint);
         canvas.drawRect(0, frame.bottom + 1, width, height, paint);
-
-
-        if (resultBitmap != null) {
-            // Draw the opaque result bitmap over the scanning rectangle
-            paint.setAlpha(OPAQUE);
-            canvas.drawBitmap(resultBitmap, frame.left, frame.top, paint);
-        } else {
-
-            //正方向框的颜色
-            paint.setColor(Color.parseColor("#898b84"));
-            canvas.drawRect(frame.left, frame.top, frame.right + 1,
-                    frame.top + 2, paint);
-            canvas.drawRect(frame.left, frame.top + 2, frame.left + 2,
-                    frame.bottom - 1, paint);
-            canvas.drawRect(frame.right - 1, frame.top, frame.right + 1,
-                    frame.bottom - 1, paint);
-            canvas.drawRect(frame.left, frame.bottom - 1, frame.right + 1,
-                    frame.bottom + 1, paint);
-
-            //设置四个角的颜色
-            paint.setColor(Color.parseColor("#02c7cd"));
-            canvas.drawRect(frame.left, frame.top, frame.left + ScreenRate,
-                    frame.top + CORNER_WIDTH, paint);
-            canvas.drawRect(frame.left, frame.top, frame.left + CORNER_WIDTH, frame.top
-                    + ScreenRate, paint);
-            canvas.drawRect(frame.right - ScreenRate, frame.top, frame.right,
-                    frame.top + CORNER_WIDTH, paint);
-            canvas.drawRect(frame.right - CORNER_WIDTH, frame.top, frame.right, frame.top
-                    + ScreenRate, paint);
-            canvas.drawRect(frame.left, frame.bottom - CORNER_WIDTH, frame.left
-                    + ScreenRate, frame.bottom, paint);
-            canvas.drawRect(frame.left, frame.bottom - ScreenRate,
-                    frame.left + CORNER_WIDTH, frame.bottom, paint);
-            canvas.drawRect(frame.right - ScreenRate, frame.bottom - CORNER_WIDTH,
-                    frame.right, frame.bottom, paint);
-            canvas.drawRect(frame.right - CORNER_WIDTH, frame.bottom - ScreenRate,
-                    frame.right, frame.bottom, paint);
-
-            paint.setColor(Color.parseColor("#00f7ff"));
-            //�����м����,ÿ��ˢ�½��棬�м���������ƶ�SPEEN_DISTANCE
-            slideTop += SPEEN_DISTANCE;
-            if (slideTop >= frame.bottom) {
-                slideTop = frame.top;
-            }
-//            canvas.drawRect(frame.left + MIDDLE_LINE_PADDING, slideTop - MIDDLE_LINE_WIDTH / 2, frame.right - MIDDLE_LINE_PADDING, slideTop + MIDDLE_LINE_WIDTH / 2, paint);
-
-           Bitmap laserLineBitmap = BitmapFactory.decodeResource(getResources(), laserLineResId);
-            int h = laserLineBitmap.getHeight()/2;//取原图高
-            //如果没有设置线条高度，则用图片原始高度
-//            if (laserLineHeight == Scanner.dp2px(getContext(), DEFAULT_LASER_LINE_HEIGHT)) {
-//                laserLineHeight = laserLineBitmap.getHeight() / 2;
-//            }
-            Rect laserRect = new Rect(frame.left, slideTop, frame.right, slideTop + h);
-            canvas.drawBitmap(laserLineBitmap, null, laserRect, paint);
-
-            paint.setColor(Color.parseColor("#ffffff"));
-            paint.setTextSize(TEXT_SIZE * density);
-            paint.setAlpha(0x40);
-            paint.setTypeface(Typeface.create("System", Typeface.BOLD));
-            float w = paint.measureText(getResources().getString(R.string.scan_text));
-            canvas.drawText(getResources().getString(R.string.scan_text), ((withs - w) / 2), (float) (frame.bottom + (float) TEXT_PADDING_TOP * density) + DisplayUtil.dip2px(getContext(), 10), paint);
-
-
-            Collection<ResultPoint> currentPossible = possibleResultPoints;
-            Collection<ResultPoint> currentLast = lastPossibleResultPoints;
-            if (currentPossible.isEmpty()) {
-                lastPossibleResultPoints = null;
-            } else {
-                possibleResultPoints = new HashSet<ResultPoint>(5);
-                lastPossibleResultPoints = currentPossible;
-                paint.setAlpha(OPAQUE);
-                paint.setColor(resultPointColor);
-                for (ResultPoint point : currentPossible) {
-                    canvas.drawCircle(frame.left + point.getX(), frame.top
-                            + point.getY()*2, 6.0f, paint);
-                }
-            }
-            if (currentLast != null) {
-                paint.setAlpha(OPAQUE / 2);
-                paint.setColor(resultPointColor);
-                for (ResultPoint point : currentLast) {
-                    canvas.drawCircle(frame.left + point.getX(), frame.top
-                            + point.getY(), 3.0f, paint);
-                }
-            }
-
-
-            //ֻˢ��ɨ�������ݣ�����ط���ˢ��
-            postInvalidateDelayed(ANIMATION_DELAY, frame.left, frame.top,
-                    frame.right, frame.bottom);
-
-        }
+        drawFocusRect(canvas, frame);
+        drawAngle(canvas, frame);
+        drawText(canvas, frame);
+//        drawLaser(canvas, frame);
+        drawBitmapLaser(canvas, frame);
+        // Request another update at the animation interval, but only repaint the laser line,
+        // not the entire viewfinder mask.
+        postInvalidateDelayed(ANIMATION_DELAY,
+                frame.left - POINT_SIZE,
+                frame.top - POINT_SIZE,
+                frame.right + POINT_SIZE,
+                frame.bottom + POINT_SIZE);
     }
 
     public void drawViewfinder() {
-        resultBitmap = null;
-        invalidate();
-    }
-
-    /**
-     * Draw a bitmap with the result points highlighted instead of the live
-     * scanning display.
-     *
-     * @param barcode An image of the decoded barcode.
-     */
-    public void drawResultBitmap(Bitmap barcode) {
-        resultBitmap = barcode;
         invalidate();
     }
 
     public void addPossibleResultPoint(ResultPoint point) {
-        possibleResultPoints.add(point);
+        List<ResultPoint> points = possibleResultPoints;
+        synchronized (points) {
+            points.add(point);
+            int size = points.size();
+            if (size > MAX_RESULT_POINTS) {
+                // trim it
+                points.subList(0, size - MAX_RESULT_POINTS / 2).clear();
+            }
+        }
     }
 
+
+    /**
+     * 画聚焦框，白色的
+     *
+     * @param canvas
+     * @param rect
+     */
+    private void drawFocusRect(Canvas canvas, Rect rect) {
+        // 绘制焦点框（黑色）
+        mPaint.setColor(mFrameColor);
+        // 上
+        canvas.drawRect(rect.left + mAngleLength, rect.top, rect.right - mAngleLength, rect.top + mFocusThick, mPaint);
+        // 左
+        canvas.drawRect(rect.left, rect.top + mAngleLength, rect.left + mFocusThick, rect.bottom - mAngleLength,
+                mPaint);
+        // 右
+        canvas.drawRect(rect.right - mFocusThick, rect.top + mAngleLength, rect.right, rect.bottom - mAngleLength,
+                mPaint);
+        // 下
+        canvas.drawRect(rect.left + mAngleLength, rect.bottom - mFocusThick, rect.right - mAngleLength, rect.bottom,
+                mPaint);
+    }
+
+    /**
+     * 画粉色的四个角
+     *
+     * @param canvas
+     * @param rect
+     */
+    private void drawAngle(Canvas canvas, Rect rect) {
+        mPaint.setColor(mLaserColor);
+        mPaint.setAlpha(OPAQUE);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(mAngleThick);
+        int left = rect.left;
+        int top = rect.top;
+        int right = rect.right;
+        int bottom = rect.bottom;
+        // 左上角
+        canvas.drawRect(left, top, left + mAngleLength, top + mAngleThick, mPaint);
+        canvas.drawRect(left, top, left + mAngleThick, top + mAngleLength, mPaint);
+        // 右上角
+        canvas.drawRect(right - mAngleLength, top, right, top + mAngleThick, mPaint);
+        canvas.drawRect(right - mAngleThick, top, right, top + mAngleLength, mPaint);
+        // 左下角
+        canvas.drawRect(left, bottom - mAngleLength, left + mAngleThick, bottom, mPaint);
+        canvas.drawRect(left, bottom - mAngleThick, left + mAngleLength, bottom, mPaint);
+        // 右下角
+        canvas.drawRect(right - mAngleLength, bottom - mAngleThick, right, bottom, mPaint);
+        canvas.drawRect(right - mAngleThick, bottom - mAngleLength, right, bottom, mPaint);
+    }
+
+    private void drawText(Canvas canvas, Rect rect) {
+        int margin = 100;
+        mPaint.setColor(mTextColor);
+        mPaint.setTextSize(DensityUtils.dp2px(MyApplication.getContext(), 18));
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float fontTotalHeight = fontMetrics.bottom - fontMetrics.top;
+        float offY = fontTotalHeight / 2 - fontMetrics.bottom;
+        float newY = rect.bottom + margin + offY;
+        float left = (ScreenUtils.getScreenWidth(MyApplication.getContext()) - mPaint.getTextSize() * mTipText.length()) / 2;
+        canvas.drawText(mTipText, left, newY, mPaint);
+    }
+
+    private void drawLaser(Canvas canvas, Rect rect) {
+        // 绘制焦点框内固定的一条扫描线（红色）
+        mPaint.setColor(mLaserColor);
+        mPaint.setAlpha(SCANNER_ALPHA[mScannerAlpha]);
+        mScannerAlpha = (mScannerAlpha + 1) % SCANNER_ALPHA.length;
+        int middle = rect.height() / 2 + rect.top;
+        canvas.drawRect(rect.left + 2, middle - 1, rect.right - 1, middle + 2, mPaint);
+    }
+
+
+    private void drawBitmapLaser(Canvas canvas, Rect rect) {
+        if (!isFirst) {
+            isFirst = true;
+            slideTop = rect.top;
+        }
+        slideTop += SPEEN_DISTANCE;
+        if (slideTop >= rect.bottom) {
+            slideTop = rect.top;
+        }
+        Bitmap laserLineBitmap = BitmapFactory.decodeResource(getResources(), laserLineResId);
+        int h = laserLineBitmap.getHeight()/2;//取原图高
+        //如果没有设置线条高度，则用图片原始高度
+//            if (laserLineHeight == Scanner.dp2px(getContext(), DEFAULT_LASER_LINE_HEIGHT)) {
+//                laserLineHeight = laserLineBitmap.getHeight() / 2;
+//            }
+        Rect laserRect = new Rect(rect.left, slideTop, rect.right, slideTop + h);
+        canvas.drawBitmap(laserLineBitmap, null, laserRect, paint);
+    }
 
 
 }

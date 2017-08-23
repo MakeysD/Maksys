@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 ZXing authors
+ * Copyright (C) 2012 ZXing authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package com.example.duan.chao.zxing_code.view;
+package com.example.duan.chao.zxing_code.android.common.executor;
 
-import com.google.zxing.ResultPoint;
-import com.google.zxing.ResultPointCallback;
 
-public final class ViewfinderResultPointCallback implements ResultPointCallback {
+import com.example.duan.chao.zxing_code.android.common.PlatformSupportManager;
 
-  private final ViewfinderView viewfinderView;
+public final class AsyncTaskExecManager extends PlatformSupportManager<AsyncTaskExecInterface> {
 
-  public ViewfinderResultPointCallback(ViewfinderView viewfinderView) {
-    this.viewfinderView = viewfinderView;
-  }
-
-  @Override
-  public void foundPossibleResultPoint(ResultPoint point) {
-    viewfinderView.addPossibleResultPoint(point);
+  public AsyncTaskExecManager() {
+    super(AsyncTaskExecInterface.class, new DefaultAsyncTaskExecInterface());
+    addImplementationClass(11, "com.google.zxing.client.android.common.executor.HoneycombAsyncTaskExecInterface");
   }
 
 }

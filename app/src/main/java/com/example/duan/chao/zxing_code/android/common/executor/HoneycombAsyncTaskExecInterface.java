@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 ZXing authors
+ * Copyright (C) 2012 ZXing authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package com.example.duan.chao.zxing_code.view;
+package com.example.duan.chao.zxing_code.android.common.executor;
 
-import com.google.zxing.ResultPoint;
-import com.google.zxing.ResultPointCallback;
+import android.annotation.TargetApi;
+import android.os.AsyncTask;
 
-public final class ViewfinderResultPointCallback implements ResultPointCallback {
-
-  private final ViewfinderView viewfinderView;
-
-  public ViewfinderResultPointCallback(ViewfinderView viewfinderView) {
-    this.viewfinderView = viewfinderView;
-  }
+/**
+ * On Honeycomb and later, {@link AsyncTask} returns to serial execution by default which is undesirable.
+ * This calls Honeycomb-only APIs to request parallel execution.
+ */
+@TargetApi(11)
+public final class HoneycombAsyncTaskExecInterface implements AsyncTaskExecInterface {
 
   @Override
-  public void foundPossibleResultPoint(ResultPoint point) {
-    viewfinderView.addPossibleResultPoint(point);
+  public <T> void execute(AsyncTask<T,?,?> task, T... args) {
+    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, args);
   }
 
 }

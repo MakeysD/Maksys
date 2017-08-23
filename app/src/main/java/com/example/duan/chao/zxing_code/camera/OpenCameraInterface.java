@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 ZXing authors
+ * Copyright (C) 2012 ZXing authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package com.example.duan.chao.zxing_code.view;
+package com.example.duan.chao.zxing_code.camera;
 
-import com.google.zxing.ResultPoint;
-import com.google.zxing.ResultPointCallback;
+import android.hardware.Camera;
 
-public final class ViewfinderResultPointCallback implements ResultPointCallback {
+/**
+ * Provides an abstracted means to open a {@link Camera}. The API changes over Android API versions and
+ * this allows the app to use newer API methods while retaining backwards-compatible behavior.
+ */
+public interface OpenCameraInterface {
 
-  private final ViewfinderView viewfinderView;
-
-  public ViewfinderResultPointCallback(ViewfinderView viewfinderView) {
-    this.viewfinderView = viewfinderView;
-  }
-
-  @Override
-  public void foundPossibleResultPoint(ResultPoint point) {
-    viewfinderView.addPossibleResultPoint(point);
-  }
+  Camera open();
 
 }
