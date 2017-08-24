@@ -44,7 +44,6 @@ import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 public class ChangePhone2Activity extends BaseActivity {
     private ChangePhone2Activity INSTANCE;
     private List<CityBean> list;
-    public static String code="";
     private Handler handler;
     private timeThread thread;
     @BindView(R.id.back)
@@ -93,7 +92,6 @@ public class ChangePhone2Activity extends BaseActivity {
      *  数据初始化
      * */
     private void setViews() {
-        code="";
         newhandler();
     }
     /**
@@ -301,7 +299,7 @@ public class ChangePhone2Activity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        quhao.setText(code);
+        quhao.setText(MyApplication.code);
         jia.setTextColor(Color.parseColor("#ffffff"));
     }
 

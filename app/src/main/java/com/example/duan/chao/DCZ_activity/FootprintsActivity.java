@@ -55,6 +55,8 @@ public class FootprintsActivity extends BaseActivity {
     TextView tv1;
     @BindView(R.id.tv2)
     TextView tv2;
+    @BindView(R.id.error)
+    TextView error;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,11 @@ public class FootprintsActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-
+        if(list.size()>0||list2.size()>0){
+            error.setVisibility(View.GONE);
+        }else {
+            error.setVisibility(View.VISIBLE);
+        }
     }
     /**
      *  监听
@@ -137,9 +143,7 @@ public class FootprintsActivity extends BaseActivity {
                             }
 
                         }else {
-                            if(!MyApplication.token.equals("")){
-                                new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                            }
+                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                             //Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         }
                     }else {
@@ -174,6 +178,7 @@ public class FootprintsActivity extends BaseActivity {
                             Log.i("dcz","data2返回成功");
                             if(adapter1==null){
                                 list2 = response.body().getData();
+                                setViews();
                                 if(list2.size()>0){
                                     adapter1=new Footprints1Adapter(INSTANCE,list2);
                                     lv1.setAdapter(adapter1);
@@ -181,7 +186,6 @@ public class FootprintsActivity extends BaseActivity {
                                 }else {
                                     tv1.setVisibility(View.GONE);
                                 }
-
                             }else {
                                 adapter1.Notify(list2);
                             }

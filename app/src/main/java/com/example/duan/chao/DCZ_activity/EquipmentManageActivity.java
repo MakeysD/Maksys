@@ -62,10 +62,10 @@ public class EquipmentManageActivity extends BaseActivity {
     private void setViews() {
         if(list.size()>0){
             tv.setText(R.string.tishi21);
-            error.setVisibility(View.VISIBLE);
+            error.setVisibility(View.GONE);
         }else {
             tv.setText(R.string.tishi22);
-            error.setVisibility(View.GONE);
+            error.setVisibility(View.VISIBLE);
         }
         if(adapter!=null){
             lv.loadMoreComplete();
@@ -123,7 +123,6 @@ public class EquipmentManageActivity extends BaseActivity {
                             list = response.body().getData().getList();
                         }else {
                             new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

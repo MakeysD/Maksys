@@ -40,7 +40,8 @@ public class SecurityPhoneActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        tv.setText(this.getString(R.string.tishi78)+"132****8723");
+        String phoneNumber = MyApplication.username.replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
+        tv.setText(this.getString(R.string.tishi78)+phoneNumber);
     }
     /**
      *  监听

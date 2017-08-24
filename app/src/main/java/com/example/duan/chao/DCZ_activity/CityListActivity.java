@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.duan.chao.DCZ_adapter.CityAdapter;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.R;
@@ -141,10 +142,7 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
     @Override
     public void addAction(CityBean bean) {
         ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
-        ChangePhone3Activity.code=bean.getCountry_code()+" ";
-        LoginActivity.code=bean.getCountry_code()+"";
-        LookPasswordActivity.code=bean.getCountry_code()+"";
-        ChangePhone2Activity.code=bean.getCountry_code()+"";
+        MyApplication.code=bean.getCountry_code()+"";
         finish();
     }
 }

@@ -115,7 +115,7 @@ public class SmsActivity extends BaseActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length()>=4){
+                if(s.length()>=6){
                     button.setVisibility(View.VISIBLE);
                 }else {
                     button.setVisibility(View.GONE);
@@ -227,7 +227,7 @@ public class SmsActivity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
-        HttpServiceClient.getInstance().sendsms("13262638723","2",null).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().sendsms(phone,"2",null).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

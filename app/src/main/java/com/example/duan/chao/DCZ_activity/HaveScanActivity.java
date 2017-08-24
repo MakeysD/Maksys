@@ -31,6 +31,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -97,6 +98,7 @@ public class HaveScanActivity extends BaseActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                JPushInterface.clearAllNotifications(INSTANCE);
                 String str ="agreement=1"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
                 try {
@@ -110,6 +112,7 @@ public class HaveScanActivity extends BaseActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                JPushInterface.clearAllNotifications(INSTANCE);
                 String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
                 try {
@@ -173,8 +176,8 @@ public class HaveScanActivity extends BaseActivity {
                                 ActivityUtils.getInstance().popActivity(INSTANCE);
                             }
                         }else {
+                            anima.setVisibility(View.VISIBLE);
                             timer("2",response.body().getDesc());
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         timer("2",response.body().getDesc());

@@ -75,7 +75,7 @@ public interface InterfaceService {
                                     @Field("confirmNewPwd")String confirmNewPwd);
 
     /**
-     *  修改安全密码
+     *  修改支付密码
      */
     @FormUrlEncoded
     @POST("user/updateSecPwd")
@@ -100,6 +100,49 @@ public interface InterfaceService {
     Call<LoginOkBean> sendsms(@Field("mobile") String mobile,
                                 @Field("smsType")String sms,
                                    @Field("areaCode")String areaCode);
+
+    /**
+     *  找回登录密码
+     */
+    @FormUrlEncoded
+    @POST("user/fogotPwd")
+    Call<LoginOkBean> fogotpwd(@Field("username") String username,
+                               @Field("code")String code,
+                               @Field("staticCode") String staticCode,
+                               @Field("newPwd") String newPwd,
+                               @Field("confirmNewPwd") String confirmNewPwd);
+
+    /**
+     *  找回支付密码
+     */
+    @FormUrlEncoded
+    @POST("user/fogotSecPwd")
+    Call<LoginOkBean> fogotSecPwd(@Field("username") String username,
+                               @Field("newSecPwd")String newSecPwd,
+                               @Field("confirmNewSecPwd") String confirmNewSecPwd,
+                               @Field("code") String code,
+                               @Field("staticCode") String staticCode);
+
+    /**
+     *  初始化安全密码
+     */
+    @FormUrlEncoded
+    @POST("user/initSecPwd")
+    Call<LoginOkBean> initSecPwd(@Field("loginPwd") String loginPwd,
+                                  @Field("newSecPwd")String newSecPwd,
+                                  @Field("confirmNewSecPwd") String confirmNewSecPwd,
+                                  @Field("code") String code,
+                                  @Field("staticCode") String staticCode);
+
+    /**
+     *  修改安全密码
+     */
+    @FormUrlEncoded
+    @POST("user/updateSecPwd")
+    Call<LoginOkBean> updateSecPwd(@Field("oldSecPwd") String oldSecPwd,
+                                  @Field("newSecPwd")String newSecPwd,
+                                  @Field("confirmNewSecPwd") String confirmNewSecPwd,
+                                  @Field("code") String code);
 
     /**
      *  设备列表

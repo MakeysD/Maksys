@@ -1,4 +1,5 @@
 package com.example.duan.chao.DCZ_activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,10 +20,14 @@ import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,6 +39,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
@@ -43,10 +52,10 @@ import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
  * */
 public class LookPasswordActivity extends BaseActivity {
     private LookPasswordActivity INSTANCE;
-    public static String code="";
     private Handler handler;
     private List<CityBean> list;
     private timeThread thread;
+    private Dialog dialog;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.xian1)
@@ -110,7 +119,6 @@ public class LookPasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        code="";
         guo.setFocusable(false);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         newhandler();                                       //新建handler处理消息
@@ -128,11 +136,8 @@ public class LookPasswordActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getData();
                 if(mima.getText().toString().equals(mima2.getText().toString())){
-                    Intent intent=new Intent(INSTANCE,SmsActivity.class);
-                    startActivity(intent);
-                    ActivityUtils.getInstance().popActivity(INSTANCE);
+                   getData();
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.lock9),R.style.registDialog).show();
                 }
@@ -354,7 +359,9 @@ public class LookPasswordActivity extends BaseActivity {
         tv_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
+              //  if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
+                if(phone.getText().length()>0){
+                    getSms();
                     tv_code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
                     tv_code.setTextColor(getResources().getColor(R.color.white));
                     tv_code.setEnabled(false);                     //设置不可点击
@@ -364,6 +371,10 @@ public class LookPasswordActivity extends BaseActivity {
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi74),R.style.registDialog).show();
                 }
+              /*  }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi74),R.style.registDialog).show();
+                }*/
+
             }
         });
 
@@ -444,7 +455,7 @@ public class LookPasswordActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        quhao.setText(code);
+        quhao.setText(MyApplication.code);
         jia.setTextColor(Color.parseColor("#ffffff"));
     }
 
@@ -531,5 +542,64 @@ public class LookPasswordActivity extends BaseActivity {
                 }
             }
         };
+    }
+    /***
+     * 验证码
+     * */
+    public void getSms(){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        HttpServiceClient.getInstance().sendsms(phone.getText().toString(),"2",null).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+
+                    }else {
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+            }
+        });
+    }
+
+    /***
+     *  找回密码
+     * */
+    public void getData(){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        HttpServiceClient.getInstance().fogotpwd(MyApplication.username,ed_code.getText().toString(),null,mima.getText().toString(),mima2.getText().toString()).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                    }else {
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                    }
+                }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+            }
+        });
     }
 }

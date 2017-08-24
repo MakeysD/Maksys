@@ -1,23 +1,33 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *  更换密保手机（验证原手机号）
@@ -27,6 +37,7 @@ public class ChangePhone1Activity extends BaseActivity {
     private ChangePhone1Activity INSTANCE;
     private Handler handler;
     private timeThread thread;
+    private Dialog dialog;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.tv)
@@ -53,7 +64,8 @@ public class ChangePhone1Activity extends BaseActivity {
      *  数据初始化
      * */
     private void setViews() {
-        tv.setText(this.getString(R.string.tishi69)+"********8723");
+        String phoneNumber = MyApplication.username.replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
+        tv.setText(this.getString(R.string.tishi69)+phoneNumber);
         newhandler();
     }
     /**
@@ -94,6 +106,7 @@ public class ChangePhone1Activity extends BaseActivity {
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getSms();
                 code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
                 code.setTextColor(getResources().getColor(R.color.white));
                 code.setEnabled(false);                     //设置不可点击
@@ -143,5 +156,38 @@ public class ChangePhone1Activity extends BaseActivity {
                 }
             }
         };
+    }
+
+    /***
+     * 调取接口拿到服务器数据
+     * */
+    public void getSms(){
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog.show();
+        if(MyApplication.rid==null||MyApplication.rid.equals("")){
+            MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
+        }
+        HttpServiceClient.getInstance().sendsms(MyApplication.username,"2",null).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+
+                    }else {
+                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                dialog.dismiss();
+                Log.i("dcz异常",call.toString());
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+            }
+        });
     }
 }

@@ -26,12 +26,17 @@ public class ChangePasswordActivity extends BaseActivity {
     TextView button1;           //修改登录密码
     @BindView(R.id.button2)
     TextView button2;           //修改支付密码
+    @BindView(R.id.button3)
+    TextView button3;           //重置支付密码
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(button1).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(button2).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(button3).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
     }
@@ -40,8 +45,7 @@ public class ChangePasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        CanRippleLayout.Builder.on(button1).rippleCorner(MyApplication.dp2Px()).create();
-        CanRippleLayout.Builder.on(button2).rippleCorner(MyApplication.dp2Px()).create();
+
     }
     /**
      *  监听
@@ -66,6 +70,14 @@ public class ChangePasswordActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(INSTANCE, ChangePayPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+        //重置支付密码
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE, LookPayPasswordActivity.class);
                 startActivity(intent);
             }
         });

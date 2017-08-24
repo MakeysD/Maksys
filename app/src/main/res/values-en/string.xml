@@ -134,6 +134,7 @@
     <string name="tishi6">Please change your password as soon as possible</string>
     <string name="tishi7">Modify login password</string>
     <string name="tishi8">Change payment password</string>
+    <string name="tishi8a">重置支付密码</string>
     <string name="tishi9">Please verify the original payment password</string>
     <string name="tishi10">Please enter the verification code</string>
     <string name="tishi11">Get the verification code</string>
@@ -169,6 +170,7 @@
     <string name="tishi41">Modify the gesture to start the password</string>
     <string name="tishi42">Delete the gesture to start the password</string>
     <string name="tishi43">Please enter the login password</string>
+    <string name="tishi43a">请输入支付密码</string>
     <string name="tishi44">Retrieve password</string>
     <string name="tishi45">Please enter your password again</string>
     <string name="tishi46">Immediately set</string>

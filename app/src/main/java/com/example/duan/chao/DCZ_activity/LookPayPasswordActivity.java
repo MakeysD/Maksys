@@ -1,23 +1,12 @@
 package com.example.duan.chao.DCZ_activity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
+import android.os.Message;
+import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -29,21 +18,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
-import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
-import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
-import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
@@ -54,38 +38,40 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
-/**
- *     登录
- *
- * */
-public class LoginActivity extends BaseActivity {
-    private LoginActivity INSTANCE;
-    private static List<CityBean> list;
-    private LoginOkBean data;
+public class LookPayPasswordActivity extends BaseActivity {
+    private LookPayPasswordActivity INSTANCE;
+    private Handler handler;
+    private List<CityBean> list;
+    private timeThread thread;
     private Dialog dialog;
-    private String content;
-    //定位都要通过LocationManager这个类实现
-    private LocationManager locationManager;
-    private String provider;
+    @BindView(R.id.back)
+    View back;
     @BindView(R.id.xian1)
     TextView xian1;
     @BindView(R.id.xian2)
     TextView xian2;
     @BindView(R.id.xian3)
     TextView xian3;
+    @BindView(R.id.xian4)
+    TextView xian4;
+    @BindView(R.id.xian5)
+    TextView xian5;
     @BindView(R.id.iv1)
     ImageView iv1;
     @BindView(R.id.iv2)
     ImageView iv2;
     @BindView(R.id.iv3)
     ImageView iv3;
+    @BindView(R.id.iv4)
+    ImageView iv4;
+    @BindView(R.id.iv5)
+    ImageView iv5;
 
     @BindView(R.id.button)
     TextView button;        //下一步
@@ -99,29 +85,30 @@ public class LoginActivity extends BaseActivity {
     EditText quhao;         //区号
     @BindView(R.id.et_phone)
     EditText phone;         //手机
-    @BindView(R.id.et_mima)
+    @BindView(R.id.et_code)
+    EditText ed_code;       //验证码
+    @BindView(R.id.code)
+    TextView tv_code;       //验证码
+    @BindView(R.id.et_mima4)
     EditText mima;          //密码
+    @BindView(R.id.et_mima5)
+    EditText mima2;         //确定密码
+/*    @BindView(R.id.et_mima6)
+    EditText mima3;         */
     @BindView(R.id.jia)
     TextView jia;           //+
     @BindView(R.id.checkBox)
     CheckBox yan;           //眼睛
-
+    @BindView(R.id.checkBox2)
+    CheckBox yan2;           //眼睛
+/*    @BindView(R.id.checkBox3)
+    CheckBox yan3;           //眼睛*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_look_pay_password);
         INSTANCE=this;
         ButterKnife.bind(this);
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
-        mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
-        try {
-            content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
-            list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
-            Log.i("dcz",list.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        GPS();
         setViews();
         setListener();
     }
@@ -130,35 +117,28 @@ public class LoginActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        try {
-            if(MyApplication.pub_key.equals("")||MyApplication.pub_key==null){
-                DSA.intkey();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         guo.setFocusable(false);
-
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        newhandler();                                       //新建handler处理消息
     }
     /**
      *  监听
      * */
     private void setListener() {
-        /*back.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
-        });*/
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(MyApplication.sms_type.equals("1")){
-                    login();
+                if(mima.getText().toString().equals(mima2.getText().toString())){
+                    getData();
                 }else {
-                    login();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.lock9),R.style.registDialog).show();
                 }
-
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
@@ -175,11 +155,35 @@ public class LoginActivity extends BaseActivity {
                     mima.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }else {
                     //替换成*号
-                   // mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    // mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
                 }
             }
         });
+        yan2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mima2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    //替换成*号
+                    // mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    mima2.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+                }
+            }
+        });
+       /* yan3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mima3.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    //替换成*号
+                    // mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    mima3.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+                }
+            }
+        });*/
 
         //国家
         guo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -198,7 +202,10 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(guo.getText().toString().length()>0&&mima.getText().toString().length()>0){
+                    if(phone.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            mima.getText().toString().length()>0&&
+                            mima2.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
                     }else {
                         button.setVisibility(View.GONE);
@@ -258,7 +265,7 @@ public class LoginActivity extends BaseActivity {
         phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-               type2();
+                type2();
             }
         });
         phone.setOnClickListener(new View.OnClickListener() {
@@ -274,7 +281,10 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(phone.getText().toString().length()>0&&mima.getText().toString().length()>0){
+                    if(guo.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            mima.getText().toString().length()>0&&
+                            mima2.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
                     }else {
                         button.setVisibility(View.GONE);
@@ -288,14 +298,20 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        //验证码
+        ed_code.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type3();
+            }
+        });
         //密码
         mima.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-               type3();
+                type4();
             }
         });
-
         mima.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -303,7 +319,40 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(mima.getText().toString().length()>0&&phone.getText().toString().length()>0){
+                    if(guo.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            phone.getText().toString().length()>0&&
+                            mima2.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        //确认密码
+        mima2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                type5();
+            }
+        });
+        mima2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            mima.getText().toString().length()>0&&
+                            phone.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
                     }else {
                         button.setVisibility(View.GONE);
@@ -317,16 +366,44 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        tv_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //  if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
+                if(phone.getText().length()>0){
+                    getSms();
+                    tv_code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
+                    tv_code.setTextColor(getResources().getColor(R.color.white));
+                    tv_code.setEnabled(false);                     //设置不可点击
+                    thread = null;
+                    thread = new timeThread();
+                    thread.start();
+                }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi74),R.style.registDialog).show();
+                }
+
+              /*  }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi74),R.style.registDialog).show();
+                }*/
+            }
+        });
+
     }
+
 
     private void type1(){
         iv1.setImageResource(R.mipmap.login1);
         xian1.setBackgroundColor(Color.parseColor("#0581c6"));
         iv2.setImageResource(R.mipmap.login02);
         xian2.setBackgroundColor(Color.parseColor("#343436"));
-        iv3.setImageResource(R.mipmap.login03);
+        iv3.setImageResource(R.mipmap.login04);
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         jia.setTextColor(Color.parseColor("#a2a2a2"));
+        iv4.setImageResource(R.mipmap.login03);
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        iv5.setImageResource(R.mipmap.login03);
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+
         Intent intent=new Intent(INSTANCE, CityListActivity.class);
         startActivity(intent);
     }
@@ -336,9 +413,13 @@ public class LoginActivity extends BaseActivity {
         xian1.setBackgroundColor(Color.parseColor("#343436"));
         iv2.setImageResource(R.mipmap.login2);
         xian2.setBackgroundColor(Color.parseColor("#0581c6"));
-        iv3.setImageResource(R.mipmap.login03);
+        iv3.setImageResource(R.mipmap.login04);
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         jia.setTextColor(Color.parseColor("#ffffff"));
+        iv4.setImageResource(R.mipmap.login03);
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        iv5.setImageResource(R.mipmap.login03);
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
     }
 
     private void type3(){
@@ -346,8 +427,38 @@ public class LoginActivity extends BaseActivity {
         xian1.setBackgroundColor(Color.parseColor("#343436"));
         iv2.setImageResource(R.mipmap.login02);
         xian2.setBackgroundColor(Color.parseColor("#343436"));
-        iv3.setImageResource(R.mipmap.login3);
+        iv3.setImageResource(R.mipmap.login4);
         xian3.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv4.setImageResource(R.mipmap.login03);
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        iv5.setImageResource(R.mipmap.login03);
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
+    }
+    private void type4(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        iv3.setImageResource(R.mipmap.login04);
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        iv4.setImageResource(R.mipmap.login3);
+        xian4.setBackgroundColor(Color.parseColor("#0581c6"));
+        iv5.setImageResource(R.mipmap.login03);
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+        jia.setTextColor(Color.parseColor("#a2a2a2"));
+    }
+    private void type5(){
+        iv1.setImageResource(R.mipmap.login01);
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        iv2.setImageResource(R.mipmap.login02);
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        iv3.setImageResource(R.mipmap.login04);
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        iv4.setImageResource(R.mipmap.login03);
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        iv5.setImageResource(R.mipmap.login3);
+        xian5.setBackgroundColor(Color.parseColor("#0581c6"));
         jia.setTextColor(Color.parseColor("#a2a2a2"));
     }
 
@@ -361,7 +472,7 @@ public class LoginActivity extends BaseActivity {
     public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {
-            return new PasswordCharSequence(source);
+            return new AsteriskPasswordTransformationMethod.PasswordCharSequence(source);
         }
 
         private class PasswordCharSequence implements CharSequence {
@@ -401,151 +512,66 @@ public class LoginActivity extends BaseActivity {
         return sb.toString();
     }
 
-    private void GPS() {
-        //获取定位服务
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        //获取当前可用的位置控制器
-        List<String> list = locationManager.getProviders(true);
-        if (list.contains(LocationManager.NETWORK_PROVIDER)) {
-            //是否为网络位置控制器
-            provider = LocationManager.NETWORK_PROVIDER;
-            Log.i("dcz","网络位置控制器");
-        } else if (list.contains(LocationManager.GPS_PROVIDER)) {
-            //是否为GPS位置控制器
-            Log.i("dcz","GPS位置控制器");
-            provider = LocationManager.GPS_PROVIDER;
-        } else {
-            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi71),R.style.registDialog).show();
-            return;
-        }
-        Location location = locationManager.getLastKnownLocation(provider);
-        if(location==null){
-            Log.i("dcz","location是空的");
-            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi71),R.style.registDialog).show();
-        }else {
-            Log.i("dcz",location.toString());
-        }
-        if (location != null) {
-            //获取当前位置，这里只用到了经纬度
-            String string = "纬度为：" + location.getLatitude() + ",经度为："
-                    + location.getLongitude();
-            Log.i("dcz",string);
-            try {
-                Log.i("dcz",getAddressFromLocation(this,location));
-            } catch (IOException e) {
-                e.printStackTrace();
+
+    private class timeThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            for (int i = 60; i >= 0; i--) {
+                try {
+                    Message msg = handler.obtainMessage();
+                    msg.what = 0;
+                    msg.arg1 = i;         //秒数赋值给消息
+                    handler.sendMessage(msg);
+                    Thread.sleep(1000l);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        //绑定定位事件，监听位置是否改变
-        //第一个参数为控制器类型第二个参数为监听位置变化的时间间隔（单位：毫秒）
-        //第三个参数为位置变化的间隔（单位：米）第四个参数为位置监听器
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(provider, 2000, 2, locationListener);
     }
-    LocationListener locationListener = new LocationListener() {
 
-        @Override
-        public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onProviderEnabled(String arg0) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onProviderDisabled(String arg0) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onLocationChanged(Location arg0) {
-            // TODO Auto-generated method stub
-            // 更新当前经纬度
-        }
-    };
-    //关闭时解除监听器
-    @Override
-    protected void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-        if (locationManager != null) {
-            locationManager.removeUpdates(locationListener);
-        }
-    }
-    /**
-     * 根据经纬度解码地理位置
-     *
-     * @param activity
-     * @param location
-     * @return
-     */
-
-    private static String getAddressFromLocation(final Activity activity, Location location) throws IOException {
-        Geocoder geocoder = new Geocoder(activity);
-        try {
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-            Log.d("dcz", "getAddressFromLocation->lat:" + latitude + ", long:" + longitude);
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
-                //返回当前位置，精度可调
-                Address address = addresses.get(0);
-                Log.i("dcz1",address.getCountryName());
-                MyApplication.city=address.getCountryName();MyApplication.sf.edit().putString("city",address.getCountryName()).commit();
-                for(int i=0;i<list.size();i++){
-                    if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))){
-                        Log.i("dcz",list.get(i).getCountry_name_cn());
-                        Log.i("dcz",list.get(i).getCountry_code()+"");
-                        MyApplication.code=list.get(i).getCountry_code()+"";
+    private void newhandler() {
+        handler = new Handler(INSTANCE.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (msg.what == 0) {
+                    int num = msg.arg1;   //得到剩余秒数
+                    if (num > 0) {
+                        tv_code.setBackgroundResource(R.drawable.yuanjiaohui);
+                        tv_code.setTextColor(getResources().getColor(R.color.text02));
+                        tv_code.setText(num +INSTANCE.getString(R.string.tishi75));
+                        tv_code.setEnabled(false);                     //设置不可点击
+                    } else {             //如果剩余秒数为0，设置按钮可点击
+                        tv_code.setBackgroundResource(R.drawable.yuanjiaolan);
+                        tv_code.setTextColor(0xffffffff);
+                        tv_code.setText(R.string.tishi76);
+                        tv_code.setEnabled(true);                     //设置可点击
                     }
                 }
-             /*   Log.i("dcz2",address.getFeatureName());
-                Log.i("dcz3",address.getSubLocality());
-                Log.i("dcz4",address.getAdminArea());*/
-                address.getCountryName();
-                String sAddress;
-                if (!TextUtils.isEmpty(address.getLocality())) {
-                    sAddress = address.getLocality();
-                } else {
-                    sAddress = "定位失败";
-                }
-                return sAddress;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
+        };
     }
     /***
-     *  密码验证
+     * 验证码
      * */
-    public void login(){
+    public void getSms(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().checklogin(phone.getText().toString(),mima.getText().toString()).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().sendsms(phone.getText().toString(),"2",null).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        data=response.body().getData();
-                        Intent intent=new Intent(INSTANCE,SmsActivity.class);
-                        intent.putExtra("phone",phone.getText().toString());
-                        intent.putExtra("password",mima.getText().toString());
-                        startActivity(intent);
+
                     }else {
                         new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                     }
                 }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
+                    Log.d("dcz","获取数据失败");
                 }
             }
             @Override
@@ -556,29 +582,20 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+
     /***
-     *  登录
+     *  找回密码
      * */
-    public void login2(){
+    public void getData(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        if(MyApplication.rid==null||MyApplication.rid.equals("")){
-            MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
-        }
-        HttpServiceClient.getInstance().login(MyApplication.username,mima.getText().toString(),null,MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().fogotSecPwd(MyApplication.username,mima.getText().toString(),mima2.getText().toString(),ed_code.getText().toString(),null).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
-                        data=response.body().getData();
-                        MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
-                        MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
-                        MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
-                        Intent intent=new Intent(INSTANCE,MainActivity.class);
-                        startActivity(intent);
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {
                         new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();

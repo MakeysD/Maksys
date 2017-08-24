@@ -53,6 +53,7 @@ public class SecurityProtectActivity extends BaseActivity {
         setContentView(R.layout.activity_security_protect);
         INSTANCE=this;
         ButterKnife.bind(this);
+        setListener();
         getData();
     }
 
@@ -74,7 +75,7 @@ public class SecurityProtectActivity extends BaseActivity {
             lv.setLayoutManager(linearLayoutManager);
             lv.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
             lv.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-            lv.setArrowImageView(R.mipmap.xiala);
+            lv.setArrowImageView(R.drawable.pull_icon_big);
             //lv.addItemDecoration(new SpacesItemDecoration(20));
             adapter=new SecurityAdapter(INSTANCE,list);
             lv.setAdapter(adapter);
@@ -119,10 +120,8 @@ public class SecurityProtectActivity extends BaseActivity {
                         if(response.body().getCode().equals("20000")){
                             list=response.body().getData().getList();
                             setViews();
-                            setListener();
                         }else {
                             new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

@@ -134,6 +134,7 @@
     <string name="tishi6">请尽快修改密码</string>
     <string name="tishi7">修改登录密码</string>
     <string name="tishi8">修改支付密码</string>
+    <string name="tishi8a">重置支付密码</string>
     <string name="tishi9">请验证原支付密码</string>
     <string name="tishi10">请输入验证码</string>
     <string name="tishi11">获取验证码</string>
@@ -169,6 +170,7 @@
     <string name="tishi41">修改手势启动密码</string>
     <string name="tishi42">删除手势启动密码</string>
     <string name="tishi43">请输入登录密码</string>
+    <string name="tishi43a">请输入支付密码</string>
     <string name="tishi44">找回密码</string>
     <string name="tishi45">请再次输入密码</string>
     <string name="tishi46">立即设置</string>

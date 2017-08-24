@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.OperationRecordAdapter;
@@ -42,6 +43,8 @@ public class OperationRecordActivity extends BaseActivity {
     XRecyclerView lv;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.error)
+    TextView error;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,11 @@ public class OperationRecordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
+        if(list.size()>0){
+            error.setVisibility(View.GONE);
+        }else {
+            error.setVisibility(View.VISIBLE);
+        }
         if(adapter!=null){
             lv.loadMoreComplete();
             adapter.notify(list);
@@ -115,7 +123,6 @@ public class OperationRecordActivity extends BaseActivity {
                             setViews();
                         }else {
                             new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

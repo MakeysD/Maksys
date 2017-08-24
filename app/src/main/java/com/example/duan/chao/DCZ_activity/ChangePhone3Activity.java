@@ -59,7 +59,6 @@ public class ChangePhone3Activity extends BaseActivity {
     private ChangePhone3Activity INSTANCE;
     private List<CityBean> list;
     public static String guo_name;
-    public static String code="";
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
@@ -139,7 +138,6 @@ public class ChangePhone3Activity extends BaseActivity {
       /*  if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
         }*/
-        code="";
         verifyStoragePermissions(INSTANCE);
     }
     /**
@@ -344,7 +342,7 @@ public class ChangePhone3Activity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        quhao.setText(code);
+        quhao.setText(MyApplication.code);
         guo.setText(guo_name);
         jia.setTextColor(Color.parseColor("#ffffff"));
     }

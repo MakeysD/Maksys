@@ -231,7 +231,8 @@
         <activity android:name=".DCZ_activity.LanguageActivity" />
         <activity android:name=".DCZ_activity.HaveScanActivity" />
         <activity android:name=".DCZ_activity.HavaMoneyActivity" />
-        <activity android:name=".DCZ_activity.SettingDataResultActivity"></activity>
+        <activity android:name=".DCZ_activity.SettingDataResultActivity" />
+        <activity android:name=".DCZ_activity.LookPayPasswordActivity"></activity>
     </application>
 
 </manifest>

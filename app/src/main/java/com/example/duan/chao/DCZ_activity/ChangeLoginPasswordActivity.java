@@ -158,7 +158,6 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                            /* }else {
                                 new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                             }*/
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");
