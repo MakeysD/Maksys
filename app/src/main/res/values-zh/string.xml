@@ -18,8 +18,8 @@
     <string name="no_sensor_dialog_title">没有指纹传感器</string>
     <string name="no_sensor_dialog_message">在你的设备上没有指纹传感器,点击取消退出.</string>
     <string name="no_fingerprint_enrolled_dialog_title">请去系统设置开启指纹</string>
-    <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
-        <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>
+  <!--  <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
+        <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>-->
     <string name="ok_btn_dialog">OK</string>
     <string name="cancel_btn_dialog">取消</string>
     <string name="setti">您未设置过手势密码</string>
@@ -27,7 +27,7 @@
     <!-- auth result error amd help code warning -->
     <string name="AcquiredGood_warning">获得的图像很好.</string>
 
-    <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
+  <!--  <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
     <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂,无法处理检测到的情况(即干性皮肤)或可能是脏的传感器.</string>
 
     <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来.在注册过程,用户应该了解需要发生什么才能解决这个问题.“紧紧地压在传感器上.”</string>
@@ -37,17 +37,17 @@
 
     <string name="AcquiredToSlow_warning">由于缺乏运动,指纹图像难以辨认.这对于需要滑动动作的线性阵列传感器来说是最合适的</string>
 
-    <string name="ErrorCanceled_warning">由于指纹传感器无法使用,该操作被取消.例如,当用户切换时,这可能会发生,设备被锁定,或另一个正在运行的操作阻止或禁用它.</string>
+    <string name="ErrorCanceled_warning">由于指纹传感器无法使用,该操作被取消.例如,当用户切换时,这可能会发生,设备被锁定,或另一个正在运行的操作阻止或禁用它.</string>-->
 
     <string name="ErrorHwUnavailable_warning">硬件不可用,稍后再试.</string>
 
     <string name="ErrorLockout_warning">指纹验证已关闭</string>
 
-    <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
+   <!-- <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
 
     <string name="ErrorUnableToProcess_warning">当传感器无法处理当前图像时,会返回错误状态.</string>
 
-    <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>
+    <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>-->
 
     <string name="tag_hint">Tag为大小写字母,数字,下划线,中文, 多个用以逗号分隔</string>
     <string name="alias_hint">Alias为大小写字母，数字，下划线</string>

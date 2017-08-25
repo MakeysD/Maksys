@@ -33,6 +33,10 @@ public class AddUpdate implements Interceptor{
         String s = originalResponse.body().string();
         LoginBean result = mGson.fromJson(s, LoginBean.class);
         if(result.getCode()!=null){
+          /*  if (result.getCode().equals("10011")){
+
+                throw  new MyThrow();
+            }*/
             if(result.getCode().equals("20003")){
                 Request loginRequest = getLoginRequest();
                 Response loginResponse = chain.proceed(loginRequest);
@@ -90,5 +94,9 @@ public class AddUpdate implements Interceptor{
                         .add("registrationId",MyApplication.rid)
                         .build())
                 .build();
+    }
+
+    public static class MyThrow extends IOException{
+
     }
 }

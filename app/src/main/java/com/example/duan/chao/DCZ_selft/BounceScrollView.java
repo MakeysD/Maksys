@@ -13,19 +13,34 @@ import android.widget.ScrollView;
  * 小段
  * 类名：带有反弹效果的scrollview
  */
-public class BounceScrollView extends ScrollView implements Pullable{
+public class BounceScrollView extends ScrollView implements ObservableScrollable, Pullable{
     private View inner;// 孩子View
+    private OnScrollChangedCallback mOnScrollChangedListener;
 
     private float y;// 点击时y坐标
 
     private Rect normal = new Rect();// 矩形(这里只是个形式，只是用于判断是否需要动画.)
 
     private boolean isCount = false;// 是否开始计算
+    public BounceScrollView(Context context) {
+        super(context);
+    }
 
     public BounceScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
+    public BounceScrollView(Context context, AttributeSet attrs,
+                                int defStyle) {
+        super(context, attrs, defStyle);
+    }
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        if (mOnScrollChangedListener != null) {
+            mOnScrollChangedListener.onScroll(l, t);
+        }
+    }
     /***
      * 根据 XML 生成视图工作完成.该函数在生成视图的最后调用，在所有子视图添加完之后. 即使子类覆盖了 onFinishInflate
      * 方法，也应该调用父类的方法，使该方法得以执行.
@@ -164,5 +179,10 @@ public class BounceScrollView extends ScrollView implements Pullable{
             else
                 return false;
         }
+    }
+
+    @Override
+    public void setOnScrollChangedCallback(OnScrollChangedCallback callback) {
+        mOnScrollChangedListener = callback;
     }
 }

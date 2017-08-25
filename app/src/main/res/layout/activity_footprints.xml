@@ -38,33 +38,26 @@
         android:layout_height="match_parent">
         <include layout="@layout/refresh_head"/>
         <com.example.duan.chao.DCZ_selft.BounceScrollView
+            android:id="@+id/sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none">
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/error"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:visibility="gone"
-                        android:textColor="@color/red"
-                        android:text="暂无数据"/>
-                    <TextView
-                        android:id="@+id/tv1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="@color/text02"
-                        android:visibility="gone"
-                        android:paddingLeft="@dimen/left"
-                        android:paddingTop="7dp"
-                        android:paddingBottom="7dp"
-                        android:text="@string/tishi23"/>
-                    <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/text02"
+                    android:visibility="gone"
+                    android:paddingLeft="@dimen/left"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:text="@string/tishi23"/>
+                <com.example.duan.chao.DCZ_selft.GridViewForScrollView
                         android:id="@+id/lv1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -72,7 +65,7 @@
                         android:clickable="false"
                         android:scrollbars="none">
                     </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
-                    <TextView
+                <TextView
                         android:id="@+id/tv2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -82,7 +75,7 @@
                         android:paddingLeft="@dimen/left"
                         android:paddingTop="7dp"
                         android:text="@string/tishi24"/>
-                    <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+                <com.example.duan.chao.DCZ_selft.GridViewForScrollView
                         android:id="@+id/lv2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -92,7 +85,20 @@
                         android:clickable="false"
                         android:scrollbars="none">
                     </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
-                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        android:layout_marginTop="300dp"
+                        android:textColor="@color/red"
+                        android:text="暂无数据"/>
+                </RelativeLayout>
+            </LinearLayout>
         </com.example.duan.chao.DCZ_selft.BounceScrollView>
         <include layout="@layout/load_more"/>
     </com.example.duan.chao.DCZ_selft.PullToRefreshLayout>

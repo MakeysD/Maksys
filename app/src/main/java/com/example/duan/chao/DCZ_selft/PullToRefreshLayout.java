@@ -30,7 +30,7 @@ import java.util.TimerTask;
  * @author 陈靖
  */
 public class PullToRefreshLayout extends RelativeLayout
-{
+{    private OnChangeListener listener;
 	public static final String TAG = "PullToRefreshLayout";
 	// 初始状态
 	public static final int INIT = 0;
@@ -211,6 +211,21 @@ public class PullToRefreshLayout extends RelativeLayout
 		refreshingAnimation.setInterpolator(lir);
 	}
 
+	public void setOnChangeListener(OnChangeListener listener){
+		this.listener=listener;
+	}
+	public interface OnChangeListener
+	{
+		/**
+		 * 刷新操作
+		 */
+		void onStarRefresh();
+
+
+		void onEndRefresh();
+
+	}
+
 	private void hide()
 	{
 		timer.schedule(5);
@@ -373,8 +388,8 @@ public class PullToRefreshLayout extends RelativeLayout
 	 */
 	private void releasePull()
 	{
-		canPullDown = true;
-		canPullUp = true;
+		/*canPullDown = true;
+		canPullUp = true;*/
 	}
 	public void setCanPullDown(boolean status){
 		this.canPullDown=status;

@@ -3,7 +3,9 @@ package com.example.duan.chao.DCZ_activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,8 +14,10 @@ import com.example.duan.chao.DCZ_adapter.Footprints2Adapter;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
+import com.example.duan.chao.DCZ_selft.BounceScrollView;
 import com.example.duan.chao.DCZ_selft.GridViewForScrollView;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_selft.OnScrollChangedCallback;
 import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -38,11 +42,13 @@ public class FootprintsActivity extends BaseActivity {
     private FootprintsActivity INSTANCE;
     private Footprints1Adapter adapter1;
     private Footprints2Adapter adapter2;
+    private int Int=2;
     private Dialog dialog;
     private List<FootprintsBean.ListBean> list=new ArrayList<>();
     private List<Footprints2Bean.DataBean> list2=new ArrayList<>();
     private int num=1;
-    private int size=10;
+    private int size=30;
+    private int newAlpha;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.lv1)
@@ -57,6 +63,8 @@ public class FootprintsActivity extends BaseActivity {
     TextView tv2;
     @BindView(R.id.error)
     TextView error;
+    @BindView(R.id.sv)
+    BounceScrollView sv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +92,42 @@ public class FootprintsActivity extends BaseActivity {
      *  监听
      * */
     private void setListener() {
+    /*    sv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_UP){
+                    Log.i("dcz","手指停下来了");
+                    if(newAlpha>Int){
+                        if(newAlpha-Int>3){
+                            Log.i("dcz2","开始调接口");
+                            Int=newAlpha;
+                            getData();
+                            num++;
+                        }
+                    }
+                }
+                return false;
+            }
+        });
+        sv.setOnScrollChangedCallback(new OnScrollChangedCallback() {
+            @Override
+            public void onScroll(int l, int t) {
+                newAlpha = t / 400+2;
+            }
+        });*/
+
+    lv2.setOnScrollListener(new AbsListView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            Log.i("dcz_当前可见",totalItemCount+"");
+        }
+    });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +138,7 @@ public class FootprintsActivity extends BaseActivity {
             @Override
             public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
                 Log.i("dcz","onRefresh");
+                pullToRefreshLayout.setCanPullUp(true);
                 num=1;
                 list.clear();
                 getData();
@@ -127,8 +172,13 @@ public class FootprintsActivity extends BaseActivity {
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz","data1返回成功");
-                            for(int i=0;i<response.body().getData().getList().size();i++){
-                                list.add(response.body().getData().getList().get(i));
+                            if(response.body().getData().getList().size()>0){
+                                for(int i=0;i<response.body().getData().getList().size();i++){
+                                    list.add(response.body().getData().getList().get(i));
+                                }
+                            }else {
+                                Log.i("dcz","setCanPullUp");
+                                pullToRefreshLayout.setCanPullUp(false);
                             }
                             if(list.size()>0){
                                 tv2.setVisibility(View.VISIBLE);

@@ -12,6 +12,7 @@ public class LoginOkBean extends LoginBean<LoginOkBean>{
     private String userId;
     private String authzId;
 
+
     public String getRefreshToken() {
         return refreshToken;
     }
