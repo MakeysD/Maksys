@@ -99,7 +99,7 @@ public class HaveScanActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 JPushInterface.clearAllNotifications(INSTANCE);
-                String str ="agreement=1"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
+                String str ="agreement=1"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+result.getSrcReqSysId()+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
                 try {
                     String sign = DSA.sign(data, MyApplication.private_key);
@@ -113,7 +113,7 @@ public class HaveScanActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 JPushInterface.clearAllNotifications(INSTANCE);
-                String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
+                String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+result.getSrcReqSysId()+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
                 try {
                     String sign = DSA.sign(data, MyApplication.private_key);
@@ -161,7 +161,7 @@ public class HaveScanActivity extends BaseActivity {
     public void getData(final String string, String sign){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().have(MyApplication.username,"2001",MyApplication.reqSysId,MyApplication.reqFlowId,string,sign).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().have(MyApplication.username,"2001",result.getSrcReqSysId(),MyApplication.reqFlowId,string,sign).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

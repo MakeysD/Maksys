@@ -281,8 +281,7 @@ public class SettingDataActivity extends BaseActivity {
         options1Items.add(new ProvinceBean(0,"身份证","",""));
         options1Items.add(new ProvinceBean(1,"护照","",""));
         options1Items.add(new ProvinceBean(3,"港澳通行证","",""));
-        options1Items.add(new ProvinceBean(4,"学生证","",""));
-        options1Items.add(new ProvinceBean(5,"驾照","",""));
+        options1Items.add(new ProvinceBean(4,"驾照","",""));
         //三级联动效果
         pvOptions.setPicker(options1Items);
         //设置选择的三级单位

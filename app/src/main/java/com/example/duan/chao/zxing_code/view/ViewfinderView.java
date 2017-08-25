@@ -70,7 +70,7 @@ public final class ViewfinderView extends View {
     private int laserLineResId;//扫描线图片资源
     boolean isFirst;
     private int slideTop;
-    private static final int SPEEN_DISTANCE = 10;
+    private static final int SPEEN_DISTANCE = 30;
     public String getmTipText() {
         return mTipText;
     }

@@ -18,6 +18,15 @@ public class HaveBean {
     private String reqSysId;
     private String username;
     private String randomCode;
+    private String srcReqSysId;
+
+    public String getSrcReqSysId() {
+        return srcReqSysId;
+    }
+
+    public void setSrcReqSysId(String srcReqSysId) {
+        this.srcReqSysId = srcReqSysId;
+    }
 
     public String getBusinessName() {
         return businessName;
