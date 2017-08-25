@@ -124,7 +124,8 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
             if (timeSelectListener != null) {
                 try {
                     Date date = WheelTime.dateFormat.parse(wheelTime.getTime());
-                    timeSelectListener.onTimeSelect(date);
+                    Date date2 = WheelTime.dateFormat.parse(wheelTime.getTime2());
+                    timeSelectListener.onTimeSelect(date,date2);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -135,7 +136,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     }
 
     public interface OnTimeSelectListener {
-        void onTimeSelect(Date date);
+        void onTimeSelect(Date date,Date date2);
     }
 
     public void setOnTimeSelectListener(OnTimeSelectListener timeSelectListener) {

@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pickerview_bg_topbar">
+    android:background="#343436">
 
-    <Button
+    <!--<Button
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
@@ -14,8 +14,17 @@
         android:paddingRight="@dimen/pickerview_topbar_paddingright"
         android:text="@string/pickerview_cancel"
         android:textColor="@drawable/selector_pickerview_btn"
-        android:textSize="@dimen/pickerview_topbar_btn_textsize" />
-
+        android:textSize="@dimen/pickerview_topbar_btn_textsize" />-->
+    <ImageView
+        android:id="@+id/btnCancel"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/x"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="fill_parent"
@@ -26,8 +35,16 @@
         android:layout_toRightOf="@+id/btnCancel"
         android:textColor="@color/pickerview_topbar_title"
         android:textSize="@dimen/pickerview_topbar_title_textsize" />
-
-    <Button
+    <ImageView
+        android:id="@id/btnSubmit"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/dui"/>
+   <!-- <Button
         android:id="@id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
@@ -38,5 +55,5 @@
         android:paddingRight="@dimen/pickerview_topbar_paddingleft"
         android:text="@string/pickerview_submit"
         android:textColor="@drawable/selector_pickerview_btn"
-        android:textSize="@dimen/pickerview_topbar_btn_textsize" />
+        android:textSize="@dimen/pickerview_topbar_btn_textsize" />-->
 </RelativeLayout>

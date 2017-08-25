@@ -27,7 +27,7 @@
     <!-- auth result error amd help code warning -->
     <string name="AcquiredGood_warning">获得的图像很好.</string>
 
-  <!--  <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
+    <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
     <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂,无法处理检测到的情况(即干性皮肤)或可能是脏的传感器.</string>
 
     <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来.在注册过程,用户应该了解需要发生什么才能解决这个问题.“紧紧地压在传感器上.”</string>
@@ -43,11 +43,11 @@
 
     <string name="ErrorLockout_warning">指纹验证已关闭</string>
 
-   <!-- <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
+    <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
 
     <string name="ErrorUnableToProcess_warning">当传感器无法处理当前图像时,会返回错误状态.</string>
 
-    <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>-->
+    <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>
 
     <string name="tag_hint">Tag为大小写字母,数字,下划线,中文, 多个用以逗号分隔</string>
     <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
@@ -143,6 +143,8 @@
     <string name="tishi14">请输入新手机号</string>
     <string name="tishi15">如果原密保手机已换号或不能接收到短信验证码，需提供一个能收验证码的新手机号和个人实名有效资料提交工作人员审核通过后才能更换新密保手机</string>
     <string name="tishi16">请输入手机号</string>
+    <string name="tishi16a">请输入姓名</string>
+    <string name="tishi16b">请输入证件号码</string>
     <string name="tishi17">拍照</string>
     <string name="tishi18">从相册选择</string>
     <string name="tishi19">验证密保手机</string>

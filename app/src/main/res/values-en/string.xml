@@ -143,6 +143,8 @@
     <string name="tishi14">Please enter the new phone number</string>
     <string name="tishi15">If the encrypted mobile phone number have change or not to receive message authentication code, need to offer a new phone number and receive verification code personally real-name effective information submitted staff approval before they can replace the new ones to protect mobile phone</string>
     <string name="tishi16">Please enter your phone number </string>
+    <string name="tishi16a">请输入姓名</string>
+    <string name="tishi16b">请输入证件号码</string>
     <string name="tishi17">Take pictures</string>
     <string name="tishi18">Select from album</string>
     <string name="tishi19">Verify the compact cell phone</string>

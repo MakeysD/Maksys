@@ -101,13 +101,7 @@ public class SmsActivity extends BaseActivity {
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    getSms();
-                    code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
-                    code.setTextColor(getResources().getColor(R.color.white));
-                    code.setEnabled(false);                     //设置不可点击
-                    thread = null;
-                    thread = new timeThread();
-                    thread.start();
+                getSms();
             }
         });
         et_code.addTextChangedListener(new TextWatcher() {
@@ -236,6 +230,12 @@ public class SmsActivity extends BaseActivity {
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
+                    code.setBackgroundResource(R.drawable.yuanjiaohui);       //设置成灰色
+                    code.setTextColor(getResources().getColor(R.color.white));
+                    code.setEnabled(false);                     //设置不可点击
+                    thread = null;
+                    thread = new timeThread();
+                    thread.start();
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
 

@@ -74,7 +74,7 @@ public class Footprints2Adapter extends BaseAdapter{
             }
         }
         viewHolder.name.setText(list.get(position).getSystemName());
-        viewHolder.ip.setText(list.get(position).getIpAddr());
+        viewHolder.ip.setText(list.get(position).getIpAttr()+"   "+list.get(position).getIpAddr());
 
         Long timec = list.get(position).getCreateTime();
         SimpleDateFormat formatc = new SimpleDateFormat("HH:mm:ss");

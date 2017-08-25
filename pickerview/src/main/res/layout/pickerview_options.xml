@@ -8,6 +8,10 @@
         layout="@layout/include_pickerview_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/pickerview_topbar_height" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#4e4d52"/>
 
     <LinearLayout
         android:id="@+id/optionspicker"
@@ -21,20 +25,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#343436"
             />
 
         <com.bigkoo.pickerview.lib.WheelView
             android:id="@+id/options2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#343436"
             android:layout_weight="1" />
 
         <com.bigkoo.pickerview.lib.WheelView
             android:id="@+id/options3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#343436"
             android:layout_weight="1" />
     </LinearLayout>
-
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#343436">
+    </View>
 </LinearLayout>

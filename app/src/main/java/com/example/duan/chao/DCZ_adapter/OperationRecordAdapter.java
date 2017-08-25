@@ -59,7 +59,7 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
             }
         }
         holder.name.setText(list.get(position).getSystemName());
-        holder.ip.setText(list.get(position).getIpAddr());
+        holder.ip.setText(list.get(position).getIpAttr()+"  "+list.get(position).getIpAddr());
 
         Long timec = list.get(position).getCreateTime();
         SimpleDateFormat formatc = new SimpleDateFormat("HH:mm:ss");

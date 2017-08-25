@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -63,7 +63,7 @@
                         android:layout_marginRight="@dimen/right"
                         android:background="@color/xian1" />
                     <LinearLayout
-                        android:id="@+id/et_guo"
+                        android:id="@+id/ll1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -93,7 +93,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:gravity="center_vertical"
+                            android:gravity="center"
                             android:paddingLeft="17dp"
                             android:singleLine="true"
                             android:textColor="@color/white"
@@ -117,6 +117,7 @@
                         android:layout_marginTop="15dp"
                         android:background="@color/xian2" />
                     <LinearLayout
+                        android:id="@+id/ll2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -140,6 +141,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/type"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -157,57 +159,6 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="10dp"
-                            android:src="@mipmap/you" />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/xian"
-                        android:layout_marginLeft="@dimen/left"
-                        android:layout_marginRight="@dimen/right"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/xian1" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="@dimen/left"
-                        android:layout_marginRight="@dimen/right"
-                        android:gravity="center_vertical">
-
-                        <ImageView
-                            android:layout_width="23dp"
-                            android:layout_height="23dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp"
-                            android:visibility="gone"
-                            android:src="@mipmap/login1" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tishi55"
-                            android:textColor="@color/text04"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@null"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="17dp"
-                            android:singleLine="true"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text01"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:layout_width="8dp"
-                            android:layout_height="12dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp"
-                            android:visibility="gone"
                             android:src="@mipmap/you" />
                     </LinearLayout>
                     <TextView
@@ -219,9 +170,78 @@
                         android:layout_marginTop="15dp"
                         android:background="@color/xian1" />
                     <LinearLayout
+                        android:id="@+id/ll3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"
+                            android:src="@mipmap/login1" />
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tishi55"
+                                android:textColor="@color/text04"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="姓名姓名"
+                                android:visibility="invisible"
+                                android:textColor="@color/text04"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+
+                        <EditText
+                            android:id="@+id/et_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="17dp"
+                            android:background="@null"
+                            android:hint="@string/tishi16a"
+                            android:maxLength="13"
+                            android:singleLine="true"
+                            android:textColor="@color/text08"
+                            android:textColorHint="@color/text04"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/text01" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"
+                            android:src="@mipmap/you" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/xian3"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/xian"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/xian1" />
+                    <LinearLayout
+                        android:id="@+id/ll4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal"
                         android:layout_marginLeft="@dimen/left"
                         android:layout_marginRight="@dimen/right"
                         android:gravity="center_vertical">
@@ -241,17 +261,19 @@
                             android:textColor="@color/text04"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <EditText
+                            android:id="@+id/et_number"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
+                            android:layout_marginLeft="17dp"
                             android:background="@null"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="17dp"
+                            android:hint="@string/tishi16b"
+                            android:maxLength="13"
                             android:singleLine="true"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text01"
-                            android:textStyle="bold" />
+                            android:textColor="@color/text08"
+                            android:textColorHint="@color/text04"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/text01" />
 
                         <ImageView
                             android:layout_width="8dp"
@@ -263,6 +285,7 @@
                             android:src="@mipmap/you" />
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/xian4"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/xian"
                         android:layout_marginLeft="@dimen/left"
@@ -285,13 +308,24 @@
                             android:layout_marginRight="10dp"
                             android:visibility="gone"
                             android:src="@mipmap/login1" />
-
-                        <TextView
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tishi57"
-                            android:textColor="@color/text04"
-                            android:textStyle="bold" />
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tishi57"
+                                android:textColor="@color/text04"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="姓名姓名"
+                                android:visibility="invisible"
+                                android:textColor="@color/text04"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
 
                         <TextView
                             android:id="@+id/tv_time"
@@ -315,6 +349,7 @@
                             android:src="@mipmap/you" />
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/xian5"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/xian"
                         android:layout_marginLeft="@dimen/left"
@@ -455,4 +490,59 @@
             </com.example.duan.chao.DCZ_selft.BounceScrollView>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/pup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#80000000">
+        <LinearLayout
+            android:id="@+id/pup2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/btn_camera"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#E8E8E8"
+                android:gravity="center"
+                android:text="@string/tishi17"
+                android:textColor="#1079FF"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#C9C9CB" />
+
+            <TextView
+                android:id="@+id/btn_photo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#E8E8E8"
+                android:gravity="center"
+                android:text="@string/tishi18"
+                android:textColor="#1079FF"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#C9C9CB" />
+
+            <TextView
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#E8E8E8"
+                android:gravity="center"
+                android:text="@string/cancel_btn"
+                android:textColor="#1079FF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

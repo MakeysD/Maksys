@@ -56,6 +56,7 @@ public class MyReceiver extends BroadcastReceiver {
 						new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(), "提示", "您的账号于2015-07-07"+"在另外一套设备登陆"+"\n如非本人操作，请及时修改密码或者重新登陆","",new MiddleDialog.onButtonCLickListener2() {
 							@Override
 							public void onActivieButtonClick(Object bean, int position) {
+								JPushInterface.clearAllNotifications(MyApplication.getContext());
 								MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
 								MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
 								MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();

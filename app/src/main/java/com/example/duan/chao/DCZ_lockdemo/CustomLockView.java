@@ -57,7 +57,7 @@ public class CustomLockView extends View {
     //是否可操作
     private boolean isTouch = true;
     //密码最小长度
-    private int passwordMinLength = 3;
+    private int passwordMinLength = 4;
     //判断是否触摸屏幕
     private boolean checking = false;
     //刷新
