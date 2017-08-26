@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,13 @@ public class LockActivity extends BaseActivity {
         CanRippleLayout.Builder.on(button2).rippleCorner(MyApplication.dp2Px()).create();
         setViews();
         setListener();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
     }
 
     private void setViews() {

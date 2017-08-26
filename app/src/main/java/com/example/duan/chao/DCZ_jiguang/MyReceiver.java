@@ -1,5 +1,6 @@
 package com.example.duan.chao.DCZ_jiguang;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -13,10 +14,12 @@ import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
 import com.example.duan.chao.DCZ_activity.HaveScanActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,23 +55,12 @@ public class MyReceiver extends BroadcastReceiver {
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息2: " + bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE));
 				//下线通知
 				if(bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE).equals("2")){
+					MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
 					Log.i("dcz_当前界面",ActivityUtils.getInstance().getCurrentActivity()+"");
-						new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(), "提示", "您的账号于2015-07-07"+"在另外一套设备登陆"+"\n如非本人操作，请及时修改密码或者重新登陆","",new MiddleDialog.onButtonCLickListener2() {
-							@Override
-							public void onActivieButtonClick(Object bean, int position) {
-								JPushInterface.clearAllNotifications(MyApplication.getContext());
-								MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
-								MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-								MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
-								MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
-								if(bean==null){
-									ActivityUtils.getInstance().popAllActivities();
-								}else {
-									processCustomMessage(MyApplication.getContext(), bundle);
-								}
-
-							}
-						}, R.style.registDialog).show();
+					String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
+					Gson mGson = new Gson();
+					HaveBean result = mGson.fromJson(message, HaveBean.class);
+					xiaxian(context,result.getLoginTime());
 				}else if(bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE).equals("1")){
 					isRunningForeground(context);
 				}else {
@@ -178,12 +170,70 @@ public class MyReceiver extends BroadcastReceiver {
 			context.startActivity(i);
 			return true ;
 		}else {
+			Log.i("dcz","执行通知跳转");
+			if (context == null){
+				Log.i("dcz","空的");
+			}
 			/*Intent intent2 = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
 			context.startActivity(intent2 );*/
 			Intent i = new Intent(context, HaveScanActivity.class);
 			i.putExtra("message",message);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
+			return false ;
+		}
+	}
+	private boolean xiaxian (Context context,String time) {
+		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+		ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
+		String currentPackageName = cn.getPackageName();
+		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
+		Activity a = ActivityUtils.getInstance().getCurrentActivity();
+		//判断APP是否在前台
+		if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(context.getPackageName())) {
+			Intent i = new Intent(context,a.getClass());
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+			context.startActivity(i);
+			new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
+				@Override
+				public void onActivieButtonClick(Object bean, int position) {
+					JPushInterface.clearAllNotifications(MyApplication.getContext());
+					MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+					MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
+					MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
+					if(bean==null){
+						ActivityUtils.getInstance().popAllActivities();
+					}else {
+						processCustomMessage(MyApplication.getContext(), bundle);
+					}
+
+				}
+			}, R.style.registDialog).show();
+			return true ;
+		}else {
+			Log.i("dcz","执行通知跳转");
+			if (context == null){
+				Log.i("dcz","空的");
+			}
+			Intent i = new Intent(context,a.getClass());
+			i.putExtra("message",message);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(i);
+			new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
+				@Override
+				public void onActivieButtonClick(Object bean, int position) {
+					JPushInterface.clearAllNotifications(MyApplication.getContext());
+					MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+					MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
+					MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
+					if(bean==null){
+						ActivityUtils.getInstance().popAllActivities();
+					}else {
+						processCustomMessage(MyApplication.getContext(), bundle);
+					}
+
+				}
+			}, R.style.registDialog).show();
 			return false ;
 		}
 	}

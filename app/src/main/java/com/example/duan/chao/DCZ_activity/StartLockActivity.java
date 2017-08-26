@@ -3,6 +3,7 @@ package com.example.duan.chao.DCZ_activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -79,6 +80,13 @@ public class StartLockActivity extends BaseActivity {
                     if (cl.getErrorTimes() > 0) {
                         tvWarn.setText(INSTANCE.getString(R.string.lock7) + String.valueOf(cl.getErrorTimes()) +INSTANCE.getString(R.string.lock8));
                         tvWarn.setTextColor(getResources().getColor(R.color.red));
+                    }else {
+                        LockUtil.setPwdStatus(INSTANCE,false);
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                        startActivity(intent);
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                        Log.i("dcz","解锁已达到上限");
                     }
                 }
             });

@@ -2,23 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/left"
-        android:paddingRight="@dimen/right"
-        android:orientation="vertical">
+        android:paddingRight="@dimen/right">
+
         <LinearLayout
             android:id="@+id/tou"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
                 android:layout_width="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/xian1"
                     android:layout_width="@dimen/xian2"
@@ -26,83 +30,94 @@
                     android:layout_centerHorizontal="true"
                     android:background="@color/text01" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/xian3"
+                android:background="@drawable/yuanjiao"
+                android:paddingBottom="5dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:textSize="@dimen/text02"
-                android:textColor="@color/text02"
                 android:text="今天"
-                android:background="@drawable/yuanjiao" />
+                android:textColor="@color/text02"
+                android:textSize="@dimen/text02" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
                 android:layout_width="30dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_height="match_parent">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="@dimen/xian2"
                     android:layout_height="20dp"
-                    android:background="@color/text01"
-                    android:layout_below="@id/tvDot" />
+                    android:layout_below="@id/tvDot"
+                    android:background="@color/text01" />
+
                 <TextView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:background="@drawable/yuan"/>
+                    android:background="@drawable/yuan" />
+
                 <TextView
                     android:layout_width="@dimen/xian2"
-                    android:background="@color/text01"
                     android:layout_height="match_parent"
-                    android:layout_below="@id/tvDot" />
+                    android:layout_below="@id/tvDot"
+                    android:background="@color/text01" />
             </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
-                android:paddingLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:paddingTop="10dp"
+                android:background="@mipmap/duihua"
                 android:paddingBottom="10dp"
-                android:background="@mipmap/duihua">
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="支付宝钱包"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text01"
-                        android:text="支付宝钱包"/>
+                        android:textSize="@dimen/text01" />
+
                     <TextView
                         android:id="@+id/ip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/text02"
-                        android:textSize="@dimen/text02"
                         android:layout_marginTop="2dp"
-                        android:text="广东-深圳"/>
+                        android:text="广东-深圳"
+                        android:textColor="@color/text02"
+                        android:textSize="@dimen/text02" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/right"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:textSize="@dimen/text01"
+                    android:layout_marginRight="@dimen/right"
+                    android:text="17:58"
                     android:textColor="@color/text02"
-                    android:text="17:58"/>
+                    android:textSize="@dimen/text01" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

@@ -143,6 +143,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:textSize="@dimen/text02"
+                        android:visibility="gone"
                         android:text="@string/main2" />
 
                     <ImageView
@@ -349,6 +350,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:textSize="@dimen/text02"
+                        android:visibility="gone"
                         android:text="@string/tishi35" />
 
                     <ImageView

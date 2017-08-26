@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -76,5 +77,11 @@ public class ChangeEmailActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
     }
 }

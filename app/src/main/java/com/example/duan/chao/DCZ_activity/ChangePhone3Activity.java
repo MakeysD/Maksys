@@ -140,6 +140,13 @@ public class ChangePhone3Activity extends BaseActivity {
         }*/
         verifyStoragePermissions(INSTANCE);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
     /**
      * 监听
      *

@@ -38,6 +38,7 @@ public class AddUpdate implements Interceptor{
                 throw  new MyThrow();
             }*/
             if(result.getCode().equals("20003")){
+                Log.i("ddddddddd","安全中心不可用");
                 Request loginRequest = getLoginRequest();
                 Response loginResponse = chain.proceed(loginRequest);
                 String loginString = loginResponse.body().string();

@@ -263,7 +263,12 @@ public class ChangePhone2Activity extends BaseActivity {
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
     private void type1(){
         iv1.setImageResource(R.mipmap.login1);
         xian1.setBackgroundColor(Color.parseColor("#0581c6"));

@@ -58,7 +58,7 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
                 holder.title.setText(datetime);
             }
         }
-        holder.name.setText(list.get(position).getSystemName());
+        holder.name.setText(list.get(position).getTypeDesc()+"");
         holder.ip.setText(list.get(position).getIpAttr()+"  "+list.get(position).getIpAddr());
 
         Long timec = list.get(position).getCreateTime();

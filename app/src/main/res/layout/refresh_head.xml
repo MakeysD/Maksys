@@ -35,8 +35,8 @@
                         android:src="@drawable/pull_icon_big" />
                     <ImageView
                         android:id="@+id/state_iv"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
                         android:visibility="gone"/>

@@ -128,13 +128,13 @@ public class MiddleDialog<E> extends Dialog {
                 listener2.onActivieButtonClick("2", position);
             }
         });
-        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {//取消
+      /*  view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {//取消
             @Override
             public void onClick(View v) {
                 dismiss();
                 listener2.onActivieButtonClick(null,0);
             }
-        });
+        });*/
     }
 
     public interface onOKListeners{

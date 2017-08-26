@@ -1,6 +1,7 @@
 package com.example.duan.chao.DCZ_activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -63,4 +64,11 @@ public class ChangePhone4Activity extends BaseActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
+
 }

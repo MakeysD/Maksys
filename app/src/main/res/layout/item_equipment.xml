@@ -64,7 +64,7 @@
                 android:paddingBottom="5dp"
                 android:textSize="@dimen/text01"
                 android:textColor="@drawable/text_select"
-                android:text="删除"/>
+                android:text="@string/tishi99"/>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"

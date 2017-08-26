@@ -111,8 +111,8 @@
 
 
     <string name="main1">安全保护</string>
-    <string name="main2">已开启</string>
-    <string name="main3">未开启</string>
+    <string name="main2">off</string>
+    <string name="main3">on</string>
     <string name="main4">账户安全</string>
     <string name="main5">手势锁</string>
     <string name="main6">指纹密码</string>
@@ -122,14 +122,16 @@
     <string name="main10">暂未授权</string>
     <string name="main11">已关闭</string>
 
-
+    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
 
 
     <string name="button">确定</string>
     <string name="tishi1">请输入原安全邮箱</string>
     <string name="tishi2">请输入原始密码</string>
     <string name="tishi3">6-18位新登录密码，区分大小写</string>
+    <string name="tishi3a">6-18位新支付密码，区分大小写</string>
     <string name="tishi4">确认登录密码</string>
+    <string name="tishi4a">确认支付密码</string>
     <string name="tishi5">账户存在严重风险</string>
     <string name="tishi6">请尽快修改密码</string>
     <string name="tishi7">修改登录密码</string>
@@ -197,8 +199,9 @@
     <string name="tishi64">点击登录</string>
     <string name="tishi65">下线</string>
     <string name="tishi66">请补全原绑定安全邮箱：</string>
-    <string name="tishi67">请设置</string>
-    <string name="tishi68">的新登录密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
+    <string name="tishi67"></string>
+    <string name="tishi68">请设置新登录密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
+    <string name="tishi68a">请设置新支付密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
     <string name="tishi69">请验证原绑定手机号:</string>
     <string name="tishi70">账户安全中心</string>
     <string name="tishi71">请检查网络或GPS是否打开</string>
@@ -226,5 +229,18 @@
     <string name="tishi93">资料已提交</string>
     <string name="tishi94">请耐心等待后台人员审核</string>
     <string name="tishi95">重新登录</string>
+    <string name="tishi96">已开启</string>
+    <string name="tishi97">类授权保护</string>
+    <string name="tishi98">未开启账户授权保护</string>
+    <string name="tishi99">删除</string>
+    <string name="tishi100">确定退出账号？</string>
+    <string name="tishi101">下线通知</string>
+    <string name="tishi102">您的账号于</string>
+    <string name="tishi103">在另外一台设备登陆</string>
+    <string name="tishi104">\n如非本人操作,请及时修改密码或者重新登陆</string>
+    <string name="tishi105">关闭对“</string>
+    <string name="tishi105a">开启对“</string>
+    <string name="tishi106">”的所有授权?</string>
+    <string name="tishi107">当前已是最新版本</string>
 
 </resources>

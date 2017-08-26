@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -67,6 +68,13 @@ public class LanguageActivity extends BaseActivity {
         setListener();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
+
     /**
      *  初始化
      * */
@@ -87,9 +95,9 @@ public class LanguageActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
             a1();
-         /*       MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
+                MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
                 recreate();
-                MyApplication.status=true;*/
+                MyApplication.status=true;
             }
         });
         rl2.setOnClickListener(new View.OnClickListener() {
@@ -102,9 +110,9 @@ public class LanguageActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 a3();
-             /*   MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
+                MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
                 recreate();//刷新页面
-                MyApplication.status=true;*/
+                MyApplication.status=true;
             }
         });
         rl4.setOnClickListener(new View.OnClickListener() {

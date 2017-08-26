@@ -65,7 +65,8 @@
         <RelativeLayout
             android:id="@+id/rl2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
             <TextView
                 android:id="@+id/tv2"
                 android:layout_width="wrap_content"
@@ -89,6 +90,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/xian"
+            android:visibility="gone"
             android:background="@color/xian1"/>
         <RelativeLayout
             android:id="@+id/rl3"
@@ -121,6 +123,7 @@
         <RelativeLayout
             android:id="@+id/rl4"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv4"
@@ -145,6 +148,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/xian"
+            android:visibility="gone"
             android:background="@color/xian1"/>
     </LinearLayout>
 </LinearLayout>

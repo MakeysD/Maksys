@@ -3,6 +3,7 @@ package com.example.duan.chao;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.os.CancellationSignal;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -75,6 +77,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.CustomPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.data.JPushLocalNotification;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -174,6 +177,7 @@ public class MainActivity extends BaseActivity{
         // 指定下拉状态栏时显示的通知图标
         JPushInterface.setPushNotificationBuilder(2, builder);
 
+
         Handle();
         setViews();
         setListener();
@@ -191,10 +195,17 @@ public class MainActivity extends BaseActivity{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        iv.setImageResource(R.drawable.progress);
-        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
-        Mp3();
-        animationDrawable.start();
+        if(MyApplication.language.equals("ENGLISH")){
+            iv.setImageResource(R.drawable.progress2);
+            AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
+            Mp3();
+            animationDrawable.start();
+        }else {
+            iv.setImageResource(R.drawable.progress);
+            AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
+            Mp3();
+            animationDrawable.start();
+        }
 
         SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
         final String token = sf2.getString("token","");//第二个参数为默认值
@@ -328,7 +339,7 @@ public class MainActivity extends BaseActivity{
         rl6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MiddleDialog(INSTANCE, "提示","确定退出账号？",new MiddleDialog.onButtonCLickListener2() {
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi82),INSTANCE.getString(R.string.tishi100),new MiddleDialog.onButtonCLickListener2() {
                     @Override
                     public void onActivieButtonClick(Object bean, int po) {
                         if(bean==null){
@@ -732,6 +743,13 @@ public class MainActivity extends BaseActivity{
                 setDialog(INSTANCE.getString(R.string.ErrorUnableToProcess_warning));
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
     }
 
     private class timeThread extends Thread {

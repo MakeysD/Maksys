@@ -156,6 +156,14 @@ public class FootprintsActivity extends BaseActivity {
 
             }
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
     }
 
     /***
@@ -165,6 +173,9 @@ public class FootprintsActivity extends BaseActivity {
         HttpServiceClient.getInstance().getFoot(num,size,"",null,null).enqueue(new Callback<FootprintsBean>() {
             @Override
             public void onResponse(Call<FootprintsBean> call, Response<FootprintsBean> response) {
+                if(dialog.isShowing()){
+                    dialog.dismiss();
+                }
                 getData2();
                 pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);

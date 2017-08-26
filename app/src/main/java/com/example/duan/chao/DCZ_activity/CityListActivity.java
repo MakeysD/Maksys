@@ -123,6 +123,13 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
         return sb.toString();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
+
     /**
      * Json转对象
      */

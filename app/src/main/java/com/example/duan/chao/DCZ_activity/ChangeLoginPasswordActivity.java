@@ -59,7 +59,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        tv5.setText(this.getString(R.string.tishi67)+"132****8723"+this.getString(R.string.tishi68));
+        tv5.setText(this.getString(R.string.tishi68));
     }
     /**
      *  监听
@@ -77,7 +77,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(et1.getText().toString().length()>0&&et2.getText().toString().length()>0&&et3.getText().toString().length()>0){
+                if(et1.getText().toString().length()>0&&et2.getText().toString().length()>5&&et2.getText().toString().length()<19&&et3.getText().toString().length()>5&&et3.getText().toString().length()<19){
                     button.setVisibility(View.VISIBLE);
                 }else {
                     button.setVisibility(View.GONE);
@@ -93,7 +93,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(et1.getText().toString().length()>0&&et2.getText().toString().length()>0&&et3.getText().toString().length()>0){
+                if(et1.getText().toString().length()>0&&et2.getText().toString().length()>5&&et2.getText().toString().length()<19&&et3.getText().toString().length()>5&&et3.getText().toString().length()<19){
                     button.setVisibility(View.VISIBLE);
                 }else {
                     button.setVisibility(View.GONE);
@@ -109,7 +109,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(et1.getText().toString().length()>0&&et2.getText().toString().length()>0&&et3.getText().toString().length()>0){
+                if(et1.getText().toString().length()>0&&et2.getText().toString().length()>5&&et2.getText().toString().length()<19&&et3.getText().toString().length()>5&&et3.getText().toString().length()<19){
                     button.setVisibility(View.VISIBLE);
                 }else {
                     button.setVisibility(View.GONE);
@@ -126,7 +126,12 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
     /***
      * 调取接口拿到服务器数据
      * */
@@ -137,12 +142,12 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
+                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi82),INSTANCE.getString(R.string.tishi85),new MiddleDialog.onButtonCLickListener2() {
                                 @Override
                                 public void onActivieButtonClick(Object bean, int po) {
-                                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                                     ActivityUtils.getInstance().popAllActivities();
                                     if(bean==null){
                                     }else {

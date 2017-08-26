@@ -127,6 +127,14 @@ public class SettingDataActivity extends BaseActivity {
         setListener();
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
+
     /**
      *  初始化
      * */

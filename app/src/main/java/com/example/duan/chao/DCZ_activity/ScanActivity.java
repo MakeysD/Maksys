@@ -1,50 +1,24 @@
 package com.example.duan.chao.DCZ_activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Vibrator;
 import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
-import com.example.duan.chao.DCZ_bean.ScanBean;
-import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DensityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ScreenUtils;
-import com.example.duan.chao.DCZ_util.StatusBarUtil;
-import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 import com.example.duan.chao.zxing_code.android.CaptureActivity;
-import com.example.duan.chao.zxing_code.camera.CameraManager;
-import com.example.duan.chao.zxing_code.view.ViewfinderView;
-import com.google.gson.Gson;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.Result;
 
-import java.io.IOException;
-import java.util.Vector;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Field;
-
 import static com.example.duan.chao.DCZ_application.MyApplication.dialog;
 
 
@@ -68,6 +42,13 @@ public class ScanActivity extends CaptureActivity{
                 getData(uuid);
             }
         }*/
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
     }
 
     @Override

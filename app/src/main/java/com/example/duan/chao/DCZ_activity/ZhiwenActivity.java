@@ -77,6 +77,13 @@ public class ZhiwenActivity extends BaseActivity {
         setListener();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
+
     private void setViews() {
         name.setText(MyApplication.username);
         mIndexs= LockUtil.getPwd(this);

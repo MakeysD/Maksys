@@ -11,6 +11,7 @@ import com.example.duan.chao.DCZ_bean.NewsBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
 import com.example.duan.chao.DCZ_bean.StatusBean;
+import com.example.duan.chao.DCZ_bean.VersionBean;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -233,6 +234,15 @@ public interface InterfaceService {
                             @Field("agreement") String agreement,
                            @Field("sign") String sign);
 
+    /**
+     *  授权
+     */
+    @FormUrlEncoded
+    @POST("version/checkLatestVersion")
+    Call<VersionBean> version(@Field("devId")String devId,
+                              @Field("devType") String devType,
+                              @Field("version")String version,
+                              @Field("appId") String appId);
     /**
      *  扫码
      */

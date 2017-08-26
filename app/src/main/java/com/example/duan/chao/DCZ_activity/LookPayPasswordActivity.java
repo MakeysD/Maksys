@@ -109,10 +109,18 @@ public class LookPayPasswordActivity extends BaseActivity {
         setContentView(R.layout.activity_look_pay_password);
         INSTANCE=this;
         ButterKnife.bind(this);
+        mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         setViews();
         setListener();
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
     /**
      *  初始化
      * */

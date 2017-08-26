@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="260dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -52,10 +52,28 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/ok"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/dialog_xia"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:text="@string/tishi95"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text01" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/cancel"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:background="@drawable/dialog_zuoxia"
                     android:gravity="center">
 
@@ -68,22 +86,6 @@
                         android:textSize="@dimen/text01" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/ok"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/dialog_youxia"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="7dp"
-                        android:text="@string/tishi95"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text01" />
-                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

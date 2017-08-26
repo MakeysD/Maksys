@@ -105,6 +105,14 @@ public class EquipmentManageActivity extends BaseActivity {
         });
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
+
     /***
      * 调取接口拿到服务器数据
      * */

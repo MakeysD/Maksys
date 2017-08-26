@@ -388,8 +388,8 @@ public class PullToRefreshLayout extends RelativeLayout
 	 */
 	private void releasePull()
 	{
-		/*canPullDown = true;
-		canPullUp = true;*/
+		canPullDown = true;
+		//canPullUp = true;
 	}
 	public void setCanPullDown(boolean status){
 		this.canPullDown=status;

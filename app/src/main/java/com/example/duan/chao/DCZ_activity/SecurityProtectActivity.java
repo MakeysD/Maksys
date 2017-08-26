@@ -56,15 +56,20 @@ public class SecurityProtectActivity extends BaseActivity {
         setListener();
         getData();
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
     /**
      *  初始化
      * */
     private void setViews() {
         if(list.size()>0){
-            tv.setText("已开启"+list.size()+"类业务账户授权保护");
+            tv.setText(INSTANCE.getString(R.string.tishi96)+list.size()+INSTANCE.getString(R.string.tishi97));
         }else {
-            tv.setText("未开启账户授权保护");
+            tv.setText(INSTANCE.getString(R.string.tishi98));
         }
         if(adapter!=null){
             lv.loadMoreComplete();

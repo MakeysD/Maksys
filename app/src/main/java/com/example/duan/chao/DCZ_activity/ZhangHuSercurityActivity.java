@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -48,6 +49,13 @@ public class ZhangHuSercurityActivity extends BaseActivity {
         setViews();
         setListener();
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("dcz","按下了返回键");
+        ActivityUtils.getInstance().popActivity(this);
+    }
+
     /**
      *  初始化
      * */
