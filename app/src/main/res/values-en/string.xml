@@ -25,9 +25,10 @@
     <string name="setti">no gesture password yet</string>
 
     <!-- auth result error amd help code warning -->
- 
-
-  <!--  <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
+    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
+   <!-- <string name="AcquiredGood_warning">获得的图像很好.</string>
+    <string name="logining">程序在后台执行, 请查看日志！</string>
+    <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
     <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂,无法处理检测到的情况(即干性皮肤)或可能是脏的传感器.</string>
 
     <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来.在注册过程,用户应该了解需要发生什么才能解决这个问题.“紧紧地压在传感器上.”</string>
@@ -37,20 +38,19 @@
 
     <string name="AcquiredToSlow_warning">由于缺乏运动,指纹图像难以辨认.这对于需要滑动动作的线性阵列传感器来说是最合适的</string>
 
-    <string name="ErrorCanceled_warning">由于指纹传感器无法使用,该操作被取消.例如,当用户切换时,这可能会发生,设备被锁定,或另一个正在运行的操作阻止或禁用它.</string>-->
+    <string name="ErrorCanceled_warning">由于指纹传感器无法使用,该操作被取消.例如,当用户切换时,这可能会发生,设备被锁定,或另一个正在运行的操作阻止或禁用它.</string>
 
     <string name="ErrorHwUnavailable_warning">Fingerprint error,try later</string>
 
     <string name="ErrorLockout_warning">Fingerprint verify is closed </string>
 
-   <!-- <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
+    <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
 
     <string name="ErrorUnableToProcess_warning">当传感器无法处理当前图像时,会返回错误状态.</string>
 
     <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>-->
-
-    
-    
+    <string name="alias_hint">Alias is uppercase and lowercase letters, Numbers, underscores </string>
+    <string name="tag_hint">Tags are case letters, Numbers, underscores, Chinese, multiple comma separated </string>
     <string name="style_hint">style is number</string>
     <string name="error_style_empty">style can\'t be empty</string>
     <string name="error_alias_empty">alias can\'t be empty</string>
@@ -75,9 +75,7 @@
     <string name="title1">Email</string>
     <string name="title2">Change login password</string>
     <string name="title3">Change password</string>
-    <string name="title3a">Change password</string>
     <string name="title4">Change payment password</string>
-    <string name="title4a">Change payment password</string>
     <string name="title5">Change phone number</string>
     <string name="title6">Select region</string>
     <string name="title7">Devices management</string>
@@ -131,7 +129,9 @@
     <string name="tishi1">original email</string>
     <string name="tishi2">original password</string>
     <string name="tishi3">new password (6-18 characters),(Case sensitive)</string>
+    <string name="tishi3a">new password (6-18 characters),(Case sensitive)</string>
     <string name="tishi4">confirm new password</string>
+    <string name="tishi4a">confirm new password</string>
     <string name="tishi5">lowest security</string>
     <string name="tishi6">Please change the password in time</string>
     <string name="tishi7">change login password</string>
@@ -145,6 +145,8 @@
     <string name="tishi14">new phone number</string>
     <string name="tishi15">If the original phone number can\'t receive message, you need to offer a new phone number and real  personally information submitted, after approval, you can change the phone number.</string>
     <string name="tishi16">phone number </string>
+    <string name="tishi16a">name</string>
+    <string name="tishi16b">ID number</string>
     <string name="tishi17">camera</string>
     <string name="tishi18">photos</string>
     <string name="tishi19">message verify</string>
@@ -233,11 +235,12 @@
     <string name="tishi99">delete</string>
     <string name="tishi100">logout？</string>
     <string name="tishi101">logout notice</string>
-    <string name="tishi102">您的账号于</string>
-    <string name="tishi103">在另外一套设备登陆</string>
-    <string name="tishi104">your account login on another device, if you didn\'t operate it, please change password and login again.</string>
+    <string name="tishi102">your account login</string>
+    <string name="tishi103">on another device</string>
+    <string name="tishi104">if you didn\'t operate it, please change password and login again.</string>
     <string name="tishi105">whether you opened authorized to"</string>
     <string name="tishi105a">whether you opened authorized to"</string>
     <string name="tishi106">”or not</string>
+    <string name="tishi107">latest version</string>
 
 </resources>

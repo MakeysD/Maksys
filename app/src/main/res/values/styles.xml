@@ -10,7 +10,7 @@
     <style name="Theme.AppStartLoadTranslucent" parent="AppTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
-    </style>
+    </style> 
     <style name="AboveBottom">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>

@@ -19,12 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     //APK打包过程中出现Error:"app_name" is not translated in "zh" (Chinese)[Missing Translation]就添加
     lintOptions {
         //  disable 'InvalidPackage'
         //只要添加下面这一句就可以了
         disable 'MissingTranslation'
+        checkReleaseBuilds false
+        abortOnError false
     }
 
     sourceSets {

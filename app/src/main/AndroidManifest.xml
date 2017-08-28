@@ -63,7 +63,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".DCZ_activity.AppStartActivity"
-            android:launchMode="singleInstance"
             android:theme="@style/Theme.AppStartLoadTranslucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,68 +70,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DCZ_activity.WelcomeActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.SecurityProtectActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ZhangHuSercurityActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.GesturesLockActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.FingerprinProtectActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.GuanYuActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".MainActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ScanActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ChangePasswordActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.SecurityPhoneActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.SecurityEmailActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.PersonDataActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.SuohaoActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.EquipmentManageActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.OperationRecordActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.FootprintsActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ChangeLoginPasswordActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ChangePayPasswordActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.LookPasswordActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.SmsActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.LoginLockActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.LoginActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.LockActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ChangePhone1Activity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ChangePhone2Activity"
-            android:launchMode="singleInstance"/>
+        <!-- android:launchMode="singleInstance"-->
+        <activity android:name=".DCZ_activity.WelcomeActivity" />
+        <activity android:name=".DCZ_activity.SecurityProtectActivity"/>
+        <activity android:name=".DCZ_activity.ZhangHuSercurityActivity" />
+        <activity android:name=".DCZ_activity.GesturesLockActivity" />
+        <activity android:name=".DCZ_activity.FingerprinProtectActivity" />
+        <activity android:name=".DCZ_activity.GuanYuActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".DCZ_activity.ScanActivity" />
+        <activity android:name=".DCZ_activity.ChangePasswordActivity" />
+        <activity android:name=".DCZ_activity.SecurityPhoneActivity" />
+        <activity android:name=".DCZ_activity.SecurityEmailActivity"/>
+        <activity android:name=".DCZ_activity.PersonDataActivity" />
+        <activity android:name=".DCZ_activity.SuohaoActivity" />
+        <activity android:name=".DCZ_activity.EquipmentManageActivity" />
+        <activity android:name=".DCZ_activity.OperationRecordActivity" />
+        <activity android:name=".DCZ_activity.FootprintsActivity" />
+        <activity android:name=".DCZ_activity.ChangeLoginPasswordActivity" />
+        <activity android:name=".DCZ_activity.ChangePayPasswordActivity" />
+        <activity android:name=".DCZ_activity.LookPasswordActivity" />
+        <activity android:name=".DCZ_activity.SmsActivity" />
+        <activity android:name=".DCZ_activity.LoginLockActivity" />
+        <activity android:name=".DCZ_activity.LoginActivity" />
+        <activity android:name=".DCZ_activity.LockActivity" />
+        <activity android:name=".DCZ_activity.ChangePhone1Activity" />
+        <activity android:name=".DCZ_activity.ChangePhone2Activity" />
         <activity
             android:name=".DCZ_activity.ChangePhone3Activity"
-            android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name=".DCZ_activity.ChangePhone4Activity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.CityListActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ZhiwenActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.HaveActivity"
-            android:launchMode="singleInstance"/>
+        <activity android:name=".DCZ_activity.ChangePhone4Activity" />
+        <activity android:name=".DCZ_activity.CityListActivity" />
+        <activity android:name=".DCZ_activity.ZhiwenActivity" />
+        <activity android:name=".DCZ_activity.HaveActivity"/>
         <!-- For test only 测试的主程序 -->
         <!-- For test only 测试高级功能 -->
         <activity
@@ -256,23 +226,15 @@
             android:name="JPUSH_APPKEY"
             android:value="09c99878811909a4bf2a7b1a" />
         <!-- </>值来自开发者平台取得的AppKey -->
-        <activity android:name=".DCZ_activity.StartLockActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.ChangeEmailActivity"
-            android:launchMode="singleInstance" />
+        <activity android:name=".DCZ_activity.StartLockActivity" />
+        <activity android:name=".DCZ_activity.ChangeEmailActivity" />
         <activity android:name=".DCZ_activity.SettingDataActivity"
-            android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
-        <activity android:name=".DCZ_activity.LanguageActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.HaveScanActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.HavaMoneyActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.SettingDataResultActivity"
-            android:launchMode="singleInstance"/>
-        <activity android:name=".DCZ_activity.LookPayPasswordActivity"
-            android:launchMode="singleInstance"></activity>
+        <activity android:name=".DCZ_activity.LanguageActivity" />
+        <activity android:name=".DCZ_activity.HaveScanActivity" />
+        <activity android:name=".DCZ_activity.HavaMoneyActivity" />
+        <activity android:name=".DCZ_activity.SettingDataResultActivity" />
+        <activity android:name=".DCZ_activity.LookPayPasswordActivity"></activity>
     </application>
 
 </manifest>
