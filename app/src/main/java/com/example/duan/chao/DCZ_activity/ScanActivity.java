@@ -26,7 +26,7 @@ import static com.example.duan.chao.DCZ_application.MyApplication.dialog;
  *  扫码验证
  *
  * */
-public class ScanActivity extends CaptureActivity{
+public class ScanActivity extends CaptureActivity {
     private String sign;
     private void getTicketInfo(String serial) {
         /*this.serial = serial;

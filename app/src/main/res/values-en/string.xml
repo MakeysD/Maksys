@@ -38,7 +38,7 @@
 
     <string name="AcquiredToSlow_warning">由于缺乏运动,指纹图像难以辨认.这对于需要滑动动作的线性阵列传感器来说是最合适的</string>
 
-    <string name="ErrorCanceled_warning">由于指纹传感器无法使用,该操作被取消.例如,当用户切换时,这可能会发生,设备被锁定,或另一个正在运行的操作阻止或禁用它.</string>
+    <string name="ErrorCanceled_warning">verufy fingerprint</string>
 
     <string name="ErrorHwUnavailable_warning">Fingerprint error,try later</string>
 

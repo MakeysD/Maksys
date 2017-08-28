@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.example.duan.chao"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -70,4 +70,5 @@ dependencies {
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    dependencies { compile 'pub.devrel:easypermissions:0.2.0' }
 }

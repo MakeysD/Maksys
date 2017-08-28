@@ -193,9 +193,6 @@ public class MyReceiver extends BroadcastReceiver {
 		Activity a = ActivityUtils.getInstance().getCurrentActivity();
 		//判断APP是否在前台
 		if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(context.getPackageName())) {
-			Intent i = new Intent(context,a.getClass());
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
-			context.startActivity(i);
 			new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
 				@Override
 				public void onActivieButtonClick(Object bean, int position) {

@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text01"
-                    android:text="@string/button"/>
+                    android:text="@string/cancel_btn_dialog"/>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>

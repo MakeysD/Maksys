@@ -37,7 +37,7 @@
 
     <string name="AcquiredToSlow_warning">由于缺乏运动,指纹图像难以辨认.这对于需要滑动动作的线性阵列传感器来说是最合适的</string>
 
-    <string name="ErrorCanceled_warning">由于指纹传感器无法使用,该操作被取消.例如,当用户切换时,这可能会发生,设备被锁定,或另一个正在运行的操作阻止或禁用它.</string>
+    <string name="ErrorCanceled_warning">请验证你的指纹</string>
 
     <string name="ErrorHwUnavailable_warning">硬件不可用,稍后再试.</string>
 
@@ -242,5 +242,13 @@
     <string name="tishi105a">开启对“</string>
     <string name="tishi106">”的所有授权?</string>
     <string name="tishi107">当前已是最新版本</string>
+
+
+ <string name="rationale_camera">This app needs access to your camera so you can take pictures.</string>
+ <string name="rationale_location_contacts">This app needs access to your location and contacts to know where and who you are.</string>
+ <string name="rationale_sms">This app needs access to your sms to read all your great messages.</string>
+ <string name="returned_from_app_settings_to_activity">Returned from app settings to MainActivity</string>
+ <string name="camera">Camera</string>
+ <string name="location_and_contacts">Location and Contacts</string>
 
 </resources>
