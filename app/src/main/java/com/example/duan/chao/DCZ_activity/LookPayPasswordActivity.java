@@ -27,6 +27,7 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
 
@@ -109,7 +110,10 @@ public class LookPayPasswordActivity extends BaseActivity {
         setContentView(R.layout.activity_look_pay_password);
         INSTANCE=this;
         ButterKnife.bind(this);
+        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+        ShebeiUtil.setEdNoChinaese(mima);
+        ShebeiUtil.setEdNoChinaese(mima2);
         setViews();
         setListener();
     }
@@ -126,7 +130,6 @@ public class LookPayPasswordActivity extends BaseActivity {
      * */
     private void setViews() {
         guo.setFocusable(false);
-        CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         newhandler();                                       //新建handler处理消息
     }
     /**

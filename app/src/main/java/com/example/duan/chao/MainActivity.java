@@ -309,7 +309,6 @@ public class MainActivity extends BaseActivity{
                     Intent intent=new Intent(INSTANCE, GesturesLockActivity.class);
                     startActivity(intent);
                 }
-
             }
         });
         //账户安全
@@ -413,8 +412,10 @@ public class MainActivity extends BaseActivity{
     //手动开启相机权限
     private void quan(){
         if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            Log.i("dcz2","没有权限");
             ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
         } else {
+            Log.i("dcz2","有权限");
             Intent intent=new Intent(INSTANCE, ScanActivity.class);
             startActivity(intent);
         }

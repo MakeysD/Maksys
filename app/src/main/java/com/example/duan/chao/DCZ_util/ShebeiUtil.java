@@ -2,6 +2,12 @@ package com.example.duan.chao.DCZ_util;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by DELL on 2017/8/2.
@@ -22,6 +28,40 @@ public class ShebeiUtil {
         } else {
             return deviceId;
         }
+    }
+    /**
+     * 限制edittext 不能输入中文
+     * @param editText
+     */
+    public static void setEdNoChinaese(final EditText editText){
+        TextWatcher textWatcher=new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String txt = s.toString();
+                //注意返回值是char数组
+                char[] stringArr = txt.toCharArray();
+                for (int i = 0; i < stringArr.length; i++) {
+                    //转化为string
+                    String value = new String(String.valueOf(stringArr[i]));
+                    Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
+                    Matcher m = p.matcher(value);
+                    if (m.matches()) {
+                        editText.setText(editText.getText().toString().substring(0, editText.getText().toString().length() - 1));
+                        editText.setSelection(editText.getText().toString().length());
+                        return;
+                    }
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+        editText.addTextChangedListener(textWatcher);
     }
     /**
      * 获取手机品牌

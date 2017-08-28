@@ -17,6 +17,7 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -51,6 +52,9 @@ public class ChangePayPasswordActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        ShebeiUtil.setEdNoChinaese(et1);
+        ShebeiUtil.setEdNoChinaese(et2);
+        ShebeiUtil.setEdNoChinaese(et3);
         setViews();
         setListener();
     }

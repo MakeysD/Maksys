@@ -107,7 +107,7 @@
     <string name="lock8">times</string>
     <string name="lock9">confirm payment password is different from the first enter</string>
     <string name="lock10">unset gesture password</string>
-    <string name="lock11">gesture password setting opened</string>
+    <string name="lock11">fingerprint password setting opened</string>
 
 
     <string name="main1">Security</string>
@@ -138,7 +138,7 @@
     <string name="tishi8">change payment password</string>
     <string name="tishi8a">reset payment password </string>
     <string name="tishi9">verify original payment password</string>
-    <string name="tishi10">verify code</string>
+    <string name="tishi10">message verify</string>
     <string name="tishi11">get code</string>
     <string name="tishi12">submit</string>
     <string name="tishi13">region</string>

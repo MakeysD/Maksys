@@ -55,7 +55,8 @@ public class MyReceiver extends BroadcastReceiver {
 				Logger.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息2: " + bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE));
 				//下线通知
 				if(bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE).equals("2")){
-
+					//停止推送服务
+					JPushInterface.stopPush(context.getApplicationContext());
 					MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
 					Log.i("dcz_当前界面",ActivityUtils.getInstance().getCurrentActivity()+"");
 					String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
@@ -216,11 +217,12 @@ public class MyReceiver extends BroadcastReceiver {
 			if (context == null){
 				Log.i("dcz","空的");
 			}
-			Intent i = new Intent(context,a.getClass());
-			i.putExtra("message",message);
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			context.startActivity(i);
-			new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
+			Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_LAUNCHER);
+			intent.setClass(a, a.getClass());
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			a.startActivity(intent);
+			new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
 				@Override
 				public void onActivieButtonClick(Object bean, int position) {
 					JPushInterface.clearAllNotifications(MyApplication.getContext());
@@ -255,11 +257,11 @@ public class MyReceiver extends BroadcastReceiver {
 			/*Intent intent2 = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
 			context.startActivity(intent2 );*/
 
-			/*Intent i = new Intent(context, HavaMoneyActivity.class);
+			Intent i = new Intent(context, HavaMoneyActivity.class);
 			i.putExtra("message",message);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			context.startActivity(i);*/
-			am.moveTaskToFront(ActivityUtils.getInstance().getCurrentActivity().getTaskId(),ActivityManager.MOVE_TASK_WITH_HOME);
+			context.startActivity(i);
+			//am.moveTaskToFront(ActivityUtils.getInstance().getCurrentActivity().getTaskId(),ActivityManager.MOVE_TASK_WITH_HOME);
 			return false ;
 		}
 	}

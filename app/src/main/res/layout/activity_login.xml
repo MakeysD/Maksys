@@ -200,7 +200,6 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="@string/tishi43"
-                    android:digits="@string/rule_password"
                     android:singleLine="true"
                     android:textColor="@color/text08"
                     android:textColorHint="@color/text04"

@@ -41,6 +41,7 @@ import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 import com.google.gson.Gson;
@@ -121,6 +122,8 @@ public class LoginActivity extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ShebeiUtil.setEdNoChinaese(mima);
+
         GPS();
         setViews();
         setListener();

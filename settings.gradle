@@ -1,1 +1,1 @@
-include ':app', ':xrecyclerview', ':pickerview'
+include ':app', ':xrecyclerview', ':pickerview', ':easypermissions'

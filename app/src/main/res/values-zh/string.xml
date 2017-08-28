@@ -122,7 +122,7 @@
     <string name="main10">暂未授权</string>
     <string name="main11">已关闭</string>
 
-    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
+    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"$%^*()\|~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
 
 
     <string name="button">确定</string>
