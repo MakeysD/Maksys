@@ -151,6 +151,6 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
         ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
         MyApplication.city=bean.getCountry_name_cn();
         MyApplication.code=bean.getCountry_code()+"";
-        finish();
+        ActivityUtils.getInstance().popActivity(INSTANCE);
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HttpBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
@@ -53,7 +54,7 @@ public class AddUpdate implements Interceptor{
                     MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     ActivityUtils.getInstance().removeActivity(ActivityUtils.getInstance().getCurrentActivity());
-                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginActivity.class));
+                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
                     ActivityUtils.getInstance().popAllActivities();
                 }
           /*  if(resultLogin.getCode().equals("10029")){

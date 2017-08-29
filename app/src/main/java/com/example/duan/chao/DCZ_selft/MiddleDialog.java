@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
@@ -274,7 +275,7 @@ public class MiddleDialog<E> extends Dialog {
                 //停止推送服务
                 JPushInterface.stopPush(acontext.getApplicationContext());
                 MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                Intent intent=new Intent(acontext,LoginActivity.class);
+                Intent intent=new Intent(acontext,LoginEmailActivity.class);
                 acontext.startActivity(intent);
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_NO_SPACE:

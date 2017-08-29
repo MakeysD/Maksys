@@ -70,9 +70,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- android:launchMode="singleInstance"-->
+        <!-- android:launchMode="singleInstance" -->
         <activity android:name=".DCZ_activity.WelcomeActivity" />
-        <activity android:name=".DCZ_activity.SecurityProtectActivity"/>
+        <activity android:name=".DCZ_activity.SecurityProtectActivity" />
         <activity android:name=".DCZ_activity.ZhangHuSercurityActivity" />
         <activity android:name=".DCZ_activity.GesturesLockActivity" />
         <activity android:name=".DCZ_activity.FingerprinProtectActivity" />
@@ -81,7 +81,7 @@
         <activity android:name=".DCZ_activity.ScanActivity" />
         <activity android:name=".DCZ_activity.ChangePasswordActivity" />
         <activity android:name=".DCZ_activity.SecurityPhoneActivity" />
-        <activity android:name=".DCZ_activity.SecurityEmailActivity"/>
+        <activity android:name=".DCZ_activity.SecurityEmailActivity" />
         <activity android:name=".DCZ_activity.PersonDataActivity" />
         <activity android:name=".DCZ_activity.SuohaoActivity" />
         <activity android:name=".DCZ_activity.EquipmentManageActivity" />
@@ -102,7 +102,7 @@
         <activity android:name=".DCZ_activity.ChangePhone4Activity" />
         <activity android:name=".DCZ_activity.CityListActivity" />
         <activity android:name=".DCZ_activity.ZhiwenActivity" />
-        <activity android:name=".DCZ_activity.HaveActivity"/>
+        <activity android:name=".DCZ_activity.HaveActivity" />
         <!-- For test only 测试的主程序 -->
         <!-- For test only 测试高级功能 -->
         <activity
@@ -228,13 +228,15 @@
         <!-- </>值来自开发者平台取得的AppKey -->
         <activity android:name=".DCZ_activity.StartLockActivity" />
         <activity android:name=".DCZ_activity.ChangeEmailActivity" />
-        <activity android:name=".DCZ_activity.SettingDataActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
+        <activity
+            android:name=".DCZ_activity.SettingDataActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".DCZ_activity.LanguageActivity" />
         <activity android:name=".DCZ_activity.HaveScanActivity" />
         <activity android:name=".DCZ_activity.HavaMoneyActivity" />
         <activity android:name=".DCZ_activity.SettingDataResultActivity" />
-        <activity android:name=".DCZ_activity.LookPayPasswordActivity"></activity>
+        <activity android:name=".DCZ_activity.LookPayPasswordActivity" />
+        <activity android:name=".DCZ_activity.LoginEmailActivity"></activity>
     </application>
 
 </manifest>

@@ -1,7 +1,10 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.HaveBean;
+import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
+import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
@@ -26,6 +32,7 @@ import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +49,14 @@ public class ZhiwenActivity extends BaseActivity {
     public static final int MSG_AUTH_FAILED = 101;
     public static final int MSG_AUTH_ERROR = 102;
     public static final int MSG_AUTH_HELP = 103;
+
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_CONTENT_TYPE = "content_type";
+    public static final String KEY_EXTRAS = "extras";
+
     @BindView(R.id.result)
     TextView result;
     @BindView(R.id.change)
@@ -68,6 +83,7 @@ public class ZhiwenActivity extends BaseActivity {
         setContentView(R.layout.activity_zhiwen);
         INSTANCE=this;
         ButterKnife.bind(this);
+        registerMessageReceiver();
         if(LockUtil.getPwdStatus(INSTANCE)){
             change.setVisibility(View.VISIBLE);
         }else {
@@ -97,7 +113,7 @@ public class ZhiwenActivity extends BaseActivity {
                         cancellationSignal = null;
                         Intent intent=new Intent(INSTANCE, MainActivity.class);
                         startActivity(intent);
-                        finish();
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
                         break;
                     case MSG_AUTH_FAILED:
                         number=number+1;
@@ -175,7 +191,7 @@ public class ZhiwenActivity extends BaseActivity {
                 MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                 MyApplication.zhiwen=false;MyApplication.sf.edit().putBoolean("zhiwen", false).commit();
                 LockUtil.setPwdStatus(INSTANCE,false);
-                Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
                 startActivity(intent);
                 ActivityUtils.getInstance().popActivity(INSTANCE);
             }
@@ -280,11 +296,52 @@ public class ZhiwenActivity extends BaseActivity {
             Toast.makeText(INSTANCE,R.string.setting_error, Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (cancellationSignal != null) {
             cancellationSignal.cancel();
+        }
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        super.onDestroy();
+    }
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
+    }
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                Log.i("dcz","接收到广播");
+                if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                    String messge = intent.getStringExtra(KEY_MESSAGE);
+                    String extras = intent.getStringExtra(KEY_EXTRAS);
+                    String type = intent.getStringExtra(KEY_CONTENT_TYPE);
+                    StringBuilder showMsg = new StringBuilder();
+                    showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                    if (!ExampleUtil.isEmpty(extras)) {
+                        showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                    }
+                    Log.i("dcz",messge);
+                    Gson mGson = new Gson();
+                    HaveBean result = mGson.fromJson(messge, HaveBean.class);
+                    MyApplication.reqFlowId=result.getReqFlowId();
+                    MyApplication.reqSysId=result.getReqSysId();
+                    Log.i("dcz",result.getReqSysId());
+                    Log.i("dcz",type+"type");
+                    if(type.equals("2")){//下线通知
+                        ActivityUtils.getInstance().popAllActivities();
+                        Intent inten=new Intent(INSTANCE, LoginEmailActivity.class);
+                        startActivity(inten);
+                    }
+                }
+            } catch (Exception e){
+            }
         }
     }
 }

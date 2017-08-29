@@ -26,6 +26,7 @@ import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -44,6 +45,7 @@ import com.example.duan.chao.DCZ_activity.GuanYuActivity;
 import com.example.duan.chao.DCZ_activity.LanguageActivity;
 import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
@@ -167,6 +169,7 @@ public class MainActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         INSTANCE=this;
+        Log.i("dcz类名",INSTANCE.getLocalClassName());
         ButterKnife.bind(this);
         JPushInterface.resumePush(getApplicationContext());
         CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
@@ -288,7 +291,7 @@ public class MainActivity extends BaseActivity{
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, LoginActivity.class);
+                Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
                 startActivity(intent);
             }
         });
@@ -337,7 +340,7 @@ public class MainActivity extends BaseActivity{
                 startActivity(intent);
             }
         });
-        //退出当前账户
+        //退出当前账户    `
         rl6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -492,9 +495,9 @@ public class MainActivity extends BaseActivity{
                         if(token==null||token.equals("")){
                             Log.i("dcz","只有一个账号");
                             MyApplication.token=token;MyApplication.sf.edit().putString("token","").commit();
-                            Intent intent=new Intent(INSTANCE, LoginActivity.class);
+                            Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
                             startActivity(intent);
-                            finish();
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
                         }else {
                             sf2.edit().putString("token","").commit();
                             Log.i("dcz","有两个账号");
@@ -627,7 +630,7 @@ public class MainActivity extends BaseActivity{
                     Log.i("dcz",type+"type");
                     if(type.equals("2")){//下线通知
                         ActivityUtils.getInstance().popAllActivities();
-                        Intent inten=new Intent(INSTANCE, LoginActivity.class);
+                        Intent inten=new Intent(INSTANCE, LoginEmailActivity.class);
                         startActivity(inten);
                     }
                 }
@@ -670,12 +673,19 @@ public class MainActivity extends BaseActivity{
         },R.style.registDialog);
         dia.show();
     }
+
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Log.i("dcz","按下了返回键");
-        JPushInterface.stopPush(INSTANCE.getApplicationContext());
-        ActivityUtils.getInstance().popActivity(this);
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+     /*   JPushInterface.stopPush(INSTANCE.getApplicationContext());
+        ActivityUtils.getInstance().popActivity(this);*/
+        if(KeyEvent.KEYCODE_BACK==keyCode){
+            Intent home=new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return false ;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private class timeThread extends Thread {

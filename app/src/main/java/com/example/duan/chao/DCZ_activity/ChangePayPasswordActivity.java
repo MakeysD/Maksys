@@ -152,7 +152,7 @@ public class ChangePayPasswordActivity extends BaseActivity {
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                            Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
                             startActivity(intent);
                             ActivityUtils.getInstance().popAllActivities();
                         }else {

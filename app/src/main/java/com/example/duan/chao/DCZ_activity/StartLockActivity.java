@@ -1,8 +1,12 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
+import android.support.v4.os.CancellationSignal;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,12 +14,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.HaveBean;
+import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
+import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
 import com.example.duan.chao.DCZ_lockdemo.CustomLockView;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_lockdemo.ScreenObserver;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +38,14 @@ public class StartLockActivity extends BaseActivity {
     private ScreenObserver mScreenObserver;
     private TextView tvWarn;
     private int[] mIndexs;
+
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_CONTENT_TYPE = "content_type";
+    public static final String KEY_EXTRAS = "extras";
+
     @BindView(R.id.change)
     TextView change;        //去进行指纹解锁
     @BindView(R.id.wangji)
@@ -41,6 +58,7 @@ public class StartLockActivity extends BaseActivity {
         setContentView(R.layout.activity_start_lock);
         INSTANCE=this;
         ButterKnife.bind(this);
+        registerMessageReceiver();
         //判断是否设置过指纹锁
         if(MyApplication.zhiwen==true){
             change.setVisibility(View.VISIBLE);
@@ -83,7 +101,7 @@ public class StartLockActivity extends BaseActivity {
                     }else {
                         LockUtil.setPwdStatus(INSTANCE,false);
                         MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                        Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                        Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                         Log.i("dcz","解锁已达到上限");
@@ -110,19 +128,11 @@ public class StartLockActivity extends BaseActivity {
                 MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                 MyApplication.zhiwen=false;MyApplication.sf.edit().putBoolean("zhiwen", false).commit();
                 LockUtil.setPwdStatus(INSTANCE,false);
-                Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
                 startActivity(intent);
                 ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        if(mScreenObserver!=null){
-            mScreenObserver.stopScreenStateUpdate();
-        }
-        super.onDestroy();
     }
 
     /**
@@ -134,7 +144,7 @@ public class StartLockActivity extends BaseActivity {
         intent.putExtra("current","resume");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        ActivityUtils.getInstance().popActivity(INSTANCE);
     }
 
     /**
@@ -143,6 +153,54 @@ public class StartLockActivity extends BaseActivity {
     private void initView(){
         tvWarn=getViewById(R.id.tvWarn);
         name.setText(MyApplication.username);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(mScreenObserver!=null){
+            mScreenObserver.stopScreenStateUpdate();
+        }
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        super.onDestroy();
+    }
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
+    }
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                Log.i("dcz","接收到广播");
+                if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                    String messge = intent.getStringExtra(KEY_MESSAGE);
+                    String extras = intent.getStringExtra(KEY_EXTRAS);
+                    String type = intent.getStringExtra(KEY_CONTENT_TYPE);
+                    StringBuilder showMsg = new StringBuilder();
+                    showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                    if (!ExampleUtil.isEmpty(extras)) {
+                        showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                    }
+                    Log.i("dcz",messge);
+                    Gson mGson = new Gson();
+                    HaveBean result = mGson.fromJson(messge, HaveBean.class);
+                    MyApplication.reqFlowId=result.getReqFlowId();
+                    MyApplication.reqSysId=result.getReqSysId();
+                    Log.i("dcz",result.getReqSysId());
+                    Log.i("dcz",type+"type");
+                    if(type.equals("2")){//下线通知
+                        ActivityUtils.getInstance().popAllActivities();
+                        Intent inten=new Intent(INSTANCE, LoginEmailActivity.class);
+                        startActivity(inten);
+                    }
+                }
+            } catch (Exception e){
+            }
+        }
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -99,7 +101,7 @@ public class GuanYuActivity extends BaseActivity {
     public void getVersion(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().version(MyApplication.device,"android","1.0.0","1").enqueue(new Callback<VersionBean>() {
+        HttpServiceClient.getInstance().version(MyApplication.device,"android",version,"1").enqueue(new Callback<VersionBean>() {
             @Override
             public void onResponse(Call<VersionBean> call, Response<VersionBean> response) {
                 dialog.dismiss();
@@ -109,7 +111,9 @@ public class GuanYuActivity extends BaseActivity {
                         if(response.body().getData().getLatestVersion().equals(version)){
                             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi107),R.style.registDialog).show();
                         }else {
-
+                            Uri uri=Uri.parse(response.body().getData().getPath()+"");
+                            Intent intent=new Intent(Intent.ACTION_VIEW,uri);
+                            startActivity(intent);
                         }
                     }else {
                         new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();

@@ -63,7 +63,7 @@ public class ScanActivity extends CaptureActivity {
         getCameraManager().setPoint_left(recoderHeight / 2);
         getCameraManager().setPoint_top((int) (screenHeight / 2 - recoderHeight*1.5));
         getCameraManager().setView_recoder_hight(recoderHeight*2);
-        getViewfinderView().setmTipText("将码放入框内，即可自动扫码");
+        getViewfinderView().setmTipText(this.getString(R.string.scan_text));
     }
 
     @Override

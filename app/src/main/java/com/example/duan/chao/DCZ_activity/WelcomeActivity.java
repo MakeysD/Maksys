@@ -105,7 +105,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
             @Override
             public boolean onDrag(View view, DragEvent dragEvent) {//（控件和拖拽事件）
                 if (dragEvent.getAction() == DragEvent.ACTION_DRAG_ENDED && dragEvent.getY() < -20) {//如果拖拽事件的动作是拖拽结束并且y比例小于20
-                    Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(WelcomeActivity.this, LoginEmailActivity.class);
                     startActivity(intent);//跳转到登录页面
                     ActivityUtils.getInstance().popActivity(WelcomeActivity.this);       //结束
                 }
@@ -116,7 +116,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//给图片控件设置点击监听
-                Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this,LoginEmailActivity.class);
                 startActivity(intent);           //跳转到登录页面
                 ActivityUtils.getInstance().popActivity(WelcomeActivity.this);                       //关闭
             }

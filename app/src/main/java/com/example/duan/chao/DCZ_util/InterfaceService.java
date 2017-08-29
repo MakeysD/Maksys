@@ -98,7 +98,7 @@ public interface InterfaceService {
      */
     @FormUrlEncoded
     @POST("user/sendSMS")
-    Call<LoginOkBean> sendsms(@Field("mobile") String mobile,
+    Call<LoginOkBean> sendsms(@Field("username")String username,
                                 @Field("smsType")String sms,
                                    @Field("areaCode")String areaCode);
 

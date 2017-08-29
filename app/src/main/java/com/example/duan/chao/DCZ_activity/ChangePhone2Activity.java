@@ -112,7 +112,7 @@ public class ChangePhone2Activity extends BaseActivity {
                 if (ContentUtil.isMobileNO(phone.getText().toString())) {  //如果输入的手机格式正确
                     Intent intent=new Intent(INSTANCE,SmsActivity.class);
                     startActivity(intent);
-                    finish();
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi74),R.style.registDialog).show();
                 }

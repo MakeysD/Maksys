@@ -57,7 +57,7 @@ public class SettingDataResultActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         });
     }

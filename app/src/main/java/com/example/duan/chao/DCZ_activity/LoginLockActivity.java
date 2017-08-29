@@ -88,7 +88,7 @@ public class LoginLockActivity extends BaseActivity {
                     }else {
                         LockUtil.setPwdStatus(context,false);
                         MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                        Intent intent=new Intent(context,LoginActivity.class);
+                        Intent intent=new Intent(context,LoginEmailActivity.class);
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(LoginLockActivity.this);
                         Log.i("dcz","解锁已达到上限");

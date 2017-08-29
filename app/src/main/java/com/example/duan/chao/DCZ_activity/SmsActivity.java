@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
+import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
@@ -189,6 +190,8 @@ public class SmsActivity extends BaseActivity {
                     if(response.body().getCode().equals("20000")){
                         data=response.body().getData();
                         MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
+                        LockUtil.setPwdStatus(INSTANCE,false);
+                        MyApplication.zhiwen=false;MyApplication.sf.edit().putBoolean("zhiwen", false).commit();
                         if(MyApplication.token!=null&&!(MyApplication.token.equals(""))){
                             SharedPreferences sf2 = INSTANCE.getSharedPreferences("user2",MODE_PRIVATE);
                             SharedPreferences.Editor editor = sf2.edit();

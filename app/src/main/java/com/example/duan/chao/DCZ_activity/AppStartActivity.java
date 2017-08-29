@@ -83,7 +83,7 @@ public class AppStartActivity extends BaseActivity {
     private void suo() {
         //判断是否登录
         if(MyApplication.token.equals("")){
-            Intent intent = new Intent(AppStartActivity.this, LoginActivity.class);
+            Intent intent = new Intent(AppStartActivity.this, LoginEmailActivity.class);
             startActivity(intent);
             //判断是否是第一次登录
          /*   if(MyApplication.first){

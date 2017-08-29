@@ -155,7 +155,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                                     ActivityUtils.getInstance().popAllActivities();
                                     if(bean==null){
                                     }else {
-                                        Intent intent=new Intent(INSTANCE,LoginActivity.class);
+                                        Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
                                         startActivity(intent);
                                     }
                                     ActivityUtils.getInstance().popActivity(INSTANCE);
