@@ -227,7 +227,7 @@ public class HaveScanActivity extends BaseActivity {
         TimerTask task=new TimerTask() {
             @Override
             public void run() {
-                finish();
+                ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         };
         timer.schedule(task,2000);

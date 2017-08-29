@@ -63,7 +63,7 @@ public class StartLockActivity extends BaseActivity {
         if(mIndexs.length>1){
             final CustomLockView cl=(CustomLockView)findViewById(R.id.cl);
             cl.setmIndexs(mIndexs);
-            cl.setErrorTimes(4);
+            cl.setErrorTimes(5);
             cl.setStatus(1);
             cl.setShow(false);
             cl.setOnCompleteListener(new CustomLockView.OnCompleteListener() {

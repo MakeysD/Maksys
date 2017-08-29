@@ -56,4 +56,14 @@
         android:layout_height="@dimen/xian"
         android:background="@color/xian1"
         android:layout_alignParentBottom="true"/>
+    <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:listSelector="@color/bg1"
+        android:divider="@null"
+        android:clickable="false"
+        android:visibility="gone"
+        android:scrollbars="none">
+    </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
 </LinearLayout>

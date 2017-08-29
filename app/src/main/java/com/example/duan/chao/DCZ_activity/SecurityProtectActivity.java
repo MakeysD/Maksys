@@ -34,10 +34,11 @@ import retrofit2.Response;
  *     安全保护
  *
  * */
-public class SecurityProtectActivity extends BaseActivity {
+public class SecurityProtectActivity extends BaseActivity implements SecurityAdapter.ActionCallback{
     private SecurityProtectActivity INSTANCE;
     private SecurityAdapter adapter;
     private Dialog dialog;
+    private int number=0;
     private int pageNumber=1;
     private int pageSize=5;
     private List<SecurityBean.ListBean> list=new ArrayList();
@@ -66,8 +67,13 @@ public class SecurityProtectActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getEnable().equals("1")){
+                number=number+1;
+            }
+        }
         if(list.size()>0){
-            tv.setText(INSTANCE.getString(R.string.tishi96)+list.size()+INSTANCE.getString(R.string.tishi97));
+            tv.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
         }else {
             tv.setText(INSTANCE.getString(R.string.tishi98));
         }
@@ -82,7 +88,7 @@ public class SecurityProtectActivity extends BaseActivity {
             lv.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
             lv.setArrowImageView(R.drawable.pull_icon_big);
             //lv.addItemDecoration(new SpacesItemDecoration(20));
-            adapter=new SecurityAdapter(INSTANCE,list);
+            adapter=new SecurityAdapter(INSTANCE,list,this);
             lv.setAdapter(adapter);
         }
     }
@@ -141,5 +147,17 @@ public class SecurityProtectActivity extends BaseActivity {
                 new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
+    }
+
+    @Override
+    public void addAction(String string) {
+        if(string.equals("1")){
+            number=number-1;
+            if(number>0){
+                tv.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
+            }else {
+                tv.setText(INSTANCE.getString(R.string.tishi98));
+            }
+        }
     }
 }

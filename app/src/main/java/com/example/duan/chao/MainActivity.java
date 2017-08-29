@@ -168,6 +168,7 @@ public class MainActivity extends BaseActivity{
         setContentView(R.layout.activity_main);
         INSTANCE=this;
         ButterKnife.bind(this);
+        JPushInterface.resumePush(getApplicationContext());
         CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
@@ -673,6 +674,7 @@ public class MainActivity extends BaseActivity{
     public void onBackPressed() {
         super.onBackPressed();
         Log.i("dcz","按下了返回键");
+        JPushInterface.stopPush(INSTANCE.getApplicationContext());
         ActivityUtils.getInstance().popActivity(this);
     }
 

@@ -187,7 +187,6 @@ public class SmsActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        JPushInterface.resumePush(getApplicationContext());
                         data=response.body().getData();
                         MyApplication.first=false;MyApplication.sf.edit().putBoolean("first",false).commit();
                         if(MyApplication.token!=null&&!(MyApplication.token.equals(""))){

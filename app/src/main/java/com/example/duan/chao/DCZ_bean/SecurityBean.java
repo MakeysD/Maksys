@@ -213,6 +213,15 @@ public class SecurityBean extends LoginBean<SecurityBean>{
             private int id;
             private String systemId;
             private String systemName;
+            private String frozenStatus;
+
+            public String getFrozenStatus() {
+                return frozenStatus;
+            }
+
+            public void setFrozenStatus(String frozenStatus) {
+                this.frozenStatus = frozenStatus;
+            }
 
             public String getEnable() {
                 return enable;
