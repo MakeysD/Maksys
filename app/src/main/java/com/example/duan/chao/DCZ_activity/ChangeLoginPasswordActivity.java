@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -53,6 +54,9 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
         ButterKnife.bind(this);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        et1.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+        et2.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+        et3.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         ShebeiUtil.setEdNoChinaese(et1);
         ShebeiUtil.setEdNoChinaese(et2);
         ShebeiUtil.setEdNoChinaese(et3);
@@ -145,6 +149,30 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
         Log.i("dcz","按下了返回键");
         ActivityUtils.getInstance().popActivity(this);
     }
+
+    public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
+        @Override
+        public CharSequence getTransformation(CharSequence source, View view) {
+            return new AsteriskPasswordTransformationMethod.PasswordCharSequence(source);
+        }
+
+        private class PasswordCharSequence implements CharSequence {
+            private CharSequence mSource;
+            public PasswordCharSequence(CharSequence source) {
+                mSource = source;
+            }
+            public char charAt(int index) {
+                return '*';
+            }
+            public int length() {
+                return mSource.length();
+            }
+            public CharSequence subSequence(int start, int end) {
+                return mSource.subSequence(start, end); // Return default
+            }
+        }
+    };
+
     /***
      * 调取接口拿到服务器数据
      * */

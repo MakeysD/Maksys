@@ -112,6 +112,7 @@ public class LookPayPasswordActivity extends BaseActivity {
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+        mima2.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         ShebeiUtil.setEdNoChinaese(mima);
         ShebeiUtil.setEdNoChinaese(mima2);
         ShebeiUtil.setEdit(mima);
