@@ -145,6 +145,7 @@
     <string name="tishi14">请输入新手机号</string>
     <string name="tishi15">如果原密保手机已换号或不能接收到短信验证码，需提供一个能收验证码的新手机号和个人实名有效资料提交工作人员审核通过后才能更换新密保手机</string>
     <string name="tishi16">请输入手机号</string>
+    <string name="tishi16c">请输入登录邮箱</string>
     <string name="tishi16a">请输入姓名</string>
     <string name="tishi16b">请输入证件号码</string>
     <string name="tishi17">拍照</string>

@@ -123,6 +123,12 @@ public class SettingDataActivity extends BaseActivity {
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         tv_guo.setText(MyApplication.city);
+        if(MyApplication.language.equals("ENGLISH")){
+            zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
+            fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
+            shou.setBackgroundResource(R.mipmap.shenfenzheng3en);
+        }
+
         setViews();
         setListener();
     }

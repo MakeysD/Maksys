@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.R;
 
@@ -75,7 +76,12 @@ public class CityAdapter extends BaseAdapter{
             }
         });
         CityBean city =list.get(position);
-        viewHolder.name.setText(list.get(position).getCountry_name_cn());
+        if(MyApplication.language.equals("ENGLISH")){
+            viewHolder.name.setText(list.get(position).getCountry_name_en());
+        }else {
+            viewHolder.name.setText(list.get(position).getCountry_name_cn());
+        }
+
         char idFirstChar = city.getCountry_name_en().charAt(0);//得到当前id
         if (position == 0) {
             setIndex(viewHolder.section, String.valueOf(idFirstChar));

@@ -12,9 +12,11 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.AddUpdate;
 import com.example.duan.chao.DCZ_util.StatusBarUtil;
+import com.example.duan.chao.MainActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -77,9 +79,18 @@ public class BaseActivity extends Activity{
                     long time =System.currentTimeMillis()-MyApplication.start_time;
                     Log.i("dcz_后台待机时间",time/1000+"");
                     if(time/1000>300){
-                       /* ActivityUtils.getInstance().popAllActivities();
-                        Intent inten=new Intent(this, LoginEmailActivity.class);
-                        startActivity(inten);*/
+                        //判断是否设置过指纹锁
+                        if(MyApplication.zhiwen==true){
+                            Intent intent = new Intent(this, ZhiwenActivity.class);
+                            startActivity(intent);
+                            //判断当前是否设置过手势锁密码
+                        }else if(LockUtil.getPwdStatus(this)==true&& MyApplication.suo==true){
+                            Intent intent=new Intent(this,StartLockActivity.class);
+                            intent.putExtra("type","1");
+                            startActivity(intent);
+                        }else {
+
+                        }
                     }
                 }
             }

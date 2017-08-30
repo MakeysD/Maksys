@@ -402,7 +402,7 @@ public class LoginEmailActivity extends BaseActivity {
                 Log.i("dcz1",address.getCountryName());
                 MyApplication.city=address.getCountryName();MyApplication.sf.edit().putString("city",address.getCountryName()).commit();
                 for(int i=0;i<list.size();i++){
-                    if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))){
+                    if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_en()))){
                         Log.i("dcz",list.get(i).getCountry_name_cn());
                         Log.i("dcz",list.get(i).getCountry_code()+"");
                         MyApplication.code=list.get(i).getCountry_code()+"";

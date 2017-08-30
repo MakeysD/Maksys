@@ -242,14 +242,10 @@ public class MyReceiver extends BroadcastReceiver {
 			context.startActivity(i);
 			return true ;
 		}else {
-			/*Intent intent2 = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
-			context.startActivity(intent2 );*/
-
 			Intent i = new Intent(context, HavaMoneyActivity.class);
 			i.putExtra("message",message);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
-			//am.moveTaskToFront(ActivityUtils.getInstance().getCurrentActivity().getTaskId(),ActivityManager.MOVE_TASK_WITH_HOME);
 			return false ;
 		}
 	}

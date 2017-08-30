@@ -148,9 +148,15 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
 
     @Override
     public void addAction(CityBean bean) {
-        ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
-        MyApplication.city=bean.getCountry_name_cn();
-        MyApplication.code=bean.getCountry_code()+"";
+        if(MyApplication.language.equals("ENGLISH")){
+            ChangePhone3Activity.guo_name=bean.getCountry_name_en();
+            MyApplication.city=bean.getCountry_name_en();
+            MyApplication.code=bean.getCountry_code()+"";
+        }else {
+            ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
+            MyApplication.city=bean.getCountry_name_cn();
+            MyApplication.code=bean.getCountry_code()+"";
+        }
         ActivityUtils.getInstance().popActivity(INSTANCE);
     }
 }

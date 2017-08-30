@@ -207,14 +207,20 @@ public final class ViewfinderView extends View {
 
     private void drawText(Canvas canvas, Rect rect) {
         int margin = 100;
+        int len;
         mPaint.setColor(mTextColor);
         mPaint.setTextSize(DensityUtils.dp2px(MyApplication.getContext(), 18));
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         float fontTotalHeight = fontMetrics.bottom - fontMetrics.top;
         float offY = fontTotalHeight / 2 - fontMetrics.bottom;
         float newY = rect.bottom + margin + offY;
-        float left = (ScreenUtils.getScreenWidth(MyApplication.getContext()) - mPaint.getTextSize() * mTipText.length()) / 2;
-        canvas.drawText(mTipText, left, newY, mPaint);
+        if(MyApplication.language.equals("ENGLISH")){
+            len = mTipText.length() / 2;
+        }else {
+            len = mTipText.length();
+        }
+        float left = (ScreenUtils.getScreenWidth(MyApplication.getContext()) - mPaint.getTextSize() * len) / 2;
+        canvas.drawText(mTipText, left+15, newY, mPaint);
     }
 
     private void drawLaser(Canvas canvas, Rect rect) {

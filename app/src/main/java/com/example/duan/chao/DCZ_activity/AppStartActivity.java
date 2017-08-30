@@ -81,6 +81,11 @@ public class AppStartActivity extends BaseActivity {
     }
 
     private void suo() {
+        if(MyApplication.language.equals("ENGLISH")){
+            MyApplication.city="china";MyApplication.sf.edit().putString("city","china").commit();
+        }else {
+            MyApplication.city="中国";MyApplication.sf.edit().putString("city","中国").commit();
+        }
         //判断是否登录
         if(MyApplication.token.equals("")){
             Intent intent = new Intent(AppStartActivity.this, LoginEmailActivity.class);
