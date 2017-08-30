@@ -243,6 +243,8 @@
     <string name="tishi105a">whether you opened authorized to"</string>
     <string name="tishi106">”or not</string>
     <string name="tishi107">latest version</string>
+    <string name="tishi108">account is freezing</string>
+    <string name="tishi109">new password must be different from the original password </string>
 
 
     <string name="code1">succeed</string><!--20000-->

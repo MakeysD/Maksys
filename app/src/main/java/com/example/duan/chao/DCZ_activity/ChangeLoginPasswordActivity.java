@@ -129,7 +129,13 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData();
+                if(!et2.getText().toString().equals(et3.getText().toString())){
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.code14),R.style.registDialog).show();
+                }else if(et1.getText().toString().equals(et2.getText().toString())){
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi109),R.style.registDialog).show();
+                }else {
+                    getData();
+                }
             }
         });
     }
