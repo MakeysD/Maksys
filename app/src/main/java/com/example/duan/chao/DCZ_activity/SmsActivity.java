@@ -209,7 +209,7 @@ public class SmsActivity extends BaseActivity {
                         startActivity(intent);
                         ActivityUtils.getInstance().popAllActivities();
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
                     Log.d("dcz","获取数据失败");
@@ -251,7 +251,7 @@ public class SmsActivity extends BaseActivity {
                     if(response.body().getCode().equals("20000")){
 
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
                     Log.d("dcz","获取数据失败");

@@ -9,9 +9,12 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import com.example.duan.chao.DCZ_jiguang.Logger;
+import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
+
+import java.util.HashMap;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -20,6 +23,7 @@ import cn.jpush.android.api.JPushInterface;
  */
 
 public class MyApplication extends Application{
+    public static HashMap map=new HashMap();
     public static Long start_time;
     public static String classname;
     public static String code="86";
@@ -63,7 +67,7 @@ public class MyApplication extends Application{
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
         Fresco.initialize(this);
-
+        CodeUtil.pushcode(getApplicationContext());
         sf= PreferenceManager.getDefaultSharedPreferences(this);
         first = sf.getBoolean("first",true);
         zhiwen=sf.getBoolean("zhiwen",false);

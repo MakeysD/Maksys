@@ -162,7 +162,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                             }
                         }else {
                             boo=false;
-                            new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
+                            new MiddleDialog(context,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                             Notify(list);
                         }
                     }else {

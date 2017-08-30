@@ -204,7 +204,7 @@ public class FootprintsActivity extends BaseActivity {
                             }
 
                         }else {
-                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                             //Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         }
                     }else {

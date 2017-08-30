@@ -23,6 +23,7 @@ import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
 
@@ -84,6 +85,7 @@ public class ChangePhone2Activity extends BaseActivity {
         ButterKnife.bind(this);
         INSTANCE=this;
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        ShebeiUtil.setEdit(mima);
         setViews();
         setListener();
     }

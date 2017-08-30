@@ -55,6 +55,9 @@ public class ChangePayPasswordActivity extends BaseActivity {
         ShebeiUtil.setEdNoChinaese(et1);
         ShebeiUtil.setEdNoChinaese(et2);
         ShebeiUtil.setEdNoChinaese(et3);
+        ShebeiUtil.setEdit(et1);
+        ShebeiUtil.setEdit(et2);
+        ShebeiUtil.setEdit(et3);
         setViews();
         setListener();
     }
@@ -156,7 +159,7 @@ public class ChangePayPasswordActivity extends BaseActivity {
                             startActivity(intent);
                             ActivityUtils.getInstance().popAllActivities();
                         }else {
-                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

@@ -246,6 +246,46 @@
     <string name="tishi108">已冻结账号</string>
 
 
+    <string name="code1">成功</string><!--20000-->
+    <string name="code2">失败</string><!--20001-->
+    <string name="code3">错误</string><!--20002-->
+    <string name="code4">用户未登录</string><!--20003-->
+    <string name="code5">未授权</string><!--20004-->
+    <string name="code6">用户不存在</string><!--20005-->
+    <string name="code7">参数不能为空</string><!--10007-->
+    <string name="code8">参数错误</string><!--10011-->
+    <string name="code9">用户被锁定</string><!--10013-->
+    <string name="code10">密码错误</string><!--10014-->
+    <string name="code11">用户名称错误</string><!--10015-->
+    <string name="code12">安全密码错误</string><!--10016-->
+    <string name="code13">邮箱验证码错误</string><!--10017-->
+    <string name="code14">密码与确认密码不一致</string><!--10020-->
+    <string name="code15">邮箱已存在</string><!--10021-->
+    <string name="code16">用户名已存在</string><!--10022-->
+    <string name="code17">静态验证码错误</string><!--10024-->
+    <string name="code18">验签失败</string><!--10025-->
+    <string name="code19">超过密码错误次数</string><!--10026-->
+    <string name="code20">认证失败</string><!--10027-->
+    <string name="code21">用户不存在</string><!--10028-->
+    <string name="code22">没有找到指定数据！</string><!--10029-->
+    <string name="code23">安全密码与登录密码相同！</string><!--10033-->
+    <string name="code24">邮件格式错误！</string><!--10034-->
+    <string name="code25">短信验证码错误！</string><!--10036-->
+    <string name="code26">用户被临时锁定！</string><!--10037-->
+    <string name="code27">用户被永久锁定！</string><!--10038-->
+    <string name="code28">安全中心服务不可用！</string><!--10500-->
+    <string name="code29">刷新token已经过期</string><!--10501-->
+    <string name="code30">加签失败</string><!--10502-->
+    <string name="code31">系统繁忙</string><!--10503-->
+    <string name="code32">用户或者密码错误</string><!--10504-->
+    <string name="code33">短信发送失败</string><!--10505-->
+    <string name="code34">邮件发送失败</string><!--10506-->
+    <string name="code35">未绑定手机</string><!--10508-->
+    <string name="code36">用户绑定了无效手机</string><!--10509-->
+    <string name="code37">用户或者密码错误</string><!--10510-->
+
+
+
  <!--<string name="rationale_camera">This app needs access to your camera so you can take pictures.</string>
  <string name="rationale_location_contacts">This app needs access to your location and contacts to know where and who you are.</string>
  <string name="rationale_sms">This app needs access to your sms to read all your great messages.</string>

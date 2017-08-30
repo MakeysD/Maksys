@@ -244,4 +244,43 @@
     <string name="tishi106">”or not</string>
     <string name="tishi107">latest version</string>
 
+
+    <string name="code1">succeed</string><!--20000-->
+    <string name="code2">failed</string><!--20001-->
+    <string name="code3">error</string><!--20002-->
+    <string name="code4">user not login</string><!--20003-->
+    <string name="code5">unauthorized</string><!--20004-->
+    <string name="code6">account isn\'t exist</string><!--20005-->
+    <string name="code7">Parameter can\'t be empty</string><!--10007-->
+    <string name="code8">Parameter error</string><!--10011-->
+    <string name="code9">account is locked</string><!--10013-->
+    <string name="code10">wrong password</string><!--10014-->
+    <string name="code11">wrong username</string><!--10015-->
+    <string name="code12">wrong payment password</string><!--10016-->
+    <string name="code13">wrong email verify code</string><!--10017-->
+    <string name="code14">confirm password is different from the first enter</string><!--10020-->
+    <string name="code15">email is exist</string><!--10021-->
+    <string name="code16">account is exist</string><!--10022-->
+    <string name="code17">wrong static verify code</string><!--10024-->
+    <string name="code18">signature verify failed</string><!--10025-->
+    <string name="code19">password enter times over limited</string><!--10026-->
+    <string name="code20">authentication failed</string><!--10027-->
+    <string name="code21">original payment password is unset</string><!--10028-->
+    <string name="code22">no data</string><!--10029-->
+    <string name="code23">payment password must be different from the login password</string><!--10033-->
+    <string name="code24">wrong email format</string><!--10034-->
+    <string name="code25">message verify failed</string><!--10036-->
+    <string name="code26">account is locked temporarily</string><!--10037-->
+    <string name="code27">account is locked  permanently</string><!--10038-->
+    <string name="code28">security service is unavailable</string><!--10500-->
+    <string name="code29">refresh token is  overdue</string><!--10501-->
+    <string name="code30">do sign fail</string><!--10502-->
+    <string name="code31">system is busy</string><!--10503-->
+    <string name="code32">wrong username or password</string><!--10504-->
+    <string name="code33">send sms failed</string><!--10505-->
+    <string name="code34">send email failed</string><!--10506-->
+    <string name="code35">unbound phone number</string><!--10508-->
+    <string name="code36">binding invalid phone number</string><!--10509-->
+    <string name="code37">invalid phone number</string><!--10510-->
+
 </resources>

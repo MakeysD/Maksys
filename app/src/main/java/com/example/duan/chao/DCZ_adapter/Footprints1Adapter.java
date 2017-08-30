@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
@@ -107,7 +108,7 @@ public class Footprints1Adapter extends BaseAdapter{
                             list.remove(postion);
                             Notify(list);
                         }else {
-                            new MiddleDialog(context,response.body().getDesc(),R.style.registDialog).show();
+                            new MiddleDialog(context, MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

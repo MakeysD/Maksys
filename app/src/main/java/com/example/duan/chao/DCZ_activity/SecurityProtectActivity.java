@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.EquipmentAdapter;
 import com.example.duan.chao.DCZ_adapter.SecurityAdapter;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
@@ -132,7 +133,7 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
                             list=response.body().getData().getList();
                             setViews();
                         }else {
-                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                            new MiddleDialog(INSTANCE, MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -94,7 +95,7 @@ public class LanguageActivity extends BaseActivity {
         rl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            a1();
+                a1();
                 MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
                 recreate();
                 MyApplication.status=true;

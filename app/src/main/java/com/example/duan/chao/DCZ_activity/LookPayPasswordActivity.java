@@ -114,6 +114,8 @@ public class LookPayPasswordActivity extends BaseActivity {
         mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         ShebeiUtil.setEdNoChinaese(mima);
         ShebeiUtil.setEdNoChinaese(mima2);
+        ShebeiUtil.setEdit(mima);
+        ShebeiUtil.setEdit(mima2);
         setViews();
         setListener();
     }
@@ -579,7 +581,7 @@ public class LookPayPasswordActivity extends BaseActivity {
                     if(response.body().getCode().equals("20000")){
 
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
                     Log.d("dcz","获取数据失败");
@@ -609,7 +611,7 @@ public class LookPayPasswordActivity extends BaseActivity {
                     if(response.body().getCode().equals("20000")){
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();

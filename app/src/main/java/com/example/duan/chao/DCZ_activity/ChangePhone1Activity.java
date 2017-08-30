@@ -20,6 +20,7 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 
 import butterknife.BindView;
@@ -55,6 +56,7 @@ public class ChangePhone1Activity extends BaseActivity {
         ButterKnife.bind(this);
         INSTANCE=this;
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        ShebeiUtil.setEdit(et_code);
         setViews();
         setListener();
     }
@@ -182,7 +184,7 @@ public class ChangePhone1Activity extends BaseActivity {
                     if(response.body().getCode().equals("20000")){
 
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
                     Log.d("dcz","获取数据失败");

@@ -204,16 +204,14 @@ public class StartLockActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            ActivityUtils.getInstance().popActivity(INSTANCE);
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(KeyEvent.KEYCODE_BACK==keyCode){
+            Intent home=new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return false ;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        ActivityUtils.getInstance().popActivity(INSTANCE);
     }
 }

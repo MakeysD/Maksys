@@ -553,7 +553,7 @@ public class LoginActivity extends BaseActivity {
                         intent.putExtra("password",mima.getText().toString());
                         startActivity(intent);
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
@@ -592,7 +592,7 @@ public class LoginActivity extends BaseActivity {
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();

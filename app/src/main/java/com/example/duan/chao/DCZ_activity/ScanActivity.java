@@ -106,7 +106,7 @@ public class ScanActivity extends CaptureActivity {
                         ActivityUtils.getInstance().popActivity(ScanActivity.this);
                     }else {
                         // new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                        Toast.makeText(ScanActivity.this,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ScanActivity.this,MyApplication.map.get(response.body().getCode()).toString(), Toast.LENGTH_SHORT).show();
                         ActivityUtils.getInstance().popActivity(ScanActivity.this);
                     }
                 }else {

@@ -35,6 +35,7 @@ import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
@@ -102,7 +103,10 @@ public class LoginEmailActivity extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ShebeiUtil.setEdNoChinaese(phone);
         ShebeiUtil.setEdNoChinaese(mima);
+        ShebeiUtil.setEdit(phone);
+        ShebeiUtil.setEdit(mima);
 
         GPS();
         setViews();
@@ -212,6 +216,9 @@ public class LoginEmailActivity extends BaseActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.equals(" ")){
+
+                }
                 if(s.length()>0){
                     if(mima.getText().toString().length()>0&&phone.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
@@ -444,10 +451,10 @@ public class LoginEmailActivity extends BaseActivity {
                         intent.putExtra("password",mima.getText().toString());
                         startActivity(intent);
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
+                    new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                 }
             }
             @Override
@@ -483,7 +490,7 @@ public class LoginEmailActivity extends BaseActivity {
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {
-                        new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();

@@ -3,6 +3,8 @@ package com.example.duan.chao.DCZ_util;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
@@ -63,6 +65,26 @@ public class ShebeiUtil {
         };
         editText.addTextChangedListener(textWatcher);
     }
+
+    /**
+     * 禁止EditText输入空格
+     *
+     * @param editText
+     */
+    public static void setEdit(EditText editText) {
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals(" ")) {
+                    return "";
+                } else {
+                    return null;
+                }
+            }
+        };
+        editText.setFilters(new InputFilter[]{filter});
+    }
+
     /**
      * 获取手机品牌
      *

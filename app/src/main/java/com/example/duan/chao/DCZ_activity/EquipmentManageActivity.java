@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_adapter.EquipmentAdapter;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
@@ -130,7 +131,7 @@ public class EquipmentManageActivity extends BaseActivity {
                         if(response.body().getCode().equals("20000")){
                             list = response.body().getData().getList();
                         }else {
-                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                            new MiddleDialog(INSTANCE, MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

@@ -13,6 +13,7 @@ import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -94,10 +95,15 @@ public class ZhiwenActivity extends BaseActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Log.i("dcz","按下了返回键");
-        ActivityUtils.getInstance().popActivity(this);
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(KeyEvent.KEYCODE_BACK==keyCode){
+            Intent home=new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return false ;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void setViews() {

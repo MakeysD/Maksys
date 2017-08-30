@@ -129,7 +129,7 @@ public class OperationRecordActivity extends BaseActivity {
                             list=response.body().getData().getList();
                             setViews();
                         }else {
-                            new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

@@ -15,6 +15,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.AddUpdate;
+import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.StatusBarUtil;
 import com.example.duan.chao.MainActivity;
 
@@ -46,6 +47,7 @@ public class BaseActivity extends Activity{
             config.locale = Locale.ENGLISH;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
+        CodeUtil.pushcode(getApplicationContext());
     }
 
     @Override
