@@ -292,7 +292,7 @@ public class CustomLockView extends View {
             } else if (this.sPoints.size() < passwordMinLength
                     && this.sPoints.size() > 0) {
                 clearPassword();
-                Toast.makeText(this.getContext(), "密码太短,请重新输入!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.getContext(),this.getContext().getString(R.string.lock12), Toast.LENGTH_SHORT).show();
             } else if (mCompleteListener != null) {
                 if (this.sPoints.size() >= passwordMinLength) {
                     int[] indexs=new int[sPoints.size()];

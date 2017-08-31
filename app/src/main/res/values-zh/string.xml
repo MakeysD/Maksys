@@ -27,7 +27,7 @@
     <!-- auth result error amd help code warning -->
    <string name="AcquiredGood_warning">获得的图像很好.</string>
 
-    <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
+   <!-- <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
     <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂,无法处理检测到的情况(即干性皮肤)或可能是脏的传感器.</string>
 
     <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来.在注册过程,用户应该了解需要发生什么才能解决这个问题.“紧紧地压在传感器上.”</string>
@@ -47,7 +47,27 @@
 
     <string name="ErrorUnableToProcess_warning">当传感器无法处理当前图像时,会返回错误状态.</string>
 
-    <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>
+    <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>-->
+    <string name="AcquiredImageDirty_warning">再试一次</string>
+    <string name="AcquiredInsufficient_warning">再试一次</string>
+
+    <string name="AcquiredPartial_warning">再试一次</string>
+
+    <string name="AcquiredTooFast_warning">再试一次</string>
+
+    <string name="AcquiredToSlow_warning">再试一次</string>
+
+    <string name="ErrorCanceled_warning">再试一次</string>
+
+    <string name="ErrorHwUnavailable_warning">指纹验证不可用</string>
+
+    <string name="ErrorLockout_warning">指纹验证已关闭</string>
+
+    <string name="ErrorTimeout_warning">再试一次</string>
+
+    <string name="ErrorUnableToProcess_warning">再试一次</string>
+
+    <string name="ErrorNoSpace_warning">再试一次</string>
 
     <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
     <string name="tag_hint">Tag为大小写字母,数字,下划线,中文, 多个用以逗号分隔</string>
@@ -108,6 +128,7 @@
     <string name="lock9">两次输入的密码不一致</string>
     <string name="lock10">手势启动密码未开启</string>
     <string name="lock11">已开启指纹验证</string>
+    <string name="lock12">密码太短,请重新输入!</string>
 
 
     <string name="main1">安全保护</string>

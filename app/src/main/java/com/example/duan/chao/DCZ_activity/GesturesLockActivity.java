@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  *
  * */
 public class GesturesLockActivity extends BaseActivity {
-    public Context context;
+    public GesturesLockActivity context;
     public <K extends View> K getViewById(int id) {
         return (K) getWindow().findViewById(id);
     }
@@ -144,7 +144,7 @@ public class GesturesLockActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityUtils.getInstance().popActivity(context);
             }
         });
     }
@@ -163,6 +163,6 @@ public class GesturesLockActivity extends BaseActivity {
           Activity ac = ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize() - 1);
           ActivityUtils.getInstance().popActivity(ac);
       }
-        finish();
+        ActivityUtils.getInstance().popActivity(this);
     }
 }

@@ -178,13 +178,13 @@ public class MainActivity extends BaseActivity{
         CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
-        CustomPushNotificationBuilder builder = new CustomPushNotificationBuilder(INSTANCE, R.layout.customer_notitfication_layout, R.id.icon, R.id.title, R.id.text);
+       /* CustomPushNotificationBuilder builder = new CustomPushNotificationBuilder(INSTANCE, R.layout.customer_notitfication_layout, R.id.icon, R.id.title, R.id.text);
         // 指定定制的 Notification Layout
         builder.statusBarDrawable = R.mipmap.logo;
         // 指定最顶层状态栏小图标
         builder.layoutIconDrawable = R.mipmap.logo;
         // 指定下拉状态栏时显示的通知图标
-        JPushInterface.setPushNotificationBuilder(2, builder);
+        JPushInterface.setPushNotificationBuilder(2, builder);*/
         setViews();
         setListener();
         MyApplication.status=false;

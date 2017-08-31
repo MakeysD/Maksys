@@ -26,17 +26,18 @@
 
     <!-- auth result error amd help code warning -->
     <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
-   <!-- <string name="AcquiredGood_warning">获得的图像很好.</string>
-    <string name="logining">程序在后台执行, 请查看日志！</string>
-    <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
-    <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂,无法处理检测到的情况(即干性皮肤)或可能是脏的传感器.</string>
+    <string name="AcquiredGood_warning">good</string>
 
-    <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来.在注册过程,用户应该了解需要发生什么才能解决这个问题.“紧紧地压在传感器上.”</string>
+   <!-- <string name="logining">程序在后台执行, 请查看日志！</string>-->
 
-    <string name="AcquiredTooFast_warning">由于快速移动,指纹图像不完整.虽然大多数情况下都适用于线性阵列传感器,但如果在采集过程中手指被移动,这种情况也可能发生.
-                                            用户应该被要求移动手指的速度较慢(线性),或者将手指放在传感器上的时间更长.</string>
+    <string name="AcquiredImageDirty_warning">try again</string>
+    <string name="AcquiredInsufficient_warning">try again</string>
 
-    <string name="AcquiredToSlow_warning">由于缺乏运动,指纹图像难以辨认.这对于需要滑动动作的线性阵列传感器来说是最合适的</string>
+    <string name="AcquiredPartial_warning">try again</string>
+
+    <string name="AcquiredTooFast_warning">try again</string>
+
+    <string name="AcquiredToSlow_warning">try again</string>
 
     <string name="ErrorCanceled_warning">verufy fingerprint</string>
 
@@ -44,11 +45,11 @@
 
     <string name="ErrorLockout_warning">Fingerprint verify is closed </string>
 
-    <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
+    <string name="ErrorTimeout_warning">try again</string>
 
-    <string name="ErrorUnableToProcess_warning">当传感器无法处理当前图像时,会返回错误状态.</string>
+    <string name="ErrorUnableToProcess_warning">try again</string>
+    <string name="ErrorNoSpace_warning">try again</string>
 
-    <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>-->
     <string name="alias_hint">Alias is uppercase and lowercase letters, Numbers, underscores </string>
     <string name="tag_hint">Tags are case letters, Numbers, underscores, Chinese, multiple comma separated </string>
     <string name="style_hint">style is number</string>
@@ -108,6 +109,7 @@
     <string name="lock9">confirm payment password is different from the first enter</string>
     <string name="lock10">unset gesture password</string>
     <string name="lock11">fingerprint password setting opened</string>
+    <string name="lock12">at least links 4 dots</string>
 
 
     <string name="main1">Security</string>

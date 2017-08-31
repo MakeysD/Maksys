@@ -46,8 +46,7 @@ public class AddUpdate implements Interceptor{
                 HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
                 if(resultLogin.getCode().equals("10500")){
                     Log.i("dcz","安全中心不可用");
-                }
-                if(resultLogin.getCode().equals("20000")) {
+                }else if(resultLogin.getCode().equals("20000")) {
                     return chain.proceed(originalRequest);
                 }else {
                     Log.i("dcz刷新token",resultLogin.getCode());
@@ -77,7 +76,7 @@ public class AddUpdate implements Interceptor{
 
     private Request getLoginRequest() {
         return new Request.Builder()
-                .url("http://192.168.2.111:8088/user-safe-api/loginByRefreshToken")
+                .url("http://110.79.11.5/user-safe-api/loginByRefreshToken")
                 .post(new FormBody.Builder()
                         .add("username", MyApplication.username)
                         .add("refreshToken",MyApplication.token)
@@ -87,7 +86,7 @@ public class AddUpdate implements Interceptor{
     }
     private Request Login() {
         return new Request.Builder()
-                .url("http://192.168.2.111:8088/user-safe-api/login")
+                .url("http://110.79.11.5/user-safe-api/login")
                 .post(new FormBody.Builder()
                         .add("username", MyApplication.username)
                         .add("password",MyApplication.password)
