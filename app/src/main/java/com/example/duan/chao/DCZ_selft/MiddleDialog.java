@@ -1,5 +1,6 @@
 package com.example.duan.chao.DCZ_selft;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -108,6 +109,25 @@ public class MiddleDialog<E> extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+    }
+
+    /**
+     *      提示（点击确定返回上级页面）
+     *
+     * */
+    public MiddleDialog(Context context, String content,final onButtonCLickListener listener, int theme) {
+        super(context, theme);
+        view = View.inflate(context, R.layout.dialog, null);
+        setContentView(view);
+        setCancelable(false);        //设置点击对话框以外的区域时，是否结束对话框
+        ((TextView) view.findViewById(R.id.content)).setText(content);
+        view.findViewById(R.id.execute).setOnClickListener(new View.OnClickListener() {      //确定
+            @Override
+            public void onClick(View v) {
+                dismiss();
+                listener.onButtonCancel("a");
             }
         });
     }
@@ -270,13 +290,13 @@ public class MiddleDialog<E> extends Dialog {
             case FingerprintManager.FINGERPRINT_ERROR_LOCKOUT:
                 //指纹锁定了
                 MyApplication.zhiwen_namber=MyApplication.zhiwen_namber+1;
-                //cntent.setText(acontext.getString(R.string.ErrorLockout_warning));
+                cntent.setText(acontext.getString(R.string.ErrorNoSpace_zai));
                 cntent.startAnimation(AnimationUtils.loadAnimation(acontext, R.anim.shake));
-                //停止推送服务
+             /*   //停止推送服务
                 JPushInterface.stopPush(acontext.getApplicationContext());
                 MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                 Intent intent=new Intent(acontext,LoginEmailActivity.class);
-                acontext.startActivity(intent);
+                acontext.startActivity(intent);*/
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_NO_SPACE:
                 cntent.setText(acontext.getString(R.string.ErrorNoSpace_warning));

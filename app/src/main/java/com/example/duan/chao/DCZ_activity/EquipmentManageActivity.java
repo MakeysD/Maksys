@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_adapter.EquipmentAdapter;
@@ -45,7 +46,7 @@ public class EquipmentManageActivity extends BaseActivity {
     @BindView(R.id.tv)
     TextView tv;
     @BindView(R.id.error)
-    TextView error;
+    LinearLayout error;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

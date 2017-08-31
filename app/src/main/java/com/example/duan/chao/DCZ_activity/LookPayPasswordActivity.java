@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
@@ -311,12 +312,34 @@ public class LookPayPasswordActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-
         //验证码
         ed_code.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 type3();
+            }
+        });
+        ed_code.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()>0){
+                    if(guo.getText().toString().length()>0&&
+                            ed_code.getText().toString().length()>0&&
+                            mima.getText().toString().length()>0&&
+                            mima2.getText().toString().length()>0){
+                        button.setVisibility(View.VISIBLE);
+                    }else {
+                        button.setVisibility(View.GONE);
+                    }
+                }else {
+                    button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
         //密码
@@ -610,7 +633,12 @@ public class LookPayPasswordActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),new MiddleDialog.onButtonCLickListener(){
+                            @Override
+                            public void onButtonCancel(String string) {
+                                ActivityUtils.getInstance().popActivity(INSTANCE);
+                            }
+                        },R.style.registDialog).show();
                     }else {
                         new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                     }

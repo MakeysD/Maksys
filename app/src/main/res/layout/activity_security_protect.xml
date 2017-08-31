@@ -32,14 +32,15 @@
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
     <LinearLayout
+        android:id="@+id/tou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/left"
         android:paddingTop="15dp"
+        android:visibility="gone"
         android:paddingBottom="15dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text01"
@@ -52,9 +53,37 @@
             android:layout_marginTop="5dp"
             android:text="@string/tishi52"/>
     </LinearLayout>
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:id="@+id/listview"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+        <LinearLayout
+            android:id="@+id/error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/nodata"/>
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="100dp">
+            </View>
+        </LinearLayout>
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.jcodecraeer.xrecyclerview.XRecyclerView>
+    </RelativeLayout>
+
 </LinearLayout>

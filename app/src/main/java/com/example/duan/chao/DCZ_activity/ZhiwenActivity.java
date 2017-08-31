@@ -127,7 +127,7 @@ public class ZhiwenActivity extends BaseActivity {
                         result.startAnimation(AnimationUtils.loadAnimation(INSTANCE, R.anim.shake));
                         cancellationSignal = null;
                         ll_cancle.setVisibility(View.VISIBLE);
-                        if(number<3){
+                        if(number<5){
                             start();
                         }else {
                             zhiwen.setVisibility(View.GONE);
@@ -165,8 +165,10 @@ public class ZhiwenActivity extends BaseActivity {
         cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cancellationSignal.cancel();
-                cancellationSignal = null;
+                if(cancellationSignal !=null){
+                    cancellationSignal.cancel();
+                    cancellationSignal = null;
+                }
                 zhiwen.setVisibility(View.GONE);
             }
         });

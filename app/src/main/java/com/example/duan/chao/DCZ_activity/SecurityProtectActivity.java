@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,10 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
     XRecyclerView lv;
     @BindView(R.id.tv)
     TextView tv;
+    @BindView(R.id.error)
+    LinearLayout error;
+    @BindView(R.id.tou)
+    LinearLayout tou;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +79,12 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
             }
         }
         if(list.size()>0){
+            tou.setVisibility(View.VISIBLE);
+            error.setVisibility(View.GONE);
             tv.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
         }else {
+            tou.setVisibility(View.GONE);
+            error.setVisibility(View.VISIBLE);
             tv.setText(INSTANCE.getString(R.string.tishi98));
         }
         if(adapter!=null){

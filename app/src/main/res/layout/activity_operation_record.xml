@@ -35,14 +35,29 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
+        <LinearLayout
             android:id="@+id/error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:visibility="gone"
-            android:textColor="@color/red"
-            android:text="暂无数据"/>
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/nodata"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:text="@string/tishi110"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="100dp">
+            </View>
+        </LinearLayout>
         <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:id="@+id/listview"
             android:layout_width="match_parent"

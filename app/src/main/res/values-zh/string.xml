@@ -57,7 +57,7 @@
 
     <string name="AcquiredToSlow_warning">再试一次</string>
 
-    <string name="ErrorCanceled_warning">再试一次</string>
+    <string name="ErrorCanceled_warning">请稍后再试</string>
 
     <string name="ErrorHwUnavailable_warning">指纹验证不可用</string>
 
@@ -68,6 +68,7 @@
     <string name="ErrorUnableToProcess_warning">再试一次</string>
 
     <string name="ErrorNoSpace_warning">再试一次</string>
+    <string name="ErrorNoSpace_zai">请稍后再试</string>
 
     <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
     <string name="tag_hint">Tag为大小写字母,数字,下划线,中文, 多个用以逗号分隔</string>
@@ -132,8 +133,8 @@
 
 
     <string name="main1">安全保护</string>
-    <string name="main2">off</string>
-    <string name="main3">on</string>
+    <string name="main2">已开启</string>
+    <string name="main3">未开启</string>
     <string name="main4">账户安全</string>
     <string name="main5">手势锁</string>
     <string name="main6">指纹密码</string>
@@ -179,6 +180,7 @@
     <string name="tishi24">最近登录记录</string>
     <string name="tishi25">启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心</string>
     <string name="tishi26">验证解锁图案</string>
+    <string name="tishi26a">绘制解锁图案</string>
     <string name="tishi27">检查新版本</string>
     <string name="tishi28">去评价</string>
     <string name="tishi29">授权登录</string>
@@ -266,6 +268,7 @@
     <string name="tishi107">当前已是最新版本</string>
     <string name="tishi108">已冻结账号</string>
     <string name="tishi109">新密码不能和旧密码相同</string>
+    <string name="tishi110">暂无数据</string>
 
 
     <string name="code1">成功</string><!--20000-->

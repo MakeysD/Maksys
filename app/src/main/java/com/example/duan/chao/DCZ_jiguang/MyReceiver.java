@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -156,7 +157,6 @@ public class MyReceiver extends BroadcastReceiver {
 			LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
 		}
 	}
-
 	private boolean isRunningForeground (Context context) {
 		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
 		ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
@@ -178,6 +178,16 @@ public class MyReceiver extends BroadcastReceiver {
 			i.putExtra("message",message);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(i);
+			/*Handler mHandler = new Handler();
+			Runnable gotoLoginAct = new Runnable() {
+				@Override
+				public void run() {
+					Intent i = new Intent(ActivityUtils.getInstance().getCurrentActivity(), HaveScanActivity.class);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					ActivityUtils.getInstance().getCurrentActivity().startActivity(i);
+				}
+			};
+			mHandler.postDelayed(gotoLoginAct,100);*/
 			return false ;
 		}
 	}

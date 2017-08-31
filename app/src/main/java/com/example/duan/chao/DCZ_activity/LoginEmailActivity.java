@@ -438,7 +438,7 @@ public class LoginEmailActivity extends BaseActivity {
     public void login(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().checklogin(phone.getText().toString(),mima.getText().toString()).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().checklogin(phone.getText().toString()+"@qeveworld.com",mima.getText().toString()).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
@@ -447,7 +447,7 @@ public class LoginEmailActivity extends BaseActivity {
                     if(response.body().getCode().equals("20000")){
                         data=response.body().getData();
                         Intent intent=new Intent(INSTANCE,SmsActivity.class);
-                        intent.putExtra("phone",phone.getText().toString());
+                        intent.putExtra("phone",phone.getText().toString()+"@qeveworld.com");
                         intent.putExtra("password",mima.getText().toString());
                         startActivity(intent);
                     }else {

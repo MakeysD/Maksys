@@ -58,17 +58,9 @@
                 android:gravity="center"
                 android:layout_marginTop="50dp"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tvWarn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tishi26"
-                    android:textSize="@dimen/text01"
-                    android:textColor="@color/white"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -156,7 +148,14 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
+                <TextView
+                    android:id="@+id/tvWarn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tishi26a"
+                    android:layout_marginTop="20dp"
+                    android:textSize="@dimen/text01"
+                    android:textColor="@color/white"/>
                 <com.example.duan.chao.DCZ_lockdemo.CustomLockView
                     android:id="@+id/cl"
                     android:layout_width="250dp"

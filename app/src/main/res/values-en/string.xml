@@ -49,6 +49,7 @@
 
     <string name="ErrorUnableToProcess_warning">try again</string>
     <string name="ErrorNoSpace_warning">try again</string>
+    <string name="ErrorNoSpace_zai">please try later</string>
 
     <string name="alias_hint">Alias is uppercase and lowercase letters, Numbers, underscores </string>
     <string name="tag_hint">Tags are case letters, Numbers, underscores, Chinese, multiple comma separated </string>
@@ -113,8 +114,8 @@
 
 
     <string name="main1">Security</string>
-    <string name="main2"></string>
-    <string name="main3"></string>
+    <string name="main2">on</string>
+    <string name="main3">of</string>
     <string name="main4">Account security</string>
     <string name="main5">Gesture password</string>
     <string name="main6">Fingerprint password </string>
@@ -160,6 +161,7 @@
     <string name="tishi24">record</string>
     <string name="tishi25">using gesture password can improve your account security</string>
     <string name="tishi26">verify  gesture password </string>
+    <string name="tishi26a">set gesture password</string>
     <string name="tishi27">new version</string>
     <string name="tishi28">suggestion</string>
     <string name="tishi29">Authorized  login</string>
@@ -247,6 +249,7 @@
     <string name="tishi107">latest version</string>
     <string name="tishi108">account is freezing</string>
     <string name="tishi109">new password must be different from the original password </string>
+    <string name="tishi110">no data</string>
 
 
     <string name="code1">succeed</string><!--20000-->

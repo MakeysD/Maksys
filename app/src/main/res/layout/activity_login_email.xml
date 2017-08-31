@@ -71,7 +71,8 @@
                     android:src="@mipmap/login02" />
                 <EditText
                     android:id="@+id/et_phone"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:hint="@string/tishi16c"
@@ -81,6 +82,12 @@
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/text01"
                     android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="15dp"
+                    android:text=" @qeveworld.com"/>
             </LinearLayout>
 
             <TextView
