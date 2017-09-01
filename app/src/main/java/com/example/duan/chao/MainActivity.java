@@ -164,6 +164,9 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.bangzhu)
     ImageView bangzhu;
 
+    @BindView(R.id.language)
+    TextView language;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,11 +209,13 @@ public class MainActivity extends BaseActivity{
             AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
             Mp3();
             animationDrawable.start();
+            language.setText(R.string.tishi37);
         }else {
             iv.setImageResource(R.drawable.progress);
             AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
             Mp3();
             animationDrawable.start();
+            language.setText(R.string.tishi35);
         }
 
      /*   SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);

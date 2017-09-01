@@ -118,6 +118,7 @@ public class LookPayPasswordActivity extends BaseActivity {
         ShebeiUtil.setEdNoChinaese(mima2);
         ShebeiUtil.setEdit(mima);
         ShebeiUtil.setEdit(mima2);
+        guo.setText(MyApplication.city);
         setViews();
         setListener();
     }

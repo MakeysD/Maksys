@@ -6,7 +6,7 @@
     <string name="hello_blank_fragment">hello</string>
     <string name="loaddings">loading</string>
 
-    <string name="scan_text">scan qr code Automatically </string>
+    <string name="scan_text">Pleas align the QR Code to the viewfinder</string>
 
     <string name="start_btn">start</string>
     <string name="cancel_btn">cancel</string>
@@ -90,7 +90,7 @@
     <string name="title14">Account security</string>
     <string name="title15">Log</string>
     <string name="title16">Personal information</string>
-    <string name="title17">Scan qr verify</string>
+    <string name="title17">Scan the QR Code</string>
     <string name="title18">Phone number</string>
     <string name="title19">Set  personal information</string>
     <string name="title20">Message verify</string>

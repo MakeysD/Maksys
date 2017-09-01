@@ -88,7 +88,7 @@ public class LockActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         if(LockUtil.getPwdStatus(INSTANCE)==true){
-            type.setText(R.string.lock4);
+            type.setText(R.string.tishi39);
         }else {
             type.setText(R.string.lock5);
         }

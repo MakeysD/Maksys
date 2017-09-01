@@ -346,11 +346,11 @@
                     android:paddingTop="5dp">
 
                     <TextView
+                        android:id="@+id/language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text02"
                         android:textSize="@dimen/text02"
-                        android:visibility="gone"
                         android:text="@string/tishi35" />
 
                     <ImageView

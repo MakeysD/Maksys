@@ -387,7 +387,7 @@
             android:textSize="@dimen/text01"
             android:layout_marginLeft="15dp"
             android:textColor="@color/white"
-            android:text="@string/title9"/>
+            android:text="@string/title15"/>
         <ImageView
             android:layout_width="10dp"
             android:layout_height="12dp"
@@ -433,7 +433,7 @@
             android:layout_marginLeft="14dp"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
-            android:text="@string/title15"
+            android:text="@string/title9"
             android:layout_toRightOf="@+id/sdv8"
             android:layout_toEndOf="@+id/sdv8"
             android:layout_marginStart="14dp" />

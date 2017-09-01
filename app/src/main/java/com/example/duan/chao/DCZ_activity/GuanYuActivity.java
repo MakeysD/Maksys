@@ -62,7 +62,7 @@ public class GuanYuActivity extends BaseActivity {
             e.printStackTrace();
         }
         version = packInfo.versionName;
-        tv.setText(this.getString(R.string.tishi70)+version);
+        tv.setText(this.getString(R.string.tishi70)+" v"+version);
         setViews();
         setListener();
     }
