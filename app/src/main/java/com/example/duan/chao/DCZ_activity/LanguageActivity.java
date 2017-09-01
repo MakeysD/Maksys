@@ -117,6 +117,7 @@ public class LanguageActivity extends BaseActivity {
             public void onClick(View v) {
                 a1();
                 MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
+                MyApplication.status=true;
                 MyApplication.type=1;
                 recreate();
             }
@@ -132,6 +133,7 @@ public class LanguageActivity extends BaseActivity {
             public void onClick(View v) {
                 a3();
                 MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
+                MyApplication.status=true;
                 MyApplication.type=1;
                 recreate();//刷新页面
                 MyApplication.status=true;
@@ -158,7 +160,6 @@ public class LanguageActivity extends BaseActivity {
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
         iv4.setVisibility(View.GONE);
-        MyApplication.status=true;
         for(int i=0;i<list.size();i++){
             if(MyApplication.city.equals(list.get(i).getCountry_name_en())){
                 MyApplication.city=list.get(i).getCountry_name_cn();MyApplication.sf.edit().putString("city",list.get(i).getCountry_name_cn());

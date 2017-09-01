@@ -40,6 +40,9 @@ public class BaseActivity extends Activity{
             MyApplication.type=0;
         }
         Log.i("dcz栈的数量",ActivityUtils.getInstance().ActivitySize()+"");
+        for(int i=0;i<ActivityUtils.getInstance().ActivitySize();i++){
+            Log.i("dcz_栈",ActivityUtils.getInstance().getActivity(i)+"");
+        }
 
         if(MyApplication.language.equals("CHINESE")){
             Locale.setDefault(Locale.CHINESE);
