@@ -52,7 +52,7 @@ public class AddUpdate implements Interceptor{
                     Log.i("dcz刷新token",resultLogin.getCode());
                     MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                    ActivityUtils.getInstance().removeActivity(ActivityUtils.getInstance().getCurrentActivity());
+                   // ActivityUtils.getInstance().removeActivity(ActivityUtils.getInstance().getCurrentActivity());
                     ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
                     ActivityUtils.getInstance().popAllActivities();
                 }

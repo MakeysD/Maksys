@@ -70,7 +70,7 @@ public class ChangePayPasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        tv5.setText(this.getString(R.string.tishi68a));
+        tv5.setText(this.getString(R.string.tishia68a)+MyApplication.username+this.getString(R.string.tishi68a));
     }
     /**
      *  监听

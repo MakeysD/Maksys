@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +60,14 @@ public class GesturesLockActivity extends BaseActivity {
         initView();
 
         final CustomLockView cl=(CustomLockView)findViewById(R.id.cl);
+        cl.hui(new CustomLockView.OnType(){
+            @Override
+            public void ontate() {
+                tvWarn.setText(R.string.lock12);
+                tvWarn.setTextColor(getResources().getColor(R.color.red));
+                tvWarn.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake));
+            }
+        });
         cl.setOnCompleteListener(new CustomLockView.OnCompleteListener() {
             @Override
             public void onComplete(int[] indexs) {

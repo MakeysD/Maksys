@@ -129,7 +129,7 @@
     <string name="lock9">两次输入的密码不一致</string>
     <string name="lock10">手势启动密码未开启</string>
     <string name="lock11">已开启指纹验证</string>
-    <string name="lock12">密码太短,请重新输入!</string>
+    <string name="lock12">连接至少4个点，请重新设定!</string>
 
 
     <string name="main1">安全保护</string>
@@ -149,7 +149,7 @@
 
     <string name="button">确定</string>
     <string name="tishi1">请输入原安全邮箱</string>
-    <string name="tishi2">请输入原始密码</string>
+    <string name="tishi2">请验证原登录密码</string>
     <string name="tishi3">6-18位新登录密码，区分大小写</string>
     <string name="tishi3a">6-18位新支付密码，区分大小写</string>
     <string name="tishi4">请确认新登录密码</string>
@@ -179,8 +179,9 @@
     <string name="tishi23">当前登录</string>
     <string name="tishi24">最近登录记录</string>
     <string name="tishi25">启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心</string>
-    <string name="tishi26">验证解锁图案</string>
-    <string name="tishi26a">绘制解锁图案</string>
+    <string name="tishi26">请绘制原手势密码</string>
+    <string name="tishi26b">请验证解锁图案</string>
+    <string name="tishi26a">请绘制解锁图案</string>
     <string name="tishi27">检查新版本</string>
     <string name="tishi28">去评价</string>
     <string name="tishi29">授权登录</string>
@@ -224,8 +225,10 @@
     <string name="tishi65">下线</string>
     <string name="tishi66">请补全原绑定安全邮箱：</string>
     <string name="tishi67"></string>
-    <string name="tishi68">请设置新登录密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
-    <string name="tishi68a">请设置新支付密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
+    <string name="tishia68">请设置</string>
+    <string name="tishia68a">请设置</string>
+    <string name="tishi68">的新登录密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
+    <string name="tishi68a">的新支付密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
     <string name="tishi69">请验证原绑定手机号:</string>
     <string name="tishi70">账户安全中心</string>
     <string name="tishi71">请检查网络或GPS是否打开</string>
@@ -257,7 +260,7 @@
     <string name="tishi97">类授权保护</string>
     <string name="tishi98">未开启账户授权保护</string>
     <string name="tishi99">删除</string>
-    <string name="tishi100">确定退出账号？</string>
+    <string name="tishi100">确定退出账号</string>
     <string name="tishi101">下线通知</string>
     <string name="tishi102">您的账号于</string>
     <string name="tishi103">在另外一台设备登陆</string>

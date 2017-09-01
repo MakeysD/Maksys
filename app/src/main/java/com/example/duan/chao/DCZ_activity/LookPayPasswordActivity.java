@@ -118,6 +118,7 @@ public class LookPayPasswordActivity extends BaseActivity {
         ShebeiUtil.setEdNoChinaese(mima2);
         ShebeiUtil.setEdit(mima);
         ShebeiUtil.setEdit(mima2);
+        Log.i("dcz_城市名",MyApplication.city);
         guo.setText(MyApplication.city);
         setViews();
         setListener();
@@ -265,7 +266,11 @@ public class LookPayPasswordActivity extends BaseActivity {
                     Log.i("dcz",list.toString());
                     for(int i=0;i<list.size();i++){
                         if(s.toString().equals(String.valueOf(list.get(i).getCountry_code()))){
-                            guo.setText(list.get(i).getCountry_name_cn());
+                            if(MyApplication.language.equals("ENGLISH")){
+                                guo.setText(list.get(i).getCountry_name_en());
+                            }else {
+                                guo.setText(list.get(i).getCountry_name_cn());
+                            }
                         }
                     }
                 } catch (IOException e) {

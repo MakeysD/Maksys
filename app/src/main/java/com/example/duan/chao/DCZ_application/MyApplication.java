@@ -8,13 +8,16 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 
+import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_jiguang.Logger;
 import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -23,6 +26,7 @@ import cn.jpush.android.api.JPushInterface;
  */
 
 public class MyApplication extends Application{
+    public static int type=0;//判断刷新界面是否放入栈中
     public static HashMap map=new HashMap();
     public static Long start_time;
     public static String classname;
@@ -42,6 +46,7 @@ public class MyApplication extends Application{
     public static Boolean suo=true;     //是否打开手势解锁页面
     public static String qiniu="https://pic.bincrea.com/";
     public static String city="中国";
+    public static List<CityBean> city_list=new ArrayList<>();
     public static String language="CHINESE";
     public static Boolean status=false;
 

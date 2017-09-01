@@ -66,6 +66,7 @@ public class CustomLockView extends View {
     private Timer timer = new Timer();
     //监听
     private OnCompleteListener mCompleteListener;
+    private OnType listener;
     //清除痕迹的时间
     private long CLEAR_TIME = 0;
     //错误限制 默认为4次
@@ -292,7 +293,8 @@ public class CustomLockView extends View {
             } else if (this.sPoints.size() < passwordMinLength
                     && this.sPoints.size() > 0) {
                 clearPassword();
-                Toast.makeText(this.getContext(),this.getContext().getString(R.string.lock12), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this.getContext(),this.getContext().getString(R.string.lock12), Toast.LENGTH_SHORT).show();
+                listener.ontate();
             } else if (mCompleteListener != null) {
                 if (this.sPoints.size() >= passwordMinLength) {
                     int[] indexs=new int[sPoints.size()];
@@ -555,7 +557,12 @@ public class CustomLockView extends View {
     public void setOnCompleteListener(OnCompleteListener mCompleteListener) {
         this.mCompleteListener = mCompleteListener;
     }
-
+    public void hui(OnType listenet){
+        this.listener=listenet;
+    }
+    public interface OnType{
+        public void ontate();
+    }
     /**
      * 轨迹球画完监听事件
      */

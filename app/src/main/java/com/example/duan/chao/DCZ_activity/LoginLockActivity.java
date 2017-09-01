@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,14 @@ public class LoginLockActivity extends BaseActivity {
         setContentView(R.layout.activity_login_lock);
         context=this;
         type=getIntent().getStringExtra("type");
+        initView();
+        if(type.equals("1")){
+            tvWarn.setText(this.getString(R.string.tishi26b));
+        }else if(type.equals("3")){
+            tvWarn.setText(this.getString(R.string.tishi26));
+        }else if(type.equals("2")){
+            tvWarn.setText(this.getString(R.string.tishi26));
+        }
         mScreenObserver = new ScreenObserver(this);
         mScreenObserver.requestScreenStateUpdate(new ScreenObserver.ScreenStateListener() {
             @Override
@@ -47,7 +56,6 @@ public class LoginLockActivity extends BaseActivity {
                 }
             }
         });
-        initView();
         mIndexs= LockUtil.getPwd(this);
         //判断当前是否设置过密码，没有设置过，直接跳转到设置手势密码页面
         if(LockUtil.getPwdStatus(context)){
@@ -56,6 +64,14 @@ public class LoginLockActivity extends BaseActivity {
             cl.setErrorTimes(5);
             cl.setStatus(1);
             cl.setShow(false);
+            cl.hui(new CustomLockView.OnType(){
+                @Override
+                public void ontate() {
+                    tvWarn.setText(R.string.lock12);
+                    tvWarn.setTextColor(getResources().getColor(R.color.red));
+                    tvWarn.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake));
+                }
+            });
             cl.setOnCompleteListener(new CustomLockView.OnCompleteListener() {
                 @Override
                 public void onComplete(int[] indexs) {
@@ -67,11 +83,15 @@ public class LoginLockActivity extends BaseActivity {
                             Intent intent=new Intent(LoginLockActivity.this, MainActivity.class);
                             startActivity(intent);
                             MyApplication.suo=false;
-                        }else {
+                        }else if(type.equals("2")){
                             LockUtil.setPwdStatus(context,false);
                             Activity ac = ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize() - 2);
                             ActivityUtils.getInstance().popActivity(ac);
                             Toast.makeText(LoginLockActivity.this,R.string.lock6,Toast.LENGTH_SHORT).show();
+                        }else {
+                            Intent intent=new Intent(LoginLockActivity.this, GesturesLockActivity.class);
+                            startActivity(intent);
+                            ActivityUtils.getInstance().popActivity(LoginLockActivity.this);
                         }
                     }else {
                         //修改密码或设置密码进来

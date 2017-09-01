@@ -10,6 +10,7 @@ import android.support.v4.os.CancellationSignal;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +85,14 @@ public class StartLockActivity extends BaseActivity {
             cl.setErrorTimes(5);
             cl.setStatus(1);
             cl.setShow(false);
+            cl.hui(new CustomLockView.OnType(){
+                @Override
+                public void ontate() {
+                    tvWarn.setText(R.string.lock12);
+                    tvWarn.setTextColor(getResources().getColor(R.color.red));
+                    tvWarn.startAnimation(AnimationUtils.loadAnimation(INSTANCE, R.anim.shake));
+                }
+            });
             cl.setOnCompleteListener(new CustomLockView.OnCompleteListener() {
                 @Override
                 public void onComplete(int[] indexs) {

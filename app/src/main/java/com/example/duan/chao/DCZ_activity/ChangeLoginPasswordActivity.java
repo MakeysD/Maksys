@@ -70,7 +70,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        tv5.setText(this.getString(R.string.tishi68));
+        tv5.setText(this.getString(R.string.tishia68)+MyApplication.username+this.getString(R.string.tishi68));
     }
     /**
      *  监听

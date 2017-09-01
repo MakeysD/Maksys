@@ -9,19 +9,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.R;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 /**
  * 语言切换
  * */
 public class LanguageActivity extends BaseActivity {
     private LanguageActivity INSTANCE;
+    private String content;
+    private static List<CityBean> list;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.rl1)     //简体中文
@@ -58,6 +70,13 @@ public class LanguageActivity extends BaseActivity {
         CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl4).rippleCorner(MyApplication.dp2Px()).create();
+        try {
+            content = ActivityUtils.getInstance().ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+            list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+            Log.i("dcz",list.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(MyApplication.language.equals("CHINESE")){
             a1();
         }else if(MyApplication.language.equals("ENGLISH")){
@@ -82,6 +101,7 @@ public class LanguageActivity extends BaseActivity {
     private void setViews() {
 
     }
+
     /**
      *  监听
      * */
@@ -97,8 +117,8 @@ public class LanguageActivity extends BaseActivity {
             public void onClick(View v) {
                 a1();
                 MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
+                MyApplication.type=1;
                 recreate();
-                MyApplication.status=true;
             }
         });
         rl2.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +132,7 @@ public class LanguageActivity extends BaseActivity {
             public void onClick(View v) {
                 a3();
                 MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
+                MyApplication.type=1;
                 recreate();//刷新页面
                 MyApplication.status=true;
             }
@@ -137,6 +158,12 @@ public class LanguageActivity extends BaseActivity {
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
         iv4.setVisibility(View.GONE);
+        MyApplication.status=true;
+        for(int i=0;i<list.size();i++){
+            if(MyApplication.city.equals(list.get(i).getCountry_name_en())){
+                MyApplication.city=list.get(i).getCountry_name_cn();MyApplication.sf.edit().putString("city",list.get(i).getCountry_name_cn());
+            }
+        }
     }
     private void a2(){
         rl1.setBackgroundColor(getResources().getColor(R.color.bg1));
@@ -165,6 +192,16 @@ public class LanguageActivity extends BaseActivity {
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.VISIBLE);
         iv4.setVisibility(View.GONE);
+        Log.i("dcz_数量",list.size()+"");
+        for(int i=0;i<list.size();i++){
+            Log.i("dcz_城市名",MyApplication.city);
+            Log.i("dcz_数量",list.get(i).getCountry_name_cn());
+            if(MyApplication.city.equals(list.get(i).getCountry_name_cn())){
+                Log.i("dcz_城市名2",MyApplication.city);
+                Log.i("dcz",list.get(i).getCountry_name_cn());
+                MyApplication.city=list.get(i).getCountry_name_en();MyApplication.sf.edit().putString("city",list.get(i).getCountry_name_en());
+            }
+        }
     }
     private void a4(){
         rl1.setBackgroundColor(getResources().getColor(R.color.bg1));

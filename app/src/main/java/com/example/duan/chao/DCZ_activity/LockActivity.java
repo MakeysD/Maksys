@@ -64,8 +64,8 @@ public class LockActivity extends BaseActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, GesturesLockActivity.class);
-                intent.putExtra("type","1");
+                Intent intent=new Intent(INSTANCE, LoginLockActivity.class);
+                intent.putExtra("type","3");
                 startActivity(intent);
             }
         });

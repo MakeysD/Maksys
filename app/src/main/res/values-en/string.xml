@@ -115,7 +115,7 @@
 
     <string name="main1">Security</string>
     <string name="main2">on</string>
-    <string name="main3">of</string>
+    <string name="main3">off</string>
     <string name="main4">Account security</string>
     <string name="main5">Gesture password</string>
     <string name="main6">Fingerprint password </string>
@@ -205,8 +205,10 @@
     <string name="tishi65">logout</string>
     <string name="tishi66">original email</string>
     <string name="tishi67"> set now</string>
-    <string name="tishi68">suggest using numbers, letters and characters combination</string>
-    <string name="tishi68a">suggest using numbers, letters and characters combination</string>
+    <string name="tishia68">Please set the new login password of</string>
+    <string name="tishia68a">Please set the new payment password of</string>
+    <string name="tishi68">and suggest using Numbers, letters and characters combination</string>
+    <string name="tishi68a">and suggest using Numbers, letters and characters combination</string>
     <string name="tishi69">original phone number</string>
     <string name="tishi70">latest version</string>
     <string name="tishi71">check internet or GPS whether opened</string>
@@ -238,7 +240,7 @@
     <string name="tishi97">types bussiness authorized protection</string>
     <string name="tishi98">authorized unset</string>
     <string name="tishi99">delete</string>
-    <string name="tishi100">logout？</string>
+    <string name="tishi100">logout</string>
     <string name="tishi101">logout notice</string>
     <string name="tishi102">your account login</string>
     <string name="tishi103">on another device</string>

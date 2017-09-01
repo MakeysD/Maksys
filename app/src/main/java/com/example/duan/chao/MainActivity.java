@@ -282,6 +282,7 @@ public class MainActivity extends BaseActivity{
             public void onClick(View v) {
                 if(player.isPlaying()){
                 }else {
+                    MyApplication.type=1;
                     recreate();
                 }
             }
@@ -420,6 +421,7 @@ public class MainActivity extends BaseActivity{
             tv_suo.setText(R.string.main3);
         }
         if(MyApplication.status==true){
+            MyApplication.type=1;
             recreate();
         }
     }

@@ -73,5 +73,4 @@
     <item android:drawable="@drawable/a00068" android:duration="40"/>
     <item android:drawable="@drawable/a00069" android:duration="40"/>
     <item android:drawable="@drawable/a00070" android:duration="40"/>
-    <item android:drawable="@drawable/a00072" android:duration="40"/>
 </animation-list>

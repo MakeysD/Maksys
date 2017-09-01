@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Stack;
 
@@ -142,5 +147,25 @@ public class ActivityUtils {
 		}
 
 		return false;
+	}
+
+	public static String ToString(InputStream is, String charset) {
+		StringBuilder sb = new StringBuilder();
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
+			while (true) {
+				String line = reader.readLine();
+				if (line == null) {
+					break;
+				} else {
+					sb.append(line).append("\n");
+				}
+			}
+			reader.close();
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sb.toString();
 	}
 }

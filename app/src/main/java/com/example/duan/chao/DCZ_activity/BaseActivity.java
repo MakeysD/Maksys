@@ -34,8 +34,13 @@ public class BaseActivity extends Activity{
         super.onCreate(savedInstanceState);
         StatusBarUtil.setImgTransparent(this);      //这行是让标题沉浸
         Log.i("BaseActivity",getClass().getSimpleName());
-        ActivityUtils.getInstance().pushActivity(this);
+        if(MyApplication.type==0){
+            ActivityUtils.getInstance().pushActivity(this);
+        }else {
+            MyApplication.type=0;
+        }
         Log.i("dcz栈的数量",ActivityUtils.getInstance().ActivitySize()+"");
+
         if(MyApplication.language.equals("CHINESE")){
             Locale.setDefault(Locale.CHINESE);
             Configuration config = getBaseContext().getResources().getConfiguration();

@@ -17,10 +17,20 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+
+import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 
 /**
@@ -31,6 +41,7 @@ public class AppStartActivity extends BaseActivity {
     public final static int REQUEST_READ_PHONE_STATE = 1;
     private Handler mHandler;
     private ImageView iv;
+    private String content;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,10 +92,25 @@ public class AppStartActivity extends BaseActivity {
     }
 
     private void suo() {
+        try {
+            content = ToString(this.getAssets().open("city.json"), "UTF-8");
+            MyApplication.city_list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+            Log.i("dcz",MyApplication.city_list.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(MyApplication.language.equals("ENGLISH")){
-            MyApplication.city="china";MyApplication.sf.edit().putString("city","china").commit();
+            for(int i=0;i<MyApplication.city_list.size();i++){
+                if(MyApplication.city.equals(MyApplication.city_list.get(i).getCountry_name_cn())){
+                    MyApplication.city=MyApplication.city_list.get(i).getCountry_name_en();MyApplication.sf.edit().putString("city",MyApplication.city_list.get(i).getCountry_name_en());
+                }
+            }
         }else {
-            MyApplication.city="中国";MyApplication.sf.edit().putString("city","中国").commit();
+            for(int i=0;i<MyApplication.city_list.size();i++){
+                if(MyApplication.city.equals(MyApplication.city_list.get(i).getCountry_name_en())){
+                    MyApplication.city=MyApplication.city_list.get(i).getCountry_name_cn();MyApplication.sf.edit().putString("city",MyApplication.city_list.get(i).getCountry_name_cn());
+                }
+            }
         }
         //判断是否登录
         if(MyApplication.token.equals("")){
@@ -114,6 +140,26 @@ public class AppStartActivity extends BaseActivity {
             }
         }
         ActivityUtils.getInstance().popActivity(this);
+    }
+
+    public static String ToString(InputStream is, String charset) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                } else {
+                    sb.append(line).append("\n");
+                }
+            }
+            reader.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 
     private void quan(){
