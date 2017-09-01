@@ -48,8 +48,8 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
     View back;
     @BindView(R.id.listview)
     XRecyclerView lv;
-    @BindView(R.id.tv)
-    TextView tv;
+    @BindView(R.id.title)
+    TextView title;
     @BindView(R.id.error)
     LinearLayout error;
     @BindView(R.id.tou)
@@ -81,11 +81,10 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
         if(list.size()>0){
             tou.setVisibility(View.VISIBLE);
             error.setVisibility(View.GONE);
-            tv.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
+            title.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
         }else {
             tou.setVisibility(View.GONE);
             error.setVisibility(View.VISIBLE);
-            tv.setText(INSTANCE.getString(R.string.tishi98));
         }
         if(adapter!=null){
             lv.loadMoreComplete();
@@ -164,9 +163,9 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
         if(string.equals("1")){
             number=number-1;
             if(number>0){
-                tv.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
+                title.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
             }else {
-                tv.setText(INSTANCE.getString(R.string.tishi98));
+                title.setText(INSTANCE.getString(R.string.tishi98));
             }
         }
     }

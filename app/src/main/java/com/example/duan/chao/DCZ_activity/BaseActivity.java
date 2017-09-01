@@ -66,7 +66,6 @@ public class BaseActivity extends Activity{
         String currentPackageName = cn.getPackageName();
         //判断APP是否在前台
         if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(this.getPackageName())) {
-           Log.i("dcz","APP已进入前台");
         }else {
            Log.i("dcz","APP已进入后台");
            Log.i("dcz",System.currentTimeMillis()+"");

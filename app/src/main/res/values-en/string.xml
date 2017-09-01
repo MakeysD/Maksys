@@ -76,14 +76,14 @@
 
     <string name="title1">Email</string>
     <string name="title2">Change login password</string>
-    <string name="title3">Change password</string>
+    <string name="title3">Password security</string>
     <string name="title4">Change payment password</string>
     <string name="title5">Change phone number</string>
     <string name="title6">Select region</string>
     <string name="title7">Devices management</string>
     <string name="title8">Fingerprint protection</string>
     <string name="title9">Record</string>
-    <string name="title10">Gesture password setting</string>
+    <string name="title10">Set gesture password</string>
     <string name="title11">About</string>
     <string name="title12">Language</string>
     <string name="title13">Login</string>
@@ -131,8 +131,8 @@
     <string name="button">submit</string>
     <string name="tishi1">original email</string>
     <string name="tishi2">original password</string>
-    <string name="tishi3">new password (6-18 characters),(Case sensitive)</string>
-    <string name="tishi3a">new password (6-18 characters),(Case sensitive)</string>
+    <string name="tishi3">new password (6-18),(Case sensitive)</string>
+    <string name="tishi3a">new password (6-18),(Case sensitive)</string>
     <string name="tishi4">confirm new password</string>
     <string name="tishi4a">confirm new password</string>
     <string name="tishi5">lowest security</string>
@@ -143,7 +143,8 @@
     <string name="tishi9">verify original payment password</string>
     <string name="tishi10">message verify</string>
     <string name="tishi11">get code</string>
-    <string name="tishi12">submit</string>
+    <string name="tishi12">logout</string>
+    <string name="tishi12a">submit</string>
     <string name="tishi13">region</string>
     <string name="tishi14">new phone number</string>
     <string name="tishi15">If the original phone number can\'t receive message, you need to offer a new phone number and real  personally information submitted, after approval, you can change the phone number.</string>
@@ -160,10 +161,10 @@
     <string name="tishi23">login</string>
     <string name="tishi24">record</string>
     <string name="tishi25">using gesture password can improve your account security</string>
-    <string name="tishi26">verify  gesture password </string>
+    <string name="tishi26">original  gesture password </string>
     <string name="tishi26a">set gesture password</string>
-    <string name="tishi27">new version</string>
-    <string name="tishi28">suggestion</string>
+    <string name="tishi27">New version</string>
+    <string name="tishi28">Suggestion</string>
     <string name="tishi29">Authorized  login</string>
     <string name="tishi30">web login request</string>
     <string name="tishi31">To ensure the security of the account, please confirm that it is yourself operation</string>
@@ -174,8 +175,8 @@
     <string name="tishi36">Traditional Chinese</string>
     <string name="tishi37">English</string>
     <string name="tishi38">Thai</string>
-    <string name="tishi39">The  gesture password is opened</string>
-    <string name="tishi40">change the password regularly to protect account security </string>
+    <string name="tishi39">the  gesture password is opened</string>
+    <string name="tishi40">change it regularly to protect account security </string>
     <string name="tishi41">change gesture password</string>
     <string name="tishi42">delete gesture password</string>
     <string name="tishi43">login password</string>
@@ -238,9 +239,9 @@
     <string name="tishi95">login</string>
     <string name="tishi96">opened</string>
     <string name="tishi97">types bussiness authorized protection</string>
-    <string name="tishi98">authorized unset</string>
+    <string name="tishi98">no authorized protection</string>
     <string name="tishi99">delete</string>
-    <string name="tishi100">logout</string>
+    <string name="tishi100">are you sure logout this account</string>
     <string name="tishi101">logout notice</string>
     <string name="tishi102">your account login</string>
     <string name="tishi103">on another device</string>
