@@ -25,6 +25,7 @@ import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -592,7 +593,7 @@ public class LookPasswordActivity extends BaseActivity {
     public void getData(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().fogotpwd(MyApplication.username,ed_code.getText().toString(),null,mima.getText().toString(),mima2.getText().toString()).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().fogotpwd(MyApplication.username,ed_code.getText().toString(),null, DSA.md5(mima.getText().toString()),DSA.md5(mima2.getText().toString())).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

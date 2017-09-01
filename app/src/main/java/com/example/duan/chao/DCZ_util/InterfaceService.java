@@ -136,16 +136,6 @@ public interface InterfaceService {
                                   @Field("staticCode") String staticCode);
 
     /**
-     *  修改安全密码
-     */
-    @FormUrlEncoded
-    @POST("user/updateSecPwd")
-    Call<LoginOkBean> updateSecPwd(@Field("oldSecPwd") String oldSecPwd,
-                                  @Field("newSecPwd")String newSecPwd,
-                                  @Field("confirmNewSecPwd") String confirmNewSecPwd,
-                                  @Field("code") String code);
-
-    /**
      *  设备列表
      */
     @FormUrlEncoded

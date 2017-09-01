@@ -88,7 +88,7 @@ public class ScanActivity extends CaptureActivity {
         String str ="nonce="+max+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username+"&uuid="+uuid;
         byte[] data = str.getBytes();
         try {
-            sign = DSA.sign(data, MyApplication.private_key);
+            sign = DSA.sign(data, MyApplication.pri_key);
         } catch (Exception e) {
             e.printStackTrace();
         }

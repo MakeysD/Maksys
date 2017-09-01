@@ -39,6 +39,7 @@ import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
+import com.example.duan.chao.DCZ_util.DSACoder;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -144,6 +145,7 @@ public class LoginActivity extends BaseActivity {
         try {
             if(MyApplication.pub_key.equals("")||MyApplication.pub_key==null){
                 DSA.intkey();
+               // DSACoder.initKey();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -540,7 +542,7 @@ public class LoginActivity extends BaseActivity {
     public void login(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().checklogin(phone.getText().toString(),mima.getText().toString()).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().checklogin(phone.getText().toString(),DSA.md5(mima.getText().toString())).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
@@ -576,7 +578,7 @@ public class LoginActivity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
-        HttpServiceClient.getInstance().login(MyApplication.username,mima.getText().toString(),null,MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login(MyApplication.username,mima.getText().toString(),null,MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

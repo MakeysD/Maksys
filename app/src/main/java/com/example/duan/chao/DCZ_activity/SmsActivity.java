@@ -22,6 +22,8 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.AddUpdate;
 import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.DSA;
+import com.example.duan.chao.DCZ_util.DSACoder;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.MainActivity;
@@ -65,6 +67,11 @@ public class SmsActivity extends BaseActivity {
         ButterKnife.bind(this);
         phone=getIntent().getStringExtra("phone");
         password=getIntent().getStringExtra("password");
+        try {
+            DSA.intkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setViews();
         setListener();
     }
@@ -181,7 +188,7 @@ public class SmsActivity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
-        HttpServiceClient.getInstance().login(phone,password,et_code.getText().toString(),MyApplication.public_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login(phone,password,et_code.getText().toString(),MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

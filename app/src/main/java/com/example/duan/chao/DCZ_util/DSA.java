@@ -64,15 +64,14 @@ public class DSA {
 
     public static void intkey() throws Exception {
         Map<String, Object> keyMap = initKey();// 构建密钥
-        PublicKey publicKey = (PublicKey) keyMap.get(PUBLIC_KEY);
-        //MyApplication.pub_key=publicKey.getFormat();MyApplication.sf.edit().putString("pub_key",publicKey.getFormat()).commit();
+       /* PublicKey publicKey = (PublicKey) keyMap.get(PUBLIC_KEY);
+        MyApplication.pub_key=publicKey.getFormat();MyApplication.sf.edit().putString("pub_key",publicKey.getFormat()).commit();
         PrivateKey privateKey = (PrivateKey) keyMap.get(PRIVATE_KEY);
-      //  MyApplication.pri_key=privateKey.getFormat();MyApplication.sf.edit().putString("pri_key",privateKey.getFormat()).commit();
+        MyApplication.pri_key=privateKey.getFormat();MyApplication.sf.edit().putString("pri_key",privateKey.getFormat()).commit();*/
         String a = getPrivateKey(keyMap);
-        MyApplication.pri_key=a;
+        MyApplication.pri_key=a;MyApplication.sf.edit().putString("pri_key",a);
         String b = getPublicKey(keyMap);
-        MyApplication.pub_key=b;
-        MyApplication.pub_key=b;MyApplication.sf.edit().putString("pub_key",b).commit();
+        MyApplication.pub_key=b;MyApplication.sf.edit().putString("pub_key",b);
         Log.i("dcz私钥format",a);
         Log.i("dcz公钥format",b);
         String str ="123";
@@ -104,6 +103,7 @@ public class DSA {
         map.put(PRIVATE_KEY, privateKey);
         return map;
     }
+
     /**
     * 生成默认密钥
     *

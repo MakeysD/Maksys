@@ -109,7 +109,7 @@ public class HaveScanActivity extends BaseActivity {
                 String str ="agreement=1"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+result.getSrcReqSysId()+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
                 try {
-                    String sign = DSA.sign(data, MyApplication.private_key);
+                    String sign = DSA.sign(data, MyApplication.pri_key);
                     getData("1",sign);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -123,7 +123,7 @@ public class HaveScanActivity extends BaseActivity {
                 String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+result.getSrcReqSysId()+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
                 try {
-                    String sign = DSA.sign(data, MyApplication.private_key);
+                    String sign = DSA.sign(data, MyApplication.pri_key);
                     getData("2",sign);
                 } catch (Exception e) {
                     e.printStackTrace();

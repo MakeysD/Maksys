@@ -163,6 +163,7 @@
     <string name="tishi10">请输入验证码</string>
     <string name="tishi11">获取验证码</string>
     <string name="tishi12">下一步</string>
+    <string name="tishi12a">下一步</string>
     <string name="tishi13">国家 / 地区</string>
     <string name="tishi14">请输入新手机号</string>
     <string name="tishi15">如果原密保手机已换号或不能接收到短信验证码，需提供一个能收验证码的新手机号和个人实名有效资料提交工作人员审核通过后才能更换新密保手机</string>
