@@ -109,7 +109,7 @@ public class LanguageActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityUtils.getInstance().popActivity(INSTANCE);
+                ActivityUtils.getInstance().popActivity(ActivityUtils.getInstance().getCurrentActivity());
             }
         });
         rl1.setOnClickListener(new View.OnClickListener() {

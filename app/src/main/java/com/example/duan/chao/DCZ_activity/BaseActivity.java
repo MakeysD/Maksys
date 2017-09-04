@@ -34,6 +34,7 @@ public class BaseActivity extends Activity{
         super.onCreate(savedInstanceState);
         StatusBarUtil.setImgTransparent(this);      //这行是让标题沉浸
         Log.i("BaseActivity",getClass().getSimpleName());
+        Log.i("dcz_type",MyApplication.type+"");
         if(MyApplication.type==0){
             ActivityUtils.getInstance().pushActivity(this);
         }else {
