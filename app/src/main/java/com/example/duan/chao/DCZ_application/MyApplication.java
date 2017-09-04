@@ -14,6 +14,7 @@ import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +74,7 @@ public class MyApplication extends Application{
         JPushInterface.init(this);     		// 初始化 JPush
         Fresco.initialize(this);
         CodeUtil.pushcode(getApplicationContext());
+        CrashReport.initCrashReport(getApplicationContext(), "87666fdd22", false);
         sf= PreferenceManager.getDefaultSharedPreferences(this);
         first = sf.getBoolean("first",true);
         zhiwen=sf.getBoolean("zhiwen",false);
