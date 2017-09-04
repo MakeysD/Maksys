@@ -177,7 +177,7 @@ public class LoginActivity extends BaseActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, LookPasswordActivity.class);
+                Intent intent=new Intent(INSTANCE, LookPassword2Activity.class);
                 startActivity(intent);
             }
         });

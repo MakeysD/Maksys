@@ -160,8 +160,8 @@ public class LookPasswordActivity extends BaseActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, LookPasswordActivity.class);
-                startActivity(intent);
+                /*Intent intent=new Intent(INSTANCE, LookPasswordActivity.class);
+                startActivity(intent);*/
             }
         });
         yan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

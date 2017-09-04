@@ -236,7 +236,8 @@
         <activity android:name=".DCZ_activity.HavaMoneyActivity" />
         <activity android:name=".DCZ_activity.SettingDataResultActivity" />
         <activity android:name=".DCZ_activity.LookPayPasswordActivity" />
-        <activity android:name=".DCZ_activity.LoginEmailActivity"></activity>
+        <activity android:name=".DCZ_activity.LoginEmailActivity" />
+        <activity android:name=".DCZ_activity.LookPassword2Activity"></activity>
     </application>
 
 </manifest>

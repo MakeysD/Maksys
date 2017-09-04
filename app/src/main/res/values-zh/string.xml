@@ -171,6 +171,8 @@
     <string name="tishi16c">请输入登录邮箱</string>
     <string name="tishi16a">请输入姓名</string>
     <string name="tishi16b">请输入证件号码</string>
+    <string name="tishi16d">请输入账户</string>
+    <string name="tishi16e">请验证账户</string>
     <string name="tishi17">拍照</string>
     <string name="tishi18">从相册选择</string>
     <string name="tishi19">验证密保手机</string>
