@@ -16,6 +16,7 @@ import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -178,7 +179,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
      * */
     public void getData(){
         dialog.show();
-        HttpServiceClient.getInstance().login_password("0",et1.getText().toString(),et2.getText().toString(),et3.getText().toString()).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().login_password("0",DSA.md5(et1.getText().toString()), DSA.md5(et2.getText().toString()),DSA.md5(et3.getText().toString())).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

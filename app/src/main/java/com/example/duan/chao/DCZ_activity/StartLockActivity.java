@@ -149,7 +149,7 @@ public class StartLockActivity extends BaseActivity {
      */
     private void doSomethingOnScreenOff() {
         Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), LoginLockActivity.class);
+        intent.setClass(getApplicationContext(), StartLockActivity.class);
         intent.putExtra("current","resume");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

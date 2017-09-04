@@ -175,7 +175,7 @@ public class ChangePhone1Activity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
-        HttpServiceClient.getInstance().sendsms(MyApplication.username,"2",null).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().sendsms(MyApplication.username,null,null).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

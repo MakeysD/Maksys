@@ -56,6 +56,34 @@ public class CodeUtil {
         MyApplication.map.put("10509",context.getString(R.string.code36));
         MyApplication.map.put("10510",context.getString(R.string.code37));
 
+        MyApplication.map.put("0",context.getString(R.string.data0));
+        MyApplication.map.put("1",context.getString(R.string.data1));
+        MyApplication.map.put("2",context.getString(R.string.data2));
+        MyApplication.map.put("3",context.getString(R.string.data3));
+        MyApplication.map.put("4",context.getString(R.string.data4));
+        MyApplication.map.put("5",context.getString(R.string.data5));
+        MyApplication.map.put("6",context.getString(R.string.data6));
+        MyApplication.map.put("7",context.getString(R.string.data7));
+        MyApplication.map.put("8",context.getString(R.string.data8));
+        MyApplication.map.put("9",context.getString(R.string.data9));
+        MyApplication.map.put("10",context.getString(R.string.data10));
+        MyApplication.map.put("11",context.getString(R.string.data11));
+        MyApplication.map.put("12",context.getString(R.string.data12));
+        MyApplication.map.put("13",context.getString(R.string.data13));
+        MyApplication.map.put("14",context.getString(R.string.data14));
+        MyApplication.map.put("15",context.getString(R.string.data15));
+        MyApplication.map.put("16",context.getString(R.string.data16));
+        MyApplication.map.put("17",context.getString(R.string.data17));
+        MyApplication.map.put("18",context.getString(R.string.data18));
+        MyApplication.map.put("19",context.getString(R.string.data19));
+        MyApplication.map.put("1000",context.getString(R.string.data1000));
+        MyApplication.map.put("1001",context.getString(R.string.data1001));
+        MyApplication.map.put("1002",context.getString(R.string.data1002));
+        MyApplication.map.put("1003",context.getString(R.string.data1003));
+        MyApplication.map.put("1004",context.getString(R.string.data1004));
+        MyApplication.map.put("1009",context.getString(R.string.data1009));
+        MyApplication.map.put("2000",context.getString(R.string.data2000));
+
     }
 
     public String getCode(Context context,String string){

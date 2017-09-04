@@ -162,6 +162,9 @@
     <string name="tishi24">record</string>
     <string name="tishi25">using gesture password can improve your account security</string>
     <string name="tishi26">original  gesture password </string>
+    <string name="tishi26c">verify gesture password </string>
+    <string name="tishi26b">verify gesture password </string>
+    <string name="tishi26d">confirm gesture password </string>
     <string name="tishi26a">set gesture password</string>
     <string name="tishi27">New version</string>
     <string name="tishi28">Suggestion</string>
@@ -227,8 +230,8 @@
     <string name="tishi83">failed</string>
     <string name="tishi84"></string>
     <string name="tishi85">login password changed, please try again</string>
-    <string name="tishi86">authorized date</string>
-    <string name="tishi87">login</string>
+    <string name="tishi86">authorized date：</string>
+    <string name="tishi87">login：</string>
     <string name="tishi88">verify gesture password</string>
     <string name="tishi89">email </string>
     <string name="tishi90">change email</string>
@@ -292,5 +295,33 @@
     <string name="code35">unbound phone number</string><!--10508-->
     <string name="code36">binding invalid phone number</string><!--10509-->
     <string name="code37">invalid phone number</string><!--10510-->
+
+    <string name="data0">unknown type</string>
+    <string name="data1">login</string>
+    <string name="data2">logout</string>
+    <string name="data3">register</string>
+    <string name="data4">add new user</string>
+    <string name="data5">edit account</string>
+    <string name="data6">change password</string>
+    <string name="data7">reset password</string>
+    <string name="data8">forget password</string>
+    <string name="data9">add administrator</string>
+    <string name="data10">edit administrator</string>
+    <string name="data11">transaction approving</string>
+    <string name="data12">exchange</string>
+    <string name="data13">change data</string>
+    <string name="data14">change payment password</string>
+    <string name="data15">reset payment password</string>
+    <string name="data16">forget payment password</string>
+    <string name="data17">delete security device</string>
+    <string name="data18">forced logout</string>
+    <string name="data19">change status of system protection</string>
+    <string name="data1000">WALLET</string>
+    <string name="data1001">WHEATFIELD</string>
+    <string name="data1002">FORCE</string>
+    <string name="data1003">AURORA</string>
+    <string name="data1004">Her-Mest</string>
+    <string name="data1009">ORE_XSG</string>
+    <string name="data2000">Makeys</string>
 
 </resources>

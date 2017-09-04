@@ -44,7 +44,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.tv1.setText(list.get(position).getGratSysName());
+        holder.tv1.setText(MyApplication.map.get(list.get(position).getGratSysId()).toString());
         holder.tv2.setText(list.get(position).getDeviceName()+"");
 
         Long updateTime = list.get(position).getGratTime();

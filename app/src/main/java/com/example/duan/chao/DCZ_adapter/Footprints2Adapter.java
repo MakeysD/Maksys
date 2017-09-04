@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_selft.GridViewForScrollView;
 import com.example.duan.chao.R;
@@ -73,7 +74,7 @@ public class Footprints2Adapter extends BaseAdapter{
                 viewHolder.title.setText(datetime);
             }
         }
-        viewHolder.name.setText(list.get(position).getSystemName());
+        viewHolder.name.setText(MyApplication.map.get(list.get(position).getSystemId()).toString());
         viewHolder.ip.setText(list.get(position).getIpAddr());
         //viewHolder.ip.setText(list.get(position).getIpAttr()+"   "+list.get(position).getIpAddr());
 

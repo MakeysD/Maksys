@@ -228,7 +228,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
             }else {
                 viewHolder.ll.setVisibility(View.GONE);
             }
-            viewHolder.name.setText(list.get(position).getSystemName());
+            viewHolder.name.setText(MyApplication.map.get(list.get(position).getSystemId()).toString());
             return convertView;
         }
     }

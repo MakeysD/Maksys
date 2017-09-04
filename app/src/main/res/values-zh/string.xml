@@ -182,7 +182,9 @@
     <string name="tishi25">启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心</string>
     <string name="tishi26">请绘制原手势密码</string>
     <string name="tishi26b">请验证解锁图案</string>
+    <string name="tishi26c">验证手势密码</string>
     <string name="tishi26a">请绘制解锁图案</string>
+    <string name="tishi26d">请重新验证解锁图案</string>
     <string name="tishi27">检查新版本</string>
     <string name="tishi28">去评价</string>
     <string name="tishi29">授权登录</string>
@@ -313,4 +315,31 @@
     <string name="code36">用户绑定了无效手机</string><!--10509-->
     <string name="code37">用户或者密码错误</string><!--10510-->
 
+    <string name="data0">未知类型</string>
+    <string name="data1">登录</string>
+    <string name="data2">退出</string>
+    <string name="data3">注册会员</string>
+    <string name="data4">管理员添加会员</string>
+    <string name="data5">编辑会员</string>
+    <string name="data6">修改密码</string>
+    <string name="data7">重置密码</string>
+    <string name="data8">忘记密码</string>
+    <string name="data9">添加后台管理员</string>
+    <string name="data10">编辑后台管理员</string>
+    <string name="data11">交易审核</string>
+    <string name="data12">兑换</string>
+    <string name="data13">修改数据调控</string>
+    <string name="data14">修改支付密码</string>
+    <string name="data15">重置支付密码</string>
+    <string name="data16">忘记支付密码</string>
+    <string name="data17">删除安全设备</string>
+    <string name="data18">强制下线</string>
+    <string name="data19">修改系统保护状态</string>
+    <string name="data1000">钱包</string>
+    <string name="data1001">麦田圈</string>
+    <string name="data1002">原力平台</string>
+    <string name="data1003">极光平台</string>
+    <string name="data1004">互助平台</string>
+    <string name="data1009">新双轨</string>
+    <string name="data2000">用户安全中心</string>
 </resources>

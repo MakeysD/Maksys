@@ -563,7 +563,7 @@ public class LookPasswordActivity extends BaseActivity {
     public void getSms(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().sendsms(phone.getText().toString(),"2",null).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().sendsms(phone.getText().toString(),"5",null).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

@@ -33,6 +33,7 @@ public class LoginLockActivity extends BaseActivity {
     private ScreenObserver mScreenObserver;
     private TextView tvWarn;
     private int[] mIndexs;
+    private View back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,7 @@ public class LoginLockActivity extends BaseActivity {
             cl.hui(new CustomLockView.OnType(){
                 @Override
                 public void ontate() {
-                    tvWarn.setText(R.string.lock12);
+                    tvWarn.setText(R.string.tishi26d);
                     tvWarn.setTextColor(getResources().getColor(R.color.red));
                     tvWarn.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake));
                 }
@@ -102,7 +103,10 @@ public class LoginLockActivity extends BaseActivity {
 
                 @Override
                 public void onError() {
-                    if (cl.getErrorTimes() > 0) {
+                    tvWarn.setText(context.getString(R.string.tishi26d));
+                    tvWarn.setTextColor(getResources().getColor(R.color.red));
+                    tvWarn.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake));
+                   /* if (cl.getErrorTimes() > 0) {
                         tvWarn.setText(context.getString(R.string.lock7) + cl.getErrorTimes() +context.getString(R.string.lock8));
                         tvWarn.setTextColor(getResources().getColor(R.color.red));
                     }else {
@@ -112,7 +116,7 @@ public class LoginLockActivity extends BaseActivity {
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(LoginLockActivity.this);
                         Log.i("dcz","解锁已达到上限");
-                    }
+                    }*/
                 }
             });
         }
@@ -144,6 +148,13 @@ public class LoginLockActivity extends BaseActivity {
      */
     private void initView(){
         tvWarn=getViewById(R.id.tvWarn);
+        back=getViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().popActivity(LoginLockActivity.this);
+            }
+        });
     }
 
     @Override

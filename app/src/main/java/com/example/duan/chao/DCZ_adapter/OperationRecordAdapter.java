@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.R;
 
@@ -58,7 +59,7 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
                 holder.title.setText(datetime);
             }
         }
-        holder.name.setText(list.get(position).getTypeDesc()+"");
+        holder.name.setText(MyApplication.map.get(String.valueOf(list.get(position).getType())).toString());
         holder.ip.setText(list.get(position).getIpAddr());
        // holder.ip.setText(list.get(position).getIpAttr()+"  "+list.get(position).getIpAddr());
 
