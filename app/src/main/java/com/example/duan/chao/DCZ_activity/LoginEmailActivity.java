@@ -125,7 +125,17 @@ public class LoginEmailActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    //DSACoder.generateKeyPairs();
+                    DSA.intkey();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
     /**
      *  监听

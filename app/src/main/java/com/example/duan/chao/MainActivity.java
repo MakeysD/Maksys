@@ -421,6 +421,7 @@ public class MainActivity extends BaseActivity{
             tv_suo.setText(R.string.main3);
         }
         if(MyApplication.status==true){
+            iv.setImageURI(null);
             MyApplication.type=1;
             recreate();
         }
@@ -463,10 +464,12 @@ public class MainActivity extends BaseActivity{
         if (!fingerprintManager.isHardwareDetected()) {
             // 没有检测到指纹传感器，显示对话框告诉用户
             button2.setChecked(false);
+            boo=true;
             new MiddleDialog(INSTANCE,this.getString(R.string.no_sensor_dialog_title),R.style.registDialog).show();
         } else if (!fingerprintManager.hasEnrolledFingerprints()) {
             // 没有一个指纹图像被登记
             button2.setChecked(false);
+            boo=true;
             new MiddleDialog(INSTANCE,this.getString(R.string.no_fingerprint_enrolled_dialog_title),R.style.registDialog).show();
         } else {
             //弹框让用户确认指纹

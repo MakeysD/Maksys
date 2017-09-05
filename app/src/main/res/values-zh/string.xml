@@ -316,7 +316,7 @@
     <string name="code34">邮件发送失败</string><!--10506-->
     <string name="code35">未绑定手机</string><!--10508-->
     <string name="code36">用户绑定了无效手机</string><!--10509-->
-    <string name="code37">用户或者密码错误</string><!--10510-->
+    <string name="code37">无效手机号</string><!--10510-->
 
     <string name="data0">未知类型</string>
     <string name="data1">登录</string>

@@ -69,12 +69,12 @@ public class DSA {
         PrivateKey privateKey = (PrivateKey) keyMap.get(PRIVATE_KEY);
         MyApplication.pri_key=privateKey.getFormat();MyApplication.sf.edit().putString("pri_key",privateKey.getFormat()).commit();*/
         String a = getPrivateKey(keyMap);
-        MyApplication.pri_key=a;MyApplication.sf.edit().putString("pri_key",a);
+        MyApplication.pri_key=a;MyApplication.sf.edit().putString("pri_key",a).commit();
         String b = getPublicKey(keyMap);
-        MyApplication.pub_key=b;MyApplication.sf.edit().putString("pub_key",b);
-     /*   Log.i("dcz私钥format",a);
+        MyApplication.pub_key=b;MyApplication.sf.edit().putString("pub_key",b).commit();
+        Log.i("dcz私钥format",a);
         Log.i("dcz公钥format",b);
-        String str ="123";
+       /* String str ="123";
         byte[] data = str.getBytes();
         String sign = DSA.sign(data,a);
         boolean verify1 = verify(str.getBytes(), getPublicKey(keyMap), sign);

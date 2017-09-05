@@ -67,7 +67,7 @@ public class SmsActivity extends BaseActivity {
         ButterKnife.bind(this);
         phone=getIntent().getStringExtra("phone");
         password=getIntent().getStringExtra("password");
-        Handler mHandler = new Handler();
+        /*Handler mHandler = new Handler();
         Runnable gotoLoginAct = new Runnable() {
             @Override
             public void run() {
@@ -78,9 +78,10 @@ public class SmsActivity extends BaseActivity {
                 }
             }
         };
+        mHandler.postDelayed(gotoLoginAct,2000);*/
         setViews();
         setListener();
-        mHandler.post(gotoLoginAct);
+
     }
 
     @Override

@@ -186,7 +186,6 @@ public class ChangePayPasswordActivity extends BaseActivity {
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
-                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),new MiddleDialog.onButtonCLickListener(){

@@ -186,8 +186,8 @@ public class DSACoder {
         Map<String, String> keyPairs = new HashMap<>();
         keyPairs.put(PUBLIC_KEY, publicKeyBase64);
         keyPairs.put(PRIVATE_KEY, privateKeyBase64);
-        MyApplication.pub_key=publicKeyBase64;MyApplication.sf.edit().putString("pub_key",publicKeyBase64);
-        MyApplication.pri_key=privateKeyBase64;MyApplication.sf.edit().putString("pri_key",privateKeyBase64);
+        MyApplication.pub_key=publicKeyBase64;MyApplication.sf.edit().putString("pub_key",publicKeyBase64).commit();
+        MyApplication.pri_key=privateKeyBase64;MyApplication.sf.edit().putString("pri_key",privateKeyBase64).commit();
         Log.i("公钥",publicKeyBase64);
         Log.i("私钥",privateKeyBase64);
        /* String str ="123456";
