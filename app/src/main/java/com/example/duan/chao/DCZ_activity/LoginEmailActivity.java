@@ -95,6 +95,7 @@ public class LoginEmailActivity extends BaseActivity {
         setContentView(R.layout.activity_login_email);
         INSTANCE=this;
         ButterKnife.bind(this);
+        JPushInterface.stopPush(getApplicationContext());
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         try {

@@ -317,6 +317,11 @@
     <string name="code35">未绑定手机</string><!--10508-->
     <string name="code36">用户绑定了无效手机</string><!--10509-->
     <string name="code37">无效手机号</string><!--10510-->
+    <string name="code38">手机号已存在</string><!--10511-->
+    <string name="code39">请先登录安全中心app</string><!--10512-->
+    <string name="code40">原安全密码错误</string><!--10513-->
+    <string name="code41">原登录密码错误</string><!--10514-->
+
 
     <string name="data0">未知类型</string>
     <string name="data1">登录</string>

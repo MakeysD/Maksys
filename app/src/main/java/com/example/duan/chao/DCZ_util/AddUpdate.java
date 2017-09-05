@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
