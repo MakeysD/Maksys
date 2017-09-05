@@ -204,7 +204,9 @@ public class FootprintsActivity extends BaseActivity {
                             }
 
                         }else {
-                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            if(!response.body().getCode().equals("20003")){
+                                new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            }
                             //Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                         }
                     }else {

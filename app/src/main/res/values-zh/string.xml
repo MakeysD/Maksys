@@ -251,6 +251,7 @@
     <string name="tishi83">数据获取失败</string>
     <string name="tishi84">切换数据</string>
     <string name="tishi85">账户登陆密码已修改，请重新登陆</string>
+    <string name="tishi85a">账户支付密码已修改，请重新登陆</string>
     <string name="tishi86">授权时间：</string>
     <string name="tishi87">最近登陆：</string>
     <string name="tishi88">验证手势密码</string>

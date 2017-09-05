@@ -116,7 +116,9 @@ public class GuanYuActivity extends BaseActivity {
                             startActivity(intent);
                         }
                     }else {
-                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                        if(!response.body().getCode().equals("20003")){
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                        }
                     }
                 }else {
                     Log.d("dcz","获取数据失败");

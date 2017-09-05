@@ -189,11 +189,18 @@ public class ChangePayPasswordActivity extends BaseActivity {
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
-                            startActivity(intent);
-                            ActivityUtils.getInstance().popAllActivities();
+                            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi82),INSTANCE.getString(R.string.tishi85a),new MiddleDialog.onButtonCLickListener2() {
+                                @Override
+                                public void onActivieButtonClick(Object bean, int po) {
+                                    Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
+                                    startActivity(intent);
+                                    ActivityUtils.getInstance().popAllActivities();
+                                }
+                            }, R.style.registDialog).show();
                         }else {
-                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            if(!response.body().getCode().equals("20003")){
+                                new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            }
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

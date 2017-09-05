@@ -106,7 +106,9 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
                             list.remove(postion);
                             Notify(list);
                         }else {
-                            new MiddleDialog(context,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            if(!response.body().getCode().equals("20003")){
+                                new MiddleDialog(context,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            }
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

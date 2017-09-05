@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
+import com.example.duan.chao.DCZ_lockdemo.CustomLockView;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -62,7 +63,7 @@ public class Footprints1Adapter extends BaseAdapter{
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.tv1.setText(list.get(position).getSystemName().toString());
+        viewHolder.tv1.setText(MyApplication.map.get(list.get(position).getSystemId()).toString());
         viewHolder.tv2.setText(list.get(position).getIp().toString());
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +109,9 @@ public class Footprints1Adapter extends BaseAdapter{
                             list.remove(postion);
                             Notify(list);
                         }else {
-                            new MiddleDialog(context, MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            if(!response.body().getCode().equals("20003")){
+                                new MiddleDialog(context,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            }
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");

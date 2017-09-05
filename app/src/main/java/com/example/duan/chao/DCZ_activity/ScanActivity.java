@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DensityUtils;
@@ -106,8 +107,10 @@ public class ScanActivity extends CaptureActivity {
                         ActivityUtils.getInstance().popActivity(ScanActivity.this);
                     }else {
                         // new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
-                        Toast.makeText(ScanActivity.this,MyApplication.map.get(response.body().getCode()).toString(), Toast.LENGTH_SHORT).show();
-                        ActivityUtils.getInstance().popActivity(ScanActivity.this);
+                        if(!response.body().getCode().equals("20003")){
+                            Toast.makeText(ScanActivity.this,MyApplication.map.get(response.body().getCode()).toString(), Toast.LENGTH_SHORT).show();
+                            ActivityUtils.getInstance().popActivity(ScanActivity.this);
+                        }
                     }
                 }else {
                     // new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();

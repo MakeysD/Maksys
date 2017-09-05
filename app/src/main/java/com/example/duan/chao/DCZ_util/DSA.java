@@ -72,14 +72,14 @@ public class DSA {
         MyApplication.pri_key=a;MyApplication.sf.edit().putString("pri_key",a);
         String b = getPublicKey(keyMap);
         MyApplication.pub_key=b;MyApplication.sf.edit().putString("pub_key",b);
-        Log.i("dcz私钥format",a);
+     /*   Log.i("dcz私钥format",a);
         Log.i("dcz公钥format",b);
         String str ="123";
         byte[] data = str.getBytes();
         String sign = DSA.sign(data,a);
         boolean verify1 = verify(str.getBytes(), getPublicKey(keyMap), sign);
         Log.i("经验证 数据和签名匹配:",verify1+"");
-        Log.i("dcz_签名",sign);
+        Log.i("dcz_签名",sign);*/
     }
     /**
     * 生成密钥

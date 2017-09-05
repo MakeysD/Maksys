@@ -445,7 +445,9 @@ public class LoginEmailActivity extends BaseActivity {
                         intent.putExtra("password",DSA.md5(mima.getText().toString()));
                         startActivity(intent);
                     }else {
-                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                        if(!response.body().getCode().equals("20003")){
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                        }
                     }
                 }else {
                     new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

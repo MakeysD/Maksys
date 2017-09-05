@@ -232,6 +232,7 @@
     <string name="tishi83">failed</string>
     <string name="tishi84"></string>
     <string name="tishi85">login password changed, please try again</string>
+    <string name="tishi85a">password has been changed,please login again </string>
     <string name="tishi86">authorized date：</string>
     <string name="tishi87">login：</string>
     <string name="tishi88">verify gesture password</string>

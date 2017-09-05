@@ -200,7 +200,9 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                                 }
                             }, R.style.registDialog).show();
                         }else {
-                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            if(!response.body().getCode().equals("20003")){
+                                new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            }
                         }
                     }else {
                         Log.d("dcz","返回的数据是空的");
