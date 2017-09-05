@@ -189,14 +189,12 @@ public class ChangePayPasswordActivity extends BaseActivity {
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi82),INSTANCE.getString(R.string.tishi85a),new MiddleDialog.onButtonCLickListener2() {
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),new MiddleDialog.onButtonCLickListener(){
                                 @Override
-                                public void onActivieButtonClick(Object bean, int po) {
-                                    Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
-                                    startActivity(intent);
-                                    ActivityUtils.getInstance().popAllActivities();
+                                public void onButtonCancel(String string) {
+                                    ActivityUtils.getInstance().popActivity(INSTANCE);
                                 }
-                            }, R.style.registDialog).show();
+                            },R.style.registDialog).show();
                         }else {
                             if(!response.body().getCode().equals("20003")){
                                 new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
