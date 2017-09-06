@@ -77,8 +77,38 @@ public class HaveScanActivity extends BaseActivity {
         result = mGson.fromJson(message, HaveBean.class);
         setViews();
         setListener();
+        initHandler();
     }
 
+    public static Handler mHandler ;
+    private void initHandler(){
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 1:
+                        message=msg.obj.toString();
+                        Gson mGson = new Gson();
+                        result = mGson.fromJson(message, HaveBean.class);
+                        setViews();
+                        break;
+                }
+            }
+        };
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("dcz",this.getTaskId()+".................."+ActivityUtils.getInstance().getCurrentActivity().getTaskId());
+        Log.e("dcz",getIntent().getStringExtra("message")+"..................");
+        String message=getIntent().getStringExtra("message");
+        Gson mGson = new Gson();
+        HaveBean result = mGson.fromJson(message, HaveBean.class);
+        sms.setText(result.getRandomCode());
+        //setViews();
+    }
 
     @Override
     public void onBackPressed() {

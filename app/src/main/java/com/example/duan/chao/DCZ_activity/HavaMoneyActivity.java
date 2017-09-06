@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
@@ -23,6 +24,7 @@ import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.R;
+import com.google.gson.Gson;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,6 +40,8 @@ public class HavaMoneyActivity extends BaseActivity {
     private HavaMoneyActivity INSTANCE;
     private Dialog dialog;
     private Handler handler = null;
+    private String message;
+    private HaveBean result;
     @BindView(R.id.ok)
     TextView ok;
     @BindView(R.id.no)
@@ -64,8 +68,28 @@ public class HavaMoneyActivity extends BaseActivity {
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(ok).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(no).rippleCorner(MyApplication.dp2Px()).create();
+        message=getIntent().getStringExtra("message");
+        Gson mGson = new Gson();
+        result = mGson.fromJson(message, HaveBean.class);
         setViews();
         setListener();
+    }
+
+    public static Handler mHandler ;
+    private void initHandler(){
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 1:
+                        message=msg.obj.toString();
+                        Gson mGson = new Gson();
+                        result = mGson.fromJson(message, HaveBean.class);
+                        break;
+                }
+            }
+        };
     }
 
     @Override

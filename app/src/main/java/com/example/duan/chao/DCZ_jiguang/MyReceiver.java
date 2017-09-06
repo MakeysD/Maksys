@@ -8,10 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
+import com.example.duan.chao.DCZ_activity.HaveActivity;
 import com.example.duan.chao.DCZ_activity.HaveScanActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
@@ -151,7 +153,6 @@ public class MyReceiver extends BroadcastReceiver {
 				} catch (JSONException e) {
 
 				}
-
 			}
 			Log.i("dcz","发送广播");
 			LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
@@ -164,8 +165,15 @@ public class MyReceiver extends BroadcastReceiver {
 		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 		//判断APP是否在前台
 		if(ActivityUtils.getInstance().isAppOnForeground(context)==true) {
+			if (ActivityUtils.getInstance().getCurrentActivity() instanceof HaveScanActivity){
+				Message msg = new Message();
+				msg.what = 1;
+				msg.obj = message;
+				HaveScanActivity.mHandler.sendMessage(msg);
+				return true;
+			}
 			Intent i = new Intent(context, HaveScanActivity.class);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
 			i.putExtra("message",message);
 			context.startActivity(i);
 			return true ;
@@ -176,8 +184,15 @@ public class MyReceiver extends BroadcastReceiver {
 			}
 			Intent i = new Intent(context, HaveScanActivity.class);
 			i.putExtra("message",message);
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
 			context.startActivity(i);
+			if (ActivityUtils.getInstance().getCurrentActivity() instanceof HaveScanActivity){
+				Message msg = new Message();
+				msg.what = 1;
+				msg.obj = message;
+				HaveScanActivity.mHandler.sendMessageDelayed(msg,2000);
+				return true;
+			}
 			/*Handler mHandler = new Handler();
 			Runnable gotoLoginAct = new Runnable() {
 				@Override
