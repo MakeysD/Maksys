@@ -53,7 +53,8 @@ public class GesturesLockActivity extends BaseActivity {
             @Override
             public void onScreenStateChange(boolean isScreenOn) {
                 if (!isScreenOn&& LockUtil.getPwdStatus(context)&& LockUtil.getPwd(context).length>0) {
-                    doSomethingOnScreenOff();
+                    //doSomethingOnScreenOff();
+                    invalidateUser( );
                 }
             }
         });

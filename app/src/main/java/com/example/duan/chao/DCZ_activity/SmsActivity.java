@@ -65,6 +65,7 @@ public class SmsActivity extends BaseActivity {
         setContentView(R.layout.activity_sms);
         INSTANCE=this;
         ButterKnife.bind(this);
+        JPushInterface.resumePush(getApplicationContext());
         phone=getIntent().getStringExtra("phone");
         password=getIntent().getStringExtra("password");
         /*Handler mHandler = new Handler();
@@ -119,6 +120,13 @@ public class SmsActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(MyApplication.rid==null||MyApplication.rid.equals("")){
+                    MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
+                    if(MyApplication.rid==null||MyApplication.rid.equals("")){
+                        Toast.makeText(INSTANCE,"RID为空",Toast.LENGTH_SHORT).show();
+                    }
+                    return;
+                }
                 getData();
             }
         });

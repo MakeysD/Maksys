@@ -148,12 +148,16 @@ public class StartLockActivity extends BaseActivity {
      * 打开验证手势
      */
     private void doSomethingOnScreenOff() {
-        Intent intent = new Intent();
+        Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(INSTANCE, MainActivity.class);
+        startActivity(intent);
+        ActivityUtils.getInstance().popActivity(INSTANCE);
+       /* Intent intent = new Intent();
         intent.setClass(getApplicationContext(), StartLockActivity.class);
         intent.putExtra("current","resume");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        ActivityUtils.getInstance().popActivity(INSTANCE);
+        ActivityUtils.getInstance().popActivity(INSTANCE);*/
     }
 
     /**

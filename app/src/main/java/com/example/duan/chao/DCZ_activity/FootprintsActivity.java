@@ -72,7 +72,6 @@ public class FootprintsActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         setListener();
-        RandomUtil.lo();
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         getData();
@@ -228,7 +227,8 @@ public class FootprintsActivity extends BaseActivity {
      * 获取各子系统的在线情况
      * */
     public void getData2(){
-        HttpServiceClient.getInstance().getOnline(num,size,MyApplication.username,"5896523256").enqueue(new Callback<Footprints2Bean>() {
+        String random=RandomUtil.RandomNumber();
+        HttpServiceClient.getInstance().getOnline(num,size,MyApplication.username,random).enqueue(new Callback<Footprints2Bean>() {
             @Override
             public void onResponse(Call<Footprints2Bean> call, Response<Footprints2Bean> response) {
                 if(dialog.isShowing()){

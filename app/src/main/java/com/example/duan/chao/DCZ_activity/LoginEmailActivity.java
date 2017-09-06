@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
@@ -479,7 +480,10 @@ public class LoginEmailActivity extends BaseActivity {
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
-            MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
+            MyApplication.rid = JPushInterface.getRegistrationID(INSTANCE);
+            if(MyApplication.rid==null||MyApplication.rid.equals("")){
+                Toast.makeText(INSTANCE,"RID为空",Toast.LENGTH_SHORT);
+            }
         }
         HttpServiceClient.getInstance().login(MyApplication.username,mima.getText().toString(),null,MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override

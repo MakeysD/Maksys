@@ -501,14 +501,19 @@ public class LookPassword2Activity extends BaseActivity {
     public void getData(){
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
-        HttpServiceClient.getInstance().fogotpwd(phone.getText().toString(),ed_code.getText().toString(),null, DSA.md5(mima.getText().toString()),DSA.md5(mima2.getText().toString())).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().fogotpwd(phone.getText().toString()+"@qeveworld.com",ed_code.getText().toString(),null, DSA.md5(mima.getText().toString()),DSA.md5(mima2.getText().toString())).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                        new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi111),new MiddleDialog.onButtonCLickListener(){
+                            @Override
+                            public void onButtonCancel(String string) {
+                                ActivityUtils.getInstance().popActivity(INSTANCE);
+                            }
+                        },R.style.registDialog).show();
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

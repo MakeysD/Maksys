@@ -13,6 +13,7 @@ import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DensityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ScreenUtils;
 import com.example.duan.chao.R;
 import com.example.duan.chao.zxing_code.android.CaptureActivity;
@@ -83,9 +84,8 @@ public class ScanActivity extends CaptureActivity {
         }
     }
 
-
     private void getData(String uuid){
-        String max="8579996398";
+        String max= RandomUtil.RandomNumber();
         String str ="nonce="+max+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username+"&uuid="+uuid;
         byte[] data = str.getBytes();
         try {
@@ -93,7 +93,7 @@ public class ScanActivity extends CaptureActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HttpServiceClient.getInstance().scan("2001",MyApplication.reqSysId,MyApplication.username, uuid,"8579963998",sign).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().scan("2001",MyApplication.reqSysId,MyApplication.username, uuid,max,sign).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();

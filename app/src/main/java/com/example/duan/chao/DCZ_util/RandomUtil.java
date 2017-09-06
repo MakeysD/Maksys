@@ -125,6 +125,22 @@ public class RandomUtil {
         return result;
     }
 
+    public static String RandomNumber(){
+        int a[] =new int[10];
+        String c = null;
+        for(int i=0;i<a.length;i++ ){
+            a[i] =(int)(10*(Math.random()));
+            String b = String.valueOf(a[i]);
+            if(c==null){
+                c=b;
+            }else {
+                c=c+b;
+            }
+        }
+        Log.i("dcz随机数",c);
+        return c;
+    }
+
     public static void lo() {
         Log.i("返回一个定长的随机字符串:",generateString(10));
         Log.i("返回一个定长的随机纯字母" ,generateMixString(10));

@@ -17,6 +17,7 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.R;
 
 import java.util.List;
@@ -94,9 +95,10 @@ public class Footprints1Adapter extends BaseAdapter{
      * 踢出用户的登录
      * */
     public void getData(String systemId, String username, String sessionid, final int postion){
+        String random= RandomUtil.RandomNumber();
         dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
         dialog.show();
-        HttpServiceClient.getInstance().kickout(systemId,username,sessionid,"8579558852").enqueue(new Callback<FootprintsBean>() {
+        HttpServiceClient.getInstance().kickout(systemId,username,sessionid,random).enqueue(new Callback<FootprintsBean>() {
             @Override
             public void onResponse(Call<FootprintsBean> call, Response<FootprintsBean> response) {
                 if(dialog.isShowing()){
