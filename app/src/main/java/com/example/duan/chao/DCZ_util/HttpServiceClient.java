@@ -16,7 +16,7 @@ public class HttpServiceClient {
      * @return
      */
     public static InterfaceService getInstance(){
-        RetrofitUtils.setUrl_ROOT("http://110.79.11.5/user-safe-api/");//http://110.79.11.5/user-safe-api/
+        RetrofitUtils.setUrl_ROOT("http://api.qeveworld.com/user-safe-api/");//http://110.79.11.5/user-safe-api/
         interfaceService=RetrofitUtils.createApiForGson(InterfaceService.class);
         return  interfaceService;
     }

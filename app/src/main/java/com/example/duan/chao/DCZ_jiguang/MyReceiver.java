@@ -261,50 +261,6 @@ public class MyReceiver extends BroadcastReceiver {
 			}, R.style.registDialog).show();
 			return false ;
 		}
-	/*	if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(context.getPackageName())) {
-			new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
-				@Override
-				public void onActivieButtonClick(Object bean, int position) {
-					JPushInterface.clearAllNotifications(MyApplication.getContext());
-					MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
-					MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
-					MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
-					if(bean==null){
-						ActivityUtils.getInstance().popAllActivities();
-					}else {
-						processCustomMessage(MyApplication.getContext(), bundle);
-					}
-
-				}
-			}, R.style.registDialog).show();
-			return true ;
-		}else {
-			Log.i("dcz","执行通知跳转");
-			if (context == null){
-				Log.i("dcz","空的");
-			}
-			Intent intent = new Intent(Intent.ACTION_MAIN);
-			intent.addCategory(Intent.CATEGORY_LAUNCHER);
-			intent.setClass(a, a.getClass());
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			a.startActivity(intent);
-			new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
-				@Override
-				public void onActivieButtonClick(Object bean, int position) {
-					JPushInterface.clearAllNotifications(MyApplication.getContext());
-					MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
-					MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
-					MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
-					if(bean==null){
-						ActivityUtils.getInstance().popAllActivities();
-					}else {
-						processCustomMessage(MyApplication.getContext(), bundle);
-					}
-
-				}
-			}, R.style.registDialog).show();
-			return false ;
-		}*/
 	}
 
 	private boolean jiaoyi (Context context) {
@@ -316,13 +272,13 @@ public class MyReceiver extends BroadcastReceiver {
 		if(ActivityUtils.getInstance().isAppOnForeground(context)==true){
 			Intent i = new Intent(context, HavaMoneyActivity.class);
 			i.putExtra("message",message);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
 			context.startActivity(i);
 			return true ;
 		}else {
 			Intent i = new Intent(context, HavaMoneyActivity.class);
 			i.putExtra("message",message);
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
 			context.startActivity(i);
 			return false ;
 		}
