@@ -64,6 +64,7 @@ import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.NotificationsUtils;
 import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
@@ -184,6 +185,7 @@ public class MainActivity extends BaseActivity{
         registerMessageReceiver();
         setViews();
         setListener();
+        setdialog();
         MyApplication.status=false;
     }
     private void setViews() {
@@ -251,6 +253,20 @@ public class MainActivity extends BaseActivity{
         }
     }
 
+    private void setdialog(){
+        if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
+            new MiddleDialog(INSTANCE,"去开启","需要开启消息推送权限才能正常接收授权推送、启用一键授权和扫码授权推功能",new MiddleDialog.onButtonCLickListener2() {
+                @Override
+                public void onActivieButtonClick(Object bean, int po) {
+                    if(bean==null){
+                    }else {
+                        NotificationsUtils.StartSetting(INSTANCE);
+                    }
+                }
+            }, R.style.registDialog).show();
+        }
+    }
+
     private void setListener() {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,7 +278,20 @@ public class MainActivity extends BaseActivity{
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                quan();
+                if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi114),INSTANCE.getString(R.string.tishi113),new MiddleDialog.onButtonCLickListener2() {
+                        @Override
+                        public void onActivieButtonClick(Object bean, int po) {
+                            if(bean==null){
+                            }else {
+                                NotificationsUtils.StartSetting(INSTANCE);
+                            }
+                        }
+                    }, R.style.registDialog).show();
+                }else {
+                    quan();
+                }
+
             }
         });
 
@@ -344,7 +373,7 @@ public class MainActivity extends BaseActivity{
         rl6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi82),INSTANCE.getString(R.string.tishi100),new MiddleDialog.onButtonCLickListener2() {
+                new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi100),new MiddleDialog.onButtonCLickListener2() {
                     @Override
                     public void onActivieButtonClick(Object bean, int po) {
                         if(bean==null){
@@ -424,13 +453,22 @@ public class MainActivity extends BaseActivity{
 
     //手动开启相机权限
     private void quan(){
-        if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+       /* if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
             Log.i("dcz2","没有权限");
             ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
         } else {
             Log.i("dcz2","有权限");
+            ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
+          *//*  Intent intent=new Intent(INSTANCE, ScanActivity.class);
+            startActivity(intent);*//*
+        }*/
+        if(NotificationsUtils.cameraIsCanUse()==true){
+            Log.i("dcz2","有权限");
             Intent intent=new Intent(INSTANCE, ScanActivity.class);
             startActivity(intent);
+        }else {
+            Log.i("dcz2","没有权限");
+            ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
         }
     }
     @Override
@@ -438,10 +476,17 @@ public class MainActivity extends BaseActivity{
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == 1) {
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //权限获取成功
+                /*//权限获取成功
                 Log.i("dcz","权限获取成功");
                 Intent intent=new Intent(INSTANCE, ScanActivity.class);
-                startActivity(intent);
+                startActivity(intent);*/
+                if(NotificationsUtils.cameraIsCanUse()==true){
+                    Log.i("dcz2","有权限");
+                    Intent intent=new Intent(INSTANCE, ScanActivity.class);
+                    startActivity(intent);
+                }else {
+                    Log.i("dcz2","没有权限");
+                }
             }else{
                 //权限被拒绝
                 Log.i("dcz","权限被拒绝");

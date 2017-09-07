@@ -124,8 +124,8 @@ public class SmsActivity extends BaseActivity {
                     MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
                     if(MyApplication.rid==null||MyApplication.rid.equals("")){
                         Toast.makeText(INSTANCE,"RID为空",Toast.LENGTH_SHORT).show();
+                        return;
                     }
-                    return;
                 }
                 getData();
             }

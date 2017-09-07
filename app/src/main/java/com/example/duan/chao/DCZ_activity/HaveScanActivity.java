@@ -107,7 +107,7 @@ public class HaveScanActivity extends BaseActivity {
         Gson mGson = new Gson();
         HaveBean result = mGson.fromJson(message, HaveBean.class);
         sms.setText(result.getRandomCode());
-        textView7.setText(result.getSrcReqSysName()+this.getString(R.string.tishi112));
+        textView7.setText(MyApplication.map.get(result.getSrcReqSysId())+this.getString(R.string.tishi112));
     }
 
     @Override

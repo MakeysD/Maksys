@@ -63,13 +63,16 @@ public class MiddleDialog<E> extends Dialog {
      *     确认与取消
      *
      * */
-    public MiddleDialog(Context context, String title,String content, final onButtonCLickListener2<E> listener, int theme) {
+    public MiddleDialog(Context context, String tv_ok,String content, final onButtonCLickListener2<E> listener, int theme) {
         super(context, theme);
         view = View.inflate(context, R.layout.dialog_middle2, null);
         setContentView(view);
         setCancelable(false);        //设置点击对话框以外的区域时，是否结束对话框
-        ((TextView) view.findViewById(R.id.title)).setText(title);       //设置对话框的标题内容
+        ((TextView) view.findViewById(R.id.title)).setText(tv_ok);       //设置对话框的标题内容
         ((TextView) view.findViewById(R.id.content)).setText(content);
+        if(tv_ok!=null){
+            ((TextView) view.findViewById(R.id.tv_ok)).setText(tv_ok);
+        }
         this.listener2 = listener;
         view.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {//取消
             @Override
@@ -85,15 +88,6 @@ public class MiddleDialog<E> extends Dialog {
                 listener2.onActivieButtonClick(null, position);
             }
         });
-    /*    view.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {      //确定
-            @Override
-            public void onClick(View v) {
-                //if(bean!=null){
-                dismiss();
-                listener2.onActivieButtonClick(bean, position);
-                // }
-            }
-        });*/
     }
     /**
      *      提示
@@ -175,13 +169,6 @@ public class MiddleDialog<E> extends Dialog {
                 listener2.onActivieButtonClick("2", position);
             }
         });
-      /*  view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {//取消
-            @Override
-            public void onClick(View v) {
-                dismiss();
-                listener2.onActivieButtonClick(null,0);
-            }
-        });*/
     }
 
     public interface onOKListeners{

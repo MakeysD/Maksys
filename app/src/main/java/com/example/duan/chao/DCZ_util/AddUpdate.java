@@ -1,5 +1,6 @@
 package com.example.duan.chao.DCZ_util;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
@@ -9,6 +10,8 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HttpBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -45,6 +48,7 @@ public class AddUpdate implements Interceptor{
                 Response loginResponse = chain.proceed(loginRequest);
                 String loginString = loginResponse.body().string();
                 HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
+                Activity a = ActivityUtils.getInstance().getCurrentActivity();
                 if(resultLogin.getCode().equals("10500")){
                     Log.i("dcz","安全中心不可用");
                 }else if(resultLogin.getCode().equals("20000")) {
@@ -53,19 +57,14 @@ public class AddUpdate implements Interceptor{
                     Log.i("dcz刷新token",resultLogin.getCode());
                     MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                   // ActivityUtils.getInstance().removeActivity(ActivityUtils.getInstance().getCurrentActivity());
-                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
-                    ActivityUtils.getInstance().popAllActivities();
+                    new MiddleDialog(a,a.getString(R.string.tishi101),a.getString(R.string.tishi115),"",new MiddleDialog.onButtonCLickListener2() {
+                        @Override
+                        public void onActivieButtonClick(Object bean, int position) {
+                            ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                            ActivityUtils.getInstance().popAllActivities();
+                        }
+                    }, R.style.registDialog).show();
                 }
-          /*  if(resultLogin.getCode().equals("10029")){
-                Request result2 = Login();
-                Response loginResponse2 = chain.proceed(result2);
-                String loginstring=loginResponse2.body().string();
-                LoginOkBean bean = mGson.fromJson(loginstring, LoginOkBean.class);
-                if(bean.getData().getCode().equals("20000")){
-                    return chain.proceed(originalRequest);
-                }
-            }*/
             }
         }
 
