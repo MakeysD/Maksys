@@ -89,7 +89,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                 c=c+"*";
             }
         }
-        tv5.setText(this.getString(R.string.tishia68)+b.substring(0,3)+c+d+e+this.getString(R.string.tishi68));
+        tv5.setText(this.getString(R.string.tishia68)+b.substring(0,3)+c+d+"@"+e+this.getString(R.string.tishi68));
     }
     /**
      *  监听

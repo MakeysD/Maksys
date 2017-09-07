@@ -117,9 +117,13 @@ public class ZhiwenActivity extends BaseActivity {
                     case MSG_AUTH_SUCCESS:
                         result.setText(R.string.fingerprint_success);
                         cancellationSignal = null;
-                        Intent intent=new Intent(INSTANCE, MainActivity.class);
-                        startActivity(intent);
-                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                        if(ActivityUtils.getInstance().ActivitySize()>1){
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
+                        }else {
+                            Intent intent=new Intent(INSTANCE, MainActivity.class);
+                            startActivity(intent);
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
+                        }
                         break;
                     case MSG_AUTH_FAILED:
                         number=number+1;

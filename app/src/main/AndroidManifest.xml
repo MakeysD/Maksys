@@ -54,9 +54,11 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <!-- android:hardwareAccelerated="false" -->
+    <!--android:persistent="true"设置进程优先级防止被回收-->
     <application
         android:name=".DCZ_application.MyApplication"
         android:allowBackup="true"
+        android:persistent="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:largeHeap="true"

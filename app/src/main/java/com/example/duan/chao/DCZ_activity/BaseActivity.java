@@ -66,10 +66,10 @@ public class BaseActivity extends Activity{
         ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
         String currentPackageName = cn.getPackageName();
         //判断APP是否在前台
-        if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(this.getPackageName())) {
-        }else {
-           Log.i("dcz","APP已进入后台");
-           Log.i("dcz",System.currentTimeMillis()+"");
+        if(ActivityUtils.getInstance().isAppOnForeground(this)==false) {
+            Log.i("dcz","APP已进入后台");
+            Log.i("dcz",System.currentTimeMillis()+"");
+            MyApplication.AppOnForeground=true;
             MyApplication.start_time=System.currentTimeMillis();
             MyApplication.classname=getClass().getSimpleName();
         }
@@ -81,32 +81,40 @@ public class BaseActivity extends Activity{
         ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
         ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
         String currentPackageName = cn.getPackageName();
-        //判断APP是否在前台
-        if(!TextUtils.isEmpty(currentPackageName) && currentPackageName.equals(this.getPackageName())) {
-            Log.i("dcz2","APP已进入前台");
-            if(MyApplication.start_time!=null&& AddUpdate.MyThrow.class!=null){
-                if(MyApplication.classname.equals(getClass().getSimpleName())){
-                    long time =System.currentTimeMillis()-MyApplication.start_time;
-                    Log.i("dcz_后台待机时间",time/1000+"");
-                    if(time/1000>300){
-                        //判断是否设置过指纹锁
-                        if(MyApplication.zhiwen==true){
-                            Intent intent = new Intent(this, ZhiwenActivity.class);
-                            startActivity(intent);
-                            //判断当前是否设置过手势锁密码
-                        }else if(LockUtil.getPwdStatus(this)==true&& MyApplication.suo==true){
-                            Intent intent=new Intent(this,StartLockActivity.class);
-                            intent.putExtra("type","1");
-                            startActivity(intent);
-                        }else {
+        if(getClass().getSimpleName().contains("StartLock")||getClass().getSimpleName().contains("Zhiwen")){
+            Log.i("dcz","当前是解锁页面");
+        }else {
+            if(MyApplication.AppOnForeground==true){
+                MyApplication.AppOnForeground=false;
+                //判断APP是否在前台
+                if(ActivityUtils.getInstance().isAppOnForeground(this)==true) {
+                    Log.i("dcz2","APP已进入前台");
+                    if(MyApplication.start_time!=null&& AddUpdate.MyThrow.class!=null){
+                        if(MyApplication.classname.equals(getClass().getSimpleName())){
+                            long time =System.currentTimeMillis()-MyApplication.start_time;
+                            Log.i("dcz_后台待机时间",time/1000+"");
+                            if(time/1000>300){
+                                //判断是否设置过指纹锁
+                                if(MyApplication.zhiwen==true){
+                                    Intent intent = new Intent(this, ZhiwenActivity.class);
+                                    startActivity(intent);
+                                    //判断当前是否设置过手势锁密码
+                                }else if(LockUtil.getPwdStatus(this)==true&& MyApplication.suo==true){
+                                    Intent intent=new Intent(this,StartLockActivity.class);
+                                    intent.putExtra("type","1");
+                                    startActivity(intent);
+                                }else {
 
+                                }
+                            }
                         }
                     }
+                }else {
+                    Log.i("dcz2","APP已进入后台");
                 }
             }
-        }else {
-            Log.i("dcz2","APP已进入后台");
         }
+
     }
 
     /**

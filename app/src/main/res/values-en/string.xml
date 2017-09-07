@@ -260,6 +260,7 @@
     <string name="tishi109">new password must be different from the original password </string>
     <string name="tishi110">no data</string>
     <string name="tishi111">login password set succeed. Please try again</string>
+    <string name="tishi112">is requesting a web login</string>
 
 
     <string name="code1">succeed</string><!--20000-->

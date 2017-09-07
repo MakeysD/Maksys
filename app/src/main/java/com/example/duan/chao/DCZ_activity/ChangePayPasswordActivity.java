@@ -89,7 +89,7 @@ public class ChangePayPasswordActivity extends BaseActivity {
                 c=c+"*";
             }
         }
-        tv5.setText(this.getString(R.string.tishia68a)+b.substring(0,3)+c+d+e+this.getString(R.string.tishi68a));
+        tv5.setText(this.getString(R.string.tishia68a)+b.substring(0,3)+c+d+"@"+e+this.getString(R.string.tishi68a));
     }
     /**
      *  监听

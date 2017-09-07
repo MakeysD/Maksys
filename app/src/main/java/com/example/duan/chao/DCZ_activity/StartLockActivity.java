@@ -98,9 +98,14 @@ public class StartLockActivity extends BaseActivity {
                 public void onComplete(int[] indexs) {
                     //修改密码或设置密码进来
                     Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(INSTANCE, MainActivity.class);
-                    startActivity(intent);
-                    ActivityUtils.getInstance().popActivity(INSTANCE);
+                    if(ActivityUtils.getInstance().ActivitySize()>1){
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                    }else {
+                        Intent intent=new Intent(INSTANCE, MainActivity.class);
+                        startActivity(intent);
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                    }
+
                 }
                 @Override
                 public void onError() {

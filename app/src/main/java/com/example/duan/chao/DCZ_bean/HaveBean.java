@@ -20,6 +20,15 @@ public class HaveBean {
     private String randomCode;
     private String srcReqSysId;
     private String loginTime;
+    private String srcReqSysName;
+
+    public String getSrcReqSysName() {
+        return srcReqSysName;
+    }
+
+    public void setSrcReqSysName(String srcReqSysName) {
+        this.srcReqSysName = srcReqSysName;
+    }
 
     public String getLoginTime() {
         return loginTime;

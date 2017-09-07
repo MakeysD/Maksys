@@ -48,8 +48,8 @@ public class HaveScanActivity extends BaseActivity {
     TextView no;
     @BindView(R.id.sms)
     TextView sms;
-    @BindView(R.id.business)
-    TextView business;
+    @BindView(R.id.textView7)
+    TextView textView7;
     @BindView(R.id.anima)
     RelativeLayout anima;
     @BindView(R.id.iv1)
@@ -107,7 +107,7 @@ public class HaveScanActivity extends BaseActivity {
         Gson mGson = new Gson();
         HaveBean result = mGson.fromJson(message, HaveBean.class);
         sms.setText(result.getRandomCode());
-        //setViews();
+        textView7.setText(result.getSrcReqSysName()+this.getString(R.string.tishi112));
     }
 
     @Override
@@ -122,7 +122,6 @@ public class HaveScanActivity extends BaseActivity {
     private void setViews() {
         newhandler();
         sms.setText(result.getRandomCode());
-        business.setText(result.getBusinessName());
         MyApplication.reqFlowId=result.getReqFlowId();
         MyApplication.reqSysId=result.getReqSysId();
 

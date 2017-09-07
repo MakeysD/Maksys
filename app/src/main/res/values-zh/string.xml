@@ -279,6 +279,7 @@
     <string name="tishi109">新密码不能和旧密码相同</string>
     <string name="tishi110">暂无数据</string>
     <string name="tishi111">账户登录密码重置成功，请重新登陆</string>
+    <string name="tishi112">正在请求网页登录</string>
 
 
     <string name="code1">成功</string><!--20000-->

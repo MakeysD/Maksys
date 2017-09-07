@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:textColor="#506f93"
-                    android:text="原力兑换网页交易确认"
+                    android:text="@string/tishi31"
                     android:textSize="@dimen/text02" />
             </LinearLayout>
 
