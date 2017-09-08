@@ -186,7 +186,30 @@ public class MainActivity extends BaseActivity{
         setViews();
         setListener();
         setdialog();
+        initHandler();
         MyApplication.status=false;
+    }
+
+    public static Handler mHandler ;
+    private void initHandler(){
+        //下线通知
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 1:
+                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.tishi115),"",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }, R.style.registDialog).show();
+                        break;
+                }
+            }
+        };
     }
     private void setViews() {
         AssetManager assetManager = this.getAssets();

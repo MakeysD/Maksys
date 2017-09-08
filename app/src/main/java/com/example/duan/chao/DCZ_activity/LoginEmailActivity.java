@@ -347,7 +347,7 @@ public class LoginEmailActivity extends BaseActivity {
                     + location.getLongitude();
             Log.i("dcz",string);
             try {
-                Log.i("dcz",getAddressFromLocation(this,location));
+                getAddressFromLocation(this,location);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -403,12 +403,12 @@ public class LoginEmailActivity extends BaseActivity {
      * @return
      */
 
-    private static String getAddressFromLocation(final Activity activity, Location location) throws IOException {
+    private void getAddressFromLocation(final Activity activity, Location location) throws IOException {
         Geocoder geocoder = new Geocoder(activity);
         try {
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
-            Log.d("dcz", "getAddressFromLocation->lat:" + latitude + ", long:" + longitude);
+            //Log.d("dcz", "getAddressFromLocation->lat:" + latitude + ", long:" + longitude);
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses.size() > 0) {
                 //返回当前位置，精度可调
@@ -422,9 +422,9 @@ public class LoginEmailActivity extends BaseActivity {
                         MyApplication.code=list.get(i).getCountry_code()+"";
                     }
                 }
-             /*   Log.i("dcz2",address.getFeatureName());
+     /*           Log.i("dcz2",address.getFeatureName());
                 Log.i("dcz3",address.getSubLocality());
-                Log.i("dcz4",address.getAdminArea());*/
+                Log.i("dcz4",address.getAdminArea());
                 address.getCountryName();
                 String sAddress;
                 if (!TextUtils.isEmpty(address.getLocality())) {
@@ -432,12 +432,12 @@ public class LoginEmailActivity extends BaseActivity {
                 } else {
                     sAddress = "定位失败";
                 }
-                return sAddress;
+                return sAddress;*/
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+      //  return "空";
     }
     /***
      *  密码验证

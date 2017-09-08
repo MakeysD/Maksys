@@ -11,6 +11,7 @@ import com.example.duan.chao.DCZ_bean.HttpBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 import com.google.gson.Gson;
 
@@ -39,7 +40,6 @@ public class AddUpdate implements Interceptor{
         LoginBean result = mGson.fromJson(s, LoginBean.class);
         if(result.getCode()!=null){
           /*  if (result.getCode().equals("10011")){
-
                 throw  new MyThrow();
             }*/
             if(result.getCode().equals("20003")){
@@ -57,13 +57,8 @@ public class AddUpdate implements Interceptor{
                     Log.i("dcz刷新token",resultLogin.getCode());
                     MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                    new MiddleDialog(a,a.getString(R.string.tishi101),a.getString(R.string.tishi115),"",new MiddleDialog.onButtonCLickListener2() {
-                        @Override
-                        public void onActivieButtonClick(Object bean, int position) {
-                            ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
-                            ActivityUtils.getInstance().popAllActivities();
-                        }
-                    }, R.style.registDialog).show();
+                    //下线通知
+                    MainActivity.mHandler.sendEmptyMessage(1);
                 }
             }
         }

@@ -51,6 +51,8 @@ public class HaveActivity extends BaseActivity {
     TextView ok;
     @BindView(R.id.no)
     TextView no;
+    @BindView(R.id.textView7)
+    TextView textView7;
     @BindView(R.id.anima)
     RelativeLayout anima;
     @BindView(R.id.iv1)
@@ -91,6 +93,10 @@ public class HaveActivity extends BaseActivity {
      * */
     private void setViews() {
         newhandler();
+        if(MyApplication.reqSysId!=null){
+            textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+this.getString(R.string.tishi112));
+        }
+
     }
     /**
      *  监听

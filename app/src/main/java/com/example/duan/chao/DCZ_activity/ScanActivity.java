@@ -61,10 +61,10 @@ public class ScanActivity extends CaptureActivity {
     @Override
     public void initBarcodelay() {
         int screenHeight = DensityUtils.px2dp(ScanActivity.this, ScreenUtils.getScreenHeight(ScanActivity.this));
-        int recoderHeight = DensityUtils.px2dp(ScanActivity.this, ScreenUtils.getScreenWidth(ScanActivity.this)) / 3;
-        getCameraManager().setPoint_left(recoderHeight / 2);
-        getCameraManager().setPoint_top((int) (screenHeight / 2 - recoderHeight*1.5));
-        getCameraManager().setView_recoder_hight(recoderHeight*2);
+        int recoderHeight = DensityUtils.px2dp(ScanActivity.this, ScreenUtils.getScreenWidth(ScanActivity.this)) / 6;
+        getCameraManager().setPoint_left(recoderHeight);
+        getCameraManager().setPoint_top((int) (screenHeight / 2 - recoderHeight*3));
+        getCameraManager().setView_recoder_hight(recoderHeight*4);
         getViewfinderView().setmTipText(this.getString(R.string.scan_text));
     }
 
