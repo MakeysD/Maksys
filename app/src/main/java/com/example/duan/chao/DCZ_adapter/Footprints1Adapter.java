@@ -125,7 +125,11 @@ public class Footprints1Adapter extends BaseAdapter{
             @Override
             public void onFailure(Call<FootprintsBean> call, Throwable t) {
                 dialog.dismiss();
-                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                if(t.getMessage().contains("Failed to connect")){
+                    new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
+                }else {
+                    new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

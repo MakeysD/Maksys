@@ -66,6 +66,11 @@ public class ScanActivity extends CaptureActivity {
         getCameraManager().setPoint_top((int) (screenHeight / 2 - recoderHeight*3));
         getCameraManager().setView_recoder_hight(recoderHeight*4);
         getViewfinderView().setmTipText(this.getString(R.string.scan_text));
+       /* int height=150;
+        getCameraManager().setPoint_left(50);
+        getCameraManager().setPoint_top(screenHeight/2-height);
+        getCameraManager().setView_recoder_hight(height);
+        getViewfinderView().setmTipText(this.getString(R.string.scan_text));*/
     }
 
     @Override
@@ -106,15 +111,13 @@ public class ScanActivity extends CaptureActivity {
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(ScanActivity.this);
                     }else {
-                        // new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                         if(!response.body().getCode().equals("20003")){
                             Toast.makeText(ScanActivity.this,MyApplication.map.get(response.body().getCode()).toString(), Toast.LENGTH_SHORT).show();
                             ActivityUtils.getInstance().popActivity(ScanActivity.this);
                         }
                     }
                 }else {
-                    // new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
-                    Toast.makeText(ScanActivity.this,"网络异常", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ScanActivity.this,ScanActivity.this.getString(R.string.tishi116), Toast.LENGTH_SHORT).show();
                     ActivityUtils.getInstance().popActivity(ScanActivity.this);
                 }
             }
@@ -122,9 +125,12 @@ public class ScanActivity extends CaptureActivity {
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(ScanActivity.this,"解析", Toast.LENGTH_SHORT).show();
+                if(t.getMessage().contains("Failed to connect")){
+                    Toast.makeText(ScanActivity.this,ScanActivity.this.getString(R.string.tishi116), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(ScanActivity.this,ScanActivity.this.getString(R.string.tishi72), Toast.LENGTH_SHORT).show();
+                }
                 ActivityUtils.getInstance().popActivity(ScanActivity.this);
-                //new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

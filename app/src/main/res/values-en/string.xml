@@ -264,6 +264,7 @@
     <string name="tishi113">You need to open the reminding permission to receive authorization remind，and then you can start  a key authorization and scan authorization</string>
     <string name="tishi114">open</string>
     <string name="tishi115">your login status is expired, please try again</string>
+    <string name="tishi116">internet error</string>
 
 
     <string name="code1">succeed</string><!--20000-->

@@ -283,6 +283,7 @@
     <string name="tishi113">需要开启消息推送权限才能正常接收授权推送、启用一键授权和扫码授权推功能</string>
     <string name="tishi114">去开启</string>
     <string name="tishi115">您的登录信息可能过期失效，请重新登录后再浏览使用</string>
+    <string name="tishi116">网络错误</string>
 
 
     <string name="code1">成功</string><!--20000-->

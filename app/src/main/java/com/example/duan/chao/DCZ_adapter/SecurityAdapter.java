@@ -183,7 +183,11 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                 dialog.dismiss();
                 boo=false;
                 Notify(list);
-                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                if(t.getMessage().contains("Failed to connect")){
+                    new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
+                }else {
+                    new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }
