@@ -53,8 +53,7 @@ public class GesturesLockActivity extends BaseActivity {
             @Override
             public void onScreenStateChange(boolean isScreenOn) {
                 if (!isScreenOn&& LockUtil.getPwdStatus(context)&& LockUtil.getPwd(context).length>0) {
-                    //doSomethingOnScreenOff();
-                    invalidateUser( );
+                    //invalidateUser( );
                 }
             }
         });
@@ -116,18 +115,6 @@ public class GesturesLockActivity extends BaseActivity {
     }
 
     /**
-     * 打开验证手势
-     */
-    private void doSomethingOnScreenOff() {
-        Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), LoginLockActivity.class);
-        intent.putExtra("current","resume");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        ActivityUtils.getInstance().popActivity(this);
-    }
-
-    /**
      * 初始化控件
      */
     private void initView(){
@@ -163,9 +150,6 @@ public class GesturesLockActivity extends BaseActivity {
      * 会员验证
      */
     private void invalidateUser( ){
-      /*  Intent i=new Intent();
-        i.setClass(this,LoginLockActivity.class);
-        startActivity(i);*/
       if(type!=null){
           Activity ac = ActivityUtils.getInstance().getActivity(ActivityUtils.getInstance().ActivitySize() - 2);
           ActivityUtils.getInstance().popActivity(ac);

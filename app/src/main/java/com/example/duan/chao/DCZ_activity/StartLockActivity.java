@@ -32,7 +32,9 @@ import butterknife.ButterKnife;
 
 public class StartLockActivity extends BaseActivity {
     private StartLockActivity INSTANCE;
-    public Context context;
+    private Boolean jiesuo=false;
+    private Boolean jiaoyi=false;
+    private String messge;
     public <K extends View> K getViewById(int id) {
         return (K) getWindow().findViewById(id);
     }
@@ -99,13 +101,31 @@ public class StartLockActivity extends BaseActivity {
                     //修改密码或设置密码进来
                     Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
                     if(ActivityUtils.getInstance().ActivitySize()>1){
+                        if(jiesuo==true){
+                            Intent i = new Intent(INSTANCE, HaveScanActivity.class);
+                            i.putExtra("message",messge);
+                            startActivity(i);
+                        }else if(jiaoyi==true){
+                            Intent i = new Intent(INSTANCE, HavaMoneyActivity.class);
+                            i.putExtra("message",messge);
+                            startActivity(i);
+                        }
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {
-                        Intent intent=new Intent(INSTANCE, MainActivity.class);
-                        startActivity(intent);
+                        if(jiesuo==true){
+                            Intent i = new Intent(INSTANCE, HaveScanActivity.class);
+                            i.putExtra("message",messge);
+                            startActivity(i);
+                        }else if(jiaoyi==true){
+                            Intent i = new Intent(INSTANCE, HavaMoneyActivity.class);
+                            i.putExtra("message",messge);
+                            startActivity(i);
+                        }else {
+                            Intent intent=new Intent(INSTANCE, MainActivity.class);
+                            startActivity(intent);
+                        }
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                     }
-
                 }
                 @Override
                 public void onError() {
@@ -150,13 +170,9 @@ public class StartLockActivity extends BaseActivity {
     }
 
     /**
-     * 打开验证手势
+     * 打开验证手势(黑屏再启动时才会调用)
      */
     private void doSomethingOnScreenOff() {
-        Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(INSTANCE, MainActivity.class);
-        startActivity(intent);
-        ActivityUtils.getInstance().popActivity(INSTANCE);
        /* Intent intent = new Intent();
         intent.setClass(getApplicationContext(), StartLockActivity.class);
         intent.putExtra("current","resume");
@@ -194,26 +210,33 @@ public class StartLockActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             try {
                 Log.i("dcz","接收到广播");
+                Log.i("dcz",intent.getAction());
+                messge = intent.getStringExtra(KEY_MESSAGE);
+                String extras = intent.getStringExtra(KEY_EXTRAS);
+                String type = intent.getStringExtra(KEY_CONTENT_TYPE);
+                StringBuilder showMsg = new StringBuilder();
+                showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                if (!ExampleUtil.isEmpty(extras)) {
+                    showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                }
+                Log.i("dcz",messge);
+                Gson mGson = new Gson();
+                HaveBean result = mGson.fromJson(messge, HaveBean.class);
+                MyApplication.reqFlowId=result.getReqFlowId();
+                MyApplication.reqSysId=result.getReqSysId();
+                Log.i("dcz",result.getReqSysId());
+                Log.i("dcz",type+"type");
+
                 if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
-                    String messge = intent.getStringExtra(KEY_MESSAGE);
-                    String extras = intent.getStringExtra(KEY_EXTRAS);
-                    String type = intent.getStringExtra(KEY_CONTENT_TYPE);
-                    StringBuilder showMsg = new StringBuilder();
-                    showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
-                    if (!ExampleUtil.isEmpty(extras)) {
-                        showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
-                    }
-                    Log.i("dcz",messge);
-                    Gson mGson = new Gson();
-                    HaveBean result = mGson.fromJson(messge, HaveBean.class);
-                    MyApplication.reqFlowId=result.getReqFlowId();
-                    MyApplication.reqSysId=result.getReqSysId();
-                    Log.i("dcz",result.getReqSysId());
-                    Log.i("dcz",type+"type");
+                    Log.i("dcz","MESSAGE_RECEIVED_ACTION");
                     if(type.equals("2")){//下线通知
                         ActivityUtils.getInstance().popAllActivities();
                         Intent inten=new Intent(INSTANCE, LoginEmailActivity.class);
                         startActivity(inten);
+                    }else if(type.equals("1")){
+                        jiesuo=true;
+                    }else {
+                        jiaoyi=true;
                     }
                 }
             } catch (Exception e){

@@ -94,7 +94,12 @@ public class HaveActivity extends BaseActivity {
     private void setViews() {
         newhandler();
         if(MyApplication.reqSysId!=null){
-            textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+this.getString(R.string.tishi112));
+            if(MyApplication.language.equals("CHINESE")){
+                textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+this.getString(R.string.tishi112));
+            }else {
+                textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+" "+this.getString(R.string.tishi112));
+            }
+
         }
 
     }

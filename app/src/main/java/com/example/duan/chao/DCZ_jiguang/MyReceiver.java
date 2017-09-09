@@ -16,6 +16,8 @@ import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
 import com.example.duan.chao.DCZ_activity.HaveActivity;
 import com.example.duan.chao.DCZ_activity.HaveScanActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_activity.StartLockActivity;
+import com.example.duan.chao.DCZ_activity.ZhiwenActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
@@ -40,6 +42,7 @@ import cn.jpush.android.api.JPushInterface;
  * 2) 接收不到自定义消息
  */
 public class MyReceiver extends BroadcastReceiver {
+	private final String ACTION_NAME = "发送广播";
 	private static final String TAG = "JIGUANG-Example";
 	private Bundle bundle;
 	@Override
@@ -134,83 +137,91 @@ public class MyReceiver extends BroadcastReceiver {
 		}
 		return sb.toString();
 	}
-	
-	//send msg to MainActivity
-	private void processCustomMessage(Context context, Bundle bundle) {
-		if (MainActivity.isForeground) {
-			String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
-			String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-			String content_type=bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE);
-			Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
-			msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);
-			msgIntent.putExtra(MainActivity.KEY_CONTENT_TYPE,content_type);
-			if (!ExampleUtil.isEmpty(extras)) {
-				try {
-					JSONObject extraJson = new JSONObject(extras);
-					if (extraJson.length() > 0) {
-						msgIntent.putExtra(MainActivity.KEY_EXTRAS, extras);
-					}
-				} catch (JSONException e) {
 
+	/**
+	 * 	授权登录页面
+	 * */
+	private boolean isRunningForeground (Context context) {
+		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
+		//判断APP是否在前台
+		if(ActivityUtils.getInstance().isAppOnForeground(context)==true) {
+			/**
+			 *  判断当前页面是否是解锁页面
+			 * */
+			if(ActivityUtils.getInstance().getCurrentActivity() instanceof StartLockActivity||ActivityUtils.getInstance().getCurrentActivity() instanceof ZhiwenActivity){
+				Log.i("dcz","当前已是解锁页面");
+				processCustomMessage(MyApplication.getContext(), bundle);
+			}else {
+				/**
+				 *  如果当前页面已是授权页面就不必跳转而直接发消息
+				 *  */
+				if (ActivityUtils.getInstance().getCurrentActivity() instanceof HaveScanActivity){
+					Message msg = new Message();
+					msg.what = 1;
+					msg.obj = message;
+					HaveScanActivity.mHandler.sendMessage(msg);
+					return true;
+				}
+				Intent i = new Intent(context, HaveScanActivity.class);
+				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+				i.putExtra("message",message);
+				context.startActivity(i);
+				return true ;
+			}
+
+		}else {
+			/**
+			 *  判断当前页面是否是解锁页面
+			 * */
+			if(ActivityUtils.getInstance().getCurrentActivity() instanceof StartLockActivity||ActivityUtils.getInstance().getCurrentActivity() instanceof ZhiwenActivity){
+				Log.i("dcz","当前已是解锁页面");
+				processCustomMessage(MyApplication.getContext(), bundle);
+			}else {
+				Log.i("dcz","当前不是解锁页面");
+				Intent i = new Intent(context, HaveScanActivity.class);
+				i.putExtra("message",message);
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+				context.startActivity(i);
+				if (ActivityUtils.getInstance().getCurrentActivity() instanceof HaveScanActivity){
+					Message msg = new Message();
+					msg.what = 1;
+					msg.obj = message;
+					HaveScanActivity.mHandler.sendMessageDelayed(msg,2000);
+					return true;
 				}
 			}
-			Log.i("dcz","发送广播");
-			LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
 		}
+		return false ;
 	}
-	private boolean isRunningForeground (Context context) {
+
+	/**
+	 * 	授权交易界面
+	 * */
+	private boolean jiaoyi (Context context) {
 		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
 		ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
 		String currentPackageName = cn.getPackageName();
 		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 		//判断APP是否在前台
-		if(ActivityUtils.getInstance().isAppOnForeground(context)==true) {
-			if (ActivityUtils.getInstance().getCurrentActivity() instanceof HaveScanActivity){
-				Message msg = new Message();
-				msg.what = 1;
-				msg.obj = message;
-				HaveScanActivity.mHandler.sendMessage(msg);
-				return true;
-			}
-			Intent i = new Intent(context, HaveScanActivity.class);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+		if(ActivityUtils.getInstance().isAppOnForeground(context)==true){
+			Intent i = new Intent(context, HavaMoneyActivity.class);
 			i.putExtra("message",message);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
 			context.startActivity(i);
 			return true ;
 		}else {
-			Log.i("dcz","执行通知跳转");
-			if (context == null){
-				Log.i("dcz","空的");
-			}
-			Intent i = new Intent(context, HaveScanActivity.class);
+			Intent i = new Intent(context, HavaMoneyActivity.class);
 			i.putExtra("message",message);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
 			context.startActivity(i);
-			if (ActivityUtils.getInstance().getCurrentActivity() instanceof HaveScanActivity){
-				Message msg = new Message();
-				msg.what = 1;
-				msg.obj = message;
-				HaveScanActivity.mHandler.sendMessageDelayed(msg,2000);
-				return true;
-			}
-			/*Handler mHandler = new Handler();
-			Runnable gotoLoginAct = new Runnable() {
-				@Override
-				public void run() {
-					Intent i = new Intent(ActivityUtils.getInstance().getCurrentActivity(), HaveScanActivity.class);
-					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					ActivityUtils.getInstance().getCurrentActivity().startActivity(i);
-				}
-			};
-			mHandler.postDelayed(gotoLoginAct,100);*/
 			return false ;
 		}
 	}
+
+	/**
+	 * 	下线页面
+	 * */
 	private boolean xiaxian (Context context,String time) {
-		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
-		ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
-		String currentPackageName = cn.getPackageName();
-		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 		Activity a = ActivityUtils.getInstance().getCurrentActivity();
 		Log.i("dcz在前台",a.toString());
 		//判断APP是否在前台
@@ -232,15 +243,6 @@ public class MyReceiver extends BroadcastReceiver {
 			}, R.style.registDialog).show();
 			return true ;
 		}else {
-			Log.i("dcz","执行通知跳转");
-			if (context == null){
-				Log.i("dcz","空的");
-			}
-			/*Intent intent = new Intent(Intent.ACTION_MAIN);
-			intent.addCategory(Intent.CATEGORY_LAUNCHER);
-			intent.setClass(a, a.getClass());
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			a.startActivity(intent);*/
 			Intent i = new Intent(context,a.getClass());
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			context.startActivity(i);
@@ -263,24 +265,46 @@ public class MyReceiver extends BroadcastReceiver {
 		}
 	}
 
-	private boolean jiaoyi (Context context) {
-		ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
-		ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
-		String currentPackageName = cn.getPackageName();
-		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
-		//判断APP是否在前台
-		if(ActivityUtils.getInstance().isAppOnForeground(context)==true){
-			Intent i = new Intent(context, HavaMoneyActivity.class);
-			i.putExtra("message",message);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
-			context.startActivity(i);
-			return true ;
-		}else {
-			Intent i = new Intent(context, HavaMoneyActivity.class);
-			i.putExtra("message",message);
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
-			context.startActivity(i);
-			return false ;
+	/**
+	 * 	发送广播到
+	 * */
+	private void processCustomMessage(Context context, Bundle bundle) {
+		if (MainActivity.isForeground) {
+			String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
+			String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+			String content_type=bundle.getString(JPushInterface.EXTRA_CONTENT_TYPE);
+			Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
+			msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);
+			msgIntent.putExtra(MainActivity.KEY_CONTENT_TYPE,content_type);
+			if (!ExampleUtil.isEmpty(extras)) {
+				try {
+					JSONObject extraJson = new JSONObject(extras);
+					if (extraJson.length() > 0) {
+						msgIntent.putExtra(MainActivity.KEY_EXTRAS, extras);
+					}
+				} catch (JSONException e) {
+
+				}
+			}
+			Log.i("dcz","发送广播");
+			LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
 		}
 	}
+
+		/*Handler mHandler = new Handler();
+			Runnable gotoLoginAct = new Runnable() {
+				@Override
+				public void run() {
+					Intent i = new Intent(ActivityUtils.getInstance().getCurrentActivity(), HaveScanActivity.class);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					ActivityUtils.getInstance().getCurrentActivity().startActivity(i);
+				}
+			};
+			mHandler.postDelayed(gotoLoginAct,100);*/
+
+		/*Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_LAUNCHER);
+			intent.setClass(a, a.getClass());
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			a.startActivity(intent);*/
 }

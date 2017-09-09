@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
@@ -39,6 +40,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.chiclam.android.updater.Updater;
+import com.chiclam.android.updater.UpdaterConfig;
 import com.example.duan.chao.DCZ_activity.BaseActivity;
 import com.example.duan.chao.DCZ_activity.GesturesLockActivity;
 import com.example.duan.chao.DCZ_activity.GuanYuActivity;
@@ -53,6 +56,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
+import com.example.duan.chao.DCZ_bean.VersionBean;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
 import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
@@ -119,6 +123,8 @@ public class MainActivity extends BaseActivity{
     private DragLayout mDragLayout;
     private DraweeController dra;
     private Boolean boo=true;
+    private String version;
+    private String path="";
 
     @BindView(R.id.back)
     View back;
@@ -184,6 +190,7 @@ public class MainActivity extends BaseActivity{
         CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
         setViews();
+        getVersion();//版本更新
         setListener();
         setdialog();
         initHandler();
@@ -212,6 +219,16 @@ public class MainActivity extends BaseActivity{
         };
     }
     private void setViews() {
+        // 获取packagemanager的实例  
+        PackageManager packageManager = getPackageManager();
+        // getPackageName()是你当前类的包名，0代表是获取版本信息  
+        PackageInfo packInfo = null;
+        try {
+            packInfo = packageManager.getPackageInfo(getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        version = packInfo.versionName;
         AssetManager assetManager = this.getAssets();
         try {
             AssetFileDescriptor afd = assetManager.openFd("mp3.mp3");
@@ -278,7 +295,7 @@ public class MainActivity extends BaseActivity{
 
     private void setdialog(){
         if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
-            new MiddleDialog(INSTANCE,"去开启","需要开启消息推送权限才能正常接收授权推送、启用一键授权和扫码授权推功能",new MiddleDialog.onButtonCLickListener2() {
+            new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi113),new MiddleDialog.onButtonCLickListener2() {
                 @Override
                 public void onActivieButtonClick(Object bean, int po) {
                     if(bean==null){
@@ -727,15 +744,18 @@ public class MainActivity extends BaseActivity{
                 dia.dismiss();
             }
         }
+        start();
         dia=new MiddleDialog(INSTANCE,content,0,new MiddleDialog.onButtonCLickListener(){
             @Override
             public void onButtonCancel(String string) {
                 //是空的时候用户点的取消，否则就是指纹验证成功的回调
                 if(string==null){
+                    Log.i("dcz","用户点击了取消");
                     if(cancellationSignal!=null){
+                        Log.i("dcz","用户取消");
                         cancellationSignal.cancel();
+                        cancellationSignal = null;
                     }
-                    cancellationSignal = null;
                     dia.dismiss();
                     if(MyApplication.zhiwen==true){
                         button2.setChecked(true);
@@ -755,6 +775,20 @@ public class MainActivity extends BaseActivity{
         },R.style.registDialog);
         dia.show();
     }
+    private void start(){
+        // 指纹身份验证这里开始。
+        try {
+            CryptoObjectHelper cryptoObjectHelper = new CryptoObjectHelper();
+            if (cancellationSignal == null) {
+                cancellationSignal = new CancellationSignal();
+            }
+            fingerprintManager.authenticate(cryptoObjectHelper.buildCryptoObject(), 0,
+                    cancellationSignal, myAuthCallback, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(INSTANCE,R.string.setting_error, Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
@@ -769,7 +803,65 @@ public class MainActivity extends BaseActivity{
         }
         return super.onKeyDown(keyCode, event);
     }
-
+    /***
+     *  验证版本
+     * */
+    public void getVersion(){
+        HttpServiceClient.getInstance().version(MyApplication.device,"android",version,"1").enqueue(new Callback<VersionBean>() {
+            @Override
+            public void onResponse(Call<VersionBean> call, Response<VersionBean> response) {
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        if(response.body().getData().getLatestVersion().equals(version)){
+                        }else {
+                            path=response.body().getData().getPath().toString();
+                            //强制更新版本
+                            if(response.body().getData().getNeededUpdated().equals("1")){
+                                UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
+                                        .setTitle(getResources().getString(R.string.app_name))
+                                        .setDescription(getString(R.string.system_download_description))
+                                        .setFileUrl(response.body().getData().getPath()+"")
+                                        .setCanMediaScanner(true)
+                                        .build();
+                                Updater.get().showLog(true).download(config);
+                            }else {
+                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),"目前最新版本："+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
+                                    @Override
+                                    public void onActivieButtonClick(Object bean, int po) {
+                                        if(bean==null){
+                                        }else {
+                                            UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
+                                                    .setTitle(getResources().getString(R.string.app_name))
+                                                    .setDescription(getString(R.string.system_download_description))
+                                                    .setFileUrl(path)
+                                                    .setCanMediaScanner(true)
+                                                    .build();
+                                            Updater.get().showLog(true).download(config);
+                                        }
+                                    }
+                                }, R.style.registDialog).show();
+                            }
+                        }
+                    }else {
+                        if(!response.body().getCode().equals("20003")){
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                        }
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<VersionBean> call, Throwable t) {
+                if(t.getMessage().contains("Failed to connect")){
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+                }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
+            }
+        });
+    }
     private class timeThread extends Thread {
         @Override
         public void run() {

@@ -137,16 +137,21 @@ public class MiddleDialog<E> extends Dialog {
         setContentView(view);
         setCancelable(false);        //设置点击对话框以外的区域时，是否结束对话框
         acontext=context;
+        Handle();
         cntent=(TextView) view.findViewById(R.id.content);
         cntent.setText(content);
         view.findViewById(R.id.execute).setOnClickListener(new View.OnClickListener() {      //确定
             @Override
             public void onClick(View v) {
                 dismiss();
+                if(cancellationSignal!=null){
+                    Log.i("dcz","用户取消");
+                    cancellationSignal.cancel();
+                    cancellationSignal = null;
+                }
                 listener.onButtonCancel(null);
             }
         });
-        Handle();
         start();
     }
 
@@ -267,8 +272,11 @@ public class MiddleDialog<E> extends Dialog {
         switch (code) {
             //取消了传感器的使用
             case FingerprintManager.FINGERPRINT_ERROR_CANCELED:
-                cntent.setText(acontext.getString(R.string.ErrorCanceled_warning));
-                cntent.startAnimation(AnimationUtils.loadAnimation(acontext, R.anim.shake));
+                Log.i("dcz","指纹取消了");
+            /*    if(MyApplication.zhiwen_namber!=0){
+                    cntent.setText(acontext.getString(R.string.ErrorNoSpace_warning));
+                }*/
+                //cntent.startAnimation(AnimationUtils.loadAnimation(acontext, R.anim.shake));
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_HW_UNAVAILABLE:
                 cntent.setText(acontext.getString(R.string.ErrorHwUnavailable_warning));
@@ -276,6 +284,7 @@ public class MiddleDialog<E> extends Dialog {
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_LOCKOUT:
                 //指纹锁定了
+                Log.i("dcz","指纹锁定了");
                 MyApplication.zhiwen_namber=MyApplication.zhiwen_namber+1;
                 cntent.setText(acontext.getString(R.string.ErrorNoSpace_zai));
                 cntent.startAnimation(AnimationUtils.loadAnimation(acontext, R.anim.shake));

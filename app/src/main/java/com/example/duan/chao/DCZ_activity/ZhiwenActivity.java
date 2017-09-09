@@ -39,6 +39,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ZhiwenActivity extends BaseActivity {
+    private Boolean jiesuo=false;
+    private Boolean jiaoyi=false;
+    private String messge;
     private ZhiwenActivity INSTANCE;
     private FingerprintManagerCompat fingerprintManager = null;
     private MyAuthCallback myAuthCallback = null;
@@ -118,10 +121,29 @@ public class ZhiwenActivity extends BaseActivity {
                         result.setText(R.string.fingerprint_success);
                         cancellationSignal = null;
                         if(ActivityUtils.getInstance().ActivitySize()>1){
+                            if(jiesuo==true){
+                                Intent i = new Intent(INSTANCE, HaveScanActivity.class);
+                                i.putExtra("message",messge);
+                                startActivity(i);
+                            }else if(jiaoyi==true){
+                                Intent i = new Intent(INSTANCE, HavaMoneyActivity.class);
+                                i.putExtra("message",messge);
+                                startActivity(i);
+                            }
                             ActivityUtils.getInstance().popActivity(INSTANCE);
                         }else {
-                            Intent intent=new Intent(INSTANCE, MainActivity.class);
-                            startActivity(intent);
+                            if(jiesuo==true){
+                                Intent i = new Intent(INSTANCE, HaveScanActivity.class);
+                                i.putExtra("message",messge);
+                                startActivity(i);
+                            }else if(jiaoyi==true){
+                                Intent i = new Intent(INSTANCE, HavaMoneyActivity.class);
+                                i.putExtra("message",messge);
+                                startActivity(i);
+                            }else {
+                                Intent intent=new Intent(INSTANCE, MainActivity.class);
+                                startActivity(intent);
+                            }
                             ActivityUtils.getInstance().popActivity(INSTANCE);
                         }
                         break;
@@ -330,26 +352,30 @@ public class ZhiwenActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             try {
                 Log.i("dcz","接收到广播");
+                messge = intent.getStringExtra(KEY_MESSAGE);
+                String extras = intent.getStringExtra(KEY_EXTRAS);
+                String type = intent.getStringExtra(KEY_CONTENT_TYPE);
+                StringBuilder showMsg = new StringBuilder();
+                showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                if (!ExampleUtil.isEmpty(extras)) {
+                    showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                }
+                Log.i("dcz",messge);
+                Gson mGson = new Gson();
+                HaveBean result = mGson.fromJson(messge, HaveBean.class);
+                MyApplication.reqFlowId=result.getReqFlowId();
+                MyApplication.reqSysId=result.getReqSysId();
+                Log.i("dcz",result.getReqSysId());
+                Log.i("dcz",type+"type");
                 if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
-                    String messge = intent.getStringExtra(KEY_MESSAGE);
-                    String extras = intent.getStringExtra(KEY_EXTRAS);
-                    String type = intent.getStringExtra(KEY_CONTENT_TYPE);
-                    StringBuilder showMsg = new StringBuilder();
-                    showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
-                    if (!ExampleUtil.isEmpty(extras)) {
-                        showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
-                    }
-                    Log.i("dcz",messge);
-                    Gson mGson = new Gson();
-                    HaveBean result = mGson.fromJson(messge, HaveBean.class);
-                    MyApplication.reqFlowId=result.getReqFlowId();
-                    MyApplication.reqSysId=result.getReqSysId();
-                    Log.i("dcz",result.getReqSysId());
-                    Log.i("dcz",type+"type");
                     if(type.equals("2")){//下线通知
                         ActivityUtils.getInstance().popAllActivities();
                         Intent inten=new Intent(INSTANCE, LoginEmailActivity.class);
                         startActivity(inten);
+                    }else if(type.equals("1")){
+                        jiesuo=true;
+                    }else {
+                        jiaoyi=true;
                     }
                 }
             } catch (Exception e){

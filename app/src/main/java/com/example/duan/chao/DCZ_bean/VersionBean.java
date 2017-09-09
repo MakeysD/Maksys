@@ -13,7 +13,7 @@ public class VersionBean extends LoginBean<VersionBean>{
          */
 
         private String newVersionFlg;
-        private String neededUpdated;
+        private String neededUpdated;//1需要强制更新，0不需要
         private Object path;
         private String latestVersion;
 

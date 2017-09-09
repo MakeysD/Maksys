@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.chiclam.android.updater.Updater;
+import com.chiclam.android.updater.UpdaterConfig;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
@@ -36,6 +38,7 @@ public class GuanYuActivity extends BaseActivity {
     private GuanYuActivity INSTANCE;
     private Dialog dialog;
     private String version;
+    private String path="";
     @BindView(R.id.back)
     View back;
     @BindView(R.id.tv)
@@ -111,9 +114,36 @@ public class GuanYuActivity extends BaseActivity {
                         if(response.body().getData().getLatestVersion().equals(version)){
                             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi107),R.style.registDialog).show();
                         }else {
-                            Uri uri=Uri.parse(response.body().getData().getPath()+"");
+                            path=response.body().getData().getPath().toString();
+                            //强制更新版本
+                            if(response.body().getData().getNeededUpdated().equals("1")){
+                                UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
+                                        .setTitle(getResources().getString(R.string.app_name))
+                                        .setDescription(getString(R.string.system_download_description))
+                                        .setFileUrl(response.body().getData().getPath()+"")
+                                        .setCanMediaScanner(true)
+                                        .build();
+                                Updater.get().showLog(true).download(config);
+                            }else {
+                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),"目前最新版本："+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
+                                    @Override
+                                    public void onActivieButtonClick(Object bean, int po) {
+                                        if(bean==null){
+                                        }else {
+                                            UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
+                                                    .setTitle(getResources().getString(R.string.app_name))
+                                                    .setDescription(getString(R.string.system_download_description))
+                                                    .setFileUrl(path)
+                                                    .setCanMediaScanner(true)
+                                                    .build();
+                                            Updater.get().showLog(true).download(config);
+                                        }
+                                    }
+                                }, R.style.registDialog).show();
+                            }
+                            /*Uri uri=Uri.parse(response.body().getData().getPath()+"");
                             Intent intent=new Intent(Intent.ACTION_VIEW,uri);
-                            startActivity(intent);
+                            startActivity(intent);*/
                         }
                     }else {
                         if(!response.body().getCode().equals("20003")){

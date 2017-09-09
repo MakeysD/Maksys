@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 import com.google.gson.Gson;
 
@@ -208,8 +210,12 @@ public class HaveScanActivity extends BaseActivity {
                                 anima.setVisibility(View.VISIBLE);
                                 timer("1",response.body().getDesc());
                             }else {
-                                //timer("2",response.body().getDesc());
-                                ActivityUtils.getInstance().popActivity(INSTANCE);
+                                if(ActivityUtils.getInstance().ActivitySize()>1){
+                                    ActivityUtils.getInstance().popActivity(INSTANCE);
+                                }else {
+                                    Intent intent=new Intent(INSTANCE, MainActivity.class);
+                                    startActivity(intent);
+                                }
                             }
                         }else {
                             anima.setVisibility(View.VISIBLE);
@@ -256,7 +262,12 @@ public class HaveScanActivity extends BaseActivity {
         TimerTask task=new TimerTask() {
             @Override
             public void run() {
-                ActivityUtils.getInstance().popActivity(INSTANCE);
+                if(ActivityUtils.getInstance().ActivitySize()>1){
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
+                }else {
+                    Intent intent=new Intent(INSTANCE, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         };
         timer.schedule(task,2000);
@@ -270,9 +281,7 @@ public class HaveScanActivity extends BaseActivity {
                 stop();
                 if(msg.what==1){
                     iv6.setImageResource(R.drawable.login_ok);
-                    //Toast.makeText(INSTANCE,"成功", Toast.LENGTH_SHORT).show();
                 }else {
-                    // Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
                     iv6.setImageResource(R.drawable.login_no);
                 }
             }

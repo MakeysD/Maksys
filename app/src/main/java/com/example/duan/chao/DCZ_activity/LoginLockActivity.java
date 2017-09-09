@@ -135,12 +135,12 @@ public class LoginLockActivity extends BaseActivity {
      * 打开验证手势
      */
     private void doSomethingOnScreenOff() {
-        Intent intent = new Intent();
+        /*Intent intent = new Intent();
         intent.setClass(getApplicationContext(), LoginLockActivity.class);
         intent.putExtra("current","resume");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        ActivityUtils.getInstance().popActivity(this);
+        ActivityUtils.getInstance().popActivity(this);*/
     }
 
     /**
