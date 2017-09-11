@@ -285,6 +285,7 @@
     <string name="tishi115">您的登录信息可能过期失效，请重新登录后再浏览使用</string>
     <string name="tishi116">网络错误</string>
     <string name="tishi117">更新</string>
+    <string name="tishi118">发现最新版本：</string>
 
 
     <string name="code1">成功</string><!--20000-->

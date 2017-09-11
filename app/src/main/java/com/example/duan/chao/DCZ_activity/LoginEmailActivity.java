@@ -147,11 +147,14 @@ public class LoginEmailActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(MyApplication.sms_type.equals("1")){
-                    login();
-                }else {
-                    login();
+                if(MyApplication.pub_key!=null){
+                    if(MyApplication.sms_type.equals("1")){
+                        login();
+                    }else {
+                        login();
+                    }
                 }
+
 
             }
         });

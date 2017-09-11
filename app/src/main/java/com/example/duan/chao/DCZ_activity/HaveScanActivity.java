@@ -215,6 +215,7 @@ public class HaveScanActivity extends BaseActivity {
                                 }else {
                                     Intent intent=new Intent(INSTANCE, MainActivity.class);
                                     startActivity(intent);
+                                    ActivityUtils.getInstance().popActivity(INSTANCE);
                                 }
                             }
                         }else {
@@ -267,6 +268,7 @@ public class HaveScanActivity extends BaseActivity {
                 }else {
                     Intent intent=new Intent(INSTANCE, MainActivity.class);
                     startActivity(intent);
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }
             }
         };

@@ -243,6 +243,12 @@
         <activity android:name=".DCZ_activity.LoginEmailActivity" />
         <activity android:name=".DCZ_activity.LookPassword2Activity" />
         <activity android:name=".DCZ_activity.LookPayPassword2Activity"></activity>
+        <receiver android:name="com.chiclam.android.receiver.ApkInstallReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

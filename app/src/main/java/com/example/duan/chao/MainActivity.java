@@ -192,7 +192,6 @@ public class MainActivity extends BaseActivity{
         setViews();
         getVersion();//版本更新
         setListener();
-        setdialog();
         initHandler();
         MyApplication.status=false;
     }
@@ -814,6 +813,7 @@ public class MainActivity extends BaseActivity{
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
                         if(response.body().getData().getLatestVersion().equals(version)){
+                            setdialog();//判断是否开启通知
                         }else {
                             path=response.body().getData().getPath().toString();
                             //强制更新版本
@@ -826,7 +826,7 @@ public class MainActivity extends BaseActivity{
                                         .build();
                                 Updater.get().showLog(true).download(config);
                             }else {
-                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),"目前最新版本："+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
+                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
                                     @Override
                                     public void onActivieButtonClick(Object bean, int po) {
                                         if(bean==null){
