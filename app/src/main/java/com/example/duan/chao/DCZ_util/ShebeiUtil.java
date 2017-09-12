@@ -1,15 +1,19 @@
 package com.example.duan.chao.DCZ_util;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import android.net.NetworkInfo.State;
 
 /**
  * Created by DELL on 2017/8/2.
@@ -108,6 +112,25 @@ public class ShebeiUtil {
        * @return  系统版本号 
        */
     public static String getSystemVersion() {
-            return android.os.Build.VERSION.RELEASE;
+        return android.os.Build.VERSION.RELEASE;
      }
+    public static String wang(Context context){
+        String state="";
+        State wifiState = null;
+        State mobileState = null;
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        wifiState = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+        mobileState = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+        if(wifiState!=null&&mobileState!=null&&State.CONNECTED!=wifiState&&State.CONNECTED==mobileState){// 手机网络连接成功  
+            Log.i("网络改变","手机2g/3g/4g网络连接成功");
+            state="1";
+        }else if (wifiState!=null&&State.CONNECTED==wifiState){// 无线网络连接成功  
+            Log.i("网络改变","无线网络连接成功");
+            state="2";
+        }else if (wifiState!=null&&mobileState!=null&&State.CONNECTED!=wifiState&&State.CONNECTED!=mobileState){// 手机没有任何的网络  
+            Log.i("网络改变","手机没有任何的网络");
+            state="0";
+        }
+        return state;
+    }
 }

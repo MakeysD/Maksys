@@ -27,6 +27,10 @@ import cn.jpush.android.api.JPushInterface;
  */
 
 public class MyApplication extends Application{
+    //网路连接  
+    private boolean isWifi;//wifi是否连接  
+    private boolean isMobile;//手机是否连接  
+    private boolean isNetworkConn;//是否有网  
     public static Boolean AppOnForeground=false;//是否是从后台进入的前台
     public static Long start_time;//退到后台的当前时间
     public static int type=0;//判断刷新界面是否放入栈中

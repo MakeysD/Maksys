@@ -70,6 +70,7 @@ import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.NotificationsUtils;
 import com.example.duan.chao.DCZ_util.RandomUtil;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -818,26 +819,14 @@ public class MainActivity extends BaseActivity{
                             path=response.body().getData().getPath().toString();
                             //强制更新版本
                             if(response.body().getData().getNeededUpdated().equals("1")){
-                                UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
-                                        .setTitle(getResources().getString(R.string.app_name))
-                                        .setDescription(getString(R.string.system_download_description))
-                                        .setFileUrl(response.body().getData().getPath()+"")
-                                        .setCanMediaScanner(true)
-                                        .build();
-                                Updater.get().showLog(true).download(config);
+                                down();
                             }else {
                                 new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
                                     @Override
                                     public void onActivieButtonClick(Object bean, int po) {
                                         if(bean==null){
                                         }else {
-                                            UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
-                                                    .setTitle(getResources().getString(R.string.app_name))
-                                                    .setDescription(getString(R.string.system_download_description))
-                                                    .setFileUrl(path)
-                                                    .setCanMediaScanner(true)
-                                                    .build();
-                                            Updater.get().showLog(true).download(config);
+                                            down();
                                         }
                                     }
                                 }, R.style.registDialog).show();
@@ -861,6 +850,15 @@ public class MainActivity extends BaseActivity{
                 }
             }
         });
+    }
+    private void down(){
+        UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
+                .setTitle(getResources().getString(R.string.app_name))
+                .setDescription(getString(R.string.system_download_description))
+                .setFileUrl(path)
+                .setCanMediaScanner(true)
+                .build();
+        Updater.get().showLog(true).download(config);
     }
     private class timeThread extends Thread {
         @Override
