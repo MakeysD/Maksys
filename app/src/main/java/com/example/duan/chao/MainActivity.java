@@ -553,15 +553,6 @@ public class MainActivity extends BaseActivity{
         } else {
             //弹框让用户确认指纹
             setDialog(this.getString(R.string.tishi92),bo);
-
-         /*   try {
-                myAuthCallback = new MyAuthCallback(handler);
-                MyApplication.sf.edit().putBoolean("zhiwen", true).commit();
-                MyApplication.zhiwen=true;
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.lock11),R.style.registDialog).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
         }
     }
     /***
