@@ -125,7 +125,7 @@ public class GuanYuActivity extends BaseActivity {
                                         .build();
                                 Updater.get().showLog(true).download(config);
                             }else {
-                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),"目前最新版本："+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
+                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
                                     @Override
                                     public void onActivieButtonClick(Object bean, int po) {
                                         if(bean==null){

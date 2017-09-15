@@ -343,9 +343,7 @@ public class WheelView extends View {
             } else {
                 visibles[counter] = adapter.getItem(index);
             }
-
             counter++;
-
         }
 
         //中间两条横线

@@ -203,8 +203,6 @@
                                 android:textColor="@color/text04"
                                 android:textStyle="bold" />
                         </RelativeLayout>
-
-
                         <EditText
                             android:id="@+id/et_name"
                             android:layout_width="match_parent"
@@ -268,7 +266,6 @@
                             android:layout_marginLeft="17dp"
                             android:background="@null"
                             android:hint="@string/tishi16b"
-                            android:maxLength="13"
                             android:singleLine="true"
                             android:textColor="@color/text08"
                             android:textColorHint="@color/text04"

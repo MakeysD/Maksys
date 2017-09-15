@@ -294,6 +294,9 @@ public class WheelTime {
 		wv_year.setCyclic(cyclic);
 		wv_month.setCyclic(cyclic);
 		wv_day.setCyclic(cyclic);
+		wv_year2.setCyclic(cyclic);
+		wv_month2.setCyclic(cyclic);
+		wv_day2.setCyclic(cyclic);
 		wv_hours.setCyclic(cyclic);
 		wv_mins.setCyclic(cyclic);
 	}
