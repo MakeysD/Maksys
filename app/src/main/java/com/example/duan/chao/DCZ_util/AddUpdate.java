@@ -1,30 +1,21 @@
 package com.example.duan.chao.DCZ_util;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
 
-import com.example.duan.chao.DCZ_activity.LoginActivity;
-import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HttpBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
-import com.example.duan.chao.DCZ_bean.LoginOkBean;
-import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.MainActivity;
-import com.example.duan.chao.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 
-import cn.jpush.android.api.JPushInterface;
 import okhttp3.FormBody;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import retrofit2.http.Field;
 
 /**
  * Created by DELL on 2017/7/24.

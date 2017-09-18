@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -92,7 +93,7 @@ public class SettingDataActivity extends BaseActivity {
     @BindView(R.id.et_name)
     TextView et_name;
     @BindView(R.id.et_number)
-    TextView et_number;
+    EditText et_number;
     @BindView(R.id.tv_guo)
     TextView tv_guo;
     @BindView(R.id.rl_zheng)
@@ -183,6 +184,12 @@ public class SettingDataActivity extends BaseActivity {
         et_number.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                type4();
+            }
+        });
+        et_number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 type4();
             }
         });
