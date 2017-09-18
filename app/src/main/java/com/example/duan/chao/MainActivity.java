@@ -804,25 +804,30 @@ public class MainActivity extends BaseActivity{
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        if(response.body().getData().getLatestVersion().equals(version)){
-                            setdialog();//判断是否开启通知
-                        }else {
-                            path=response.body().getData().getPath().toString();
-                            //强制更新版本
-                            if(response.body().getData().getNeededUpdated().equals("1")){
-                                down();
+                        Log.i("dcz_1",response.body().getData().getLatestVersion()+"q");
+                        Log.i("dcz_2",version+"q");
+                        setdialog();//判断是否开启通知
+                        if(response.body().getData().getLatestVersion()!=null){
+                            if(response.body().getData().getLatestVersion().equals(version)){
                             }else {
-                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
-                                    @Override
-                                    public void onActivieButtonClick(Object bean, int po) {
-                                        if(bean==null){
-                                        }else {
-                                            down();
+                                path=response.body().getData().getPath().toString();
+                                //强制更新版本
+                                if(response.body().getData().getNeededUpdated().equals("1")){
+                                    down();
+                                }else {
+                                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
+                                        @Override
+                                        public void onActivieButtonClick(Object bean, int po) {
+                                            if(bean==null){
+                                            }else {
+                                                down();
+                                            }
                                         }
-                                    }
-                                }, R.style.registDialog).show();
+                                    }, R.style.registDialog).show();
+                                }
                             }
                         }
+
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

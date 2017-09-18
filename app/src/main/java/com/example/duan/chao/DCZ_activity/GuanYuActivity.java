@@ -111,40 +111,45 @@ public class GuanYuActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
-                        if(response.body().getData().getLatestVersion().equals(version)){
-                            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi107),R.style.registDialog).show();
-                        }else {
-                            path=response.body().getData().getPath().toString();
-                            //强制更新版本
-                            if(response.body().getData().getNeededUpdated().equals("1")){
-                                UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
-                                        .setTitle(getResources().getString(R.string.app_name))
-                                        .setDescription(getString(R.string.system_download_description))
-                                        .setFileUrl(response.body().getData().getPath()+"")
-                                        .setCanMediaScanner(true)
-                                        .build();
-                                Updater.get().showLog(true).download(config);
+                        if(response.body().getData().getLatestVersion()!=null){
+                            if(response.body().getData().getLatestVersion().equals(version)){
+                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi107),R.style.registDialog).show();
                             }else {
-                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
-                                    @Override
-                                    public void onActivieButtonClick(Object bean, int po) {
-                                        if(bean==null){
-                                        }else {
-                                            UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
-                                                    .setTitle(getResources().getString(R.string.app_name))
-                                                    .setDescription(getString(R.string.system_download_description))
-                                                    .setFileUrl(path)
-                                                    .setCanMediaScanner(true)
-                                                    .build();
-                                            Updater.get().showLog(true).download(config);
+                                path=response.body().getData().getPath().toString();
+                                //强制更新版本
+                                if(response.body().getData().getNeededUpdated().equals("1")){
+                                    UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
+                                            .setTitle(getResources().getString(R.string.app_name))
+                                            .setDescription(getString(R.string.system_download_description))
+                                            .setFileUrl(response.body().getData().getPath()+"")
+                                            .setCanMediaScanner(true)
+                                            .build();
+                                    Updater.get().showLog(true).download(config);
+                                }else {
+                                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
+                                        @Override
+                                        public void onActivieButtonClick(Object bean, int po) {
+                                            if(bean==null){
+                                            }else {
+                                                UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
+                                                        .setTitle(getResources().getString(R.string.app_name))
+                                                        .setDescription(getString(R.string.system_download_description))
+                                                        .setFileUrl(path)
+                                                        .setCanMediaScanner(true)
+                                                        .build();
+                                                Updater.get().showLog(true).download(config);
+                                            }
                                         }
-                                    }
-                                }, R.style.registDialog).show();
-                            }
+                                    }, R.style.registDialog).show();
+                                }
                             /*Uri uri=Uri.parse(response.body().getData().getPath()+"");
                             Intent intent=new Intent(Intent.ACTION_VIEW,uri);
                             startActivity(intent);*/
+                            }
+                        }else {
+                            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi107),R.style.registDialog).show();
                         }
+
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

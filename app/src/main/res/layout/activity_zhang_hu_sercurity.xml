@@ -262,7 +262,6 @@
         android:background="@color/xian1"
         android:layout_marginLeft="@dimen/left"
         android:layout_marginRight="@dimen/right"
-        android:visibility="gone"
         android:layout_alignParentBottom="true"/>
     <RelativeLayout
         android:id="@+id/rl5"
