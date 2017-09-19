@@ -23,6 +23,7 @@ import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.RandomUtil;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 
 import java.util.ArrayList;
@@ -73,7 +74,6 @@ public class FootprintsActivity extends BaseActivity {
         ButterKnife.bind(this);
         setListener();
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
-        dialog.show();
         getData();
     }
 
@@ -91,30 +91,6 @@ public class FootprintsActivity extends BaseActivity {
      *  监听
      * */
     private void setListener() {
-    /*    sv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==MotionEvent.ACTION_UP){
-                    Log.i("dcz","手指停下来了");
-                    if(newAlpha>Int){
-                        if(newAlpha-Int>3){
-                            Log.i("dcz2","开始调接口");
-                            Int=newAlpha;
-                            getData();
-                            num++;
-                        }
-                    }
-                }
-                return false;
-            }
-        });
-        sv.setOnScrollChangedCallback(new OnScrollChangedCallback() {
-            @Override
-            public void onScroll(int l, int t) {
-                newAlpha = t / 400+2;
-            }
-        });*/
-
     lv2.setOnScrollListener(new AbsListView.OnScrollListener() {
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -169,6 +145,11 @@ public class FootprintsActivity extends BaseActivity {
      * 获取最近登录记录
      * */
     public void getData(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
+        dialog.show();
         HttpServiceClient.getInstance().getFoot(num,size,"",null,null).enqueue(new Callback<FootprintsBean>() {
             @Override
             public void onResponse(Call<FootprintsBean> call, Response<FootprintsBean> response) {
@@ -218,11 +199,7 @@ public class FootprintsActivity extends BaseActivity {
             @Override
             public void onFailure(Call<FootprintsBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
@@ -231,6 +208,10 @@ public class FootprintsActivity extends BaseActivity {
      * 获取各子系统的在线情况
      * */
     public void getData2(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         String random=RandomUtil.RandomNumber();
         HttpServiceClient.getInstance().getOnline(num,size,MyApplication.username,random).enqueue(new Callback<Footprints2Bean>() {
             @Override
@@ -271,11 +252,7 @@ public class FootprintsActivity extends BaseActivity {
                 if(dialog.isShowing()){
                     dialog.dismiss();
                 }
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

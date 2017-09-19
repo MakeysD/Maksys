@@ -26,6 +26,7 @@ import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DSACoder;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
@@ -199,6 +200,10 @@ public class SmsActivity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getData(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
@@ -241,11 +246,7 @@ public class SmsActivity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
                /* if (t instanceof AddUpdate.MyThrow){
 
                 }*/
@@ -257,6 +258,10 @@ public class SmsActivity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getSms(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
@@ -288,11 +293,7 @@ public class SmsActivity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

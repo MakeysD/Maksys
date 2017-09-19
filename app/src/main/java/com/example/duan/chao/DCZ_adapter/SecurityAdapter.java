@@ -24,6 +24,7 @@ import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -145,6 +146,10 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
      * 调取接口拿到服务器数据
      * */
     public void getData(Long id, final String string, final int postion){
+        if(ShebeiUtil.wang(context).equals("0")){
+            new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
         dialog.show();
         HttpServiceClient.getInstance().updateProtect(id,string).enqueue(new Callback<EquipmentBean>() {
@@ -183,11 +188,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                 dialog.dismiss();
                 boo=false;
                 Notify(list);
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

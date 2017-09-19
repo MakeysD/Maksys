@@ -15,6 +15,7 @@ import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ScreenUtils;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.example.duan.chao.zxing_code.android.CaptureActivity;
 
@@ -90,6 +91,10 @@ public class ScanActivity extends CaptureActivity {
     }
 
     private void getData(String uuid){
+        if(ShebeiUtil.wang(this).equals("0")){
+            new MiddleDialog(this,this.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         String max= RandomUtil.RandomNumber();
         String str ="nonce="+max+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username+"&uuid="+uuid;
         byte[] data = str.getBytes();
@@ -125,11 +130,7 @@ public class ScanActivity extends CaptureActivity {
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.i("dcz异常",call.toString());
-                if(t.getMessage().contains("Failed to connect")){
-                    Toast.makeText(ScanActivity.this,ScanActivity.this.getString(R.string.tishi116), Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(ScanActivity.this,ScanActivity.this.getString(R.string.tishi72), Toast.LENGTH_SHORT).show();
-                }
+                new MiddleDialog(ScanActivity.this,ScanActivity.this.getString(R.string.tishi72),R.style.registDialog).show();
                 ActivityUtils.getInstance().popActivity(ScanActivity.this);
             }
         });

@@ -18,6 +18,7 @@ import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.RandomUtil;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 
 import java.util.List;
@@ -95,6 +96,10 @@ public class Footprints1Adapter extends BaseAdapter{
      * 踢出用户的登录
      * */
     public void getData(String systemId, String username, String sessionid, final int postion){
+        if(ShebeiUtil.wang(context).equals("0")){
+            new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         String random= RandomUtil.RandomNumber();
         dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
         dialog.show();
@@ -125,11 +130,7 @@ public class Footprints1Adapter extends BaseAdapter{
             @Override
             public void onFailure(Call<FootprintsBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

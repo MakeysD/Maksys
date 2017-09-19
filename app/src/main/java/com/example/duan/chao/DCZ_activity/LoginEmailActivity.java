@@ -446,6 +446,10 @@ public class LoginEmailActivity extends BaseActivity {
      *  密码验证
      * */
     public void login(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().checklogin(phone.getText().toString()+"@qeveworld.com",DSA.md5(mima.getText().toString())).enqueue(new Callback<LoginOkBean>() {
@@ -472,11 +476,8 @@ public class LoginEmailActivity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                Log.i("dcz异常",t.getMessage()+"异常");
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
@@ -484,6 +485,10 @@ public class LoginEmailActivity extends BaseActivity {
      *  登录
      * */
     public void login2(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
@@ -517,12 +522,8 @@ public class LoginEmailActivity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                Log.i("dcz异常",call.toString());
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                Log.i("dcz异常",call.toString()+"异常");
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

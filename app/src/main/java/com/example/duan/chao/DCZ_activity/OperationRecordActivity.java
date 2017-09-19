@@ -18,6 +18,7 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -53,7 +54,6 @@ public class OperationRecordActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
-        dialog.show();
         setListener();
         getData();
     }
@@ -118,6 +118,11 @@ public class OperationRecordActivity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getData(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
+        dialog.show();
         HttpServiceClient.getInstance().getOperation(null,null).enqueue(new Callback<OperationRecordBean>() {
             @Override
             public void onResponse(Call<OperationRecordBean> call, Response<OperationRecordBean> response) {
@@ -145,11 +150,7 @@ public class OperationRecordActivity extends BaseActivity {
             public void onFailure(Call<OperationRecordBean> call, Throwable t) {
                 dialog.dismiss();
                 Log.d("dcz异常",t.getMessage());
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

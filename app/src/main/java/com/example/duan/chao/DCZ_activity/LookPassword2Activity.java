@@ -467,6 +467,10 @@ public class LookPassword2Activity extends BaseActivity {
      * 验证码
      * */
     public void getSms(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().sendsms(phone.getText().toString()+"@qeveworld.com","5",null).enqueue(new Callback<LoginOkBean>() {
@@ -489,11 +493,7 @@ public class LookPassword2Activity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
@@ -502,6 +502,10 @@ public class LookPassword2Activity extends BaseActivity {
      *  找回密码
      * */
     public void getData(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().fogotpwd(phone.getText().toString()+"@qeveworld.com",ed_code.getText().toString(),null, DSA.md5(mima.getText().toString()),DSA.md5(mima2.getText().toString())).enqueue(new Callback<LoginOkBean>() {
@@ -529,11 +533,7 @@ public class LookPassword2Activity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

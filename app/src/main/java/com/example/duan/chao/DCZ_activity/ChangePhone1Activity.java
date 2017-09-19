@@ -170,6 +170,10 @@ public class ChangePhone1Activity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getSms(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
@@ -195,11 +199,7 @@ public class ChangePhone1Activity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

@@ -306,6 +306,19 @@ public class MainActivity extends BaseActivity{
             }, R.style.registDialog).show();
         }
     }
+    private void setCamera(){
+        if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
+            new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi113),new MiddleDialog.onButtonCLickListener2() {
+                @Override
+                public void onActivieButtonClick(Object bean, int po) {
+                    if(bean==null){
+                    }else {
+                        NotificationsUtils.StartSetting(INSTANCE);
+                    }
+                }
+            }, R.style.registDialog).show();
+        }
+    }
 
     private void setListener() {
         back.setOnClickListener(new View.OnClickListener() {
@@ -515,22 +528,18 @@ public class MainActivity extends BaseActivity{
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == 1) {
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                /*//权限获取成功
-                Log.i("dcz","权限获取成功");
+            if(NotificationsUtils.cameraIsCanUse()==true){
+                Log.i("dcz2","有权限");
                 Intent intent=new Intent(INSTANCE, ScanActivity.class);
-                startActivity(intent);*/
-                if(NotificationsUtils.cameraIsCanUse()==true){
-                    Log.i("dcz2","有权限");
-                    Intent intent=new Intent(INSTANCE, ScanActivity.class);
-                    startActivity(intent);
-                }else {
-                    Log.i("dcz2","没有权限");
-                }
+                startActivity(intent);
+            }else {
+                Log.i("dcz2","没有权限");
+            }
+           /* if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             }else{
                 //权限被拒绝
                 Log.i("dcz","权限被拒绝");
-            }
+            }*/
         }
     }
     /**
@@ -559,6 +568,10 @@ public class MainActivity extends BaseActivity{
      * 调取接口拿到服务器数据
      * */
     public void getData(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().exit_login(MyApplication.device).enqueue(new Callback<LoginBean>() {
@@ -600,11 +613,7 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onFailure(Call<LoginBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
@@ -613,6 +622,10 @@ public class MainActivity extends BaseActivity{
      *  登录
      * */
     public void login(String a,String b){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().login(a,b,null,MyApplication.pri_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
@@ -651,11 +664,7 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
@@ -798,6 +807,10 @@ public class MainActivity extends BaseActivity{
      *  验证版本
      * */
     public void getVersion(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         HttpServiceClient.getInstance().version(MyApplication.device,"android",version,"1").enqueue(new Callback<VersionBean>() {
             @Override
             public void onResponse(Call<VersionBean> call, Response<VersionBean> response) {
@@ -839,11 +852,7 @@ public class MainActivity extends BaseActivity{
             }
             @Override
             public void onFailure(Call<VersionBean> call, Throwable t) {
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

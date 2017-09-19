@@ -15,6 +15,7 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -54,7 +55,6 @@ public class EquipmentManageActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
-        dialog.show();
         getData();
     }
 
@@ -119,6 +119,13 @@ public class EquipmentManageActivity extends BaseActivity {
      * 调取接口拿到服务器数据
      * */
     public void getData(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            setViews();
+            setListener();
+            return;
+        }
+        dialog.show();
         HttpServiceClient.getInstance().getEquipent("").enqueue(new Callback<EquipmentBean>() {
             @Override
             public void onResponse(Call<EquipmentBean> call, Response<EquipmentBean> response) {
@@ -152,11 +159,7 @@ public class EquipmentManageActivity extends BaseActivity {
                 }
                 setViews();
                 setListener();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

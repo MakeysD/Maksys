@@ -13,6 +13,7 @@ import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 
 import java.text.SimpleDateFormat;
@@ -94,6 +95,10 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
      * 调取接口拿到服务器数据
      * */
     public void getData(Long id, final int postion){
+        if(ShebeiUtil.wang(context).equals("0")){
+            new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
         dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
         dialog.show();
         HttpServiceClient.getInstance().deleteEquipent(id).enqueue(new Callback<EquipmentBean>() {
@@ -120,11 +125,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
             @Override
             public void onFailure(Call<EquipmentBean> call, Throwable t) {
                 dialog.dismiss();
-                if(t.getMessage().contains("Failed to connect")){
-                    new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
-                }else {
-                    new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }
