@@ -245,8 +245,10 @@ public class SmsActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
-                dialog.dismiss();
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof SmsActivity){
+                    dialog.dismiss();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
                /* if (t instanceof AddUpdate.MyThrow){
 
                 }*/
@@ -292,8 +294,10 @@ public class SmsActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
-                dialog.dismiss();
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof SmsActivity){
+                    dialog.dismiss();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

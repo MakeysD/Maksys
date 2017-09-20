@@ -148,9 +148,11 @@ public class OperationRecordActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<OperationRecordBean> call, Throwable t) {
-                dialog.dismiss();
-                Log.d("dcz异常",t.getMessage());
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof OperationRecordActivity){
+                    dialog.dismiss();
+                    Log.d("dcz异常",t.getMessage());
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

@@ -417,7 +417,9 @@ public class LoginEmailActivity extends BaseActivity {
                 //返回当前位置，精度可调
                 Address address = addresses.get(0);
                 Log.i("dcz1",address.getCountryName()+"z");
-                MyApplication.city=address.getCountryName();MyApplication.sf.edit().putString("city",address.getCountryName()).commit();
+                if(address.getCountryName()!=null){
+                    MyApplication.city=address.getCountryName();MyApplication.sf.edit().putString("city",address.getCountryName()).commit();
+                }
                 for(int i=0;i<list.size();i++){
                     if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_en()))){
                         Log.i("dcz",list.get(i).getCountry_name_cn()+"z");
@@ -475,9 +477,11 @@ public class LoginEmailActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
-                dialog.dismiss();
-                Log.i("dcz异常",t.getMessage()+"异常");
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof LoginEmailActivity){
+                    dialog.dismiss();
+                    Log.i("dcz异常",t.getMessage()+"异常");
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }
@@ -521,9 +525,11 @@ public class LoginEmailActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
-                dialog.dismiss();
-                Log.i("dcz异常",call.toString()+"异常");
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof LoginEmailActivity){
+                    dialog.dismiss();
+                    Log.i("dcz异常",call.toString()+"异常");
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

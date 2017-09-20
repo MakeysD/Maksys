@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_activity.EquipmentManageActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -124,8 +126,10 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
             }
             @Override
             public void onFailure(Call<EquipmentBean> call, Throwable t) {
-                dialog.dismiss();
-                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof EquipmentManageActivity){
+                    dialog.dismiss();
+                    new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

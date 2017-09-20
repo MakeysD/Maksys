@@ -198,8 +198,10 @@ public class FootprintsActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<FootprintsBean> call, Throwable t) {
-                dialog.dismiss();
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof FootprintsActivity){
+                    dialog.dismiss();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }
@@ -249,10 +251,12 @@ public class FootprintsActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<Footprints2Bean> call, Throwable t) {
-                if(dialog.isShowing()){
-                    dialog.dismiss();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof FootprintsActivity){
+                    if(dialog.isShowing()){
+                        dialog.dismiss();
+                    }
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
                 }
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

@@ -210,8 +210,10 @@ public class HavaMoneyActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
-                dialog.dismiss();
-                timer("2","服务器异常");
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof HavaMoneyActivity){
+                    dialog.dismiss();
+                    timer("2","服务器异常");
+                }
             }
         });
     }

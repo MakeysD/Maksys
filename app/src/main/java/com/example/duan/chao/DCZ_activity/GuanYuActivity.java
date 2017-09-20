@@ -163,8 +163,10 @@ public class GuanYuActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<VersionBean> call, Throwable t) {
-                dialog.dismiss();
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof GuanYuActivity){
+                    dialog.dismiss();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

@@ -215,8 +215,10 @@ public class HaveActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
-                dialog.dismiss();
-                timer("2","服务器异常");
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof HaveActivity){
+                    dialog.dismiss();
+                    timer("2","服务器异常");
+                }
             }
         });
     }

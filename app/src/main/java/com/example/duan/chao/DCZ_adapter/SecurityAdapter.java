@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
@@ -185,10 +186,12 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
             }
             @Override
             public void onFailure(Call<EquipmentBean> call, Throwable t) {
-                dialog.dismiss();
-                boo=false;
-                Notify(list);
-                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof SecurityProtectActivity){
+                    dialog.dismiss();
+                    boo=false;
+                    Notify(list);
+                    new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

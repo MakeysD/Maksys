@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.duan.chao.DCZ_activity.FootprintsActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_lockdemo.CustomLockView;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
+import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.RandomUtil;
@@ -129,8 +131,10 @@ public class Footprints1Adapter extends BaseAdapter{
             }
             @Override
             public void onFailure(Call<FootprintsBean> call, Throwable t) {
-                dialog.dismiss();
-                new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof FootprintsActivity){
+                    dialog.dismiss();
+                    new MiddleDialog(context,context.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

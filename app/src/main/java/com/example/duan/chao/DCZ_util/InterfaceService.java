@@ -13,6 +13,8 @@ import com.example.duan.chao.DCZ_bean.SecurityBean;
 import com.example.duan.chao.DCZ_bean.StatusBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
 
+import java.io.File;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -244,5 +246,20 @@ public interface InterfaceService {
                            @Field("uuid") String uuid,
                            @Field("nonce") String nonce,
                            @Field("sign") String sign);
+    /**
+     *  会员身份信息上传
+     * */
+    @FormUrlEncoded
+    @POST("saveUserInfo")
+    Call<LoginOkBean> UserInfo(@Field("frontFile") File frontFile,
+                               @Field("reverseFile") File reverseFile,
+                               @Field("holdingFile")File holdingFile,
+                               @Field("countryCode") String countryCode,
+                               @Field("certType") Integer certType,
+                               @Field("realName") String realName,
+                               @Field("certNum") String certNum,
+                               @Field("birthday") String birthday,
+                               @Field("validityStart") String validityStart,
+                               @Field("validityEnd") String validityEnd);
 
 }

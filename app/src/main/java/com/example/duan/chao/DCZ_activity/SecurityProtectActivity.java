@@ -159,8 +159,10 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
             }
             @Override
             public void onFailure(Call<SecurityBean> call, Throwable t) {
-                dialog.dismiss();
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof SecurityProtectActivity){
+                    dialog.dismiss();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
             }
         });
     }

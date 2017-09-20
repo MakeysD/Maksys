@@ -2,8 +2,10 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -29,9 +31,14 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.model.IPickerViewData;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.ProvinceBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -42,10 +49,17 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SettingDataActivity extends BaseActivity {
     private SettingDataActivity INSTANCE;
+    private Dialog dialog;
     private String type="1";    //1:正面，2：反面，3：手持
+    private File photo1;
+    private File photo2;
+    private File photo3;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
@@ -129,6 +143,7 @@ public class SettingDataActivity extends BaseActivity {
             fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
             shou.setBackgroundResource(R.mipmap.shenfenzheng3en);
         }
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
         setListener();
     }
@@ -161,9 +176,14 @@ public class SettingDataActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE,SettingDataResultActivity.class);
-                startActivity(intent);
-                ActivityUtils.getInstance().popActivity(INSTANCE);
+                if(photo1!=null&&photo2!=null&&
+                        photo3!=null&&tv_guo.getText().length()>0&&
+                        Type.getText().length()>0&&et_name.getText().length()>0&&
+                        et_number.getText().length()>0&&tv_time.getText().length()>0){
+                    getData(getType(Type.getText().toString()));
+                }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi119),R.style.registDialog).show();
+                }
             }
         });
         ll1.setOnClickListener(new View.OnClickListener() {
@@ -241,6 +261,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 zheng.setImageURI(null);
+                photo1=null;
                 x1.setVisibility(View.GONE);
             }
         });
@@ -248,6 +269,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 fan.setImageURI(null);
+                photo2=null;
                 x2.setVisibility(View.GONE);
             }
         });
@@ -255,6 +277,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 shou.setImageURI(null);
+                photo3=null;
                 x3.setVisibility(View.GONE);
             }
         });
@@ -272,7 +295,6 @@ public class SettingDataActivity extends BaseActivity {
         pvTime.setCancelable(true);
         //时间选择后回调
         pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
-
             @Override
             public void onTimeSelect(Date date,Date date2) {
                 tv_time.setText(getTime(date2)+"   to  "+getTime(date));
@@ -300,8 +322,8 @@ public class SettingDataActivity extends BaseActivity {
         //选项1
         options1Items.add(new ProvinceBean(0,"身份证","",""));
         options1Items.add(new ProvinceBean(1,"护照","",""));
-        options1Items.add(new ProvinceBean(3,"港澳通行证","",""));
-        options1Items.add(new ProvinceBean(4,"驾照","",""));
+       // options1Items.add(new ProvinceBean(3,"港澳通行证","",""));
+        options1Items.add(new ProvinceBean(4,"驾驶证","",""));
         //三级联动效果
         pvOptions.setPicker(options1Items);
         //设置选择的三级单位
@@ -403,14 +425,17 @@ public class SettingDataActivity extends BaseActivity {
                     switch (type){
                         case "1":
                             zheng.setImageURI(uri);
+                            photo1=getFile(uri);
                             x1.setVisibility(View.VISIBLE);
                             break;
                         case "2":
                             fan.setImageURI(uri);
+                            photo2=getFile(uri);
                             x2.setVisibility(View.VISIBLE);
                             break;
                         case "3":
                             shou.setImageURI(uri);
+                            photo3=getFile(uri);
                             x3.setVisibility(View.VISIBLE);
                             break;
                     }
@@ -423,14 +448,17 @@ public class SettingDataActivity extends BaseActivity {
                     switch (type){
                         case "1":
                             zheng.setImageURI(uri);
+                            photo1=getFile(uri);
                             x1.setVisibility(View.VISIBLE);
                             break;
                         case "2":
                             fan.setImageURI(uri);
+                            photo2=getFile(uri);
                             x2.setVisibility(View.VISIBLE);
                             break;
                         case "3":
                             shou.setImageURI(uri);
+                            photo3=getFile(uri);
                             x3.setVisibility(View.VISIBLE);
                             break;
                     }
@@ -519,4 +547,65 @@ public class SettingDataActivity extends BaseActivity {
         pup2.startAnimation(a);
     }
 
+    /***
+     * 调取接口拿到服务器数据
+     * */
+    public void getData(Integer type){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
+        dialog.show();
+        String[]  strs= tv_time.getText().toString().split("to");
+        Log.i("dcz",strs[0]); Log.i("dcz",strs[1]);
+        HttpServiceClient.getInstance().UserInfo(photo1,photo2,photo3,tv_guo.getText().toString(),type,et_name.getText().toString(),et_number.getText().toString(),null,strs[0],strs[1]).enqueue(new Callback<LoginOkBean>() {
+            @Override
+            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    if(response.body()!=null){
+                        if(response.body().getCode().equals("20000")){
+                            Intent intent=new Intent(INSTANCE,SettingDataResultActivity.class);
+                            startActivity(intent);
+                            ActivityUtils.getInstance().popActivity(INSTANCE);
+                        }else {
+                            if(!response.body().getCode().equals("20003")){
+                                new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                            }
+                        }
+                    }else {
+                        Log.d("dcz","返回的数据是空的");
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof SettingDataActivity){
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
+            }
+        });
+    }
+    private File getFile(Uri uri){
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor actualimagecursor = managedQuery(uri,proj,null,null,null);
+        int actual_image_column_index = actualimagecursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        actualimagecursor.moveToFirst();
+        String img_path = actualimagecursor.getString(actual_image_column_index);
+        File file = new File(img_path);
+        return file;
+    }
+    private Integer getType(String string){
+        Integer a = null;
+        if(string.equals("身份证")){
+            a=0;
+        }else if(string.equals("驾驶证")){
+            a=2;
+        }else {
+            a=1;
+        }
+        return a;
+    }
 }

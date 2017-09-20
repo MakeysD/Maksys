@@ -154,12 +154,14 @@ public class EquipmentManageActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<EquipmentBean> call, Throwable t) {
-                if(dialog.isShowing()){
-                    dialog.dismiss();
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof EquipmentManageActivity){
+                    if(dialog.isShowing()){
+                        dialog.dismiss();
+                    }
+                    setViews();
+                    setListener();
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
                 }
-                setViews();
-                setListener();
-                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

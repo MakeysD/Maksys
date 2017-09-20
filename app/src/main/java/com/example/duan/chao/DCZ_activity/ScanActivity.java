@@ -128,10 +128,12 @@ public class ScanActivity extends CaptureActivity {
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
-                dialog.dismiss();
-                Log.i("dcz异常",call.toString());
-                new MiddleDialog(ScanActivity.this,ScanActivity.this.getString(R.string.tishi72),R.style.registDialog).show();
-                ActivityUtils.getInstance().popActivity(ScanActivity.this);
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof ScanActivity){
+                    dialog.dismiss();
+                    Log.i("dcz异常",call.toString());
+                    new MiddleDialog(ScanActivity.this,ScanActivity.this.getString(R.string.tishi72),R.style.registDialog).show();
+                    ActivityUtils.getInstance().popActivity(ScanActivity.this);
+                }
             }
         });
     }
