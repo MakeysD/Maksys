@@ -16,6 +16,8 @@ import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
 import com.example.duan.chao.DCZ_activity.HaveActivity;
 import com.example.duan.chao.DCZ_activity.HaveScanActivity;
 import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
+import com.example.duan.chao.DCZ_activity.SmsActivity;
 import com.example.duan.chao.DCZ_activity.StartLockActivity;
 import com.example.duan.chao.DCZ_activity.ZhiwenActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
@@ -162,10 +164,13 @@ public class MyReceiver extends BroadcastReceiver {
 					HaveScanActivity.mHandler.sendMessage(msg);
 					return true;
 				}
-				Intent i = new Intent(context, HaveScanActivity.class);
-				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
-				i.putExtra("message",message);
-				context.startActivity(i);
+				if(ActivityUtils.getInstance().getCurrentActivity()instanceof SmsActivity||ActivityUtils.getInstance().getCurrentActivity()instanceof LoginEmailActivity){
+				}else {
+					Intent i = new Intent(context, HaveScanActivity.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+					i.putExtra("message",message);
+					context.startActivity(i);
+				}
 				return true ;
 			}
 
@@ -178,16 +183,19 @@ public class MyReceiver extends BroadcastReceiver {
 				processCustomMessage(MyApplication.getContext(), bundle);
 			}else {
 				Log.i("dcz","当前不是解锁页面");
-				Intent i = new Intent(context, HaveScanActivity.class);
-				i.putExtra("message",message);
-				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
-				context.startActivity(i);
-				if (ActivityUtils.getInstance().getCurrentActivity() instanceof HaveScanActivity){
-					Message msg = new Message();
-					msg.what = 1;
-					msg.obj = message;
-					HaveScanActivity.mHandler.sendMessageDelayed(msg,2000);
-					return true;
+				if(ActivityUtils.getInstance().getCurrentActivity()instanceof SmsActivity||ActivityUtils.getInstance().getCurrentActivity()instanceof LoginEmailActivity){
+				}else {
+					Intent i = new Intent(context, HaveScanActivity.class);
+					i.putExtra("message",message);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+					context.startActivity(i);
+					if (ActivityUtils.getInstance().getCurrentActivity() instanceof HaveScanActivity){
+						Message msg = new Message();
+						msg.what = 1;
+						msg.obj = message;
+						HaveScanActivity.mHandler.sendMessageDelayed(msg,2000);
+						return true;
+					}
 				}
 			}
 		}
@@ -204,16 +212,22 @@ public class MyReceiver extends BroadcastReceiver {
 		String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 		//判断APP是否在前台
 		if(ActivityUtils.getInstance().isAppOnForeground(context)==true){
-			Intent i = new Intent(context, HavaMoneyActivity.class);
-			i.putExtra("message",message);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
-			context.startActivity(i);
+			if(ActivityUtils.getInstance().getCurrentActivity()instanceof SmsActivity||ActivityUtils.getInstance().getCurrentActivity()instanceof LoginEmailActivity){
+			}else {
+				Intent i = new Intent(context, HavaMoneyActivity.class);
+				i.putExtra("message",message);
+				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+				context.startActivity(i);
+			}
 			return true ;
 		}else {
-			Intent i = new Intent(context, HavaMoneyActivity.class);
-			i.putExtra("message",message);
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
-			context.startActivity(i);
+			if(ActivityUtils.getInstance().getCurrentActivity()instanceof SmsActivity||ActivityUtils.getInstance().getCurrentActivity()instanceof LoginEmailActivity){
+			}else {
+				Intent i = new Intent(context, HavaMoneyActivity.class);
+				i.putExtra("message",message);
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+				context.startActivity(i);
+			}
 			return false ;
 		}
 	}
