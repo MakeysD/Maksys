@@ -117,9 +117,7 @@ public class GuanYuActivity extends BaseActivity {
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
                         if(response.body().getData().getLatestVersion()!=null){
-                            if(response.body().getData().getLatestVersion().equals(version)){
-                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi107),R.style.registDialog).show();
-                            }else {
+                            if(response.body().getData().getLatestVersion().compareTo(version)==1){
                                 path=response.body().getData().getPath().toString();
                                 //强制更新版本
                                 if(response.body().getData().getNeededUpdated().equals("1")){
@@ -147,9 +145,8 @@ public class GuanYuActivity extends BaseActivity {
                                         }
                                     }, R.style.registDialog).show();
                                 }
-                            /*Uri uri=Uri.parse(response.body().getData().getPath()+"");
-                            Intent intent=new Intent(Intent.ACTION_VIEW,uri);
-                            startActivity(intent);*/
+                            }else {
+                                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi107),R.style.registDialog).show();
                             }
                         }else {
                             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi107),R.style.registDialog).show();

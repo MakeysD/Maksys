@@ -821,9 +821,9 @@ public class MainActivity extends BaseActivity{
                         Log.i("dcz_1",response.body().getData().getLatestVersion()+"q");
                         Log.i("dcz_2",version+"q");
                         setdialog();//判断是否开启通知
+                        Log.i("dcz_比较当前版本与服务器",response.body().getData().getLatestVersion().compareTo(version)+"a");
                         if(response.body().getData().getLatestVersion()!=null){
-                            if(response.body().getData().getLatestVersion().equals(version)){
-                            }else {
+                            if(response.body().getData().getLatestVersion().compareTo(version)==1){
                                 path=response.body().getData().getPath().toString();
                                 //强制更新版本
                                 if(response.body().getData().getNeededUpdated().equals("1")){
