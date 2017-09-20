@@ -36,6 +36,7 @@ import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.AsterPassword;
 import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DSACoder;
@@ -100,9 +101,9 @@ public class LoginEmailActivity extends BaseActivity {
         ButterKnife.bind(this);
         JPushInterface.stopPush(getApplicationContext());
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
-        mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+        mima.setTransformationMethod(new AsterPassword());
         try {
-            content = ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+            content = ShebeiUtil.ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
             list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
             Log.i("dcz",list.toString());
         } catch (IOException e) {
@@ -195,7 +196,7 @@ public class LoginEmailActivity extends BaseActivity {
                 }else {
                     //替换成*号
                     // mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    mima.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+                    mima.setTransformationMethod(new AsterPassword());
                 }
             }
         });
@@ -297,49 +298,6 @@ public class LoginEmailActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-    }
-
-    public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
-        @Override
-        public CharSequence getTransformation(CharSequence source, View view) {
-            return new AsteriskPasswordTransformationMethod.PasswordCharSequence(source);
-        }
-
-        private class PasswordCharSequence implements CharSequence {
-            private CharSequence mSource;
-            public PasswordCharSequence(CharSequence source) {
-                mSource = source;
-            }
-            public char charAt(int index) {
-                return '*';
-            }
-            public int length() {
-                return mSource.length();
-            }
-            public CharSequence subSequence(int start, int end) {
-                return mSource.subSequence(start, end); // Return default
-            }
-        }
-    };
-
-    public static String ToString(InputStream is, String charset) {
-        StringBuilder sb = new StringBuilder();
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
-            while (true) {
-                String line = reader.readLine();
-                if (line == null) {
-                    break;
-                } else {
-                    sb.append(line).append("\n");
-                }
-            }
-            reader.close();
-            is.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
     }
 
     //关闭时解除监听器

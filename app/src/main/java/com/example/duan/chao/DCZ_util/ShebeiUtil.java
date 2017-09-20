@@ -10,6 +10,10 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -132,5 +136,25 @@ public class ShebeiUtil {
             state="0";
         }
         return state;
+    }
+
+    public static String ToString(InputStream is, String charset) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                } else {
+                    sb.append(line).append("\n");
+                }
+            }
+            reader.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 }
