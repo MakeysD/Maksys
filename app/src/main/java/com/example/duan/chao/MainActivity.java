@@ -695,6 +695,7 @@ public class MainActivity extends BaseActivity{
         if (cancellationSignal != null) {
             cancellationSignal.cancel();
         }
+        iv.setImageURI(null);
         super.onDestroy();
     }
 

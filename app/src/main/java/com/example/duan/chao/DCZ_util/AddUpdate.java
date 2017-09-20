@@ -39,7 +39,6 @@ public class AddUpdate implements Interceptor{
                 Response loginResponse = chain.proceed(loginRequest);
                 String loginString = loginResponse.body().string();
                 HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
-                Activity a = ActivityUtils.getInstance().getCurrentActivity();
                 if(resultLogin.getCode().equals("10500")){
                     Log.i("dcz","安全中心不可用");
                 }else if(resultLogin.getCode().equals("20000")) {

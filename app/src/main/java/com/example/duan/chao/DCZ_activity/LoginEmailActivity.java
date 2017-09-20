@@ -416,12 +416,12 @@ public class LoginEmailActivity extends BaseActivity {
             if (addresses.size() > 0) {
                 //返回当前位置，精度可调
                 Address address = addresses.get(0);
-                Log.i("dcz1",address.getCountryName());
+                Log.i("dcz1",address.getCountryName()+"z");
                 MyApplication.city=address.getCountryName();MyApplication.sf.edit().putString("city",address.getCountryName()).commit();
                 for(int i=0;i<list.size();i++){
                     if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_en()))){
-                        Log.i("dcz",list.get(i).getCountry_name_cn());
-                        Log.i("dcz",list.get(i).getCountry_code()+"");
+                        Log.i("dcz",list.get(i).getCountry_name_cn()+"z");
+                        Log.i("dcz",list.get(i).getCountry_code()+"z");
                         MyApplication.code=list.get(i).getCountry_code()+"";
                     }
                 }
