@@ -16,6 +16,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
+import com.example.duan.chao.R;
 
 import java.io.IOException;
 import java.util.List;
@@ -88,9 +90,31 @@ public class LocationUtils {
             Toast.makeText(context, "无法定位，请打开定位服务", Toast.LENGTH_SHORT).show();
             return false;
         }
-        String provider = mLocationManager.getBestProvider(getCriteria(), true);
+        /*String provider = mLocationManager.getBestProvider(getCriteria(), true);
+        Location location = mLocationManager.getLastKnownLocation(provider);*/
+
+        String provider = null;
+        //获取当前可用的位置控制器
+        List<String> list = mLocationManager.getProviders(true);
+        if (list.contains(LocationManager.NETWORK_PROVIDER)) {
+            //是否为网络位置控制器
+            provider = LocationManager.NETWORK_PROVIDER;
+            Log.i("dcz","网络位置控制器");
+        } else if (list.contains(LocationManager.GPS_PROVIDER)) {
+            //是否为GPS位置控制器
+            Log.i("dcz","GPS位置控制器");
+            provider = LocationManager.GPS_PROVIDER;
+        } else {
+            new MiddleDialog(context,context.getString(R.string.tishi71),R.style.registDialog).show();
+        }
         Location location = mLocationManager.getLastKnownLocation(provider);
-        if (location != null) listener.getLastKnownLocation(location);
+        if(location==null){
+            Log.i("dcz","location是空的");
+            new MiddleDialog(context,context.getString(R.string.tishi71),R.style.registDialog).show();
+        }else {
+            Log.i("dcz",location.toString());
+            listener.getLastKnownLocation(location);
+        }
         if (myLocationListener == null) myLocationListener = new MyLocationListener();
         mLocationManager.requestLocationUpdates(provider, minTime, minDistance, myLocationListener);
         return true;
@@ -124,7 +148,7 @@ public class LocationUtils {
         // 设置是否允许运营商收费
         criteria.setCostAllowed(false);
         //设置是否需要方位信息
-        criteria.setBearingRequired(false);
+        criteria.setBearingRequired(true);
         //设置是否需要海拔信息
         criteria.setAltitudeRequired(false);
         // 设置对电源的需求

@@ -112,8 +112,29 @@ public class LoginEmailActivity extends BaseActivity {
         ShebeiUtil.setEdNoChinaese(mima);
         ShebeiUtil.setEdit(phone);
         ShebeiUtil.setEdit(mima);
-
-        GPS();
+        LocationUtils.register(this, 10000, 10000, new LocationUtils.OnLocationChangeListener() {
+            @Override
+            public void getLastKnownLocation(Location location) {
+                Log.i("dcz3","getLastKnownLocation");
+                //获取当前位置，这里只用到了经纬度
+                String string = "纬度为：" + location.getLatitude() + ",经度为："
+                        + location.getLongitude();
+                Log.i("dcz",string);
+                try {
+                    getAddressFromLocation(location);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onLocationChanged(Location location) {
+                Log.i("dcz3","onLocationChanged");
+            }
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                Log.i("dcz3","onStatusChanged");
+            }
+        });
         setViews();
         setListener();
     }
@@ -321,7 +342,7 @@ public class LoginEmailActivity extends BaseActivity {
         return sb.toString();
     }
 
-    private void GPS() {
+  /*  private void GPS() {
         //获取定位服务
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         //获取当前可用的位置控制器
@@ -389,15 +410,13 @@ public class LoginEmailActivity extends BaseActivity {
             // TODO Auto-generated method stub
             // 更新当前经纬度
         }
-    };
+    };*/
     //关闭时解除监听器
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub
         super.onDestroy();
-        if (locationManager != null) {
-            locationManager.removeUpdates(locationListener);
-        }
+        LocationUtils.unregister();
     }
     /**
      * 根据经纬度解码地理位置
