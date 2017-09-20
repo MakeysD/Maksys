@@ -41,6 +41,7 @@ import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DSACoder;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.LocationUtils;
 import com.example.duan.chao.DCZ_util.NotificationsUtils;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.MainActivity;
@@ -350,7 +351,7 @@ public class LoginEmailActivity extends BaseActivity {
                     + location.getLongitude();
             Log.i("dcz",string);
             try {
-                getAddressFromLocation(this,location);
+                getAddressFromLocation(location);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -401,48 +402,24 @@ public class LoginEmailActivity extends BaseActivity {
     /**
      * 根据经纬度解码地理位置
      *
-     * @param activity
+     * @param
      * @param location
      * @return
      */
 
-    private void getAddressFromLocation(final Activity activity, Location location) throws IOException {
-        Geocoder geocoder = new Geocoder(activity);
-        try {
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-            //Log.d("dcz", "getAddressFromLocation->lat:" + latitude + ", long:" + longitude);
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
-                //返回当前位置，精度可调
-                Address address = addresses.get(0);
-                Log.i("dcz1",address.getCountryName()+"z");
-                if(address.getCountryName()!=null){
-                    MyApplication.city=address.getCountryName();MyApplication.sf.edit().putString("city",address.getCountryName()).commit();
-                }
-                for(int i=0;i<list.size();i++){
-                    if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_en()))){
-                        Log.i("dcz",list.get(i).getCountry_name_cn()+"z");
-                        Log.i("dcz",list.get(i).getCountry_code()+"z");
-                        MyApplication.code=list.get(i).getCountry_code()+"";
-                    }
-                }
-     /*           Log.i("dcz2",address.getFeatureName());
-                Log.i("dcz3",address.getSubLocality());
-                Log.i("dcz4",address.getAdminArea());
-                address.getCountryName();
-                String sAddress;
-                if (!TextUtils.isEmpty(address.getLocality())) {
-                    sAddress = address.getLocality();
-                } else {
-                    sAddress = "定位失败";
-                }
-                return sAddress;*/
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void getAddressFromLocation(Location location) throws IOException {
+        String address = LocationUtils.getCountryName(this, location.getLatitude(), location.getLongitude());
+        Log.i("dcz国家",address+"z");
+        if(address!=null&&!address.equals("unknown")){
+            MyApplication.city=address;MyApplication.sf.edit().putString("city",address).commit();
         }
-      //  return "空";
+        for(int i=0;i<list.size();i++){
+            if(MyApplication.city.equals(String.valueOf(list.get(i)))||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_en()))){
+                Log.i("dcz",list.get(i).getCountry_name_cn()+"z");
+                Log.i("dcz",list.get(i).getCountry_code()+"z");
+                MyApplication.code=list.get(i).getCountry_code()+"";
+            }
+        }
     }
     /***
      *  密码验证

@@ -558,7 +558,7 @@ public class SettingDataActivity extends BaseActivity {
         dialog.show();
         String[]  strs= tv_time.getText().toString().split("to");
         Log.i("dcz",strs[0]); Log.i("dcz",strs[1]);
-        HttpServiceClient.getInstance().UserInfo(photo1,photo2,photo3,tv_guo.getText().toString(),type,et_name.getText().toString(),et_number.getText().toString(),null,strs[0],strs[1]).enqueue(new Callback<LoginOkBean>() {
+        HttpServiceClient.getInstance().UserInfo(photo1,photo2,photo3,tv_guo.getText().toString(),type,et_name.getText().toString(),et_number.getText().toString(),null,strs[0].trim(),strs[1].trim()).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
