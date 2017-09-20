@@ -330,4 +330,76 @@ public class LocationUtils {
         }
         //  return "空";
     }
+    /**
+     *  Gps定位（有效代码）
+     * */
+     /*  private void GPS() {
+        //获取定位服务
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //获取当前可用的位置控制器
+        List<String> list = locationManager.getProviders(true);
+        if (list.contains(LocationManager.NETWORK_PROVIDER)) {
+            //是否为网络位置控制器
+            provider = LocationManager.NETWORK_PROVIDER;
+            Log.i("dcz","网络位置控制器");
+        } else if (list.contains(LocationManager.GPS_PROVIDER)) {
+            //是否为GPS位置控制器
+            Log.i("dcz","GPS位置控制器");
+            provider = LocationManager.GPS_PROVIDER;
+        } else {
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi71),R.style.registDialog).show();
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(provider);
+        if(location==null){
+            Log.i("dcz","location是空的");
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi71),R.style.registDialog).show();
+        }else {
+            Log.i("dcz",location.toString());
+        }
+        if (location != null) {
+            //获取当前位置，这里只用到了经纬度
+            String string = "纬度为：" + location.getLatitude() + ",经度为："
+                    + location.getLongitude();
+            Log.i("dcz",string);
+            try {
+                getAddressFromLocation(location);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //绑定定位事件，监听位置是否改变
+        //第一个参数为控制器类型第二个参数为监听位置变化的时间间隔（单位：毫秒）
+        //第三个参数为位置变化的间隔（单位：米）第四个参数为位置监听器
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.requestLocationUpdates(provider, 2000, 2, locationListener);
+    }
+    LocationListener locationListener = new LocationListener() {
+
+        @Override
+        public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onProviderEnabled(String arg0) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onProviderDisabled(String arg0) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onLocationChanged(Location arg0) {
+            // TODO Auto-generated method stub
+            // 更新当前经纬度
+        }
+    };*/
 }
