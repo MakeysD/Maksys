@@ -11,16 +11,26 @@ import com.example.duan.chao.DCZ_bean.NewsBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
 import com.example.duan.chao.DCZ_bean.StatusBean;
+import com.example.duan.chao.DCZ_bean.UserStateBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
 
 import java.io.File;
+import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 
 public interface InterfaceService {
     @GET("https://api.bincrea.com/app/free/getMultimediaList.do")
@@ -246,20 +256,29 @@ public interface InterfaceService {
                            @Field("uuid") String uuid,
                            @Field("nonce") String nonce,
                            @Field("sign") String sign);
+
     /**
      *  会员身份信息上传
      * */
+
+    @Multipart
+    @POST("userinfo/saveUserInfo")
+    Call<LoginBean> UserInfo(@Part MultipartBody.Part file,
+                               @Part MultipartBody.Part file2,
+                               @Part MultipartBody.Part file3,
+                               @Query("countryCode") String countryCode,
+                               @Query("certType") Integer certType,
+                               @Query("realName") String realName,
+                               @Query("certNum") String certNum,
+                               @Query("birthday") String birthday,
+                               @Query("validityStart") String validityStart,
+                               @Query("validityEnd") String validityEnd);
+
+    /**
+     *  会员信息审核状态
+     */
     @FormUrlEncoded
-    @POST("saveUserInfo")
-    Call<LoginOkBean> UserInfo(@Field("frontFile") File frontFile,
-                               @Field("reverseFile") File reverseFile,
-                               @Field("holdingFile")File holdingFile,
-                               @Field("countryCode") String countryCode,
-                               @Field("certType") Integer certType,
-                               @Field("realName") String realName,
-                               @Field("certNum") String certNum,
-                               @Field("birthday") String birthday,
-                               @Field("validityStart") String validityStart,
-                               @Field("validityEnd") String validityEnd);
+    @POST("userinfo/getUserInfoCertified")
+    Call<UserStateBean> userState(@Field("reqSysId") String reqSysId);
 
 }

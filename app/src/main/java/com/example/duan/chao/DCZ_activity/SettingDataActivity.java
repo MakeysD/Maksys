@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -29,8 +30,10 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.model.IPickerViewData;
+import com.example.duan.chao.DCZ_ImageUtil.CompressHelper;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.ProvinceBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
@@ -41,20 +44,32 @@ import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
+
 public class SettingDataActivity extends BaseActivity {
     private SettingDataActivity INSTANCE;
+    private static List<CityBean> list;
+    private String content;
     private Dialog dialog;
     private String type="1";    //1:正面，2：反面，3：手持
     private File photo1;
@@ -180,7 +195,22 @@ public class SettingDataActivity extends BaseActivity {
                         photo3!=null&&tv_guo.getText().length()>0&&
                         Type.getText().length()>0&&et_name.getText().length()>0&&
                         et_number.getText().length()>0&&tv_time.getText().length()>0){
-                    getData(getType(Type.getText().toString()));
+                    File x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
+                    File y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
+                    File z = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo3);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"),x);
+                    RequestBody requestBody2 = RequestBody.create(MediaType.parse("image/png"),y);
+                    RequestBody requestBody3 = RequestBody.create(MediaType.parse("image/png"),z);
+                    Log.i("dcz:photo压缩前大小：",photo1.length()/1024+"KB");
+                    Log.i("dcz:压缩后大小：",x.length()/1024+"KB");
+                    Log.i("dcz:photo压缩前大小：",photo2.length()/1024+"KB");
+                    Log.i("dcz:压缩后大小：",y.length()/1024+"KB");
+                    Log.i("dcz:photo压缩前大小：",photo3.length()/1024+"KB");
+                    Log.i("dcz:压缩后大小：",z.length()/1024+"KB");
+                    MultipartBody.Part a = MultipartBody.Part.createFormData("frontFile",x.getName(),requestBody);
+                    MultipartBody.Part b = MultipartBody.Part.createFormData("reverseFile",y.getName(),requestBody2);
+                    MultipartBody.Part c = MultipartBody.Part.createFormData("holdingFile",z.getName(),requestBody3);
+                    getData(getType(Type.getText().toString()),a,b,c,getCity());
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi119),R.style.registDialog).show();
                 }
@@ -298,6 +328,11 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onTimeSelect(Date date,Date date2) {
                 tv_time.setText(getTime(date2)+"   to  "+getTime(date));
+                if(date2.getTime()>=date.getTime()){
+                    tv_time.setTextColor(Color.RED);
+                }else {
+                    tv_time.setTextColor(Color.WHITE);
+                }
             }
         });
         //弹出时间选择器
@@ -550,17 +585,17 @@ public class SettingDataActivity extends BaseActivity {
     /***
      * 调取接口拿到服务器数据
      * */
-    public void getData(Integer type){
+    public void getData(Integer type,MultipartBody.Part x,MultipartBody.Part y,MultipartBody.Part z,String code){
         if(ShebeiUtil.wang(INSTANCE).equals("0")){
             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
             return;
         }
         dialog.show();
         String[]  strs= tv_time.getText().toString().split("to");
-        Log.i("dcz",strs[0]); Log.i("dcz",strs[1]);
-        HttpServiceClient.getInstance().UserInfo(photo1,photo2,photo3,tv_guo.getText().toString(),type,et_name.getText().toString(),et_number.getText().toString(),null,strs[0].trim(),strs[1].trim()).enqueue(new Callback<LoginOkBean>() {
+        Log.i("dcz",strs[0].trim()); Log.i("dcz",strs[1].trim());
+        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),"2018-08-08",strs[0].trim(),strs[1].trim()).enqueue(new Callback<LoginBean>() {
             @Override
-            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+            public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     if(response.body()!=null){
@@ -581,13 +616,27 @@ public class SettingDataActivity extends BaseActivity {
                 }
             }
             @Override
-            public void onFailure(Call<LoginOkBean> call, Throwable t) {
+            public void onFailure(Call<LoginBean> call, Throwable t) {
                 if(ActivityUtils.getInstance().getCurrentActivity() instanceof SettingDataActivity){
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
                 }
             }
         });
     }
+    /**
+     * 创建调用系统照相机待存储的临时文件
+     *
+     * @param savedInstanceState
+     */
+    private void createCameraTempFile(Bundle savedInstanceState) {
+        if (savedInstanceState != null && savedInstanceState.containsKey("tempFile")) {
+            tempFile = (File) savedInstanceState.getSerializable("tempFile");
+        } else {
+            tempFile = new File(checkDirPath(Environment.getExternalStorageDirectory().getPath() + "/image/"),
+                    System.currentTimeMillis() + ".jpg");
+        }
+    }
+
     private File getFile(Uri uri){
         String[] proj = { MediaStore.Images.Media.DATA };
         Cursor actualimagecursor = managedQuery(uri,proj,null,null,null);
@@ -607,5 +656,21 @@ public class SettingDataActivity extends BaseActivity {
             a=1;
         }
         return a;
+    }
+    private String getCity(){
+        String city=null;
+        try {
+            content = ShebeiUtil.ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+            list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+            Log.i("dcz",list.toString());
+            for(int i=0;i<list.size();i++){
+                if(tv_guo.getText().toString().equals(list.get(i).getCountry_name_cn())||tv_guo.getText().toString().equals(list.get(i).getCountry_name_en())){
+                    city=list.get(i).getAb();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return city;
     }
 }

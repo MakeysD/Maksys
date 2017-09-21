@@ -21,10 +21,13 @@ import butterknife.ButterKnife;
  * */
 public class PersonDataActivity extends BaseActivity {
     private PersonDataActivity INSTANCE;
+    private String state;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.button)
     TextView button;
+    @BindView(R.id.state_tv)
+    TextView tv_state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,7 @@ public class PersonDataActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
+        state=getIntent().getStringExtra("state");
         setViews();
         setListener();
     }
@@ -45,7 +49,15 @@ public class PersonDataActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
+        if(state.equals("1")){
+            tv_state.setText(INSTANCE.getString(R.string.tishi48));
+        }else if(state.equals("0")){
 
+        }else if(state.equals("2")){
+
+        }else {
+
+        }
     }
     /**
      *  监听
@@ -64,5 +76,18 @@ public class PersonDataActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void state0(){
+        
+    }
+    private void state1(){
+        tv_state.setText(INSTANCE.getString(R.string.tishi48));
+    }
+    private void state2(){
+
+    }
+    private void state3(){
+        tv_state.setText(INSTANCE.getString(R.string.tishi47));
     }
 }
