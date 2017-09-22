@@ -115,7 +115,7 @@ public class PersonDataActivity extends BaseActivity {
      * */
     private void state1(){
         iv.setVisibility(View.VISIBLE);iv.setImageResource(R.mipmap.shenfen_ok);
-        tv_state.setText(INSTANCE.getString(R.string.tishi48));tv_state.setTextColor(getResources().getColor(R.color.white));
+        tv_state.setText(INSTANCE.getString(R.string.tishi48));tv_state.setTextColor(getResources().getColor(R.color.text09));
         tv2.setVisibility(View.VISIBLE);tv2.setText(R.string.tishi48d);
         button.setVisibility(View.GONE);
     }
@@ -125,7 +125,7 @@ public class PersonDataActivity extends BaseActivity {
      * */
     private void state2(){
         iv.setVisibility(View.GONE);
-        tv_state.setText(INSTANCE.getString(R.string.tishi48h));tv_state.setTextColor(getResources().getColor(R.color.text_red));
+        tv_state.setText(INSTANCE.getString(R.string.tishi48b));tv_state.setTextColor(getResources().getColor(R.color.text_red));
         tv2.setVisibility(View.VISIBLE);tv2.setText(R.string.tishi48f);
         button.setVisibility(View.VISIBLE);button.setText(R.string.tishi48h);
     }
