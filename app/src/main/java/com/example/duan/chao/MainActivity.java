@@ -285,7 +285,7 @@ public class MainActivity extends BaseActivity{
 
     private void setdialog(){
         if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
-            new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi113),new MiddleDialog.onButtonCLickListener2() {
+            new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi113),true,new MiddleDialog.onButtonCLickListener2() {
                 @Override
                 public void onActivieButtonClick(Object bean, int po) {
                     if(bean==null){
@@ -298,7 +298,7 @@ public class MainActivity extends BaseActivity{
     }
     private void setCamera(){
         if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
-            new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi113),new MiddleDialog.onButtonCLickListener2() {
+            new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi113),true,new MiddleDialog.onButtonCLickListener2() {
                 @Override
                 public void onActivieButtonClick(Object bean, int po) {
                     if(bean==null){
@@ -322,7 +322,7 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi114),INSTANCE.getString(R.string.tishi113),new MiddleDialog.onButtonCLickListener2() {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi114),INSTANCE.getString(R.string.tishi113),true,new MiddleDialog.onButtonCLickListener2() {
                         @Override
                         public void onActivieButtonClick(Object bean, int po) {
                             if(bean==null){
@@ -416,7 +416,7 @@ public class MainActivity extends BaseActivity{
         rl6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi100),new MiddleDialog.onButtonCLickListener2() {
+                new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi100),true,new MiddleDialog.onButtonCLickListener2() {
                     @Override
                     public void onActivieButtonClick(Object bean, int po) {
                         if(bean==null){
@@ -817,13 +817,22 @@ public class MainActivity extends BaseActivity{
                         setdialog();//判断是否开启通知
                         Log.i("dcz_比较当前版本与服务器",response.body().getData().getLatestVersion().compareTo(version)+"a");
                         if(response.body().getData().getLatestVersion()!=null){
-                            if(response.body().getData().getLatestVersion().compareTo(version)==1){
+                            if(response.body().getData().getLatestVersion().compareTo(version)>0){
                                 path=response.body().getData().getPath().toString();
                                 //强制更新版本
                                 if(response.body().getData().getNeededUpdated().equals("1")){
-                                    down();
+                                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),false,new MiddleDialog.onButtonCLickListener2() {
+                                        @Override
+                                        public void onActivieButtonClick(Object bean, int po) {
+                                            if(bean==null){
+                                                ActivityUtils.getInstance().popAllActivities();
+                                            }else {
+                                                down();
+                                            }
+                                        }
+                                    }, R.style.registDialog).show();
                                 }else {
-                                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),new MiddleDialog.onButtonCLickListener2() {
+                                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.system_download_description),INSTANCE.getString(R.string.tishi118)+response.body().getData().getLatestVersion(),true,new MiddleDialog.onButtonCLickListener2() {
                                         @Override
                                         public void onActivieButtonClick(Object bean, int po) {
                                             if(bean==null){

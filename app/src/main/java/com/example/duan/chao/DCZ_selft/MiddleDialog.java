@@ -63,7 +63,7 @@ public class MiddleDialog<E> extends Dialog {
      *     确认与取消
      *
      * */
-    public MiddleDialog(Context context, String tv_ok,String content, final onButtonCLickListener2<E> listener, int theme) {
+    public MiddleDialog(Context context, String tv_ok, String content, final Boolean type, final onButtonCLickListener2<E> listener, int theme) {
         super(context, theme);
         view = View.inflate(context, R.layout.dialog_middle2, null);
         setContentView(view);
@@ -77,7 +77,9 @@ public class MiddleDialog<E> extends Dialog {
         view.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {//取消
             @Override
             public void onClick(View v) {
-                dismiss();
+                if(type==true){
+                    dismiss();
+                }
                 listener2.onActivieButtonClick("1", position);
             }
         });

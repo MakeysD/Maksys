@@ -209,7 +209,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi85),new MiddleDialog.onButtonCLickListener2() {
+                            new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi85),true,new MiddleDialog.onButtonCLickListener2() {
                                 @Override
                                 public void onActivieButtonClick(Object bean, int po) {
                                     ActivityUtils.getInstance().popAllActivities();

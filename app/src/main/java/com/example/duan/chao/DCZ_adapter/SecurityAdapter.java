@@ -79,7 +79,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(boo==true){      //是true才可以点击弹框
                         if(isChecked==false){
-                        new MiddleDialog(context,null,context.getString(R.string.tishi105)+list.get(position).getSystemName()+context.getString(R.string.tishi106),new MiddleDialog.onButtonCLickListener2() {
+                        new MiddleDialog(context,null,context.getString(R.string.tishi105)+list.get(position).getSystemName()+context.getString(R.string.tishi106),true,new MiddleDialog.onButtonCLickListener2() {
                             @Override
                             public void onActivieButtonClick(Object bean, int po) {
                                 if(bean==null){
@@ -91,7 +91,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                             }
                         }, R.style.registDialog).show();
                     }else {
-                        new MiddleDialog(context,null,context.getString(R.string.tishi105a)+list.get(position).getSystemName()+context.getString(R.string.tishi106),new MiddleDialog.onButtonCLickListener2() {
+                        new MiddleDialog(context,null,context.getString(R.string.tishi105a)+list.get(position).getSystemName()+context.getString(R.string.tishi106),true,new MiddleDialog.onButtonCLickListener2() {
                             @Override
                             public void onActivieButtonClick(Object bean, int po) {
                                 if(bean==null){
