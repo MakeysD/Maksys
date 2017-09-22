@@ -1,6 +1,7 @@
 package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -127,13 +128,7 @@ public class GuanYuActivity extends BaseActivity {
                                             if(bean==null){
                                                 ActivityUtils.getInstance().popAllActivities();
                                             }else {
-                                                UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
-                                                        .setTitle(getResources().getString(R.string.app_name))
-                                                        .setDescription(getString(R.string.system_download_description))
-                                                        .setFileUrl(path)
-                                                        .setCanMediaScanner(true)
-                                                        .build();
-                                                Updater.get().showLog(true).download(config);
+                                                down();
                                             }
                                         }
                                     }, R.style.registDialog).show();
@@ -143,13 +138,7 @@ public class GuanYuActivity extends BaseActivity {
                                         public void onActivieButtonClick(Object bean, int po) {
                                             if(bean==null){
                                             }else {
-                                                UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
-                                                        .setTitle(getResources().getString(R.string.app_name))
-                                                        .setDescription(getString(R.string.system_download_description))
-                                                        .setFileUrl(path)
-                                                        .setCanMediaScanner(true)
-                                                        .build();
-                                                Updater.get().showLog(true).download(config);
+                                               down();
                                             }
                                         }
                                     }, R.style.registDialog).show();
@@ -185,6 +174,19 @@ public class GuanYuActivity extends BaseActivity {
         super.onBackPressed();
         Log.i("dcz","按下了返回键");
         ActivityUtils.getInstance().popActivity(this);
+    }
+
+    private void down(){
+        UpdaterConfig config = new UpdaterConfig.Builder(INSTANCE)
+                .setTitle(getResources().getString(R.string.app_name))
+                .setDescription(getString(R.string.system_download_description))
+                .setFileUrl(path)
+                .setCanMediaScanner(true)
+                .build();
+        Updater.get().showLog(true).download(config);
+        Intent viewDownloadIntent = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
+        viewDownloadIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        INSTANCE.startActivity(viewDownloadIntent);
     }
 
 }

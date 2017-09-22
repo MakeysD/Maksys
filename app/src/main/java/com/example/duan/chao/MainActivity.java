@@ -3,6 +3,7 @@ package com.example.duan.chao;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -870,6 +871,9 @@ public class MainActivity extends BaseActivity{
                 .setCanMediaScanner(true)
                 .build();
         Updater.get().showLog(true).download(config);
+        Intent viewDownloadIntent = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
+        viewDownloadIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        INSTANCE.startActivity(viewDownloadIntent);
     }
     private class timeThread extends Thread {
         @Override
