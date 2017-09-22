@@ -204,7 +204,7 @@ public class SettingDataActivity extends BaseActivity {
                 if(photo1!=null&&photo2!=null&&
                         photo3!=null&&tv_guo.getText().length()>0&&
                         Type.getText().length()>0&&et_name.getText().length()>0&&
-                        et_number.getText().length()>0&&tv_time.getText().length()>0){
+                        et_number.getText().length()>0&&tv_time.getText().length()>0&&birthday.getText().length()>0){
                     File x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
                     File y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
                     File z = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo3);
@@ -648,7 +648,7 @@ public class SettingDataActivity extends BaseActivity {
         dialog.show();
         String[]  strs= tv_time.getText().toString().split("to");
         Log.i("dcz",strs[0].trim()); Log.i("dcz",strs[1].trim());
-        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),"2018-08-08",strs[0].trim(),strs[1].trim()).enqueue(new Callback<LoginBean>() {
+        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),birthday.getText().toString(),strs[0].trim(),strs[1].trim()).enqueue(new Callback<LoginBean>() {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();
