@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
+import com.bigkoo.pickerview.jia.TimePickerView2;
 import com.bigkoo.pickerview.model.IPickerViewData;
 import com.example.duan.chao.DCZ_ImageUtil.CompressHelper;
 import com.example.duan.chao.DCZ_application.MyApplication;
@@ -89,6 +90,7 @@ public class SettingDataActivity extends BaseActivity {
     //请求截图
     private static final int REQUEST_CROP_PHOTO = 102;
     TimePickerView pvTime;
+    TimePickerView2 pvTime2;
     OptionsPickerView pvOptions;
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
     @BindView(R.id.back)
@@ -119,6 +121,12 @@ public class SettingDataActivity extends BaseActivity {
     TextView xian4;
     @BindView(R.id.xian5)
     TextView xian5;
+    @BindView(R.id.ll6)
+    LinearLayout ll6;       //生日选择
+    @BindView(R.id.birthday)
+    TextView birthday;
+    @BindView(R.id.xian6)
+    TextView xian6;
     @BindView(R.id.et_name)
     TextView et_name;
     @BindView(R.id.et_number)
@@ -152,7 +160,8 @@ public class SettingDataActivity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
-        tv_guo.setText(MyApplication.city);
+        ShebeiUtil.setEdNoChinaese(et_number);
+        tv_guo.setText(MyApplication.city);tv_guo.setTextColor(Color.WHITE);
         if(MyApplication.language.equals("ENGLISH")){
             zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
             fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
@@ -177,6 +186,7 @@ public class SettingDataActivity extends BaseActivity {
     private void setViews() {
         setTime();
         setPicker();
+        setBirthday();
     }
     /**
      *  监听
@@ -351,6 +361,38 @@ public class SettingDataActivity extends BaseActivity {
             }
         });
     }
+
+    private void setBirthday(){
+        //时间选择器
+        pvTime2 = new TimePickerView2(this, TimePickerView2.Type.YEAR_MONTH_DAY);
+        pvTime2.setTime(new Date());
+        pvTime2.setCyclic(true);
+        pvTime2.setCancelable(true);
+        //时间选择后回调
+        pvTime2.setOnTimeSelectListener(new TimePickerView2.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date) {
+                birthday.setText(getTime(date));
+                birthday.setTextColor(Color.WHITE);
+            }
+        });
+        birthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type6();
+                pvTime2.show();
+            }
+        });
+        //弹出时间选择器
+        ll6.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                type6();
+            }
+        });
+    }
+
     private void setPicker(){
         //选项选择器
         pvOptions = new OptionsPickerView(this);
@@ -374,7 +416,7 @@ public class SettingDataActivity extends BaseActivity {
             public void onOptionsSelect(int options1, int option2, int options3) {
                 //返回的分别是三个级别的选中位置
                 String tx = options1Items.get(options1).getPickerViewText();
-                Type.setText(tx);
+                Type.setText(tx);Type.setTextColor(Color.WHITE);
 
             }
         });
@@ -404,6 +446,7 @@ public class SettingDataActivity extends BaseActivity {
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
+        xian6.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type2(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -411,6 +454,7 @@ public class SettingDataActivity extends BaseActivity {
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
+        xian6.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type3(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -418,6 +462,7 @@ public class SettingDataActivity extends BaseActivity {
         xian3.setBackgroundColor(Color.parseColor("#0581c6"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
+        xian6.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type4(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -425,6 +470,7 @@ public class SettingDataActivity extends BaseActivity {
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#0581c6"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
+        xian6.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type5(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -432,6 +478,15 @@ public class SettingDataActivity extends BaseActivity {
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#0581c6"));
+        xian6.setBackgroundColor(Color.parseColor("#343436"));
+    }
+    private void type6(){
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+        xian6.setBackgroundColor(Color.parseColor("#0581c6"));
     }
     public static void verifyStoragePermissions(Activity activity) {
         try {

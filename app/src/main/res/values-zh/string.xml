@@ -297,6 +297,11 @@
     <string name="tishi117">更新</string>
     <string name="tishi118">发现最新版本：</string>
     <string name="tishi119">请填写完整信息</string>
+    <string name="tishi120">出生日期</string>
+    <string name="tishi121">选择出生日期</string>
+    <string name="tishi122">选择有效期</string>
+    <string name="tishi123">选择证件</string>
+    <string name="tishi124">选择地区</string>
 
 
     <string name="code1">成功</string><!--20000-->

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.jia.TimePickerView2;
 import com.bigkoo.pickerview.view.BasePickerView;
 import com.bigkoo.pickerview.view.WheelTime;
 
@@ -17,6 +18,8 @@ import java.util.Date;
  * Created by Sai on 15/11/22.
  */
 public class TimePickerView extends BasePickerView implements View.OnClickListener {
+
+
     public enum Type {
         ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN , YEAR_MONTH
     }// 四种选择模式，年月日时分，年月日，时分，月日时分

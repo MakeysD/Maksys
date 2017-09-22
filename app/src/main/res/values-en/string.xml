@@ -278,6 +278,11 @@
     <string name="tishi117">updata</string>
     <string name="tishi118">latest verision</string>
     <string name="tishi119">please complete the information</string>
+    <string name="tishi120">birthday</string>
+    <string name="tishi121">select birthday</string>
+    <string name="tishi122">valid date</string>
+    <string name="tishi123">ID</string>
+    <string name="tishi124">region</string>
 
 
     <string name="code1">succeed</string><!--20000-->

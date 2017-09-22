@@ -91,10 +91,12 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:gravity="center"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="10dp"
+                            android:text="@string/tishi124"
                             android:paddingLeft="17dp"
                             android:singleLine="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text02"
                             android:textSize="@dimen/text01"
                             android:textStyle="bold" />
 
@@ -144,10 +146,12 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:gravity="center_vertical"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="10dp"
+                            android:text="@string/tishi123"
                             android:paddingLeft="17dp"
                             android:singleLine="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text02"
                             android:textSize="@dimen/text01"
                             android:textStyle="bold" />
 
@@ -288,6 +292,61 @@
                         android:layout_marginTop="15dp"
                         android:background="@color/xian1" />
                     <LinearLayout
+                        android:id="@+id/ll6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"
+                            android:src="@mipmap/login1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tishi120"
+                            android:textColor="@color/text04"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/birthday"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="10dp"
+                            android:text="@string/tishi121"
+                            android:paddingLeft="17dp"
+                            android:singleLine="true"
+                            android:textColor="@color/text02"
+                            android:textSize="@dimen/text01"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@mipmap/you" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/xian6"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/xian"
+                        android:layout_marginLeft="@dimen/left"
+                        android:layout_marginRight="@dimen/right"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/xian1" />
+                    <LinearLayout
                         android:id="@+id/time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -328,10 +387,12 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:gravity="center_vertical"
+                            android:text="@string/tishi122"
+                            android:paddingRight="10dp"
+                            android:gravity="center_vertical|right"
                             android:paddingLeft="17dp"
                             android:singleLine="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text02"
                             android:textSize="@dimen/text01"
                             android:textStyle="bold" />
 

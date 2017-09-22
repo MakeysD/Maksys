@@ -170,8 +170,6 @@ public class ZhangHuSercurityActivity extends BaseActivity {
                             Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
                             intent.putExtra("state",response.body().getData().getCode());
                             startActivity(intent);
-                           /* Intent intent=new Intent(INSTANCE,SettingDataActivity.class);
-                            startActivity(intent);*/
                         }else {
                             if(!response.body().getCode().equals("20003")){
                                 new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
