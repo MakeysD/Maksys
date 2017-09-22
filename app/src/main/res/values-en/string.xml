@@ -137,6 +137,8 @@
     <string name="tishi4a">confirm new password</string>
     <string name="tishi5">lowest security</string>
     <string name="tishi6">Please change the password in time</string>
+    <string name="tishi5a">Password security</string>
+    <string name="tishi6a">higher security\nplease keep it  and update it regularly</string>
     <string name="tishi7">change login password</string>
     <string name="tishi8">change payment password</string>
     <string name="tishi8a">reset payment password </string>

@@ -170,6 +170,8 @@ public class ZhangHuSercurityActivity extends BaseActivity {
                             Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
                             intent.putExtra("state",response.body().getData().getCode());
                             startActivity(intent);
+                           /* Intent intent=new Intent(INSTANCE,SettingDataActivity.class);
+                            startActivity(intent);*/
                         }else {
                             if(!response.body().getCode().equals("20003")){
                                 new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
@@ -184,7 +186,7 @@ public class ZhangHuSercurityActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<UserStateBean> call, Throwable t) {
-                if(ActivityUtils.getInstance().getCurrentActivity() instanceof SettingDataActivity){
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof ZhangHuSercurityActivity){
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
                 }
             }

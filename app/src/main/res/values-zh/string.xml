@@ -156,6 +156,8 @@
     <string name="tishi4a">请确认新支付密码</string>
     <string name="tishi5">账户存在严重风险</string>
     <string name="tishi6">请尽快修改密码</string>
+    <string name="tishi5a">密码安全</string>
+    <string name="tishi6a">账户密码安全等级较高\n请继续保持,并定期更新密码</string>
     <string name="tishi7">修改登录密码</string>
     <string name="tishi8">修改支付密码</string>
     <string name="tishi8a">重置支付密码</string>
