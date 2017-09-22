@@ -600,7 +600,7 @@ public class SettingDataActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            Intent intent=new Intent(INSTANCE,SettingDataResultActivity.class);
+                            Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
                             startActivity(intent);
                             ActivityUtils.getInstance().popActivity(INSTANCE);
                         }else {

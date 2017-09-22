@@ -86,7 +86,8 @@
         <activity android:name=".DCZ_activity.ChangePasswordActivity" />
         <activity android:name=".DCZ_activity.SecurityPhoneActivity" />
         <activity android:name=".DCZ_activity.SecurityEmailActivity" />
-        <activity android:name=".DCZ_activity.PersonDataActivity" />
+        <activity android:name=".DCZ_activity.PersonDataActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".DCZ_activity.SuohaoActivity" />
         <activity android:name=".DCZ_activity.EquipmentManageActivity" />
         <activity android:name=".DCZ_activity.OperationRecordActivity" />
@@ -238,7 +239,6 @@
         <activity android:name=".DCZ_activity.LanguageActivity" />
         <activity android:name=".DCZ_activity.HaveScanActivity" />
         <activity android:name=".DCZ_activity.HavaMoneyActivity" />
-        <activity android:name=".DCZ_activity.SettingDataResultActivity" />
         <activity android:name=".DCZ_activity.LookPayPasswordActivity" />
         <activity android:name=".DCZ_activity.LoginEmailActivity" />
         <activity android:name=".DCZ_activity.LookPassword2Activity" />

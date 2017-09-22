@@ -209,7 +209,15 @@
     <string name="tishi45">请再次输入密码</string>
     <string name="tishi46">立即设置</string>
     <string name="tishi47">暂未设置实名信息</string>
-    <string name="tishi48">已设置实名信息</string>
+    <string name="tishi48">实名信息已设置</string>
+    <string name="tishi48a">资料已提交</string>
+    <string name="tishi48b">实名认证失败</string>
+    <string name="tishi48c">认证完成</string>
+    <string name="tishi48d">实名信息认证后无法更改</string>
+    <string name="tishi48e">请耐心等待后台工作人员审核</string>
+    <string name="tishi48f">未按要求上传请按图比例要求重新上传</string>
+    <string name="tishi48g">恭喜你资料通过实名审核</string>
+    <string name="tishi48h">重新认证</string>
     <string name="tishi49">更换</string>
     <string name="tishi50">当前绑定的安全邮箱</string>
     <string name="tishi51">如果当前手机已换号，请及时更换</string>

@@ -28,6 +28,7 @@
     <color name="text06">#303030</color><!--列表项标题-->
     <color name="text07">#a2a2a2</color><!--列表项内容-->
     <color name="text08">#ffffff</color><!--输入框输入的内容-->
+    <color name="text09">#41a350</color><!--输入框输入的内容-->
 
     <color name="text_lv">#9fd1f7</color>
     <color name="text_red">#db4739</color>

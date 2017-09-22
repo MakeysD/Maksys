@@ -191,6 +191,14 @@
     <string name="tishi46">set now</string>
     <string name="tishi47">unset personal information</string>
     <string name="tishi48">personal information set</string>
+    <string name="tishi48a">submit </string>
+    <string name="tishi48b">real-name authentication failed</string>
+    <string name="tishi48c">authenticated finished</string>
+    <string name="tishi48d">real-name authentication can\'t change after authenticated</string>
+    <string name="tishi48e">we will inform you after approving</string>
+    <string name="tishi48f">Please upload the image  according to the  requirement</string>
+    <string name="tishi48g">approved</string>
+    <string name="tishi48h">reauthentication</string>
     <string name="tishi49">change</string>
     <string name="tishi50">email </string>
     <string name="tishi51">If the current phone number is invalid, please change it in time </string>
