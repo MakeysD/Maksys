@@ -321,7 +321,6 @@ public class SettingDataActivity extends BaseActivity {
                 x3.setVisibility(View.GONE);
             }
         });
-
     }
 
     private void setTime(){

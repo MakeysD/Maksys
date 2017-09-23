@@ -28,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by duan on 2017/6/16.
  */
@@ -85,6 +87,10 @@ public class BaseActivity extends Activity{
         ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
         ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
         String currentPackageName = cn.getPackageName();
+        if(ActivityUtils.getInstance().getCurrentActivity()instanceof LoginEmailActivity||ActivityUtils.getInstance().getCurrentActivity()instanceof SmsActivity){
+        }else {
+            JPushInterface.onResume(this);
+        }
         if(getClass().getSimpleName().contains("StartLock")||getClass().getSimpleName().contains("Zhiwen")){
             Log.i("dcz","当前是解锁页面");
         }else {
