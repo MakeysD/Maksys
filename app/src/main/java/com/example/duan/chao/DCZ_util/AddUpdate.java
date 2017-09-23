@@ -1,12 +1,18 @@
 package com.example.duan.chao.DCZ_util;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
+import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
+import com.example.duan.chao.DCZ_activity.HaveScanActivity;
+import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HttpBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.MainActivity;
+import com.example.duan.chao.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -48,7 +54,13 @@ public class AddUpdate implements Interceptor{
                     MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     //下线通知
-                    MainActivity.mHandler.sendEmptyMessage(1);
+                    if(ActivityUtils.getInstance().getCurrentActivity()instanceof HaveScanActivity){
+                       HaveScanActivity.mHandler2.sendEmptyMessage(1);
+                    }else if(ActivityUtils.getInstance().getCurrentActivity()instanceof HavaMoneyActivity){
+                        HavaMoneyActivity.mHandler2.sendEmptyMessage(1);
+                    }else {
+                        MainActivity.mHandler.sendEmptyMessage(1);
+                    }
                 }
             }
         }

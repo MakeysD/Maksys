@@ -7,22 +7,18 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
-import com.example.duan.chao.DCZ_activity.HaveActivity;
 import com.example.duan.chao.DCZ_activity.HaveScanActivity;
-import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_activity.SmsActivity;
 import com.example.duan.chao.DCZ_activity.StartLockActivity;
 import com.example.duan.chao.DCZ_activity.ZhiwenActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HaveBean;
-import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.MainActivity;
@@ -235,47 +231,48 @@ public class MyReceiver extends BroadcastReceiver {
 	/**
 	 * 	下线页面
 	 * */
-	private boolean xiaxian (Context context,String time) {
+	private void xiaxian (Context context,String time) {
 		Activity a = ActivityUtils.getInstance().getCurrentActivity();
 		Log.i("dcz在前台",a.toString());
-		//判断APP是否在前台
-		if(ActivityUtils.getInstance().isAppOnForeground(context)==true){
-			new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
-				@Override
-				public void onActivieButtonClick(Object bean, int position) {
-					JPushInterface.clearAllNotifications(MyApplication.getContext());
-					MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
-					MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
-					MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
-					if(bean==null){
-						ActivityUtils.getInstance().popAllActivities();
-					}else {
-						processCustomMessage(MyApplication.getContext(), bundle);
-					}
-
-				}
-			}, R.style.registDialog).show();
-			return true ;
+		if(ActivityUtils.getInstance().getCurrentActivity()instanceof SmsActivity){
 		}else {
-			Intent i = new Intent(context,a.getClass());
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			context.startActivity(i);
-			new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
-				@Override
-				public void onActivieButtonClick(Object bean, int position) {
-					JPushInterface.clearAllNotifications(MyApplication.getContext());
-					MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
-					MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
-					MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
-					if(bean==null){
-						ActivityUtils.getInstance().popAllActivities();
-					}else {
-						processCustomMessage(MyApplication.getContext(), bundle);
-					}
+			//判断APP是否在前台
+			if(ActivityUtils.getInstance().isAppOnForeground(context)==true){
+				new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
+					@Override
+					public void onActivieButtonClick(Object bean, int position) {
+						JPushInterface.clearAllNotifications(MyApplication.getContext());
+						MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+						MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
+						MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
+						if(bean==null){
+							ActivityUtils.getInstance().popAllActivities();
+						}else {
+							processCustomMessage(MyApplication.getContext(), bundle);
+						}
 
-				}
-			}, R.style.registDialog).show();
-			return false ;
+					}
+				}, R.style.registDialog).show();
+			}else {
+				Intent i = new Intent(context,a.getClass());
+				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+				context.startActivity(i);
+				new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
+					@Override
+					public void onActivieButtonClick(Object bean, int position) {
+						JPushInterface.clearAllNotifications(MyApplication.getContext());
+						MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
+						MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
+						MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
+						if(bean==null){
+							ActivityUtils.getInstance().popAllActivities();
+						}else {
+							processCustomMessage(MyApplication.getContext(), bundle);
+						}
+
+					}
+				}, R.style.registDialog).show();
+			}
 		}
 	}
 

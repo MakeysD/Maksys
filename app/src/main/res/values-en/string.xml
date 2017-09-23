@@ -201,6 +201,7 @@
     <string name="tishi48f">Please upload the image  according to the  requirement</string>
     <string name="tishi48g">approved</string>
     <string name="tishi48h">reauthentication</string>
+    <string name="tishi48i">valid ID</string>
     <string name="tishi49">change</string>
     <string name="tishi50">email </string>
     <string name="tishi51">If the current phone number is invalid, please change it in time </string>
@@ -283,6 +284,9 @@
     <string name="tishi122">valid date</string>
     <string name="tishi123">ID</string>
     <string name="tishi124">region</string>
+    <string name="tishi125">ID card</string>
+    <string name="tishi126">passport</string>
+    <string name="tishi127">drive license</string>
 
 
     <string name="code1">succeed</string><!--20000-->

@@ -397,10 +397,10 @@ public class SettingDataActivity extends BaseActivity {
         //选项选择器
         pvOptions = new OptionsPickerView(this);
         //选项1
-        options1Items.add(new ProvinceBean(0,"身份证","",""));
-        options1Items.add(new ProvinceBean(1,"护照","",""));
+        options1Items.add(new ProvinceBean(0,INSTANCE.getString(R.string.tishi125),"",""));
+        options1Items.add(new ProvinceBean(1,INSTANCE.getString(R.string.tishi126),"",""));
        // options1Items.add(new ProvinceBean(3,"港澳通行证","",""));
-        options1Items.add(new ProvinceBean(4,"驾驶证","",""));
+        options1Items.add(new ProvinceBean(4,INSTANCE.getString(R.string.tishi127),"",""));
         //三级联动效果
         pvOptions.setPicker(options1Items);
         //设置选择的三级单位

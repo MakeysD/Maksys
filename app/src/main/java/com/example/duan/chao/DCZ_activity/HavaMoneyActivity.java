@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -62,6 +63,27 @@ public class HavaMoneyActivity extends BaseActivity {
     ImageView iv5;
     @BindView(R.id.iv6)
     ImageView iv6;
+    public static Handler mHandler2 ;
+    private void initHandler2(){
+        //下线通知
+        mHandler2 = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 1:
+                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.tishi115),"",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }, R.style.registDialog).show();
+                        break;
+                }
+            }
+        };
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +97,8 @@ public class HavaMoneyActivity extends BaseActivity {
         result = mGson.fromJson(message, HaveBean.class);
         setViews();
         setListener();
+        initHandler();
+        initHandler2();//下线通知
     }
 
     public static Handler mHandler ;

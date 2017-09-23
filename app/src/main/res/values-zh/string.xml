@@ -220,6 +220,7 @@
     <string name="tishi48f">未按要求上传请按图比例要求重新上传</string>
     <string name="tishi48g">恭喜你资料通过实名审核</string>
     <string name="tishi48h">重新认证</string>
+    <string name="tishi48i">个人有效证件</string>
     <string name="tishi49">更换</string>
     <string name="tishi50">当前绑定的安全邮箱</string>
     <string name="tishi51">如果当前手机已换号，请及时更换</string>
@@ -302,6 +303,10 @@
     <string name="tishi122">选择有效期</string>
     <string name="tishi123">选择证件</string>
     <string name="tishi124">选择地区</string>
+    <string name="tishi125">身份证</string>
+    <string name="tishi126">护照</string>
+    <string name="tishi127">驾驶证</string>
+
 
 
     <string name="code1">成功</string><!--20000-->
