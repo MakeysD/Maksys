@@ -13,8 +13,10 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 
@@ -63,7 +65,15 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData((long) list.get(position).getId(),position);
+                String random= RandomUtil.RandomNumber();
+                String str ="id="+(long)list.get(position).getId()+"&nonce="+random;
+                byte[] data = str.getBytes();
+                try {
+                    String sign = DSA.sign(data, MyApplication.pri_key);
+                    getData((long) list.get(position).getId(),position,random,sign);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -96,14 +106,14 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
     /***
      * 调取接口拿到服务器数据
      * */
-    public void getData(Long id, final int postion){
+    public void getData(Long id, final int postion,String ran,String sign){
         if(ShebeiUtil.wang(context).equals("0")){
             new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
             return;
         }
         dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
         dialog.show();
-        HttpServiceClient.getInstance().deleteEquipent(id).enqueue(new Callback<EquipmentBean>() {
+        HttpServiceClient.getInstance().deleteEquipent(id,ran,sign).enqueue(new Callback<EquipmentBean>() {
             @Override
             public void onResponse(Call<EquipmentBean> call, Response<EquipmentBean> response) {
                 dialog.dismiss();

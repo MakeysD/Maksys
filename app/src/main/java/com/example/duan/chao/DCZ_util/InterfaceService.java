@@ -159,7 +159,9 @@ public interface InterfaceService {
      */
     @FormUrlEncoded
     @POST("device/delete")
-    Call<EquipmentBean> deleteEquipent(@Field("id") Long id);
+    Call<EquipmentBean> deleteEquipent(@Field("id") Long id,
+                                       @Field("nonce") String nonce,
+                                       @Field("sign") String sign);
 
     /**
      *  刷新Token

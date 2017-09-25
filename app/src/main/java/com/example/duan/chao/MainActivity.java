@@ -210,6 +210,7 @@ public class MainActivity extends BaseActivity{
         };
     }
     private void setViews() {
+        iv.setImageURI(null);
         // 获取packagemanager的实例  
         PackageManager packageManager = getPackageManager();
         // getPackageName()是你当前类的包名，0代表是获取版本信息  

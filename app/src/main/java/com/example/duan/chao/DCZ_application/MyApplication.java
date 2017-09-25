@@ -95,7 +95,9 @@ public class MyApplication extends Application{
         Log.i("dcz_first",first+"");
 
         Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));
+        Log.i("dcz_设备ID2",ShebeiUtil.getUniquePsuedoID());
         Log.i("dcz_设备md5", DSA.md5(ShebeiUtil.getDeviceId(this)));
+        Log.i("dcz_设备md52",DSA.md5(ShebeiUtil.getUniquePsuedoID()));
         Log.i("dcz_设备型号",ShebeiUtil.getPhoneModel());
         Log.i("dcz_手机品牌",ShebeiUtil.getPhoneBrand());
         Log.i("dcz_手机版本",ShebeiUtil.getSystemVersion());

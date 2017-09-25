@@ -2,6 +2,8 @@ package com.example.duan.chao.DCZ_util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.os.Build;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -14,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,10 +37,49 @@ public class ShebeiUtil {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String deviceId = tm.getDeviceId();
         if (deviceId == null) {
-            return "";
+            deviceId = Settings.Secure.getString(context.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+            if(deviceId==null){
+                return "";
+            }else {
+                return deviceId;
+            }
         } else {
             return deviceId;
         }
+    }
+
+    /**
+     *  获得独一无二的Psuedo ID
+     */
+
+    public static String getUniquePsuedoID() {
+        String serial = null;
+
+        String m_szDevIDShort = "35" +
+                Build.BOARD.length()%10+ Build.BRAND.length()%10 +
+
+                Build.CPU_ABI.length()%10 + Build.DEVICE.length()%10 +
+
+                Build.DISPLAY.length()%10 + Build.HOST.length()%10 +
+
+                Build.ID.length()%10 + Build.MANUFACTURER.length()%10 +
+
+                Build.MODEL.length()%10 + Build.PRODUCT.length()%10 +
+
+                Build.TAGS.length()%10 + Build.TYPE.length()%10 +
+
+                Build.USER.length()%10 ; //13 位
+
+        try {
+            serial = android.os.Build.class.getField("SERIAL").get(null).toString();
+            //API>=9 使用serial号
+            return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
+        } catch (Exception exception) {
+            //serial需要一个初始化
+            serial = "serial"; // 随便一个初始化
+        }
+        //使用硬件信息拼凑出来的15位号码
+        return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
     }
     /**
      * 限制edittext 不能输入中文

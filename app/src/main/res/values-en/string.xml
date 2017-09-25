@@ -330,6 +330,7 @@
     <string name="code39">please login Makeys APP first</string><!--10512-->
     <string name="code40">original payment password error</string><!--10513-->
     <string name="code41">original login password error</string><!--10514-->
+    <string name="code42">Unauthorized equipment</string><!--10516-->
 
     <string name="data0">unknown type</string>
     <string name="data1">login</string>

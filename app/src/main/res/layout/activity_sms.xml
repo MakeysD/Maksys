@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="@string/tishi10"
-            android:maxLength="8"
+            android:maxLength="6"
             android:inputType="number"
             android:singleLine="true"
             android:textColor="@color/white"

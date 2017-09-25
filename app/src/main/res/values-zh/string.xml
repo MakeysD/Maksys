@@ -350,6 +350,7 @@
     <string name="code39">请先登录安全中心app</string><!--10512-->
     <string name="code40">原安全密码错误</string><!--10513-->
     <string name="code41">原登录密码错误</string><!--10514-->
+    <string name="code42">未授权设备</string><!--10516-->
 
 
     <string name="data0">未知类型</string>

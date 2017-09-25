@@ -249,8 +249,19 @@ public class HaveScanActivity extends BaseActivity {
                                 }
                             }
                         }else {
-                            anima.setVisibility(View.VISIBLE);
-                            timer("2",response.body().getDesc());
+                            if(response.body().getCode().equals("10516")){
+                                new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                    @Override
+                                    public void onActivieButtonClick(Object bean, int position) {
+                                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                                        ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                        ActivityUtils.getInstance().popAllActivities();
+                                    }
+                                }, R.style.registDialog).show();
+                            }else {
+                                anima.setVisibility(View.VISIBLE);
+                                timer("2",response.body().getDesc());
+                            }
                         }
                     }else {
                         timer("2",response.body().getDesc());
