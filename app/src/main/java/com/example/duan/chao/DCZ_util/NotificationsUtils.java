@@ -27,7 +27,10 @@ import java.util.List;
 public class NotificationsUtils {
     private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
     private static final String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
-
+    /**
+     * 判断是否开启通知
+     * android4.3以下这个方法就失效了
+     * */
     @SuppressLint("NewApi")
     public static boolean isNotificationEnabled(Context context) {
 
@@ -59,6 +62,9 @@ public class NotificationsUtils {
         }
         return false;
     }
+    /**
+     *  跳转到设置页面
+     * */
     public static void StartSetting(Context context) {
         // TODO Auto-generated method stub
         // 6.0以上系统才可以判断权限

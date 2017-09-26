@@ -17,7 +17,7 @@ public class HttpBean<T>{
     private String code;
     private String msg;
     private String desc;
-    private Object data;
+    private T data;
     private boolean ok;
 
     public String getCode() {
@@ -44,11 +44,11 @@ public class HttpBean<T>{
         this.desc = desc;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

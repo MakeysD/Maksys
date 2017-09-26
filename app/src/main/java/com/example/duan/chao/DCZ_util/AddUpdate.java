@@ -40,13 +40,13 @@ public class AddUpdate implements Interceptor{
                 throw  new MyThrow();
             }*/
             if(result.getCode().equals("20003")){
-                Log.i("ddddddddd","安全中心不可用");
+                Log.i("dcz","安全中心不可用");
                 Request loginRequest = getLoginRequest();
                 Response loginResponse = chain.proceed(loginRequest);
                 String loginString = loginResponse.body().string();
                 HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
                 if(resultLogin.getCode().equals("10500")){
-                    Log.i("dcz","安全中心不可用");
+                    Log.i("dczz","安全中心不可用");
                 }else if(resultLogin.getCode().equals("20000")) {
                     return chain.proceed(originalRequest);
                 }else {

@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.os.CancellationSignal;
 import android.util.Log;
@@ -286,7 +287,8 @@ public class MainActivity extends BaseActivity{
     }
 
     private void setdialog(){
-        if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
+        Log.i("dcz通知是否打开",NotificationManagerCompat.from(INSTANCE).areNotificationsEnabled()+"");
+        if(NotificationManagerCompat.from(INSTANCE).areNotificationsEnabled()==false){
             new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi113),true,new MiddleDialog.onButtonCLickListener2() {
                 @Override
                 public void onActivieButtonClick(Object bean, int po) {
@@ -299,7 +301,7 @@ public class MainActivity extends BaseActivity{
         }
     }
     private void setCamera(){
-        if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
+        if(NotificationManagerCompat.from(INSTANCE).areNotificationsEnabled()==false){
             new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi113),true,new MiddleDialog.onButtonCLickListener2() {
                 @Override
                 public void onActivieButtonClick(Object bean, int po) {
@@ -323,7 +325,7 @@ public class MainActivity extends BaseActivity{
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(NotificationsUtils.isNotificationEnabled(INSTANCE)==false){
+                if(NotificationManagerCompat.from(INSTANCE).areNotificationsEnabled()==false){
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi114),INSTANCE.getString(R.string.tishi113),true,new MiddleDialog.onButtonCLickListener2() {
                         @Override
                         public void onActivieButtonClick(Object bean, int po) {
