@@ -287,6 +287,7 @@
     <string name="tishi125">ID card</string>
     <string name="tishi126">passport</string>
     <string name="tishi127">drive license</string>
+    <string name="tishi128">invalid Makeys QR code</string>
 
 
     <string name="code1">succeed</string><!--20000-->

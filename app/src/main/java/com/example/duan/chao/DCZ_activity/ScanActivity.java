@@ -9,6 +9,7 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DensityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -81,12 +82,15 @@ public class ScanActivity extends CaptureActivity {
             dialog.show();
             String systemId = serial.substring(serial.indexOf("=")+1,serial.indexOf("&"));
             String uuid = serial.substring(serial.lastIndexOf("=")+1);
+            Log.i("dcz","扫码结果："+serial+"");
             Log.i("dcz","uuid结果："+uuid);
             Log.i("dcz","systemId："+systemId);
             MyApplication.reqSysId=systemId;
             if(serial!=null){
                 getData(uuid);
             }
+        }else {
+            ContentUtil.makeToast(getApplicationContext(),getString(R.string.tishi128));
         }
     }
 

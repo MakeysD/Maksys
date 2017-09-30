@@ -5,6 +5,7 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,18 +14,24 @@ import java.util.UUID;
 
 
 public class ContentUtil {
-
+    private static Toast toast;
     /**
      * Toast显示
      *
      * @param context
      * @param text
+     * 当context传的是activity的时候,会导致内存泄漏,推荐使用Application做为传入的context
      */
-  /*  public static void makeToast(Context context, String text) {
-        if(context==null)context=MyApplication.getApp();
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+    public static void makeToast(Context context, String text) {
+        if (toast == null) {
+            toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+        } else {
+            toast.setText(text);
+        }
+        toast.show();
     }
 
+  /*
     public static void makeTestToast(Context context, String text) {
         if (MyApplication.isTest == true) {
 
