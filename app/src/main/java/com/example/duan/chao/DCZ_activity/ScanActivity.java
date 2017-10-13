@@ -120,7 +120,16 @@ public class ScanActivity extends CaptureActivity {
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(ScanActivity.this);
                     }else {
-                        if(!response.body().getCode().equals("20003")){
+                        if(response.body().getCode().equals("10516")){
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                            new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),ScanActivity.this.getString(R.string.tishi101),ScanActivity.this.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                @Override
+                                public void onActivieButtonClick(Object bean, int position) {
+                                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                    ActivityUtils.getInstance().popAllActivities();
+                                }
+                            }, R.style.registDialog).show();
+                        }else {
                             Toast.makeText(ScanActivity.this,MyApplication.map.get(response.body().getCode()).toString(), Toast.LENGTH_SHORT).show();
                             ActivityUtils.getInstance().popActivity(ScanActivity.this);
                         }
