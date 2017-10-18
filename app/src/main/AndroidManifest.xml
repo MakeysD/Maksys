@@ -75,7 +75,7 @@
             </intent-filter>
         </activity>
         <!-- android:launchMode="singleInstance" -->
-        <activity android:name=".DCZ_activity.WelcomeActivity" />
+        <activity android:name=".DCZ_activity.WelcomeActivity"/>
         <activity android:name=".DCZ_activity.SecurityProtectActivity" />
         <activity android:name=".DCZ_activity.ZhangHuSercurityActivity" />
         <activity android:name=".DCZ_activity.GesturesLockActivity" />
@@ -107,7 +107,8 @@
         <activity android:name=".DCZ_activity.ChangePhone4Activity" />
         <activity android:name=".DCZ_activity.CityListActivity" />
         <activity android:name=".DCZ_activity.ZhiwenActivity" />
-        <activity android:name=".DCZ_activity.HaveActivity" />
+        <activity android:name=".DCZ_activity.HaveActivity"
+            android:exported="true"/>
         <!-- For test only 测试的主程序 -->
         <!-- For test only 测试高级功能 -->
         <activity

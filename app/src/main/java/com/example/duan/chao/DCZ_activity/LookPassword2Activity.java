@@ -186,7 +186,7 @@ public class LookPassword2Activity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(ed_code.getText().toString().length()>0&&
+                    if(ed_code.getText().toString().length()>5&&
                             mima.getText().toString().length()>0&&
                             mima2.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
@@ -217,7 +217,7 @@ public class LookPassword2Activity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(ed_code.getText().toString().length()>0&&
+                    if(ed_code.getText().toString().length()>5&&
                             phone.getText().toString().length()>0&&
                             mima2.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
@@ -247,7 +247,7 @@ public class LookPassword2Activity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(ed_code.getText().toString().length()>0&&
+                    if(ed_code.getText().toString().length()>5&&
                             phone.getText().toString().length()>0&&
                             mima2.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);
@@ -276,7 +276,7 @@ public class LookPassword2Activity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>0){
-                    if(ed_code.getText().toString().length()>0&&
+                    if(ed_code.getText().toString().length()>5&&
                             mima.getText().toString().length()>0&&
                             phone.getText().toString().length()>0){
                         button.setVisibility(View.VISIBLE);

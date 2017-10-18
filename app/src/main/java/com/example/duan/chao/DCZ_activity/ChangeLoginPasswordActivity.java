@@ -206,9 +206,9 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
-                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
                             new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi85),true,new MiddleDialog.onButtonCLickListener2() {
                                 @Override
                                 public void onActivieButtonClick(Object bean, int po) {

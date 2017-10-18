@@ -68,6 +68,7 @@ public class MyApplication extends Application{
     public static String reqSysId;
     public static String reqFlowId;
     public static String sms_type="1";//是需要验证短信，0是不需要验证短信
+    public static String state="";
     //偏好设置
     public static SharedPreferences sf;
     @Override
