@@ -106,7 +106,6 @@ public class LookPassword2Activity extends BaseActivity {
         ShebeiUtil.setEdNoChinaese(mima2);
         ShebeiUtil.setEdit(mima);
         ShebeiUtil.setEdit(mima2);
-        ShebeiUtil.setEdit(ed_code);
         setViews();
         setListener();
     }

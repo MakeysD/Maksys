@@ -129,7 +129,9 @@ public class ScanActivity extends CaptureActivity {
                                     ActivityUtils.getInstance().popAllActivities();
                                 }
                             }, R.style.registDialog).show();
-                        }else {
+                        }else if(response.body().getCode().equals("20003")){
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        } else {
                             Toast.makeText(ScanActivity.this,MyApplication.map.get(response.body().getCode()).toString(), Toast.LENGTH_SHORT).show();
                             ActivityUtils.getInstance().popActivity(ScanActivity.this);
                         }
