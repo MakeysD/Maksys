@@ -14,6 +14,7 @@ import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
@@ -42,7 +43,8 @@ public class MyApplication extends Application{
    // public static String public_key="MIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUAAoGBAMgkWZhJlOwjqIZiHOxVrKpyruWrgvk9xITInmwRT+wqLS64flu9E8/FgPHDUlEN6ET/JA8xGuHPMQFUqbUFXOhZzcTXFS4UAEOOrYCJ7HWroC/VX310zq3dphCN0mUsolOuYYB+/W/Qm18alqekL6n0p59VHi3UNbRiZyKkUSbE";
     public static String pri_key;//私钥
     public static String pub_key;//公钥
-    public static String uri="http://192.168.2.171:9898/";
+    //http://110.79.11.5/user-safe-api/
+    public static String uri="http://api.qeveworld.com/user-safe-api/";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
     public static int zhiwen_namber=0;
@@ -68,7 +70,7 @@ public class MyApplication extends Application{
     public static String reqSysId;
     public static String reqFlowId;
     public static String sms_type="1";//是需要验证短信，0是不需要验证短信
-    public static String state="";
+    public static ClearableCookieJar jar;
     //偏好设置
     public static SharedPreferences sf;
     @Override
@@ -93,6 +95,7 @@ public class MyApplication extends Application{
         pri_key=sf.getString("pri_key","");
         pub_key=sf.getString("pub_key","");
         language=sf.getString("language","");
+        uri=sf.getString("uri","http://api.qeveworld.com/user-safe-api/");
         Log.i("dcz_first",first+"");
 
         Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));

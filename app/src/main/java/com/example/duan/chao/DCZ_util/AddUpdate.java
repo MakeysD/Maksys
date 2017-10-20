@@ -72,8 +72,8 @@ public class AddUpdate implements Interceptor{
     }
 
     private Request getLoginRequest() {
-        return new Request.Builder()//http://110.79.11.5/user-safe-api/loginByRefreshToken
-                .url("http://110.79.11.5/user-safe-api/loginByRefreshToken")
+        return new Request.Builder()
+                .url(MyApplication.uri+"loginByRefreshToken")
                 .post(new FormBody.Builder()
                         .add("username", MyApplication.username)
                         .add("refreshToken",MyApplication.token)

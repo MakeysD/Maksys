@@ -513,10 +513,11 @@
                     android:id="@+id/tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textColor="@color/red"
+                    android:textSize="33sp"
+                    android:textStyle="bold"
                     android:visibility="gone"
-                    android:text="@string/main10"/>
+                    android:text="测试版"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/shuaxin"

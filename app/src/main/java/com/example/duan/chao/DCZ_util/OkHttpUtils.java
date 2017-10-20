@@ -42,7 +42,7 @@ public class OkHttpUtils {
                             .writeTimeout(15000L, TimeUnit.MILLISECONDS);
                     builder.addInterceptor(new HttpLoggingInterceptor()
                             .setLevel(HttpLoggingInterceptor.Level.BODY))
-                            .addInterceptor(new AddCookie())
+                            //.addInterceptor(new AddCookie())
                             .addInterceptor(new AddUpdate())
                             //.addInterceptor(new AddParamInterceptor())
                             .cache(new Cache(

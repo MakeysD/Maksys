@@ -101,6 +101,9 @@ public class BaseActivity extends Activity{
                 //判断APP是否在前台
                 if(ActivityUtils.getInstance().isAppOnForeground(this)==true) {
                     Log.i("dcz2","APP已进入前台");
+                    if(ActivityUtils.getInstance().getCurrentActivity()instanceof MainActivity){
+                        MainActivity.mHandler.sendEmptyMessage(2);
+                    }
                     if(MyApplication.start_time!=null&& AddUpdate.MyThrow.class!=null){
                         if(MyApplication.classname.equals(getClass().getSimpleName())){
                             long time =System.currentTimeMillis()-MyApplication.start_time;

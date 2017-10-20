@@ -187,6 +187,11 @@ public class MainActivity extends BaseActivity{
         setListener();
         initHandler();
         MyApplication.status=false;
+        if(MyApplication.uri.equals("http://110.79.11.5/user-safe-api/")){
+            tv.setVisibility(View.VISIBLE);
+        }else {
+            tv.setVisibility(View.GONE);
+        }
     }
 
     public static Handler mHandler ;
@@ -205,6 +210,9 @@ public class MainActivity extends BaseActivity{
                                 ActivityUtils.getInstance().popAllActivities();
                             }
                         }, R.style.registDialog).show();
+                        break;
+                    case 2:
+                        getVersion();
                         break;
                 }
             }
@@ -673,7 +681,6 @@ public class MainActivity extends BaseActivity{
     }
 
     private void Mp3(){
-        tv.setVisibility(View.GONE);
         /*thread = null;
         thread = new timeThread();
         thread.start();*/

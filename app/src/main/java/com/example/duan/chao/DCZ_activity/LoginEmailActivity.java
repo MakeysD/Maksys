@@ -38,6 +38,7 @@ import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.AsterPassword;
 import com.example.duan.chao.DCZ_util.CodeUtil;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DSACoder;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -93,6 +94,12 @@ public class LoginEmailActivity extends BaseActivity {
     @BindView(R.id.checkBox)
     CheckBox yan;           //眼睛
 
+
+    @BindView(R.id.ceshi)
+    TextView ceshi;
+    @BindView(R.id.zhengshi)
+    TextView zhengshi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +145,7 @@ public class LoginEmailActivity extends BaseActivity {
         });
         setViews();
         setListener();
+        ceshi();
     }
 
     @Override
@@ -177,8 +185,6 @@ public class LoginEmailActivity extends BaseActivity {
                         login();
                     }
                 }
-
-
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
@@ -415,6 +421,30 @@ public class LoginEmailActivity extends BaseActivity {
                     dialog.dismiss();
                     Log.i("dcz异常",call.toString()+"异常");
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
+            }
+        });
+    }
+    private void ceshi(){
+        ceshi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MyApplication.uri.equals("http://110.79.11.5/user-safe-api/")){
+                    ContentUtil.makeToast(INSTANCE,"已经是测试版");
+                }else {
+                    MyApplication.uri="http://110.79.11.5/user-safe-api/";MyApplication.sf.edit().putString("uri","http://110.79.11.5/user-safe-api/").commit();
+                    ContentUtil.makeToast(INSTANCE,"已切换到测试版");
+                }
+            }
+        });
+        zhengshi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MyApplication.uri.equals("http://api.qeveworld.com/user-safe-api/")){
+                    ContentUtil.makeToast(INSTANCE,"已经是正式版");
+                }else {
+                    MyApplication.uri="http://api.qeveworld.com/user-safe-api/";MyApplication.sf.edit().putString("uri","http://api.qeveworld.com/user-safe-api/").commit();
+                    ContentUtil.makeToast(INSTANCE,"已切换到正式版");
                 }
             }
         });

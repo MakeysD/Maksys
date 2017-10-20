@@ -1,6 +1,10 @@
 package com.example.duan.chao.DCZ_util;
 
 
+import android.util.Log;
+
+import com.example.duan.chao.DCZ_application.MyApplication;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,6 +29,7 @@ public class RetrofitUtils {
      * @return  返回call
      */
     public static <T> T createApiForGson( Class<T> clazz) {
+        singleton=null; //后来自己加的，为了能改变uri
         if (singleton == null) {
             synchronized (RetrofitUtils.class) {
                 if (singleton == null) {
