@@ -212,8 +212,8 @@
     <string name="tishi56">ID number</string>
     <string name="tishi57">Validity period</string>
     <string name="tishi58">changed phone number</string>
-    <string name="tishi59">Switch login mode</string>
-    <string name="tishi60">fingerprint password is unavailable</string>
+    <string name="tishi59">Login mode</string>
+    <string name="tishi60">invalid fingerprint</string>
     <string name="tishi60a">gesture password unavailable </string>
     <string name="tishi61">set</string>
     <string name="tishi62">unset</string>
@@ -246,7 +246,7 @@
     <string name="tishi85a">password has been changed,please login again </string>
     <string name="tishi86">authorized date：</string>
     <string name="tishi87">login：</string>
-    <string name="tishi88">verify gesture password</string>
+    <string name="tishi88">gesture password</string>
     <string name="tishi89">email </string>
     <string name="tishi90">change email</string>
     <string name="tishi91">email</string>
@@ -332,6 +332,8 @@
     <string name="code40">original payment password error</string><!--10513-->
     <string name="code41">original login password error</string><!--10514-->
     <string name="code42">Unauthorized equipment</string><!--10516-->
+    <string name="code43">QUIZ</string><!--1010-->
+    <string name="code44">MAIL</string><!--1011-->
 
     <string name="data0">unknown type</string>
     <string name="data1">login</string>
@@ -360,5 +362,7 @@
     <string name="data1004">Her-Mest</string>
     <string name="data1009">ORE_XSG</string>
     <string name="data2000">Makeys</string>
+    <string name="data1010">QUIZ</string><!--1010-->
+    <string name="data1011">MAIL</string><!--1011-->
 
 </resources>

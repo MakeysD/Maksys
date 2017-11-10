@@ -16,6 +16,7 @@ import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
@@ -74,22 +75,27 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
         String[]  strs=MyApplication.username.split("@");
         String b = strs[0];
         String e = strs[1];
-        b.substring(0,3);
-        b.substring(b.length()-3,b.length());
-        Log.i("dcz", b.substring(0,3));
-        Log.i("dcz", b.substring(3,b.length()-3));
-        Log.i("dcz",b.substring(b.length()-3,b.length()));
-        String d=b.substring(b.length()-3,b.length());
-        String a=b.substring(3,b.length()-3);
-        String c=null;
-        for(int i=0;i<a.length();i++){
-            if(c==null){
-                c="*";
-            }else {
-                c=c+"*";
+        if(ContentUtil.isMobileNO(b)){
+            b.substring(0,3);
+            b.substring(b.length()-3,b.length());
+            Log.i("dcz", b.substring(0,3));
+            Log.i("dcz", b.substring(3,b.length()-3));
+            Log.i("dcz",b.substring(b.length()-3,b.length()));
+            String d=b.substring(b.length()-3,b.length());
+            String a=b.substring(3,b.length()-3);
+            String c=null;
+            for(int i=0;i<a.length();i++){
+                if(c==null){
+                    c="*";
+                }else {
+                    c=c+"*";
+                }
             }
+            tv5.setText(this.getString(R.string.tishia68)+b.substring(0,3)+c+d+"@"+e+this.getString(R.string.tishi68));
+        }else {
+            tv5.setText(b);
         }
-        tv5.setText(this.getString(R.string.tishia68)+b.substring(0,3)+c+d+"@"+e+this.getString(R.string.tishi68));
+
     }
     /**
      *  监听

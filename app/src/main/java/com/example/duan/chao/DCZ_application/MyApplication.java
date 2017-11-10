@@ -44,7 +44,7 @@ public class MyApplication extends Application{
     public static String pri_key;//私钥
     public static String pub_key;//公钥
     //http://110.79.11.5/user-safe-api/
-    public static String uri="http://api.qeveworld.com/user-safe-api/";
+    public static String uri="http://110.79.11.5/user-safe-api/";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
     public static int zhiwen_namber=0;
@@ -95,7 +95,7 @@ public class MyApplication extends Application{
         pri_key=sf.getString("pri_key","");
         pub_key=sf.getString("pub_key","");
         language=sf.getString("language","");
-        uri=sf.getString("uri","http://api.qeveworld.com/user-safe-api/");
+        uri=sf.getString("uri","http://110.79.11.5/user-safe-api/");
         Log.i("dcz_first",first+"");
 
         Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));

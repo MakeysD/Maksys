@@ -17,6 +17,7 @@ import com.example.duan.chao.DCZ_lockdemo.CustomLockView;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.RandomUtil;
@@ -28,6 +29,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Field;
 
 /**
  * Created by DELL on 2017/7/12.
@@ -67,12 +69,22 @@ public class Footprints1Adapter extends BaseAdapter{
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.tv1.setText(MyApplication.map.get(list.get(position).getSystemId()).toString());
-        viewHolder.tv2.setText(list.get(position).getIp().toString());
+        viewHolder.tv1.setText(MyApplication.map.get(list.get(position).getSystemId())+"");
+        Log.i("dcz",list.get(position).getIp()+"");
+        viewHolder.tv2.setText(list.get(position).getIp()+"");
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(list.get(position).getSystemId().toString(),list.get(position).getUsername().toString(),list.get(position).getSessionId(),position);
+                String random= RandomUtil.RandomNumber();
+                String str ="nonce="+random+"&sessionId="+list.get(position).getSessionId()+"&systemId="+list.get(position).getSystemId()+"&username="+list.get(position).getUsername();
+                Log.i("dcz",str);
+                byte[] data = str.getBytes();
+                try {
+                    String sign = DSA.sign(data, MyApplication.pri_key);
+                    getData(list.get(position).getSystemId().toString(),list.get(position).getUsername().toString(),list.get(position).getSessionId(),random,position,sign);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         return convertView;
@@ -97,15 +109,14 @@ public class Footprints1Adapter extends BaseAdapter{
     /***
      * 踢出用户的登录
      * */
-    public void getData(String systemId, String username, String sessionid, final int postion){
+    public void getData(String systemId, String username, String sessionid,String random, final int postion,String sign){
         if(ShebeiUtil.wang(context).equals("0")){
             new MiddleDialog(context,context.getString(R.string.tishi116),R.style.registDialog).show();
             return;
         }
-        String random= RandomUtil.RandomNumber();
         dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
         dialog.show();
-        HttpServiceClient.getInstance().kickout(systemId,username,sessionid,random).enqueue(new Callback<FootprintsBean>() {
+        HttpServiceClient.getInstance().kickout(systemId,username,sessionid,random,sign).enqueue(new Callback<FootprintsBean>() {
             @Override
             public void onResponse(Call<FootprintsBean> call, Response<FootprintsBean> response) {
                 if(dialog.isShowing()){

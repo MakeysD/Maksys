@@ -201,7 +201,8 @@ public interface InterfaceService {
     Call<FootprintsBean> kickout(@Field("systemId") String systemId,
                                  @Field("username")String username,
                                  @Field("sessionId")String sessionid,
-                                @Field("nonce") String nonce);
+                                @Field("nonce") String nonce,
+                                 @Field("sign") String sign);
 
     /**
      *  操作记录

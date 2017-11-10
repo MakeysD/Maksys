@@ -29,8 +29,8 @@ public class RetrofitUtils {
      * @return  返回call
      */
     public static <T> T createApiForGson( Class<T> clazz) {
-        singleton=null; //后来自己加的，为了能改变uri
-        if (singleton == null) {
+       // singleton=null; //后来自己加的，为了能改变uri
+       // if (singleton == null) {
             synchronized (RetrofitUtils.class) {
                 if (singleton == null) {
                     Retrofit.Builder builder = new Retrofit.Builder();
@@ -40,7 +40,7 @@ public class RetrofitUtils {
                     singleton = builder.build();
                 }
             }
-        }
+      //  }
         return singleton.create(clazz);
     }
 
