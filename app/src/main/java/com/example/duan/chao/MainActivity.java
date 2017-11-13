@@ -50,6 +50,7 @@ import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_authenticator.AuthenticatorActivity;
 import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
@@ -368,7 +369,9 @@ public class MainActivity extends BaseActivity{
         bangzhu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(INSTANCE, "开发中...", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(INSTANCE, "开发中...", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(INSTANCE, AuthenticatorActivity.class);
+                startActivity(intent);
             }
         });
 

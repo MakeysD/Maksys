@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 
+import com.example.duan.chao.DCZ_authenticator.FileUtilities;
+import com.example.duan.chao.DCZ_authenticator.testability.DependencyInjector;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_jiguang.Logger;
 import com.example.duan.chao.DCZ_util.CodeUtil;
@@ -83,6 +85,12 @@ public class MyApplication extends Application{
         Fresco.initialize(this);
         CodeUtil.pushcode(getApplicationContext());
         CrashReport.initCrashReport(getApplicationContext(), "87666fdd22", false);
+        try {//authenticator
+            FileUtilities.restrictAccessToOwnerOnly(
+                    getApplicationContext().getApplicationInfo().dataDir);
+        } catch (Throwable e) {
+        }
+        DependencyInjector.configureForProductionIfNotConfigured(getApplicationContext());
         sf= PreferenceManager.getDefaultSharedPreferences(this);
         first = sf.getBoolean("first",true);
         zhiwen=sf.getBoolean("zhiwen",false);

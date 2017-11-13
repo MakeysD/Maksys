@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 版权2011年谷歌公司。版权所有。
+
+在Apache许可下获得许可，版本2.0(“许可证”);
+除许可证外，您不得使用该文件。
+你可以获得许可证的复印件
+
+http://www.apache.org/licenses/license - 2.0
+
+除非适用法律或书面协议，软件
+在许可证下发放的是按“按原样”发放的，
+没有任何保证或条件，无论是明示还是默示。
+查看特定语言管理权限的许可
+限制下的许可。
+-->
+
+<WebView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/web_view"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:layerType="software">
+  <!-- layerType above disables hardware acceleration which prevents the WebView from having a
+       transparent background (see Android bug #14749). -->
+</WebView>

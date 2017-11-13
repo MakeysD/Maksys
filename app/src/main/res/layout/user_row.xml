@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2010 Google Inc. All Rights Reserved.
+
+        在Apache许可下的2.0版本(“许可证”);
+        你可能不会使用这个文件符合许可除外。
+        你可能会获得一份许可证
+        http://www.apache.org/licenses/license - 2.0
+        除非适用法律要求或书面同意,软件
+        在许可证下发布的分布在一个“目前的”基础上,
+        没有任何形式的保证或条件,无论是明示或默示。
+        看到的许可证管理权限和特定的语言
+        限制下的许可。
+        -->
+<!--除了UserRowView之外，这个文件应该保持同步
+与user_row_legacy.xml-->
+<com.example.duan.chao.DCZ_authenticator.UserRowView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+
+  <TextView android:id="@+id/current_user" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="?attr/accountListWithVerificationCodesRowAccountName"
+    android:layout_marginLeft="20dip"
+    android:layout_marginRight="20dip"
+    android:layout_marginTop="15dip" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+  <LinearLayout
+      android:id="@+id/pin_area"
+      android:orientation="horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="20dip"
+      android:layout_marginRight="20dip"
+      android:layout_marginBottom="4dip">
+    <!-- Extra LinearLayout to force gravity="right" to work. -->
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_gravity="center_vertical">
+      <ImageButton android:id="@+id/next_otp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/refresh_button"
+          android:background="@android:color/transparent" />
+      <com.example.duan.chao.DCZ_authenticator.CountdownIndicator
+          android:id="@+id/countdown_icon"
+          android:layout_width="32dip"
+          android:layout_height="32dip"
+          style="?attr/accountListWithVerificationCodesRowCountdownIndicator"
+          />
+    </LinearLayout>
+  </LinearLayout>
+  <TextView
+      android:id="@+id/pin_value"
+      android:layout_width="match_parent"
+      android:gravity="center_horizontal"
+      android:textSize="60dp"
+      android:textStyle="bold"
+      android:textColor="#333333"
+      android:layout_height="100dp"/>
+</LinearLayout>
+
+
+</com.example.duan.chao.DCZ_authenticator.UserRowView>
