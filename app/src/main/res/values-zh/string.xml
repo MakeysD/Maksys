@@ -307,6 +307,7 @@
     <string name="tishi126">护照</string>
     <string name="tishi127">驾驶证</string>
     <string name="tishi128">非Makeys有效二维码</string>
+    <string name="tishi130">动态码</string>
 
 
     <string name="code1">成功</string><!--20000-->

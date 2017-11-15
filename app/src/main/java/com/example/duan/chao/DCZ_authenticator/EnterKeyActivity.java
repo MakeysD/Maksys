@@ -26,6 +26,7 @@ import android.widget.Spinner;
 import com.example.duan.chao.DCZ_authenticator.AccountDb.OtpType;
 import com.example.duan.chao.DCZ_authenticator.Base32String.DecodingException;
 import com.example.duan.chao.DCZ_authenticator.wizard.WizardPageActivity;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
 import java.io.Serializable;
@@ -105,7 +106,7 @@ public class EnterKeyActivity extends WizardPageActivity<Serializable> implement
                    OtpType.TOTP :
                    OtpType.HOTP;
     if (validateKeyAndUpdateStatus(true)) {
-      AuthenticatorActivity.saveSecret(this,
+      MainActivity.saveSecret(this,
           mAccountName.getText().toString(),
           getEnteredKey(),
           null,

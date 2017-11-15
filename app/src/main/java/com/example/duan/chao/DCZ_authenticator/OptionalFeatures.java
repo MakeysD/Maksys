@@ -16,6 +16,7 @@
 
 package com.example.duan.chao.DCZ_authenticator;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -32,7 +33,7 @@ public interface OptionalFeatures {
   /**
    * Invoked when the {@link AuthenticatorActivity} {@code onCreate} is almost done.
    */
-  void onAuthenticatorActivityCreated(AuthenticatorActivity activity);
+  void onAuthenticatorActivityCreated(Activity activity);
 
   /**
    * Invoked when the {@link AuthenticatorActivity} saves an account/seed.
@@ -49,7 +50,7 @@ public interface OptionalFeatures {
    * for the provided account.
    */
   void onAuthenticatorActivityGetNextOtpFailed(
-          AuthenticatorActivity activity, String accountName, OtpSourceException exception);
+          Activity activity, String accountName, OtpSourceException exception);
 
   /**
    * Invoked by {@link AuthenticatorActivity#onCreateDialog(int)} for dialog IDs not directly
@@ -57,12 +58,12 @@ public interface OptionalFeatures {
    *
    * @return dialog or {@code null} for the default behavior.
    */
-  Dialog onAuthenticatorActivityCreateDialog(AuthenticatorActivity activity, int id);
+  Dialog onAuthenticatorActivityCreateDialog(Activity activity, int id);
 
   /**
    * Invoked when {@link AuthenticatorActivity} was asked to initiate the Add Account flow.
    */
-  void onAuthenticatorActivityAddAccount(AuthenticatorActivity activity);
+  void onAuthenticatorActivityAddAccount(Activity activity);
 
   /**
    * Invoked when a URI has been scanned.

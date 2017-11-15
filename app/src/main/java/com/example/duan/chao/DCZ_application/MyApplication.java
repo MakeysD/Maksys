@@ -4,10 +4,13 @@ import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
+import android.widget.Toast;
 
+import com.example.duan.chao.DCZ_authenticator.AccountDb;
 import com.example.duan.chao.DCZ_authenticator.FileUtilities;
 import com.example.duan.chao.DCZ_authenticator.testability.DependencyInjector;
 import com.example.duan.chao.DCZ_bean.CityBean;
@@ -15,6 +18,7 @@ import com.example.duan.chao.DCZ_jiguang.Logger;
 import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
+import com.example.duan.chao.R;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -123,4 +127,23 @@ public class MyApplication extends Application{
    public static float dp2Px() {
        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, context.getResources().getDisplayMetrics());
    }
+    private static final long VIBRATE_DURATION = 200L;
+    public static boolean saveSecret(Context context, String user, String secret,
+                                     String originalUser, AccountDb.OtpType type, Integer counter) {
+        if (originalUser == null) {  // new user account
+            originalUser = user;
+        }
+        if (secret != null) {
+            AccountDb accountDb = DependencyInjector.getAccountDb();
+            accountDb.update(user, secret, originalUser, type, counter);
+            DependencyInjector.getOptionalFeatures().onAuthenticatorActivityAccountSaved(context, user);
+            Toast.makeText(context, R.string.secret_saved, Toast.LENGTH_LONG).show();
+            ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE))
+                    .vibrate(VIBRATE_DURATION);
+            return true;
+        } else {
+            Toast.makeText(context, R.string.error_empty_secret, Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
 }

@@ -11,7 +11,33 @@ public class LoginOkBean extends LoginBean<LoginOkBean>{
     private String username;
     private String userId;
     private String authzId;
+    private String totpSecretKey;
+    private Object defaultIntervalInSeccod;
+    private int totpCodeLength;
 
+    public int getTotpCodeLength() {
+        return totpCodeLength;
+    }
+
+    public void setTotpCodeLength(int totpCodeLength) {
+        this.totpCodeLength = totpCodeLength;
+    }
+
+    public String getTotpSecretKey() {
+        return totpSecretKey;
+    }
+
+    public void setTotpSecretKey(String totpSecretKey) {
+        this.totpSecretKey = totpSecretKey;
+    }
+
+    public Object getDefaultIntervalInSeccod() {
+        return defaultIntervalInSeccod;
+    }
+
+    public void setDefaultIntervalInSeccod(Object defaultIntervalInSeccod) {
+        this.defaultIntervalInSeccod = defaultIntervalInSeccod;
+    }
 
     public String getRefreshToken() {
         return refreshToken;

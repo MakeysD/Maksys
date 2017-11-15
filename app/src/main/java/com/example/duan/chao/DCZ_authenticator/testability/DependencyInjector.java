@@ -23,13 +23,13 @@ import android.test.RenamingDelegatingContext;
 
 
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
-import com.example.duan.chao.DCZ_authenticator.AuthenticatorActivity;
 import com.example.duan.chao.DCZ_authenticator.MarketBuildOptionalFeatures;
 import com.example.duan.chao.DCZ_authenticator.OptionalFeatures;
 import com.example.duan.chao.DCZ_authenticator.OtpSource;
 import com.example.duan.chao.DCZ_authenticator.TotpClock;
 import com.example.duan.chao.DCZ_authenticator.dataimport.ExportServiceBasedImportController;
 import com.example.duan.chao.DCZ_authenticator.dataimport.ImportController;
+import com.example.duan.chao.MainActivity;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ClientConnectionManager;
@@ -209,7 +209,7 @@ public final class DependencyInjector {
     if (sOptionalFeatures == null) {
       try {
         Class<?> resultClass = Class.forName(
-            AuthenticatorActivity.class.getPackage().getName() + ".NonMarketBuildOptionalFeatures");
+            MainActivity.class.getPackage().getName() + ".NonMarketBuildOptionalFeatures");
         try {
           sOptionalFeatures = (OptionalFeatures) resultClass.newInstance();
         } catch (Exception e) {

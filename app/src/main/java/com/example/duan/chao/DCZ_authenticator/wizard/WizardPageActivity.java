@@ -25,8 +25,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import com.example.duan.chao.DCZ_authenticator.AuthenticatorActivity;
 import com.example.duan.chao.DCZ_authenticator.testability.TestableActivity;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
 import java.io.Serializable;
@@ -290,7 +290,7 @@ public class WizardPageActivity<WizardState extends Serializable> extends Testab
   }
 
   protected void exitWizard() {
-    Intent intent = new Intent(this, AuthenticatorActivity.class);
+    Intent intent = new Intent(this, MainActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
 

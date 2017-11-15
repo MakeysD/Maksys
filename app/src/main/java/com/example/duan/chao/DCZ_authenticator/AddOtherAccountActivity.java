@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.duan.chao.DCZ_authenticator.wizard.WizardPageActivity;
+import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
 import java.io.Serializable;
@@ -62,7 +63,7 @@ public class AddOtherAccountActivity extends WizardPageActivity<Serializable> {
   }
 
   private void scanBarcode() {
-    startActivity(AuthenticatorActivity.getLaunchIntentActionScanBarcode(this));
+    startActivity(MainActivity.getLaunchIntentActionScanBarcode(this));
     finish();
   }
 }

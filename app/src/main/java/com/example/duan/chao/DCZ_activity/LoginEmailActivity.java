@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_authenticator.AccountDb;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
@@ -405,7 +406,9 @@ public class LoginEmailActivity extends BaseActivity {
                         MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
                         MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
                         MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
+
                         Intent intent=new Intent(INSTANCE,MainActivity.class);
+                        intent.putExtra("type","1");
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {

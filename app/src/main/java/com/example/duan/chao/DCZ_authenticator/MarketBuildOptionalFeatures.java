@@ -16,11 +16,14 @@
 
 package com.example.duan.chao.DCZ_authenticator;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+
+import com.example.duan.chao.MainActivity;
 
 /**
  * {@link OptionalFeatures} implementation used in Market builds.
@@ -30,7 +33,9 @@ import android.net.Uri;
 public class MarketBuildOptionalFeatures implements OptionalFeatures {
 
   @Override
-  public void onAuthenticatorActivityCreated(AuthenticatorActivity activity) {}
+  public void onAuthenticatorActivityCreated(Activity activity) {
+
+  }
 
   @Override
   public void onAuthenticatorActivityAccountSaved(Context context, String account) {}
@@ -59,18 +64,17 @@ public class MarketBuildOptionalFeatures implements OptionalFeatures {
   }
 
   @Override
-  public void onAuthenticatorActivityGetNextOtpFailed(
-      AuthenticatorActivity activity, String accountName, OtpSourceException exception) {
+  public void onAuthenticatorActivityGetNextOtpFailed(Activity activity, String accountName, OtpSourceException exception) {
     throw new RuntimeException("Failed to generate OTP for account", exception);
   }
 
   @Override
-  public Dialog onAuthenticatorActivityCreateDialog(AuthenticatorActivity activity, int id) {
+  public Dialog onAuthenticatorActivityCreateDialog(Activity activity, int id) {
     return null;
   }
 
   @Override
-  public void onAuthenticatorActivityAddAccount(AuthenticatorActivity activity) {
+  public void onAuthenticatorActivityAddAccount(Activity activity) {
     activity.startActivity(new Intent(activity, AddOtherAccountActivity.class));
   }
 }

@@ -31,7 +31,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.text.ClipboardManager;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -43,6 +45,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
+import android.view.animation.Animation;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -72,6 +75,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class AuthenticatorActivity extends BaseActivity {
   private static final String LOCAL_TAG = "AuthenticatorActivity";
   private static final long VIBRATE_DURATION = 200L;
+  private Boolean type=true;
 
   private static final long TOTP_COUNTDOWN_REFRESH_PERIOD = 100;
 
@@ -115,7 +119,7 @@ public class AuthenticatorActivity extends BaseActivity {
   static final int SCAN_REQUEST = 31337;
   private GifImageView gif;
   private TextView pinView;
-  private  CountdownIndicator countdownIndicator;
+ // private  CountdownIndicator countdownIndicator;
   private double mTotpCountdownPhase;
 
   /** Called when the activity is first created. */
@@ -148,18 +152,9 @@ public class AuthenticatorActivity extends BaseActivity {
     gif=(GifImageView)findViewById(R.id.gifview);
    // mUserList = (ListView) findViewById(R.id.user_list);
     pinView = (TextView)findViewById(R.id.pin_value);
-    countdownIndicator = (CountdownIndicator)findViewById(R.id.countdown_icon);
+    //countdownIndicator = (CountdownIndicator)findViewById(R.id.countdown_icon);
     mContentNoAccounts = findViewById(R.id.content_no_accounts);
     mContentNoAccounts.setVisibility((mUsers.length > 0) ? View.GONE : View.VISIBLE);
-    try {
-      GifDrawable gifFromResource = new GifDrawable(getResources(), R.mipmap.gif_header_repast);
-      Log.i("dcz", gifFromResource.getDuration()+"");
-      gifFromResource.seekTo(2500);
-      gif.setImageDrawable(gifFromResource);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
   /*  findViewById(R.id.how_it_works_button).setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -315,8 +310,7 @@ public class AuthenticatorActivity extends BaseActivity {
   }
 
   private void setTotpCountdownPhaseFromTimeTillNextValue(long millisRemaining) {
-    setTotpCountdownPhase(
-        ((double) millisRemaining) / Utilities.secondsToMillis(mTotpCounter.getTimeStep()));
+    setTotpCountdownPhase(((double) millisRemaining) / Utilities.secondsToMillis(mTotpCounter.getTimeStep()));
   }
 
   private void refreshVerificationCodes() {
@@ -331,6 +325,13 @@ public class AuthenticatorActivity extends BaseActivity {
     CountdownIndicator indicator = (CountdownIndicator)findViewById(R.id.countdown_icon);
     if (indicator != null) {
       indicator.setPhase(mTotpCountdownPhase);
+      Log.i("DCZ",mTotpCountdownPhase+"");
+      if(mTotpCountdownPhase!=1.0){
+        if(type==true){
+          animo(mTotpCountdownPhase);
+          type=false;
+        }
+      }
     }
     /*for (int i = 0, len = mUserList.getChildCount(); i < len; i++) {
       View listEntry = mUserList.getChildAt(i);
@@ -886,18 +887,33 @@ public class AuthenticatorActivity extends BaseActivity {
   }
   private void up( PinInfo[]data){
     if(data.length==0){
-      countdownIndicator.setVisibility(View.GONE);
+     /* countdownIndicator.setVisibility(View.GONE);*/
       return;
     }
     PinInfo currentPin = data[0];
-    countdownIndicator.setVisibility(View.VISIBLE);
-    countdownIndicator.setPhase(mTotpCountdownPhase);
+   /* countdownIndicator.setVisibility(View.VISIBLE);
+    countdownIndicator.setPhase(mTotpCountdownPhase);*/
+    Log.i("dcz进度a",mTotpCountdownPhase+"");
     if (getString(R.string.empty_pin).equals(currentPin.pin)) {
       pinView.setTextScaleX(PIN_TEXT_SCALEX_UNDERSCORE); // smaller gap between underscores
     } else {
       pinView.setTextScaleX(PIN_TEXT_SCALEX_NORMAL);
     }
       pinView.setText(currentPin.pin);
+      animo(mTotpCountdownPhase);
+  }
+  private void animo(double mTotpCountdownPhase){
+    gif.setImageDrawable(null);
+    try {
+      GifDrawable gifFromResource = new GifDrawable(getResources(), R.mipmap.gif3);
+      Log.i("dcz", gifFromResource.getDuration()+"");
+      gifFromResource.setSpeed(1.165f);
+      Log.i("dcz进度",(int) (10-mTotpCountdownPhase*10)+"");
+      gifFromResource.seekTo((int) (30000-(30000*mTotpCountdownPhase)));
+      gif.setImageDrawable(gifFromResource);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
   private class PinListAdapter extends ArrayAdapter<PinInfo>  {
 
@@ -919,8 +935,7 @@ public class AuthenticatorActivity extends BaseActivity {
      TextView pinView = (TextView) row.findViewById(R.id.pin_value);
      TextView userView = (TextView) row.findViewById(R.id.current_user);
      View buttonView = row.findViewById(R.id.next_otp);
-     CountdownIndicator countdownIndicator =
-         (CountdownIndicator) row.findViewById(R.id.countdown_icon);
+     CountdownIndicator countdownIndicator = (CountdownIndicator) row.findViewById(R.id.countdown_icon);
 
      if (currentPin.isHotp) {
        buttonView.setVisibility(View.VISIBLE);
