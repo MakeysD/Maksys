@@ -281,7 +281,7 @@ public class MainActivity extends BaseActivity{
         initHandler();
         MyApplication.status=false;
         if(MyApplication.uri.equals("http://110.79.11.5/user-safe-api/")){
-            tv.setVisibility(View.VISIBLE);
+            //tv.setVisibility(View.VISIBLE);
         }else {
             tv.setVisibility(View.GONE);
         }
@@ -1063,6 +1063,11 @@ public class MainActivity extends BaseActivity{
                 rl_have.setVisibility(View.GONE);
                 rl_code.startAnimation(animation);
                 rl_code.setVisibility(View.VISIBLE);
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

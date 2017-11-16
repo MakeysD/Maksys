@@ -261,8 +261,8 @@ public class AccountDb {
   }
 
   private static byte[] decodeKey(String secret) throws DecodingException {
-   // return Base32String.decode(secret);
-    return Base64.decode(secret);
+    return Base32String.decode(secret);
+    //return Base64.decode(secret);
   }
 
   public Integer getCounter(String email) {

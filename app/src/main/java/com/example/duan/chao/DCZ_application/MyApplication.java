@@ -139,7 +139,7 @@ public class MyApplication extends Application{
             AccountDb accountDb = DependencyInjector.getAccountDb();
             accountDb.update(user, secret, originalUser, type, counter);
             DependencyInjector.getOptionalFeatures().onAuthenticatorActivityAccountSaved(context, user);
-            Toast.makeText(context, R.string.secret_saved, Toast.LENGTH_LONG).show();
+           // Toast.makeText(context, R.string.secret_saved, Toast.LENGTH_LONG).show();
             ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE))
                     .vibrate(VIBRATE_DURATION);
             return true;

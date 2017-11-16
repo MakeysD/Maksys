@@ -449,45 +449,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_have"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top"
                 android:background="#373b44"/>
-            <RelativeLayout
-                style="@style/Title">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/title14"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/title" />
-                <ImageView
-                    android:id="@+id/scan"
-                    android:layout_width="23dp"
-                    android:layout_height="23dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="@dimen/right"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/saoma"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true">
-                    <include
-                        android:id="@+id/back"
-                        layout="@layout/layout_back2"/>
-                </RelativeLayout>
-            </RelativeLayout>
-            <TextView
+            <LinearLayout
+                android:id="@+id/home"
                 android:layout_width="match_parent"
-                android:layout_height="0.2dp"
-                android:background="@color/xian1"/>
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_have"
+                android:orientation="vertical">
+                <RelativeLayout
+                    style="@style/Title">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/title14"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/title" />
+                    <ImageView
+                        android:id="@+id/scan"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="@dimen/right"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/saoma"/>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true">
+                        <include
+                            android:id="@+id/back"
+                            layout="@layout/layout_back2"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:visibility="gone"
+                    android:background="@color/xian1"/>
+            </LinearLayout>
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -506,14 +512,6 @@
                     android:layout_height="300dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/b_g2">
-                    <!--<com.example.duan.chao.DCZ_authenticator.CountdownIndicator
-                        android:id="@+id/countdown_icon"
-                        android:layout_width="32dip"
-                        android:layout_height="32dip"
-                        android:layout_marginTop="25dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center_horizontal"
-                        style="?attr/accountListWithVerificationCodesRowCountdownIndicator" />-->
                 </RelativeLayout>
                 <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/gifview"
@@ -522,6 +520,7 @@
                     android:layout_centerInParent="true"
                     android:layout_margin="5dp"
                     android:layout_height="320dp"
+                    android:background="@drawable/quan"
                     android:scaleType="centerCrop"/>
                 <TextView
                     android:id="@+id/pin_value"
@@ -581,5 +580,4 @@
                 android:text="测试版"/>
         </RelativeLayout>
     </com.example.duan.chao.DCZ_selft.DragRelativeLayout>
-
 </com.example.duan.chao.DCZ_selft.DragLayout>

@@ -92,6 +92,7 @@ public class CodeUtil {
         MyApplication.map.put("2000",context.getString(R.string.data2000));
         MyApplication.map.put("1010",context.getString(R.string.data1010));
         MyApplication.map.put("1011",context.getString(R.string.data1011));
+        MyApplication.map.put("1012",context.getString(R.string.data1012));
 
     }
 
