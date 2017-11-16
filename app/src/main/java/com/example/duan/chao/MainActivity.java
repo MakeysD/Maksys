@@ -37,6 +37,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
@@ -93,7 +95,6 @@ import com.example.duan.chao.DCZ_util.NotificationsUtils;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
@@ -101,13 +102,10 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
-import pl.droidsonroids.gif.AnimationListener;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import retrofit2.Call;
@@ -152,6 +150,8 @@ public class MainActivity extends BaseActivity{
     private static final String LOCAL_TAG = "MainActivity";
     private static final long VIBRATE_DURATION = 200L;
     private Boolean type=true;
+    private Boolean Anima_red=true;
+    private Boolean Anima_blue=true;
     private static final long TOTP_COUNTDOWN_REFRESH_PERIOD = 100;
     private static final long HOTP_MIN_TIME_INTERVAL_BETWEEN_CODES = 5000;
     private static final long HOTP_DISPLAY_TIMEOUT = 2 * 60 * 1000;
@@ -226,6 +226,12 @@ public class MainActivity extends BaseActivity{
     RelativeLayout rl6;
     @BindView(R.id.rl7)
     RelativeLayout rl7;
+    @BindView(R.id.rl_have) //授权页
+    RelativeLayout rl_have;
+    @BindView(R.id.rl_code) //动态码页
+    RelativeLayout rl_code;
+    @BindView(R.id.home)
+    LinearLayout home;
     @BindView(R.id.scan)
     ImageView scan;
 
@@ -255,6 +261,10 @@ public class MainActivity extends BaseActivity{
 
     @BindView(R.id.language)
     TextView language;
+    @BindView(R.id.have)
+    TextView have;
+    @BindView(R.id.code)
+    TextView code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -426,16 +436,40 @@ public class MainActivity extends BaseActivity{
      * 更新进度条的进度
      * */
     private void updateCountdownIndicators() {
-        CountdownIndicator indicator = (CountdownIndicator)findViewById(R.id.countdown_icon);
-        if (indicator != null) {
-            indicator.setPhase(mTotpCountdownPhase);
+         /*CountdownIndicator indicator = (CountdownIndicator)findViewById(R.id.countdown_icon);
+            if (indicator != null) {
+            indicator.setPhase(mTotpCountdownPhase);*/
+            Log.i("dcz",mTotpCountdownPhase+"");
             if(mTotpCountdownPhase!=1.0){
                 if(type==true){
                     animo(mTotpCountdownPhase);
                     type=false;
                 }
+                //红色背景
+                if(mTotpCountdownPhase<0.3&&mTotpCountdownPhase>0.01){
+                    if(Anima_red==true){
+                        if(rl_code.getVisibility()==View.VISIBLE){
+                            Anima_red=false;
+                            Anima_blue=true;
+                            home.setBackgroundResource(R.drawable.bg_code2);
+                            Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
+                            home.startAnimation(animation);
+                        }
+                    }
+                }
+                if(mTotpCountdownPhase<0.01){
+                    if(Anima_blue==true){
+                        if(rl_code.getVisibility()==View.VISIBLE){
+                            Anima_blue=false;
+                            Anima_red=true;
+                            home.setBackgroundResource(R.drawable.bg_code1);
+                            Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
+                            home.startAnimation(animation);
+                        }
+                    }
+                }
             }
-        }
+      //  }
     }
 
     /**
@@ -1070,10 +1104,31 @@ public class MainActivity extends BaseActivity{
     }
 
     private void setListener() {
-        findViewById(R.id.Add).setOnClickListener(new View.OnClickListener() {
+        have.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addAccount();
+                //addAccount();
+                code.setVisibility(View.VISIBLE);
+                have.setVisibility(View.GONE);
+                home.setBackgroundResource(R.drawable.bg_have);
+                Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
+                home.startAnimation(animation);
+                rl_code.setVisibility(View.GONE);
+                rl_have.setVisibility(View.VISIBLE);
+            }
+        });
+        code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                up(mUsers);
+                have.setVisibility(View.VISIBLE);
+                code.setVisibility(View.GONE);
+                home.setBackgroundResource(R.drawable.bg_code1);
+                Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
+                home.startAnimation(animation);
+                rl_have.setVisibility(View.GONE);
+                rl_code.startAnimation(animation);
+                rl_code.setVisibility(View.VISIBLE);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

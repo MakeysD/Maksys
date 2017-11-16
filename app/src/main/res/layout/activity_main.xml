@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/dsl"
-    android:background="@drawable/b_g"
+    android:background="#373b44"
     tools:context=".MainActivity">
     <ScrollView
         android:layout_width="0dp"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="60dp"
-        android:background="@drawable/b_g">
+        android:background="#373b44">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -445,17 +445,19 @@
     </LinearLayout>
     <com.example.duan.chao.DCZ_selft.DragRelativeLayout
         android:id="@+id/rl_main"
+        android:background="#373b44"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:id="@+id/home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/b_g"
+            android:background="@drawable/bg_have"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/top"
-                android:background="#263344"/>
+                android:background="#373b44"/>
             <RelativeLayout
                 style="@style/Title">
                 <TextView
@@ -544,6 +546,8 @@
                     android:src="@mipmap/shouye2"/>
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/rl_code"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
@@ -551,14 +555,14 @@
                     android:layout_height="300dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/b_g2">
-                    <com.example.duan.chao.DCZ_authenticator.CountdownIndicator
+                    <!--<com.example.duan.chao.DCZ_authenticator.CountdownIndicator
                         android:id="@+id/countdown_icon"
                         android:layout_width="32dip"
                         android:layout_height="32dip"
                         android:layout_marginTop="25dp"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center_horizontal"
-                        style="?attr/accountListWithVerificationCodesRowCountdownIndicator" />
+                        style="?attr/accountListWithVerificationCodesRowCountdownIndicator" />-->
                 </RelativeLayout>
                 <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/gifview"
@@ -571,14 +575,39 @@
                 <TextView
                     android:id="@+id/pin_value"
                     android:layout_width="wrap_content"
-                    android:textSize="50dp"
+                    android:textSize="60dp"
                     android:text="785695"
                     android:layout_centerInParent="true"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/Add"
+                    android:id="@+id/have"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="@string/tishi131"
+                    android:textColor="#5f9cf8"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_have"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/gifview2"
+                    android:layout_width="320dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:layout_height="320dp"
+                    android:scaleType="centerCrop"/>
+                <TextView
+                    android:id="@+id/code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
@@ -590,6 +619,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"/>
             </RelativeLayout>
+
         </RelativeLayout>
     </com.example.duan.chao.DCZ_selft.DragRelativeLayout>
 

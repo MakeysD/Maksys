@@ -238,7 +238,7 @@ public class SmsActivity extends BaseActivity {
                         OtpProvider.PIN_LENGTH=  data.getTotpCodeLength();
                         AccountDb.OtpType mode = /*mType.getSelectedItemPosition() == AccountDb.OtpType.TOTP.value ?*/ AccountDb.OtpType.TOTP;// : AccountDb.OtpType.HOTP;
                         MyApplication.saveSecret(INSTANCE, data.getTotpSecretKey(),
-                                getEnteredKey(),
+                                getEnteredKey(data.getTotpSecretKey()),
                                 null,
                                 mode,
                                 AccountDb.DEFAULT_HOTP_COUNTER);
@@ -266,8 +266,8 @@ public class SmsActivity extends BaseActivity {
         });
     }
 
-    private String getEnteredKey() {
-        String enteredKey ="abc";
+    private String getEnteredKey(String string) {
+        String enteredKey =string;
         return enteredKey.replace('1', 'I').replace('0', 'O');
     }
 

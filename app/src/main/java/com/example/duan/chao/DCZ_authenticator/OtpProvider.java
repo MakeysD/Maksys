@@ -31,7 +31,7 @@ import java.util.Collection;
  */
 public class OtpProvider implements OtpSource {
 
-  public static int PIN_LENGTH = 8; // HOTP or TOTP
+  public static int PIN_LENGTH = 6; // HOTP or TOTP
   private static final int REFLECTIVE_PIN_LENGTH = 9; // ROTP
 
   @Override

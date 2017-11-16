@@ -49,8 +49,10 @@ public class MyApplication extends Application{
    // public static String public_key="MIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUAAoGBAMgkWZhJlOwjqIZiHOxVrKpyruWrgvk9xITInmwRT+wqLS64flu9E8/FgPHDUlEN6ET/JA8xGuHPMQFUqbUFXOhZzcTXFS4UAEOOrYCJ7HWroC/VX310zq3dphCN0mUsolOuYYB+/W/Qm18alqekL6n0p59VHi3UNbRiZyKkUSbE";
     public static String pri_key;//私钥
     public static String pub_key;//公钥
-    //http://110.79.11.5/user-safe-api/
+    //http://api.qeveworld.com/user-safe-api/
     public static String uri="http://110.79.11.5/user-safe-api/";
+    //http://makeys.qeveworld.com/#/register
+    public static String ur="http://test-makeys.qeveworld.com/#/register";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
     public static int zhiwen_namber=0;
@@ -108,6 +110,7 @@ public class MyApplication extends Application{
         pub_key=sf.getString("pub_key","");
         language=sf.getString("language","");
         uri=sf.getString("uri","http://110.79.11.5/user-safe-api/");
+        ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");
         Log.i("dcz_first",first+"");
 
         Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));

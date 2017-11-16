@@ -288,6 +288,8 @@
     <string name="tishi126">passport</string>
     <string name="tishi127">drive license</string>
     <string name="tishi128">invalid Makeys QR code</string>
+    <string name="tishi131">一键授权</string>
+    <string name="tishi132">注册</string>
 
 
     <string name="code1">succeed</string><!--20000-->

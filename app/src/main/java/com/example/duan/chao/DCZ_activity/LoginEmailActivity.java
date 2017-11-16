@@ -12,6 +12,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -86,6 +87,8 @@ public class LoginEmailActivity extends BaseActivity {
 
     @BindView(R.id.button)
     TextView button;        //下一步
+    @BindView(R.id.button1)
+    TextView button1;       //注册
     @BindView(R.id.button2)
     TextView button2;       //忘记密码
     @BindView(R.id.et_phone)
@@ -186,6 +189,16 @@ public class LoginEmailActivity extends BaseActivity {
                         login();
                     }
                 }
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(MyApplication.ur);
+                intent.setData(content_url);
+                startActivity(intent);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
@@ -436,6 +449,7 @@ public class LoginEmailActivity extends BaseActivity {
                     ContentUtil.makeToast(INSTANCE,"已经是测试版");
                 }else {
                     MyApplication.uri="http://110.79.11.5/user-safe-api/";MyApplication.sf.edit().putString("uri","http://110.79.11.5/user-safe-api/").commit();
+                    MyApplication.ur="http://test-makeys.qeveworld.com/#/register";MyApplication.sf.edit().putString("ur","http://test-makeys.qeveworld.com/#/register").commit();
                     ContentUtil.makeToast(INSTANCE,"已切换到测试版");
                 }
             }
@@ -447,6 +461,7 @@ public class LoginEmailActivity extends BaseActivity {
                     ContentUtil.makeToast(INSTANCE,"已经是正式版");
                 }else {
                     MyApplication.uri="http://api.qeveworld.com/user-safe-api/";MyApplication.sf.edit().putString("uri","http://api.qeveworld.com/user-safe-api/").commit();
+                    MyApplication.ur="http://makeys.qeveworld.com/#/register";MyApplication.sf.edit().putString("ur","http://makeys.qeveworld.com/#/register").commit();
                     ContentUtil.makeToast(INSTANCE,"已切换到正式版");
                 }
             }

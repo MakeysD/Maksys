@@ -905,7 +905,7 @@ public class AuthenticatorActivity extends BaseActivity {
   private void animo(double mTotpCountdownPhase){
     gif.setImageDrawable(null);
     try {
-      GifDrawable gifFromResource = new GifDrawable(getResources(), R.mipmap.gif3);
+      GifDrawable gifFromResource = new GifDrawable(getResources(), R.mipmap.gif4);
       Log.i("dcz", gifFromResource.getDuration()+"");
       gifFromResource.setSpeed(1.165f);
       Log.i("dcz进度",(int) (10-mTotpCountdownPhase*10)+"");
