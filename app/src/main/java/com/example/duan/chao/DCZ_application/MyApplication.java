@@ -131,8 +131,7 @@ public class MyApplication extends Application{
        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, context.getResources().getDisplayMetrics());
    }
     private static final long VIBRATE_DURATION = 200L;
-    public static boolean saveSecret(Context context, String user, String secret,
-                                     String originalUser, AccountDb.OtpType type, Integer counter) {
+    public static boolean saveSecret(Context context, String user, String secret, String originalUser, AccountDb.OtpType type, Integer counter) {
         if (originalUser == null) {  // new user account
             originalUser = user;
         }

@@ -28,6 +28,8 @@ import android.util.Log;
 import com.example.duan.chao.DCZ_authenticator.PasscodeGenerator.Signer;
 import com.example.duan.chao.DCZ_authenticator.Base32String.DecodingException;
 
+import org.apache.shiro.codec.Base64;
+
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -240,7 +242,7 @@ public class AccountDb {
       final Mac mac = Mac.getInstance("HMACSHA1");
       mac.init(new SecretKeySpec(keyBytes, ""));
 
-      // Create a signer object out of the standard Java MAC implementation.
+      // 创建一个签名者对象的标准Java MAC实现。
       return new Signer() {
         @Override
         public byte[] sign(byte[] data) {
@@ -259,7 +261,8 @@ public class AccountDb {
   }
 
   private static byte[] decodeKey(String secret) throws DecodingException {
-    return Base32String.decode(secret);
+   // return Base32String.decode(secret);
+    return Base64.decode(secret);
   }
 
   public Integer getCounter(String email) {

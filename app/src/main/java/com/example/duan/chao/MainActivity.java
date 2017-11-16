@@ -112,15 +112,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class MainActivity extends BaseActivity{
     private static final int RC_CAMERA_PERM = 123;
     private static final int RC_LOCATION_CONTACTS_PERM = 124;
     private Dialog dialog;
     private LoginOkBean data;
-    private MediaPlayer player;
     private MiddleDialog dia;
-
     //下面的是极光需要
     private MessageReceiver mMessageReceiver;
     public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
@@ -133,7 +130,6 @@ public class MainActivity extends BaseActivity{
     private CancellationSignal cancellationSignal = null;
     public static boolean isForeground = true;
     //上面的是极光需要
-
     private Handler handler = null;
     public static final int MSG_AUTH_SUCCESS = 100;
     public static final int MSG_AUTH_FAILED = 101;
@@ -145,7 +141,6 @@ public class MainActivity extends BaseActivity{
     private Boolean boo=true;
     private String version;
     private String path="";
-
 
     private static final String LOCAL_TAG = "MainActivity";
     private static final long VIBRATE_DURATION = 200L;
@@ -184,7 +179,6 @@ public class MainActivity extends BaseActivity{
     private TextView pinView;
     private double mTotpCountdownPhase;
     private GifDrawable gifFromResource;
-
     public static Handler mHandler ;
     private void initHandler(){
         //下线通知
@@ -209,7 +203,6 @@ public class MainActivity extends BaseActivity{
             }
         };
     }
-
     @BindView(R.id.back)
     View back;
     @BindView(R.id.rl1)
@@ -234,7 +227,6 @@ public class MainActivity extends BaseActivity{
     LinearLayout home;
     @BindView(R.id.scan)
     ImageView scan;
-
     @BindView(R.id.tv_suo)
     TextView tv_suo;
     @BindView(R.id.tv_anquan)
@@ -253,19 +245,12 @@ public class MainActivity extends BaseActivity{
     SimpleDraweeView iv1;
     @BindView(R.id.iv2)
     SimpleDraweeView iv2;
-
-    @BindView(R.id.shuaxin)
-    ImageView shuaxin;
-    @BindView(R.id.bangzhu)
-    ImageView bangzhu;
-
     @BindView(R.id.language)
     TextView language;
     @BindView(R.id.have)
     TextView have;
     @BindView(R.id.code)
     TextView code;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -350,38 +335,31 @@ public class MainActivity extends BaseActivity{
             interpretScanResult(intent.getData(), true);
         }
     }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         outState.putParcelable(KEY_OLD_APP_UNINSTALL_INTENT, mOldAppUninstallIntent);
         outState.putSerializable(KEY_SAVE_KEY_DIALOG_PARAMS, mSaveKeyDialogParams);
     }
-
     @Override
     public Object onRetainNonConfigurationInstance() {
         return mUsers;
     }
-
     @Override
     protected void onNewIntent(Intent intent) {
         Log.i(getString(R.string.app_name), LOCAL_TAG + ": onNewIntent");
         handleIntent(intent);
     }
-
     @Override
     protected void onStart() {
         super.onStart();
         updateCodesAndStartTotpCountdownTask();
     }
-
     @Override
     protected void onStop() {
         stopTotpCountdownTask();
         super.onStop();
     }
-
     private void updateCodesAndStartTotpCountdownTask() {
         stopTotpCountdownTask();
         mTotpCountdownTask = new TotpCountdownTask(mTotpCounter, mTotpClock, TOTP_COUNTDOWN_REFRESH_PERIOD);
@@ -405,40 +383,31 @@ public class MainActivity extends BaseActivity{
         });
         mTotpCountdownTask.startAndNotifyListener();
     }
-
     private void stopTotpCountdownTask() {
         if (mTotpCountdownTask != null) {
             mTotpCountdownTask.stop();
             mTotpCountdownTask = null;
         }
     }
-
     /** 显示用户邮件和更新的pin码. */
     protected void refreshUserList() {
         refreshUserList(false);
     }
-
     private void setTotpCountdownPhase(double phase) {
         mTotpCountdownPhase = phase;
         updateCountdownIndicators();
     }
-
     private void setTotpCountdownPhaseFromTimeTillNextValue(long millisRemaining) {
         setTotpCountdownPhase(((double) millisRemaining) / Utilities.secondsToMillis(mTotpCounter.getTimeStep()));
     }
-
     private void refreshVerificationCodes() {
         refreshUserList();
         setTotpCountdownPhase(1.0);
     }
-
     /**
      * 更新进度条的进度
      * */
     private void updateCountdownIndicators() {
-         /*CountdownIndicator indicator = (CountdownIndicator)findViewById(R.id.countdown_icon);
-            if (indicator != null) {
-            indicator.setPhase(mTotpCountdownPhase);*/
             Log.i("dcz",mTotpCountdownPhase+"");
             if(mTotpCountdownPhase!=1.0){
                 if(type==true){
@@ -471,7 +440,6 @@ public class MainActivity extends BaseActivity{
             }
       //  }
     }
-
     /**
      * 显示用户邮件和更新的pin码
      * @param isAccountModified if true, force full refresh
@@ -494,8 +462,7 @@ public class MainActivity extends BaseActivity{
             up(mUsers);
         }
     }
-    public void computeAndDisplayPin(String user, int position,
-                                     boolean computeHotp) throws OtpSourceException {
+    public void computeAndDisplayPin(String user, int position, boolean computeHotp) throws OtpSourceException {
         PinInfo currentPin;
         if (mUsers[position] != null) {
             currentPin = mUsers[position]; // existing PinInfo, so we'll update it
@@ -548,14 +515,12 @@ public class MainActivity extends BaseActivity{
             showDialog(Utilities.INVALID_QR_CODE);
             return;
         }
-
         user = validateAndGetUserInPath(path);
         if (user == null) {
             Log.e(getString(R.string.app_name), LOCAL_TAG + ": Missing user id in uri");
             showDialog(Utilities.INVALID_QR_CODE);
             return;
         }
-
         secret = uri.getQueryParameter(SECRET_PARAM);
 
         if (secret == null || secret.length() == 0) {
@@ -564,7 +529,6 @@ public class MainActivity extends BaseActivity{
             showDialog(Utilities.INVALID_SECRET_IN_QR_CODE);
             return;
         }
-
         if (AccountDb.getSigningOracle(secret) == null) {
             Log.e(getString(R.string.app_name), LOCAL_TAG + ": Invalid secret key");
             showDialog(Utilities.INVALID_SECRET_IN_QR_CODE);
@@ -576,7 +540,6 @@ public class MainActivity extends BaseActivity{
                 type == mAccountDb.getType(user)) {
             return;  // nothing to update.
         }
-
         if (confirmBeforeSave) {
             mSaveKeyDialogParams = new SaveKeyDialogParams(user, secret, type, counter);
             showDialog(DIALOG_ID_SAVE_KEY);
@@ -584,27 +547,22 @@ public class MainActivity extends BaseActivity{
             saveSecretAndRefreshUserList(user, secret, null, type, counter);
         }
     }
-
     private static String validateAndGetUserInPath(String path) {
         if (path == null || !path.startsWith("/")) {
             return null;
         }
-        // path is "/user", so remove leading "/", and trailing white spaces
         String user = path.substring(1).trim();
         if (user.length() == 0) {
             return null; // only white spaces.
         }
         return user;
     }
-    private void saveSecretAndRefreshUserList(String user, String secret,
-                                              String originalUser, AccountDb.OtpType type, Integer counter) {
+    private void saveSecretAndRefreshUserList(String user, String secret, String originalUser, AccountDb.OtpType type, Integer counter) {
         if (saveSecret(this, user, secret, originalUser, type, counter)) {
             refreshUserList(true);
         }
     }
-
-    public static boolean saveSecret(Context context, String user, String secret,
-                                     String originalUser, AccountDb.OtpType type, Integer counter) {
+    public static boolean saveSecret(Context context, String user, String secret, String originalUser, AccountDb.OtpType type, Integer counter) {
         if (originalUser == null) {  // new user account
             originalUser = user;
         }
@@ -622,11 +580,9 @@ public class MainActivity extends BaseActivity{
             return false;
         }
     }
-
     private String idToEmail(long id) {
         return mUsers[(int) id].user;
     }
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -641,7 +597,6 @@ public class MainActivity extends BaseActivity{
         menu.add(0, RENAME_ID, 0, R.string.rename);
         menu.add(0, REMOVE_ID, 0, R.string.context_menu_remove_account);
     }
-
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
@@ -709,9 +664,7 @@ public class MainActivity extends BaseActivity{
                 return super.onContextItemSelected(item);
         }
     }
-
-    private DialogInterface.OnClickListener getRenameClickListener(final Context context,
-                                                                   final String user, final EditText nameEdit) {
+    private DialogInterface.OnClickListener getRenameClickListener(final Context context, final String user, final EditText nameEdit) {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
@@ -728,13 +681,11 @@ public class MainActivity extends BaseActivity{
             }
         };
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
@@ -748,7 +699,6 @@ public class MainActivity extends BaseActivity{
 
         return super.onMenuItemSelected(featureId, item);
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         Log.i(getString(R.string.app_name), LOCAL_TAG + ": onActivityResult");
@@ -758,11 +708,9 @@ public class MainActivity extends BaseActivity{
             interpretScanResult(uri, false);
         }
     }
-
     private void addAccount() {
         DependencyInjector.getOptionalFeatures().onAuthenticatorActivityAddAccount(this);
     }
-
     private void scanBarcode() {
         Intent intentScan = new Intent("com.google.zxing.client.android.SCAN");
         intentScan.putExtra("SCAN_MODE", "QR_CODE_MODE");
@@ -773,18 +721,15 @@ public class MainActivity extends BaseActivity{
             showDialog(Utilities.DOWNLOAD_DIALOG);
         }
     }
-
     public static Intent getLaunchIntentActionScanBarcode(Context context) {
         return new Intent(MainActivity.ACTION_SCAN_BARCODE)
                 .setComponent(new ComponentName(context, AuthenticatorActivity.class));
     }
-
     private void showSettings() {
         Intent intent = new Intent();
         intent.setClass(this, SettingsActivity.class);
         startActivity(intent);
     }
-
     private void interpretScanResult(Uri scanResult, boolean confirmBeforeSave) {
         if (DependencyInjector.getOptionalFeatures().interpretScanResult(this, scanResult)) {
             return;
@@ -807,7 +752,6 @@ public class MainActivity extends BaseActivity{
             showDialog(Utilities.INVALID_QR_CODE);
         }
     }
-
     @Override
     protected Dialog onCreateDialog(final int id) {
         Dialog dialog = null;
@@ -909,7 +853,6 @@ public class MainActivity extends BaseActivity{
         }
         return dialog;
     }
-
     private void markDialogAsResultOfSaveKeyIntent(Dialog dialog) {
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
@@ -921,7 +864,6 @@ public class MainActivity extends BaseActivity{
     private void onSaveKeyIntentConfirmationPromptDismissed() {
         mSaveKeyIntentConfirmationInProgress = false;
     }
-
     private Dialog createOkAlertDialog(int titleId, int messageId, int iconId) {
         return new AlertDialog.Builder(this)
                 .setTitle(titleId)
@@ -930,25 +872,20 @@ public class MainActivity extends BaseActivity{
                 .setPositiveButton(R.string.ok, null)
                 .create();
     }
-
     private static class PinInfo {
         private String pin; // 如果不计算计算OTP,或者一个占位符
         private String user;
         private boolean isHotp = false; // 使用按钮是否需要显示出来
         private boolean hotpCodeGenerationAllowed;
     }
-
     private static final float PIN_TEXT_SCALEX_NORMAL = 1.0f;
     private static final float PIN_TEXT_SCALEX_UNDERSCORE = 0.87f;
-
     private class NextOtpButtonListener implements View.OnClickListener {
         private final Handler mHandler = new Handler();
         private final PinInfo mAccount;
-
         private NextOtpButtonListener(PinInfo account) {
             mAccount = account;
         }
-
         @Override
         public void onClick(View v) {
             int position = findAccountPositionInList();
@@ -973,6 +910,51 @@ public class MainActivity extends BaseActivity{
             }
 
             return -1;
+        }
+    }
+    private void importDataFromOldAppIfNecessary() {
+        if (mDataImportInProgress) {
+            return;
+        }
+        mDataImportInProgress = true;
+        DependencyInjector.getDataImportController().start(this, new ImportController.Listener() {
+            @Override
+            public void onOldAppUninstallSuggested(Intent uninstallIntent) {
+                if (isFinishing()) {
+                    return;
+                }
+                mOldAppUninstallIntent = uninstallIntent;
+                showDialog(DIALOG_ID_UNINSTALL_OLD_APP);
+            }
+            @Override
+            public void onDataImported() {
+                if (isFinishing()) {
+                    return;
+                }
+                refreshUserList(true);
+                DependencyInjector.getOptionalFeatures().onDataImportedFromOldApp(
+                        INSTANCE);
+            }
+            @Override
+            public void onFinished() {
+                if (isFinishing()) {
+                    return;
+                }
+                mDataImportInProgress = false;
+            }
+        });
+    }
+    private static class SaveKeyDialogParams implements Serializable {
+        private final String user;
+        private final String secret;
+        private final AccountDb.OtpType type;
+        private final Integer counter;
+
+        private SaveKeyDialogParams(String user, String secret, AccountDb.OtpType type, Integer counter) {
+            this.user = user;
+            this.secret = secret;
+            this.type = type;
+            this.counter = counter;
         }
     }
     private void up(PinInfo[]data){
@@ -1013,53 +995,6 @@ public class MainActivity extends BaseActivity{
             e.printStackTrace();
         }
     }
-    private void importDataFromOldAppIfNecessary() {
-        if (mDataImportInProgress) {
-            return;
-        }
-        mDataImportInProgress = true;
-        DependencyInjector.getDataImportController().start(this, new ImportController.Listener() {
-            @Override
-            public void onOldAppUninstallSuggested(Intent uninstallIntent) {
-                if (isFinishing()) {
-                    return;
-                }
-                mOldAppUninstallIntent = uninstallIntent;
-                showDialog(DIALOG_ID_UNINSTALL_OLD_APP);
-            }
-            @Override
-            public void onDataImported() {
-                if (isFinishing()) {
-                    return;
-                }
-                refreshUserList(true);
-                DependencyInjector.getOptionalFeatures().onDataImportedFromOldApp(
-                        INSTANCE);
-            }
-            @Override
-            public void onFinished() {
-                if (isFinishing()) {
-                    return;
-                }
-                mDataImportInProgress = false;
-            }
-        });
-    }
-
-    private static class SaveKeyDialogParams implements Serializable {
-        private final String user;
-        private final String secret;
-        private final AccountDb.OtpType type;
-        private final Integer counter;
-
-        private SaveKeyDialogParams(String user, String secret, AccountDb.OtpType type, Integer counter) {
-            this.user = user;
-            this.secret = secret;
-            this.type = type;
-            this.counter = counter;
-        }
-    }
-
     private void setViews() {
         // 获取packagemanager的实例  
         PackageManager packageManager = getPackageManager();
@@ -1102,7 +1037,6 @@ public class MainActivity extends BaseActivity{
             }, R.style.registDialog).show();
         }
     }
-
     private void setListener() {
         have.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1153,24 +1087,6 @@ public class MainActivity extends BaseActivity{
                 }else {
                     quan();
                 }
-
-            }
-        });
-        shuaxin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(player.isPlaying()){
-                }else {
-                    MyApplication.type=1;
-                    recreate();
-                }
-            }
-        });
-        bangzhu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE, AuthenticatorActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -1269,7 +1185,6 @@ public class MainActivity extends BaseActivity{
             }
         });
     }
-
     @Override
     protected void onResume() {
         isForeground = true;
@@ -1279,15 +1194,10 @@ public class MainActivity extends BaseActivity{
         }else {
             tv_suo.setText(R.string.main3);
         }
-       /* if(MyApplication.status==true){
-            MyApplication.type=1;
-            recreate();
-        }*/
         Log.i(getString(R.string.app_name), LOCAL_TAG + ": onResume");
         up(mUsers);
         importDataFromOldAppIfNecessary();
     }
-
     //手动开启相机权限
     private void quan(){
         if(NotificationsUtils.cameraIsCanUse()==true){
@@ -1339,7 +1249,6 @@ public class MainActivity extends BaseActivity{
         isForeground = true;
         super.onPause();
     }
-
     @Override
     protected void onDestroy() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
@@ -1348,7 +1257,6 @@ public class MainActivity extends BaseActivity{
         }
         super.onDestroy();
     }
-
     public void registerMessageReceiver() {
         mMessageReceiver = new MessageReceiver();
         IntentFilter filter = new IntentFilter();
@@ -1388,7 +1296,6 @@ public class MainActivity extends BaseActivity{
             }
         }
     }
-
     private void setDialog(String content, final Boolean bo){
         if(dia!=null){
             if(dia.isShowing()){
@@ -1440,7 +1347,6 @@ public class MainActivity extends BaseActivity{
             Toast.makeText(INSTANCE,R.string.setting_error, Toast.LENGTH_SHORT).show();
         }
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(KeyEvent.KEYCODE_BACK==keyCode){
@@ -1452,7 +1358,6 @@ public class MainActivity extends BaseActivity{
         }
         return super.onKeyDown(keyCode, event);
     }
-
     /***
      * 调取接口拿到服务器数据
      * */
