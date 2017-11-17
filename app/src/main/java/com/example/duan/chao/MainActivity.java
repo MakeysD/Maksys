@@ -961,7 +961,8 @@ public class MainActivity extends BaseActivity{
         if(data.length==0){
             return;
         }
-        PinInfo currentPin = data[0];
+        int a = data.length;
+        PinInfo currentPin = data[a-1];
         if (getString(R.string.empty_pin).equals(currentPin.pin)) {
             pinView.setTextScaleX(PIN_TEXT_SCALEX_UNDERSCORE);
         } else {
