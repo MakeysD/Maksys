@@ -233,7 +233,7 @@ public class MainActivity extends BaseActivity{
     TextView tv_anquan;
     @BindView(R.id.button2)
     SwitchButton button2;     //指纹锁
-    @BindView(R.id.tv)
+    @BindView(R.id.title)
     TextView tv;
     @BindView(R.id.name)
     TextView name;
@@ -281,9 +281,9 @@ public class MainActivity extends BaseActivity{
         initHandler();
         MyApplication.status=false;
         if(MyApplication.uri.equals("http://110.79.11.5/user-safe-api/")){
-            //tv.setVisibility(View.VISIBLE);
+            tv.setText("测试版—Makeys");
         }else {
-            tv.setVisibility(View.GONE);
+            tv.setText(R.string.tishi14);
         }
     }
     private void auth(){
@@ -1046,8 +1046,9 @@ public class MainActivity extends BaseActivity{
                 code.setVisibility(View.VISIBLE);
                 have.setVisibility(View.GONE);
                 home.setBackgroundResource(R.drawable.bg_have);
-                Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
-                home.startAnimation(animation);
+                /*Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
+                home.startAnimation(animation);*/
+                //rl_have.startAnimation(animation);
                 rl_code.setVisibility(View.GONE);
                 rl_have.setVisibility(View.VISIBLE);
             }
@@ -1058,11 +1059,19 @@ public class MainActivity extends BaseActivity{
                 up(mUsers);
                 have.setVisibility(View.VISIBLE);
                 code.setVisibility(View.GONE);
-                home.setBackgroundResource(R.drawable.bg_code1);
-                Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
-                home.startAnimation(animation);
+                if(mTotpCountdownPhase<0.3&&mTotpCountdownPhase>0.01){
+                    Anima_blue=true;
+                    Anima_red=false;
+                    home.setBackgroundResource(R.drawable.bg_code2);
+                }else {
+                    Anima_blue=false;
+                    Anima_red=true;
+                    home.setBackgroundResource(R.drawable.bg_code1);
+                }
+               /* Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
+                home.startAnimation(animation);*/
                 rl_have.setVisibility(View.GONE);
-                rl_code.startAnimation(animation);
+                //rl_code.startAnimation(animation);
                 rl_code.setVisibility(View.VISIBLE);
             }
         });

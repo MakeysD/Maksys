@@ -465,6 +465,7 @@
                 <RelativeLayout
                     style="@style/Title">
                     <TextView
+                        android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -569,15 +570,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"/>
             </RelativeLayout>
-            <TextView
-                android:id="@+id/tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/red"
-                android:textSize="33sp"
-                android:textStyle="bold"
-                android:visibility="gone"
-                android:text="测试版"/>
         </RelativeLayout>
     </com.example.duan.chao.DCZ_selft.DragRelativeLayout>
 </com.example.duan.chao.DCZ_selft.DragLayout>
