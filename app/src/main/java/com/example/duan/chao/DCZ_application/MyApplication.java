@@ -81,6 +81,7 @@ public class MyApplication extends Application{
     public static ClearableCookieJar jar;
     //偏好设置
     public static SharedPreferences sf;
+    public static Long offset;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -109,6 +110,7 @@ public class MyApplication extends Application{
         pri_key=sf.getString("pri_key","");
         pub_key=sf.getString("pub_key","");
         language=sf.getString("language","");
+        offset=sf.getLong("offset",0);
         uri=sf.getString("uri","http://110.79.11.5/user-safe-api/");
         ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");
         Log.i("dcz_first",first+"");

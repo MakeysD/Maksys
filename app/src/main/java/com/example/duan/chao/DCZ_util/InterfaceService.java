@@ -11,6 +11,7 @@ import com.example.duan.chao.DCZ_bean.NewsBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
 import com.example.duan.chao.DCZ_bean.StatusBean;
+import com.example.duan.chao.DCZ_bean.TimeBean;
 import com.example.duan.chao.DCZ_bean.UserStateBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
 
@@ -283,5 +284,14 @@ public interface InterfaceService {
     @FormUrlEncoded
     @POST("userinfo/getUserInfoCertified")
     Call<UserStateBean> userState(@Field("reqSysId") String reqSysId);
+
+    /**
+     * 时间同步
+     */
+    @FormUrlEncoded
+    @POST("totp/timeSync")
+    Call<TimeBean> time(@Field("millisecond") Long millisecond,
+                        @Field("nonce") String nonce,
+                        @Field("sign") String sign);
 
 }

@@ -17,6 +17,11 @@
 package com.example.duan.chao.DCZ_authenticator;
 
 import android.os.Handler;
+import android.util.Log;
+
+import com.example.duan.chao.DCZ_application.MyApplication;
+
+import java.util.Date;
 
 /**
  * Task that periodically notifies its listener about the time remaining until the value of a TOTP
@@ -102,8 +107,13 @@ public class TotpCountdownTask implements Runnable {
     if (mShouldStop) {
       return;
     }
-
     long now = mClock.currentTimeMillis();
+    Log.i("dcz时间1",now+"");
+    if(MyApplication.offset!=null&&MyApplication.offset!=0){
+      now=now-MyApplication.offset;
+    }
+    Log.i("dcz时间2",now+"");
+
     long counterValue = getCounterValue(now);
     if (mLastSeenCounterValue != counterValue) {
       mLastSeenCounterValue = counterValue;

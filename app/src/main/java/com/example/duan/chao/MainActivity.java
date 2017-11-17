@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -79,6 +80,7 @@ import com.example.duan.chao.DCZ_authenticator.testability.StartActivityListener
 import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
+import com.example.duan.chao.DCZ_bean.TimeBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
 import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
@@ -89,9 +91,12 @@ import com.example.duan.chao.DCZ_selft.DragRelativeLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.NotificationsUtils;
+import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
@@ -102,6 +107,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -180,6 +186,8 @@ public class MainActivity extends BaseActivity{
     private double mTotpCountdownPhase;
     private GifDrawable gifFromResource;
     public static Handler mHandler ;
+    private String sign;
+    private Long miss;//请求前的时间
     private void initHandler(){
         //下线通知
         mHandler = new Handler(){
@@ -251,6 +259,10 @@ public class MainActivity extends BaseActivity{
     TextView have;
     @BindView(R.id.code)
     TextView code;
+    @BindView(R.id.time)
+    TextView time;
+    @BindView(R.id.iv)
+    ImageView iv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -265,6 +277,7 @@ public class MainActivity extends BaseActivity{
         CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
+        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
         if (savedInstanceState != null) {
             mOldAppUninstallIntent = savedInstanceState.getParcelable(KEY_OLD_APP_UNINSTALL_INTENT);
@@ -1022,6 +1035,8 @@ public class MainActivity extends BaseActivity{
         }else {
             button2.setChecked(false);
         }
+        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
+        animationDrawable.start();
     }
 
     private void setdialog(){
@@ -1073,6 +1088,13 @@ public class MainActivity extends BaseActivity{
                 rl_have.setVisibility(View.GONE);
                 //rl_code.startAnimation(animation);
                 rl_code.setVisibility(View.VISIBLE);
+            }
+        });
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                miss=new Date().getTime();
+                time();
             }
         });
         home.setOnClickListener(new View.OnClickListener() {
@@ -1270,6 +1292,7 @@ public class MainActivity extends BaseActivity{
         if (cancellationSignal != null) {
             cancellationSignal.cancel();
         }
+        iv.setImageURI(null);
         super.onDestroy();
     }
     public void registerMessageReceiver() {
@@ -1381,7 +1404,6 @@ public class MainActivity extends BaseActivity{
             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
             return;
         }
-        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         dialog.show();
         HttpServiceClient.getInstance().exit_login(MyApplication.device).enqueue(new Callback<LoginBean>() {
             @Override
@@ -1486,6 +1508,51 @@ public class MainActivity extends BaseActivity{
             }
             @Override
             public void onFailure(Call<VersionBean> call, Throwable t) {
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof MainActivity){
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
+            }
+        });
+    }
+    /**
+     *  时间同步
+     * */
+    private void time(){
+        if(ShebeiUtil.wang(this).equals("0")){
+            ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi116));
+            return;
+        }
+        dialog.show();
+        String max= RandomUtil.RandomNumber();
+        String str ="millisecond="+miss+"&nonce="+max;
+        byte[] data = str.getBytes();
+        try {
+            sign = DSA.sign(data, MyApplication.pri_key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        HttpServiceClient.getInstance().time(miss,max,sign).enqueue(new Callback<TimeBean>() {
+            @Override
+            public void onResponse(Call<TimeBean> call, Response<TimeBean> response) {
+                dialog.dismiss();
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        Long millis = response.body().getData().getMillisecond();
+                        long a = millis + (new Date().getTime() - miss) / 2;
+                        MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
+                    }else {
+                        if(!response.body().getCode().equals("20003")){
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                        }
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<TimeBean> call, Throwable t) {
+                dialog.dismiss();
                 if(ActivityUtils.getInstance().getCurrentActivity() instanceof MainActivity){
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
                 }

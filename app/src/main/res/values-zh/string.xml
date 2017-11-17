@@ -310,7 +310,7 @@
     <string name="tishi130">动态码</string>
     <string name="tishi131">一键授权</string>
     <string name="tishi132">注册</string>
-
+    <string name="tishi133">时间同步</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->
