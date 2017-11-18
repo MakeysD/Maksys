@@ -1,24 +1,18 @@
 package com.example.duan.chao;
 
-
 import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,25 +25,21 @@ import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.os.CancellationSignal;
 import android.text.ClipboardManager;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.webkit.WebView;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.chiclam.android.updater.Updater;
 import com.chiclam.android.updater.UpdaterConfig;
@@ -65,11 +55,8 @@ import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
 import com.example.duan.chao.DCZ_authenticator.AuthenticatorActivity;
-import com.example.duan.chao.DCZ_authenticator.CheckCodeActivity;
-import com.example.duan.chao.DCZ_authenticator.CountdownIndicator;
 import com.example.duan.chao.DCZ_authenticator.OtpSource;
 import com.example.duan.chao.DCZ_authenticator.OtpSourceException;
-import com.example.duan.chao.DCZ_authenticator.SettingsActivity;
 import com.example.duan.chao.DCZ_authenticator.TotpClock;
 import com.example.duan.chao.DCZ_authenticator.TotpCountdownTask;
 import com.example.duan.chao.DCZ_authenticator.TotpCounter;
@@ -79,7 +66,6 @@ import com.example.duan.chao.DCZ_authenticator.testability.DependencyInjector;
 import com.example.duan.chao.DCZ_authenticator.testability.StartActivityListener;
 import com.example.duan.chao.DCZ_bean.HaveBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
-import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.TimeBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
 import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
@@ -119,10 +105,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends BaseActivity{
-    private static final int RC_CAMERA_PERM = 123;
-    private static final int RC_LOCATION_CONTACTS_PERM = 124;
     private Dialog dialog;
-    private LoginOkBean data;
     private MiddleDialog dia;
     //下面的是极光需要
     private MessageReceiver mMessageReceiver;
@@ -154,8 +137,6 @@ public class MainActivity extends BaseActivity{
     private Boolean Anima_red=true;
     private Boolean Anima_blue=true;
     private static final long TOTP_COUNTDOWN_REFRESH_PERIOD = 100;
-    private static final long HOTP_MIN_TIME_INTERVAL_BETWEEN_CODES = 5000;
-    private static final long HOTP_DISPLAY_TIMEOUT = 2 * 60 * 1000;
     static final int DIALOG_ID_UNINSTALL_OLD_APP = 12;
     static final int DIALOG_ID_SAVE_KEY = 13;
     static final String ACTION_SCAN_BARCODE =MainActivity.class.getName() + ".ScanBarcode";
@@ -188,6 +169,7 @@ public class MainActivity extends BaseActivity{
     public static Handler mHandler ;
     private String sign;
     private Long miss;//请求前的时间
+    private Boolean fu=false;
     private void initHandler(){
         //下线通知
         mHandler = new Handler(){
@@ -263,6 +245,12 @@ public class MainActivity extends BaseActivity{
     TextView time;
     @BindView(R.id.iv)
     ImageView iv;
+    @BindView(R.id.pup)
+    RelativeLayout pup;        //弹框
+    @BindView(R.id.fuzhi)
+    TextView fuzhi;
+    @BindView(R.id.cancel)
+    TextView cancel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -325,14 +313,6 @@ public class MainActivity extends BaseActivity{
             return;
         }
         super.startActivity(intent);
-    }
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        StartActivityListener listener = DependencyInjector.getStartActivityListener();
-        if ((listener != null) && (listener.onStartActivityInvoked(this, intent))) {
-            return;
-        }
-        super.startActivityForResult(intent, requestCode);
     }
     private void handleIntent(Intent intent) {
         if (intent == null) {
@@ -611,118 +591,9 @@ public class MainActivity extends BaseActivity{
         menu.add(0, REMOVE_ID, 0, R.string.context_menu_remove_account);
     }
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Intent intent;
-        final String user = idToEmail(info.id); // final so listener can see value
-        switch (item.getItemId()) {
-            case COPY_TO_CLIPBOARD_ID:
-                ClipboardManager clipboard =
-                        (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                clipboard.setText(mUsers[(int) info.id].pin);
-                return true;
-            case CHECK_KEY_VALUE_ID:
-                intent = new Intent(Intent.ACTION_VIEW);
-                intent.setClass(this, CheckCodeActivity.class);
-                intent.putExtra("user", user);
-                startActivity(intent);
-                return true;
-            case RENAME_ID:
-                final Context context = this; // final so listener can see value
-                final View frame = getLayoutInflater().inflate(R.layout.rename,
-                        (ViewGroup) findViewById(R.id.rename_root));
-                final EditText nameEdit = (EditText) frame.findViewById(R.id.rename_edittext);
-                nameEdit.setText(user);
-                new AlertDialog.Builder(this)
-                        .setTitle(String.format(getString(R.string.rename_message), user))
-                        .setView(frame)
-                        .setPositiveButton(R.string.submit,
-                                this.getRenameClickListener(context, user, nameEdit))
-                        .setNegativeButton(R.string.cancel, null)
-                        .show();
-                return true;
-            case REMOVE_ID:
-                View promptContentView =
-                        getLayoutInflater().inflate(R.layout.remove_account_prompt, null, false);
-                WebView webView = (WebView) promptContentView.findViewById(R.id.web_view);
-                webView.setBackgroundColor(Color.TRANSPARENT);
-                double pixelsPerDip = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()) / 10d;
-                //webView.getSettings().setDefaultFontSize((int) (mEnterPinPrompt.getTextSize() / pixelsPerDip));
-                Utilities.setWebViewHtml(
-                        webView,
-                        "<html><body style=\"background-color: transparent;\" text=\"white\">"
-                                + getString(
-                                mAccountDb.isGoogleAccount(user)
-                                        ? R.string.remove_google_account_dialog_message
-                                        : R.string.remove_account_dialog_message)
-                                + "</body></html>");
-
-                new AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.remove_account_dialog_title, user))
-                        .setView(promptContentView)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setPositiveButton(R.string.remove_account_dialog_button_remove,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        mAccountDb.delete(user);
-                                        refreshUserList(true);
-                                    }
-                                }
-                        )
-                        .setNegativeButton(R.string.cancel, null)
-                        .show();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-    private DialogInterface.OnClickListener getRenameClickListener(final Context context, final String user, final EditText nameEdit) {
-        return new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                String newName = nameEdit.getText().toString();
-                if (newName != user) {
-                    if (mAccountDb.nameExists(newName)) {
-                        Toast.makeText(context, R.string.error_exists, Toast.LENGTH_LONG).show();
-                    } else {
-                        saveSecretAndRefreshUserList(newName,
-                                mAccountDb.getSecret(user), user, mAccountDb.getType(user),
-                                mAccountDb.getCounter(user));
-                    }
-                }
-            }
-        };
-    }
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
-    @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_account:
-                addAccount();
-                return true;
-            case R.id.settings:
-                showSettings();
-                return true;
-        }
-
-        return super.onMenuItemSelected(featureId, item);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.i(getString(R.string.app_name), LOCAL_TAG + ": onActivityResult");
-        if (requestCode == SCAN_REQUEST && resultCode == Activity.RESULT_OK) {
-            String scanResult = (intent != null) ? intent.getStringExtra("SCAN_RESULT") : null;
-            Uri uri = (scanResult != null) ? Uri.parse(scanResult) : null;
-            interpretScanResult(uri, false);
-        }
-    }
-    private void addAccount() {
-        DependencyInjector.getOptionalFeatures().onAuthenticatorActivityAddAccount(this);
     }
     private void scanBarcode() {
         Intent intentScan = new Intent("com.google.zxing.client.android.SCAN");
@@ -737,11 +608,6 @@ public class MainActivity extends BaseActivity{
     public static Intent getLaunchIntentActionScanBarcode(Context context) {
         return new Intent(MainActivity.ACTION_SCAN_BARCODE)
                 .setComponent(new ComponentName(context, AuthenticatorActivity.class));
-    }
-    private void showSettings() {
-        Intent intent = new Intent();
-        intent.setClass(this, SettingsActivity.class);
-        startActivity(intent);
     }
     private void interpretScanResult(Uri scanResult, boolean confirmBeforeSave) {
         if (DependencyInjector.getOptionalFeatures().interpretScanResult(this, scanResult)) {
@@ -765,126 +631,6 @@ public class MainActivity extends BaseActivity{
             showDialog(Utilities.INVALID_QR_CODE);
         }
     }
-    @Override
-    protected Dialog onCreateDialog(final int id) {
-        Dialog dialog = null;
-        switch(id) {
-            case Utilities.DOWNLOAD_DIALOG:
-                AlertDialog.Builder dlBuilder = new AlertDialog.Builder(this);
-                dlBuilder.setTitle(R.string.install_dialog_title);
-                dlBuilder.setMessage(R.string.install_dialog_message);
-                dlBuilder.setIcon(android.R.drawable.ic_dialog_alert);
-                dlBuilder.setPositiveButton(R.string.install_button,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse(Utilities.ZXING_MARKET));
-                                try {
-                                    startActivity(intent);
-                                }
-                                catch (ActivityNotFoundException e) { // if no Market app
-                                    intent = new Intent(Intent.ACTION_VIEW,
-                                            Uri.parse(Utilities.ZXING_DIRECT));
-                                    startActivity(intent);
-                                }
-                            }
-                        }
-                );
-                dlBuilder.setNegativeButton(R.string.cancel, null);
-                dialog = dlBuilder.create();
-                break;
-
-            case DIALOG_ID_SAVE_KEY:
-                final SaveKeyDialogParams saveKeyDialogParams = mSaveKeyDialogParams;
-                dialog = new AlertDialog.Builder(this)
-                        .setTitle(R.string.save_key_message)
-                        .setMessage(saveKeyDialogParams.user)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setPositiveButton(R.string.ok,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        saveSecretAndRefreshUserList(
-                                                saveKeyDialogParams.user,
-                                                saveKeyDialogParams.secret,
-                                                null,
-                                                saveKeyDialogParams.type,
-                                                saveKeyDialogParams.counter);
-                                    }
-                                })
-                        .setNegativeButton(R.string.cancel, null)
-                        .create();
-                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        removeDialog(id);
-                        onSaveKeyIntentConfirmationPromptDismissed();
-                    }
-                });
-                break;
-
-            case Utilities.INVALID_QR_CODE:
-                dialog = createOkAlertDialog(R.string.error_title, R.string.error_qr,
-                        android.R.drawable.ic_dialog_alert);
-                markDialogAsResultOfSaveKeyIntent(dialog);
-                break;
-
-            case Utilities.INVALID_SECRET_IN_QR_CODE:
-                dialog = createOkAlertDialog(
-                        R.string.error_title, R.string.error_uri, android.R.drawable.ic_dialog_alert);
-                markDialogAsResultOfSaveKeyIntent(dialog);
-                break;
-
-            case DIALOG_ID_UNINSTALL_OLD_APP:
-                dialog = new AlertDialog.Builder(this)
-                        .setTitle(R.string.dataimport_import_succeeded_uninstall_dialog_title)
-                        .setMessage(
-                                DependencyInjector.getOptionalFeatures().appendDataImportLearnMoreLink(
-                                        this,
-                                        getString(R.string.dataimport_import_succeeded_uninstall_dialog_prompt)))
-                        .setCancelable(true)
-                        .setPositiveButton(
-                                R.string.button_uninstall_old_app,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        startActivity(mOldAppUninstallIntent);
-                                    }
-                                })
-                        .setNegativeButton(R.string.cancel, null)
-                        .create();
-                break;
-
-            default:
-                dialog =
-                        DependencyInjector.getOptionalFeatures().onAuthenticatorActivityCreateDialog(this, id);
-                if (dialog == null) {
-                    dialog = super.onCreateDialog(id);
-                }
-                break;
-        }
-        return dialog;
-    }
-    private void markDialogAsResultOfSaveKeyIntent(Dialog dialog) {
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                onSaveKeyIntentConfirmationPromptDismissed();
-            }
-        });
-    }
-    private void onSaveKeyIntentConfirmationPromptDismissed() {
-        mSaveKeyIntentConfirmationInProgress = false;
-    }
-    private Dialog createOkAlertDialog(int titleId, int messageId, int iconId) {
-        return new AlertDialog.Builder(this)
-                .setTitle(titleId)
-                .setMessage(messageId)
-                .setIcon(iconId)
-                .setPositiveButton(R.string.ok, null)
-                .create();
-    }
     private static class PinInfo {
         private String pin; // 如果不计算计算OTP,或者一个占位符
         private String user;
@@ -893,38 +639,6 @@ public class MainActivity extends BaseActivity{
     }
     private static final float PIN_TEXT_SCALEX_NORMAL = 1.0f;
     private static final float PIN_TEXT_SCALEX_UNDERSCORE = 0.87f;
-    private class NextOtpButtonListener implements View.OnClickListener {
-        private final Handler mHandler = new Handler();
-        private final PinInfo mAccount;
-        private NextOtpButtonListener(PinInfo account) {
-            mAccount = account;
-        }
-        @Override
-        public void onClick(View v) {
-            int position = findAccountPositionInList();
-            if (position == -1) {
-                throw new RuntimeException("Account not in list: " + mAccount);
-            }
-            try {
-                computeAndDisplayPin(mAccount.user, position, true);
-            } catch (OtpSourceException e) {
-                DependencyInjector.getOptionalFeatures().onAuthenticatorActivityGetNextOtpFailed(INSTANCE, mAccount.user, e);
-                return;
-            }
-            final String pin = mAccount.pin;
-            mAccount.hotpCodeGenerationAllowed = false;
-
-        }
-        private int findAccountPositionInList() {
-            for (int i = 0, len = mUsers.length; i < len; i++) {
-                if (mUsers[i] == mAccount) {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-    }
     private void importDataFromOldAppIfNecessary() {
         if (mDataImportInProgress) {
             return;
@@ -1097,6 +811,20 @@ public class MainActivity extends BaseActivity{
                 time();
             }
         });
+        fuzhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fu=true;
+                tan();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fu=false;
+            }
+        });
+
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1221,6 +949,51 @@ public class MainActivity extends BaseActivity{
                 }
             }
         });
+    }
+    private void tan(){
+        Animation a = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+        a.setDuration(300);
+        a.setInterpolator(new LinearInterpolator());
+        pup.startAnimation(a);
+        pup.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                shou();
+            }
+        },3000);
+    }
+    private void shou(){
+        Animation a = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
+        a.setDuration(300);
+        a.setInterpolator(new LinearInterpolator());
+        a.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if(fu==true){
+                    // 从API11开始android推荐使用android.content.ClipboardManager
+                    // 为了兼容低版本我们这里使用旧版的android.text.ClipboardManager，虽然提示deprecated，但不影响使用。
+                    ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    // 将文本内容放到系统剪贴板里。
+                    cm.setText(pinView.getText());
+                }
+                pup.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        pup.startAnimation(a);
     }
     @Override
     protected void onResume() {

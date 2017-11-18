@@ -532,6 +532,17 @@
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/fuzhi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pin_value"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#5f9cf8"
+                    android:layout_marginTop="5dp"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:text="@string/tishi134"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -556,7 +567,7 @@
                         android:textColor="#5f9cf8"
                         android:textStyle="bold"
                         android:textSize="17sp"
-                        android:layout_marginBottom="20dp" />
+                        android:layout_marginBottom="10dp" />
 
                 </LinearLayout>
             </RelativeLayout>
@@ -582,9 +593,33 @@
                     android:textColor="#5f9cf8"
                     android:textStyle="bold"
                     android:textSize="17sp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/pup"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:background="#333333"
+                android:clickable="true"
+                android:visibility="gone"
+                android:paddingLeft="@dimen/left"
+                android:paddingRight="@dimen/right"
+                android:layout_height="50dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/tishi135"/>
+                <TextView
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#5f9cf8"
+                    android:text="@string/tishi136"/>
             </RelativeLayout>
         </RelativeLayout>
     </com.example.duan.chao.DCZ_selft.DragRelativeLayout>
