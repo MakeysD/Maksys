@@ -29,6 +29,7 @@ import okhttp3.ResponseBody;
 
 public class AddUpdate implements Interceptor{
     private Gson mGson = new Gson();
+    private String sign;
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
@@ -72,12 +73,22 @@ public class AddUpdate implements Interceptor{
     }
 
     private Request getLoginRequest() {
+        String max= RandomUtil.RandomNumber();
+        String str ="deviceUUID="+MyApplication.device+"&nonce="+max+"&refreshToken="+MyApplication.token+"&username="+MyApplication.username;
+        byte[] data = str.getBytes();
+        try {
+            sign = DSA.sign(data, MyApplication.pri_key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return new Request.Builder()
                 .url(MyApplication.uri+"loginByRefreshToken")
                 .post(new FormBody.Builder()
                         .add("username", MyApplication.username)
                         .add("refreshToken",MyApplication.token)
                         .add("deviceUUID",MyApplication.device)
+                        .add("nonce",max)
+                        .add("sign",sign)
                         .build())
                 .build();
     }

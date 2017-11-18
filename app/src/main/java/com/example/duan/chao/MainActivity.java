@@ -94,6 +94,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -169,7 +171,8 @@ public class MainActivity extends BaseActivity{
     public static Handler mHandler ;
     private String sign;
     private Long miss;//请求前的时间
-    private Boolean fu=false;
+    private Boolean fu=false;   //是否复制内容
+    private Boolean amin_shou=true; //收缩动画是否运行结束
     private void initHandler(){
         //下线通知
         mHandler = new Handler(){
@@ -814,8 +817,10 @@ public class MainActivity extends BaseActivity{
         fuzhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fu=true;
-                tan();
+                if(amin_shou==true){
+                    fu=true;
+                    tan();
+                }
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -951,10 +956,11 @@ public class MainActivity extends BaseActivity{
         });
     }
     private void tan(){
+        amin_shou=false;
         Animation a = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
                 Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
                 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-        a.setDuration(300);
+        a.setDuration(200);
         a.setInterpolator(new LinearInterpolator());
         pup.startAnimation(a);
         pup.setVisibility(View.VISIBLE);
@@ -966,10 +972,11 @@ public class MainActivity extends BaseActivity{
         },3000);
     }
     private void shou(){
+        amin_shou=false;
         Animation a = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
                 Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
                 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
-        a.setDuration(300);
+        a.setDuration(200);
         a.setInterpolator(new LinearInterpolator());
         a.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -978,6 +985,7 @@ public class MainActivity extends BaseActivity{
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                amin_shou=true;
                 if(fu==true){
                     // 从API11开始android推荐使用android.content.ClipboardManager
                     // 为了兼容低版本我们这里使用旧版的android.text.ClipboardManager，虽然提示deprecated，但不影响使用。
