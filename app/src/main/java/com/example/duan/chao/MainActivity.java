@@ -246,14 +246,14 @@ public class MainActivity extends BaseActivity{
     TextView code;
     @BindView(R.id.time)
     TextView time;
-    @BindView(R.id.iv)
-    ImageView iv;
     @BindView(R.id.pup)
     RelativeLayout pup;        //弹框
     @BindView(R.id.fuzhi)
     TextView fuzhi;
     @BindView(R.id.cancel)
     TextView cancel;
+    @BindView(R.id.se)
+    RelativeLayout se;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -752,8 +752,35 @@ public class MainActivity extends BaseActivity{
         }else {
             button2.setChecked(false);
         }
-        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
-        animationDrawable.start();
+        final Animation animation1 = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
+        final Animation animation2 = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha2);
+        se.startAnimation(animation1);
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                se.startAnimation(animation2);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        animation2.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                se.startAnimation(animation1);
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
     }
 
     private void setdialog(){
@@ -1073,7 +1100,6 @@ public class MainActivity extends BaseActivity{
         if (cancellationSignal != null) {
             cancellationSignal.cancel();
         }
-        iv.setImageURI(null);
         super.onDestroy();
     }
     public void registerMessageReceiver() {

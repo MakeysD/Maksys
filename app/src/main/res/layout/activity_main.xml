@@ -26,6 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -452,16 +453,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/top"
-                android:background="#373b44"/>
+
             <LinearLayout
                 android:id="@+id/home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_have"
                 android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/top"/>
                 <RelativeLayout
                     style="@style/Title">
                     <TextView
@@ -576,14 +577,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/iv"
-                    android:layout_width="320dp"
+                    android:layout_width="310dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_centerInParent="true"
                     android:layout_margin="5dp"
-                    android:layout_height="320dp"
-                    android:src="@drawable/progress"
+                    android:layout_height="310dp"
+                    android:src="@drawable/b_g3"
                     android:scaleType="centerCrop"/>
+                <RelativeLayout
+                    android:id="@+id/se"
+                    android:layout_width="60dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#18ff6a"
+                    android:layout_centerInParent="true">
+
+                </RelativeLayout>
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/b_g4"
+                    android:scaleType="fitCenter"/>
                 <TextView
                     android:id="@+id/code"
                     android:layout_width="wrap_content"
