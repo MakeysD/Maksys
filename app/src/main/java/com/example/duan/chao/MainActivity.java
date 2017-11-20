@@ -726,11 +726,11 @@ public class MainActivity extends BaseActivity{
             }else {
                 Log.i("DCZ",mTotpCountdownPhase+"");//数字从大变小
                 if(mTotpCountdownPhase>0.5){
-                    gifFromResource.seekTo(400+(int)(30000-(30000*mTotpCountdownPhase)));
-                    Log.i("DCZ2",400+(30000-(30000*mTotpCountdownPhase))+"");//数字从大变小
+                    gifFromResource.seekTo(300+(int)(30000-(30000*mTotpCountdownPhase)));
+                    Log.i("DCZ2",300+(30000-(30000*mTotpCountdownPhase))+"");//数字从大变小
                 }else if(mTotpCountdownPhase<0.01){
-                    gifFromResource.seekTo(400);
-                    Log.i("DCZ3",400+"");//数字从大变小
+                    gifFromResource.seekTo(300);
+                    Log.i("DCZ3",300+"");//数字从大变小
                 }else {
                     gifFromResource.seekTo((int)(30000-(30000*mTotpCountdownPhase)));
                 }
@@ -1049,6 +1049,10 @@ public class MainActivity extends BaseActivity{
     protected void onResume() {
         isForeground = true;
         super.onResume();
+        if(MyApplication.status==true){
+            MyApplication.type=1;
+            recreate();
+        }
         if(LockUtil.getPwdStatus(INSTANCE)==true){
             tv_suo.setText(R.string.main2);
         }else {
@@ -1366,6 +1370,7 @@ public class MainActivity extends BaseActivity{
                         long a = millis + (new Date().getTime() - miss) / 2;
                         MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
                         Log.i("dcz差额",MyApplication.offset+"");
+                        ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi137));
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

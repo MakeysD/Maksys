@@ -568,7 +568,7 @@
                         android:textColor="#5f9cf8"
                         android:textStyle="bold"
                         android:textSize="17sp"
-                        android:layout_marginBottom="10dp" />
+                        android:layout_marginBottom="30dp" />
 
                 </LinearLayout>
             </RelativeLayout>
@@ -610,7 +610,7 @@
                     android:textColor="#5f9cf8"
                     android:textStyle="bold"
                     android:textSize="17sp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="30dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"/>
             </RelativeLayout>

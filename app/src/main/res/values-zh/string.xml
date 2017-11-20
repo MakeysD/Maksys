@@ -314,6 +314,7 @@
     <string name="tishi134">复制密码</string>
     <string name="tishi135">密码已复制到粘贴板</string>
     <string name="tishi136">撤销</string>
+    <string name="tishi137">时间同步成功</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->
