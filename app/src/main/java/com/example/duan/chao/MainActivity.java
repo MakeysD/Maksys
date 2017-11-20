@@ -1218,6 +1218,7 @@ public class MainActivity extends BaseActivity{
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
+                    MyApplication.sf.edit().putString("cookie","").commit();
                     if(response.body().getCode().equals("20000")){
                         SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
                         final String username = sf2.getString("username","");//第二个参数为默认值

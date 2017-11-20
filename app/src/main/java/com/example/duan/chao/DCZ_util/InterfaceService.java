@@ -169,9 +169,11 @@ public interface InterfaceService {
      */
     @FormUrlEncoded
     @POST("loginByRefreshToken")
-    Call<EquipmentBean> getToken(@Field("username") String id,
-                                 @Field("refreshToken") Long refreshToken,
-                                 @Field("deviceUUID") Long deviceUUID);
+    Call<TimeBean> getToken(@Field("username") String id,
+                                 @Field("refreshToken") String refreshToken,
+                                 @Field("deviceUUID") String deviceUUID,
+                                 @Field("nonce") String nonce,
+                                 @Field("sign") String sign);
 
     /**
      *  账户足迹

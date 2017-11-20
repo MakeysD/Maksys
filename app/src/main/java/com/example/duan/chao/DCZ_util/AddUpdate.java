@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_util;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
@@ -16,6 +17,9 @@ import com.example.duan.chao.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
@@ -33,9 +37,23 @@ public class AddUpdate implements Interceptor{
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
+        Log.i("Cookie3",MyApplication.sf.getString("cookie","")+"789");
+        if(!TextUtils.isEmpty(MyApplication.sf.getString("cookie",""))){
+            originalRequest = originalRequest.newBuilder().addHeader("cookie",MyApplication.sf.getString("cookie","")).build();
+        }
         Response originalResponse = chain.proceed(originalRequest);
         String s = originalResponse.body().string();
         LoginBean result = mGson.fromJson(s, LoginBean.class);
+        List<String> b = originalResponse.headers("Set-Cookie");
+        for(int i=0;i<b.size();i++){
+            Log.i("Cookie1",  b.get(i)+"");
+            if(i==1){
+                String[] c = b.get(i).split(";");
+                String a = c[0];
+                MyApplication.sf.edit().putString("cookie",a).commit();
+                Log.i("Cookie5",MyApplication.sf.getString("cookie","")+"555555");
+            }
+        }
         if(result.getCode()!=null){
           /*  if (result.getCode().equals("10011")){
                 throw  new MyThrow();
@@ -81,8 +99,10 @@ public class AddUpdate implements Interceptor{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.i("Cookie4",MyApplication.cookie+"");
         return new Request.Builder()
                 .url(MyApplication.uri+"loginByRefreshToken")
+                .addHeader("cookie",MyApplication.sf.getString("cookie",""))
                 .post(new FormBody.Builder()
                         .add("username", MyApplication.username)
                         .add("refreshToken",MyApplication.token)

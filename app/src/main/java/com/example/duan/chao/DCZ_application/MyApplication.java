@@ -79,6 +79,7 @@ public class MyApplication extends Application{
     public static String reqFlowId;
     public static String sms_type="1";//是需要验证短信，0是不需要验证短信
     public static ClearableCookieJar jar;
+    public static String cookie;
     //偏好设置
     public static SharedPreferences sf;
     public static Long offset;
@@ -111,6 +112,7 @@ public class MyApplication extends Application{
         pub_key=sf.getString("pub_key","");
         language=sf.getString("language","");
         offset=sf.getLong("offset",0);
+        cookie=sf.getString("cookie","");
         uri=sf.getString("uri","http://110.79.11.5/user-safe-api/");
         ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");
         Log.i("dcz_first",first+"");

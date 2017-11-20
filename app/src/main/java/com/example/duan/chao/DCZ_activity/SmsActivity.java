@@ -32,9 +32,16 @@ import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
+import org.apache.http.client.CookieStore;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.BasicCookieStore;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
