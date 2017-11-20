@@ -92,6 +92,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
@@ -173,6 +174,7 @@ public class MainActivity extends BaseActivity{
     private Long miss;//请求前的时间
     private Boolean fu=false;   //是否复制内容
     private Boolean amin_shou=true; //收缩动画是否运行结束
+    private Animation animation;
     private void initHandler(){
         //下线通知
         mHandler = new Handler(){
@@ -191,6 +193,25 @@ public class MainActivity extends BaseActivity{
                         break;
                     case 2:
                         getVersion();
+                        break;
+                    case 3:
+                        switch (ima){
+                            case 1:
+                                ima=2;
+                                home.setBackgroundResource(R.drawable.bg_code1);
+                                home.startAnimation(animation);
+                                break;
+                            case 2:
+                                ima=3;
+                                home.setBackgroundResource(R.drawable.bg_code2);
+                                home.startAnimation(animation);
+                                break;
+                            case 3:
+                                ima=1;
+                                home.setBackgroundResource(R.drawable.bg_have);
+                                home.startAnimation(animation);
+                                break;
+                        }
                         break;
                 }
             }
@@ -416,9 +437,6 @@ public class MainActivity extends BaseActivity{
                         if(rl_code.getVisibility()==View.VISIBLE){
                             Anima_red=false;
                             Anima_blue=true;
-                            home.setBackgroundResource(R.drawable.bg_code2);
-                            Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
-                            home.startAnimation(animation);
                         }
                     }
                 }
@@ -427,14 +445,10 @@ public class MainActivity extends BaseActivity{
                         if(rl_code.getVisibility()==View.VISIBLE){
                             Anima_blue=false;
                             Anima_red=true;
-                            home.setBackgroundResource(R.drawable.bg_code1);
-                            Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
-                            home.startAnimation(animation);
                         }
                     }
                 }
             }
-      //  }
     }
     /**
      * 显示用户邮件和更新的pin码
@@ -726,6 +740,7 @@ public class MainActivity extends BaseActivity{
             e.printStackTrace();
         }
     }
+    private int ima=1;
     private void setViews() {
         // 获取packagemanager的实例  
         PackageManager packageManager = getPackageManager();
@@ -752,6 +767,15 @@ public class MainActivity extends BaseActivity{
         }else {
             button2.setChecked(false);
         }
+        animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha3);
+        Timer timer=new Timer();
+        TimerTask task=new TimerTask() {
+            @Override
+            public void run() {
+                MainActivity.mHandler.sendEmptyMessage(3);
+            }
+        };
+        timer.schedule(task,5000,6000);
         final Animation animation1 = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
         final Animation animation2 = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha2);
         se.startAnimation(animation1);
@@ -804,10 +828,6 @@ public class MainActivity extends BaseActivity{
                 //addAccount();
                 code.setVisibility(View.VISIBLE);
                 have.setVisibility(View.GONE);
-                home.setBackgroundResource(R.drawable.bg_have);
-                /*Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
-                home.startAnimation(animation);*/
-                //rl_have.startAnimation(animation);
                 rl_code.setVisibility(View.GONE);
                 rl_have.setVisibility(View.VISIBLE);
             }
@@ -821,16 +841,11 @@ public class MainActivity extends BaseActivity{
                 if(mTotpCountdownPhase<0.3&&mTotpCountdownPhase>0.01){
                     Anima_blue=true;
                     Anima_red=false;
-                    home.setBackgroundResource(R.drawable.bg_code2);
                 }else {
                     Anima_blue=false;
                     Anima_red=true;
-                    home.setBackgroundResource(R.drawable.bg_code1);
                 }
-               /* Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
-                home.startAnimation(animation);*/
                 rl_have.setVisibility(View.GONE);
-                //rl_code.startAnimation(animation);
                 rl_code.setVisibility(View.VISIBLE);
             }
         });
@@ -1346,9 +1361,11 @@ public class MainActivity extends BaseActivity{
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
+                        type=true;
                         Long millis = response.body().getData().getMillisecond();
                         long a = millis + (new Date().getTime() - miss) / 2;
                         MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
+                        Log.i("dcz差额",MyApplication.offset+"");
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

@@ -16,6 +16,7 @@
 
 package com.example.duan.chao.DCZ_authenticator;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb.OtpType;
 import com.example.duan.chao.DCZ_authenticator.PasscodeGenerator.Signer;
 
@@ -84,7 +85,7 @@ public class OtpProvider implements OtpSource {
 
     if (type == OtpType.TOTP) {
       // For time-based OTP, the state is derived from clock.
-      otp_state = mTotpCounter.getValueAtTime(Utilities.millisToSeconds(mTotpClock.currentTimeMillis()));
+      otp_state = mTotpCounter.getValueAtTime(Utilities.millisToSeconds(mTotpClock.currentTimeMillis()- MyApplication.offset));
     } else if (type == OtpType.HOTP){
       // For counter-based OTP, the state is obtained by incrementing stored counter.
       mAccountDb.incrementCounter(username);

@@ -21,6 +21,7 @@ import android.util.Log;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -91,7 +92,6 @@ public class TotpCountdownTask implements Runnable {
     if (mShouldStop) {
       throw new IllegalStateException("Task already stopped and cannot be restarted.");
     }
-
     run();
   }
 
@@ -108,11 +108,14 @@ public class TotpCountdownTask implements Runnable {
       return;
     }
     long now = mClock.currentTimeMillis();
-    Log.i("dcz时间1",now+"");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String datetime = format.format(now);
+    Log.i("dcz时间1",datetime);
     if(MyApplication.offset!=null&&MyApplication.offset!=0){
       now=now-MyApplication.offset;
+      String datetime2 = format.format(now);
+      Log.i("dcz时间3",datetime2);
     }
-    Log.i("dcz时间2",now+"");
 
     long counterValue = getCounterValue(now);
     if (mLastSeenCounterValue != counterValue) {
@@ -125,7 +128,7 @@ public class TotpCountdownTask implements Runnable {
   }
 
   private void scheduleNextInvocation() {
-    long now = mClock.currentTimeMillis();
+    long now = mClock.currentTimeMillis()-MyApplication.offset;
     long counterValueAge = getCounterValueAge(now);
     long timeTillNextInvocation =
         mRemainingTimeNotificationPeriod - (counterValueAge % mRemainingTimeNotificationPeriod);
