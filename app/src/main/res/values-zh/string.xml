@@ -310,11 +310,14 @@
     <string name="tishi130">动态码</string>
     <string name="tishi131">一键授权</string>
     <string name="tishi132">注册</string>
-    <string name="tishi133">时间同步</string>
+    <string name="tishi133a">无法工作?</string>
+    <string name="tishi133">试试重新同步</string>
     <string name="tishi134">复制密码</string>
     <string name="tishi135">密码已复制到粘贴板</string>
     <string name="tishi136">撤销</string>
     <string name="tishi137">时间同步成功</string>
+    <string name="tishi138">授权成功</string>
+    <string name="tishi139">授权失败</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->

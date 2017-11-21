@@ -67,6 +67,14 @@ public class AddUpdate implements Interceptor{
                 if(resultLogin.getCode().equals("10500")){
                     Log.i("dczz","安全中心不可用");
                 }else if(resultLogin.getCode().equals("20000")) {
+                    List<String> list = loginResponse.headers("Set-Cookie");
+                    for(int i=0;i<list.size();i++){
+                        if(i==1){
+                            String[] c = b.get(i).split(";");
+                            String a = c[0];
+                            MyApplication.sf.edit().putString("cookie",a).commit();
+                        }
+                    }
                     return chain.proceed(originalRequest);
                 }else {
                     Log.i("dcz刷新token",resultLogin.getCode());

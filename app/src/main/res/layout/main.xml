@@ -65,7 +65,7 @@ http://www.apache.org/licenses/license - 2.0
           android:id="@+id/pin_value"
           android:layout_width="match_parent"
           android:gravity="center_horizontal"
-          android:textSize="60dp"
+          android:textSize="55dp"
           android:textStyle="bold"
           android:textColor="#333333"
           android:layout_height="100dp"/>

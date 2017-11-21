@@ -13,12 +13,15 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
@@ -29,6 +32,7 @@ import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -80,6 +84,7 @@ import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
+import com.example.duan.chao.DCZ_util.DisplayUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.NotificationsUtils;
 import com.example.duan.chao.DCZ_util.RandomUtil;
@@ -92,7 +97,6 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
@@ -165,7 +169,6 @@ public class MainActivity extends BaseActivity{
     public static final int REMOVE_ID = 2;
     static final int COPY_TO_CLIPBOARD_ID = 3;
     static final int SCAN_REQUEST = 31337;
-    private GifImageView gif;
     private TextView pinView;
     private double mTotpCountdownPhase;
     private GifDrawable gifFromResource;
@@ -178,6 +181,7 @@ public class MainActivity extends BaseActivity{
     private void initHandler(){
         //下线通知
         mHandler = new Handler(){
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -198,18 +202,21 @@ public class MainActivity extends BaseActivity{
                         switch (ima){
                             case 1:
                                 ima=2;
-                                home.setBackgroundResource(R.drawable.bg_code1);
-                                home.startAnimation(animation);
+                                TransitionDrawable transition = (TransitionDrawable)getResources().getDrawable(R.drawable.transition);
+                                home.setBackground(transition);
+                                transition.startTransition(2000);
                                 break;
                             case 2:
                                 ima=3;
-                                home.setBackgroundResource(R.drawable.bg_code2);
-                                home.startAnimation(animation);
+                                TransitionDrawable transition2 = (TransitionDrawable)getResources().getDrawable(R.drawable.transition2);
+                                home.setBackground(transition2);
+                                transition2.startTransition(2000);
                                 break;
                             case 3:
                                 ima=1;
-                                home.setBackgroundResource(R.drawable.bg_have);
-                                home.startAnimation(animation);
+                                TransitionDrawable transition3 = (TransitionDrawable)getResources().getDrawable(R.drawable.transition3);
+                                home.setBackground(transition3);
+                                transition3.startTransition(2000);
                                 break;
                         }
                         break;
@@ -273,16 +280,25 @@ public class MainActivity extends BaseActivity{
     TextView fuzhi;
     @BindView(R.id.cancel)
     TextView cancel;
+    @BindView(R.id.gifview)
+    GifImageView gif;
     @BindView(R.id.se)
     RelativeLayout se;
+    @BindView(R.id.iv)
+    ImageView iv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         INSTANCE=this;
-        Log.i("dcz类名",INSTANCE.getLocalClassName());
+        Log.i("dcz类名",DisplayUtil.getDisplayWidthPixels(INSTANCE)+"");
         ButterKnife.bind(this);
         JPushInterface.resumePush(getApplicationContext());
+        RelativeLayout.LayoutParams linearParams =(RelativeLayout.LayoutParams)iv.getLayoutParams(); //取控件textView当前的布局参数
+        linearParams.height = DisplayUtil.getDisplayWidthPixels(INSTANCE)-170;
+        linearParams.width = DisplayUtil.getDisplayWidthPixels(INSTANCE)-170;
+        iv.setLayoutParams(linearParams);
+        gif.setLayoutParams(linearParams);
         CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
@@ -325,7 +341,6 @@ public class MainActivity extends BaseActivity{
                 }
             }
         }
-        gif=(GifImageView)findViewById(R.id.gifview);
         pinView = (TextView)findViewById(R.id.pin_value);
         up(mUsers);
     }

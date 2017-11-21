@@ -3,6 +3,7 @@ package com.example.duan.chao.DCZ_activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,6 +38,7 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
+import pl.droidsonroids.gif.GifImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -68,6 +71,16 @@ public class HaveScanActivity extends BaseActivity {
     ImageView iv5;
     @BindView(R.id.iv6)
     ImageView iv6;
+
+    @BindView(R.id.gif_ok)
+    GifImageView gif;
+    @BindView(R.id.type)
+    TextView type;
+    @BindView(R.id.yuan)
+    RelativeLayout yuan;
+    @BindView(R.id.diannao)
+    LinearLayout diannao;
+
 
 
     public static Handler mHandler2 ;
@@ -283,7 +296,6 @@ public class HaveScanActivity extends BaseActivity {
     }
 
     private void timer(final String string, final String code){
-        start();
         Timer timer=new Timer();
         TimerTask task=new TimerTask() {
             @Override
@@ -323,11 +335,20 @@ public class HaveScanActivity extends BaseActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                stop();
                 if(msg.what==1){
-                    iv6.setImageResource(R.drawable.login_ok);
+                    yuan.setBackgroundResource(R.drawable.yuan_lv);
+                    diannao.setBackgroundResource(R.drawable.diannao_lv);
+                    type.setText(R.string.tishi138);
+                    gif.setImageResource(R.drawable.progress);
+                    AnimationDrawable animationDrawable = (AnimationDrawable) gif.getDrawable();
+                    animationDrawable.start();
                 }else {
-                    iv6.setImageResource(R.drawable.login_no);
+                    yuan.setBackgroundResource(R.drawable.yuan_red);
+                    diannao.setBackgroundResource(R.drawable.diannao_hong);
+                    type.setText(R.string.tishi139);
+                    gif.setImageResource(R.drawable.progress2);
+                    AnimationDrawable animationDrawable = (AnimationDrawable) gif.getDrawable();
+                    animationDrawable.start();
                 }
             }
         };

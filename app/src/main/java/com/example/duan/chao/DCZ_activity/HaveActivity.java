@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +40,7 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
+import pl.droidsonroids.gif.GifImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,20 +60,17 @@ public class HaveActivity extends BaseActivity {
     TextView textView7;
     @BindView(R.id.anima)
     RelativeLayout anima;
-    @BindView(R.id.iv1)
-    ImageView iv1;
-    @BindView(R.id.iv2)
-    ImageView iv2;
-    @BindView(R.id.iv3)
-    ImageView iv3;
-    @BindView(R.id.iv4)
-    ImageView iv4;
-    @BindView(R.id.iv5)
-    ImageView iv5;
-    @BindView(R.id.iv6)
-    ImageView iv6;
     @BindView(R.id.tv)
     TextView tv;
+
+    @BindView(R.id.gif_ok)
+    GifImageView gif;
+    @BindView(R.id.type)
+    TextView type;
+    @BindView(R.id.yuan)
+    RelativeLayout yuan;
+    @BindView(R.id.diannao)
+    LinearLayout diannao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,36 +146,6 @@ public class HaveActivity extends BaseActivity {
         });
 
     }
-    private void start(){
-        setAnimation(R.anim.rotate,iv1);
-        setAnimation(R.anim.rotate2,iv2);
-        setAnimation(R.anim.rotate,iv3);
-        setAnimation(R.anim.rotate2,iv4);
-        setAnimaStop(R.anim.rotate,iv5);
-    }
-    private void stop(){
-        iv1.clearAnimation();
-        iv2.clearAnimation();
-        iv3.clearAnimation();
-        iv4.clearAnimation();
-        iv5.clearAnimation();
-    }
-    private void setAnimation(int id,View iv){
-        Animation operatingAnim = AnimationUtils.loadAnimation(INSTANCE, id);
-        LinearInterpolator lin = new LinearInterpolator();
-        operatingAnim.setInterpolator(lin);
-        if (operatingAnim != null) {
-            iv.startAnimation(operatingAnim);
-        }
-    }
-    private void setAnimaStop(int id,View iv){
-        Animation operatingAnim = AnimationUtils.loadAnimation(INSTANCE, id);
-        LinearInterpolator lin = new LinearInterpolator();
-        operatingAnim.setInterpolator(lin);
-        if (operatingAnim != null) {
-            iv.startAnimation(operatingAnim);
-        }
-    }
     /***
      * 调取接口拿到服务器数据
      * */
@@ -235,7 +205,6 @@ public class HaveActivity extends BaseActivity {
     }
 
     private void timer(final String string, final String code){
-        start();
         Timer timer=new Timer();
         TimerTask task=new TimerTask() {
             @Override
@@ -269,13 +238,20 @@ public class HaveActivity extends BaseActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                stop();
                 if(msg.what==1){
-                    iv6.setImageResource(R.drawable.login_ok);
-                    //Toast.makeText(INSTANCE,"成功", Toast.LENGTH_SHORT).show();
+                    yuan.setBackgroundResource(R.drawable.yuan_lv);
+                    diannao.setBackgroundResource(R.drawable.diannao_lv);
+                    type.setText(R.string.tishi138);
+                    gif.setImageResource(R.drawable.progress);
+                    AnimationDrawable animationDrawable = (AnimationDrawable) gif.getDrawable();
+                    animationDrawable.start();
                 }else {
-                   // Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
-                    iv6.setImageResource(R.drawable.login_no);
+                    yuan.setBackgroundResource(R.drawable.yuan_red);
+                    diannao.setBackgroundResource(R.drawable.diannao_hong);
+                    type.setText(R.string.tishi139);
+                    gif.setImageResource(R.drawable.progress2);
+                    AnimationDrawable animationDrawable = (AnimationDrawable) gif.getDrawable();
+                    animationDrawable.start();
                 }
             }
         };

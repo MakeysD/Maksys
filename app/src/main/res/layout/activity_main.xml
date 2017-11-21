@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/dsl"
-    android:background="#373b44"
+    android:background="#1e2738"
     tools:context=".MainActivity">
     <ScrollView
         android:layout_width="0dp"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="60dp"
-        android:background="#373b44">
+        android:background="#1e2738">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -527,7 +527,7 @@
                 <TextView
                     android:id="@+id/pin_value"
                     android:layout_width="wrap_content"
-                    android:textSize="60dp"
+                    android:textSize="55dp"
                     android:text="785695"
                     android:layout_centerInParent="true"
                     android:textStyle="bold"
@@ -550,20 +550,36 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
                     android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/time"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="20dp"
-                        android:text="@string/tishi133"
-                        android:textColor="#5f9cf8"
-                        android:textStyle="bold"
-                        android:textSize="17sp"/>
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tishi133a"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="17sp"/>
+                        <TextView
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:paddingLeft="5dp"
+                            android:text="@string/tishi133"
+                            android:textColor="#5f9cf8"
+                            android:textStyle="bold"
+                            android:textSize="17sp"/>
+                    </LinearLayout>
                     <TextView
                         android:id="@+id/have"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="20dp"
+                        android:layout_gravity="center_horizontal"
                         android:text="@string/tishi131"
                         android:textColor="#5f9cf8"
                         android:textStyle="bold"
@@ -577,6 +593,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
+                    android:id="@+id/iv"
                     android:layout_width="310dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_centerInParent="true"
