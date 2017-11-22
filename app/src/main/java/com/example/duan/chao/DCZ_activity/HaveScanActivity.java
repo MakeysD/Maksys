@@ -250,16 +250,17 @@ public class HaveScanActivity extends BaseActivity {
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             if(string.equals("1")){
+                                yuan.setBackgroundResource(R.drawable.yuan_lv);
+                                diannao.setBackgroundResource(R.drawable.diannao_lv);
+                                type.setText(R.string.tishi138);
                                 anima.setVisibility(View.VISIBLE);
                                 timer("1",response.body().getDesc());
                             }else {
-                                if(ActivityUtils.getInstance().ActivitySize()>1){
-                                    ActivityUtils.getInstance().popActivity(INSTANCE);
-                                }else {
-                                    Intent intent=new Intent(INSTANCE, MainActivity.class);
-                                    startActivity(intent);
-                                    ActivityUtils.getInstance().popActivity(INSTANCE);
-                                }
+                                yuan.setBackgroundResource(R.drawable.yuan_red);
+                                diannao.setBackgroundResource(R.drawable.diannao_hong);
+                                type.setText(R.string.tishi139);
+                                anima.setVisibility(View.VISIBLE);
+                                timer("2",response.body().getDesc());
                             }
                         }else {
                             if(response.body().getCode().equals("10516")){
@@ -336,16 +337,10 @@ public class HaveScanActivity extends BaseActivity {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 if(msg.what==1){
-                    yuan.setBackgroundResource(R.drawable.yuan_lv);
-                    diannao.setBackgroundResource(R.drawable.diannao_lv);
-                    type.setText(R.string.tishi138);
                     gif.setImageResource(R.drawable.progress);
                     AnimationDrawable animationDrawable = (AnimationDrawable) gif.getDrawable();
                     animationDrawable.start();
                 }else {
-                    yuan.setBackgroundResource(R.drawable.yuan_red);
-                    diannao.setBackgroundResource(R.drawable.diannao_hong);
-                    type.setText(R.string.tishi139);
                     gif.setImageResource(R.drawable.progress2);
                     AnimationDrawable animationDrawable = (AnimationDrawable) gif.getDrawable();
                     animationDrawable.start();

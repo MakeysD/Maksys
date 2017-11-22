@@ -24,55 +24,69 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/left"
             android:paddingRight="@dimen/right">
+            <RelativeLayout
+                android:layout_width="310dp"
+                android:layout_height="310dp"
+                android:background="@drawable/b_g3">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:background="@drawable/diannao_lan" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-                <TextView
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#506f93"
-                    android:text="交易金额"/>
-                <TextView
-                    android:id="@+id/sms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="857995"
-                    android:textColor="#7ce1ff"
-                    android:textStyle="bold"
-                    android:textSize="40sp" />
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/diannao_lan"
+                    android:layout_centerInParent="true">
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="45dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="25dp"
+                        android:src="@mipmap/state1"/>
+                </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="23dp"
-                    android:gravity="center_horizontal">
-
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
                     <TextView
-                        android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="13262638723"
+                        android:textColor="#506f93"
+                        android:text="交易金额"/>
+                    <TextView
+                        android:id="@+id/sms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="857995"
                         android:textColor="#7ce1ff"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:textSize="40sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="13262638723"
+                            android:textColor="#7ce1ff"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="#506f93"
+                        android:text="原力兑换网页交易确认"
+                        android:textSize="@dimen/text02" />
                 </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#506f93"
-                    android:text="原力兑换网页交易确认"
-                    android:textSize="@dimen/text02" />
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

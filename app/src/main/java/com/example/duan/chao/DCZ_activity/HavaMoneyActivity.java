@@ -216,8 +216,7 @@ public class HavaMoneyActivity extends BaseActivity {
                                 anima.setVisibility(View.VISIBLE);
                                 timer("1",response.body().getDesc());
                             }else {
-                                //timer("2",response.body().getDesc());
-                                ActivityUtils.getInstance().popActivity(INSTANCE);
+                                timer("2",response.body().getDesc());
                             }
                         }else {
                             if(response.body().getCode().equals("10516")){

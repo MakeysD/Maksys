@@ -126,36 +126,47 @@
             android:layout_height="match_parent"
             android:visibility="gone"
             android:background="@color/bg1">
-            <RelativeLayout
-                android:id="@+id/yuan"
-                android:layout_width="310dp"
-                android:layout_height="310dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/yuan_lv">
-                <LinearLayout
-                    android:id="@+id/diannao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:background="@drawable/diannao_lv"
-                    android:layout_centerInParent="true">
-                    <pl.droidsonroids.gif.GifImageView
-                        android:id="@+id/gif_ok"
-                        android:layout_width="33dp"
-                        android:layout_height="33dp"
-                        android:layout_marginTop="15dp"/>
-                    <TextView
-                        android:id="@+id/type"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:id="@+id/yuan"
+                    android:layout_width="310dp"
+                    android:layout_height="310dp"
+                    android:background="@drawable/yuan_lv">
+                    <LinearLayout
+                        android:id="@+id/diannao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="70dp"
-                        android:text="@string/tishi138"/>
-                </LinearLayout>
-            </RelativeLayout>
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:background="@drawable/diannao_lv"
+                        android:layout_centerInParent="true">
+                        <pl.droidsonroids.gif.GifImageView
+                            android:id="@+id/gif_ok"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:layout_marginTop="15dp"/>
+                        <TextView
+                            android:id="@+id/type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="70dp"
+                            android:text="@string/tishi138"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp">
+                </View>
+            </LinearLayout>
+
         </RelativeLayout>
 
     </RelativeLayout>

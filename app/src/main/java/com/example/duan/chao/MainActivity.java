@@ -286,6 +286,8 @@ public class MainActivity extends BaseActivity{
     RelativeLayout se;
     @BindView(R.id.iv)
     ImageView iv;
+    @BindView(R.id.yuan)
+    RelativeLayout yuan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -294,11 +296,15 @@ public class MainActivity extends BaseActivity{
         Log.i("dcz类名",DisplayUtil.getDisplayWidthPixels(INSTANCE)+"");
         ButterKnife.bind(this);
         JPushInterface.resumePush(getApplicationContext());
-        RelativeLayout.LayoutParams linearParams =(RelativeLayout.LayoutParams)iv.getLayoutParams(); //取控件textView当前的布局参数
+        /*RelativeLayout.LayoutParams linearParams =(RelativeLayout.LayoutParams)iv.getLayoutParams(); //取控件textView当前的布局参数
         linearParams.height = DisplayUtil.getDisplayWidthPixels(INSTANCE)-170;
         linearParams.width = DisplayUtil.getDisplayWidthPixels(INSTANCE)-170;
         iv.setLayoutParams(linearParams);
-        gif.setLayoutParams(linearParams);
+        yuan.setLayoutParams(linearParams);
+        RelativeLayout.LayoutParams linearParams2 =(RelativeLayout.LayoutParams)gif.getLayoutParams(); //取控件textView当前的布局参数
+        linearParams2.height = DisplayUtil.getDisplayWidthPixels(INSTANCE)-90;
+        linearParams2.width = DisplayUtil.getDisplayWidthPixels(INSTANCE)-90;
+        gif.setLayoutParams(linearParams2);*/
         CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
