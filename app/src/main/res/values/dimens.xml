@@ -20,9 +20,11 @@
     <dimen name="xian_left">0dp</dimen>
     <dimen name="xian_right">0dp</dimen>
 
+    <dimen name="di">25dp</dimen>
+
     <dimen name="top">19dp</dimen>
     <dimen name="xian">0.2dp</dimen>
-    <dimen name="xian2">0.5dp</dimen>
+    <dimen name="xian2">1dp</dimen>
 
     <dimen name="text00">15sp</dimen>
     <dimen name="text01">14sp</dimen>

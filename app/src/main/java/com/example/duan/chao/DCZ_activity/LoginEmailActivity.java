@@ -98,7 +98,6 @@ public class LoginEmailActivity extends BaseActivity {
     @BindView(R.id.checkBox)
     CheckBox yan;           //眼睛
 
-
     @BindView(R.id.ceshi)
     TextView ceshi;
     @BindView(R.id.zhengshi)

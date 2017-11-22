@@ -45,13 +45,13 @@ public class AddUpdate implements Interceptor{
         String s = originalResponse.body().string();
         LoginBean result = mGson.fromJson(s, LoginBean.class);
         List<String> b = originalResponse.headers("Set-Cookie");
+        Log.i("Cookie1",b+"");
         for(int i=0;i<b.size();i++){
-            Log.i("Cookie1",  b.get(i)+"");
             if(i==1){
                 String[] c = b.get(i).split(";");
                 String a = c[0];
                 MyApplication.sf.edit().putString("cookie",a).commit();
-                Log.i("Cookie5",MyApplication.sf.getString("cookie","")+"555555");
+                Log.i("Cookie5",MyApplication.sf.getString("cookie","")+"5");
             }
         }
         if(result.getCode()!=null){
@@ -68,11 +68,13 @@ public class AddUpdate implements Interceptor{
                     Log.i("dczz","安全中心不可用");
                 }else if(resultLogin.getCode().equals("20000")) {
                     List<String> list = loginResponse.headers("Set-Cookie");
+                    Log.i("dcz刷新的Cookie",list+"");
                     for(int i=0;i<list.size();i++){
                         if(i==1){
-                            String[] c = b.get(i).split(";");
+                            String[] c = list.get(i).split(";");
                             String a = c[0];
                             MyApplication.sf.edit().putString("cookie",a).commit();
+                            Log.i("Cookie6",MyApplication.sf.getString("cookie","")+"5");
                         }
                     }
                     return chain.proceed(originalRequest);

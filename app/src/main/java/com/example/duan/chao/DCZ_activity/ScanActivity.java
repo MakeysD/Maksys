@@ -79,7 +79,6 @@ public class ScanActivity extends CaptureActivity {
     public void decodeResult(String serial, Bitmap barcode) {
         if(serial.contains("uuid")&&serial.contains("systemId")){
             dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"2");
-            dialog.show();
             String systemId = serial.substring(serial.indexOf("=")+1,serial.indexOf("&"));
             String uuid = serial.substring(serial.lastIndexOf("=")+1);
             Log.i("dcz","扫码结果："+serial+"");
@@ -90,11 +89,12 @@ public class ScanActivity extends CaptureActivity {
                 getData(uuid);
             }
         }else {
-            ContentUtil.makeToast(getApplicationContext(),getString(R.string.tishi128));
+            ContentUtil.makeToast(getApplicationContext(),getString(R.string.tishi128a));
         }
     }
 
     private void getData(String uuid){
+        dialog.show();
         if(ShebeiUtil.wang(this).equals("0")){
             new MiddleDialog(this,this.getString(R.string.tishi116),R.style.registDialog).show();
             return;

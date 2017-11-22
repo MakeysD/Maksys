@@ -33,56 +33,94 @@
             android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="40dp"
-        android:background="@mipmap/email"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#41a350"
-        android:textSize="@dimen/text00"
-        android:text="@string/tishi89"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/text07"
-        android:layout_marginTop="5dp"
-        android:textSize="@dimen/text02"
-        android:text="857999639@qq.com"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/left"
-        android:layout_marginRight="@dimen/right">
-        <TextView
-            android:id="@+id/button_hui"
-            android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/yuanjiaohui"
-            android:gravity="center"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/tishi49"
-            android:textColor="@color/text02"
-            android:textSize="@dimen/title" />
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/di"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:background="#303745">
+            </View>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#303745"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/tishi140"/>
+            <View
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:background="#303745">
+            </View>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="40dp"
+                android:background="@mipmap/email"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#41a350"
+                android:textSize="@dimen/text00"
+                android:text="@string/tishi89"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text07"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/text02"
+                android:text="857999639@qq.com"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/left"
+                android:layout_marginRight="@dimen/right">
+                <TextView
+                    android:id="@+id/button_hui"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/yuanjiaohui"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/tishi49"
+                    android:textColor="@color/text02"
+                    android:textSize="@dimen/title" />
 
-        <TextView
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/yuanjiaolan"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/tishi49"
-            android:textColor="@color/white"
-            android:textSize="@dimen/title"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+                <TextView
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yuanjiaolan"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/tishi49"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
+
 </LinearLayout>

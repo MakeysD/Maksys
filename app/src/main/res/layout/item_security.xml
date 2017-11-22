@@ -20,6 +20,7 @@
             fresco:placeholderImageScaleType="fitCenter"
             fresco:roundedCornerRadius="5dp"
             fresco:roundTopLeft="true"
+            android:visibility="gone"
             fresco:roundTopRight="true"
             fresco:roundBottomLeft="true"
             fresco:roundBottomRight="true"/>
@@ -29,7 +30,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/sdv"
             android:text="钱包"
             android:textColor="@color/white"
@@ -55,6 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/xian"
         android:background="@color/xian1"
+        android:layout_marginLeft="@dimen/left"
         android:layout_alignParentBottom="true"/>
     <com.example.duan.chao.DCZ_selft.GridViewForScrollView
         android:id="@+id/lv"

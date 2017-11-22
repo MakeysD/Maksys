@@ -240,6 +240,8 @@ public class MainActivity extends BaseActivity{
     RelativeLayout rl6;
     @BindView(R.id.rl7)
     RelativeLayout rl7;
+    @BindView(R.id.rl8)
+    RelativeLayout rl8;
     @BindView(R.id.rl_have) //授权页
     RelativeLayout rl_have;
     @BindView(R.id.rl_code) //动态码页
@@ -296,20 +298,13 @@ public class MainActivity extends BaseActivity{
         Log.i("dcz类名",DisplayUtil.getDisplayWidthPixels(INSTANCE)+"");
         ButterKnife.bind(this);
         JPushInterface.resumePush(getApplicationContext());
-        /*RelativeLayout.LayoutParams linearParams =(RelativeLayout.LayoutParams)iv.getLayoutParams(); //取控件textView当前的布局参数
-        linearParams.height = DisplayUtil.getDisplayWidthPixels(INSTANCE)-170;
-        linearParams.width = DisplayUtil.getDisplayWidthPixels(INSTANCE)-170;
-        iv.setLayoutParams(linearParams);
-        yuan.setLayoutParams(linearParams);
-        RelativeLayout.LayoutParams linearParams2 =(RelativeLayout.LayoutParams)gif.getLayoutParams(); //取控件textView当前的布局参数
-        linearParams2.height = DisplayUtil.getDisplayWidthPixels(INSTANCE)-90;
-        linearParams2.width = DisplayUtil.getDisplayWidthPixels(INSTANCE)-90;
-        gif.setLayoutParams(linearParams2);*/
         CanRippleLayout.Builder.on(rl1).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl2).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl3).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl5).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl6).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl7).rippleCorner(MyApplication.dp2Px()).create();
+        CanRippleLayout.Builder.on(rl8).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
@@ -1259,31 +1254,10 @@ public class MainActivity extends BaseActivity{
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     MyApplication.sf.edit().putString("cookie","").commit();
-                    if(response.body().getCode().equals("20000")){
-                        SharedPreferences sf2 = getSharedPreferences("user2",MODE_PRIVATE);
-                        final String username = sf2.getString("username","");//第二个参数为默认值
-                        final String token = sf2.getString("token","");
-                        final String nickname = sf2.getString("nickname","");
-                        if(token==null||token.equals("")){
-                            Log.i("dcz","只有一个账号");
-                            MyApplication.token=token;MyApplication.sf.edit().putString("token","").commit();
-                            Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
-                            startActivity(intent);
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
-                        }else {
-                            sf2.edit().putString("token","").commit();
-                            Log.i("dcz","有两个账号");
-                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                            MyApplication.nickname=nickname;MyApplication.sf.edit().putString("nickname",nickname).commit();
-                            MyApplication.username=username;MyApplication.sf.edit().putString("username",username).commit();
-                            setViews();
-                            setListener();
-                        }
-                    } else {
-                        if(!response.body().getCode().equals("20003")){
-                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
-                        }
-                    }
+                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                    Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
+                    startActivity(intent);
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
                     Log.d("dcz_数据获取失败",response.message());

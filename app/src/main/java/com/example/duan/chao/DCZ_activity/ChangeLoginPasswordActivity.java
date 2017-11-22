@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
@@ -16,6 +20,7 @@ import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.AsterPassword;
 import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -48,6 +53,19 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
     EditText et2;
     @BindView(R.id.et3)
     EditText et3;
+    @BindView(R.id.x1)
+    ImageView x1;
+    @BindView(R.id.x2)
+    ImageView x2;
+    @BindView(R.id.x3)
+    ImageView x3;
+    @BindView(R.id.checkBox1)
+    CheckBox checkBox1;
+    @BindView(R.id.checkBox2)
+    CheckBox checkBox2;
+    @BindView(R.id.checkBox3)
+    CheckBox checkBox3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +111,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
             tv5.setText(this.getString(R.string.tishia68)+b.substring(0,3)+c+d+"@"+e+this.getString(R.string.tishi68));
         }else {
-            tv5.setText(b);
+            tv5.setText(MyApplication.username);
         }
 
     }
@@ -105,6 +123,18 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ActivityUtils.getInstance().popActivity(INSTANCE);
+            }
+        });
+        x2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                et2.setText("");
+            }
+        });
+        x3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                et3.setText("");
             }
         });
         et1.addTextChangedListener(new TextWatcher() {
@@ -129,6 +159,11 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(et2.getText().length()>0){
+                    x2.setVisibility(View.VISIBLE);
+                }else {
+                    x2.setVisibility(View.GONE);
+                }
                 if(et1.getText().toString().length()>0&&et2.getText().toString().length()>5&&et2.getText().toString().length()<19&&et3.getText().toString().length()>5&&et3.getText().toString().length()<19){
                     button.setVisibility(View.VISIBLE);
                 }else {
@@ -145,6 +180,11 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(et3.getText().length()>0){
+                    x3.setVisibility(View.VISIBLE);
+                }else {
+                    x3.setVisibility(View.GONE);
+                }
                 if(et1.getText().toString().length()>0&&et2.getText().toString().length()>5&&et2.getText().toString().length()<19&&et3.getText().toString().length()>5&&et3.getText().toString().length()<19){
                     button.setVisibility(View.VISIBLE);
                 }else {
@@ -153,6 +193,36 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
+        checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    et1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    et1.setTransformationMethod(new AsterPassword());
+                }
+            }
+        });
+        checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    et2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    et2.setTransformationMethod(new AsterPassword());
+                }
+            }
+        });
+        checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    et3.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    et3.setTransformationMethod(new AsterPassword());
+                }
             }
         });
         button.setOnClickListener(new View.OnClickListener() {

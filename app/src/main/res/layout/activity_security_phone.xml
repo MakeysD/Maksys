@@ -32,83 +32,115 @@
             android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/left"
-        android:paddingRight="@dimen/right">
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="30dp"
-            android:background="@mipmap/anquan2" />
-
-        <TextView
-            android:id="@+id/tv"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/title" />
-
-        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/di"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:background="#303745">
+            </View>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#303745"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/tishi140"/>
+            <View
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:background="#303745">
+            </View>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="30dp"
+                android:background="@mipmap/anquan2" />
 
             <TextView
-                android:id="@+id/button_hui"
-                android:layout_width="match_parent"
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/yuanjiaohui"
-                android:gravity="center"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="@string/tishi49"
-                android:textColor="@color/text05"
-                android:textSize="@dimen/title" />
-
-            <TextView
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/yuanjiaolan2"
-                android:gravity="center"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="@string/tishi49"
+                android:layout_marginTop="20dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/title" />
-        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/tishi51"
-            android:textColor="@color/text02"
-            android:textSize="@dimen/text02" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"></View>
+                <TextView
+                    android:id="@+id/button_hui"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/yuanjiaohui"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/tishi49"
+                    android:textColor="@color/text05"
+                    android:textSize="@dimen/title" />
 
-        <TextView
-            android:id="@+id/change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:padding="10dp"
-            android:visibility="gone"
-            android:text="已换号"
-            android:textColor="@color/text05"
-            android:textSize="15sp" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/yuanjiaolan2"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/tishi49"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/tishi51"
+                android:textColor="@color/text02"
+                android:textSize="@dimen/text02" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
+
+            <TextView
+                android:id="@+id/change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:text="已换号"
+                android:textColor="@color/text05"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
 </LinearLayout>
