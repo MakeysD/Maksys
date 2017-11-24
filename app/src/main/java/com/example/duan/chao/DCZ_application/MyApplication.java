@@ -50,9 +50,9 @@ public class MyApplication extends Application{
     public static String pri_key;//私钥
     public static String pub_key;//公钥
     //http://api.qeveworld.com/user-safe-api/
-    public static String uri="http://110.79.11.5/user-safe-api/";
+    public static String uri="http://api.qeveworld.com/user-safe-api/";
     //http://makeys.qeveworld.com/#/register
-    public static String ur="http://test-makeys.qeveworld.com/#/register";
+    public static String ur="http://makeys.qeveworld.com/#/register";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
     public static int zhiwen_namber=0;
@@ -114,7 +114,7 @@ public class MyApplication extends Application{
         offset=sf.getLong("offset",0);
         cookie=sf.getString("cookie","");
         uri=sf.getString("uri","http://api.qeveworld.com/user-safe-api/");
-        ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");
+        ur=sf.getString("ur","http://makeys.qeveworld.com/#/register");
         Log.i("dcz_first",first+"");
 
         Log.i("dcz_设备ID", ShebeiUtil.getDeviceId(this));
