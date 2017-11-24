@@ -69,7 +69,13 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text02" />
     </LinearLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/xian"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/left"
+        android:layout_marginRight="@dimen/right"
+        android:background="@color/xian1" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

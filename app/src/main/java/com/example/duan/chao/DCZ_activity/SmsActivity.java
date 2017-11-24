@@ -78,18 +78,6 @@ public class SmsActivity extends BaseActivity {
         JPushInterface.resumePush(getApplicationContext());
         phone=getIntent().getStringExtra("phone");
         password=getIntent().getStringExtra("password");
-        /*Handler mHandler = new Handler();
-        Runnable gotoLoginAct = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    DSA.intkey();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        mHandler.postDelayed(gotoLoginAct,2000);*/
         setViews();
         setListener();
 

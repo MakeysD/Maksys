@@ -113,7 +113,7 @@ public class MyApplication extends Application{
         language=sf.getString("language","");
         offset=sf.getLong("offset",0);
         cookie=sf.getString("cookie","");
-        uri=sf.getString("uri","http://110.79.11.5/user-safe-api/");
+        uri=sf.getString("uri","http://api.qeveworld.com/user-safe-api/");
         ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");
         Log.i("dcz_first",first+"");
 

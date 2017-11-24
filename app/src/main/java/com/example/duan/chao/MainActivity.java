@@ -335,7 +335,7 @@ public class MainActivity extends BaseActivity{
         if(MyApplication.uri.equals("http://110.79.11.5/user-safe-api/")){
             tv.setText("测试版—Makeys");
         }else {
-            tv.setText(R.string.tishi14);
+            tv.setText(R.string.title14);
         }
     }
     private void auth(){
@@ -1289,6 +1289,13 @@ public class MainActivity extends BaseActivity{
      *  验证版本
      * */
     public void getVersion(){
+        if(MyApplication.token.equals("")){
+            MyApplication.sf.edit().putString("cookie","").commit();
+            Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
+            startActivity(intent);
+            ActivityUtils.getInstance().popActivity(INSTANCE);
+            MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
+        }
         if(ShebeiUtil.wang(INSTANCE).equals("0")){
             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
             return;
@@ -1406,5 +1413,6 @@ public class MainActivity extends BaseActivity{
         Intent viewDownloadIntent = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
         viewDownloadIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         INSTANCE.startActivity(viewDownloadIntent);
+        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
     }
 }

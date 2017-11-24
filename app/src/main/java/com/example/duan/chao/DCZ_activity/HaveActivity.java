@@ -99,10 +99,12 @@ public class HaveActivity extends BaseActivity {
         newhandler();
         if(MyApplication.reqSysId!=null){
             if(MyApplication.language.equals("CHINESE")){
+                textView7.setTextSize(16);
                 textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+this.getString(R.string.tishi112));
                 type.setTextSize(18);
             }else {
                 type.setTextSize(15);
+                textView7.setTextSize(14);
                 textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+" "+this.getString(R.string.tishi112));
             }
 
