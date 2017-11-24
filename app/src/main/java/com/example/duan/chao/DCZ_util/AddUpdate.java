@@ -64,6 +64,7 @@ public class AddUpdate implements Interceptor{
                 Response loginResponse = chain.proceed(loginRequest);
                 String loginString = loginResponse.body().string();
                 HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
+                Log.i("dczz",resultLogin.getCode()+"");
                 if(resultLogin.getCode().equals("10500")){
                     Log.i("dczz","安全中心不可用");
                 }else if(resultLogin.getCode().equals("20000")) {
@@ -77,6 +78,8 @@ public class AddUpdate implements Interceptor{
                             Log.i("Cookie6",MyApplication.sf.getString("cookie","")+"5");
                         }
                     }
+                    originalRequest=originalRequest.newBuilder().removeHeader("cookie").build();
+                    originalRequest=originalRequest.newBuilder().addHeader("cookie",MyApplication.sf.getString("cookie","")).build();
                     return chain.proceed(originalRequest);
                 }else {
                     Log.i("dcz刷新token",resultLogin.getCode());

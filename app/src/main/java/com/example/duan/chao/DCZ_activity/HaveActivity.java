@@ -51,6 +51,7 @@ public class HaveActivity extends BaseActivity {
     private Dialog dialog;
     private Handler handler = null;
     private String authzId;
+    private Timer timer;
     @BindView(R.id.back)
     View back;
     @BindView(R.id.ok)
@@ -99,12 +100,23 @@ public class HaveActivity extends BaseActivity {
         if(MyApplication.reqSysId!=null){
             if(MyApplication.language.equals("CHINESE")){
                 textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+this.getString(R.string.tishi112));
+                type.setTextSize(18);
             }else {
+                type.setTextSize(15);
                 textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+" "+this.getString(R.string.tishi112));
             }
 
         }
-
+        timer=new Timer();
+        TimerTask task=new TimerTask() {
+            @Override
+            public void run() {
+                Message msg = handler.obtainMessage();
+                msg.what=3;
+                handler.sendMessage(msg);
+            }
+        };
+        timer.schedule(task,30000);
     }
     /**
      *  监听
@@ -120,6 +132,7 @@ public class HaveActivity extends BaseActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                timer.cancel();
                 JPushInterface.clearAllNotifications(INSTANCE);
                 String str ="agreement=1"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
@@ -134,6 +147,7 @@ public class HaveActivity extends BaseActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                timer.cancel();
                 JPushInterface.clearAllNotifications(INSTANCE);
                 String str ="agreement=2"+"&reqFlowId="+MyApplication.reqFlowId+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username;
                 byte[] data = str.getBytes();
@@ -171,11 +185,7 @@ public class HaveActivity extends BaseActivity {
                                 anima.setVisibility(View.VISIBLE);
                                 timer("1",response.body().getDesc());
                             }else {
-                                yuan.setBackgroundResource(R.drawable.yuan_red);
-                                diannao.setBackgroundResource(R.drawable.diannao_hong);
-                                type.setText(R.string.tishi139);
-                                anima.setVisibility(View.VISIBLE);
-                                timer("2",response.body().getDesc());
+                                error("2");
                             }
                         }else {
                             if(response.body().getCode().equals("10516")){
@@ -188,27 +198,32 @@ public class HaveActivity extends BaseActivity {
                                     }
                                 }, R.style.registDialog).show();
                             }else{
-                                anima.setVisibility(View.VISIBLE);
-                                timer("2",response.body().getDesc());
+                                error("2");
                             }
                         }
                     }else {
-                        timer("2",response.body().getDesc());
+                        error("2");
                         Log.d("dcz","返回的数据是空的");
                     }
                 }else {
-                    timer("2","获取数据失败");
+                    error("2");
                     Log.d("dcz","获取数据失败");
                 }
             }
             @Override
             public void onFailure(Call<LoginOkBean> call, Throwable t) {
                 if(ActivityUtils.getInstance().getCurrentActivity() instanceof HaveActivity){
-                    dialog.dismiss();
-                    timer("2","服务器异常");
+                    error("2");
                 }
             }
         });
+    }
+    private void error(String string){
+        yuan.setBackgroundResource(R.drawable.yuan_red);
+        diannao.setBackgroundResource(R.drawable.diannao_hong);
+        type.setText(R.string.tishi139);
+        anima.setVisibility(View.VISIBLE);
+        timer(string,"");
     }
 
     private void timer(final String string, final String code){
@@ -249,7 +264,13 @@ public class HaveActivity extends BaseActivity {
                     gif.setImageResource(R.drawable.progress);
                     AnimationDrawable animationDrawable = (AnimationDrawable) gif.getDrawable();
                     animationDrawable.start();
-                }else {
+                }else if(msg.what==3){
+                    yuan.setBackgroundResource(R.drawable.yuan_red);
+                    diannao.setBackgroundResource(R.drawable.diannao_hong);
+                    type.setText(R.string.tishi139a);
+                    anima.setVisibility(View.VISIBLE);
+                    timer("2","");
+                } else {
                     gif.setImageResource(R.drawable.progress2);
                     AnimationDrawable animationDrawable = (AnimationDrawable) gif.getDrawable();
                     animationDrawable.start();

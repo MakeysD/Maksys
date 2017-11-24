@@ -91,7 +91,7 @@
             android:text="@string/tishi59"
             android:textColor="#3c3c3c"
             android:layout_marginLeft="50px"
-            android:layout_marginBottom="80px"/>
+            android:layout_marginBottom="50dp"/>
         <TextView
             android:id="@+id/wangji"
             android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
             android:text="@string/tishi60"
             android:textColor="#3c3c3c"
             android:layout_marginRight="50px"
-            android:layout_marginBottom="80px"/>
+            android:layout_marginBottom="50dp"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/zhiwen"

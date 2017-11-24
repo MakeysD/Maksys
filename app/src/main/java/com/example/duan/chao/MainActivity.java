@@ -55,6 +55,7 @@ import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
+import com.example.duan.chao.DCZ_activity.TanSuoActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
@@ -126,7 +127,6 @@ public class MainActivity extends BaseActivity{
     private CancellationSignal cancellationSignal = null;
     public static boolean isForeground = true;
     //上面的是极光需要
-    private Handler handler = null;
     public static final int MSG_AUTH_SUCCESS = 100;
     public static final int MSG_AUTH_FAILED = 101;
     public static final int MSG_AUTH_ERROR = 102;
@@ -178,6 +178,14 @@ public class MainActivity extends BaseActivity{
     private Boolean fu=false;   //是否复制内容
     private Boolean amin_shou=true; //收缩动画是否运行结束
     private Animation animation;
+    private Handler handler;
+    private Runnable run=new Runnable() {
+        @Override
+        public void run() {
+            MainActivity.mHandler.sendEmptyMessage(3);
+            handler.postDelayed(run,60000);
+        }
+    };
     private void initHandler(){
         //下线通知
         mHandler = new Handler(){
@@ -290,6 +298,7 @@ public class MainActivity extends BaseActivity{
     ImageView iv;
     @BindView(R.id.yuan)
     RelativeLayout yuan;
+ public static TextView ceshi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -306,6 +315,7 @@ public class MainActivity extends BaseActivity{
         CanRippleLayout.Builder.on(rl7).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl8).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
+        ceshi= (TextView) findViewById(R.id.ceshi);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
         if (savedInstanceState != null) {
@@ -767,6 +777,8 @@ public class MainActivity extends BaseActivity{
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        handler=new Handler();
+        handler.postDelayed(run,5000);
         version = packInfo.versionName;
         if(MyApplication.language.equals("ENGLISH")){
             language.setText(R.string.tishi37);
@@ -784,14 +796,6 @@ public class MainActivity extends BaseActivity{
             button2.setChecked(false);
         }
         animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha3);
-        Timer timer=new Timer();
-        TimerTask task=new TimerTask() {
-            @Override
-            public void run() {
-                MainActivity.mHandler.sendEmptyMessage(3);
-            }
-        };
-        timer.schedule(task,5000,6000);
         final Animation animation1 = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
         final Animation animation2 = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha2);
         se.startAnimation(animation1);
@@ -990,6 +994,14 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(INSTANCE, LanguageActivity.class);
+                startActivity(intent);
+            }
+        });
+        //探索
+        rl8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE, TanSuoActivity.class);
                 startActivity(intent);
             }
         });
@@ -1258,6 +1270,7 @@ public class MainActivity extends BaseActivity{
                     Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
                     startActivity(intent);
                     ActivityUtils.getInstance().popActivity(INSTANCE);
+                    MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
                     Log.d("dcz_数据获取失败",response.message());
@@ -1344,7 +1357,6 @@ public class MainActivity extends BaseActivity{
             ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi116));
             return;
         }
-        dialog.show();
         String max= RandomUtil.RandomNumber();
         String str ="millisecond="+miss+"&nonce="+max;
         byte[] data = str.getBytes();
@@ -1356,7 +1368,6 @@ public class MainActivity extends BaseActivity{
         HttpServiceClient.getInstance().time(miss,max,sign).enqueue(new Callback<TimeBean>() {
             @Override
             public void onResponse(Call<TimeBean> call, Response<TimeBean> response) {
-                dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){

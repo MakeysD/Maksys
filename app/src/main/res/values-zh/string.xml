@@ -116,6 +116,7 @@
     <string name="title21">欢迎回来</string>
     <string name="title22">一键锁号</string>
     <string name="title23">绑定新手机</string>
+    <string name="title24">探索</string>
 
 
     <string name="lock1">请再次绘制解锁图案</string>
@@ -320,7 +321,12 @@
     <string name="tishi137">时间同步成功</string>
     <string name="tishi138">授权成功</string>
     <string name="tishi139">授权失败</string>
+    <string name="tishi139a">等待授权超时</string>
     <string name="tishi140">守护安全 保障资产</string>
+    <string name="tishi141">账户管家有什么用</string>
+    <string name="tishi142">怎么登陆验证</string>
+    <string name="tishi143">如何修改/找回密码</string>
+    <string name="tishi144">如何修改密保手机</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->

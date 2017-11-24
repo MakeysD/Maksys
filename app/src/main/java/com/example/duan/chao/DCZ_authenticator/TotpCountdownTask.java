@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.MainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -111,10 +112,14 @@ public class TotpCountdownTask implements Runnable {
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String datetime = format.format(now);
     Log.i("dcz时间1",datetime);
+    MainActivity.ceshi.setText(datetime);
     if(MyApplication.offset!=null&&MyApplication.offset!=0){
       now=now-MyApplication.offset;
       String datetime2 = format.format(now);
       Log.i("dcz时间3",datetime2);
+      //MainActivity.ceshi.setText(datetime2);
+    }else {
+      //MainActivity.ceshi.setText(datetime);
     }
 
     long counterValue = getCounterValue(now);

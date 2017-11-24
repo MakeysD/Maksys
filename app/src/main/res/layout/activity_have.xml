@@ -119,13 +119,13 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/title" />
             </LinearLayout>
-
         </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/anima"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:background="@color/bg1">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -146,10 +146,23 @@
                         android:orientation="vertical"
                         android:background="@drawable/diannao_lv"
                         android:layout_centerInParent="true">
+
                         <pl.droidsonroids.gif.GifImageView
                             android:id="@+id/gif_ok"
                             android:layout_width="33dp"
                             android:layout_height="33dp"
+                            android:layout_marginTop="15dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:layout_centerInParent="true">
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:visibility="invisible"
                             android:layout_marginTop="15dp"/>
                         <TextView
                             android:id="@+id/type"

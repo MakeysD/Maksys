@@ -97,6 +97,7 @@
     <string name="title21">Welcome back</string>
     <string name="title22">Lock</string>
     <string name="title23">Change phone number</string>
+    <string name="title24">FAQs</string>
 
 
     <string name="lock1">set gesture password again</string>
@@ -289,17 +290,18 @@
     <string name="tishi127">drive license</string>
     <string name="tishi128">start date</string>
     <string name="tishi128a">invalid Makeys QR code</string>
-    <string name="tishi130">动态码</string>
-    <string name="tishi131">一键授权</string>
-    <string name="tishi132">注册</string>
-    <string name="tishi133a">无法工作?</string>
-    <string name="tishi133">试试重新同步</string>
-    <string name="tishi134">复制密码</string>
-    <string name="tishi135">密码已复制到粘贴板</string>
-    <string name="tishi136">撤销</string>
-    <string name="tishi137">时间同步成功</string>
-    <string name="tishi138">授权成功</string>
-    <string name="tishi139">授权失败</string>
+    <string name="tishi130">dynamic code</string>
+    <string name="tishi131">authorize</string>
+    <string name="tishi132">register</string>
+    <string name="tishi133a">can\'t work now? </string>
+    <string name="tishi133">please  cogradient  again</string>
+    <string name="tishi134"> copy</string>
+    <string name="tishi135">copied</string>
+    <string name="tishi136">cancel</string>
+    <string name="tishi137">successfully</string>
+    <string name="tishi138">authorized successfully</string>
+    <string name="tishi139">authorized failed</string>
+    <string name="tishi139a">authorize over time limited</string>
     <string name="tishi140">守护安全 保障资产</string>
 
     <string name="code1">succeed</string><!--20000-->
@@ -376,7 +378,7 @@
     <string name="data2000">Makeys</string>
     <string name="data1010">QUIZ</string><!--1010-->
     <string name="data1011">MAIL</string><!--1011-->
-    <string name="data1012">AK交易系统</string><!--1012-->
+    <string name="data1012">AK_TRANS</string><!--1012-->
 
 
 

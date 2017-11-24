@@ -357,7 +357,7 @@ public class LoginEmailActivity extends BaseActivity {
             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
             return;
         }
-        dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+        dialog = DialogUtil.createLoadingDialog(this, getString(R.string.loaddings), "1");
         dialog.show();
         HttpServiceClient.getInstance().checklogin(phone.getText().toString()+"@qeveworld.com",DSA.md5(mima.getText().toString())).enqueue(new Callback<LoginOkBean>() {
             @Override
