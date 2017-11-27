@@ -60,6 +60,15 @@ public class TimeBean {
 
         private long millisecond;
         private int defaultIntervalInSeccod;
+        private int totpCodeLength;
+
+        public int getTotpCodeLength() {
+            return totpCodeLength;
+        }
+
+        public void setTotpCodeLength(int totpCodeLength) {
+            this.totpCodeLength = totpCodeLength;
+        }
 
         public long getMillisecond() {
             return millisecond;

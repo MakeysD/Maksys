@@ -451,7 +451,7 @@ public class MainActivity extends BaseActivity{
      * 更新进度条的进度
      * */
     private void updateCountdownIndicators() {
-            Log.i("dcz",mTotpCountdownPhase+"");
+           // Log.i("dcz",mTotpCountdownPhase+"");
             if(mTotpCountdownPhase!=1.0){
                 if(type==true){
                     animo(mTotpCountdownPhase);
@@ -1379,10 +1379,12 @@ public class MainActivity extends BaseActivity{
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
                         type=true;
+                        MyApplication.PIN_LENGTH=response.body().getData().getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",response.body().getData().getTotpCodeLength()).commit();
                         Long millis = response.body().getData().getMillisecond();
                         long a = millis + (new Date().getTime() - miss) / 2;
                         MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
                         Log.i("dcz差额",MyApplication.offset+"");
+                        TotpCountdownTask.mLastSeenCounterValue=0;
                         ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi137));
                     }else {
                         if(!response.body().getCode().equals("20003")){

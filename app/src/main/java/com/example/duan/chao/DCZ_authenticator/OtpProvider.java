@@ -16,6 +16,8 @@
 
 package com.example.duan.chao.DCZ_authenticator;
 
+import android.util.Log;
+
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb.OtpType;
 import com.example.duan.chao.DCZ_authenticator.PasscodeGenerator.Signer;
@@ -32,7 +34,7 @@ import java.util.Collection;
  */
 public class OtpProvider implements OtpSource {
 
-  public static int PIN_LENGTH = 6; // HOTP or TOTP
+  public static int PIN_LENGTH = MyApplication.PIN_LENGTH; // HOTP or TOTP
   private static final int REFLECTIVE_PIN_LENGTH = 9; // ROTP
 
   @Override
@@ -77,7 +79,6 @@ public class OtpProvider implements OtpSource {
     if (username == null) {
       throw new OtpSourceException("No account name");
     }
-
     OtpType type = mAccountDb.getType(username);
     String secret = getSecret(username);
 
@@ -123,7 +124,7 @@ public class OtpProvider implements OtpSource {
     try {
       Signer signer = AccountDb.getSigningOracle(secret);
       PasscodeGenerator pcg = new PasscodeGenerator(signer,
-        (challenge == null) ? PIN_LENGTH : REFLECTIVE_PIN_LENGTH);
+        (challenge == null) ?MyApplication.PIN_LENGTH : REFLECTIVE_PIN_LENGTH);
 
       return (challenge == null) ?
              pcg.generateResponseCode(otp_state) :

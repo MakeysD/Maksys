@@ -37,7 +37,7 @@ public class TotpCountdownTask implements Runnable {
   private final long mRemainingTimeNotificationPeriod;
   private final Handler mHandler = new Handler();
 
-  private long mLastSeenCounterValue = Long.MIN_VALUE;
+  public static long mLastSeenCounterValue = Long.MIN_VALUE;
   private boolean mShouldStop;
   private Listener mListener;
 
@@ -111,17 +111,14 @@ public class TotpCountdownTask implements Runnable {
     long now = mClock.currentTimeMillis();
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String datetime = format.format(now);
-    Log.i("dcz时间1",datetime);
     MainActivity.ceshi.setText(datetime);
     if(MyApplication.offset!=null&&MyApplication.offset!=0){
       now=now-MyApplication.offset;
       String datetime2 = format.format(now);
-      Log.i("dcz时间3",datetime2);
       //MainActivity.ceshi.setText(datetime2);
     }else {
       //MainActivity.ceshi.setText(datetime);
     }
-
     long counterValue = getCounterValue(now);
     if (mLastSeenCounterValue != counterValue) {
       mLastSeenCounterValue = counterValue;

@@ -16,32 +16,20 @@ import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
-import com.example.duan.chao.DCZ_authenticator.OtpProvider;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
-import com.example.duan.chao.DCZ_util.AddUpdate;
-import com.example.duan.chao.DCZ_util.ContentUtil;
-import com.example.duan.chao.DCZ_util.DSA;
-import com.example.duan.chao.DCZ_util.DSACoder;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
-import org.apache.http.client.CookieStore;
-import org.apache.http.cookie.Cookie;
-import org.apache.http.impl.client.BasicCookieStore;
-
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -230,7 +218,7 @@ public class SmsActivity extends BaseActivity {
                         MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
                         MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
                         MyApplication.password=password;MyApplication.sf.edit().putString("password",password);
-                        OtpProvider.PIN_LENGTH=  data.getTotpCodeLength();
+                        MyApplication.PIN_LENGTH=  data.getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",data.getTotpCodeLength()).commit();
                         AccountDb.OtpType mode = /*mType.getSelectedItemPosition() == AccountDb.OtpType.TOTP.value ?*/ AccountDb.OtpType.TOTP;// : AccountDb.OtpType.HOTP;
                         MyApplication.saveSecret(INSTANCE, data.getTotpSecretKey(),
                                 getEnteredKey(data.getTotpSecretKey()),
