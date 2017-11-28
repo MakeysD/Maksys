@@ -225,7 +225,7 @@ public class SmsActivity extends BaseActivity {
                                 null,
                                 mode,
                                 AccountDb.DEFAULT_HOTP_COUNTER);
-
+                        MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
                         Intent intent=new Intent(INSTANCE,MainActivity.class);
                         startActivity(intent);
                         ActivityUtils.getInstance().popAllActivities();

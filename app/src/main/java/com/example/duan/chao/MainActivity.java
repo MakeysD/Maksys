@@ -769,6 +769,7 @@ public class MainActivity extends BaseActivity{
     private int ima=1;
     private void setViews() {
         // 获取packagemanager的实例  
+        TotpCountdownTask.mLastSeenCounterValue=0;
         PackageManager packageManager = getPackageManager();
         // getPackageName()是你当前类的包名，0代表是获取版本信息  
         PackageInfo packInfo = null;

@@ -559,10 +559,9 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
-
             <RelativeLayout
                 android:id="@+id/rl_code"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
@@ -571,6 +570,37 @@
                     android:layout_height="300dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/b_g2">
+                    <TextView
+                        android:id="@+id/pin_value"
+                        android:layout_width="match_parent"
+                        android:textSize="52dp"
+                        android:text="785695"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/fuzhi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pin_value"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="#5f9cf8"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:text="@string/tishi134"/>
+                    <TextView
+                        android:id="@+id/ceshi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pin_value"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="#5f9cf8"
+                        android:visibility="gone"
+                        android:layout_marginTop="30dp"
+                        android:textSize="15sp"
+                        android:text="@string/tishi134"/>
                 </RelativeLayout>
                 <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/gifview"
@@ -581,36 +611,6 @@
                     android:layout_height="320dp"
                     android:background="@drawable/quan"
                     android:scaleType="centerCrop"/>
-                <TextView
-                    android:id="@+id/pin_value"
-                    android:layout_width="wrap_content"
-                    android:textSize="52dp"
-                    android:text="785695"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/white"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/fuzhi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/pin_value"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="#5f9cf8"
-                    android:layout_marginTop="5dp"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:text="@string/tishi134"/>
-                <TextView
-                    android:id="@+id/ceshi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/pin_value"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="#5f9cf8"
-                    android:visibility="invisible"
-                    android:layout_marginTop="30dp"
-                    android:textSize="15sp"
-                    android:text="@string/tishi134"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -639,6 +639,7 @@
                             android:textColor="#5f9cf8"
                             android:textSize="17sp"/>
                     </LinearLayout>
+
                     <TextView
                         android:id="@+id/have"
                         android:layout_width="wrap_content"
@@ -651,7 +652,6 @@
                         android:textSize="17sp"
                         android:layout_marginBottom="30dp" />
                 </LinearLayout>
-
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_have"
