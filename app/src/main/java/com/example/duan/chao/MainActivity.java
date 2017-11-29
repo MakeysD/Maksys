@@ -1290,13 +1290,13 @@ public class MainActivity extends BaseActivity{
      *  验证版本
      * */
     public void getVersion(){
-        if(MyApplication.token.equals("")){
+        /*if(MyApplication.token.equals("")){
             MyApplication.sf.edit().putString("cookie","").commit();
             Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
             startActivity(intent);
             ActivityUtils.getInstance().popActivity(INSTANCE);
             MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
-        }
+        }*/
         if(ShebeiUtil.wang(INSTANCE).equals("0")){
             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
             return;
@@ -1381,11 +1381,12 @@ public class MainActivity extends BaseActivity{
                     if(response.body().getCode().equals("20000")){
                         type=true;
                         MyApplication.PIN_LENGTH=response.body().getData().getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",response.body().getData().getTotpCodeLength()).commit();
+                        //MyApplication.PIN_LENGTH=6;
+                        TotpCountdownTask.mLastSeenCounterValue=0;
                         Long millis = response.body().getData().getMillisecond();
                         long a = millis + (new Date().getTime() - miss) / 2;
                         MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
                         Log.i("dcz差额",MyApplication.offset+"");
-                        TotpCountdownTask.mLastSeenCounterValue=0;
                         ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi137));
                     }else {
                         if(!response.body().getCode().equals("20003")){

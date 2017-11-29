@@ -17,14 +17,18 @@
 package com.example.duan.chao.zxing_code.android;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -34,21 +38,36 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
+import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.R;
 import com.example.duan.chao.zxing_code.camera.CameraManager;
 import com.example.duan.chao.zxing_code.decode.DecodeFormatManager;
 import com.example.duan.chao.zxing_code.decode.DecodeHintManager;
 import com.example.duan.chao.zxing_code.view.ViewfinderView;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Result;
+import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.QRCodeReader;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Hashtable;
 import java.util.Map;
+
+import cn.bingoogolapple.qrcode.zxing.QRCodeDecoder;
+
 
 
 /**
@@ -85,6 +104,8 @@ public abstract class CaptureActivity extends BaseActivity implements SurfaceHol
     private boolean mNeedFlashLightOpen = true;
     public FrameLayout lay_parent;
     private View back;
+    private TextView xuan;
+    private static final int CODE_GALLERY_REQUEST = 1;
 
     public ViewfinderView getViewfinderView() {
         return viewfinderView;
@@ -121,7 +142,87 @@ public abstract class CaptureActivity extends BaseActivity implements SurfaceHol
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
         lay_parent = (FrameLayout) findViewById(R.id.lay_parent);
+        xuan= (TextView) findViewById(R.id.xuan);
+        xuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, CODE_GALLERY_REQUEST);
+            }
+        });
         addView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CODE_GALLERY_REQUEST) {
+            Uri uri = data.getData();
+            String[] filePathColumn = {MediaStore.Audio.Media.DATA};
+            if (null == filePathColumn) {
+                return;
+            }
+            Cursor cursor = getContentResolver().query(getFileUri(uri), null, null, null, null);
+            cursor.moveToFirst();
+            //获取到的图片路径
+            String photoPath = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
+            cursor.close();
+           // sdv.setImageURI(uri);
+            //显示获取到的信息
+            String serial = QRCodeDecoder.syncDecodeQRCode(photoPath);
+            if(serial==null){
+                ContentUtil.makeToast(this,this.getString(R.string.tishi146));
+            }else {
+                Log.i("dcz",serial);
+                decodeResult(serial, null);
+            }
+        }
+    }
+
+
+    /**
+     * 处理uri方法，防止获取失败
+     * @param uri
+     * @return
+     */
+    private Uri getFileUri(Uri uri) {
+        try {
+            if (uri.getScheme().equals("file")) {
+                String path = uri.getEncodedPath();
+                if (path != null) {
+                    path = Uri.decode(path);
+                    ContentResolver cr = this.getContentResolver();
+                    StringBuffer buff = new StringBuffer();
+                    buff.append("(")
+                            .append(MediaStore.Images.ImageColumns.DATA)
+                            .append("=")
+                            .append("'" + path + "'")
+                            .append(")");
+                    Cursor cur = cr.query(
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                            new String[]{MediaStore.Images.ImageColumns._ID},
+                            buff.toString(), null, null);
+                    int index = 0;
+                    for (cur.moveToFirst(); !cur.isAfterLast(); cur
+                            .moveToNext()) {
+                        index = cur.getColumnIndex(MediaStore.Images.ImageColumns._ID);
+                        index = cur.getInt(index);
+                    }
+                    if (index == 0) {
+                    } else {
+                        Uri uri_temp = Uri
+                                .parse("content://media/external/images/media/"
+                                        + index);
+                        if (uri_temp != null) {
+                            uri = uri_temp;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return uri;
     }
 
     @Override

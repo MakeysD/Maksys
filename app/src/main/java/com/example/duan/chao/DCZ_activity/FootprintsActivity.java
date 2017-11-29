@@ -91,17 +91,17 @@ public class FootprintsActivity extends BaseActivity {
      *  监听
      * */
     private void setListener() {
-    lv2.setOnScrollListener(new AbsListView.OnScrollListener() {
-        @Override
-        public void onScrollStateChanged(AbsListView view, int scrollState) {
+        lv2.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
 
-        }
+            }
 
-        @Override
-        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            Log.i("dcz_当前可见",totalItemCount+"");
-        }
-    });
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                Log.i("dcz_当前可见",totalItemCount+"");
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

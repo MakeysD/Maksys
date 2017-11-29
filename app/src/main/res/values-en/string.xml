@@ -290,7 +290,7 @@
     <string name="tishi127">drive license</string>
     <string name="tishi128">start date</string>
     <string name="tishi128a">invalid Makeys QR code</string>
-    <string name="tishi130">dynamic code</string>
+    <string name="tishi130">pass code</string>
     <string name="tishi131">authorize</string>
     <string name="tishi132">register</string>
     <string name="tishi133a">can\'t work now? </string>
@@ -303,6 +303,12 @@
     <string name="tishi139">authorized failed</string>
     <string name="tishi139a">authorize over time limited</string>
     <string name="tishi140">守护安全 保障资产</string>
+    <string name="tishi141">What\'s the use of Makeys</string>
+    <string name="tishi142">how to verify login</string>
+    <string name="tishi143">how to change/retrieve password</string>
+    <string name="tishi144">how to change bound phone number</string>
+    <string name="tishi145">photo</string>
+    <string name="tishi146">No qr code was found</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->

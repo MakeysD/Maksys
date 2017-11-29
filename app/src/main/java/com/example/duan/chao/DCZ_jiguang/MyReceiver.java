@@ -260,12 +260,13 @@ public class MyReceiver extends BroadcastReceiver {
 				new MiddleDialog(a,a.getString(R.string.tishi101), a.getString(R.string.tishi102)+time+a.getString(R.string.tishi103)+a.getString(R.string.tishi104),"",new MiddleDialog.onButtonCLickListener2() {
 					@Override
 					public void onActivieButtonClick(Object bean, int position) {
+						Log.i("dcza","b");
 						JPushInterface.clearAllNotifications(MyApplication.getContext());
 						MyApplication.sms_type="1";MyApplication.sf.edit().putString("sms_type","1").commit();
 						MyApplication.nickname="";MyApplication.sf.edit().putString("nickname","").commit();
 						MyApplication.username="";MyApplication.sf.edit().putString("username","").commit();
 						if(bean==null){
-							ActivityUtils.getInstance().popAllActivities();
+							//ActivityUtils.getInstance().popAllActivities();
 						}else {
 							processCustomMessage(MyApplication.getContext(), bundle);
 						}
