@@ -157,6 +157,9 @@ public abstract class CaptureActivity extends BaseActivity implements SurfaceHol
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CODE_GALLERY_REQUEST) {
+            if(data==null){
+                return;
+            }
             Uri uri = data.getData();
             String[] filePathColumn = {MediaStore.Audio.Media.DATA};
             if (null == filePathColumn) {
