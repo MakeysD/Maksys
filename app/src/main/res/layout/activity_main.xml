@@ -513,7 +513,7 @@
                 android:id="@+id/home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_have"
+                android:background="@drawable/b_g5"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
@@ -653,36 +653,28 @@
                         android:layout_marginBottom="30dp" />
                 </LinearLayout>
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_have"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <ImageView
+                <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/iv"
                     android:layout_width="310dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_centerInParent="true"
                     android:layout_margin="5dp"
                     android:layout_height="310dp"
-                    android:src="@drawable/b_g3"
                     android:scaleType="centerCrop"/>
-                <RelativeLayout
-                    android:id="@+id/se"
-                    android:layout_width="60dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_horizontal"
-                    android:background="#18ff6a"
-                    android:layout_centerInParent="true">
-
-                </RelativeLayout>
-                <ImageView
-                    android:layout_width="150dp"
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/zhuan"
+                    android:layout_width="310dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_centerInParent="true"
+                    android:visibility="gone"
                     android:layout_margin="5dp"
-                    android:layout_height="150dp"
-                    android:src="@drawable/b_g4"
-                    android:scaleType="fitCenter"/>
+                    android:layout_height="310dp"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:id="@+id/code"
                     android:layout_width="wrap_content"

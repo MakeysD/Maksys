@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.test.RenamingDelegatingContext;
+import android.util.Log;
 
 
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
@@ -113,6 +114,7 @@ public final class DependencyInjector {
   }
 
   public static synchronized OtpSource getOtpProvider() {
+    //sOtpProvider=null;
     if (sOtpProvider == null) {
       sOtpProvider = getOptionalFeatures().createOtpSource(getAccountDb(), getTotpClock());
     }
@@ -206,6 +208,7 @@ public final class DependencyInjector {
   }
 
   public static synchronized OptionalFeatures getOptionalFeatures() {
+    //sOptionalFeatures=null;
     if (sOptionalFeatures == null) {
       try {
         Class<?> resultClass = Class.forName(
@@ -219,7 +222,7 @@ public final class DependencyInjector {
         sOptionalFeatures = new MarketBuildOptionalFeatures();
       }
     }
-    return sOptionalFeatures;
+    return new MarketBuildOptionalFeatures();
   }
 
   /**

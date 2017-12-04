@@ -12,7 +12,7 @@ public class LoginOkBean extends LoginBean<LoginOkBean>{
     private String userId;
     private String authzId;
     private String totpSecretKey;
-    private Object defaultIntervalInSeccod;
+    private int defaultIntervalInSecond;
     private int totpCodeLength;
 
     public int getTotpCodeLength() {
@@ -31,12 +31,12 @@ public class LoginOkBean extends LoginBean<LoginOkBean>{
         this.totpSecretKey = totpSecretKey;
     }
 
-    public Object getDefaultIntervalInSeccod() {
-        return defaultIntervalInSeccod;
+    public int getDefaultIntervalInSecond() {
+        return defaultIntervalInSecond;
     }
 
-    public void setDefaultIntervalInSeccod(Object defaultIntervalInSeccod) {
-        this.defaultIntervalInSeccod = defaultIntervalInSeccod;
+    public void setDefaultIntervalInSecond(int defaultIntervalInSecond) {
+        this.defaultIntervalInSecond = defaultIntervalInSecond;
     }
 
     public String getRefreshToken() {

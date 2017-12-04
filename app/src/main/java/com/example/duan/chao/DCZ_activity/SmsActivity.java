@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
+import com.example.duan.chao.DCZ_authenticator.OtpProvider;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
@@ -218,6 +219,7 @@ public class SmsActivity extends BaseActivity {
                         MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
                         MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
                         MyApplication.password=password;MyApplication.sf.edit().putString("password",password);
+                        MyApplication.DEFAULT_INTERVAL=data.getDefaultIntervalInSecond();MyApplication.sf.edit().putInt("DEFAULT_INTERVAL",data.getDefaultIntervalInSecond()).commit();
                         MyApplication.PIN_LENGTH=  data.getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",data.getTotpCodeLength()).commit();
                         AccountDb.OtpType mode = /*mType.getSelectedItemPosition() == AccountDb.OtpType.TOTP.value ?*/ AccountDb.OtpType.TOTP;// : AccountDb.OtpType.HOTP;
                         MyApplication.saveSecret(INSTANCE, data.getTotpSecretKey(),

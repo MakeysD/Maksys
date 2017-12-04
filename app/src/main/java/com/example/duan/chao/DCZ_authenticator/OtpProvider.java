@@ -144,7 +144,7 @@ public class OtpProvider implements OtpSource {
   }
 
   /** Default passcode timeout period (in seconds) */
-  public static final int DEFAULT_INTERVAL = 30;
+  public static int DEFAULT_INTERVAL = 30;
 
   private final AccountDb mAccountDb;
 

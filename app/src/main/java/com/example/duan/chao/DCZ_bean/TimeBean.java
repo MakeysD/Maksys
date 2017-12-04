@@ -59,7 +59,7 @@ public class TimeBean {
          */
 
         private long millisecond;
-        private int defaultIntervalInSeccod;
+        private int defaultIntervalInSecond;
         private int totpCodeLength;
 
         public int getTotpCodeLength() {
@@ -78,12 +78,12 @@ public class TimeBean {
             this.millisecond = millisecond;
         }
 
-        public int getDefaultIntervalInSeccod() {
-            return defaultIntervalInSeccod;
+        public int getDefaultIntervalInSecond() {
+            return defaultIntervalInSecond;
         }
 
-        public void setDefaultIntervalInSeccod(int defaultIntervalInSeccod) {
-            this.defaultIntervalInSeccod = defaultIntervalInSeccod;
+        public void setDefaultIntervalInSecond(int defaultIntervalInSecond) {
+            this.defaultIntervalInSecond = defaultIntervalInSecond;
         }
     }
 }

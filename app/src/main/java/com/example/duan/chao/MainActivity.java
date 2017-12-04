@@ -60,6 +60,7 @@ import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
 import com.example.duan.chao.DCZ_authenticator.AuthenticatorActivity;
+import com.example.duan.chao.DCZ_authenticator.OtpProvider;
 import com.example.duan.chao.DCZ_authenticator.OtpSource;
 import com.example.duan.chao.DCZ_authenticator.OtpSourceException;
 import com.example.duan.chao.DCZ_authenticator.TotpClock;
@@ -177,15 +178,13 @@ public class MainActivity extends BaseActivity{
     private Long miss;//请求前的时间
     private Boolean fu=false;   //是否复制内容
     private Boolean amin_shou=true; //收缩动画是否运行结束
-    private Animation animation;
-    private Handler handler;
-    private Runnable run=new Runnable() {
+  /*  private Runnable run=new Runnable() {
         @Override
         public void run() {
             MainActivity.mHandler.sendEmptyMessage(3);
             handler.postDelayed(run,60000);
         }
-    };
+    };*/
     private void initHandler(){
         //下线通知
         mHandler = new Handler(){
@@ -206,7 +205,7 @@ public class MainActivity extends BaseActivity{
                     case 2:
                         getVersion();
                         break;
-                    case 3:
+                  /*  case 3:
                         switch (ima){
                             case 1:
                                 ima=2;
@@ -227,7 +226,7 @@ public class MainActivity extends BaseActivity{
                                 transition3.startTransition(2000);
                                 break;
                         }
-                        break;
+                        break;*/
                 }
             }
         };
@@ -292,13 +291,13 @@ public class MainActivity extends BaseActivity{
     TextView cancel;
     @BindView(R.id.gifview)
     GifImageView gif;
-    @BindView(R.id.se)
-    RelativeLayout se;
     @BindView(R.id.iv)
-    ImageView iv;
+    SimpleDraweeView iv;
+    @BindView(R.id.zhuan)
+    SimpleDraweeView zhuan;
     @BindView(R.id.yuan)
     RelativeLayout yuan;
- public static TextView ceshi;
+    public static TextView ceshi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -315,14 +314,17 @@ public class MainActivity extends BaseActivity{
         CanRippleLayout.Builder.on(rl7).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl8).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
+        iv.setImageURI(null);
         ceshi= (TextView) findViewById(R.id.ceshi);
+        home.setBackgroundResource(R.drawable.b_g5);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
+        duration();//首页动画
         if (savedInstanceState != null) {
             mOldAppUninstallIntent = savedInstanceState.getParcelable(KEY_OLD_APP_UNINSTALL_INTENT);
             mSaveKeyDialogParams = (SaveKeyDialogParams) savedInstanceState.getSerializable(KEY_SAVE_KEY_DIALOG_PARAMS);
         }
-        auth();
+        auth();     //谷歌验证码动画
         if (savedInstanceState == null) {
             DependencyInjector.getOptionalFeatures().onAuthenticatorActivityCreated(INSTANCE);
             importDataFromOldAppIfNecessary();
@@ -337,6 +339,26 @@ public class MainActivity extends BaseActivity{
         }else {
             tv.setText(R.string.title14);
         }
+    }
+    private void duration(){
+        zhuan.setImageResource(R.drawable.zhuan);
+        iv.setImageResource(R.drawable.progress4);
+        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
+        animationDrawable.start();
+        // 计算动画执行的时间
+        int duration = 0;
+        for(int i=0;i<animationDrawable.getNumberOfFrames()-35;i++){
+            duration += animationDrawable.getDuration(i);
+        }
+        // 通过handler发送一个延迟消息
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.rotate);
+                zhuan.setVisibility(View.VISIBLE);
+                zhuan.startAnimation(animation);
+            }
+        }, duration);
     }
     private void auth(){
         mAccountDb = DependencyInjector.getAccountDb();
@@ -745,7 +767,11 @@ public class MainActivity extends BaseActivity{
         try {
             if(gifFromResource==null){
                 gifFromResource = new GifDrawable(getResources(), R.mipmap.gif4);
-                //gifFromResource.setSpeed(1.135f);
+                if(OtpProvider.DEFAULT_INTERVAL==30){
+                    gifFromResource.setSpeed(1f);
+                }else {
+                    gifFromResource.setSpeed(0.5f);
+                }
                 Log.i("dcz进度",(int) (10-mTotpCountdownPhase*10)+"");
                 gifFromResource.seekTo((int) (30000-(30000*mTotpCountdownPhase)));
                 gif.setImageDrawable(gifFromResource);
@@ -778,8 +804,6 @@ public class MainActivity extends BaseActivity{
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        handler=new Handler();
-        handler.postDelayed(run,5000);
         version = packInfo.versionName;
         if(MyApplication.language.equals("ENGLISH")){
             language.setText(R.string.tishi37);
@@ -796,36 +820,8 @@ public class MainActivity extends BaseActivity{
         }else {
             button2.setChecked(false);
         }
-        animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha3);
-        final Animation animation1 = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
-        final Animation animation2 = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha2);
-        se.startAnimation(animation1);
-        animation1.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                se.startAnimation(animation2);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
-        animation2.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                se.startAnimation(animation1);
-            }
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
+        /*final Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
+        se.startAnimation(animation);*/
     }
 
     private void setdialog(){
@@ -847,6 +843,7 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 //addAccount();
+                home.setBackgroundResource(R.drawable.b_g5);
                 code.setVisibility(View.VISIBLE);
                 have.setVisibility(View.GONE);
                 rl_code.setVisibility(View.GONE);
@@ -1148,6 +1145,7 @@ public class MainActivity extends BaseActivity{
         if (cancellationSignal != null) {
             cancellationSignal.cancel();
         }
+        iv.setImageURI(null);
         super.onDestroy();
     }
     public void registerMessageReceiver() {
@@ -1380,14 +1378,15 @@ public class MainActivity extends BaseActivity{
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
                         type=true;
+                        MyApplication.DEFAULT_INTERVAL=response.body().getData().getDefaultIntervalInSecond();MyApplication.sf.edit().putInt("DEFAULT_INTERVAL",response.body().getData().getDefaultIntervalInSecond()).commit();
                         MyApplication.PIN_LENGTH=response.body().getData().getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",response.body().getData().getTotpCodeLength()).commit();
-                        //MyApplication.PIN_LENGTH=6;
                         TotpCountdownTask.mLastSeenCounterValue=0;
                         Long millis = response.body().getData().getMillisecond();
                         long a = millis + (new Date().getTime() - miss) / 2;
                         MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
                         Log.i("dcz差额",MyApplication.offset+"");
                         ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi137));
+                        auth();
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
