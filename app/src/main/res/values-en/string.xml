@@ -6,7 +6,7 @@
     <string name="hello_blank_fragment">hello</string>
     <string name="loaddings">loading</string>
 
-    <string name="scan_text">Pleas align the QR Code to the viewfinder</string>
+    <string name="scan_text">Align the QR code within the frame</string>
 
     <string name="start_btn">start</string>
     <string name="cancel_btn">cancel</string>
@@ -90,7 +90,7 @@
     <string name="title14">Account security</string>
     <string name="title15">Log</string>
     <string name="title16">Personal information</string>
-    <string name="title17">Scan the QR Code</string>
+    <string name="title17">QR Code</string>
     <string name="title18">Phone number</string>
     <string name="title19">Set  personal information</string>
     <string name="title20">Message verify</string>
@@ -176,8 +176,8 @@
     <string name="tishi29">Authorized  login</string>
     <string name="tishi30">web login request</string>
     <string name="tishi31">To ensure the security of the account, please confirm that it is yourself operation</string>
-    <string name="tishi32">Authorization</string>
-    <string name="tishi33">Authorization reject</string>
+    <string name="tishi32">Accept</string>
+    <string name="tishi33">Cancel</string>
     <string name="tishi34">language</string>
     <string name="tishi35">Simple Chinese</string>
     <string name="tishi36">Traditional Chinese</string>
@@ -290,12 +290,12 @@
     <string name="tishi127">drive license</string>
     <string name="tishi128">start date</string>
     <string name="tishi128a">invalid Makeys QR code</string>
-    <string name="tishi130">passcode</string>
-    <string name="tishi131">authorize</string>
+    <string name="tishi130">Passcode</string>
+    <string name="tishi131">One-button</string>
     <string name="tishi132">register</string>
-    <string name="tishi133a">can\'t work now? </string>
-    <string name="tishi133">please  cogradient  again</string>
-    <string name="tishi134"> copy</string>
+    <string name="tishi133a">Not working ? </string>
+    <string name="tishi133">Try resyncing</string>
+    <string name="tishi134">Copy Code</string>
     <string name="tishi135">copied</string>
     <string name="tishi136">cancel</string>
     <string name="tishi137">successfully</string>
@@ -307,7 +307,7 @@
     <string name="tishi142">how to verify login</string>
     <string name="tishi143">how to change/retrieve password</string>
     <string name="tishi144">how to change bound phone number</string>
-    <string name="tishi145">photo</string>
+    <string name="tishi145">Album</string>
     <string name="tishi146">No qr code was found</string>
 
     <string name="code1">succeed</string><!--20000-->
