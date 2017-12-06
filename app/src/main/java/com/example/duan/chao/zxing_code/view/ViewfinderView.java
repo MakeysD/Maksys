@@ -46,7 +46,7 @@ import java.util.List;
 public final class ViewfinderView extends View {
 
     private static final int[] SCANNER_ALPHA = {0, 64, 128, 192, 255, 192, 128, 64};
-    private static final long ANIMATION_DELAY = 80L;
+    private static final long ANIMATION_DELAY = 40L;
     private static final int MAX_RESULT_POINTS = 20;
     private static final int POINT_SIZE = 6;
 

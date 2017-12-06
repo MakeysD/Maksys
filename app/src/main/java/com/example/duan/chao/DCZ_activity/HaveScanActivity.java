@@ -81,8 +81,6 @@ public class HaveScanActivity extends BaseActivity {
     @BindView(R.id.diannao)
     LinearLayout diannao;
 
-
-
     public static Handler mHandler2 ;
     private void initHandler2(){
         //下线通知

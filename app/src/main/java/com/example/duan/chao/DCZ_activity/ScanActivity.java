@@ -68,8 +68,8 @@ public class ScanActivity extends CaptureActivity {
         getCameraManager().setPoint_top((int) (screenHeight / 2 - recoderHeight*3));
         getCameraManager().setView_recoder_hight(recoderHeight*4);
         getViewfinderView().setmTipText(this.getString(R.string.scan_text));*/
-        int height=200;
-        getCameraManager().setPoint_left(70);
+        int height=240;
+        getCameraManager().setPoint_left(50);
         getCameraManager().setPoint_top(screenHeight/2-height);
         getCameraManager().setView_recoder_hight(height);
         getViewfinderView().setmTipText(this.getString(R.string.scan_text));
@@ -94,11 +94,11 @@ public class ScanActivity extends CaptureActivity {
     }
 
     private void getData(String uuid){
-        dialog.show();
         if(ShebeiUtil.wang(this).equals("0")){
             new MiddleDialog(this,this.getString(R.string.tishi116),R.style.registDialog).show();
             return;
         }
+        dialog.show();
         String max= RandomUtil.RandomNumber();
         String str ="nonce="+max+"&reqSysId=2001"+"&srcReqSysId="+MyApplication.reqSysId+"&username="+MyApplication.username+"&uuid="+uuid;
         byte[] data = str.getBytes();

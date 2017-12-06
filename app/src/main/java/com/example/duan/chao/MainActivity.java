@@ -256,7 +256,7 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.home)
     LinearLayout home;
     @BindView(R.id.scan)
-    ImageView scan;
+    View scan;
     @BindView(R.id.tv_suo)
     TextView tv_suo;
     @BindView(R.id.tv_anquan)
@@ -354,7 +354,7 @@ public class MainActivity extends BaseActivity{
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.rotate);
+                Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.rotate2);
                 zhuan.setVisibility(View.VISIBLE);
                 zhuan.startAnimation(animation);
             }
@@ -1178,9 +1178,9 @@ public class MainActivity extends BaseActivity{
                     Log.i("dcz",result.getReqSysId());
                     Log.i("dcz",type+"type");
                     if(type.equals("2")){//下线通知
-                        ActivityUtils.getInstance().popAllActivities();
                         Intent inten=new Intent(INSTANCE, LoginEmailActivity.class);
                         startActivity(inten);
+                        ActivityUtils.getInstance().popAllActivities();
                     }
                 }
             } catch (Exception e){

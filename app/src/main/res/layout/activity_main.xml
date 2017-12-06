@@ -42,6 +42,7 @@
                     android:paddingTop="15dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -50,7 +51,7 @@
                             android:id="@+id/iv1"
                             android:layout_width="65dp"
                             android:layout_height="65dp"
-                            android:background="@mipmap/tou2"/>
+                            android:background="@mipmap/tou"/>
                         <com.facebook.drawee.view.SimpleDraweeView
                             android:id="@+id/iv2"
                             android:layout_width="45dp"
@@ -518,6 +519,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/top"/>
+
                 <RelativeLayout
                     style="@style/Title">
                     <TextView
@@ -528,14 +530,13 @@
                         android:text="@string/title14"
                         android:textColor="@color/white"
                         android:textSize="@dimen/title" />
-                    <ImageView
-                        android:id="@+id/scan"
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="@dimen/right"
-                        android:layout_centerVertical="true"
-                        android:src="@mipmap/saoma"/>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <include
+                            android:id="@+id/scan"
+                            layout="@layout/layout_back4"/>
+                    </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -639,7 +640,6 @@
                             android:textColor="#5f9cf8"
                             android:textSize="17sp"/>
                     </LinearLayout>
-
                     <TextView
                         android:id="@+id/have"
                         android:layout_width="wrap_content"
@@ -648,7 +648,6 @@
                         android:layout_gravity="center_horizontal"
                         android:text="@string/tishi131"
                         android:textColor="#5f9cf8"
-                        android:textStyle="bold"
                         android:textSize="17sp"
                         android:layout_marginBottom="30dp" />
                 </LinearLayout>
@@ -660,20 +659,20 @@
                 android:layout_height="match_parent">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/iv"
-                    android:layout_width="310dp"
+                    android:layout_width="320dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_centerInParent="true"
                     android:layout_margin="5dp"
-                    android:layout_height="310dp"
+                    android:layout_height="320dp"
                     android:scaleType="centerCrop"/>
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/zhuan"
-                    android:layout_width="310dp"
+                    android:layout_width="320dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_centerInParent="true"
                     android:visibility="gone"
                     android:layout_margin="5dp"
-                    android:layout_height="310dp"
+                    android:layout_height="320dp"
                     android:scaleType="centerCrop"/>
                 <TextView
                     android:id="@+id/code"
@@ -683,7 +682,6 @@
                     android:text="@string/tishi130"
                     android:textColor="#5f9cf8"
                     android:textSize="17sp"
-                    android:textStyle="bold"
                     android:layout_marginBottom="30dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"/>

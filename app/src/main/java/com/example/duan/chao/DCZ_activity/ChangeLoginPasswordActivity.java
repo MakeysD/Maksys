@@ -288,11 +288,9 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
                             new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi85),true,new MiddleDialog.onButtonCLickListener2() {
                                 @Override
                                 public void onActivieButtonClick(Object bean, int po) {
-                                    ActivityUtils.getInstance().popAllActivities();
                                     if(bean==null){
                                     }else {
-                                        Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
-                                        startActivity(intent);
+                                        ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
                                     }
                                     ActivityUtils.getInstance().popActivity(INSTANCE);
                                 }
