@@ -18,8 +18,8 @@
     <string name="no_sensor_dialog_title">No fingerprint sensor </string>
     <string name="no_sensor_dialog_message">No fingerprint sensor，please cancel it</string>
     <string name="no_fingerprint_enrolled_dialog_title">open fingerprint in system settings </string>
-  <!--  <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
-        <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>-->
+    <!--  <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
+          <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>-->
     <string name="ok_btn_dialog">OK</string>
     <string name="cancel_btn_dialog">cancel </string>
     <string name="setti">no gesture password yet</string>
@@ -28,7 +28,7 @@
     <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
     <string name="AcquiredGood_warning">good</string>
 
-   <!-- <string name="logining">程序在后台执行, 请查看日志！</string>-->
+    <!-- <string name="logining">程序在后台执行, 请查看日志！</string>-->
 
     <string name="AcquiredImageDirty_warning">try again</string>
     <string name="AcquiredInsufficient_warning">try again</string>
@@ -59,7 +59,7 @@
     <string name="error_tag_empty">tag can\'t be empty</string>
     <string name="error_tag_gs_empty">Format error</string>
     <string name="error_network">internet error</string>
-    
+
     <string name="setting_su">Set successfully</string>
     <string name="setting_error">fingerprint error,try later</string>
 
@@ -130,6 +130,7 @@
 
 
     <string name="button">submit</string>
+    <string name="login">Login</string>
     <string name="tishi1">original email</string>
     <string name="tishi2">original password</string>
     <string name="tishi3">new password (6-18),(Case sensitive)</string>
@@ -147,14 +148,14 @@
     <string name="tishi10">message verify</string>
     <string name="tishi11">get code</string>
     <string name="tishi12">logout</string>
-    <string name="tishi12a">submit</string>
+    <string name="tishi12a">Next</string>
     <string name="tishi13">region</string>
     <string name="tishi14">new phone number</string>
     <string name="tishi15">If the original phone number can\'t receive message, you need to offer a new phone number and real  personally information submitted, after approval, you can change the phone number.</string>
     <string name="tishi16">phone number </string>
     <string name="tishi16a">name</string>
     <string name="tishi16b">ID number</string>
-    <string name="tishi16c">email</string>
+    <string name="tishi16c">account</string>
     <string name="tishi16d">username </string>
     <string name="tishi16e">verify account</string>
     <string name="tishi17">camera</string>
@@ -187,14 +188,14 @@
     <string name="tishi40">change it regularly to protect account security </string>
     <string name="tishi41">change gesture password</string>
     <string name="tishi42">delete gesture password</string>
-    <string name="tishi43">login password</string>
+    <string name="tishi43">password</string>
     <string name="tishi43a">payment password</string>
-    <string name="tishi44">forget password</string>
+    <string name="tishi44">Forgot password</string>
     <string name="tishi45">confirm password</string>
     <string name="tishi46">set now</string>
     <string name="tishi47">unset personal information</string>
     <string name="tishi48">personal information set</string>
-    <string name="tishi48a">submit </string>
+    <string name="tishi48a">Log in </string>
     <string name="tishi48b">real-name authentication failed</string>
     <string name="tishi48c">authenticated finished</string>
     <string name="tishi48d">real-name authentication can\'t change after authenticated</string>
@@ -292,7 +293,7 @@
     <string name="tishi128a">invalid Makeys QR code</string>
     <string name="tishi130">Passcode</string>
     <string name="tishi131">One-button</string>
-    <string name="tishi132">register</string>
+    <string name="tishi132">Register</string>
     <string name="tishi133a">Not working ? </string>
     <string name="tishi133">Try resyncing</string>
     <string name="tishi134">Copy Code</string>

@@ -41,6 +41,8 @@ public class OperationRecordActivity extends BaseActivity {
     private OperationRecordAdapter adapter;
     private List<OperationRecordBean.ListBean> list=new ArrayList();
     private Dialog dialog;
+    private int num=1;
+    private int size=10;
     @BindView(R.id.listview)
     XRecyclerView lv;
     @BindView(R.id.back)
@@ -75,7 +77,6 @@ public class OperationRecordActivity extends BaseActivity {
             error.setVisibility(View.VISIBLE);
         }
         if(adapter!=null){
-            lv.loadMoreComplete();
             adapter.notify(list);
         }else {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(INSTANCE);
@@ -102,13 +103,16 @@ public class OperationRecordActivity extends BaseActivity {
         lv.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                getData();
                 lv.refreshComplete();
+                num=1;
+                list.clear();
+                getData();
             }
 
             @Override
             public void onLoadMore() {
                 getData();
+                num++;
                 lv.loadMoreComplete();
             }
         });
@@ -123,7 +127,7 @@ public class OperationRecordActivity extends BaseActivity {
             return;
         }
         dialog.show();
-        HttpServiceClient.getInstance().getOperation(null,null).enqueue(new Callback<OperationRecordBean>() {
+        HttpServiceClient.getInstance().getOperation(num,size,null,null).enqueue(new Callback<OperationRecordBean>() {
             @Override
             public void onResponse(Call<OperationRecordBean> call, Response<OperationRecordBean> response) {
                 if(dialog.isShowing()){
@@ -132,8 +136,13 @@ public class OperationRecordActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            list=response.body().getData().getList();
-                            setViews();
+                            if(response.body().getData().getList().size()>0){
+                                for(int i=0;i<response.body().getData().getList().size();i++){
+                                    list.add(response.body().getData().getList().get(i));
+                                }
+                                setViews();
+                            }else {
+                            }
                         }else {
                             if(!response.body().getCode().equals("20003")){
                                 new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

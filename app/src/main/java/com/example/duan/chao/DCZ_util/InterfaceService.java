@@ -212,7 +212,9 @@ public interface InterfaceService {
      */
     @FormUrlEncoded
     @POST("getOperationList")
-    Call<OperationRecordBean> getOperation(@Field("startTime") String startTime,
+    Call<OperationRecordBean> getOperation(@Field("pageNumber") int pageNumber,
+                                           @Field("pageSize") int pageSize,
+                                           @Field("startTime") String startTime,
                                            @Field("endTime")String endTime);
 
     /**
