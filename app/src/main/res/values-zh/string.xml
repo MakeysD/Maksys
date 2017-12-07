@@ -150,6 +150,7 @@
 
 
     <string name="button">确定</string>
+    <string name="login">确定</string>
     <string name="tishi1">请输入原安全邮箱</string>
     <string name="tishi2">请验证原登录密码</string>
     <string name="tishi3">6-18位新登录密码，区分大小写</string>
