@@ -1,6 +1,9 @@
 package com.example.duan.chao;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
@@ -88,6 +91,7 @@ import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.DisplayUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.MyRoundProcess;
 import com.example.duan.chao.DCZ_util.NotificationsUtils;
 import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -99,6 +103,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
@@ -174,17 +179,51 @@ public class MainActivity extends BaseActivity{
     private double mTotpCountdownPhase;
     private GifDrawable gifFromResource;
     public static Handler mHandler ;
+    public static Handler handler ;
     private String sign;
     private Long miss;//请求前的时间
     private Boolean fu=false;   //是否复制内容
     private Boolean amin_shou=true; //收缩动画是否运行结束
-  /*  private Runnable run=new Runnable() {
-        @Override
-        public void run() {
-            MainActivity.mHandler.sendEmptyMessage(3);
-            handler.postDelayed(run,60000);
-        }
-    };*/
+    private MyRoundProcess mRoundProcess;
+    private static ObjectAnimator anima;
+    private static TextView image;
+    private static void setLayout(int number,int x, int y){
+        Log.i("dczz","t");
+        image.setBackgroundResource(R.drawable.hong);
+        image.setText(number+"");
+        image.setTextSize(18);
+        image.setX(x);image.setY(y);
+    }
+    private void AmimaHandler(){
+        PropertyValuesHolder objectAnimatorScaleX = PropertyValuesHolder.ofFloat("scaleX", 0.4f, 1f);
+        PropertyValuesHolder objectAnimatorScaleY = PropertyValuesHolder.ofFloat("scaleY", 0.4f, 1f);
+        /**同时播放两个动画**/
+        anima = ObjectAnimator.ofPropertyValuesHolder(image, objectAnimatorScaleX, objectAnimatorScaleY).setDuration(1000);
+        anima.setRepeatCount(ValueAnimator.INFINITE);
+        anima.start();
+        handler=new Handler(){
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 101:
+                        image.setBackground(null);
+                        image.setText("");
+                        break;
+                    default:
+                        float b=mRoundProcess.progress/100*30;
+                        BigDecimal bd=new BigDecimal(b);
+                        //只保留小数点后三位
+                        String va=bd.setScale(3,BigDecimal.ROUND_HALF_UP).toString();
+                        float value=Float.parseFloat(va);
+                        float cha = (value - (30 - (msg.what))) * 1000;
+                        anima.setCurrentPlayTime((long) cha);
+                        setLayout(msg.what,MyApplication.x,MyApplication.y);break;
+                }
+            }
+        };
+    }
     private void initHandler(){
         //下线通知
         mHandler = new Handler(){
@@ -206,26 +245,9 @@ public class MainActivity extends BaseActivity{
                         getVersion();
                         break;
                   /*  case 3:
-                        switch (ima){
-                            case 1:
-                                ima=2;
-                                TransitionDrawable transition = (TransitionDrawable)getResources().getDrawable(R.drawable.transition);
-                                home.setBackground(transition);
-                                transition.startTransition(2000);
-                                break;
-                            case 2:
-                                ima=3;
-                                TransitionDrawable transition2 = (TransitionDrawable)getResources().getDrawable(R.drawable.transition2);
-                                home.setBackground(transition2);
-                                transition2.startTransition(2000);
-                                break;
-                            case 3:
-                                ima=1;
-                                TransitionDrawable transition3 = (TransitionDrawable)getResources().getDrawable(R.drawable.transition3);
-                                home.setBackground(transition3);
-                                transition3.startTransition(2000);
-                                break;
-                        }
+                        TransitionDrawable transition = (TransitionDrawable)getResources().getDrawable(R.drawable.transition);
+                        home.setBackground(transition);
+                        transition.startTransition(2000);
                         break;*/
                 }
             }
@@ -297,6 +319,7 @@ public class MainActivity extends BaseActivity{
     SimpleDraweeView zhuan;
     @BindView(R.id.yuan)
     RelativeLayout yuan;
+    public static Long number;
     public static TextView ceshi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -314,10 +337,17 @@ public class MainActivity extends BaseActivity{
         CanRippleLayout.Builder.on(rl7).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(rl8).rippleCorner(MyApplication.dp2Px()).create();
         registerMessageReceiver();
+        image= (TextView) findViewById(R.id.image);
         iv.setImageURI(null);
         ceshi= (TextView) findViewById(R.id.ceshi);
         home.setBackgroundResource(R.drawable.b_g5);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
+
+        AmimaHandler();
+        mRoundProcess = (MyRoundProcess) findViewById(R.id.my_round_process);
+        // 开启动画
+        mRoundProcess.runAnimate(30000);
+
         setViews();
         duration();//首页动画
         if (savedInstanceState != null) {
@@ -764,6 +794,10 @@ public class MainActivity extends BaseActivity{
         animo(mTotpCountdownPhase);
     }
     private void animo(double mTotpCountdownPhase){
+        Log.i("dcz进度4",mTotpCountdownPhase+"");
+        /*mRoundProcess.restartAnimate(); //重启动画
+        anima.start();*/
+        mRoundProcess.mAnimator.setCurrentPlayTime(number);
         try {
             if(gifFromResource==null){
                 gifFromResource = new GifDrawable(getResources(), R.mipmap.gif4);
@@ -772,7 +806,7 @@ public class MainActivity extends BaseActivity{
                 }else {
                     gifFromResource.setSpeed(0.5f);
                 }
-                Log.i("dcz进度",(int) (10-mTotpCountdownPhase*10)+"");
+                Log.i("dcz进度1",mTotpCountdownPhase+"");
                 gifFromResource.seekTo((int) (30000-(30000*mTotpCountdownPhase)));
                 gif.setImageDrawable(gifFromResource);
             }else {

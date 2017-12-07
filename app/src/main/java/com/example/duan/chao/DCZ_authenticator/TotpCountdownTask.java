@@ -109,15 +109,25 @@ public class TotpCountdownTask implements Runnable {
       return;
     }
     long now = mClock.currentTimeMillis();
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat format = new SimpleDateFormat("ss.SSS");
     String datetime = format.format(now);
-    MainActivity.ceshi.setText(datetime);
     if(MyApplication.offset!=null&&MyApplication.offset!=0){
       now=now-MyApplication.offset;
       String datetime2 = format.format(now);
-      //MainActivity.ceshi.setText(datetime2);
+      if(Double.parseDouble(datetime2)>30){
+        MainActivity.number=(long)((Double.parseDouble(datetime2)-30)*1000);
+      }else {
+        MainActivity.number=(long)((Double.parseDouble(datetime2))*1000);
+      }
+     // MainActivity.ceshi.setText(MainActivity.number+"");
     }else {
-      //MainActivity.ceshi.setText(datetime);
+      if(Double.parseDouble(datetime)>30){
+        MainActivity.number=(long)((Double.parseDouble(datetime)-30)*1000);
+      }else {
+        MainActivity.number=(long)((Double.parseDouble(datetime))*1000);
+      }
+     // MainActivity.ceshi.setText(MainActivity.number+"");
     }
     long counterValue = getCounterValue(now);
     if (mLastSeenCounterValue != counterValue) {
