@@ -1417,10 +1417,14 @@ public class MainActivity extends BaseActivity{
                         TotpCountdownTask.mLastSeenCounterValue=0;
                         Long millis = response.body().getData().getMillisecond();
                         long a = millis + (new Date().getTime() - miss) / 2;
-                        MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
+                        Log.i("qchab",new Date().getTime()-a-MyApplication.offset+"");
+                        if(new Date().getTime()-a-MyApplication.offset<200&&new Date().getTime()-a-MyApplication.offset>-200){
+                        }else {
+                            MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
+                            auth();
+                        }
                         Log.i("dcz差额",MyApplication.offset+"");
                         ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi137));
-                        auth();
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

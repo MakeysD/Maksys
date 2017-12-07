@@ -113,6 +113,7 @@ public class TotpCountdownTask implements Runnable {
     SimpleDateFormat format = new SimpleDateFormat("ss.SSS");
     String datetime = format.format(now);
     if(MyApplication.offset!=null&&MyApplication.offset!=0){
+      Log.i("qcha",MyApplication.offset+"");
       now=now-MyApplication.offset;
       String datetime2 = format.format(now);
       if(Double.parseDouble(datetime2)>30){
