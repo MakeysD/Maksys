@@ -1412,18 +1412,18 @@ public class MainActivity extends BaseActivity{
                     Log.d("dcz","获取数据成功");
                     if(response.body().getCode().equals("20000")){
                         type=true;
-                        MyApplication.DEFAULT_INTERVAL=response.body().getData().getDefaultIntervalInSecond();MyApplication.sf.edit().putInt("DEFAULT_INTERVAL",response.body().getData().getDefaultIntervalInSecond()).commit();
-                        MyApplication.PIN_LENGTH=response.body().getData().getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",response.body().getData().getTotpCodeLength()).commit();
                         TotpCountdownTask.mLastSeenCounterValue=0;
                         Long millis = response.body().getData().getMillisecond();
                         long a = millis + (new Date().getTime() - miss) / 2;
                         Log.i("qchab",new Date().getTime()-a-MyApplication.offset+"");
-                        if(new Date().getTime()-a-MyApplication.offset<200&&new Date().getTime()-a-MyApplication.offset>-200){
-                        }else {
+                        if(new Date().getTime()-a-MyApplication.offset>500|| new Date().getTime()-a-MyApplication.offset<-500||
+                                response.body().getData().getTotpCodeLength()!=MyApplication.PIN_LENGTH||
+                                response.body().getData().getDefaultIntervalInSecond()!=MyApplication.DEFAULT_INTERVAL){
                             MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
+                            MyApplication.PIN_LENGTH=response.body().getData().getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",response.body().getData().getTotpCodeLength()).commit();
+                            MyApplication.DEFAULT_INTERVAL=response.body().getData().getDefaultIntervalInSecond();MyApplication.sf.edit().putInt("DEFAULT_INTERVAL",response.body().getData().getDefaultIntervalInSecond()).commit();
                             auth();
                         }
-                        Log.i("dcz差额",MyApplication.offset+"");
                         ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi137));
                     }else {
                         if(!response.body().getCode().equals("20003")){
