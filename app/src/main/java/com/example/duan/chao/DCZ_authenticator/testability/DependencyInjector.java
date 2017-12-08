@@ -114,7 +114,6 @@ public final class DependencyInjector {
   }
 
   public static synchronized OtpSource getOtpProvider() {
-    //sOtpProvider=null;
     if (sOtpProvider == null) {
       sOtpProvider = getOptionalFeatures().createOtpSource(getAccountDb(), getTotpClock());
     }
@@ -208,7 +207,6 @@ public final class DependencyInjector {
   }
 
   public static synchronized OptionalFeatures getOptionalFeatures() {
-    //sOptionalFeatures=null;
     if (sOptionalFeatures == null) {
       try {
         Class<?> resultClass = Class.forName(
@@ -219,10 +217,11 @@ public final class DependencyInjector {
           throw new RuntimeException("Failed to instantiate optional features module", e);
         }
       } catch (ClassNotFoundException e) {
+        Log.i("ce","1");
         sOptionalFeatures = new MarketBuildOptionalFeatures();
       }
     }
-    return new MarketBuildOptionalFeatures();
+    return sOptionalFeatures;
   }
 
   /**

@@ -194,7 +194,6 @@ public class MyRoundProcess extends View {
         float ao = progress / 100 * 360-90;
         double x1 = cx + radius * cos(ao * PI / 180);
         double y1 = cy + radius * sin(ao * PI / 180);
-        Log.i("角度",x1+"+"+y1+"ao="+ao);
         MyApplication.x=(int) x1;MyApplication.y=(int) y1;
         // 第二步：绘制文字
        /* String text = ((int) (progress / maxProgress * 100)) + "%";
@@ -210,7 +209,6 @@ public class MyRoundProcess extends View {
         mPaint.setColor(roundProgressColor);
         //参数是左上右下
         oval = new RectF(cha + mStrokeWidth / 2, cha + mStrokeWidth / 2, mWidth - mStrokeWidth / 2-cha, mHeight - mStrokeWidth / 2-cha);
-        Log.i("dst",0 + mStrokeWidth / 2+"+"+ 0 + mStrokeWidth / 2+"+"+(mWidth - mStrokeWidth / 2)+"+"+(mHeight - mStrokeWidth / 2));
         canvas.drawArc(oval,270, progress / maxProgress * 360, false, mPaint);
         Paint paint = new Paint(); //设置一个笔刷大小是3的黄色的画笔
         paint.setColor(Color.YELLOW);
@@ -240,7 +238,7 @@ public class MyRoundProcess extends View {
      */
     public void setProgress(float progress) {
         this.progress = progress;
-        Log.i("dczq",progress+"");
+       // Log.i("dczq",progress+"");
         // 使用 postInvalidate 比 postInvalidat() 好，线程安全
         postInvalidate();
     }
@@ -287,15 +285,15 @@ public class MyRoundProcess extends View {
             }
         });
         colorAnimator1.start();*/
-        mAnimator.setDuration((long) (targetProgress * 300));
+        mAnimator.setDuration((long) (targetProgress * (MyApplication.DEFAULT_INTERVAL*10)));
         mAnimator.start();
     }
 
     public void getGress(float progres){
         float progress=progres/100;
-        int a=(int)(progress*30);
-        if(progress>=1-(float)5/(float) 30){
-            MainActivity.handler.sendEmptyMessage(30-a);
+        int a=(int)(progress*MyApplication.DEFAULT_INTERVAL);
+        if(progress>=1-(float)5/(float)MyApplication.DEFAULT_INTERVAL){
+            MainActivity.handler.sendEmptyMessage(MyApplication.DEFAULT_INTERVAL-a);
         }else {
             MainActivity.handler.sendEmptyMessage(101);
         }

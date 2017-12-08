@@ -328,7 +328,6 @@ public class AuthenticatorActivity extends BaseActivity {
       Log.i("DCZ",mTotpCountdownPhase+"");
       if(mTotpCountdownPhase!=1.0){
         if(type==true){
-          animo(mTotpCountdownPhase);
           type=false;
         }
       }
@@ -900,20 +899,6 @@ public class AuthenticatorActivity extends BaseActivity {
       pinView.setTextScaleX(PIN_TEXT_SCALEX_NORMAL);
     }
       pinView.setText(currentPin.pin);
-      animo(mTotpCountdownPhase);
-  }
-  private void animo(double mTotpCountdownPhase){
-    gif.setImageDrawable(null);
-    try {
-      GifDrawable gifFromResource = new GifDrawable(getResources(), R.mipmap.gif4);
-      Log.i("dcz", gifFromResource.getDuration()+"");
-      gifFromResource.setSpeed(1.165f);
-      Log.i("dcz进度",(int) (10-mTotpCountdownPhase*10)+"");
-      gifFromResource.seekTo((int) (30000-(30000*mTotpCountdownPhase)));
-      gif.setImageDrawable(gifFromResource);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
   private class PinListAdapter extends ArrayAdapter<PinInfo>  {
 

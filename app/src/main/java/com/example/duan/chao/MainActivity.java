@@ -198,7 +198,7 @@ public class MainActivity extends BaseActivity{
         PropertyValuesHolder objectAnimatorScaleX = PropertyValuesHolder.ofFloat("scaleX", 0.4f, 1f);
         PropertyValuesHolder objectAnimatorScaleY = PropertyValuesHolder.ofFloat("scaleY", 0.4f, 1f);
         /**同时播放两个动画**/
-        anima = ObjectAnimator.ofPropertyValuesHolder(image, objectAnimatorScaleX, objectAnimatorScaleY).setDuration(1000);
+        anima = ObjectAnimator.ofPropertyValuesHolder(image, objectAnimatorScaleX, objectAnimatorScaleY).setDuration(1000/(MyApplication.DEFAULT_INTERVAL/30));
         anima.setRepeatCount(ValueAnimator.INFINITE);
         anima.start();
         handler=new Handler(){
@@ -311,8 +311,6 @@ public class MainActivity extends BaseActivity{
     TextView fuzhi;
     @BindView(R.id.cancel)
     TextView cancel;
-    @BindView(R.id.gifview)
-    GifImageView gif;
     @BindView(R.id.iv)
     SimpleDraweeView iv;
     @BindView(R.id.zhuan)
@@ -346,16 +344,18 @@ public class MainActivity extends BaseActivity{
         AmimaHandler();
         mRoundProcess = (MyRoundProcess) findViewById(R.id.my_round_process);
         // 开启动画
-        mRoundProcess.runAnimate(30000);
+        mRoundProcess.runAnimate(MyApplication.DEFAULT_INTERVAL*1000);
 
         setViews();
         duration();//首页动画
         if (savedInstanceState != null) {
+            Log.i("ce","8");
             mOldAppUninstallIntent = savedInstanceState.getParcelable(KEY_OLD_APP_UNINSTALL_INTENT);
             mSaveKeyDialogParams = (SaveKeyDialogParams) savedInstanceState.getSerializable(KEY_SAVE_KEY_DIALOG_PARAMS);
         }
         auth();     //谷歌验证码动画
         if (savedInstanceState == null) {
+            Log.i("ce","9");
             DependencyInjector.getOptionalFeatures().onAuthenticatorActivityCreated(INSTANCE);
             importDataFromOldAppIfNecessary();
             handleIntent(getIntent());
@@ -795,36 +795,7 @@ public class MainActivity extends BaseActivity{
     }
     private void animo(double mTotpCountdownPhase){
         Log.i("dcz进度4",mTotpCountdownPhase+"");
-        /*mRoundProcess.restartAnimate(); //重启动画
-        anima.start();*/
-        mRoundProcess.mAnimator.setCurrentPlayTime(number);
-        try {
-            if(gifFromResource==null){
-                gifFromResource = new GifDrawable(getResources(), R.mipmap.gif4);
-                if(OtpProvider.DEFAULT_INTERVAL==30){
-                    gifFromResource.setSpeed(1f);
-                }else {
-                    gifFromResource.setSpeed(0.5f);
-                }
-                Log.i("dcz进度1",mTotpCountdownPhase+"");
-                gifFromResource.seekTo((int) (30000-(30000*mTotpCountdownPhase)));
-                gif.setImageDrawable(gifFromResource);
-            }else {
-                Log.i("DCZ",mTotpCountdownPhase+"");//数字从大变小
-                if(mTotpCountdownPhase>0.5){
-                    gifFromResource.seekTo(300+(int)(30000-(30000*mTotpCountdownPhase)));
-                    Log.i("DCZ2",300+(30000-(30000*mTotpCountdownPhase))+"");//数字从大变小
-                }else if(mTotpCountdownPhase<0.01){
-                    gifFromResource.seekTo(300);
-                    Log.i("DCZ3",300+"");//数字从大变小
-                }else {
-                    gifFromResource.seekTo((int)(30000-(30000*mTotpCountdownPhase)));
-                }
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mRoundProcess.mAnimator.setCurrentPlayTime(number*(MyApplication.DEFAULT_INTERVAL/30));
     }
     private int ima=1;
     private void setViews() {
@@ -1415,16 +1386,14 @@ public class MainActivity extends BaseActivity{
                         TotpCountdownTask.mLastSeenCounterValue=0;
                         Long millis = response.body().getData().getMillisecond();
                         long a = millis + (new Date().getTime() - miss) / 2;
-                        Log.i("qchab",new Date().getTime()-a-MyApplication.offset+"");
                         if(new Date().getTime()-a-MyApplication.offset>500|| new Date().getTime()-a-MyApplication.offset<-500||
-                                response.body().getData().getTotpCodeLength()!=MyApplication.PIN_LENGTH||
-                                response.body().getData().getDefaultIntervalInSecond()!=MyApplication.DEFAULT_INTERVAL){
+                                response.body().getData().getTotpCodeLength()!=MyApplication.PIN_LENGTH){
                             MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
                             MyApplication.PIN_LENGTH=response.body().getData().getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",response.body().getData().getTotpCodeLength()).commit();
-                            MyApplication.DEFAULT_INTERVAL=response.body().getData().getDefaultIntervalInSecond();MyApplication.sf.edit().putInt("DEFAULT_INTERVAL",response.body().getData().getDefaultIntervalInSecond()).commit();
+                            //MyApplication.DEFAULT_INTERVAL=response.body().getData().getDefaultIntervalInSecond();MyApplication.sf.edit().putInt("DEFAULT_INTERVAL",response.body().getData().getDefaultIntervalInSecond()).commit();
                             auth();
                         }
-                        ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi137));
+                    ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi137));
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

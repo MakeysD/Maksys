@@ -98,7 +98,7 @@ public class OtpProvider implements OtpSource {
   }
 
   public OtpProvider(AccountDb accountDb, TotpClock totpClock) {
-    this(DEFAULT_INTERVAL, accountDb, totpClock);
+    this(MyApplication.DEFAULT_INTERVAL, accountDb, totpClock);
   }
 
   public OtpProvider(int interval, AccountDb accountDb, TotpClock totpClock) {
@@ -144,7 +144,7 @@ public class OtpProvider implements OtpSource {
   }
 
   /** Default passcode timeout period (in seconds) */
-  public static int DEFAULT_INTERVAL = 30;
+  public static int DEFAULT_INTERVAL =MyApplication.DEFAULT_INTERVAL;
 
   private final AccountDb mAccountDb;
 

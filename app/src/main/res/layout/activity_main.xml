@@ -575,6 +575,7 @@
                         android:layout_centerInParent="true"
                         android:background="@drawable/b_g2">
                     </RelativeLayout>
+
                     <com.example.duan.chao.DCZ_util.MyRoundProcess
                         android:layout_width="280dp"
                         android:layout_height="280dp"
@@ -625,16 +626,6 @@
                         android:textStyle="bold"
                         android:textSize="18sp"/>
                 </RelativeLayout>
-                <pl.droidsonroids.gif.GifImageView
-                    android:id="@+id/gifview"
-                    android:layout_width="320dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_centerInParent="true"
-                    android:visibility="gone"
-                    android:layout_margin="5dp"
-                    android:layout_height="320dp"
-                    android:background="@drawable/quan"
-                    android:scaleType="centerCrop"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -675,7 +666,6 @@
                         android:layout_marginBottom="30dp" />
                 </LinearLayout>
             </RelativeLayout>
-
             <RelativeLayout
                 android:id="@+id/rl_have"
                 android:layout_width="match_parent"
