@@ -291,10 +291,16 @@ public class MyRoundProcess extends View {
 
     public void getGress(float progres){
         float progress=progres/100;
+     //   Log.i("dcqa",progres+"");
+     //   Log.i("dcqb",progress+"");
         int a=(int)(progress*MyApplication.DEFAULT_INTERVAL);
+    //    Log.i("dcqc",a+"");
+    //    Log.i("dczd",1-(float)5/(float)MyApplication.DEFAULT_INTERVAL+"");
         if(progress>=1-(float)5/(float)MyApplication.DEFAULT_INTERVAL){
             MainActivity.handler.sendEmptyMessage(MyApplication.DEFAULT_INTERVAL-a);
+    //        Log.i("dcqq",MyApplication.DEFAULT_INTERVAL-a+"");
         }else {
+     //       Log.i("dcqw","101");
             MainActivity.handler.sendEmptyMessage(101);
         }
         float r = 117;

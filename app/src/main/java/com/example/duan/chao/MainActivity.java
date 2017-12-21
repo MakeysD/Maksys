@@ -1150,6 +1150,7 @@ public class MainActivity extends BaseActivity{
         if (cancellationSignal != null) {
             cancellationSignal.cancel();
         }
+        mRoundProcess.mAnimator.cancel();
         iv.setImageURI(null);
         super.onDestroy();
     }
@@ -1293,13 +1294,6 @@ public class MainActivity extends BaseActivity{
      *  验证版本
      * */
     public void getVersion(){
-        /*if(MyApplication.token.equals("")){
-            MyApplication.sf.edit().putString("cookie","").commit();
-            Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
-            startActivity(intent);
-            ActivityUtils.getInstance().popActivity(INSTANCE);
-            MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
-        }*/
         if(ShebeiUtil.wang(INSTANCE).equals("0")){
             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
             return;
@@ -1342,7 +1336,6 @@ public class MainActivity extends BaseActivity{
                                 }
                             }
                         }
-
                     }else {
                         if(!response.body().getCode().equals("20003")){
                             new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
@@ -1386,7 +1379,7 @@ public class MainActivity extends BaseActivity{
                         TotpCountdownTask.mLastSeenCounterValue=0;
                         Long millis = response.body().getData().getMillisecond();
                         long a = millis + (new Date().getTime() - miss) / 2;
-                        if(new Date().getTime()-a-MyApplication.offset>500|| new Date().getTime()-a-MyApplication.offset<-500||
+                        if(new Date().getTime()-a-MyApplication.offset>1000|| new Date().getTime()-a-MyApplication.offset<-1000||
                                 response.body().getData().getTotpCodeLength()!=MyApplication.PIN_LENGTH){
                             MyApplication.offset=new Date().getTime()-a;MyApplication.sf.edit().putLong("offset",new Date().getTime()-a).commit();
                             MyApplication.PIN_LENGTH=response.body().getData().getTotpCodeLength();MyApplication.sf.edit().putInt("PIN_LENGTH",response.body().getData().getTotpCodeLength()).commit();

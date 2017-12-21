@@ -13,6 +13,7 @@ import com.example.duan.chao.DCZ_adapter.CityAdapter;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,6 +36,7 @@ import butterknife.ButterKnife;
  *
  * */
 public class CityListActivity extends BaseActivity  implements CityAdapter.CityCallback{
+    private String phone="18788888888";
     private CityListActivity INSTANCE;
     private CityAdapter adapter;
     private List<CityBean> list;
@@ -58,8 +60,16 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
 
     private void setViews(){
         try {
-            content = toString(INSTANCE.getAssets().open("city.json"), "UTF-8");
-            list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+            if(ContentUtil.isMobileNO(phone)){//中国手机
+                List<CityBean> zz=new ArrayList<>();
+                CityBean bean=new CityBean();
+                bean.setCountry_id(100042);bean.setCountry_code(86);bean.setCountry_name_cn("中国");bean.setCountry_name_en("China");bean.setAb("CN");
+                zz.add(bean);
+                list=zz;
+            }else {
+                content = toString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+                list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+            }
             Log.i("dcz",list.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,7 +92,6 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
                 Log.i("dcz",list.toString());
                 if(list_serch!=null){
                     list_serch.clear();

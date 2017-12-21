@@ -22,6 +22,7 @@ import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -110,7 +111,7 @@ public class SmsActivity extends BaseActivity {
                 if(MyApplication.rid==null||MyApplication.rid.equals("")){
                     MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
                     if(MyApplication.rid==null||MyApplication.rid.equals("")){
-                        Toast.makeText(INSTANCE,"RID为空",Toast.LENGTH_SHORT).show();
+                        ContentUtil.makeToast(INSTANCE,"RID为空");
                         return;
                     }
                 }

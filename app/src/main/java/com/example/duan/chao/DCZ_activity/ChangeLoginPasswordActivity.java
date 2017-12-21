@@ -25,6 +25,7 @@ import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 
@@ -277,43 +278,55 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             return;
         }
         dialog.show();
-        HttpServiceClient.getInstance().login_password("0",DSA.md5(et1.getText().toString()), DSA.md5(et2.getText().toString()),DSA.md5(et3.getText().toString())).enqueue(new Callback<LoginOkBean>() {
-            @Override
-            public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
-                dialog.dismiss();
-                if(response.isSuccessful()){
-                    if(response.body()!=null){
-                        if(response.body().getCode().equals("20000")){
-                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                            new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi85),true,new MiddleDialog.onButtonCLickListener2() {
-                                @Override
-                                public void onActivieButtonClick(Object bean, int po) {
-                                    if(bean==null){
-                                    }else {
-                                        ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+        String random= DSA.md5(RandomUtil.RandomNumber());
+        String a = DSA.md5(et3.getText().toString());
+        String b = DSA.md5(et2.getText().toString());
+        String c = DSA.md5(et1.getText().toString());
+        String z="0";
+        String str ="code="+z+"&confirmNewPwd="+a+"&newPwd="+b+"&nonce="+random+"&oldPwd="+c;
+        byte[] data = str.getBytes();
+        try {
+            String sign = DSA.sign(data, MyApplication.pri_key);
+            HttpServiceClient.getInstance().login_password(z,c,b,a,random,sign).enqueue(new Callback<LoginOkBean>() {
+                @Override
+                public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {
+                    dialog.dismiss();
+                    if(response.isSuccessful()){
+                        if(response.body()!=null){
+                            if(response.body().getCode().equals("20000")){
+                                MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                                new MiddleDialog(INSTANCE,null,INSTANCE.getString(R.string.tishi85),true,new MiddleDialog.onButtonCLickListener2() {
+                                    @Override
+                                    public void onActivieButtonClick(Object bean, int po) {
+                                        if(bean==null){
+                                        }else {
+                                            ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                        }
+                                        ActivityUtils.getInstance().popActivity(INSTANCE);
                                     }
-                                    ActivityUtils.getInstance().popActivity(INSTANCE);
+                                }, R.style.registDialog).show();
+                            }else {
+                                if(!response.body().getCode().equals("20003")){
+                                    new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                                 }
-                            }, R.style.registDialog).show();
-                        }else {
-                            if(!response.body().getCode().equals("20003")){
-                                new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
                             }
+                        }else {
+                            Log.d("dcz","返回的数据是空的");
                         }
                     }else {
-                        Log.d("dcz","返回的数据是空的");
+                        Log.d("dcz","获取数据失败");
                     }
-                }else {
-                    Log.d("dcz","获取数据失败");
                 }
-            }
-            @Override
-            public void onFailure(Call<LoginOkBean> call, Throwable t) {
-                if(ActivityUtils.getInstance().getCurrentActivity() instanceof ChangeLoginPasswordActivity){
-                    dialog.dismiss();
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                @Override
+                public void onFailure(Call<LoginOkBean> call, Throwable t) {
+                    if(ActivityUtils.getInstance().getCurrentActivity() instanceof ChangeLoginPasswordActivity){
+                        dialog.dismiss();
+                        new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

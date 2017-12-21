@@ -12,8 +12,17 @@ public class LoginOkBean extends LoginBean<LoginOkBean>{
     private String userId;
     private String authzId;
     private String totpSecretKey;
+    private String mobile;
     private int defaultIntervalInSecond;
     private int totpCodeLength;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public int getTotpCodeLength() {
         return totpCodeLength;

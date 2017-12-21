@@ -40,6 +40,7 @@ import com.example.duan.chao.DCZ_bean.ProvinceBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -68,6 +69,7 @@ import retrofit2.Response;
 import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 public class SettingDataActivity extends BaseActivity {
+    private String phone="18788888888";
     private SettingDataActivity INSTANCE;
     private static List<CityBean> list;
     private String content;
@@ -161,7 +163,6 @@ public class SettingDataActivity extends BaseActivity {
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         ShebeiUtil.setEdNoChinaese(et_number);
-        tv_guo.setText(MyApplication.city);tv_guo.setTextColor(Color.WHITE);
         if(MyApplication.language.equals("ENGLISH")){
             zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
             fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
@@ -185,7 +186,9 @@ public class SettingDataActivity extends BaseActivity {
      * */
     private void setViews() {
         setTime();
-        setPicker();
+        if(ContentUtil.isMobileNO(phone)){//中国手机
+            setPicker(true);
+        }
         setBirthday();
     }
     /**
@@ -392,20 +395,23 @@ public class SettingDataActivity extends BaseActivity {
         });
     }
 
-    private void setPicker(){
+    private void setPicker(Boolean type){
         //选项选择器
         pvOptions = new OptionsPickerView(this);
         //选项1
         options1Items.add(new ProvinceBean(0,INSTANCE.getString(R.string.tishi125),"",""));
-        options1Items.add(new ProvinceBean(1,INSTANCE.getString(R.string.tishi126),"",""));
+        if(type==false){
+            options1Items.add(new ProvinceBean(1,INSTANCE.getString(R.string.tishi126),"",""));
+        }
        // options1Items.add(new ProvinceBean(3,"港澳通行证","",""));
-        options1Items.add(new ProvinceBean(4,INSTANCE.getString(R.string.tishi127),"",""));
+       // options1Items.add(new ProvinceBean(4,INSTANCE.getString(R.string.tishi127),"",""));
         //三级联动效果
         pvOptions.setPicker(options1Items);
         //设置选择的三级单位
 //        pwOptions.setLabels("省", "市", "区");
         //   pvOptions.setTitle("选择城市");
         pvOptions.setCyclic(false, true, true);
+        pvOptions.setCancelable(true);
         //设置默认选中的三级项目
         //监听确定选择按钮
         pvOptions.setSelectOptions(1, 1, 1);
@@ -436,7 +442,11 @@ public class SettingDataActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        tv_guo.setText(MyApplication.city);
+        if(MyApplication.city.equals("")){
+        }else {
+            tv_guo.setText(MyApplication.city);
+            tv_guo.setTextColor(Color.WHITE);
+        }
     }
 
     private void type1(){

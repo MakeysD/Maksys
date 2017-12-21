@@ -70,6 +70,7 @@ public class MyApplication extends Application{
     public static String username;
     public static String nickname;
     public static String token;
+    public static String mobile;
     public static String xinghao;
     public static String currentapiVersion="Android "+ShebeiUtil.getSystemVersion();
     public static String rid="";
@@ -108,6 +109,7 @@ public class MyApplication extends Application{
         username=sf.getString("username","");
         city=sf.getString("city","");
         nickname=sf.getString("nickname","");
+        mobile=sf.getString("mobile","");
         password=sf.getString("password","");
         sms_type=sf.getString("sms_type","1");
         pri_key=sf.getString("pri_key","");

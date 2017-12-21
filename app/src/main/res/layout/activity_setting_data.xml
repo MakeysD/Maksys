@@ -86,7 +86,6 @@
                             android:text="@string/tishi13"
                             android:textColor="@color/text04"
                             android:textStyle="bold" />
-
                         <TextView
                             android:id="@+id/tv_guo"
                             android:layout_width="0dp"
@@ -423,6 +422,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="@dimen/left"
                         android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

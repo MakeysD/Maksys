@@ -86,7 +86,9 @@ public interface InterfaceService {
     Call<LoginOkBean>login_password(@Field("code") String code,
                                     @Field("oldPwd") String oldPwd,
                                     @Field("newPwd")String newPwd,
-                                    @Field("confirmNewPwd")String confirmNewPwd);
+                                    @Field("confirmNewPwd")String confirmNewPwd,
+                                    @Field("nonce") String nonce,
+                                    @Field("sign") String sign);
 
     /**
      *  修改支付密码
