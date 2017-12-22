@@ -81,11 +81,13 @@
                             android:src="@mipmap/login1" />
 
                         <TextView
+                            android:id="@+id/textView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/tishi13"
                             android:textColor="@color/text04"
                             android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/tv_guo"
                             android:layout_width="0dp"
@@ -98,8 +100,7 @@
                             android:paddingLeft="17dp"
                             android:singleLine="true"
                             android:textColor="@color/text02"
-                            android:textSize="@dimen/text01"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/text02"/>
 
                         <ImageView
                             android:layout_width="8dp"
@@ -153,8 +154,7 @@
                             android:paddingLeft="17dp"
                             android:singleLine="true"
                             android:textColor="@color/text02"
-                            android:textSize="@dimen/text01"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/text02"/>
 
                         <ImageView
                             android:layout_width="8dp"
@@ -218,7 +218,7 @@
                             android:textColor="@color/text08"
                             android:textColorHint="@color/text04"
                             android:textCursorDrawable="@null"
-                            android:textSize="@dimen/text01" />
+                            android:textSize="@dimen/text02" />
 
                         <ImageView
                             android:layout_width="8dp"
@@ -273,7 +273,7 @@
                             android:textColor="@color/text08"
                             android:textColorHint="@color/text04"
                             android:textCursorDrawable="@null"
-                            android:textSize="@dimen/text01" />
+                            android:textSize="@dimen/text02" />
 
                         <ImageView
                             android:layout_width="8dp"
@@ -296,6 +296,7 @@
                         android:id="@+id/ll6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginTop="15dp"
                         android:layout_marginLeft="@dimen/left"
                         android:layout_marginRight="@dimen/right"
@@ -328,8 +329,7 @@
                             android:paddingLeft="17dp"
                             android:singleLine="true"
                             android:textColor="@color/text02"
-                            android:textSize="@dimen/text01"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/text01"/>
 
                         <ImageView
                             android:layout_width="8dp"
@@ -343,6 +343,7 @@
                         android:id="@+id/xian6"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/xian"
+                        android:visibility="gone"
                         android:layout_marginLeft="@dimen/left"
                         android:layout_marginRight="@dimen/right"
                         android:layout_marginTop="15dp"
@@ -394,8 +395,7 @@
                             android:paddingLeft="17dp"
                             android:singleLine="true"
                             android:textColor="@color/text02"
-                            android:textSize="@dimen/text01"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/text01"/>
 
                         <ImageView
                             android:layout_width="8dp"
