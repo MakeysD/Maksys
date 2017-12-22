@@ -601,7 +601,6 @@ public class LoginActivity extends BaseActivity {
                         MyApplication.token=data.getRefreshToken();MyApplication.sf.edit().putString("token",data.getRefreshToken()).commit();
                         MyApplication.nickname=data.getNickname();MyApplication.sf.edit().putString("nickname",data.getNickname()).commit();
                         MyApplication.username=data.getUsername();MyApplication.sf.edit().putString("username",data.getUsername()).commit();
-                        MyApplication.mobile=data.getMobile();MyApplication.sf.edit().putString("mobile",data.getMobile()).commit();
                         Intent intent=new Intent(INSTANCE,MainActivity.class);
                         startActivity(intent);
                         ActivityUtils.getInstance().popActivity(INSTANCE);

@@ -60,7 +60,7 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
 
     private void setViews(){
         try {
-            if(ContentUtil.isMobileNO(phone)){//中国手机
+            if(ContentUtil.isMobileNO(MyApplication.mobile)){//中国手机
                 List<CityBean> zz=new ArrayList<>();
                 CityBean bean=new CityBean();
                 bean.setCountry_id(100042);bean.setCountry_code(86);bean.setCountry_name_cn("中国");bean.setCountry_name_en("China");bean.setAb("CN");

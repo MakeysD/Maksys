@@ -69,7 +69,6 @@ import retrofit2.Response;
 import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 public class SettingDataActivity extends BaseActivity {
-    private String phone="18788888888";
     private SettingDataActivity INSTANCE;
     private static List<CityBean> list;
     private String content;
@@ -186,8 +185,10 @@ public class SettingDataActivity extends BaseActivity {
      * */
     private void setViews() {
         setTime();
-        if(ContentUtil.isMobileNO(phone)){//中国手机
+        if(ContentUtil.isMobileNO(MyApplication.mobile)){//中国手机
             setPicker(true);
+        }else {
+            setPicker(false);
         }
         setBirthday();
     }
