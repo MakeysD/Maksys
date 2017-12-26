@@ -105,7 +105,6 @@ public class OperationRecordActivity extends BaseActivity {
             public void onRefresh() {
                 lv.refreshComplete();
                 num=1;
-                list.clear();
                 getData();
             }
 
@@ -137,6 +136,7 @@ public class OperationRecordActivity extends BaseActivity {
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             if(response.body().getData().getList().size()>0){
+                                list.clear();
                                 for(int i=0;i<response.body().getData().getList().size();i++){
                                     list.add(response.body().getData().getList().get(i));
                                 }

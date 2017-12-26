@@ -108,7 +108,8 @@
     <string name="title13">账号登录</string>
     <string name="title14">账户安全管家</string>
     <string name="title15">操作记录</string>
-    <string name="title16">实名信息</string>
+    <string name="title16">身份认证</string>
+    <string name="title16a">实名信息</string>
     <string name="title17">扫码认证</string>
     <string name="title18">安全手机</string>
     <string name="title19">设置实名信息</string>
@@ -148,7 +149,7 @@
 
     <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"$%^*()\|~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
 
-
+    <string name="china">中国</string>
     <string name="button">确定</string>
     <string name="login">确定</string>
     <string name="tishi1">请输入原安全邮箱</string>
@@ -161,6 +162,7 @@
     <string name="tishi6">请尽快修改密码</string>
     <string name="tishi5a">密码安全</string>
     <string name="tishi6a">账户密码安全等级较高\n请继续保持,并定期更新密码</string>
+    <string name="tishi7a">修改密码</string>
     <string name="tishi7">修改登录密码</string>
     <string name="tishi8">修改支付密码</string>
     <string name="tishi8a">重置支付密码</string>
@@ -330,6 +332,15 @@
     <string name="tishi144">如何修改密保手机</string>
     <string name="tishi145">相册</string>
     <string name="tishi146">未识别到二维码</string>
+    <string name="tishi147">证件图片上传要求</string>
+    <string name="tishi148">证件上传要求</string>
+    <string name="tishi149">1、图片清晰，四角完整，证件信息清晰可见，证件完整包含在图片中</string>
+    <string name="tishi150">2、身份信息无遮挡、涂改、模糊</string>
+    <string name="tishi151">3、手持人脸须与证件及认证信息照片一致</string>
+    <string name="tishi152">图像不清晰</string>
+    <string name="tishi153">未按照要求上传</string>
+    <string name="tishi154">信息不匹配</string>
+    <string name="tishi155">请选择国家/地区</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->
@@ -373,6 +384,12 @@
     <string name="code40">原安全密码错误</string><!--10513-->
     <string name="code41">原登录密码错误</string><!--10514-->
     <string name="code42">未授权设备</string><!--10516-->
+    <string name="code43">QUIZ</string><!--1010-->
+    <string name="code44">MAIL</string><!--1011-->
+    <string name="code45">姓名格式不正确</string><!--80003-->
+    <string name="code46">身份证号码格式不正确</string><!--80004-->
+    <string name="code47">无此身份证号码</string><!--90033-->
+    <string name="code48">认证不通过</string><!--90099-->
 
 
     <string name="data0">未知类型</string>
@@ -402,6 +419,8 @@
     <string name="data1004">互助平台</string>
     <string name="data1009">新双轨</string>
     <string name="data2000">用户安全中心</string>
+    <string name="data2001">用户安全中心APP</string>
+    <string name="data2002">用户安全中心后台</string>
     <string name="data1010">竞猜系统</string><!--1010-->
     <string name="data1011">邮件系统</string><!--1011-->
     <string name="data1012">AK交易系统</string><!--1012-->

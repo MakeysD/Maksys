@@ -82,7 +82,7 @@ public class LanguageActivity extends BaseActivity {
         }else if(MyApplication.language.equals("ENGLISH")){
             a3();
         }else {
-            a1();
+            a4();
         }
         setViews();
         setListener();
@@ -134,7 +134,6 @@ public class LanguageActivity extends BaseActivity {
                 a3();
                 MyApplication.type=1;
                 MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
-                MyApplication.status=true;
                 recreate();//刷新页面
                 MyApplication.status=true;
             }
@@ -143,6 +142,10 @@ public class LanguageActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 a4();
+                MyApplication.type=1;
+                MyApplication.language="TAI";MyApplication.sf.edit().putString("language","TAI").commit();
+                recreate();//刷新页面
+                MyApplication.status=true;
             }
         });
     }

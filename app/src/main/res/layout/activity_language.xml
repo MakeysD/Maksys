@@ -153,7 +153,6 @@
             <RelativeLayout
                 android:id="@+id/rl4"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/tv4"
@@ -178,7 +177,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/xian"
-                android:visibility="gone"
                 android:background="@color/xian1"/>
         </LinearLayout>
     </RelativeLayout>

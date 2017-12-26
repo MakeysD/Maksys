@@ -60,6 +60,12 @@ public class CodeUtil {
         MyApplication.map.put("10513",context.getString(R.string.code40));
         MyApplication.map.put("10514",context.getString(R.string.code41));
         MyApplication.map.put("10516",context.getString(R.string.code42));
+        MyApplication.map.put("1010",context.getString(R.string.code43));
+        MyApplication.map.put("1011",context.getString(R.string.code44));
+        MyApplication.map.put("80003",context.getString(R.string.code45));
+        MyApplication.map.put("80004",context.getString(R.string.code46));
+        MyApplication.map.put("90033",context.getString(R.string.code47));
+        MyApplication.map.put("90099",context.getString(R.string.code48));
 
         MyApplication.map.put("0",context.getString(R.string.data0));
         MyApplication.map.put("1",context.getString(R.string.data1));
@@ -88,6 +94,8 @@ public class CodeUtil {
         MyApplication.map.put("1004",context.getString(R.string.data1004));
         MyApplication.map.put("1009",context.getString(R.string.data1009));
         MyApplication.map.put("2000",context.getString(R.string.data2000));
+        MyApplication.map.put("2001",context.getString(R.string.data2001));
+        MyApplication.map.put("2002",context.getString(R.string.data2002));
         MyApplication.map.put("1009",context.getString(R.string.data1009));
         MyApplication.map.put("2000",context.getString(R.string.data2000));
         MyApplication.map.put("1010",context.getString(R.string.data1010));

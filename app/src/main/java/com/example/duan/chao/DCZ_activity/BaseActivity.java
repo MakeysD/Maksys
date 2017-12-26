@@ -63,6 +63,12 @@ public class BaseActivity extends Activity{
             Configuration config = getBaseContext().getResources().getConfiguration();
             config.locale = Locale.ENGLISH;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        }else {
+            Locale locale = new Locale("th");
+            Locale.setDefault(locale);
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale =locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
         CodeUtil.pushcode(getApplicationContext());
     }

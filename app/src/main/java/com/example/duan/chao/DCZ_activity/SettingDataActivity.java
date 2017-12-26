@@ -43,8 +43,10 @@ import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -54,6 +56,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -72,6 +75,8 @@ import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 public class SettingDataActivity extends BaseActivity {
     private SettingDataActivity INSTANCE;
+    private String sign;
+    private Boolean select=false;
     private static List<CityBean> list;
     private String content;
     private Dialog dialog;
@@ -156,6 +161,12 @@ public class SettingDataActivity extends BaseActivity {
     RelativeLayout pup;        //弹框
     @BindView(R.id.pup2)
     LinearLayout pup2;         //弹框里面的内容
+    @BindView(R.id.tan)
+    LinearLayout tan;          //证件解释
+    @BindView(R.id.x)
+    ImageView x;
+    @BindView(R.id.pop2)
+    LinearLayout pop2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -207,10 +218,8 @@ public class SettingDataActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(photo1!=null&&photo2!=null&&
-                        photo3!=null&&tv_guo.getText().length()>0&&
-                        Type.getText().length()>0&&et_name.getText().length()>0&&
-                        et_number.getText().length()>0&&tv_time.getText().length()>0&&birthday.getText().length()>0){
+                if(photo1!=null&&photo2!=null&& photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&& Type.getText().length()>0&&et_name.getText().length()>0&&
+                        et_number.getText().length()>0&&tv_time.getText().toString().contains("to")){
                     File x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
                     File y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
                     File z = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo3);
@@ -244,7 +253,11 @@ public class SettingDataActivity extends BaseActivity {
         et_name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                type3();
+                if(select==true){
+                    type3();
+                }else {
+                    select=true;
+                }
             }
         });
         et_number.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -327,14 +340,26 @@ public class SettingDataActivity extends BaseActivity {
                 x3.setVisibility(View.GONE);
             }
         });
+        tan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tan2();
+            }
+        });
+        x.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shou2();
+            }
+        });
     }
 
     private void setTime(){
         //时间选择器
         pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
         //控制时间范围
-//        Calendar calendar = Calendar.getInstance();
-//        pvTime.setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦
+        Calendar calendar = Calendar.getInstance();
+        pvTime.setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦
         pvTime.setTime(new Date());
         pvTime.setCyclic(true);
         pvTime.setCancelable(true);
@@ -343,7 +368,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onTimeSelect(Date date,Date date2) {
                 tv_time.setText(getTime(date2)+"   to  "+getTime(date));
-                if(date2.getTime()>=date.getTime()){
+                if(date2.getTime()>=date.getTime()||date2.getTime()>new Date().getTime()){
                     tv_time.setTextColor(Color.RED);
                 }else {
                     tv_time.setTextColor(Color.WHITE);
@@ -405,7 +430,7 @@ public class SettingDataActivity extends BaseActivity {
         //选项1
         options1Items.add(new ProvinceBean(0,INSTANCE.getString(R.string.tishi125),"",""));
         if(type==false){
-            options1Items.add(new ProvinceBean(1,INSTANCE.getString(R.string.tishi126),"",""));
+            options1Items.add(new ProvinceBean(2,INSTANCE.getString(R.string.tishi126),"",""));
         }
        // options1Items.add(new ProvinceBean(3,"港澳通行证","",""));
        // options1Items.add(new ProvinceBean(4,INSTANCE.getString(R.string.tishi127),"",""));
@@ -426,7 +451,6 @@ public class SettingDataActivity extends BaseActivity {
                 //返回的分别是三个级别的选中位置
                 String tx = options1Items.get(options1).getPickerViewText();
                 Type.setText(tx);Type.setTextColor(Color.WHITE);
-
             }
         });
         //点击弹出选项选择器
@@ -435,6 +459,18 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(INSTANCE.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                if (tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))){
+                    ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi155));
+                    return;
+                }
+                options1Items.clear();
+                if(tv_guo.getText().toString().equals(INSTANCE.getString(R.string.china))){
+                    options1Items.add(new ProvinceBean(0,INSTANCE.getString(R.string.tishi125),"",""));
+                }else {
+                    options1Items.add(new ProvinceBean(0,INSTANCE.getString(R.string.tishi125),"",""));
+                    options1Items.add(new ProvinceBean(2,INSTANCE.getString(R.string.tishi126),"",""));
+                }
+                pvOptions.setPicker(options1Items);
                 pvOptions.show();
             }
         });
@@ -453,7 +489,6 @@ public class SettingDataActivity extends BaseActivity {
             tv_guo.setTextColor(Color.WHITE);
         }
     }
-
     private void type1(){
         xian1.setBackgroundColor(Color.parseColor("#0581c6"));
         xian2.setBackgroundColor(Color.parseColor("#343436"));
@@ -615,6 +650,15 @@ public class SettingDataActivity extends BaseActivity {
         }
         return dirPath;
     }
+    private void tan2(){
+        Animation a = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                -1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+        a.setDuration(300);
+        a.setInterpolator(new LinearInterpolator());
+        pop2.startAnimation(a);
+        pop2.setVisibility(View.VISIBLE);
+    }
     private void tan(){
         pup.setVisibility(View.VISIBLE);
         Animation a = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
@@ -650,6 +694,30 @@ public class SettingDataActivity extends BaseActivity {
         });
         pup2.startAnimation(a);
     }
+    private void shou2(){
+        Animation a = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                0.0f, Animation.RELATIVE_TO_SELF, -1.0f);
+        a.setDuration(300);
+        a.setInterpolator(new LinearInterpolator());
+        a.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                pop2.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        pop2.startAnimation(a);
+    }
 
     /***
      * 调取接口拿到服务器数据
@@ -662,7 +730,15 @@ public class SettingDataActivity extends BaseActivity {
         dialog.show();
         String[]  strs= tv_time.getText().toString().split("to");
         Log.i("dcz",strs[0].trim()); Log.i("dcz",strs[1].trim());
-        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),birthday.getText().toString(),strs[0].trim(),strs[1].trim()).enqueue(new Callback<LoginBean>() {
+        String max= RandomUtil.RandomNumber();
+        String str ="certNum="+et_number.getText().toString()+"&certType="+type+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+strs[1].trim()+"&validityStart="+strs[0].trim();
+        byte[] data = str.getBytes();
+        try {
+            sign = DSA.sign(data, MyApplication.pri_key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),strs[0].trim(),strs[1].trim(),"2001",max,sign).enqueue(new Callback<LoginBean>() {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();
@@ -717,9 +793,9 @@ public class SettingDataActivity extends BaseActivity {
     }
     private Integer getType(String string){
         Integer a = null;
-        if(string.equals("身份证")){
+        if(string.equals(INSTANCE.getString(R.string.tishi125))){
             a=0;
-        }else if(string.equals("驾驶证")){
+        }else if(string.equals(INSTANCE.getString(R.string.tishi126))){
             a=2;
         }else {
             a=1;

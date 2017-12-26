@@ -89,7 +89,8 @@
     <string name="title13">Login</string>
     <string name="title14">Account security</string>
     <string name="title15">Log</string>
-    <string name="title16">Personal information</string>
+    <string name="title16">Identity authentication</string>
+    <string name="title16a">Real-name profile</string>
     <string name="title17">QR Code</string>
     <string name="title18">Phone number</string>
     <string name="title19">Set  personal information</string>
@@ -126,7 +127,7 @@
     <string name="main10">Unauthorized</string>
     <string name="main11">closed</string>
 
-
+    <string name="china">China</string>
     <string name="button">submit</string>
     <string name="login">Login</string>
     <string name="tishi1">original email</string>
@@ -139,6 +140,7 @@
     <string name="tishi6">Please change the password in time</string>
     <string name="tishi5a">Password security</string>
     <string name="tishi6a">higher security\nplease keep it  and update it regularly</string>
+    <string name="tishi7a">Change password</string>
     <string name="tishi7">change login password</string>
     <string name="tishi8">change payment password</string>
     <string name="tishi8a">reset payment password </string>
@@ -193,14 +195,14 @@
     <string name="tishi46">set now</string>
     <string name="tishi47">unset personal information</string>
     <string name="tishi48">personal information set</string>
-    <string name="tishi48a">Log in </string>
+    <string name="tishi48a">Submitted successfully</string>
     <string name="tishi48b">real-name authentication failed</string>
     <string name="tishi48c">authenticated finished</string>
     <string name="tishi48d">real-name authentication can\'t change after authenticated</string>
-    <string name="tishi48e">we will inform you after approving</string>
+    <string name="tishi48e">please waiting patiently for the approving</string>
     <string name="tishi48f">Please upload the image  according to the  requirement</string>
     <string name="tishi48g">approved</string>
-    <string name="tishi48h">reauthentication</string>
+    <string name="tishi48h">Reauthentication</string>
     <string name="tishi48i">valid ID</string>
     <string name="tishi49">change</string>
     <string name="tishi50">email </string>
@@ -222,10 +224,10 @@
     <string name="tishi65">logout</string>
     <string name="tishi66">original email</string>
     <string name="tishi67"> set now</string>
-    <string name="tishia68">Please set the new login password of</string>
-    <string name="tishia68a">Please set the new payment password of</string>
-    <string name="tishi68">and suggest using Numbers, letters and characters combination</string>
-    <string name="tishi68a">and suggest using Numbers, letters and characters combination</string>
+    <string name="tishia68">Please set the new login password of&#160;</string>
+    <string name="tishia68a">Please set the new payment password of&#160;</string>
+    <string name="tishi68">&#160;and suggest using Numbers, letters and characters combination</string>
+    <string name="tishi68a">&#160;and suggest using Numbers, letters and characters combination</string>
     <string name="tishi69">original phone number</string>
     <string name="tishi70">latest version</string>
     <string name="tishi71">check internet or GPS whether opened</string>
@@ -308,6 +310,15 @@
     <string name="tishi144">how to change bound phone number</string>
     <string name="tishi145">Album</string>
     <string name="tishi146">No qr code was found</string>
+    <string name="tishi147">ID photo request</string>
+    <string name="tishi148">ID request</string>
+    <string name="tishi149">1、The photo must be clear、four corners are completely、and  the document is clearly visible</string>
+    <string name="tishi150">2、The ID information MUST NOT covered, altered and blurred</string>
+    <string name="tishi151">3、The person who holding the ID card must be consistent with the ID/ identification information</string>
+    <string name="tishi152">image is not clear</string>
+    <string name="tishi153">please follow the request when upload</string>
+    <string name="tishi154">the profile you entered must match your ID info</string>
+    <string name="tishi155">Please enter a region</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->
@@ -353,6 +364,10 @@
     <string name="code42">Unauthorized equipment</string><!--10516-->
     <string name="code43">QUIZ</string><!--1010-->
     <string name="code44">MAIL</string><!--1011-->
+    <string name="code45">Incorrect  name format</string><!--80003-->
+    <string name="code46">The number format of ID is incorrect</string><!--80004-->
+    <string name="code47">Invalid ID number</string><!--90033-->
+    <string name="code48">Authenticate failed</string><!--90099-->
 
     <string name="data0">unknown type</string>
     <string name="data1">login</string>
@@ -381,6 +396,8 @@
     <string name="data1004">Her-Mest</string>
     <string name="data1009">ORE_XSG</string>
     <string name="data2000">Makeys</string>
+    <string name="data2001">Makeys APP</string>
+    <string name="data2002">Makeys manager</string>
     <string name="data1010">QUIZ</string><!--1010-->
     <string name="data1011">MAIL</string><!--1011-->
     <string name="data1012">AK_TRANS</string><!--1012-->

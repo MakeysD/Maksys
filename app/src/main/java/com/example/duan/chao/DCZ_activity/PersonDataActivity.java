@@ -33,6 +33,7 @@ public class PersonDataActivity extends BaseActivity {
     private PersonDataActivity INSTANCE;
     private String state;
     private Dialog dialog;
+    private String content;     //错误原因
     @BindView(R.id.back)
     View back;
     @BindView(R.id.button)
@@ -74,6 +75,14 @@ public class PersonDataActivity extends BaseActivity {
         }else {
             state3();
         }
+        if(content!=null){
+            switch (content){
+                case "0":tv2.setText(R.string.tishi152);break;
+                case "1":tv2.setText(R.string.tishi153);break;
+                case "2":tv2.setText(R.string.tishi154);break;
+                default:break;
+            }
+        }
     }
     /**
      *  监听
@@ -83,13 +92,6 @@ public class PersonDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ActivityUtils.getInstance().popActivity(INSTANCE);
-            }
-        });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(INSTANCE,SettingDataActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -108,7 +110,14 @@ public class PersonDataActivity extends BaseActivity {
         iv.setVisibility(View.GONE);
         tv_state.setText(INSTANCE.getString(R.string.tishi48a));tv_state.setTextColor(getResources().getColor(R.color.text09));
         tv2.setVisibility(View.VISIBLE);tv2.setText(R.string.tishi48e);
-        button.setVisibility(View.GONE);
+        //button.setVisibility(View.GONE);
+        button.setText(R.string.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().popActivity(INSTANCE);
+            }
+        });
     }
     /**
      * 已认证
@@ -117,7 +126,13 @@ public class PersonDataActivity extends BaseActivity {
         iv.setVisibility(View.VISIBLE);iv.setImageResource(R.mipmap.shenfen_ok);
         tv_state.setText(INSTANCE.getString(R.string.tishi48));tv_state.setTextColor(getResources().getColor(R.color.text09));
         tv2.setVisibility(View.VISIBLE);tv2.setText(R.string.tishi48d);
-        button.setVisibility(View.GONE);
+        button.setText(R.string.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().popActivity(INSTANCE);
+            }
+        });
     }
 
     /**
@@ -128,6 +143,13 @@ public class PersonDataActivity extends BaseActivity {
         tv_state.setText(INSTANCE.getString(R.string.tishi48b));tv_state.setTextColor(getResources().getColor(R.color.text_red));
         tv2.setVisibility(View.VISIBLE);tv2.setText(R.string.tishi48f);
         button.setVisibility(View.VISIBLE);button.setText(R.string.tishi48h);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE,SettingDataActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -137,7 +159,14 @@ public class PersonDataActivity extends BaseActivity {
         iv.setVisibility(View.VISIBLE);iv.setImageResource(R.mipmap.shenfen_no);
         tv_state.setText(INSTANCE.getString(R.string.tishi47));tv_state.setTextColor(getResources().getColor(R.color.white));
         tv2.setVisibility(View.GONE);
-        button.setVisibility(View.VISIBLE);
+        button.setVisibility(View.VISIBLE);button.setText(R.string.tishi46);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE,SettingDataActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /***
@@ -158,6 +187,7 @@ public class PersonDataActivity extends BaseActivity {
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz_code",response.body().getData().getCode()+"z");
                             state=response.body().getData().getCode();
+                            content=response.body().getData().getDescription()+"";
                             setViews();
                         }else {
                             if(!response.body().getCode().equals("20003")){

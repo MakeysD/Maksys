@@ -102,7 +102,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@id/sdv1"
-                        android:text="@string/title3"
+                        android:text="@string/tishi7a"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text01" />
                     <ImageView

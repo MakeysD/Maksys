@@ -1,6 +1,7 @@
 package com.example.duan.chao.DCZ_adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,7 @@ public class Footprints2Adapter extends BaseAdapter{
                 viewHolder.title.setText(datetime);
             }
         }
-        viewHolder.name.setText(MyApplication.map.get(list.get(position).getSystemId()).toString());
+        viewHolder.name.setText(MyApplication.map.get(list.get(position).getSystemId())+"");
         viewHolder.ip.setText(list.get(position).getIpAddr());
         //viewHolder.ip.setText(list.get(position).getIpAttr()+"   "+list.get(position).getIpAddr());
 
