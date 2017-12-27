@@ -369,6 +369,9 @@
     <string name="code47">Invalid ID number</string><!--90033-->
     <string name="code48">Authenticate failed</string><!--90099-->
     <string name="code49">the info is already existed</string><!--8088-->
+    <string name="code50">The ID number is exists</string><!--10538-->
+    <string name="code51">Incomplete parameters</string><!--80001-->
+    <string name="code52">ID card maintenance, please try again later</string><!--80008-->
 
     <string name="data0">unknown type</string>
     <string name="data1">login</string>

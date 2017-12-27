@@ -337,9 +337,9 @@
     <string name="tishi149">1、图片清晰，四角完整，证件信息清晰可见，证件完整包含在图片中</string>
     <string name="tishi150">2、身份信息无遮挡、涂改、模糊</string>
     <string name="tishi151">3、手持人脸须与证件及认证信息照片一致</string>
-    <string name="tishi152">图像不清晰</string>
-    <string name="tishi153">未按照要求上传</string>
-    <string name="tishi154">信息不匹配</string>
+    <string name="tishi152">图像不清晰,请按图例要求重新上传</string>
+    <string name="tishi153">未按照要求上传,请按图例要求重新上传</string>
+    <string name="tishi154">信息不匹配,请按图例要求重新上传</string>
     <string name="tishi155">请选择国家/地区</string>
 
     <string name="code1">成功</string><!--20000-->
@@ -386,11 +386,14 @@
     <string name="code42">未授权设备</string><!--10516-->
     <string name="code43">QUIZ</string><!--1010-->
     <string name="code44">MAIL</string><!--1011-->
-    <string name="code45">姓名格式不正确</string><!--80003-->
-    <string name="code46">身份证号码格式不正确</string><!--80004-->
-    <string name="code47">无此身份证号码</string><!--90033-->
-    <string name="code48">认证不通过</string><!--90099-->
+    <string name="code45">姓名格式不正确,请按图例要求重新上传</string><!--80003-->
+    <string name="code46">身份证号码格式不正确,请按图例要求重新上传</string><!--80004-->
+    <string name="code47">无此身份证号码,请按图例要求重新上传</string><!--90033-->
+    <string name="code48">认证不通过,请按图例要求重新上传</string><!--90099-->
     <string name="code49">已存在</string><!--8088-->
+    <string name="code50">证件号已存在!</string><!--10538-->
+    <string name="code51">参数不完整</string><!--80001-->
+    <string name="code52">身份证中心维护,请稍后重试</string><!--80008-->
 
 
     <string name="data0">未知类型</string>

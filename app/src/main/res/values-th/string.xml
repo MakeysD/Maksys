@@ -365,6 +365,9 @@
  <string name="code47">ไม่มีหมายเลขประจำตัวประชาชน</string><!--90033-->
  <string name="code48">การรับรองไม่ผ่าน</string><!--90099-->
  <string name="code49">the info is already existed</string><!--8088-->
+ <string name="code50">หมายเลขประจำตัวอยู่แล้ว!</string><!--10538-->
+ <string name="code51">พารามิเตอร์ที่ไม่สมบูรณ์</string><!--80001-->
+ <string name="code52">การบำรุงรักษาบัตรประจำตัวโปรดลองอีกครั้งในภายหลัง</string><!--80008-->
 
 
  <string name="data0">ไม่รู้จักรูปแบบ</string>

@@ -80,6 +80,11 @@ public class PersonDataActivity extends BaseActivity {
                 case "0":tv2.setText(R.string.tishi152);break;
                 case "1":tv2.setText(R.string.tishi153);break;
                 case "2":tv2.setText(R.string.tishi154);break;
+                case "80003":tv2.setText(R.string.code45);break;
+                case "80004":tv2.setText(R.string.code46);break;
+                case "80008":tv2.setText(R.string.code52);break;
+                case "90033":tv2.setText(R.string.code47);break;
+                case "90099":tv2.setText(R.string.code48);break;
                 default:break;
             }
         }
