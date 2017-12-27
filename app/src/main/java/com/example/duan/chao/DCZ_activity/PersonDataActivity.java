@@ -53,7 +53,7 @@ public class PersonDataActivity extends BaseActivity {
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         state=getIntent().getStringExtra("state");
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
-        setViews();
+        getData();
         setListener();
     }
     @Override
@@ -170,6 +170,7 @@ public class PersonDataActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(INSTANCE,SettingDataActivity.class);
                 startActivity(intent);
+                //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }
@@ -193,6 +194,7 @@ public class PersonDataActivity extends BaseActivity {
                             Log.i("dcz_code",response.body().getData().getCode()+"z");
                             state=response.body().getData().getCode();
                             content=response.body().getData().getDescription()+"";
+                            Log.i("dcz",content+"123");
                             setViews();
                         }else {
                             if(!response.body().getCode().equals("20003")){
