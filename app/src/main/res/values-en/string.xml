@@ -368,6 +368,7 @@
     <string name="code46">The number format of ID is incorrect</string><!--80004-->
     <string name="code47">Invalid ID number</string><!--90033-->
     <string name="code48">Authenticate failed</string><!--90099-->
+    <string name="code49">the info is already existed</string><!--8088-->
 
     <string name="data0">unknown type</string>
     <string name="data1">login</string>

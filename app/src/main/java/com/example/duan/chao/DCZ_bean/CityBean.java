@@ -9,7 +9,16 @@ public class CityBean {
     private int country_code;
     private String country_name_en;//英文
     private String country_name_cn;//中文
+    private String country_name_tai;//泰文
     private String ab;
+
+    public String getCountry_name_tai() {
+        return country_name_tai;
+    }
+
+    public void setCountry_name_tai(String country_name_tai) {
+        this.country_name_tai = country_name_tai;
+    }
 
     public int getCountry_code() {
         return country_code;

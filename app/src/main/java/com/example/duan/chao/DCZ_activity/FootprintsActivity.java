@@ -122,8 +122,8 @@ public class FootprintsActivity extends BaseActivity {
 
             @Override
             public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
-                getData();
                 num++;
+                getData();
             }
 
             @Override

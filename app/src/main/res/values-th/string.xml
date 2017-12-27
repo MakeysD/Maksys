@@ -85,6 +85,7 @@
  <string name="title14">ศูนย์ความปลอดภัยบัญชี</string>
  <string name="title15">บันทึกการใช้งาน</string>
  <string name="title16">ข้อมูลส่วนตัว</string>
+ <string name="title16a">โปรไฟล์ชื่อจริง</string>
  <string name="title17">แสกนQR code</string>
  <string name="title18">ตั้งค่ามือถือ</string>
  <string name="title19">ตั้งค่าข้อมูลส่วนตัว</string>
@@ -93,7 +94,6 @@
  <string name="title22">รหัสผ่านหน้าจอlock screen </string>
  <string name="title23">ผูกมือถือใหม่</string>
  <string name="title24">explore</string>
-
 
  <string name="lock1">โปรดวาดรูปแบบการปลดล็อกอีกครั้ง</string>
  <string name="lock2">รูปแบบการล็อคอินไม่ถูกต้อง กรุณาล็อคอินใหม่อีกครั้ง</string>
@@ -108,7 +108,6 @@
  <string name="lock11">การยืนยันด้วยลายนิ้วมือได้เปิดใช้งานแล้ว</string>
  <string name="lock12">กรุณาตั้งค่าใหม่ ลากเส้นสัมผัสอย่างน้อย 4จุด!</string>
 
-
  <string name="main1">การรักษาด้านความปลอดภัย</string>
  <string name="main2">เปิดใช้งาน</string>
  <string name="main3">ยังไม่ได้เปิดใช้งาน</string>
@@ -122,7 +121,7 @@
  <string name="main11">ถูกปิดลง</string>
  <string name="main12">explore</string>
 
- <!--  <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"$%^*()\|~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>-->
+ <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"$%^*()\|~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
 
  <string name="china">ประเทศจีน</string>
  <string name="button">ยืนยัน</string>
@@ -307,6 +306,15 @@
  <string name="tishi144">วิธีเปลี่ยนแปลงเบอร์โทรศัพท์</string>
  <string name="tishi145">แกลอรี่</string>
  <string name="tishi146">ไม่รู้จักQR Code</string>
+ <string name="tishi147">คำขออัปโหลดเอกสาร</string>
+ <string name="tishi148">คำขออัปโหลดเอกสาร</string>
+ <string name="tishi149">1 ภาพมีความชัดเจนมุมเสร็จสมบูรณ์ข้อมูลเอกสารสามารถมองเห็นได้ชัดเจนเอกสารมีอยู่ทั้งหมดในภาพ</string>
+ <string name="tishi150">2, ข้อมูลประจำตัวโดยไม่ต้องครอบคลุม, เปลี่ยนแปลง, เบลอ</string>
+ <string name="tishi151">3, ใบหน้ามือถือให้สอดคล้องกับเอกสารและภาพถ่ายข้อมูลการรับรอง</string>
+ <string name="tishi152">ภาพไม่ชัดเจน</string>
+ <string name="tishi153">ไม่ได้อัปโหลดตามที่ต้องการ</string>
+ <string name="tishi154">ข้อมูลไม่ตรงกัน</string>
+ <string name="tishi155">กรุณาเลือกประเทศ/เขต</string>
 
  <string name="code1">สำเร็จ</string><!--20000-->
  <string name="code2">ล้มเหลว</string><!--20001-->
@@ -350,6 +358,13 @@
  <string name="code40">รหัสผ่านความปลอดภัยไม่ถุกต้อง</string><!--10513-->
  <string name="code41">รหัสผ่านเข้าสู่ระบบไม่ถุกต้อง</string><!--10514-->
  <string name="code42">ยังไม่ได้รับแนุญาติการเข้าถึงอุปกรณ์</string><!--10516-->
+ <string name="code43">QUIZ</string><!--1010-->
+ <string name="code44">MAIL</string><!--1011-->
+ <string name="code45">ชื่อไม่ได้อยู่ในรูปแบบที่ถูกต้อง</string><!--80003-->
+ <string name="code46">รูปแบบหมายเลขประจำตัวไม่ถูกต้อง</string><!--80004-->
+ <string name="code47">ไม่มีหมายเลขประจำตัวประชาชน</string><!--90033-->
+ <string name="code48">การรับรองไม่ผ่าน</string><!--90099-->
+ <string name="code49">the info is already existed</string><!--8088-->
 
 
  <string name="data0">ไม่รู้จักรูปแบบ</string>
@@ -382,6 +397,8 @@
  <string name="data1010">QUIZ</string><!--1010-->
  <string name="data1011">ระบบอีเมล์</string><!--1011-->
  <string name="data1012">AKระบบธุรกรรมการซื้อขายAK</string><!--1012-->
+ <string name="data2001">Makeys APP</string>
+ <string name="data2002">Makeys manager</string>
 
 
   <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>
@@ -467,30 +484,4 @@
    <string name="howitworks_page_enter_code_details" msgid="2285856515167753320">"ระบบนี้จะทำการส่งรหัสยืนยันเพื่อใช้ในการเข้าสู่ระบบ。"</string>
    <string name="howitworks_page_verify_device_details" msgid="9198940182976285367">"คุณสามารถทำการจดจำคอมพิวเตอร์ เพื่อจะไม่ต้องกรอกรหัสยืนยันบนคอมพิวเตอร์เครื่องนี้อีกต่อไป"</string>
    <string name="button_exit_howitworks_flow" msgid="6789714209015077393">"ออก"</string>
-
-
-    <!-- auth result error amd help code warning -->
-
-    <string name="title16a">โปรไฟล์ชื่อจริง</string>
-
-
-    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"$%^*()\|~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
-
-    <string name="tishi147">คำขออัปโหลดเอกสาร</string>
-    <string name="tishi148">คำขออัปโหลดเอกสาร</string>
-    <string name="tishi149">1 ภาพมีความชัดเจนมุมเสร็จสมบูรณ์ข้อมูลเอกสารสามารถมองเห็นได้ชัดเจนเอกสารมีอยู่ทั้งหมดในภาพ</string>
-    <string name="tishi150">2, ข้อมูลประจำตัวโดยไม่ต้องครอบคลุม, เปลี่ยนแปลง, เบลอ</string>
-    <string name="tishi151">3, ใบหน้ามือถือให้สอดคล้องกับเอกสารและภาพถ่ายข้อมูลการรับรอง</string>
-    <string name="tishi152">ภาพไม่ชัดเจน</string>
-    <string name="tishi153">ไม่ได้อัปโหลดตามที่ต้องการ</string>
-    <string name="tishi154">ข้อมูลไม่ตรงกัน</string>
-    <string name="tishi155">กรุณาเลือกประเทศ/เขต</string>
-    <string name="code43">QUIZ</string><!--1010-->
-    <string name="code44">MAIL</string><!--1011-->
-    <string name="code45">ชื่อไม่ได้อยู่ในรูปแบบที่ถูกต้อง</string><!--80003-->
-    <string name="code46">รูปแบบหมายเลขประจำตัวไม่ถูกต้อง</string><!--80004-->
-    <string name="code47">ไม่มีหมายเลขประจำตัวประชาชน</string><!--90033-->
-    <string name="code48">การรับรองไม่ผ่าน</string><!--90099-->
-    <string name="data2001">Makeys APP</string>
-    <string name="data2002">Makeys manager</string>
 </resources>

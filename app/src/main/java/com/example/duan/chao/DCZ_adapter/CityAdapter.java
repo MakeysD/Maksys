@@ -78,8 +78,10 @@ public class CityAdapter extends BaseAdapter{
         CityBean city =list.get(position);
         if(MyApplication.language.equals("ENGLISH")){
             viewHolder.name.setText(list.get(position).getCountry_name_en());
-        }else {
+        }else if(MyApplication.language.equals("CHINESE")){
             viewHolder.name.setText(list.get(position).getCountry_name_cn());
+        }else {
+            viewHolder.name.setText(list.get(position).getCountry_name_tai());
         }
 
         char idFirstChar = city.getCountry_name_en().charAt(0);//得到当前id

@@ -36,7 +36,6 @@ import butterknife.ButterKnife;
  *
  * */
 public class CityListActivity extends BaseActivity  implements CityAdapter.CityCallback{
-    private String phone="18788888888";
     private CityListActivity INSTANCE;
     private CityAdapter adapter;
     private List<CityBean> list;
@@ -63,7 +62,7 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
             if(ContentUtil.isMobileNO(MyApplication.mobile)){//中国手机
                 List<CityBean> zz=new ArrayList<>();
                 CityBean bean=new CityBean();
-                bean.setCountry_id(100042);bean.setCountry_code(86);bean.setCountry_name_cn("中国");bean.setCountry_name_en("China");bean.setAb("CN");
+                bean.setCountry_id(100042);bean.setCountry_code(86);bean.setCountry_name_cn("中国");bean.setCountry_name_en("China");bean.setAb("CN");bean.setCountry_name_tai("ประเทศจีน");
                 zz.add(bean);
                 list=zz;
             }else {
@@ -161,9 +160,13 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
             ChangePhone3Activity.guo_name=bean.getCountry_name_en();
             MyApplication.city=bean.getCountry_name_en();
             MyApplication.code=bean.getCountry_code()+"";
-        }else {
+        }else if(MyApplication.language.equals("CHINESE")){
             ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
             MyApplication.city=bean.getCountry_name_cn();
+            MyApplication.code=bean.getCountry_code()+"";
+        }else {
+            ChangePhone3Activity.guo_name=bean.getCountry_name_tai();
+            MyApplication.city=bean.getCountry_name_tai();
             MyApplication.code=bean.getCountry_code()+"";
         }
         ActivityUtils.getInstance().popActivity(INSTANCE);

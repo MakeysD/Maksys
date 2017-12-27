@@ -390,6 +390,7 @@
     <string name="code46">身份证号码格式不正确</string><!--80004-->
     <string name="code47">无此身份证号码</string><!--90033-->
     <string name="code48">认证不通过</string><!--90099-->
+    <string name="code49">已存在</string><!--8088-->
 
 
     <string name="data0">未知类型</string>

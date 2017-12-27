@@ -2,50 +2,57 @@
     {
         "country_id": 100042, 
         "country_code": 86, 
-        "country_name_en": "China", 
-        "country_name_cn": "中国", 
+        "country_name_en": "China",
+        "country_name_cn": "中国",
+        "country_name_tai":"ประเทศจีน",
         "ab": "CN"
     },
     {
         "country_id": 100076, 
         "country_code": 852, 
         "country_name_en": "Hongkong", 
-        "country_name_cn": "香港", 
+        "country_name_cn": "香港",
+        "country_name_tai":"ฮ่องกง",
         "ab": "HK"
     },
     {
         "country_id": 100105, 
         "country_code": 853, 
         "country_name_en": "Macao", 
-        "country_name_cn": "澳门", 
+        "country_name_cn": "澳门",
+        "country_name_tai":"ฮมาเก๊า",
         "ab": "MO"
     },
     {
         "country_id": 100139, 
         "country_code": 63, 
         "country_name_en": "Philippines", 
-        "country_name_cn": "菲律宾", 
+        "country_name_cn": "菲律宾",
+        "country_name_tai":"ฟิลิปปินส์",
         "ab": "PH"
     },
     {
         "country_id": 100174, 
         "country_code": 886, 
         "country_name_en": "Taiwan", 
-        "country_name_cn": "台湾省", 
+        "country_name_cn": "台湾省",
+        "country_name_tai":"จังหวัดไต้หวัน",
         "ab": "TW"
     },
     {
         "country_id": 100177, 
         "country_code": 66, 
         "country_name_en": "Thailand", 
-        "country_name_cn": "泰国", 
+        "country_name_cn": "泰国",
+        "country_name_tai":"ประเทศไทย",
         "ab": "TH"
     },
     {
         "country_id": 100192, 
         "country_code": 84, 
         "country_name_en": "Vietnam", 
-        "country_name_cn": "越南", 
+        "country_name_cn": "越南",
+        "country_name_tai":"เวียดนาม",
         "ab": "VN"
     }
 ]

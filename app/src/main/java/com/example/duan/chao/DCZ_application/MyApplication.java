@@ -49,10 +49,8 @@ public class MyApplication extends Application{
     public static int y;
     public static String pri_key;//私钥
     public static String pub_key;//公钥
-    //http://api.qeveworld.com/user-safe-api/
-    public static String uri="http://110.79.11.5/user-safe-api/";
-    //http://makeys.qeveworld.com/#/register
-    public static String ur="http://test-makeys.qeveworld.com/#/register";
+    public static String uri="";
+    public static String ur="";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
     public static int zhiwen_namber=0;
@@ -63,7 +61,7 @@ public class MyApplication extends Application{
     public static String qiniu="https://pic.bincrea.com/";
     public static String city="";
     public static List<CityBean> city_list=new ArrayList<>();
-    public static String language="CHINESE";
+    public static String language="";
     public static Boolean status=false;
 
     public static String device;
@@ -114,11 +112,11 @@ public class MyApplication extends Application{
         sms_type=sf.getString("sms_type","1");
         pri_key=sf.getString("pri_key","");
         pub_key=sf.getString("pub_key","");
-        language=sf.getString("language","");
+        language=sf.getString("language","CHINESE");
         offset=sf.getLong("offset",0);
         cookie=sf.getString("cookie","");
-        uri=sf.getString("uri","http://110.79.11.5/user-safe-api/");
-        ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");
+        uri=sf.getString("uri","http://110.79.11.5/user-safe-api/"); //http://api.qeveworld.com/user-safe-api/
+        ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");  //http://makeys.qeveworld.com/#/register
         PIN_LENGTH=sf.getInt("PIN_LENGTH",8);
         DEFAULT_INTERVAL=sf.getInt("DEFAULT_INTERVAL",30);
         Log.i("dcz_first",first+"");

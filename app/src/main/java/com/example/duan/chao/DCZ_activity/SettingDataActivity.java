@@ -179,6 +179,14 @@ public class SettingDataActivity extends BaseActivity {
             zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
             fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
             shou.setBackgroundResource(R.mipmap.shenfenzheng3en);
+        }else if(MyApplication.language.equals("CHINESE")){
+            zheng.setBackgroundResource(R.mipmap.shenfenzheng);
+            fan.setBackgroundResource(R.mipmap.shenfenzheng2);
+            shou.setBackgroundResource(R.mipmap.shenfenzheng3);
+        }else {
+            zheng.setBackgroundResource(R.mipmap.shenfenzhengtai);
+            fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
+            shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
         }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
@@ -359,7 +367,7 @@ public class SettingDataActivity extends BaseActivity {
         pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
         //控制时间范围
         Calendar calendar = Calendar.getInstance();
-        pvTime.setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦
+        pvTime.setRange(calendar.get(Calendar.YEAR) - 100, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦
         pvTime.setTime(new Date());
         pvTime.setCyclic(true);
         pvTime.setCancelable(true);
