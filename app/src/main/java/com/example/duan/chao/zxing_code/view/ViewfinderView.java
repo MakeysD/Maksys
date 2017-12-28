@@ -216,6 +216,8 @@ public final class ViewfinderView extends View {
         float newY = rect.bottom + margin + offY;
         if(MyApplication.language.equals("ENGLISH")){
             len = mTipText.length() / 2-1;
+        }else if(MyApplication.language.equals("TAI")){
+            len = (int) (mTipText.length() / 1.5);
         }else {
             len = mTipText.length();
         }

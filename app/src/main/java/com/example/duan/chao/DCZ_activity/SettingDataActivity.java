@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -60,6 +61,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -491,9 +493,25 @@ public class SettingDataActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        try {
+            content = ShebeiUtil.ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+            list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(MyApplication.city.equals("")){
         }else {
-            tv_guo.setText(MyApplication.city);
+            for(int i=0;i<list.size();i++){
+                if(list.get(i).getCountry_name_cn().equals(MyApplication.city)||list.get(i).getCountry_name_en().equals(MyApplication.city)||list.get(i).getCountry_name_tai().equals(MyApplication.city)){
+                    if(MyApplication.language.equals("CHINESE")){
+                        tv_guo.setText(list.get(i).getCountry_name_cn());
+                    }else if(MyApplication.language.equals("ENGLISH")){
+                        tv_guo.setText(list.get(i).getCountry_name_en());
+                    }else {
+                        tv_guo.setText(list.get(i).getCountry_name_tai());
+                    }
+                }
+            }
             tv_guo.setTextColor(Color.WHITE);
         }
     }
@@ -801,12 +819,10 @@ public class SettingDataActivity extends BaseActivity {
     }
     private Integer getType(String string){
         Integer a = null;
-        if(string.equals(INSTANCE.getString(R.string.tishi125))){
-            a=0;
-        }else if(string.equals(INSTANCE.getString(R.string.tishi126))){
+        if(string.equals(INSTANCE.getString(R.string.tishi126))){
             a=2;
         }else {
-            a=1;
+            a=0;
         }
         return a;
     }
@@ -817,7 +833,9 @@ public class SettingDataActivity extends BaseActivity {
             list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
             Log.i("dcz",list.toString());
             for(int i=0;i<list.size();i++){
-                if(tv_guo.getText().toString().equals(list.get(i).getCountry_name_cn())||tv_guo.getText().toString().equals(list.get(i).getCountry_name_en())){
+                if(tv_guo.getText().toString().equals(list.get(i).getCountry_name_cn())
+                        ||tv_guo.getText().toString().equals(list.get(i).getCountry_name_en())
+                        ||tv_guo.getText().toString().equals(list.get(i).getCountry_name_tai())){
                     city=list.get(i).getAb();
                 }
             }

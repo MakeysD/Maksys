@@ -92,9 +92,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:visibility="gone"
+                android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/text02"
                 android:textSize="@dimen/text00"
+                android:layout_marginLeft="@dimen/left"
+                android:layout_marginRight="@dimen/right"
                 android:text="@string/tishi47"/>
             <RelativeLayout
                 android:layout_width="match_parent"

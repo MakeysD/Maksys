@@ -59,7 +59,7 @@ public class OperationRecordAdapter extends RecyclerView.Adapter<OperationRecord
                 holder.title.setText(datetime);
             }
         }
-        holder.name.setText(MyApplication.map.get(String.valueOf(list.get(position).getType())).toString());
+        holder.name.setText(MyApplication.map.get(String.valueOf(list.get(position).getSystemId())).toString());
         holder.ip.setText(list.get(position).getIpAddr());
        // holder.ip.setText(list.get(position).getIpAttr()+"  "+list.get(position).getIpAddr());
 

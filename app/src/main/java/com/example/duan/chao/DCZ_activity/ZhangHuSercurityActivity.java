@@ -169,6 +169,7 @@ public class ZhangHuSercurityActivity extends BaseActivity {
                             Log.i("dcz_code",response.body().getData().getCode());
                             Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
                             intent.putExtra("state",response.body().getData().getCode());
+                            intent.putExtra("content",response.body().getData().getDescription()+"");
                             startActivity(intent);
                         }else {
                             if(!response.body().getCode().equals("20003")){

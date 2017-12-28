@@ -269,6 +269,8 @@ public class LookPayPasswordActivity extends BaseActivity {
                         if(s.toString().equals(String.valueOf(list.get(i).getCountry_code()))){
                             if(MyApplication.language.equals("ENGLISH")){
                                 guo.setText(list.get(i).getCountry_name_en());
+                            }else if(MyApplication.language.equals("TAI")){
+                                guo.setText(list.get(i).getCountry_name_tai());
                             }else {
                                 guo.setText(list.get(i).getCountry_name_cn());
                             }

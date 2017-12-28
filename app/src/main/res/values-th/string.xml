@@ -2,21 +2,21 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Makeys</string>
  <!-- TODO: Remove or change this placeholder text -->
- <string name="hello_blank_fragment"></string> สวัสดีค่ะ/ครับ
- <string name="loaddings">...</string> กำลังโหลด
+ <string name="hello_blank_fragment">สวัสดีค่ะ/ครับ</string>
+ <string name="loaddings">กำลังโหลด...</string>
 
- <string name="scan_text"></string> กรุณาแสกน QR CODE
+ <string name="scan_text">กรุณาแสกน QR CODE</string>
 
- <string name="start_btn"></string> เริ่ม
- <string name="cancel_btn"></string> ยกเลิก
+ <string name="start_btn">เริ่ม</string>
+ <string name="cancel_btn">ยกเลิก</string>
 
- <string name="fingerprint_success"></string>การบันทึกลายนิ้วมือสำเร็จ
- <string name="fingerprint_not_recognized"></string>กรุณาลองอีกครั้ง
+ <string name="fingerprint_success">การบันทึกลายนิ้วมือสำเร็จ</string>
+ <string name="fingerprint_not_recognized">กรุณาลองอีกครั้ง</string>
 
  <!-- Dialog info -->
- <string name="no_sensor_dialog_title"></string>ไม่มีอุปกรณ์เซ็นเซอร์ลายนิ้วมือ
- <string name="no_sensor_dialog_message">.</string>อุปกรณ์ของคุณไม่มีอุปกรณ์เซ็นเซอร์ลายนิ้วมือ กรุณากดยกเลิก/ออก
- <string name="no_fingerprint_enrolled_dialog_title"></string>โปรดไปที่การตั้งค่าระบบ เปิดใช้งานลายนิ้วมือ
+ <string name="no_sensor_dialog_title">ไม่มีอุปกรณ์เซ็นเซอร์ลายนิ้วมือ</string>
+ <string name="no_sensor_dialog_message">อุปกรณ์ของคุณไม่มีอุปกรณ์เซ็นเซอร์ลายนิ้วมือ กรุณากดยกเลิก/ออก.</string>
+ <string name="no_fingerprint_enrolled_dialog_title">โปรดไปที่การตั้งค่าระบบ เปิดใช้งานลายนิ้วมือ</string>
  <!--  <string name="no_fingerprint_enrolled_dialog_message">\ ไม่มีการเปิดใช้งานระบบเซ็นเซอร์ลายนิ้วมือ
        <font fgcolor="green">ตั้งค่า- >ความปลอดภัย- > Nexus \เลือก</font>คลิกลงทะเบียนหรือกดออก</string>-->
  <string name="ok_btn_dialog">OK</string>
@@ -112,8 +112,8 @@
  <string name="main2">เปิดใช้งาน</string>
  <string name="main3">ยังไม่ได้เปิดใช้งาน</string>
  <string name="main4">ความปลอดภัยบัญชี</string>
- <string name="main5">Lock screenแบบลากเส้นสัมผัส</string>
- <string name="main6">Lock screenแบบลายนิ้วมือ</string>
+ <string name="main5">แบบลากเส้นสัมผัส</string>
+ <string name="main6">แบบลายนิ้วมือ</string>
  <string name="main7">ภาษา</string>
  <string name="main8">เกี่ยวกับ</string>
  <string name="main9">ออกจากบัญชีปัจจุบัน</string>
@@ -230,7 +230,7 @@
  <string name="tishi72">เซิร์ฟเวอรืเกิดข้อผิดพลาด</string>
  <string name="tishi73">กรุณากรอกให้ถูกต้อง</string>
  <string name="tishi74">โปรดป้อนหมายเลขโทรศัพท์ที่ถูกต้อง</string>
- <string name="tishi75">จะส่งไปใหม่อีกครั้ง กรุณารอสักครู่ </string>
+ <string name="tishi75">ที่สอง</string>
  <string name="tishi76">ยื่นขออีกครั้ง</string>
  <string name="tishi77">กรุณากรอกให้ถูกต้อง</string>
  <string name="tishi78">หมายเลขโทรศัพท์ที่ใช้รับOTP ：</string>

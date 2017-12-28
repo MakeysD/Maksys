@@ -52,8 +52,9 @@ public class PersonDataActivity extends BaseActivity {
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         state=getIntent().getStringExtra("state");
+        content=getIntent().getStringExtra("content");
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
-        getData();
+        setViews();
         setListener();
     }
     @Override

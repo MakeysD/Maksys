@@ -342,9 +342,9 @@ public class LoginEmailActivity extends BaseActivity {
             MyApplication.city=address;MyApplication.sf.edit().putString("city",address).commit();
         }
         for(int i=0;i<list.size();i++){
-            if(MyApplication.city.equals(String.valueOf(list.get(i)))||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_en()))){
-                Log.i("dcz",list.get(i).getCountry_name_cn()+"z");
-                Log.i("dcz",list.get(i).getCountry_code()+"z");
+            if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))
+                    ||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_en()))
+                    ||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_tai()))){
                 MyApplication.code=list.get(i).getCountry_code()+"";
             }
         }

@@ -112,7 +112,7 @@ public class ChangeLoginPasswordActivity extends BaseActivity {
             }
             tv5.setText(this.getString(R.string.tishia68)+b.substring(0,3)+c+d+"@"+e+this.getString(R.string.tishi68));
         }else {
-            tv5.setText(MyApplication.username);
+            tv5.setText(this.getString(R.string.tishia68)+MyApplication.username+this.getString(R.string.tishi68));
         }
 
     }

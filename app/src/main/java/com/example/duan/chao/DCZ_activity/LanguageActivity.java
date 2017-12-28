@@ -217,5 +217,10 @@ public class LanguageActivity extends BaseActivity {
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
         iv4.setVisibility(View.VISIBLE);
+        for(int i=0;i<list.size();i++){
+            if(MyApplication.city.equals(list.get(i).getCountry_name_tai())){
+                MyApplication.city=list.get(i).getCountry_name_tai();MyApplication.sf.edit().putString("city",list.get(i).getCountry_name_tai());
+            }
+        }
     }
 }

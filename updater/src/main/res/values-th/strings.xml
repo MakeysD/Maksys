@@ -1,0 +1,4 @@
+<resources>
+    <string name="system_download_component_disable">ไม่สามารถดาวน์โหลดบริการได้โปรดเปิดใช้งาน</string>
+    <string name="system_download_description">อัปเดตเดี๋ยวนี้</string>
+</resources>

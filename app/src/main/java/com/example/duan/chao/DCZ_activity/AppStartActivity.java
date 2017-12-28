@@ -105,7 +105,13 @@ public class AppStartActivity extends BaseActivity {
                     MyApplication.city=MyApplication.city_list.get(i).getCountry_name_en();MyApplication.sf.edit().putString("city",MyApplication.city_list.get(i).getCountry_name_en());
                 }
             }
-        }else {
+        }else if(MyApplication.language.equals("TAI")){
+            for(int i=0;i<MyApplication.city_list.size();i++){
+                if(MyApplication.city.equals(MyApplication.city_list.get(i).getCountry_name_tai())){
+                    MyApplication.city=MyApplication.city_list.get(i).getCountry_name_tai();MyApplication.sf.edit().putString("city",MyApplication.city_list.get(i).getCountry_name_tai());
+                }
+            }
+        } else {
             for(int i=0;i<MyApplication.city_list.size();i++){
                 if(MyApplication.city.equals(MyApplication.city_list.get(i).getCountry_name_en())){
                     MyApplication.city=MyApplication.city_list.get(i).getCountry_name_cn();MyApplication.sf.edit().putString("city",MyApplication.city_list.get(i).getCountry_name_cn());
