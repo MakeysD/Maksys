@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -62,17 +63,21 @@ public class ScanActivity extends CaptureActivity {
 
     @Override
     public void initBarcodelay() {
+        DisplayMetrics dm=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        String s="屏幕的分辨率为："+dm.widthPixels+"*"+dm.heightPixels;
+        Log.i("dcz分辨率",s);
         int screenHeight = DensityUtils.px2dp(ScanActivity.this, ScreenUtils.getScreenHeight(ScanActivity.this));
-       /* int recoderHeight = DensityUtils.px2dp(ScanActivity.this, ScreenUtils.getScreenWidth(ScanActivity.this)) / 6;
+        int recoderHeight = DensityUtils.px2dp(ScanActivity.this, ScreenUtils.getScreenWidth(ScanActivity.this)) / 6;
         getCameraManager().setPoint_left(recoderHeight);
         getCameraManager().setPoint_top((int) (screenHeight / 2 - recoderHeight*3));
         getCameraManager().setView_recoder_hight(recoderHeight*4);
-        getViewfinderView().setmTipText(this.getString(R.string.scan_text));*/
-        int height=240;
+        getViewfinderView().setmTipText(this.getString(R.string.scan_text));
+        /*int height=240;
         getCameraManager().setPoint_left(50);
         getCameraManager().setPoint_top(screenHeight/2-height);
         getCameraManager().setView_recoder_hight(height);
-        getViewfinderView().setmTipText(this.getString(R.string.scan_text));
+        getViewfinderView().setmTipText(this.getString(R.string.scan_text));*/
     }
 
     @Override

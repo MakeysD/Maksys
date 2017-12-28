@@ -52,7 +52,7 @@ public class BaseActivity extends Activity{
         for(int i=0;i<ActivityUtils.getInstance().ActivitySize();i++){
             Log.i("dcz_栈",ActivityUtils.getInstance().getActivity(i)+"");
         }
-
+        Log.i("语言",MyApplication.language+"语言");
         if(MyApplication.language.equals("CHINESE")){
             Locale.setDefault(Locale.CHINESE);
             Configuration config = getBaseContext().getResources().getConfiguration();

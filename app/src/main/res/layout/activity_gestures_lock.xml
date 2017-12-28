@@ -42,8 +42,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/left"
-            android:paddingRight="100dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
             android:text="@string/tishi25"
             android:textColor="@color/text02"
             android:textSize="@dimen/text01" />

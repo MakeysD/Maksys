@@ -110,8 +110,8 @@ public class OperationRecordActivity extends BaseActivity {
 
             @Override
             public void onLoadMore() {
-                getData();
                 num++;
+                getData();
                 lv.loadMoreComplete();
             }
         });
@@ -135,8 +135,10 @@ public class OperationRecordActivity extends BaseActivity {
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
-                            if(response.body().getData().getList().size()>0){
+                            if(num==1){
                                 list.clear();
+                            }
+                            if(response.body().getData().getList().size()>0){
                                 for(int i=0;i<response.body().getData().getList().size();i++){
                                     list.add(response.body().getData().getList().get(i));
                                 }

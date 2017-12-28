@@ -26,6 +26,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -112,7 +113,15 @@ public class MyApplication extends Application{
         sms_type=sf.getString("sms_type","1");
         pri_key=sf.getString("pri_key","");
         pub_key=sf.getString("pub_key","");
-        language=sf.getString("language","CHINESE");
+        String yu = getBaseContext().getResources().getConfiguration().locale.toString();
+        Log.i("dcz_系统语言",yu);
+        if(yu.equals("en_US")){
+            language=sf.getString("language","ENGLISH");
+        }else if(yu.equals("th_TH")){
+            language=sf.getString("language","TAI");
+        }else {
+            language=sf.getString("language","CHINESE");
+        }
         offset=sf.getLong("offset",0);
         cookie=sf.getString("cookie","");
         uri=sf.getString("uri","http://110.79.11.5/user-safe-api/"); //http://api.qeveworld.com/user-safe-api/
