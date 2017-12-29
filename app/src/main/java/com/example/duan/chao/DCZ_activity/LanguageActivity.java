@@ -77,12 +77,24 @@ public class LanguageActivity extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(MyApplication.language.equals("CHINESE")){
-            a1();
-        }else if(MyApplication.language.equals("ENGLISH")){
-            a3();
+        if(MyApplication.language.equals("")){
+            String yu = getBaseContext().getResources().getConfiguration().locale.toString();
+            Log.i("dcz_系统语言",yu);
+            if(yu.equals("en_US")){
+                a3();
+            }else if(yu.equals("th_TH")){
+                a4();
+            }else {
+                a1();
+            }
         }else {
-            a4();
+            if(MyApplication.language.equals("TAI")){
+                a4();
+            }else if(MyApplication.language.equals("ENGLISH")){
+                a3();
+            }else {
+                a1();
+            }
         }
         setViews();
         setListener();

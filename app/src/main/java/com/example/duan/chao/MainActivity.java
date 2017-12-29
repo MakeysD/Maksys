@@ -810,10 +810,24 @@ public class MainActivity extends BaseActivity{
             e.printStackTrace();
         }
         version = packInfo.versionName;
-        if(MyApplication.language.equals("ENGLISH")){
-            language.setText(R.string.tishi37);
+        if(MyApplication.language.equals("")){
+            String yu = getBaseContext().getResources().getConfiguration().locale.toString();
+            Log.i("dcz_系统语言",yu);
+            if(yu.equals("en_US")){
+                language.setText(R.string.tishi37);
+            }else if(yu.equals("th_TH")){
+                language.setText(R.string.tishi38);
+            }else {
+                language.setText(R.string.tishi35);
+            }
         }else {
-            language.setText(R.string.tishi35);
+            if(MyApplication.language.equals("ENGLISH")){
+                language.setText(R.string.tishi37);
+            }else if(MyApplication.language.equals("TAI")){
+                language.setText(R.string.tishi38);
+            }else {
+                language.setText(R.string.tishi35);
+            }
         }
         name.setText(MyApplication.nickname);
         zhanghao.setText(MyApplication.username);
@@ -1272,6 +1286,7 @@ public class MainActivity extends BaseActivity{
                     Log.d("dcz","获取数据成功");
                     MyApplication.sf.edit().putString("cookie","").commit();
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                    MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
                     Intent intent=new Intent(INSTANCE, LoginEmailActivity.class);
                     startActivity(intent);
                     ActivityUtils.getInstance().popActivity(INSTANCE);

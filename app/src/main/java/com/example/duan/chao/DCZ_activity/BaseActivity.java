@@ -52,7 +52,15 @@ public class BaseActivity extends Activity{
         for(int i=0;i<ActivityUtils.getInstance().ActivitySize();i++){
             Log.i("dcz_栈",ActivityUtils.getInstance().getActivity(i)+"");
         }
+        CodeUtil.pushcode(getApplicationContext());
         Log.i("语言",MyApplication.language+"语言");
+        if(MyApplication.language.equals("")){
+            Locale.setDefault( Locale.getDefault());
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale = Locale.getDefault();
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            return;
+        }
         if(MyApplication.language.equals("CHINESE")){
             Locale.setDefault(Locale.CHINESE);
             Configuration config = getBaseContext().getResources().getConfiguration();
@@ -70,7 +78,6 @@ public class BaseActivity extends Activity{
             config.locale =locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
-        CodeUtil.pushcode(getApplicationContext());
     }
 
     @Override
