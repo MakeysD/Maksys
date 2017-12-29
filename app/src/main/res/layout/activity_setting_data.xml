@@ -382,7 +382,6 @@
                                 android:textStyle="bold" />
                         </RelativeLayout>
 
-
                         <TextView
                             android:id="@+id/tv_time"
                             android:layout_width="0dp"
@@ -392,10 +391,10 @@
                             android:text="@string/tishi122"
                             android:paddingRight="10dp"
                             android:gravity="center_vertical|right"
-                            android:paddingLeft="17dp"
+                            android:paddingLeft="10dp"
                             android:singleLine="true"
                             android:textColor="@color/text02"
-                            android:textSize="@dimen/text01"/>
+                            android:textSize="@dimen/text02"/>
 
                         <ImageView
                             android:layout_width="8dp"

@@ -72,12 +72,16 @@ public class BaseActivity extends Activity{
             return;
         }
         if(MyApplication.language.equals("CHINESE")){
+            Locale locale = new Locale("zh");
             Configuration config = getBaseContext().getResources().getConfiguration();
-            config.locale = Locale.CHINESE;
+            config.locale =locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }else if(MyApplication.language.equals("ENGLISH")){
+            /*Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale = Locale.ENGLISH;*/
+            Locale locale = new Locale("en");
             Configuration config = getBaseContext().getResources().getConfiguration();
-            config.locale = Locale.ENGLISH;
+            config.locale =locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }else {
             Locale locale = new Locale("th");

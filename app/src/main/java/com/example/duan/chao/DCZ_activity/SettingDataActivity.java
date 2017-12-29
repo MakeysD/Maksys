@@ -368,8 +368,8 @@ public class SettingDataActivity extends BaseActivity {
         //时间选择器
         pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
         //控制时间范围
-        Calendar calendar = Calendar.getInstance();
-        pvTime.setRange(calendar.get(Calendar.YEAR) - 100, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦
+        /*Calendar calendar = Calendar.getInstance();
+        pvTime.setRange(calendar.get(Calendar.YEAR) - 100, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦*/
         pvTime.setTime(new Date());
         pvTime.setCyclic(true);
         pvTime.setCancelable(true);
@@ -378,7 +378,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onTimeSelect(Date date,Date date2) {
                 tv_time.setText(getTime(date2)+"   to  "+getTime(date));
-                if(date2.getTime()>=date.getTime()||date2.getTime()>new Date().getTime()){
+                if(date2.getTime()>=date.getTime()||date2.getTime()>new Date().getTime()||date.getTime()<new Date().getTime()){
                     tv_time.setTextColor(Color.RED);
                 }else {
                     tv_time.setTextColor(Color.WHITE);
