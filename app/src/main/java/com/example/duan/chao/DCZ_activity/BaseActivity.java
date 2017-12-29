@@ -59,21 +59,28 @@ public class BaseActivity extends Activity{
             Configuration config = getBaseContext().getResources().getConfiguration();
             config.locale = Locale.getDefault();
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+            String yu = getBaseContext().getResources().getConfiguration().locale.toString();
+            Log.i("dcz_系统语言2",yu);
+            if(yu.equals("en_US")){
+                MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
+            }else if(yu.equals("th_TH")){
+                MyApplication.language="TAI";MyApplication.sf.edit().putString("language","TAI").commit();
+            }else {
+                MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
+            }
             return;
         }
         if(MyApplication.language.equals("CHINESE")){
-            Locale.setDefault(Locale.CHINESE);
             Configuration config = getBaseContext().getResources().getConfiguration();
             config.locale = Locale.CHINESE;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }else if(MyApplication.language.equals("ENGLISH")){
-            Locale.setDefault(Locale.ENGLISH);
             Configuration config = getBaseContext().getResources().getConfiguration();
             config.locale = Locale.ENGLISH;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }else {
             Locale locale = new Locale("th");
-            Locale.setDefault(locale);
             Configuration config = getBaseContext().getResources().getConfiguration();
             config.locale =locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());

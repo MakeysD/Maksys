@@ -460,7 +460,7 @@
                             <com.facebook.drawee.view.SimpleDraweeView
                                 android:id="@+id/rl_zheng"
                                 android:layout_width="match_parent"
-                                android:layout_height="185dp"
+                                android:layout_height="210dp"
                                 android:layout_weight="1"
                                 android:background="@mipmap/shenfenzheng"
                                 android:gravity="center"
@@ -489,7 +489,7 @@
                             <com.facebook.drawee.view.SimpleDraweeView
                                 android:id="@+id/rl_fan"
                                 android:layout_width="match_parent"
-                                android:layout_height="185dp"
+                                android:layout_height="210dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:background="@mipmap/shenfenzheng2"
@@ -518,7 +518,7 @@
                             <com.facebook.drawee.view.SimpleDraweeView
                                 android:id="@+id/rl_shou"
                                 android:layout_width="match_parent"
-                                android:layout_height="185dp"
+                                android:layout_height="210dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:layerType="software"

@@ -181,14 +181,14 @@ public class SettingDataActivity extends BaseActivity {
             zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
             fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
             shou.setBackgroundResource(R.mipmap.shenfenzheng3en);
-        }else if(MyApplication.language.equals("CHINESE")){
-            zheng.setBackgroundResource(R.mipmap.shenfenzheng);
-            fan.setBackgroundResource(R.mipmap.shenfenzheng2);
-            shou.setBackgroundResource(R.mipmap.shenfenzheng3);
-        }else {
+        }else if(MyApplication.language.equals("TAI")){
             zheng.setBackgroundResource(R.mipmap.shenfenzhengtai);
             fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
             shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
+        }else {
+            zheng.setBackgroundResource(R.mipmap.shenfenzheng);
+            fan.setBackgroundResource(R.mipmap.shenfenzheng2);
+            shou.setBackgroundResource(R.mipmap.shenfenzheng3);
         }
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();

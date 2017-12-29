@@ -107,7 +107,6 @@ public class HaveActivity extends BaseActivity {
                 textView7.setTextSize(14);
                 textView7.setText(MyApplication.map.get(MyApplication.reqSysId)+" "+this.getString(R.string.tishi112));
             }
-
         }
         timer=new Timer();
         TimerTask task=new TimerTask() {
