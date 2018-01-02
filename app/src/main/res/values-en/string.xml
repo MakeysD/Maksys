@@ -213,6 +213,8 @@
     <string name="tishi55">name</string>
     <string name="tishi56">ID number</string>
     <string name="tishi57">Validity period</string>
+    <string name="tishi57a">The valid date of ID</string>
+    <string name="tishi57b">The invalid date of ID</string>
     <string name="tishi58">changed phone number</string>
     <string name="tishi59">Login mode</string>
     <string name="tishi60">invalid fingerprint</string>
@@ -221,6 +223,7 @@
     <string name="tishi62">unset</string>
     <string name="tishi63">unauthorized</string>
     <string name="tishi64">login</string>
+    <string name="tishi64a">Touch-ID </string>
     <string name="tishi65">logout</string>
     <string name="tishi66">original email</string>
     <string name="tishi67"> set now</string>
@@ -240,6 +243,7 @@
     <string name="tishi78">phone number</string>
     <string name="tishi79">Makey username</string>
     <string name="tishi80">verify existing fingerprint</string>
+    <string name="tishi80a">verify existing fingerprint</string>
     <string name="tishi81">your account is login on another device </string>
     <string name="tishi82">notice</string>
     <string name="tishi83">failed</string>
@@ -284,6 +288,8 @@
     <string name="tishi120">birthday</string>
     <string name="tishi121">select birthday</string>
     <string name="tishi122">valid date</string>
+    <string name="tishi122a">Valid date of ID</string>
+    <string name="tishi122b">Invalid date of ID</string>
     <string name="tishi123">ID</string>
     <string name="tishi124">region</string>
     <string name="tishi125">ID card</string>
@@ -319,6 +325,8 @@
     <string name="tishi153">please follow the request when upload</string>
     <string name="tishi154">the profile you entered must match your ID info</string>
     <string name="tishi155">Please enter a region</string>
+    <string name="tishi156">请设置指纹锁</string>
+    <string name="tishi157">请设置手势锁/指纹锁</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->

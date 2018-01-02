@@ -191,7 +191,7 @@
     <string name="tishi25">启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心</string>
     <string name="tishi26">请绘制原手势密码</string>
     <string name="tishi26b">请验证解锁图案</string>
-    <string name="tishi26c">验证手势密码</string>
+    <string name="tishi26c">请验证手势密码</string>
     <string name="tishi26a">请绘制解锁图案</string>
     <string name="tishi26d">请重新验证解锁图案</string>
     <string name="tishi27">检查新版本</string>
@@ -235,6 +235,8 @@
     <string name="tishi55">姓名</string>
     <string name="tishi56">证件号码</string>
     <string name="tishi57">有效期</string>
+    <string name="tishi57a">证件开始日期</string>
+    <string name="tishi57b">证件结束日期</string>
     <string name="tishi58">已换号</string>
     <string name="tishi59">切换登录方式</string>
     <string name="tishi60">指纹锁不可用</string>
@@ -243,6 +245,7 @@
     <string name="tishi62">未设置</string>
     <string name="tishi63">暂未认证</string>
     <string name="tishi64">点击登录</string>
+    <string name="tishi64a">Touch-ID </string>
     <string name="tishi65">下线</string>
     <string name="tishi66">请补全原绑定安全邮箱：</string>
     <string name="tishi67"></string>
@@ -262,6 +265,7 @@
     <string name="tishi78">当前绑定的密保手机：</string>
     <string name="tishi79">安全锁的ID</string>
     <string name="tishi80">通过指纹键验证已有手机指纹</string>
+    <string name="tishi80a">请验证指纹</string>
     <string name="tishi81">您的账号已在另一台设备登录</string>
     <string name="tishi82">提示</string>
     <string name="tishi83">数据获取失败</string>
@@ -306,6 +310,8 @@
     <string name="tishi120">出生日期</string>
     <string name="tishi121">选择出生日期</string>
     <string name="tishi122">选择有效期</string>
+    <string name="tishi122a">请选择签发日期</string>
+    <string name="tishi122b">请选择截止日期</string>
     <string name="tishi123">选择证件类型</string>
     <string name="tishi124">选择地区</string>
     <string name="tishi125">身份证</string>
@@ -341,6 +347,8 @@
     <string name="tishi153">未按照要求上传,请按图例要求重新上传</string>
     <string name="tishi154">信息不匹配,请按图例要求重新上传</string>
     <string name="tishi155">请选择国家/地区</string>
+    <string name="tishi156">请设置指纹锁</string>
+    <string name="tishi157">请设置手势锁/指纹锁</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->

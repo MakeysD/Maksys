@@ -136,6 +136,7 @@ public class BaseActivity extends Activity{
                                 //判断是否设置过指纹锁
                                 if(MyApplication.zhiwen==true){
                                     Intent intent = new Intent(this, ZhiwenActivity.class);
+                                    intent.putExtra("type","1");
                                     startActivity(intent);
                                     //判断当前是否设置过手势锁密码
                                 }else if(LockUtil.getPwdStatus(this)==true&& MyApplication.suo==true){

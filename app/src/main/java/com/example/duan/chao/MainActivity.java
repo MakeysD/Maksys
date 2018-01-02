@@ -50,6 +50,7 @@ import android.widget.Toast;
 
 import com.chiclam.android.updater.Updater;
 import com.chiclam.android.updater.UpdaterConfig;
+import com.example.duan.chao.DCZ_activity.AppStartActivity;
 import com.example.duan.chao.DCZ_activity.BaseActivity;
 import com.example.duan.chao.DCZ_activity.GesturesLockActivity;
 import com.example.duan.chao.DCZ_activity.GuanYuActivity;
@@ -58,8 +59,12 @@ import com.example.duan.chao.DCZ_activity.LockActivity;
 import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_activity.ScanActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
+import com.example.duan.chao.DCZ_activity.StartLock2Activity;
+import com.example.duan.chao.DCZ_activity.StartLockActivity;
 import com.example.duan.chao.DCZ_activity.TanSuoActivity;
 import com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity;
+import com.example.duan.chao.DCZ_activity.ZhiWen2Activity;
+import com.example.duan.chao.DCZ_activity.ZhiwenActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
 import com.example.duan.chao.DCZ_authenticator.AuthenticatorActivity;
@@ -340,7 +345,8 @@ public class MainActivity extends BaseActivity{
         ceshi= (TextView) findViewById(R.id.ceshi);
         home.setBackgroundResource(R.drawable.b_g5);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
-
+        //初始化指纹.
+        fingerprintManager = FingerprintManagerCompat.from(this);
         AmimaHandler();
         mRoundProcess = (MyRoundProcess) findViewById(R.id.my_round_process);
         // 开启动画
@@ -861,8 +867,6 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 up(mUsers);
-                have.setVisibility(View.VISIBLE);
-                code.setVisibility(View.GONE);
                 if(mTotpCountdownPhase<0.3&&mTotpCountdownPhase>0.01){
                     Anima_blue=true;
                     Anima_red=false;
@@ -870,8 +874,7 @@ public class MainActivity extends BaseActivity{
                     Anima_blue=false;
                     Anima_red=true;
                 }
-                rl_have.setVisibility(View.GONE);
-                rl_code.setVisibility(View.VISIBLE);
+                yanzheng();
             }
         });
         time.setOnClickListener(new View.OnClickListener() {
@@ -952,6 +955,7 @@ public class MainActivity extends BaseActivity{
                     startActivity(intent);
                 }else {
                     Intent intent=new Intent(INSTANCE, GesturesLockActivity.class);
+                    intent.putExtra("type","1");
                     startActivity(intent);
                 }
             }
@@ -1123,8 +1127,6 @@ public class MainActivity extends BaseActivity{
      *   指纹身份验证这里开始
      * */
     private void startZhiwen(Boolean bo){
-        //初始化指纹.
-        fingerprintManager = FingerprintManagerCompat.from(this);
         //先判断有没有指纹传感器
         if (!fingerprintManager.isHardwareDetected()) {
             // 没有检测到指纹传感器，显示对话框告诉用户
@@ -1232,6 +1234,47 @@ public class MainActivity extends BaseActivity{
         },R.style.registDialog);
         dia.show();
     }
+    private void yanzheng(){
+        if(MyApplication.zhiwen==true){ //已开启指纹，去验证指纹锁
+            Intent intent = new Intent(INSTANCE, ZhiWen2Activity.class);
+            startActivityForResult(intent,2);
+        }else {
+            if(LockUtil.getPwdStatus(INSTANCE)==true){//已开启手势锁，去验证
+                Intent intent=new Intent(this,StartLock2Activity.class);
+                startActivityForResult(intent,2);
+            }else {     //未开启手势锁，去判断是否有指纹传感器
+                new MiddleDialog(INSTANCE,this.getString(R.string.tishi114),this.getString(R.string.tishi157),true,new MiddleDialog.onButtonCLickListener2() {
+                    @Override
+                    public void onActivieButtonClick(Object bean, int po) {
+                        if(bean==null){
+                        }else {
+                            mDragLayout.open(true, DragLayout.Direction.Right);
+                            /*if (!fingerprintManager.isHardwareDetected()) {// 没有检测到指纹传感器，去设置手势锁
+                                Intent intent=new Intent(INSTANCE, GesturesLockActivity.class);
+                                intent.putExtra("type","2");
+                                startActivityForResult(intent,2);
+                            }else {     //去设置指纹锁
+                                mDragLayout.open(true, DragLayout.Direction.Right);
+                            }*/
+                        }
+                    }
+                }, R.style.registDialog).show();
+
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 2) {
+            have.setVisibility(View.VISIBLE);
+            code.setVisibility(View.GONE);
+            rl_have.setVisibility(View.GONE);
+            rl_code.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void start(){
         // 指纹身份验证这里开始。
         try {

@@ -30,8 +30,8 @@ import com.google.gson.Gson;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StartLockActivity extends BaseActivity {
-    private StartLockActivity INSTANCE;
+public class StartLock2Activity extends BaseActivity {
+    private StartLock2Activity INSTANCE;
     private Boolean jiesuo=false;
     private Boolean jiaoyi=false;
     private String messge;
@@ -59,17 +59,10 @@ public class StartLockActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_lock);
+        setContentView(R.layout.activity_start_lock2);
         INSTANCE=this;
         ButterKnife.bind(this);
         registerMessageReceiver();
-        type=getIntent().getStringExtra("type");
-        //判断是否设置过指纹锁
-        if(MyApplication.zhiwen==true){
-            change.setVisibility(View.VISIBLE);
-        }else {
-            change.setVisibility(View.GONE);
-        }
         mScreenObserver = new ScreenObserver(this);
         mScreenObserver.requestScreenStateUpdate(new ScreenObserver.ScreenStateListener() {
             @Override
@@ -102,38 +95,9 @@ public class StartLockActivity extends BaseActivity {
                 public void onComplete(int[] indexs) {
                     //修改密码或设置密码进来
                     Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
-                    if(type.equals("1")){
-                        if(ActivityUtils.getInstance().ActivitySize()>1){
-                            if(jiesuo==true){
-                                Intent i = new Intent(INSTANCE, HaveScanActivity.class);
-                                i.putExtra("message",messge);
-                                startActivity(i);
-                            }else if(jiaoyi==true){
-                                Intent i = new Intent(INSTANCE, HavaMoneyActivity.class);
-                                i.putExtra("message",messge);
-                                startActivity(i);
-                            }
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
-                        }else {
-                            if(jiesuo==true){
-                                Intent i = new Intent(INSTANCE, HaveScanActivity.class);
-                                i.putExtra("message",messge);
-                                startActivity(i);
-                            }else if(jiaoyi==true){
-                                Intent i = new Intent(INSTANCE, HavaMoneyActivity.class);
-                                i.putExtra("message",messge);
-                                startActivity(i);
-                            }else {
-                                Intent intent=new Intent(INSTANCE, MainActivity.class);
-                                startActivity(intent);
-                            }
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
-                        }
-                    }else {
-                        Intent i=new Intent();
-                        setResult(2,i);
-                        ActivityUtils.getInstance().popActivity(INSTANCE);
-                    }
+                    Intent i=new Intent();
+                    setResult(2,i);
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
                 }
                 @Override
                 public void onError() {
@@ -253,7 +217,7 @@ public class StartLockActivity extends BaseActivity {
         }
     }
 
-    @Override
+  /*  @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(KeyEvent.KEYCODE_BACK==keyCode){
             Intent home=new Intent(Intent.ACTION_MAIN);
@@ -263,5 +227,5 @@ public class StartLockActivity extends BaseActivity {
             return false ;
         }
         return super.onKeyDown(keyCode, event);
-    }
+    }*/
 }

@@ -85,8 +85,15 @@ public class GesturesLockActivity extends BaseActivity {
                     //将密码设置在本地
                     LockUtil.setPwdToDisk(context, mIndexs);
                     LockUtil.setPwdStatus(context, true);
+                    if(type.equals("1")){
+                        ActivityUtils.getInstance().popActivity(context);
+                    }else {
+                        Intent i=new Intent();
+                        setResult(2,i);
+                        ActivityUtils.getInstance().popActivity(context);
+                    }
                     //会员验证
-                    invalidateUser();
+                    //invalidateUser();
                 }
             }
 

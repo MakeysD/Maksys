@@ -283,7 +283,9 @@
             android:name=".DCZ_authenticator.timesync.SyncNowActivity"
             android:label="@string/timesync_sync_now_screen_title"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".DCZ_activity.TanSuoActivity"></activity>
+        <activity android:name=".DCZ_activity.TanSuoActivity" />
+        <activity android:name=".DCZ_activity.ZhiWen2Activity" />
+        <activity android:name=".DCZ_activity.StartLock2Activity"></activity>
     </application>
 
 </manifest>

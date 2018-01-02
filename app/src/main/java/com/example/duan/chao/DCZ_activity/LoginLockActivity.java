@@ -91,6 +91,7 @@ public class LoginLockActivity extends BaseActivity {
                             Toast.makeText(LoginLockActivity.this,R.string.lock6,Toast.LENGTH_SHORT).show();
                         }else {
                             Intent intent=new Intent(LoginLockActivity.this, GesturesLockActivity.class);
+                            intent.putExtra("type","1");
                             startActivity(intent);
                             ActivityUtils.getInstance().popActivity(LoginLockActivity.this);
                         }

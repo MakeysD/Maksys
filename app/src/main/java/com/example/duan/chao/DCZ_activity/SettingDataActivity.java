@@ -33,7 +33,9 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.jia.TimePickerView2;
+import com.bigkoo.pickerview.jia.TimePickerView3;
 import com.bigkoo.pickerview.model.IPickerViewData;
+import com.bigkoo.pickerview.utils.PickerViewAnimateUtil;
 import com.example.duan.chao.DCZ_ImageUtil.CompressHelper;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
@@ -101,16 +103,25 @@ public class SettingDataActivity extends BaseActivity {
     private static final int REQUEST_CROP_PHOTO = 102;
     TimePickerView pvTime;
     TimePickerView2 pvTime2;
+    TimePickerView3 pvTime3;
     OptionsPickerView pvOptions;
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
     @BindView(R.id.back)
     View back;
     @BindView(R.id.button)
     TextView button;
-    @BindView(R.id.tv_time)
+    /*@BindView(R.id.tv_time)
     TextView tv_time;
     @BindView(R.id.time)
-    LinearLayout time;
+    LinearLayout time;*/
+    @BindView(R.id.ll_start)
+    LinearLayout ll_start;
+    @BindView(R.id.time1)
+    TextView time1;
+    @BindView(R.id.ll_end)
+    LinearLayout ll_end;
+    @BindView(R.id.time2)
+    TextView time2;
     @BindView(R.id.ll1)
     LinearLayout ll1;       //国家地区
     @BindView(R.id.ll2)
@@ -131,6 +142,8 @@ public class SettingDataActivity extends BaseActivity {
     TextView xian4;
     @BindView(R.id.xian5)
     TextView xian5;
+    @BindView(R.id.xian7)
+    TextView xian7;
     @BindView(R.id.ll6)
     LinearLayout ll6;       //生日选择
     @BindView(R.id.birthday)
@@ -207,13 +220,14 @@ public class SettingDataActivity extends BaseActivity {
      *  初始化
      * */
     private void setViews() {
-        setTime();
+        //setTime();
         if(ContentUtil.isMobileNO(MyApplication.mobile)){//中国手机
             setPicker(true);
         }else {
             setPicker(false);
         }
         setBirthday();
+        set_end();
     }
     /**
      *  监听
@@ -229,7 +243,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if(photo1!=null&&photo2!=null&& photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&& Type.getText().length()>0&&et_name.getText().length()>0&&
-                        et_number.getText().length()>0&&tv_time.getText().toString().contains("to")){
+                        et_number.getText().length()>0&&time1.getText().toString().contains("-")&&time2.getText().toString().contains("-")){
                     File x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
                     File y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
                     File z = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo3);
@@ -362,14 +376,28 @@ public class SettingDataActivity extends BaseActivity {
                 shou2();
             }
         });
+        ll_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pvTime2.show();
+                type5();
+            }
+        });
+        ll_end.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pvTime3.show();
+                type7();
+            }
+        });
     }
 
     private void setTime(){
         //时间选择器
-        pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
+        /*pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
         //控制时间范围
-        /*Calendar calendar = Calendar.getInstance();
-        pvTime.setRange(calendar.get(Calendar.YEAR) - 100, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦*/
+        *//*Calendar calendar = Calendar.getInstance();
+        pvTime.setRange(calendar.get(Calendar.YEAR) - 100, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦*//*
         pvTime.setTime(new Date());
         pvTime.setCyclic(true);
         pvTime.setCancelable(true);
@@ -400,12 +428,14 @@ public class SettingDataActivity extends BaseActivity {
             public void onClick(View v) {
                 type2();
             }
-        });
+        });*/
     }
 
     private void setBirthday(){
         //时间选择器
         pvTime2 = new TimePickerView2(this, TimePickerView2.Type.YEAR_MONTH_DAY);
+        Calendar calendar = Calendar.getInstance();
+        pvTime2.setRange(calendar.get(Calendar.YEAR) - 100, calendar.get(Calendar.YEAR));//要在setTime 之前才有效果哦
         pvTime2.setTime(new Date());
         pvTime2.setCyclic(true);
         pvTime2.setCancelable(true);
@@ -413,8 +443,8 @@ public class SettingDataActivity extends BaseActivity {
         pvTime2.setOnTimeSelectListener(new TimePickerView2.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date) {
-                birthday.setText(getTime(date));
-                birthday.setTextColor(Color.WHITE);
+                time1.setText(getTime(date));
+                time1.setTextColor(Color.WHITE);
             }
         });
         birthday.setOnClickListener(new View.OnClickListener() {
@@ -430,6 +460,35 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 type6();
+                pvTime3.show();
+            }
+        });
+    }
+    private void set_end(){
+        //时间选择器
+        pvTime3 = new TimePickerView3(this, TimePickerView3.Type.YEAR_MONTH_DAY);
+        pvTime3.setTime(new Date());
+        pvTime3.setCyclic(true);
+        pvTime3.setCancelable(true);
+        //时间选择后回调
+        pvTime3.setOnTimeSelectListener(new TimePickerView3.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date) {
+                if(PickerViewAnimateUtil.wuxian==true){
+                    PickerViewAnimateUtil.wuxian=false;
+                    time2.setText(getString(R.string.tishi158));
+                    time2.setTextColor(Color.WHITE);
+                }else {
+                    time2.setText(getTime(date));
+                    time2.setTextColor(Color.WHITE);
+                }
+            }
+        });
+        birthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type6();
+                pvTime2.show();
             }
         });
     }
@@ -522,6 +581,7 @@ public class SettingDataActivity extends BaseActivity {
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
+        xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type2(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -530,6 +590,7 @@ public class SettingDataActivity extends BaseActivity {
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
+        xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type3(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -538,6 +599,7 @@ public class SettingDataActivity extends BaseActivity {
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
+        xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type4(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -546,6 +608,7 @@ public class SettingDataActivity extends BaseActivity {
         xian4.setBackgroundColor(Color.parseColor("#0581c6"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
+        xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type5(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -554,6 +617,7 @@ public class SettingDataActivity extends BaseActivity {
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#0581c6"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
+        xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
     private void type6(){
         xian1.setBackgroundColor(Color.parseColor("#343436"));
@@ -562,6 +626,16 @@ public class SettingDataActivity extends BaseActivity {
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#0581c6"));
+        xian7.setBackgroundColor(Color.parseColor("#343436"));
+    }
+    private void type7(){
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
+        xian2.setBackgroundColor(Color.parseColor("#343436"));
+        xian3.setBackgroundColor(Color.parseColor("#343436"));
+        xian4.setBackgroundColor(Color.parseColor("#343436"));
+        xian5.setBackgroundColor(Color.parseColor("#343436"));
+        xian7.setBackgroundColor(Color.parseColor("#0581c6"));
+        xian6.setBackgroundColor(Color.parseColor("#343436"));
     }
     public static void verifyStoragePermissions(Activity activity) {
         try {
@@ -754,17 +828,17 @@ public class SettingDataActivity extends BaseActivity {
             return;
         }
         dialog.show();
-        String[]  strs= tv_time.getText().toString().split("to");
-        Log.i("dcz",strs[0].trim()); Log.i("dcz",strs[1].trim());
+       /* String[]  strs= tv_time.getText().toString().split("to");
+        Log.i("dcz",strs[0].trim()); Log.i("dcz",strs[1].trim());*/
         String max= RandomUtil.RandomNumber();
-        String str ="certNum="+et_number.getText().toString()+"&certType="+type+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+strs[1].trim()+"&validityStart="+strs[0].trim();
+        String str ="certNum="+et_number.getText().toString()+"&certType="+type+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+time2.getText().toString().trim()+"&validityStart="+time1.getText().toString().trim();
         byte[] data = str.getBytes();
         try {
             sign = DSA.sign(data, MyApplication.pri_key);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),strs[0].trim(),strs[1].trim(),"2001",max,sign).enqueue(new Callback<LoginBean>() {
+        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),time2.getText().toString(),"2001",max,sign).enqueue(new Callback<LoginBean>() {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();

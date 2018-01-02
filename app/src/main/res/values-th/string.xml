@@ -209,6 +209,8 @@
  <string name="tishi55">ชื่อสกุล</string>
  <string name="tishi56">เลขประจำตัวประชาชน</string>
  <string name="tishi57">มีอายุถึง</string>
+ <string name="tishi57a">วันที่เริ่มต้นเอกสาร</string>
+ <string name="tishi57b">วันที่บัตรหมดอายุ</string>
  <string name="tishi58">เปลี่ยนแปลงหมายเลข</string>
  <string name="tishi59">เปลี่ยนรูปแบบการเข้าสู่ระบบ</string>
  <string name="tishi60">ระบบล็อคด้วยลายนิ้วมือล็อคไม่สามารถใช้งานได้</string>
@@ -217,6 +219,7 @@
  <string name="tishi62">ยังไม่ได้ตั้งค่า</string>
  <string name="tishi63">ยังไม่ได้รับการยืนยัน</string>
  <string name="tishi64">คลิกเข้าสู่ระบบ</string>
+ <string name="tishi64a">Touch-ID </string>
  <string name="tishi65">ออกจากระบบ</string>
  <string name="tishi66">กรุณาเพิ่มเติมอีเมล์：</string>
  <string name="tishi67"></string>
@@ -236,6 +239,7 @@
  <string name="tishi78">หมายเลขโทรศัพท์ที่ใช้รับOTP ：</string>
  <string name="tishi79">รหัส IDความปลอดภัย</string>
  <string name="tishi80">ยืนยันรหัสผ่านลายนิ้วมือโทรศัพท์ด้วยลายนิ้วมือ</string>
+ <string name="tishi80a">ยืนยันรหัสผ่านลายนิ้วมือโทรศัพท์ด้วยลายนิ้วมือ</string>
  <string name="tishi81">บัญชีของคุณได้ลงชื่อเข้าใช้ในอุปกรณ์อื่นอยู่</string>
  <string name="tishi82">คำแนะนำ</string>
  <string name="tishi83">ข้อมูลล้มเหลว</string>
@@ -280,6 +284,8 @@
  <string name="tishi120">เลือกวันที่เกิด</string>
  <string name="tishi121">เลือกวันเกิด</string>
  <string name="tishi122">เลือกวันหมดอายุ</string>
+    <string name="tishi122a">โปรดเลือกวันที่ออก</string>
+    <string name="tishi122b">โปรดเลือกวันที่บัตรหมดอายุ</string>
  <string name="tishi123">เลือกรูปแบบบัตร</string>
  <string name="tishi124">เลือกที่อยู่</string>
  <string name="tishi125">บัตรประชาชน</string>
@@ -315,6 +321,8 @@
  <string name="tishi153">ไม่ได้อัปโหลดตามที่ต้องการ</string>
  <string name="tishi154">ข้อมูลไม่ตรงกัน</string>
  <string name="tishi155">กรุณาเลือกประเทศ/เขต</string>
+ <string name="tishi156">请设置指纹锁</string>
+ <string name="tishi157">请设置手势锁/指纹锁</string>
 
  <string name="code1">สำเร็จ</string><!--20000-->
  <string name="code2">ล้มเหลว</string><!--20001-->

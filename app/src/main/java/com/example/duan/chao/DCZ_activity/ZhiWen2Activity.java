@@ -38,11 +38,11 @@ import com.google.gson.Gson;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ZhiwenActivity extends BaseActivity {
+public class ZhiWen2Activity extends BaseActivity {
     private Boolean jiesuo=false;
     private Boolean jiaoyi=false;
     private String messge;
-    private ZhiwenActivity INSTANCE;
+    private ZhiWen2Activity INSTANCE;
     private FingerprintManagerCompat fingerprintManager = null;
     private MyAuthCallback myAuthCallback = null;
     private CancellationSignal cancellationSignal = null;
@@ -75,7 +75,7 @@ public class ZhiwenActivity extends BaseActivity {
     @BindView(R.id.zhiwen_start)
     LinearLayout start;
     @BindView(R.id.ll_canale)   //验证错误一次后的弹框布局
-    LinearLayout ll_cancle;
+            LinearLayout ll_cancle;
     @BindView(R.id.cancle2)
     TextView cancle2;
     @BindView(R.id.shoushi)
@@ -85,21 +85,16 @@ public class ZhiwenActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zhiwen);
+        setContentView(R.layout.activity_zhi_wen2);
         INSTANCE=this;
         ButterKnife.bind(this);
         registerMessageReceiver();
-        type=getIntent().getStringExtra("type");
-        if(LockUtil.getPwdStatus(INSTANCE)){
-            change.setVisibility(View.VISIBLE);
-        }else {
-            change.setVisibility(View.GONE);
-        }
+        change.setVisibility(View.GONE);
         setViews();
         setListener();
     }
 
-    @Override
+  /*  @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(KeyEvent.KEYCODE_BACK==keyCode){
             Intent home=new Intent(Intent.ACTION_MAIN);
@@ -109,7 +104,7 @@ public class ZhiwenActivity extends BaseActivity {
             return false ;
         }
         return super.onKeyDown(keyCode, event);
-    }
+    }*/
 
     private void setViews() {
         name.setText(MyApplication.username);
@@ -122,38 +117,9 @@ public class ZhiwenActivity extends BaseActivity {
                     case MSG_AUTH_SUCCESS:
                         result.setText(R.string.fingerprint_success);
                         cancellationSignal = null;
-                        if(type.equals("1")){
-                            if(ActivityUtils.getInstance().ActivitySize()>1){
-                                if(jiesuo==true){
-                                    Intent i = new Intent(INSTANCE, HaveScanActivity.class);
-                                    i.putExtra("message",messge);
-                                    startActivity(i);
-                                }else if(jiaoyi==true){
-                                    Intent i = new Intent(INSTANCE, HavaMoneyActivity.class);
-                                    i.putExtra("message",messge);
-                                    startActivity(i);
-                                }
-                                ActivityUtils.getInstance().popActivity(INSTANCE);
-                            }else {
-                                if(jiesuo==true){
-                                    Intent i = new Intent(INSTANCE, HaveScanActivity.class);
-                                    i.putExtra("message",messge);
-                                    startActivity(i);
-                                }else if(jiaoyi==true){
-                                    Intent i = new Intent(INSTANCE, HavaMoneyActivity.class);
-                                    i.putExtra("message",messge);
-                                    startActivity(i);
-                                }else {
-                                    Intent intent=new Intent(INSTANCE, MainActivity.class);
-                                    startActivity(intent);
-                                }
-                                ActivityUtils.getInstance().popActivity(INSTANCE);
-                            }
-                        }else {
-                            Intent i=new Intent();
-                            setResult(2,i);
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
-                        }
+                        Intent i=new Intent();
+                        setResult(2,i);
+                        ActivityUtils.getInstance().popActivity(INSTANCE);
                         break;
                     case MSG_AUTH_FAILED:
                         number=number+1;
@@ -303,7 +269,7 @@ public class ZhiwenActivity extends BaseActivity {
         switch (code) {
             //取消了传感器的使用
             case FingerprintManager.FINGERPRINT_ERROR_CANCELED:
-               // result.setText(R.string.ErrorCanceled_warning);
+                // result.setText(R.string.ErrorCanceled_warning);
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_HW_UNAVAILABLE:
                 result.setText(R.string.ErrorHwUnavailable_warning);
