@@ -65,6 +65,8 @@ public class ZhiWen2Activity extends BaseActivity {
     View back;
     @BindView(R.id.result)
     TextView result;
+    @BindView(R.id.result2)
+    TextView result2;
     @BindView(R.id.change)
     TextView change;        //去进行手势解锁
     @BindView(R.id.wangji)
@@ -91,6 +93,9 @@ public class ZhiWen2Activity extends BaseActivity {
         ButterKnife.bind(this);
         registerMessageReceiver();
         change.setVisibility(View.GONE);
+        result2.setVisibility(View.VISIBLE);
+        MyApplication.zhiwen_namber=0;
+        number=0;
         setViews();
         setListener();
     }
@@ -118,6 +123,8 @@ public class ZhiWen2Activity extends BaseActivity {
                     case MSG_AUTH_SUCCESS:
                         result.setText(R.string.fingerprint_success);
                         cancellationSignal = null;
+                        MyApplication.zhiwen_namber=0;
+                        number=0;
                         Intent i=new Intent();
                         setResult(2,i);
                         ActivityUtils.getInstance().popActivity(INSTANCE);
@@ -285,6 +292,9 @@ public class ZhiWen2Activity extends BaseActivity {
                 //指纹锁定了
                 MyApplication.zhiwen_namber=MyApplication.zhiwen_namber+1;
                 result.setText(R.string.ErrorLockout_warning);
+                result2.setVisibility(View.GONE);
+                MyApplication.zhiwen_namber=2;
+                number=5;
                 break;
             case FingerprintManager.FINGERPRINT_ERROR_NO_SPACE:
                 result.setText(R.string.ErrorNoSpace_warning);

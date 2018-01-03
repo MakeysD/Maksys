@@ -139,7 +139,6 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:src="@mipmap/zhiwen" />
-
                 <TextView
                     android:id="@+id/result"
                     android:layout_width="wrap_content"
@@ -150,7 +149,9 @@
                     android:textSize="@dimen/text01"
                     android:layout_marginTop="16dp"
                     android:text="@string/tishi79"/>
+
                 <TextView
+                    android:id="@+id/result2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text02"

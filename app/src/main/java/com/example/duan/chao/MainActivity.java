@@ -1258,7 +1258,6 @@ public class MainActivity extends BaseActivity{
                         }
                     }
                 }, R.style.registDialog).show();
-
             }
         }
     }

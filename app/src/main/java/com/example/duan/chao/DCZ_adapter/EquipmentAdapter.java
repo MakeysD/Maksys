@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.duan.chao.DCZ_activity.EquipmentManageActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
+import com.example.duan.chao.DCZ_selft.DragLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
@@ -65,15 +66,24 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String random= RandomUtil.RandomNumber();
-                String str ="id="+(long)list.get(position).getId()+"&nonce="+random;
-                byte[] data = str.getBytes();
-                try {
-                    String sign = DSA.sign(data, MyApplication.pri_key);
-                    getData((long) list.get(position).getId(),position,random,sign);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                new MiddleDialog(context,context.getString(R.string.tishi99),context.getString(R.string.tishi159),true,new MiddleDialog.onButtonCLickListener2() {
+                    @Override
+                    public void onActivieButtonClick(Object bean, int po) {
+                        if(bean==null){
+                        }else {
+                            String random= RandomUtil.RandomNumber();
+                            String str ="id="+(long)list.get(position).getId()+"&nonce="+random;
+                            byte[] data = str.getBytes();
+                            try {
+                                String sign = DSA.sign(data, MyApplication.pri_key);
+                                getData((long) list.get(position).getId(),position,random,sign);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, R.style.registDialog).show();
+
             }
         });
     }
