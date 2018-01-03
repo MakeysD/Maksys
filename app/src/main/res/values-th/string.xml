@@ -321,8 +321,8 @@
  <string name="tishi153">ไม่ได้อัปโหลดตามที่ต้องการ</string>
  <string name="tishi154">ข้อมูลไม่ตรงกัน</string>
  <string name="tishi155">กรุณาเลือกประเทศ/เขต</string>
- <string name="tishi156">请设置指纹锁</string>
- <string name="tishi157">请设置手势锁/指纹锁</string>
+ <string name="tishi156">ตั้งลายนิ้วมือ</string>
+ <string name="tishi157">โปรดตั้งค่าล็อคท่าทาง / ล็อคลายนิ้วมือ</string>
 
  <string name="code1">สำเร็จ</string><!--20000-->
  <string name="code2">ล้มเหลว</string><!--20001-->

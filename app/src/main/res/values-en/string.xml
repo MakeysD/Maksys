@@ -325,8 +325,8 @@
     <string name="tishi153">please follow the request when upload</string>
     <string name="tishi154">the profile you entered must match your ID info</string>
     <string name="tishi155">Please enter a region</string>
-    <string name="tishi156">请设置指纹锁</string>
-    <string name="tishi157">请设置手势锁/指纹锁</string>
+    <string name="tishi156">please set fingerprint password</string>
+    <string name="tishi157">please set gesture/fingerprint password</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->

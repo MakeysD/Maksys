@@ -61,7 +61,8 @@ public class ZhiWen2Activity extends BaseActivity {
     public static final String KEY_CONTENT_TYPE = "content_type";
     public static final String KEY_EXTRAS = "extras";
     private String type;
-
+    @BindView(R.id.back)
+    View back;
     @BindView(R.id.result)
     TextView result;
     @BindView(R.id.change)
@@ -162,6 +163,12 @@ public class ZhiWen2Activity extends BaseActivity {
     }
 
     private void setListener() {
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().popActivity(INSTANCE);
+            }
+        });
         cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

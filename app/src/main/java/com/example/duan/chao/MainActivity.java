@@ -193,7 +193,6 @@ public class MainActivity extends BaseActivity{
     private static ObjectAnimator anima;
     private static TextView image;
     private static void setLayout(int number,int x, int y){
-        Log.i("dczz","t");
         image.setBackgroundResource(R.drawable.hong);
         image.setText(number+"");
         image.setTextSize(18);

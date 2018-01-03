@@ -22,17 +22,16 @@
                 android:background="@color/bg1"/>
             <RelativeLayout
                 style="@style/Title"
-                android:visibility="invisible"
-                android:background="@color/bg_title1">
+                android:background="@color/bg1">
                 <include
                     android:id="@+id/back"
-                    layout="@layout/layout_back"
-                    android:visibility="gone"/>
+                    layout="@layout/layout_back3"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="@string/title21"
+                    android:visibility="gone"
                     android:textColor="@color/text_title1"
                     android:textSize="@dimen/title" />
                 <TextView

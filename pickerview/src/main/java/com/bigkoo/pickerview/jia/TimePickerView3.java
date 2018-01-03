@@ -1,6 +1,7 @@
 package com.bigkoo.pickerview.jia;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -121,6 +122,19 @@ public class TimePickerView3 extends BasePickerView implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String tag = (String) v.getTag();
+        Log.i("qwe",wheelTime.getTime());
+        if(tag==null){
+            if (timeSelectListener != null) {
+                try {
+                    Date date = WheelTime.dateFormat.parse("9999-12-31 0:0");
+                    timeSelectListener.onTimeSelect(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            dismiss();
+            return;
+        }
         if (tag.equals(TAG_CANCEL)) {
             dismiss();
             return;

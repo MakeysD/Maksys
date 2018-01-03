@@ -49,7 +49,8 @@ public class StartLock2Activity extends BaseActivity {
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_CONTENT_TYPE = "content_type";
     public static final String KEY_EXTRAS = "extras";
-
+    @BindView(R.id.back)
+    View back;
     @BindView(R.id.change)
     TextView change;        //去进行指纹解锁
     @BindView(R.id.wangji)
@@ -107,9 +108,8 @@ public class StartLock2Activity extends BaseActivity {
                     }else {
                         LockUtil.setPwdStatus(INSTANCE,false);
                         MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                        Intent intent=new Intent(INSTANCE,LoginEmailActivity.class);
-                        startActivity(intent);
-                        ActivityUtils.getInstance().popActivity(INSTANCE);
+                        ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                        ActivityUtils.getInstance().popAllActivities();
                         Log.i("dcz","解锁已达到上限");
                     }
                 }
@@ -119,6 +119,12 @@ public class StartLock2Activity extends BaseActivity {
 
 
     private void setListener() {
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().popActivity(INSTANCE);
+            }
+        });
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

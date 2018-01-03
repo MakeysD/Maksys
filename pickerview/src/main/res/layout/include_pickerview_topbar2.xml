@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/btnSubmit"
         android:layout_toRightOf="@+id/btnCancel"
+        android:layout_marginLeft="40dp"
         android:layout_centerVertical="true">
         <TextView
             android:id="@+id/wuxian"

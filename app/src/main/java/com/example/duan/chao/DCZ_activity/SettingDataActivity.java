@@ -243,7 +243,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if(photo1!=null&&photo2!=null&& photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&& Type.getText().length()>0&&et_name.getText().length()>0&&
-                        et_number.getText().length()>0&&time1.getText().toString().contains("-")&&time2.getText().toString().contains("-")){
+                        et_number.getText().length()>0&&!time1.getText().equals(getString(R.string.tishi122a))&&!time2.getText().equals(getString(R.string.tishi122b))){
                     File x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
                     File y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
                     File z = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo3);
@@ -379,6 +379,7 @@ public class SettingDataActivity extends BaseActivity {
         ll_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(INSTANCE.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 pvTime2.show();
                 type5();
             }
@@ -386,6 +387,7 @@ public class SettingDataActivity extends BaseActivity {
         ll_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(INSTANCE.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 pvTime3.show();
                 type7();
             }
@@ -447,18 +449,12 @@ public class SettingDataActivity extends BaseActivity {
                 time1.setTextColor(Color.WHITE);
             }
         });
-        birthday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                type6();
-                pvTime2.show();
-            }
-        });
         //弹出时间选择器
         ll6.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(INSTANCE.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 type6();
                 pvTime3.show();
             }
@@ -474,21 +470,14 @@ public class SettingDataActivity extends BaseActivity {
         pvTime3.setOnTimeSelectListener(new TimePickerView3.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date) {
-                if(PickerViewAnimateUtil.wuxian==true){
-                    PickerViewAnimateUtil.wuxian=false;
+                Log.i("qwe",date+"");
+                if(getTime(date).equals("9999-12-31")){
                     time2.setText(getString(R.string.tishi158));
                     time2.setTextColor(Color.WHITE);
                 }else {
                     time2.setText(getTime(date));
                     time2.setTextColor(Color.WHITE);
                 }
-            }
-        });
-        birthday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                type6();
-                pvTime2.show();
             }
         });
     }
@@ -831,14 +820,19 @@ public class SettingDataActivity extends BaseActivity {
        /* String[]  strs= tv_time.getText().toString().split("to");
         Log.i("dcz",strs[0].trim()); Log.i("dcz",strs[1].trim());*/
         String max= RandomUtil.RandomNumber();
-        String str ="certNum="+et_number.getText().toString()+"&certType="+type+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+time2.getText().toString().trim()+"&validityStart="+time1.getText().toString().trim();
+        String end_time=null;
+        end_time=time2.getText().toString();
+        if(end_time.equals(getString(R.string.tishi158))){
+            end_time="9999-12-31";
+        }
+        String str ="certNum="+et_number.getText().toString()+"&certType="+type+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+end_time.trim()+"&validityStart="+time1.getText().toString().trim();
         byte[] data = str.getBytes();
         try {
             sign = DSA.sign(data, MyApplication.pri_key);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),time2.getText().toString(),"2001",max,sign).enqueue(new Callback<LoginBean>() {
+        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),end_time,"2001",max,sign).enqueue(new Callback<LoginBean>() {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();

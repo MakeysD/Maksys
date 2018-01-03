@@ -291,6 +291,7 @@
                         android:layout_marginRight="@dimen/right"
                         android:layout_marginTop="15dp"
                         android:background="@color/xian1" />
+
                     <LinearLayout
                         android:id="@+id/ll6"
                         android:layout_width="match_parent"
@@ -451,7 +452,6 @@
                             android:singleLine="true"
                             android:textColor="@color/text02"
                             android:textSize="@dimen/text02"/>
-
                         <ImageView
                             android:layout_width="8dp"
                             android:layout_height="12dp"
@@ -460,7 +460,6 @@
                             android:layout_marginRight="10dp"
                             android:src="@mipmap/you" />
                     </LinearLayout>
-
                     <TextView
                         android:id="@+id/xian5"
                         android:layout_width="match_parent"
@@ -502,6 +501,7 @@
                                 android:textColor="@color/text04"
                                 android:textStyle="bold" />
                         </RelativeLayout>
+
                         <TextView
                             android:id="@+id/time2"
                             android:layout_width="0dp"
@@ -579,7 +579,7 @@
                             <com.facebook.drawee.view.SimpleDraweeView
                                 android:id="@+id/rl_zheng"
                                 android:layout_width="match_parent"
-                                android:layout_height="210dp"
+                                android:layout_height="195dp"
                                 android:layout_weight="1"
                                 android:background="@mipmap/shenfenzheng"
                                 android:gravity="center"
@@ -608,7 +608,7 @@
                             <com.facebook.drawee.view.SimpleDraweeView
                                 android:id="@+id/rl_fan"
                                 android:layout_width="match_parent"
-                                android:layout_height="210dp"
+                                android:layout_height="195dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:background="@mipmap/shenfenzheng2"
@@ -637,7 +637,7 @@
                             <com.facebook.drawee.view.SimpleDraweeView
                                 android:id="@+id/rl_shou"
                                 android:layout_width="match_parent"
-                                android:layout_height="210dp"
+                                android:layout_height="195dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:layerType="software"
