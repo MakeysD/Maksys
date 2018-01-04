@@ -266,9 +266,9 @@
     <string name="tishi99">delete</string>
     <string name="tishi100">are you sure logout this account</string>
     <string name="tishi101">logout notice</string>
-    <string name="tishi102">your account login</string>
-    <string name="tishi103">on another device</string>
-    <string name="tishi104">if you didn\'t operate it, please change password and login again.</string>
+    <string name="tishi102">your account login&#160;</string>
+    <string name="tishi103">&#160;on another device</string>
+    <string name="tishi104">&#160;if you didn\'t operate it, please change password and login again.</string>
     <string name="tishi105">whether you opened authorized to"</string>
     <string name="tishi105a">whether you opened authorized to"</string>
     <string name="tishi106">”or not</string>
@@ -303,6 +303,7 @@
     <string name="tishi133a">Not working ? </string>
     <string name="tishi133">Try resyncing</string>
     <string name="tishi134">Copy Code</string>
+    <string name="tishi134a">Show Code</string>
     <string name="tishi135">copied</string>
     <string name="tishi136">cancel</string>
     <string name="tishi137">successfully</string>
@@ -327,6 +328,7 @@
     <string name="tishi155">Please enter a region</string>
     <string name="tishi156">please set fingerprint password</string>
     <string name="tishi157">please set gesture/fingerprint password</string>
+    <string name="tishi159">delete the device？</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->

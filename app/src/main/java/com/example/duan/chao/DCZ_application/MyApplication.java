@@ -115,7 +115,7 @@ public class MyApplication extends Application{
         pub_key=sf.getString("pub_key","");
         String yu = getBaseContext().getResources().getConfiguration().locale.toString();
         Log.i("dcz_系统语言",yu);
-        if(yu.equals("en_US")){
+        if(yu.equals("en_US")||yu.equals("en_GB")){
             language=sf.getString("language","ENGLISH");
         }else if(yu.equals("th_TH")){
             language=sf.getString("language","TAI");

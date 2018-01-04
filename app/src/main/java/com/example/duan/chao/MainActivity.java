@@ -313,6 +313,8 @@ public class MainActivity extends BaseActivity{
     RelativeLayout pup;        //弹框
     @BindView(R.id.fuzhi)
     TextView fuzhi;
+    @BindView(R.id.pin_value2)
+    TextView yincang;
     @BindView(R.id.cancel)
     TextView cancel;
     @BindView(R.id.iv)
@@ -343,6 +345,7 @@ public class MainActivity extends BaseActivity{
         iv.setImageURI(null);
         ceshi= (TextView) findViewById(R.id.ceshi);
         home.setBackgroundResource(R.drawable.b_g5);
+        pinView = (TextView)findViewById(R.id.pin_value);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         //初始化指纹.
         fingerprintManager = FingerprintManagerCompat.from(this);
@@ -409,7 +412,6 @@ public class MainActivity extends BaseActivity{
                 }
             }
         }
-        pinView = (TextView)findViewById(R.id.pin_value);
         up(mUsers);
     }
 
@@ -457,8 +459,20 @@ public class MainActivity extends BaseActivity{
     }
     @Override
     protected void onStop() {
-        stopTotpCountdownTask();
         super.onStop();
+        stopTotpCountdownTask();
+        //判断APP是否在前台
+        if(ActivityUtils.getInstance().isAppOnForeground(this)==false) {
+            Log.i("dcza","APP已进入后台");
+            yincang.setVisibility(View.VISIBLE);
+            pinView.setVisibility(View.INVISIBLE);
+            fuzhi.setText(getString(R.string.tishi134a));
+            if(MyApplication.PIN_LENGTH==8){
+                yincang.setText("********");
+            }else {
+                yincang.setText("******");
+            }
+        }
     }
     private void updateCodesAndStartTotpCountdownTask() {
         stopTotpCountdownTask();
@@ -832,6 +846,14 @@ public class MainActivity extends BaseActivity{
         }else {
             button2.setChecked(false);
         }
+        yincang.setVisibility(View.VISIBLE);
+        pinView.setVisibility(View.INVISIBLE);
+        fuzhi.setText(getString(R.string.tishi134a));
+        if(MyApplication.PIN_LENGTH==8){
+            yincang.setText("********");
+        }else {
+            yincang.setText("******");
+        }
         /*final Animation animation = AnimationUtils.loadAnimation(INSTANCE, R.anim.alpha);
         se.startAnimation(animation);*/
     }
@@ -855,6 +877,9 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 //addAccount();
+                yincang.setVisibility(View.VISIBLE);
+                pinView.setVisibility(View.INVISIBLE);
+                fuzhi.setText(getString(R.string.tishi134a));
                 home.setBackgroundResource(R.drawable.b_g5);
                 code.setVisibility(View.VISIBLE);
                 have.setVisibility(View.GONE);
@@ -866,6 +891,10 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onClick(View v) {
                 up(mUsers);
+                have.setVisibility(View.VISIBLE);
+                code.setVisibility(View.GONE);
+                rl_have.setVisibility(View.GONE);
+                rl_code.setVisibility(View.VISIBLE);
                 if(mTotpCountdownPhase<0.3&&mTotpCountdownPhase>0.01){
                     Anima_blue=true;
                     Anima_red=false;
@@ -873,7 +902,6 @@ public class MainActivity extends BaseActivity{
                     Anima_blue=false;
                     Anima_red=true;
                 }
-                yanzheng();
             }
         });
         time.setOnClickListener(new View.OnClickListener() {
@@ -886,9 +914,13 @@ public class MainActivity extends BaseActivity{
         fuzhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(amin_shou==true){
-                    fu=true;
-                    tan();
+                if(fuzhi.getText().equals(getString(R.string.tishi134))){
+                    if(amin_shou==true){
+                        fu=true;
+                        tan();
+                    }
+                }else {
+                    yanzheng();
                 }
             }
         });
@@ -1266,13 +1298,11 @@ public class MainActivity extends BaseActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 2) {
-            have.setVisibility(View.VISIBLE);
-            code.setVisibility(View.GONE);
-            rl_have.setVisibility(View.GONE);
-            rl_code.setVisibility(View.VISIBLE);
+            yincang.setVisibility(View.INVISIBLE);
+            pinView.setVisibility(View.VISIBLE);
+            fuzhi.setText(getString(R.string.tishi134));
         }
     }
-
     private void start(){
         // 指纹身份验证这里开始。
         try {

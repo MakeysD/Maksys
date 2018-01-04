@@ -107,9 +107,12 @@ public class StartLock2Activity extends BaseActivity {
                         tvWarn.setTextColor(getResources().getColor(R.color.red));
                     }else {
                         LockUtil.setPwdStatus(INSTANCE,false);
+                        MyApplication.sf.edit().putString("cookie","").commit();
                         MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
                         ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
                         ActivityUtils.getInstance().popAllActivities();
+                        MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
                         Log.i("dcz","解锁已达到上限");
                     }
                 }

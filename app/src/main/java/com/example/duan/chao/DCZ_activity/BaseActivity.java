@@ -61,7 +61,7 @@ public class BaseActivity extends Activity{
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
 
             String yu = getBaseContext().getResources().getConfiguration().locale.toString();
-            Log.i("dcz_系统语言2",yu);
+            Log.i("dcz_系统语言2",Locale.getDefault()+"");
             if(yu.equals("en_US")){
                 MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
             }else if(yu.equals("th_TH")){

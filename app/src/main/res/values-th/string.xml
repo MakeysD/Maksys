@@ -299,6 +299,7 @@
  <string name="tishi133a">ทำงานไม่ได้?</string>
  <string name="tishi133">ซิงค์ใหม่อีกครั้ง</string>
  <string name="tishi134">คัดลอกรหัสผ่าน</string>
+ <string name="tishi134a">แสดงรหัสผ่าน</string>
  <string name="tishi135">รหัสผ่านถูกคัดลอกไปยังคลิปบอร์ด</string>
  <string name="tishi136">ยกเลิก</string>
  <string name="tishi137">การซิงค์เวลาถูกต้อง</string>
@@ -323,6 +324,7 @@
  <string name="tishi155">กรุณาเลือกประเทศ/เขต</string>
  <string name="tishi156">ตั้งลายนิ้วมือ</string>
  <string name="tishi157">โปรดตั้งค่าล็อคท่าทาง / ล็อคลายนิ้วมือ</string>
+ <string name="tishi159">ต้องการลบหรือไม่?</string>
 
  <string name="code1">สำเร็จ</string><!--20000-->
  <string name="code2">ล้มเหลว</string><!--20001-->
