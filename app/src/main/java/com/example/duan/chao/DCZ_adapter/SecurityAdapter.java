@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_activity.LoginActivity;
+import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
@@ -160,6 +161,19 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
+                            if(response.body().getCode().equals("10516")){
+                                MyApplication.sf.edit().putString("cookie","").commit();
+                                MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                                MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                                new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),context.getString(R.string.tishi101),context.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                    @Override
+                                    public void onActivieButtonClick(Object bean, int position) {
+                                        ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                        ActivityUtils.getInstance().popAllActivities();
+                                    }
+                                }, R.style.registDialog).show();
+                                return;
+                            }
                             if(string.equals("1")){
                                 callback.addAction("1");
                                 list.get(postion).setEnable("1");

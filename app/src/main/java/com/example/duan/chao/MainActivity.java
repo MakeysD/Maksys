@@ -124,6 +124,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends BaseActivity{
+    public static Boolean shua=false;
     private Dialog dialog;
     private MiddleDialog dia;
     //下面的是极光需要
@@ -879,6 +880,11 @@ public class MainActivity extends BaseActivity{
                 //addAccount();
                 yincang.setVisibility(View.VISIBLE);
                 pinView.setVisibility(View.INVISIBLE);
+                if(MyApplication.PIN_LENGTH==8){
+                    yincang.setText("********");
+                }else {
+                    yincang.setText("******");
+                }
                 fuzhi.setText(getString(R.string.tishi134a));
                 home.setBackgroundResource(R.drawable.b_g5);
                 code.setVisibility(View.VISIBLE);
@@ -1117,6 +1123,12 @@ public class MainActivity extends BaseActivity{
     protected void onResume() {
         isForeground = true;
         super.onResume();
+        if(shua==true){
+            yincang.setVisibility(View.INVISIBLE);
+            pinView.setVisibility(View.VISIBLE);
+            fuzhi.setText(getString(R.string.tishi134));
+            shua=false;
+        }
         if(MyApplication.status==true){
             MyApplication.type=1;
             recreate();
@@ -1219,6 +1231,9 @@ public class MainActivity extends BaseActivity{
                     Log.i("dcz",result.getReqSysId());
                     Log.i("dcz",type+"type");
                     if(type.equals("2")){//下线通知
+                        MyApplication.sf.edit().putString("cookie","").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
                         Intent inten=new Intent(INSTANCE, LoginEmailActivity.class);
                         startActivity(inten);
                         ActivityUtils.getInstance().popAllActivities();
@@ -1342,6 +1357,19 @@ public class MainActivity extends BaseActivity{
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();
                 if(response.isSuccessful()){
+                    if(response.body().getCode().equals("10516")){
+                        MyApplication.sf.edit().putString("cookie","").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }, R.style.registDialog).show();
+                        return;
+                    }
                     Log.d("dcz","获取数据成功");
                     MyApplication.sf.edit().putString("cookie","").commit();
                     MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
@@ -1377,6 +1405,19 @@ public class MainActivity extends BaseActivity{
             public void onResponse(Call<VersionBean> call, Response<VersionBean> response) {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("10516")){
+                        MyApplication.sf.edit().putString("cookie","").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }, R.style.registDialog).show();
+                        return;
+                    }
                     if(response.body().getCode().equals("20000")){
                         Log.i("dcz_1",response.body().getData().getLatestVersion()+"q");
                         Log.i("dcz_2",version+"q");
@@ -1448,6 +1489,19 @@ public class MainActivity extends BaseActivity{
             public void onResponse(Call<TimeBean> call, Response<TimeBean> response) {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("10516")){
+                        MyApplication.sf.edit().putString("cookie","").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }, R.style.registDialog).show();
+                        return;
+                    }
                     if(response.body().getCode().equals("20000")){
                         type=true;
                         TotpCountdownTask.mLastSeenCounterValue=0;

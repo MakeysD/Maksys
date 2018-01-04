@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_activity.FootprintsActivity;
+import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
@@ -123,6 +125,19 @@ public class Footprints1Adapter extends BaseAdapter{
                     dialog.dismiss();
                 }
                 if(response.isSuccessful()){
+                    if(response.body().getCode().equals("10516")){
+                        MyApplication.sf.edit().putString("cookie","").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),context.getString(R.string.tishi101),context.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }, R.style.registDialog).show();
+                        return;
+                    }
                     if(response.body()!=null){
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz","data1返回成功");

@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_activity.EquipmentManageActivity;
+import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
@@ -128,6 +130,19 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     if(response.body()!=null){
+                        if(response.body().getCode().equals("10516")){
+                            MyApplication.sf.edit().putString("cookie","").commit();
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                            MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                            new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),context.getString(R.string.tishi101),context.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                @Override
+                                public void onActivieButtonClick(Object bean, int position) {
+                                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                    ActivityUtils.getInstance().popAllActivities();
+                                }
+                            }, R.style.registDialog).show();
+                            return;
+                        }
                         if(response.body().getCode().equals("20000")){
                             list.remove(postion);
                             Notify(list);

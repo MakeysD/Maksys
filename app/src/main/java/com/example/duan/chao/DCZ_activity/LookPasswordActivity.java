@@ -573,6 +573,19 @@ public class LookPasswordActivity extends BaseActivity {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("10516")){
+                        MyApplication.sf.edit().putString("cookie","").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }, R.style.registDialog).show();
+                        return;
+                    }
                     if(response.body().getCode().equals("20000")){
 
                     }else {
@@ -610,6 +623,19 @@ public class LookPasswordActivity extends BaseActivity {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("10516")){
+                        MyApplication.sf.edit().putString("cookie","").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                            @Override
+                            public void onActivieButtonClick(Object bean, int position) {
+                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }, R.style.registDialog).show();
+                        return;
+                    }
                     if(response.body().getCode().equals("20000")){
                         ActivityUtils.getInstance().popActivity(INSTANCE);
                     }else {

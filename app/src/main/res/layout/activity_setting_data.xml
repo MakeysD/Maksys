@@ -140,7 +140,6 @@
                             android:text="@string/tishi54"
                             android:textColor="@color/text04"
                             android:textStyle="bold" />
-
                         <TextView
                             android:id="@+id/type"
                             android:layout_width="0dp"

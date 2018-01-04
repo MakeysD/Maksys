@@ -54,6 +54,7 @@ public class BaseActivity extends Activity{
         }
         CodeUtil.pushcode(getApplicationContext());
         Log.i("语言",MyApplication.language+"语言");
+        Log.i("dcz_系统语言2",Locale.getDefault()+"");
         if(MyApplication.language.equals("")){
             Locale.setDefault( Locale.getDefault());
             Configuration config = getBaseContext().getResources().getConfiguration();
@@ -61,7 +62,6 @@ public class BaseActivity extends Activity{
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
 
             String yu = getBaseContext().getResources().getConfiguration().locale.toString();
-            Log.i("dcz_系统语言2",Locale.getDefault()+"");
             if(yu.equals("en_US")){
                 MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
             }else if(yu.equals("th_TH")){
@@ -117,7 +117,7 @@ public class BaseActivity extends Activity{
         }else {
             JPushInterface.onResume(this);
         }
-        if(getClass().getSimpleName().contains("StartLock")||getClass().getSimpleName().contains("Zhiwen")){
+       /* if(getClass().getSimpleName().contains("StartLock")||getClass().getSimpleName().contains("Zhiwen")){
             Log.i("dcz","当前是解锁页面");
         }else {
             if(MyApplication.AppOnForeground==true){
@@ -153,7 +153,7 @@ public class BaseActivity extends Activity{
                     Log.i("dcz2","APP已进入后台");
                 }
             }
-        }
+        }*/
 
     }
 

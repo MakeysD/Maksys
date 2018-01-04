@@ -126,7 +126,9 @@ public class ScanActivity extends CaptureActivity {
                         ActivityUtils.getInstance().popActivity(ScanActivity.this);
                     }else {
                         if(response.body().getCode().equals("10516")){
+                            MyApplication.sf.edit().putString("cookie","").commit();
                             MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                            MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
                             new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),ScanActivity.this.getString(R.string.tishi101),ScanActivity.this.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
                                 @Override
                                 public void onActivieButtonClick(Object bean, int position) {

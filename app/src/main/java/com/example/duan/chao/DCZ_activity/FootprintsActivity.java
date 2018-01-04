@@ -1,6 +1,7 @@
 package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -161,6 +162,19 @@ public class FootprintsActivity extends BaseActivity {
                 pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
                 if(response.isSuccessful()){
                     if(response.body()!=null){
+                        if(response.body().getCode().equals("10516")){
+                            MyApplication.sf.edit().putString("cookie","").commit();
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                            MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                            new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                @Override
+                                public void onActivieButtonClick(Object bean, int position) {
+                                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                    ActivityUtils.getInstance().popAllActivities();
+                                }
+                            }, R.style.registDialog).show();
+                            return;
+                        }
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz","data1返回成功");
                             if(response.body().getData().getList().size()>0){
@@ -224,6 +238,19 @@ public class FootprintsActivity extends BaseActivity {
                 pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
                 if(response.isSuccessful()){
                     if(response.body()!=null){
+                        if(response.body().getCode().equals("10516")){
+                            MyApplication.sf.edit().putString("cookie","").commit();
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                            MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                            new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                @Override
+                                public void onActivieButtonClick(Object bean, int position) {
+                                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                    ActivityUtils.getInstance().popAllActivities();
+                                }
+                            }, R.style.registDialog).show();
+                            return;
+                        }
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz","data2返回成功");
                             if(adapter1==null){

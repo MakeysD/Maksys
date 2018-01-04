@@ -96,6 +96,7 @@ public class StartLock2Activity extends BaseActivity {
                 public void onComplete(int[] indexs) {
                     //修改密码或设置密码进来
                     Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
+                    MainActivity.shua=true;
                     Intent i=new Intent();
                     setResult(2,i);
                     ActivityUtils.getInstance().popActivity(INSTANCE);
@@ -213,6 +214,9 @@ public class StartLock2Activity extends BaseActivity {
                     Log.i("dcz","MESSAGE_RECEIVED_ACTION");
                     if(type.equals("2")){//下线通知
                         ActivityUtils.getInstance().popAllActivities();
+                        MyApplication.sf.edit().putString("cookie","").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
                         Intent inten=new Intent(INSTANCE, LoginEmailActivity.class);
                         startActivity(inten);
                     }else if(type.equals("1")){

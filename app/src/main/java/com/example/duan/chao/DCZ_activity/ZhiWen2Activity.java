@@ -92,7 +92,6 @@ public class ZhiWen2Activity extends BaseActivity {
         INSTANCE=this;
         ButterKnife.bind(this);
         registerMessageReceiver();
-        change.setVisibility(View.GONE);
         result2.setVisibility(View.VISIBLE);
         MyApplication.zhiwen_namber=0;
         number=0;
@@ -223,8 +222,7 @@ public class ZhiWen2Activity extends BaseActivity {
             public void onClick(View v) {
                 //判断当前是否开启密码
                 if(LockUtil.getPwdStatus(INSTANCE)){
-                    Intent intent=new Intent(INSTANCE,StartLockActivity.class);
-                    intent.putExtra("type","1");
+                    Intent intent=new Intent(INSTANCE,StartLock2Activity.class);
                     startActivity(intent);
                     ActivityUtils.getInstance().popActivity(INSTANCE);
                 }else {
@@ -246,8 +244,7 @@ public class ZhiWen2Activity extends BaseActivity {
             public void onClick(View v) {
                 //判断当前是否开启密码
                 if(LockUtil.getPwdStatus(INSTANCE)){
-                    Intent intent=new Intent(INSTANCE,StartLockActivity.class);
-                    intent.putExtra("type","1");
+                    Intent intent=new Intent(INSTANCE,StartLock2Activity.class);
                     startActivity(intent);
                     ActivityUtils.getInstance().popActivity(INSTANCE);
                 }else {

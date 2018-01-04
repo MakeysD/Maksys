@@ -43,6 +43,7 @@ public class AddUpdate implements Interceptor{
         }
         Response originalResponse = chain.proceed(originalRequest);
         String s = originalResponse.body().string();
+        Log.i("结果",s+"1");
         LoginBean result = mGson.fromJson(s, LoginBean.class);
         List<String> b = originalResponse.headers("Set-Cookie");
         Log.i("Cookie1",b+"");
@@ -55,7 +56,8 @@ public class AddUpdate implements Interceptor{
             }
         }
         if(result.getCode()!=null){
-          /*  if (result.getCode().equals("10011")){
+            /*if(result.getCode().equals("20000")){
+                new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),ActivityUtils.getInstance().getCurrentActivity().getString(R.string.tishi119a),R.style.registDialog).show();
                 throw  new MyThrow();
             }*/
             if(result.getCode().equals("20003")){

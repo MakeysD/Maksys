@@ -57,6 +57,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -79,6 +82,7 @@ import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 public class SettingDataActivity extends BaseActivity {
     private SettingDataActivity INSTANCE;
+    private String format="2018-12-31";
     private String sign;
     private Boolean select=false;
     private static List<CityBean> list;
@@ -188,6 +192,12 @@ public class SettingDataActivity extends BaseActivity {
         setContentView(R.layout.activity_setting_data);
         INSTANCE=this;
         ButterKnife.bind(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                format=getNetTime();
+            }
+        }).start();
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         ShebeiUtil.setEdNoChinaese(et_number);
         if(MyApplication.language.equals("ENGLISH")){
@@ -229,6 +239,7 @@ public class SettingDataActivity extends BaseActivity {
         setBirthday();
         set_end();
     }
+
     /**
      *  监听
      * */
@@ -242,7 +253,20 @@ public class SettingDataActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(photo1!=null&&photo2!=null&& photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&& Type.getText().length()>0&&et_name.getText().length()>0&&
+                Log.i("dcz_比较当前版本与服务器",time2.getText().toString().compareTo(time1.getText().toString())+"a");
+                if(format!=null){
+                    if(format.compareTo(time1.getText().toString())>0){
+                        if(time2.getText().toString().compareTo(time1.getText().toString())>0){
+                        }else {
+                            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi119a),R.style.registDialog).show();
+                            return;
+                        }
+                    }else {
+                        new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi119a),R.style.registDialog).show();
+                        return;
+                    }
+                }
+                if(photo1!=null&&photo2!=null&& photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&&!Type.getText().equals(getString(R.string.tishi123))&&et_name.getText().length()>0&&
                         et_number.getText().length()>0&&!time1.getText().equals(getString(R.string.tishi122a))&&!time2.getText().equals(getString(R.string.tishi122b))){
                     File x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
                     File y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
@@ -536,6 +560,25 @@ public class SettingDataActivity extends BaseActivity {
     public static String getTime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);
+    }
+
+    private String getNetTime() {
+        URL url = null;//取得资源对象
+        String format=null;
+        try {
+            url = new URL("http://www.baidu.com");
+            URLConnection uc = url.openConnection();//生成连接对象
+            uc.connect(); //发出连接
+            long ld = uc.getDate(); //取得网站日期时间
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(ld);
+            format = formatter.format(calendar.getTime());
+            Log.i("dcz网络时间：",format+"");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return format;
     }
 
     @Override
@@ -838,6 +881,19 @@ public class SettingDataActivity extends BaseActivity {
                 dialog.dismiss();
                 if(response.isSuccessful()){
                     if(response.body()!=null){
+                        if(response.body().getCode().equals("10516")){
+                            MyApplication.sf.edit().putString("cookie","").commit();
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                            MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                            new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                @Override
+                                public void onActivieButtonClick(Object bean, int position) {
+                                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                    ActivityUtils.getInstance().popAllActivities();
+                                }
+                            }, R.style.registDialog).show();
+                            return;
+                        }
                         if(response.body().getCode().equals("20000")){
                             Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
                             startActivity(intent);

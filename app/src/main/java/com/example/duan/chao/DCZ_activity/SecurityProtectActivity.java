@@ -1,6 +1,7 @@
 package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -142,6 +143,19 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
                 Log.i("dcz",response.body().getCode());
                 if(response.isSuccessful()){
                     if(response.body()!=null){
+                        if(response.body().getCode().equals("10516")){
+                            MyApplication.sf.edit().putString("cookie","").commit();
+                            MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                            MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                            new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),INSTANCE.getString(R.string.tishi101),INSTANCE.getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                @Override
+                                public void onActivieButtonClick(Object bean, int position) {
+                                    ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                    ActivityUtils.getInstance().popAllActivities();
+                                }
+                            }, R.style.registDialog).show();
+                            return;
+                        }
                         if(response.body().getCode().equals("20000")){
                             list=response.body().getData().getList();
                             setViews();
