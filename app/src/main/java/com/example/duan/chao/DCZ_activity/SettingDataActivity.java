@@ -208,6 +208,20 @@ public class SettingDataActivity extends BaseActivity {
             zheng.setBackgroundResource(R.mipmap.shenfenzhengtai);
             fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
             shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
+        }else if(MyApplication.language.equals("")){
+            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
+                zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
+                fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
+                shou.setBackgroundResource(R.mipmap.shenfenzheng3en);
+            }else if(MyApplication.xitong.equals("th_TH")){
+                zheng.setBackgroundResource(R.mipmap.shenfenzhengtai);
+                fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
+                shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
+            }else {
+                zheng.setBackgroundResource(R.mipmap.shenfenzheng);
+                fan.setBackgroundResource(R.mipmap.shenfenzheng2);
+                shou.setBackgroundResource(R.mipmap.shenfenzheng3);
+            }
         }else {
             zheng.setBackgroundResource(R.mipmap.shenfenzheng);
             fan.setBackgroundResource(R.mipmap.shenfenzheng2);
@@ -598,6 +612,14 @@ public class SettingDataActivity extends BaseActivity {
                         tv_guo.setText(list.get(i).getCountry_name_cn());
                     }else if(MyApplication.language.equals("ENGLISH")){
                         tv_guo.setText(list.get(i).getCountry_name_en());
+                    }else  if(MyApplication.language.equals("")){
+                        if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
+                            tv_guo.setText(list.get(i).getCountry_name_en());
+                        }else if(MyApplication.xitong.equals("th_TH")){
+                            tv_guo.setText(list.get(i).getCountry_name_tai());
+                        }else {
+                            tv_guo.setText(list.get(i).getCountry_name_cn());
+                        }
                     }else {
                         tv_guo.setText(list.get(i).getCountry_name_tai());
                     }

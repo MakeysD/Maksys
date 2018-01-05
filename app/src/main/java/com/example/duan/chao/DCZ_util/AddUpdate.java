@@ -44,64 +44,67 @@ public class AddUpdate implements Interceptor{
         Response originalResponse = chain.proceed(originalRequest);
         String s = originalResponse.body().string();
         Log.i("结果",s+"1");
-        if(s.equals("")){
+        if(s.isEmpty()){
             throw  new MyThrow();
         }
-        LoginBean result = mGson.fromJson(s, LoginBean.class);
-        List<String> b = originalResponse.headers("Set-Cookie");
-        Log.i("Cookie1",b+"");
-        for(int i=0;i<b.size();i++){
-            if(i==1){
-                String[] c = b.get(i).split(";");
-                String a = c[0];
-                MyApplication.sf.edit().putString("cookie",a).commit();
-                Log.i("Cookie5",MyApplication.sf.getString("cookie","")+"5");
+        LoginBean result=null;
+        try {
+            result = mGson.fromJson(s, LoginBean.class);
+            List<String> b = originalResponse.headers("Set-Cookie");
+            Log.i("Cookie1",b+"");
+            for(int i=0;i<b.size();i++){
+                if(i==1){
+                    String[] c = b.get(i).split(";");
+                    String a = c[0];
+                    MyApplication.sf.edit().putString("cookie",a).commit();
+                    Log.i("Cookie5",MyApplication.sf.getString("cookie","")+"5");
+                }
             }
-        }
-        if(result.getCode()!=null){
+            if(result.getCode()!=null){
             /*if(result.getCode().equals("20000")){
                 new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),ActivityUtils.getInstance().getCurrentActivity().getString(R.string.tishi119a),R.style.registDialog).show();
                 throw  new MyThrow();
             }*/
-            if(result.getCode().equals("20003")){
-                Log.i("dcz","安全中心不可用");
-                Request loginRequest = getLoginRequest();
-                Response loginResponse = chain.proceed(loginRequest);
-                String loginString = loginResponse.body().string();
-                HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
-                Log.i("dczz",resultLogin.getCode()+"");
-                if(resultLogin.getCode().equals("10500")){
-                    Log.i("dczz","安全中心不可用");
-                }else if(resultLogin.getCode().equals("20000")) {
-                    List<String> list = loginResponse.headers("Set-Cookie");
-                    Log.i("dcz刷新的Cookie",list+"");
-                    for(int i=0;i<list.size();i++){
-                        if(i==1){
-                            String[] c = list.get(i).split(";");
-                            String a = c[0];
-                            MyApplication.sf.edit().putString("cookie",a).commit();
-                            Log.i("Cookie6",MyApplication.sf.getString("cookie","")+"5");
+                if(result.getCode().equals("20003")){
+                    Log.i("dcz","安全中心不可用");
+                    Request loginRequest = getLoginRequest();
+                    Response loginResponse = chain.proceed(loginRequest);
+                    String loginString = loginResponse.body().string();
+                    HttpBean resultLogin = mGson.fromJson(loginString, HttpBean.class);
+                    Log.i("dczz",resultLogin.getCode()+"");
+                    if(resultLogin.getCode().equals("10500")){
+                        Log.i("dczz","安全中心不可用");
+                    }else if(resultLogin.getCode().equals("20000")) {
+                        List<String> list = loginResponse.headers("Set-Cookie");
+                        Log.i("dcz刷新的Cookie",list+"");
+                        for(int i=0;i<list.size();i++){
+                            if(i==1){
+                                String[] c = list.get(i).split(";");
+                                String a = c[0];
+                                MyApplication.sf.edit().putString("cookie",a).commit();
+                                Log.i("Cookie6",MyApplication.sf.getString("cookie","")+"5");
+                            }
                         }
-                    }
-                    originalRequest=originalRequest.newBuilder().removeHeader("cookie").build();
-                    originalRequest=originalRequest.newBuilder().addHeader("cookie",MyApplication.sf.getString("cookie","")).build();
-                    return chain.proceed(originalRequest);
-                }else {
-                    Log.i("dcz刷新token",resultLogin.getCode());
-                    MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
-                    MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
-                    //下线通知
-                    if(ActivityUtils.getInstance().getCurrentActivity()instanceof HaveScanActivity){
-                       HaveScanActivity.mHandler2.sendEmptyMessage(1);
-                    }else if(ActivityUtils.getInstance().getCurrentActivity()instanceof HavaMoneyActivity){
-                        HavaMoneyActivity.mHandler2.sendEmptyMessage(1);
+                        originalRequest=originalRequest.newBuilder().removeHeader("cookie").build();
+                        originalRequest=originalRequest.newBuilder().addHeader("cookie",MyApplication.sf.getString("cookie","")).build();
+                        return chain.proceed(originalRequest);
                     }else {
-                        MainActivity.mHandler.sendEmptyMessage(1);
+                        Log.i("dcz刷新token",resultLogin.getCode());
+                        MyApplication.sms_type="0";MyApplication.sf.edit().putString("sms_type","0").commit();
+                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                        //下线通知
+                        if(ActivityUtils.getInstance().getCurrentActivity()instanceof HaveScanActivity){
+                            HaveScanActivity.mHandler2.sendEmptyMessage(1);
+                        }else if(ActivityUtils.getInstance().getCurrentActivity()instanceof HavaMoneyActivity){
+                            HavaMoneyActivity.mHandler2.sendEmptyMessage(1);
+                        }else {
+                            MainActivity.mHandler.sendEmptyMessage(1);
+                        }
                     }
                 }
             }
+        }catch (Exception e){
         }
-
         originalResponse = originalResponse.newBuilder()
                 .body(ResponseBody.create(null, s))
                 .build();

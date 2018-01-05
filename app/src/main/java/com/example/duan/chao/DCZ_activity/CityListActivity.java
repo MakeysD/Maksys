@@ -164,6 +164,20 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
             ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
             MyApplication.city=bean.getCountry_name_cn();
             MyApplication.code=bean.getCountry_code()+"";
+        }else if(MyApplication.language.equals("")){
+            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
+                ChangePhone3Activity.guo_name=bean.getCountry_name_en();
+                MyApplication.city=bean.getCountry_name_en();
+                MyApplication.code=bean.getCountry_code()+"";
+            }else if(MyApplication.xitong.equals("th_TH")){
+                ChangePhone3Activity.guo_name=bean.getCountry_name_tai();
+                MyApplication.city=bean.getCountry_name_tai();
+                MyApplication.code=bean.getCountry_code()+"";
+            }else {
+                ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
+                MyApplication.city=bean.getCountry_name_cn();
+                MyApplication.code=bean.getCountry_code()+"";
+            }
         }else {
             ChangePhone3Activity.guo_name=bean.getCountry_name_tai();
             MyApplication.city=bean.getCountry_name_tai();

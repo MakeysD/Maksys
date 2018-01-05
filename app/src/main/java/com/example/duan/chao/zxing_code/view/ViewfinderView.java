@@ -218,6 +218,14 @@ public final class ViewfinderView extends View {
             len = mTipText.length() / 2-1;
         }else if(MyApplication.language.equals("TAI")){
             len = (int) (mTipText.length() / 1.5);
+        }else if(MyApplication.language.equals("")){
+            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
+                len = mTipText.length() / 2-1;
+            }else if(MyApplication.xitong.equals("th_TH")){
+                len = (int) (mTipText.length() / 1.5);
+            }else {
+                len = mTipText.length();
+            }
         }else {
             len = mTipText.length();
         }

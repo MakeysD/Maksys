@@ -80,6 +80,14 @@ public class CityAdapter extends BaseAdapter{
             viewHolder.name.setText(list.get(position).getCountry_name_en());
         }else if(MyApplication.language.equals("TAI")){
             viewHolder.name.setText(list.get(position).getCountry_name_tai());
+        }else if(MyApplication.language.equals("")){
+            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
+                viewHolder.name.setText(list.get(position).getCountry_name_en());
+            }else if(MyApplication.xitong.equals("th_TH")){
+                viewHolder.name.setText(list.get(position).getCountry_name_tai());
+            }else {
+                viewHolder.name.setText(list.get(position).getCountry_name_cn());
+            }
         }else {
             viewHolder.name.setText(list.get(position).getCountry_name_cn());
         }
