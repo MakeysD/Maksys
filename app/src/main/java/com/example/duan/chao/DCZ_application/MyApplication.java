@@ -63,6 +63,7 @@ public class MyApplication extends Application{
     public static String city="";
     public static List<CityBean> city_list=new ArrayList<>();
     public static String language="";
+    public static String xitong="";
     public static Boolean status=false;
 
     public static String device;
@@ -93,7 +94,7 @@ public class MyApplication extends Application{
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
         Fresco.initialize(this);
-        CodeUtil.pushcode(getApplicationContext());
+       // CodeUtil.pushcode(getApplicationContext());
         CrashReport.initCrashReport(getApplicationContext(), "87666fdd22", false);
         try {//authenticator
             FileUtilities.restrictAccessToOwnerOnly(
@@ -115,13 +116,24 @@ public class MyApplication extends Application{
         pub_key=sf.getString("pub_key","");
         String yu = getBaseContext().getResources().getConfiguration().locale.toString();
         Log.i("dcz_系统语言",yu);
-        if(yu.equals("en_US")||yu.equals("en_GB")){
+       /* if(yu.equals("en_US")||yu.equals("en_GB")){
             language=sf.getString("language","ENGLISH");
         }else if(yu.equals("th_TH")){
             language=sf.getString("language","TAI");
         }else {
             language=sf.getString("language","CHINESE");
         }
+        if(yu.equals("en_US")){     //对于多机型，这个为了保存系统语言
+            xitong=sf.getString("xitong","en_US");
+        }else if(yu.equals("en_GB")){
+            xitong=sf.getString("xitong","en_GB");
+        }else if(yu.equals("th_TH")){
+            xitong=sf.getString("xitong","th_TH");
+        }else if(yu.equals("zh_CN")){
+            xitong=sf.getString("xitong","zh_CN");
+        }else {
+            xitong=sf.getString("xitong","zh_CN");
+        }*/
         offset=sf.getLong("offset",0);
         cookie=sf.getString("cookie","");
         uri=sf.getString("uri","http://110.79.11.5/user-safe-api/"); //http://api.qeveworld.com/user-safe-api/

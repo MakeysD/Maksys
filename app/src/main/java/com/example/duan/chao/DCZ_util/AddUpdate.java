@@ -44,6 +44,9 @@ public class AddUpdate implements Interceptor{
         Response originalResponse = chain.proceed(originalRequest);
         String s = originalResponse.body().string();
         Log.i("结果",s+"1");
+        if(s.equals("")){
+            throw  new MyThrow();
+        }
         LoginBean result = mGson.fromJson(s, LoginBean.class);
         List<String> b = originalResponse.headers("Set-Cookie");
         Log.i("Cookie1",b+"");

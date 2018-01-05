@@ -52,23 +52,37 @@ public class BaseActivity extends Activity{
         for(int i=0;i<ActivityUtils.getInstance().ActivitySize();i++){
             Log.i("dcz_栈",ActivityUtils.getInstance().getActivity(i)+"");
         }
-        CodeUtil.pushcode(getApplicationContext());
         Log.i("语言",MyApplication.language+"语言");
-        Log.i("dcz_系统语言2",Locale.getDefault()+"");
+        String yu = getBaseContext().getResources().getConfiguration().locale.toString();
+        Log.i("dcz_系统语言2",yu);
+        Log.i("dcz_系统语言3",MyApplication.xitong);
+        if(yu.equals("en_US")){     //对于多机型，这个为了保存系统语言
+            MyApplication.xitong="en_US";MyApplication.sf.edit().putString("xitong","en_US").commit();
+        }else if(yu.equals("en_GB")){
+            MyApplication.xitong="en_GB";MyApplication.sf.edit().putString("xitong","en_GB").commit();
+        }else if(yu.equals("th_TH")){
+            MyApplication.xitong="th_TH";MyApplication.sf.edit().putString("xitong","th_TH").commit();
+        }else if(yu.equals("zh_CN")){
+            MyApplication.xitong="zh_CN";MyApplication.sf.edit().putString("xitong","zh_CN").commit();
+        }
         if(MyApplication.language.equals("")){
-            Locale.setDefault( Locale.getDefault());
-            Configuration config = getBaseContext().getResources().getConfiguration();
-            config.locale = Locale.getDefault();
-            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
-            String yu = getBaseContext().getResources().getConfiguration().locale.toString();
-            if(yu.equals("en_US")){
-                MyApplication.language="ENGLISH";MyApplication.sf.edit().putString("language","ENGLISH").commit();
-            }else if(yu.equals("th_TH")){
-                MyApplication.language="TAI";MyApplication.sf.edit().putString("language","TAI").commit();
+            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
+                Locale locale = new Locale("en");
+                Configuration config = getBaseContext().getResources().getConfiguration();
+                config.locale =locale;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            }else if(MyApplication.xitong.equals("th_TH")){
+                Locale locale = new Locale("th");
+                Configuration config = getBaseContext().getResources().getConfiguration();
+                config.locale =locale;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
             }else {
-                MyApplication.language="CHINESE";MyApplication.sf.edit().putString("language","CHINESE").commit();
+                Locale locale = new Locale("zh");
+                Configuration config = getBaseContext().getResources().getConfiguration();
+                config.locale =locale;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
             }
+            CodeUtil.pushcode(getApplicationContext());
             return;
         }
         if(MyApplication.language.equals("CHINESE")){
@@ -89,6 +103,7 @@ public class BaseActivity extends Activity{
             config.locale =locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
+        CodeUtil.pushcode(getApplicationContext());
     }
 
     @Override

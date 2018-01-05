@@ -81,6 +81,14 @@ public class LanguageActivity extends BaseActivity {
             a4();
         }else if(MyApplication.language.equals("ENGLISH")){
             a3();
+        }else if(MyApplication.language.equals("")){
+            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
+                a3();
+            }else if(MyApplication.xitong.equals("th_TH")){
+                a4();
+            }else {
+                a1();
+            }
         }else {
             a1();
         }
