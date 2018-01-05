@@ -114,6 +114,7 @@ public class MyApplication extends Application{
         sms_type=sf.getString("sms_type","1");
         pri_key=sf.getString("pri_key","");
         pub_key=sf.getString("pub_key","");
+        language=sf.getString("language","");
         String yu = getBaseContext().getResources().getConfiguration().locale.toString();
         Log.i("dcz_系统语言",yu);
        /* if(yu.equals("en_US")||yu.equals("en_GB")){
@@ -122,7 +123,7 @@ public class MyApplication extends Application{
             language=sf.getString("language","TAI");
         }else {
             language=sf.getString("language","CHINESE");
-        }
+        }*/
         if(yu.equals("en_US")){     //对于多机型，这个为了保存系统语言
             xitong=sf.getString("xitong","en_US");
         }else if(yu.equals("en_GB")){
@@ -133,7 +134,7 @@ public class MyApplication extends Application{
             xitong=sf.getString("xitong","zh_CN");
         }else {
             xitong=sf.getString("xitong","zh_CN");
-        }*/
+        }
         offset=sf.getLong("offset",0);
         cookie=sf.getString("cookie","");
         uri=sf.getString("uri","http://110.79.11.5/user-safe-api/"); //http://api.qeveworld.com/user-safe-api/
