@@ -52,6 +52,9 @@ public class BaseActivity extends Activity{
         for(int i=0;i<ActivityUtils.getInstance().ActivitySize();i++){
             Log.i("dcz_栈",ActivityUtils.getInstance().getActivity(i)+"");
         }
+        if(ActivityUtils.getInstance().getCurrentActivity()instanceof LoginEmailActivity){
+            MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+        }
         Log.i("语言",MyApplication.language+"语言");
         String yu = getBaseContext().getResources().getConfiguration().locale.toString();
         Log.i("dcz_系统语言2",yu);
