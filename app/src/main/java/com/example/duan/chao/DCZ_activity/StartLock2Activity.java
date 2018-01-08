@@ -95,7 +95,7 @@ public class StartLock2Activity extends BaseActivity {
                 @Override
                 public void onComplete(int[] indexs) {
                     //修改密码或设置密码进来
-                    Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(INSTANCE,R.string.tishi73,Toast.LENGTH_SHORT).show();
                     MainActivity.shua=true;
                     Intent i=new Intent();
                     setResult(2,i);
