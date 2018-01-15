@@ -84,6 +84,7 @@
                 android:background="#303745">
             </View>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/error"
             android:layout_width="match_parent"

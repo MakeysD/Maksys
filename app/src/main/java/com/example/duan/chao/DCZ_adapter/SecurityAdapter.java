@@ -24,8 +24,10 @@ import com.example.duan.chao.DCZ_selft.GridViewForScrollView;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_selft.SwitchButton;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -43,6 +45,7 @@ import retrofit2.Response;
 
 public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHolder>{
     private Context context;
+    private String sign;
     private List<SecurityBean.ListBean> list;
     private List<SecurityBean.ListBean> list2=new ArrayList<>();
     private Dialog dialog;
@@ -68,6 +71,9 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
         }
         if(list.get(position).getFrozenStatus().equals("2")){
             list2.add(list.get(position));
+            holder.ll.setVisibility(View.GONE);
+        }else {
+            holder.ll.setVisibility(View.VISIBLE);
         }
         holder.name.setText(list.get(position).getSystemName());
         if(list.get(position).getEnable().equals("1")){
@@ -128,12 +134,14 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
         TextView name;
         SwitchButton button;
         GridViewForScrollView lv;
+        LinearLayout ll;
         public ViewHolder(View view) {
             super(view);
             sdv=(SimpleDraweeView)view.findViewById(R.id.sdv);
             name=(TextView)view.findViewById(R.id.name);
             button=(SwitchButton)view.findViewById(R.id.button);
             lv=(GridViewForScrollView)view.findViewById(R.id.lv);
+            ll=(LinearLayout)view.findViewById(R.id.ll);
         }
     }
     public void Notify(List<SecurityBean.ListBean> list){
@@ -154,7 +162,15 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
         }
         dialog= DialogUtil.createLoadingDialog(context,"努力加载...","1");
         dialog.show();
-        HttpServiceClient.getInstance().updateProtect(id,string).enqueue(new Callback<EquipmentBean>() {
+        String max= RandomUtil.RandomNumber();
+        String str ="enable="+string+"id="+id+"nonce="+max;
+        byte[] data = str.getBytes();
+        try {
+            sign = DSA.sign(data, MyApplication.pri_key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        HttpServiceClient.getInstance().updateProtect(id,string,max,sign).enqueue(new Callback<EquipmentBean>() {
             @Override
             public void onResponse(Call<EquipmentBean> call, Response<EquipmentBean> response) {
                 dialog.dismiss();
@@ -178,6 +194,7 @@ public class SecurityAdapter extends RecyclerView.Adapter<SecurityAdapter.ViewHo
                                 callback.addAction("1");
                                 list.get(postion).setEnable("1");
                             }else {
+                                callback.addAction("2");
                                 list.get(postion).setEnable("2");
                             }
                         }else {

@@ -41,6 +41,8 @@ public class GesturesLockActivity extends BaseActivity {
     private String type;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.she)     //重设
+    View she;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +102,7 @@ public class GesturesLockActivity extends BaseActivity {
             @Override
             public void onError() {
                 tvWarn.setText(R.string.lock2);
+                she.setVisibility(View.VISIBLE);
                 tvWarn.setTextColor(getResources().getColor(R.color.red));
             }
         });
@@ -149,6 +152,12 @@ public class GesturesLockActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ActivityUtils.getInstance().popActivity(context);
+            }
+        });
+        she.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               recreate();
             }
         });
     }

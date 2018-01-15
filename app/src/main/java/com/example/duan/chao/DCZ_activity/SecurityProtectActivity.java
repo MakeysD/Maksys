@@ -42,6 +42,7 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
     private SecurityProtectActivity INSTANCE;
     private SecurityAdapter adapter;
     private Dialog dialog;
+    private int dong=0;
     private int number=0;
     private int pageNumber=1;
     private int pageSize=5;
@@ -76,14 +77,24 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
      * */
     private void setViews() {
         for(int i=0;i<list.size();i++){
-            if(list.get(i).getEnable().equals("1")){
+            if(list.get(i).getEnable().equals("1")&&!list.get(i).getFrozenStatus().equals("2")){
                 number=number+1;
+            }
+            if(list.get(i).getFrozenStatus().equals("2")){
+                dong=dong+1;
             }
         }
         if(list.size()>0){
             tou.setVisibility(View.VISIBLE);
             error.setVisibility(View.GONE);
-            title.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
+            if(number==0){
+                title.setText(INSTANCE.getString(R.string.tishi98));
+            }else {
+                title.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
+            }
+            if(list.size()==dong){
+                tou.setVisibility(View.GONE);
+            }
         }else {
             tou.setVisibility(View.GONE);
             error.setVisibility(View.VISIBLE);
@@ -184,11 +195,14 @@ public class SecurityProtectActivity extends BaseActivity implements SecurityAda
     @Override
     public void addAction(String string) {
         if(string.equals("1")){
+            number=number+1;
+            title.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
+        }else {
             number=number-1;
-            if(number>0){
-                title.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
-            }else {
+            if(number==0){
                 title.setText(INSTANCE.getString(R.string.tishi98));
+            }else {
+                title.setText(INSTANCE.getString(R.string.tishi96)+number+INSTANCE.getString(R.string.tishi97));
             }
         }
     }

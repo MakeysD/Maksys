@@ -4,59 +4,65 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg2"
-        android:paddingBottom="10dp"
-        android:paddingLeft="@dimen/left"
-        android:paddingTop="10dp">
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg2"
+            android:paddingBottom="10dp"
+            android:paddingLeft="@dimen/left"
+            android:paddingTop="10dp">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                fresco:placeholderImage="@mipmap/fei1"
+                fresco:placeholderImageScaleType="fitCenter"
+                fresco:roundedCornerRadius="5dp"
+                fresco:roundTopLeft="true"
+                android:visibility="gone"
+                fresco:roundTopRight="true"
+                fresco:roundBottomLeft="true"
+                fresco:roundBottomRight="true"/>
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/sdv"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            fresco:placeholderImage="@mipmap/fei1"
-            fresco:placeholderImageScaleType="fitCenter"
-            fresco:roundedCornerRadius="5dp"
-            fresco:roundTopLeft="true"
-            android:visibility="gone"
-            fresco:roundTopRight="true"
-            fresco:roundBottomLeft="true"
-            fresco:roundBottomRight="true"/>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/sdv"
+                android:text="钱包"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text01" />
 
+            <com.example.duan.chao.DCZ_selft.SwitchButton
+                android:id="@+id/button"
+                style="@style/SwitchButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:checked="true"
+                android:textColor="@color/custom_text_state_color"
+                android:textSize="16dp"
+                app:kswBackDrawable="@drawable/ios_back_drawable"
+                app:kswTextOff="o"
+                app:kswTextOn="o"
+                app:kswTintColor="@color/white" />
+        </RelativeLayout>
         <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/sdv"
-            android:text="钱包"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text01" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/xian"
+            android:background="@color/xian1"
+            android:layout_marginLeft="@dimen/left"
+            android:layout_alignParentBottom="true"/>
+    </LinearLayout>
 
-        <com.example.duan.chao.DCZ_selft.SwitchButton
-            android:id="@+id/button"
-            style="@style/SwitchButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:checked="true"
-            android:textColor="@color/custom_text_state_color"
-            android:textSize="16dp"
-            app:kswBackDrawable="@drawable/ios_back_drawable"
-            app:kswTextOff="o"
-            app:kswTextOn="o"
-            app:kswTintColor="@color/white" />
-    </RelativeLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/xian"
-        android:background="@color/xian1"
-        android:layout_marginLeft="@dimen/left"
-        android:layout_alignParentBottom="true"/>
     <com.example.duan.chao.DCZ_selft.GridViewForScrollView
         android:id="@+id/lv"
         android:layout_width="match_parent"

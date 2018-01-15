@@ -352,6 +352,7 @@
     <string name="tishi156">请设置指纹锁</string>
     <string name="tishi157">请设置手势锁/指纹锁</string>
     <string name="tishi159">确定删除该设备?</string>
+    <string name="tishi160">重设</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->

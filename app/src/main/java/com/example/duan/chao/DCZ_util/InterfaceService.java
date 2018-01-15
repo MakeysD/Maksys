@@ -232,7 +232,9 @@ public interface InterfaceService {
     @FormUrlEncoded
     @POST("safe/updateProtectedEnable")
     Call<EquipmentBean> updateProtect(@Field("id") Long id,
-                                     @Field("enable")String enable);
+                                      @Field("enable")String enable,
+                                      @Field("nonce") String nonce,
+                                      @Field("sign") String sign);
 
     /**
      *  授权

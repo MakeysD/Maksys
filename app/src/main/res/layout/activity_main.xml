@@ -688,15 +688,15 @@
                     android:layout_margin="5dp"
                     android:layout_height="320dp"
                     android:scaleType="centerCrop"/>
-                <com.facebook.drawee.view.SimpleDraweeView
+                <ImageView
                     android:id="@+id/zhuan"
                     android:layout_width="320dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_centerInParent="true"
                     android:visibility="gone"
+                    android:src="@drawable/zhuan"
                     android:layout_margin="5dp"
-                    android:layout_height="320dp"
-                    android:scaleType="centerCrop"/>
+                    android:layout_height="320dp"/>
                 <TextView
                     android:id="@+id/code"
                     android:layout_width="wrap_content"

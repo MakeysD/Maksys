@@ -321,7 +321,7 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.iv)
     SimpleDraweeView iv;
     @BindView(R.id.zhuan)
-    SimpleDraweeView zhuan;
+    ImageView zhuan;
     @BindView(R.id.yuan)
     RelativeLayout yuan;
     public static Long number;
@@ -380,7 +380,6 @@ public class MainActivity extends BaseActivity{
         }
     }
     private void duration(){
-        zhuan.setImageResource(R.drawable.zhuan);
         iv.setImageResource(R.drawable.progress4);
         AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
         animationDrawable.start();
