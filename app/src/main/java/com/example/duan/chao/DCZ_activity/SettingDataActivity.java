@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -282,9 +283,26 @@ public class SettingDataActivity extends BaseActivity {
                 }
                 if(photo1!=null&&photo2!=null&& photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&&!Type.getText().equals(getString(R.string.tishi123))&&et_name.getText().length()>0&&
                         et_number.getText().length()>0&&!time1.getText().equals(getString(R.string.tishi122a))&&!time2.getText().equals(getString(R.string.tishi122b))){
-                    File x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
-                    File y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
-                    File z = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo3);
+                    File x=null;    File y=null;    File z=null;
+                    if(photo1.length()/1024>5000||photo2.length()/1024>5000||photo3.length()/1024>5000){
+                        new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi161),R.style.registDialog).show();
+                        return;
+                    }
+                    if(photo1.length()/1024>700){
+                        x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
+                    }else {
+                        x =photo1;
+                    }
+                    if(photo2.length()/1024>700){
+                        y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
+                    }else {
+                        y =photo2;
+                    }
+                    if(photo3.length()/1024>700){
+                        z = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo3);
+                    }else {
+                        z = photo3;
+                    }
                     RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"),x);
                     RequestBody requestBody2 = RequestBody.create(MediaType.parse("image/png"),y);
                     RequestBody requestBody3 = RequestBody.create(MediaType.parse("image/png"),z);
@@ -740,6 +758,13 @@ public class SettingDataActivity extends BaseActivity {
                     Uri uri = data.getData();
                     switch (type){
                         case "1":
+                           /* photo1=getFile(uri);
+                            File x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
+                            Log.i("dcz:photo压缩前大小：",photo1.length()/1024+"KB");
+                            Log.i("dcz:压缩后大小：",x.length()/1024+"KB");
+                            Bitmap bit = BitmapFactory.decodeFile(x.getAbsolutePath());
+                            Uri ur = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bit, null,null));
+                            zheng.setImageURI(ur);*/
                             zheng.setImageURI(uri);
                             photo1=getFile(uri);
                             x1.setVisibility(View.VISIBLE);

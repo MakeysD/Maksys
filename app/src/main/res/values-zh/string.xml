@@ -295,7 +295,7 @@
     <string name="tishi105a">开启对“</string>
     <string name="tishi106">”的所有授权?</string>
     <string name="tishi107">当前已是最新版本</string>
-    <string name="tishi108">已冻结账号</string>
+    <string name="tishi108">已冻结平台</string>
     <string name="tishi109">新密码不能和旧密码相同</string>
     <string name="tishi110">暂无数据</string>
     <string name="tishi111">账户登录密码重置成功，请重新登陆</string>
@@ -353,6 +353,7 @@
     <string name="tishi157">请设置手势锁/指纹锁</string>
     <string name="tishi159">确定删除该设备?</string>
     <string name="tishi160">重设</string>
+    <string name="tishi161">图片尺寸过大</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->

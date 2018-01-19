@@ -38,7 +38,7 @@ public class CompressHelper {
     /**
      * 默认压缩质量为80
      */
-    private int quality = 80;
+    private int quality = 100;
     /**
      * 存储路径
      */

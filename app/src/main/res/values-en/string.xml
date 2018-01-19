@@ -330,7 +330,8 @@
     <string name="tishi156">please set fingerprint password</string>
     <string name="tishi157">please set gesture/fingerprint password</string>
     <string name="tishi159">delete the device？</string>
-    <string name="tishi160">重设</string>
+    <string name="tishi160">reset</string>
+    <string name="tishi161">the image is too big</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->
