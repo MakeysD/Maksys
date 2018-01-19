@@ -190,6 +190,7 @@ public class SettingDataActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        createCameraTempFile(savedInstanceState);
         setContentView(R.layout.activity_setting_data);
         INSTANCE=this;
         ButterKnife.bind(this);
@@ -281,24 +282,20 @@ public class SettingDataActivity extends BaseActivity {
                         return;
                     }
                 }
-                if(photo1!=null&&photo2!=null&& photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&&!Type.getText().equals(getString(R.string.tishi123))&&et_name.getText().length()>0&&
+                if(photo1!=null&&photo2!=null&&photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&&!Type.getText().equals(getString(R.string.tishi123))&&et_name.getText().length()>0&&
                         et_number.getText().length()>0&&!time1.getText().equals(getString(R.string.tishi122a))&&!time2.getText().equals(getString(R.string.tishi122b))){
                     File x=null;    File y=null;    File z=null;
-                    if(photo1.length()/1024>5000||photo2.length()/1024>5000||photo3.length()/1024>5000){
-                        new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi161),R.style.registDialog).show();
-                        return;
-                    }
-                    if(photo1.length()/1024>700){
+                    if(photo1.length()/1024>1000){
                         x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
                     }else {
                         x =photo1;
                     }
-                    if(photo2.length()/1024>700){
+                    if(photo2.length()/1024>1000){
                         y = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo2);
                     }else {
                         y =photo2;
                     }
-                    if(photo3.length()/1024>700){
+                    if(photo3.length()/1024>1000){
                         z = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo3);
                     }else {
                         z = photo3;
@@ -729,25 +726,42 @@ public class SettingDataActivity extends BaseActivity {
             case REQUEST_CAPTURE: //调用系统相机返回
                 Log.i("dcz",resultCode+"");
                 if (resultCode == RESULT_OK) {
-                    Bundle bundle = data.getExtras();
+                    /*Bundle bundle = data.getExtras();
                     Bitmap bitmap = (Bitmap) bundle.get("data");
-                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null,null));
-                    Log.i("dcz",uri+"");
+                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null,null));*/
+                    //file:///storage/emulated/0/image/1516352876304.jp
+                    Uri uri = Uri.fromFile(tempFile);
+                    Log.i("dcz",  Uri.fromFile(tempFile)+"qqq");
                     switch (type){
                         case "1":
-                            zheng.setImageURI(uri);
-                            photo1=getFile(uri);
-                            x1.setVisibility(View.VISIBLE);
+                            photo1=tempFile;
+                            if(photo1.length()/1024>5000){
+                                photo1=null;
+                                ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
+                            }else {
+                                zheng.setImageURI(uri);
+                                x1.setVisibility(View.VISIBLE);
+                            }
                             break;
                         case "2":
-                            fan.setImageURI(uri);
-                            photo2=getFile(uri);
-                            x2.setVisibility(View.VISIBLE);
+                            photo2=tempFile;
+                            if(photo2.length()/1024>5000){
+                                photo2=null;
+                                ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
+                            }else {
+                                fan.setImageURI(uri);
+                                x2.setVisibility(View.VISIBLE);
+                            }
                             break;
                         case "3":
-                            shou.setImageURI(uri);
-                            photo3=getFile(uri);
-                            x3.setVisibility(View.VISIBLE);
+                            photo3=tempFile;
+                            if(photo3.length()/1024>5000){
+                                photo3=null;
+                                ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
+                            }else {
+                                shou.setImageURI(uri);
+                                x3.setVisibility(View.VISIBLE);
+                            }
                             break;
                     }
                 }
@@ -756,6 +770,7 @@ public class SettingDataActivity extends BaseActivity {
                 if (resultCode == RESULT_OK) {
                     Log.i("dcz","doing");
                     Uri uri = data.getData();
+                    Log.i("dcz",uri+"qqq");
                     switch (type){
                         case "1":
                            /* photo1=getFile(uri);
@@ -765,19 +780,37 @@ public class SettingDataActivity extends BaseActivity {
                             Bitmap bit = BitmapFactory.decodeFile(x.getAbsolutePath());
                             Uri ur = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bit, null,null));
                             zheng.setImageURI(ur);*/
-                            zheng.setImageURI(uri);
                             photo1=getFile(uri);
-                            x1.setVisibility(View.VISIBLE);
+                            Log.i("大小",photo1.length()/1024+"23");
+                            if(photo1.length()/1024>5000){
+                                photo1=null;
+                                ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
+                            }else {
+                                zheng.setImageURI(uri);
+                                x1.setVisibility(View.VISIBLE);
+                            }
                             break;
                         case "2":
-                            fan.setImageURI(uri);
                             photo2=getFile(uri);
-                            x2.setVisibility(View.VISIBLE);
+                            if(photo2.length()/1024>5000){
+                                photo2=null;
+                                ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
+                                return;
+                            }else {
+                                fan.setImageURI(uri);
+                                x2.setVisibility(View.VISIBLE);
+                            }
                             break;
                         case "3":
-                            shou.setImageURI(uri);
                             photo3=getFile(uri);
-                            x3.setVisibility(View.VISIBLE);
+                            if(photo3.length()/1024>5000){
+                                photo3=null;
+                                ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
+                                return;
+                            }else {
+                                shou.setImageURI(uri);
+                                x3.setVisibility(View.VISIBLE);
+                            }
                             break;
                     }
                 }
@@ -793,6 +826,7 @@ public class SettingDataActivity extends BaseActivity {
         } else {
             //跳转到调用系统相机
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
             startActivityForResult(intent, REQUEST_CAPTURE);
             shou();
         }

@@ -70,6 +70,7 @@ public class CodeUtil {
         MyApplication.map.put("10538",context.getString(R.string.code50));
         MyApplication.map.put("80001",context.getString(R.string.code51));
         MyApplication.map.put("80008",context.getString(R.string.code52));
+        MyApplication.map.put("10519",context.getString(R.string.code53));
 
         MyApplication.map.put("0",context.getString(R.string.data0));
         MyApplication.map.put("1",context.getString(R.string.data1));

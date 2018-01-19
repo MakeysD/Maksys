@@ -331,7 +331,7 @@
     <string name="tishi157">please set gesture/fingerprint password</string>
     <string name="tishi159">delete the device？</string>
     <string name="tishi160">reset</string>
-    <string name="tishi161">the image is too big</string>
+    <string name="tishi161">the image must less than 5M</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->
@@ -385,6 +385,7 @@
     <string name="code50">The ID number is exists</string><!--10538-->
     <string name="code51">Incomplete parameters</string><!--80001-->
     <string name="code52">ID card maintenance, please try again later</string><!--80008-->
+    <string name="code53">ID image over the size limited</string><!--10519-->
 
     <string name="data0">unknown type</string>
     <string name="data1">login</string>

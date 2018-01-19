@@ -353,7 +353,7 @@
     <string name="tishi157">请设置手势锁/指纹锁</string>
     <string name="tishi159">确定删除该设备?</string>
     <string name="tishi160">重设</string>
-    <string name="tishi161">图片尺寸过大</string>
+    <string name="tishi161">证件大小不能超过5M</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->
@@ -407,6 +407,7 @@
     <string name="code50">证件号已存在!</string><!--10538-->
     <string name="code51">参数不完整</string><!--80001-->
     <string name="code52">身份证中心维护,请稍后重试</string><!--80008-->
+    <string name="code53">证件大小超过规定值</string><!--10519-->
 
 
     <string name="data0">未知类型</string>
