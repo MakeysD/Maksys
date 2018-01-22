@@ -41,6 +41,23 @@ public class AddUpdate implements Interceptor{
         if(!TextUtils.isEmpty(MyApplication.sf.getString("cookie",""))){
             originalRequest = originalRequest.newBuilder().addHeader("cookie",MyApplication.sf.getString("cookie","")).build();
         }
+        if(MyApplication.language.equals("")){  //使用系统语言
+            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","en").build();
+            }else if(MyApplication.xitong.equals("th_TH")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","th").build();
+            }else {
+                originalRequest = originalRequest.newBuilder().addHeader("lang","zh").build();
+            }
+        }else {     //使用设定语言
+            if(MyApplication.language.equals("CHINESE")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","zh").build();
+            }else if(MyApplication.language.equals("ENGLISH")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","en").build();
+            }else {
+                originalRequest = originalRequest.newBuilder().addHeader("lang","th").build();
+            }
+        }
         Response originalResponse = chain.proceed(originalRequest);
         String s = originalResponse.body().string();
         Log.i("结果",s+"1");
