@@ -818,7 +818,6 @@ public class SettingDataActivity extends BaseActivity {
         }
     }
 
-
     //手动开启相机权限
     private void quan(){
         if(ContextCompat.checkSelfPermission(INSTANCE, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
