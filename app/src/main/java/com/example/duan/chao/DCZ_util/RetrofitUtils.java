@@ -1,10 +1,5 @@
 package com.example.duan.chao.DCZ_util;
 
-
-import android.util.Log;
-
-import com.example.duan.chao.DCZ_application.MyApplication;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -16,7 +11,7 @@ public class RetrofitUtils {
     private static String Url_ROOT="";
 
     public static void setUrl_ROOT(String url_root) {
-       Url_ROOT = url_root;
+        Url_ROOT = url_root;
     }
 
     private static Retrofit singleton;
