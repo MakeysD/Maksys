@@ -31,7 +31,7 @@ import retrofit2.Response;
  * */
 public class PersonDataActivity extends BaseActivity {
     private PersonDataActivity INSTANCE;
-    private String state;
+    private String state="789";
     private Dialog dialog;
     private String content;     //错误原因
     @BindView(R.id.back)
@@ -76,19 +76,24 @@ public class PersonDataActivity extends BaseActivity {
         }else {
             state3();
         }
-        if(content!=null){
-            switch (content){
-                case "0":tv2.setText(R.string.tishi152);break;
-                case "1":tv2.setText(R.string.tishi153);break;
-                case "2":tv2.setText(R.string.tishi154);break;
-                case "80003":tv2.setText(R.string.code45);break;
-                case "80004":tv2.setText(R.string.code46);break;
-                case "80008":tv2.setText(R.string.code52);break;
-                case "90033":tv2.setText(R.string.code47);break;
-                case "90099":tv2.setText(R.string.code48);break;
-                default:break;
+        if(state.equals("2")){
+            tv2.setText(content+"");
+        }else {
+            if(content!=null){
+                switch (content){
+                    case "0":tv2.setText(R.string.tishi152);break;
+                    case "1":tv2.setText(R.string.tishi153);break;
+                    case "2":tv2.setText(R.string.tishi154);break;
+                    case "80003":tv2.setText(R.string.code45);break;
+                    case "80004":tv2.setText(R.string.code46);break;
+                    case "80008":tv2.setText(R.string.code52);break;
+                    case "90033":tv2.setText(R.string.code47);break;
+                    case "90099":tv2.setText(R.string.code48);break;
+                    default:break;
+                }
             }
         }
+
     }
     /**
      *  监听

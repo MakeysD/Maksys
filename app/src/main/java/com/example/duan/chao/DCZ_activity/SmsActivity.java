@@ -108,13 +108,13 @@ public class SmsActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(MyApplication.rid==null||MyApplication.rid.equals("")){
+               /* if(MyApplication.rid==null||MyApplication.rid.equals("")){
                     MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
                     if(MyApplication.rid==null||MyApplication.rid.equals("")){
                         ContentUtil.makeToast(INSTANCE,"RID为空");
                         return;
                     }
-                }
+                }*/
                 getData();
             }
         });
@@ -196,6 +196,7 @@ public class SmsActivity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
+        MyApplication.rid="sidofugychfudisygrs";
         HttpServiceClient.getInstance().login(phone,password,et_code.getText().toString(),MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {

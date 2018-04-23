@@ -13,11 +13,11 @@ android {
     buildToolsVersion "25.0.3"
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
-        applicationId "com.example.duan.chao"
+        applicationId "com.example.duan.chao2"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
-        versionName "2.2.4"
+        versionName "2.2.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         /*  ndk {
             // 设置支持的SO库架构

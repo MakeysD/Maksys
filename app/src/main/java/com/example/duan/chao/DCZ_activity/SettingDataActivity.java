@@ -58,6 +58,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DateFormat;
@@ -269,10 +270,10 @@ public class SettingDataActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("dcz_比较当前版本与服务器",time2.getText().toString().compareTo(time1.getText().toString())+"a");
+                /*Log.i("dcz_比较当前版本与服务器",time2.getText().toString().compareTo(time1.getText().toString())+"a");
                 if(format!=null){
-                    if(format.compareTo(time1.getText().toString())>0){
-                        if(time2.getText().toString().compareTo(time1.getText().toString())>0){
+                    if(format.compareTo(time1.getText().toString())>0){//判断当前时间是否大于开始时间
+                        if(time2.getText().toString().compareTo(time1.getText().toString())>0){//判断结束时间是否大于开始时间
                         }else {
                             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi119a),R.style.registDialog).show();
                             return;
@@ -281,7 +282,7 @@ public class SettingDataActivity extends BaseActivity {
                         new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi119a),R.style.registDialog).show();
                         return;
                     }
-                }
+                }*/
                 if(photo1!=null&&photo2!=null&&photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&&!Type.getText().equals(getString(R.string.tishi123))&&et_name.getText().length()>0&&
                         et_number.getText().length()>0&&!time1.getText().equals(getString(R.string.tishi122a))&&!time2.getText().equals(getString(R.string.tishi122b))){
                     File x=null;    File y=null;    File z=null;
@@ -599,7 +600,7 @@ public class SettingDataActivity extends BaseActivity {
             URLConnection uc = url.openConnection();//生成连接对象
             uc.connect(); //发出连接
             long ld = uc.getDate(); //取得网站日期时间
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(ld);
             format = formatter.format(calendar.getTime());
@@ -608,6 +609,24 @@ public class SettingDataActivity extends BaseActivity {
             e.printStackTrace();
         }
         return format;
+    }
+    private void getBJTime(){
+        Locale locale=Locale.CHINA; //这是获得本地中国时区
+        String pattern = "yyyy-MM-dd";//这是日期格式
+        SimpleDateFormat df = new SimpleDateFormat(pattern,locale);//设定日期格式
+        Date date = new Date();
+        URL url= null;//取得资源对象
+        try {
+            url = new URL("http://www.bjtime.cn");
+            URLConnection uc=url.openConnection();//生成连接对象
+            uc.connect(); //发出连接
+            long ld=uc.getDate(); //取得网站日期时间
+            date=new Date(ld); //转换为标准时间对象
+            String bjTime = df.format(date);
+            Log.i("dcz北京时间:",bjTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

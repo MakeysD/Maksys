@@ -408,6 +408,9 @@
     <string name="code51">参数不完整</string><!--80001-->
     <string name="code52">身份证中心维护,请稍后重试</string><!--80008-->
     <string name="code53">证件大小超过规定值</string><!--10519-->
+    <string name="code54">无此身份证号码</string><!--10539-->
+    <string name="code55">证件开始日期错误!</string><!--10540-->
+    <string name="code56">证件结束日期错误!</string><!--10541-->
 
 
     <string name="data0">未知类型</string>
