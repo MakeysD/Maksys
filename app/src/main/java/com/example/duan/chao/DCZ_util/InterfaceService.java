@@ -1,6 +1,8 @@
 package com.example.duan.chao.DCZ_util;
 
 
+import com.example.duan.chao.DCZ_bean.CardBean;
+import com.example.duan.chao.DCZ_bean.CountryBean;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
 import com.example.duan.chao.DCZ_bean.ExitBean;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
@@ -320,5 +322,18 @@ public interface InterfaceService {
     Call<TimeBean> time(@Field("millisecond") Long millisecond,
                         @Field("nonce") String nonce,
                         @Field("sign") String sign);
+
+    /**
+     * 获取城市列表
+     */
+    @FormUrlEncoded
+    @POST("dict/getCountryDictList")
+    Call<CountryBean>getCountry(@Field("mobile") String string);
+    /**
+     * 获取证件列表
+     */
+    @FormUrlEncoded
+    @POST("dict/getIDCardTypeList")
+    Call<CardBean>getIDCard(@Field("mobile") String string);
 
 }

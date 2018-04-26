@@ -12,8 +12,12 @@ import android.widget.ListView;
 import com.example.duan.chao.DCZ_adapter.CityAdapter;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_bean.CountryBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
+import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -30,6 +34,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *      选择国家和地区
@@ -38,8 +45,10 @@ import butterknife.ButterKnife;
 public class CityListActivity extends BaseActivity  implements CityAdapter.CityCallback{
     private CityListActivity INSTANCE;
     private CityAdapter adapter;
-    private List<CityBean> list;
-    private List<CityBean> list_serch=new ArrayList<>();
+    //  private List<CityBean> list;
+    private List<CountryBean.DataBean> list;
+    //  private List<CityBean> list_serch=new ArrayList<>();
+    private List<CountryBean.DataBean> list_serch=new ArrayList<>();
     private String content;
     @BindView(R.id.back)
     View back;
@@ -53,26 +62,11 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
         setContentView(R.layout.activity_city_list);
         ButterKnife.bind(this);
         INSTANCE=this;
-        setViews();
+        //setViews();
+        getCity();
         setListener();
     }
-
-    private void setViews(){
-        try {
-            if(ContentUtil.isMobileNO(MyApplication.mobile)){//中国手机
-                List<CityBean> zz=new ArrayList<>();
-                CityBean bean=new CityBean();
-                bean.setCountry_id(100042);bean.setCountry_code(86);bean.setCountry_name_cn("中国");bean.setCountry_name_en("China");bean.setAb("CN");bean.setCountry_name_tai("ประเทศจีน");
-                zz.add(bean);
-                list=zz;
-            }else {
-                content = toString(INSTANCE.getAssets().open("city.json"), "UTF-8");
-                list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
-            }
-            Log.i("dcz",list.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void init(){
         adapter=new CityAdapter(INSTANCE,list,this);
         lv.setAdapter(adapter);
     }
@@ -95,10 +89,9 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
                 if(list_serch!=null){
                     list_serch.clear();
                 }
-                int length=s.length();
                 for(int i=0;i<list.size();i++){
-                    if(list.get(i).getCountry_name_cn().contains(s)){
-                       list_serch.add(list.get(i));
+                    if(list.get(i).getCountryName().contains(s)){
+                        list_serch.add(list.get(i));
                     }
                 }
                 adapter.notify(list_serch);
@@ -131,6 +124,36 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
         return sb.toString();
     }
 
+    public void getCity(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
+        HttpServiceClient.getInstance().getCountry(null).enqueue(new Callback<CountryBean>() {
+            @Override
+            public void onResponse(Call<CountryBean> call, Response<CountryBean> response) {
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        list = response.body().getData();
+                        init();
+                    }else {
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                    }
+                }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<CountryBean> call, Throwable t) {
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof LoginEmailActivity){
+                    Log.i("dcz异常",call.toString()+"异常");
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -155,34 +178,10 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
     }
 
     @Override
-    public void addAction(CityBean bean) {
-        if(MyApplication.language.equals("ENGLISH")){
-            ChangePhone3Activity.guo_name=bean.getCountry_name_en();
-            MyApplication.city=bean.getCountry_name_en();
-            MyApplication.code=bean.getCountry_code()+"";
-        }else if(MyApplication.language.equals("CHINESE")){
-            ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
-            MyApplication.city=bean.getCountry_name_cn();
-            MyApplication.code=bean.getCountry_code()+"";
-        }else if(MyApplication.language.equals("")){
-            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
-                ChangePhone3Activity.guo_name=bean.getCountry_name_en();
-                MyApplication.city=bean.getCountry_name_en();
-                MyApplication.code=bean.getCountry_code()+"";
-            }else if(MyApplication.xitong.equals("th_TH")){
-                ChangePhone3Activity.guo_name=bean.getCountry_name_tai();
-                MyApplication.city=bean.getCountry_name_tai();
-                MyApplication.code=bean.getCountry_code()+"";
-            }else {
-                ChangePhone3Activity.guo_name=bean.getCountry_name_cn();
-                MyApplication.city=bean.getCountry_name_cn();
-                MyApplication.code=bean.getCountry_code()+"";
-            }
-        }else {
-            ChangePhone3Activity.guo_name=bean.getCountry_name_tai();
-            MyApplication.city=bean.getCountry_name_tai();
-            MyApplication.code=bean.getCountry_code()+"";
-        }
+    public void addAction(CountryBean.DataBean bean) {
+        ChangePhone3Activity.guo_name=bean.getCountryName();
+        MyApplication.city=bean.getCountryName();
+        MyApplication.code=bean.getPhoneCode()+"";
         ActivityUtils.getInstance().popActivity(INSTANCE);
     }
 }

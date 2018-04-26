@@ -39,6 +39,7 @@ import com.bigkoo.pickerview.model.IPickerViewData;
 import com.bigkoo.pickerview.utils.PickerViewAnimateUtil;
 import com.example.duan.chao.DCZ_ImageUtil.CompressHelper;
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.CardBean;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
@@ -87,7 +88,6 @@ public class SettingDataActivity extends BaseActivity {
     private String format="2018-12-31";
     private String sign;
     private Boolean select=false;
-    private static List<CityBean> list;
     private String content;
     private Dialog dialog;
     private String type="1";    //1:正面，2：反面，3：手持
@@ -248,11 +248,7 @@ public class SettingDataActivity extends BaseActivity {
      * */
     private void setViews() {
         //setTime();
-        if(ContentUtil.isMobileNO(MyApplication.mobile)){//中国手机
-            setPicker(true);
-        }else {
-            setPicker(false);
-        }
+        getCard();
         setBirthday();
         set_end();
     }
@@ -313,7 +309,7 @@ public class SettingDataActivity extends BaseActivity {
                     MultipartBody.Part a = MultipartBody.Part.createFormData("frontFile",x.getName(),requestBody);
                     MultipartBody.Part b = MultipartBody.Part.createFormData("reverseFile",y.getName(),requestBody2);
                     MultipartBody.Part c = MultipartBody.Part.createFormData("holdingFile",z.getName(),requestBody3);
-                    getData(getType(Type.getText().toString()),a,b,c,getCity());
+                    getData(getType(Type.getText().toString()),a,b,c,MyApplication.code);
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi119),R.style.registDialog).show();
                 }
@@ -536,14 +532,17 @@ public class SettingDataActivity extends BaseActivity {
         });
     }
 
-    private void setPicker(Boolean type){
+    private void setPicker(List<CardBean.DataBean> data){
+        options1Items.clear();
         //选项选择器
         pvOptions = new OptionsPickerView(this);
         //选项1
-        options1Items.add(new ProvinceBean(0,INSTANCE.getString(R.string.tishi125),"",""));
-        if(type==false){
-            options1Items.add(new ProvinceBean(2,INSTANCE.getString(R.string.tishi126),"",""));
+        for(CardBean.DataBean b:data){
+            options1Items.add(new ProvinceBean(0,b.getValue(),"",""));
+            Log.i("qqq",b.getValue());
         }
+
+        //options1Items.add(new ProvinceBean(2,INSTANCE.getString(R.string.tishi126),"",""));
        // options1Items.add(new ProvinceBean(3,"港澳通行证","",""));
        // options1Items.add(new ProvinceBean(4,INSTANCE.getString(R.string.tishi127),"",""));
         //三级联动效果
@@ -575,14 +574,6 @@ public class SettingDataActivity extends BaseActivity {
                     ContentUtil.makeToast(INSTANCE,INSTANCE.getString(R.string.tishi155));
                     return;
                 }
-                options1Items.clear();
-                if(tv_guo.getText().toString().equals(INSTANCE.getString(R.string.china))){
-                    options1Items.add(new ProvinceBean(0,INSTANCE.getString(R.string.tishi125),"",""));
-                }else {
-                    options1Items.add(new ProvinceBean(0,INSTANCE.getString(R.string.tishi125),"",""));
-                    options1Items.add(new ProvinceBean(2,INSTANCE.getString(R.string.tishi126),"",""));
-                }
-                pvOptions.setPicker(options1Items);
                 pvOptions.show();
             }
         });
@@ -632,33 +623,9 @@ public class SettingDataActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        try {
-            content = ShebeiUtil.ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
-            list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         if(MyApplication.city.equals("")){
         }else {
-            for(int i=0;i<list.size();i++){
-                if(list.get(i).getCountry_name_cn().equals(MyApplication.city)||list.get(i).getCountry_name_en().equals(MyApplication.city)||list.get(i).getCountry_name_tai().equals(MyApplication.city)){
-                    if(MyApplication.language.equals("CHINESE")){
-                        tv_guo.setText(list.get(i).getCountry_name_cn());
-                    }else if(MyApplication.language.equals("ENGLISH")){
-                        tv_guo.setText(list.get(i).getCountry_name_en());
-                    }else  if(MyApplication.language.equals("")){
-                        if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
-                            tv_guo.setText(list.get(i).getCountry_name_en());
-                        }else if(MyApplication.xitong.equals("th_TH")){
-                            tv_guo.setText(list.get(i).getCountry_name_tai());
-                        }else {
-                            tv_guo.setText(list.get(i).getCountry_name_cn());
-                        }
-                    }else {
-                        tv_guo.setText(list.get(i).getCountry_name_tai());
-                    }
-                }
-            }
+            tv_guo.setText(MyApplication.city);
             tv_guo.setTextColor(Color.WHITE);
         }
     }
@@ -1017,6 +984,37 @@ public class SettingDataActivity extends BaseActivity {
             }
         });
     }
+
+    public void getCard(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
+        HttpServiceClient.getInstance().getIDCard(null).enqueue(new Callback<CardBean>() {
+            @Override
+            public void onResponse(Call<CardBean> call, Response<CardBean> response) {
+                if(response.isSuccessful()){
+                    Log.d("dcz","获取数据成功");
+                    if(response.body().getCode().equals("20000")){
+                        setPicker( response.body().getData());
+                    }else {
+                        new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                    }
+                }else {
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi83),R.style.registDialog).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<CardBean> call, Throwable t) {
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof LoginEmailActivity){
+                    dialog.dismiss();
+                    Log.i("dcz异常",call.toString()+"异常");
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
+            }
+        });
+    }
+
     /**
      * 创建调用系统照相机待存储的临时文件
      *
@@ -1053,15 +1051,9 @@ public class SettingDataActivity extends BaseActivity {
         String city=null;
         try {
             content = ShebeiUtil.ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
-            list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
-            Log.i("dcz",list.toString());
-            for(int i=0;i<list.size();i++){
-                if(tv_guo.getText().toString().equals(list.get(i).getCountry_name_cn())
-                        ||tv_guo.getText().toString().equals(list.get(i).getCountry_name_en())
-                        ||tv_guo.getText().toString().equals(list.get(i).getCountry_name_tai())){
-                    city=list.get(i).getAb();
-                }
-            }
+            List<CityBean> citylist = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {
+            });
+            Log.i("dcz",citylist.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

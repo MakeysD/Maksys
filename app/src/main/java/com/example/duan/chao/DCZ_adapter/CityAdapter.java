@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
+import com.example.duan.chao.DCZ_bean.CountryBean;
 import com.example.duan.chao.R;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,26 +25,41 @@ import java.util.List;
 
 public class CityAdapter extends BaseAdapter{
     private Context context;
-    private List<CityBean> list;
+    private  List<CountryBean.DataBean> list;
     private HashMap<String, Integer> indexMap = new HashMap<String, Integer>();
-    private final LayoutInflater mInflate;
+   // private final LayoutInflater mInflate;
     private CityCallback callback;
 
-    public CityAdapter(Context context, List<CityBean>list, CityCallback callback){
+    public CityAdapter(Context context, List<CountryBean.DataBean> list, CityCallback callback){
         this.context=context;
         this.list=list;
         this.callback=callback;
-        mInflate = LayoutInflater.from(context);
+        Collections.sort(list, new Comparator<CountryBean.DataBean>() {
+            @Override
+            public int compare(CountryBean.DataBean lhs, CountryBean.DataBean rhs) {
+                if (String.valueOf(lhs.getCountryPinyin().charAt(0)).equals(String.valueOf(rhs.getCountryPinyin().charAt(0)))) {
+                    return lhs.getCountryName().compareTo(rhs.getCountryName());
+                } else {
+                    if ("#".equals(String.valueOf(lhs.getCountryPinyin().charAt(0)))) {
+                        return 1;
+                    } else if ("#".equals(String.valueOf(rhs.getCountryPinyin().charAt(0)))) {
+                        return -1;
+                    }
+                    return String.valueOf(lhs.getCountryPinyin().charAt(0)).compareTo(String.valueOf(rhs.getCountryPinyin().charAt(0)));
+                }
+            }
+        });
+       /* mInflate = LayoutInflater.from(context);
         // 列表特征和分组首项进行关联
         for (int i = 0; i <list.size(); i++) {
-            CityBean city =list.get(i);
-            String cityId = city.getCountry_name_en();
+            CountryBean.DataBean city =list.get(i);
+            String cityId = city.getCountryPinyin();
             if(cityId == null || "".equals(cityId)) continue;
             String section = cityId.toUpperCase().substring(0, 1);
             if(!indexMap.containsKey(section)){
                 indexMap.put(section, i);
             }
-        }
+        }*/
     }
     @Override
     public int getCount() {
@@ -71,39 +89,26 @@ public class CityAdapter extends BaseAdapter{
         viewHolder.home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("dcz",list.get(position).getCountry_code()+"");
+                Log.i("dcz",list.get(position).getPhoneCode()+"");
                 callback.addAction(list.get(position));
             }
         });
-        CityBean city =list.get(position);
-        if(MyApplication.language.equals("ENGLISH")){
-            viewHolder.name.setText(list.get(position).getCountry_name_en());
-        }else if(MyApplication.language.equals("TAI")){
-            viewHolder.name.setText(list.get(position).getCountry_name_tai());
-        }else if(MyApplication.language.equals("")){
-            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
-                viewHolder.name.setText(list.get(position).getCountry_name_en());
-            }else if(MyApplication.xitong.equals("th_TH")){
-                viewHolder.name.setText(list.get(position).getCountry_name_tai());
-            }else {
-                viewHolder.name.setText(list.get(position).getCountry_name_cn());
-            }
-        }else {
-            viewHolder.name.setText(list.get(position).getCountry_name_cn());
-        }
-        char idFirstChar = city.getCountry_name_en().charAt(0);//得到当前id
+        CountryBean.DataBean city =list.get(position);
+        viewHolder.name.setText(list.get(position).getCountryName());
+        char idFirstChar = city.getCountryPinyin().charAt(0);//得到当前id
         if (position == 0) {
-            setIndex(viewHolder.section, String.valueOf(idFirstChar));
+            setIndex(viewHolder.section, String.valueOf(idFirstChar).toUpperCase());
         } else {
-            String preLabel =list.get(position - 1).getCountry_name_en();
-            char preFirstChar = preLabel.toUpperCase().charAt(0);//得到前一个id
+            String preLabel =list.get(position - 1).getCountryPinyin();
+            char preFirstChar = preLabel.charAt(0);//得到前一个id
             if (idFirstChar != preFirstChar) {
-                setIndex(viewHolder.section, String.valueOf(idFirstChar));
+                setIndex(viewHolder.section, String.valueOf(idFirstChar).toUpperCase());
+                viewHolder.section.setVisibility(View.VISIBLE);
             } else { // same group
                 viewHolder.section.setVisibility(View.GONE);
             }
         }
-        viewHolder.phone.setText("+"+list.get(position).getCountry_code());
+        viewHolder.phone.setText("+"+list.get(position).getPhoneCode());
         return convertView;
     }
 
@@ -120,7 +125,7 @@ public class CityAdapter extends BaseAdapter{
             home=(RelativeLayout)view.findViewById(R.id.home);
         }
     }
-    public void notify(List<CityBean> list){
+    public void notify(List<CountryBean.DataBean> list){
         this.list=list;
         notifyDataSetChanged();
     }
@@ -132,6 +137,6 @@ public class CityAdapter extends BaseAdapter{
     }
 
     public interface CityCallback {
-        void addAction(CityBean bean);
+        void addAction(CountryBean.DataBean bean);
     }
 }
