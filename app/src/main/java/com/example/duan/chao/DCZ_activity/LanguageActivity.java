@@ -171,11 +171,6 @@ public class LanguageActivity extends BaseActivity {
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
         iv4.setVisibility(View.GONE);
-        for(int i=0;i<list.size();i++){
-            if(MyApplication.city.equals(list.get(i).getCountry_name_en())){
-                MyApplication.city=list.get(i).getCountry_name_cn();MyApplication.sf.edit().putString("city",list.get(i).getCountry_name_cn());
-            }
-        }
     }
     private void a2(){
         rl1.setBackgroundColor(getResources().getColor(R.color.bg1));
@@ -205,12 +200,6 @@ public class LanguageActivity extends BaseActivity {
         iv3.setVisibility(View.VISIBLE);
         iv4.setVisibility(View.GONE);
         Log.i("dcz_数量",list.size()+"");
-        for(int i=0;i<list.size();i++){
-            if(MyApplication.city.equals(list.get(i).getCountry_name_cn())){
-                Log.i("dcz",list.get(i).getCountry_name_cn());
-                MyApplication.city=list.get(i).getCountry_name_en();MyApplication.sf.edit().putString("city",list.get(i).getCountry_name_en());
-            }
-        }
     }
     private void a4(){
         rl1.setBackgroundColor(getResources().getColor(R.color.bg1));
@@ -225,10 +214,5 @@ public class LanguageActivity extends BaseActivity {
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
         iv4.setVisibility(View.VISIBLE);
-        for(int i=0;i<list.size();i++){
-            if(MyApplication.city.equals(list.get(i).getCountry_name_tai())){
-                MyApplication.city=list.get(i).getCountry_name_tai();MyApplication.sf.edit().putString("city",list.get(i).getCountry_name_tai());
-            }
-        }
     }
 }

@@ -1047,16 +1047,4 @@ public class SettingDataActivity extends BaseActivity {
         }
         return a;
     }
-    private String getCity(){
-        String city=null;
-        try {
-            content = ShebeiUtil.ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
-            List<CityBean> citylist = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {
-            });
-            Log.i("dcz",citylist.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return city;
-    }
 }

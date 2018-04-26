@@ -184,4 +184,17 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
         MyApplication.code=bean.getPhoneCode()+"";
         ActivityUtils.getInstance().popActivity(INSTANCE);
     }
+
+    private String geCity(){
+        String city=null;
+        try {
+            content = ShebeiUtil.ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
+            List<CityBean> citylist = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {
+            });
+            Log.i("dcz",citylist.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return city;
+    }
 }

@@ -61,7 +61,6 @@ public class MyApplication extends Application{
     public static Boolean suo=true;     //是否打开手势解锁页面
     public static String qiniu="https://pic.bincrea.com/";
     public static String city="";
-    public static List<CityBean> city_list=new ArrayList<>();
     public static String language="";
     public static String xitong="";
     public static Boolean status=false;

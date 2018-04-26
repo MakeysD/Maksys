@@ -92,32 +92,6 @@ public class AppStartActivity extends BaseActivity {
     }
 
     private void suo() {
-        try {
-            content = ToString(this.getAssets().open("city.json"), "UTF-8");
-            MyApplication.city_list = (List<CityBean>) jsonToList(content, new TypeToken<List<CityBean>>() {});
-            Log.i("dcz",MyApplication.city_list.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if(MyApplication.language.equals("ENGLISH")){
-            for(int i=0;i<MyApplication.city_list.size();i++){
-                if(MyApplication.city.equals(MyApplication.city_list.get(i).getCountry_name_cn())){
-                    MyApplication.city=MyApplication.city_list.get(i).getCountry_name_en();MyApplication.sf.edit().putString("city",MyApplication.city_list.get(i).getCountry_name_en());
-                }
-            }
-        }else if(MyApplication.language.equals("TAI")){
-            for(int i=0;i<MyApplication.city_list.size();i++){
-                if(MyApplication.city.equals(MyApplication.city_list.get(i).getCountry_name_tai())){
-                    MyApplication.city=MyApplication.city_list.get(i).getCountry_name_tai();MyApplication.sf.edit().putString("city",MyApplication.city_list.get(i).getCountry_name_tai());
-                }
-            }
-        } else {
-            for(int i=0;i<MyApplication.city_list.size();i++){
-                if(MyApplication.city.equals(MyApplication.city_list.get(i).getCountry_name_en())){
-                    MyApplication.city=MyApplication.city_list.get(i).getCountry_name_cn();MyApplication.sf.edit().putString("city",MyApplication.city_list.get(i).getCountry_name_cn());
-                }
-            }
-        }
         //判断是否登录
         if(MyApplication.token.equals("")){
             Intent intent = new Intent(AppStartActivity.this, LoginEmailActivity.class);
@@ -147,26 +121,6 @@ public class AppStartActivity extends BaseActivity {
          //   }
         }
         ActivityUtils.getInstance().popActivity(this);
-    }
-
-    public static String ToString(InputStream is, String charset) {
-        StringBuilder sb = new StringBuilder();
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset));
-            while (true) {
-                String line = reader.readLine();
-                if (line == null) {
-                    break;
-                } else {
-                    sb.append(line).append("\n");
-                }
-            }
-            reader.close();
-            is.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
     }
 
     private void quan(){

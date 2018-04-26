@@ -511,17 +511,6 @@ public class LoginActivity extends BaseActivity {
                 //返回当前位置，精度可调
                 Address address = addresses.get(0);
                 Log.i("dcz1",address.getCountryName());
-                MyApplication.city=address.getCountryName();MyApplication.sf.edit().putString("city",address.getCountryName()).commit();
-                for(int i=0;i<list.size();i++){
-                    if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))){
-                        Log.i("dcz",list.get(i).getCountry_name_cn());
-                        Log.i("dcz",list.get(i).getCountry_code()+"");
-                        MyApplication.code=list.get(i).getCountry_code()+"";
-                    }
-                }
-             /*   Log.i("dcz2",address.getFeatureName());
-                Log.i("dcz3",address.getSubLocality());
-                Log.i("dcz4",address.getAdminArea());*/
                 address.getCountryName();
                 String sAddress;
                 if (!TextUtils.isEmpty(address.getLocality())) {

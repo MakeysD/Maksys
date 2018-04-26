@@ -339,14 +339,6 @@ public class LoginEmailActivity extends BaseActivity {
         String address = LocationUtils.getCountryName(this, location.getLatitude(), location.getLongitude());
         Log.i("dcz国家",address+"z");
         if(address!=null&&!address.equals("unknown")){
-            MyApplication.city=address;MyApplication.sf.edit().putString("city",address).commit();
-        }
-        for(int i=0;i<list.size();i++){
-            if(MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_cn()))
-                    ||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_en()))
-                    ||MyApplication.city.equals(String.valueOf(list.get(i).getCountry_name_tai()))){
-                MyApplication.code=list.get(i).getCountry_code()+"";
-            }
         }
     }
     /***
