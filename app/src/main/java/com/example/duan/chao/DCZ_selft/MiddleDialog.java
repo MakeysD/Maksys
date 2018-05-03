@@ -100,7 +100,11 @@ public class MiddleDialog<E> extends Dialog {
         view = View.inflate(context, R.layout.dialog, null);
         setContentView(view);
         setCancelable(false);        //设置点击对话框以外的区域时，是否结束对话框
-        ((TextView) view.findViewById(R.id.content)).setText(content);
+        if(content==null){
+            ((TextView) view.findViewById(R.id.content)).setText("null");
+        }else {
+            ((TextView) view.findViewById(R.id.content)).setText(content);
+        }
         view.findViewById(R.id.execute).setOnClickListener(new View.OnClickListener() {      //确定
             @Override
             public void onClick(View v) {

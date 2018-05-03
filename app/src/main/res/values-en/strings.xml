@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Makeys</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">hello</string>
+    <string name="loaddings">loading</string>
+
+    <string name="scan_text">Align the QR code within the frame</string>
+
+    <string name="start_btn">start</string>
+    <string name="cancel_btn">cancel</string>
+
+    <string name="fingerprint_success">Fingerprint identify success</string>
+    <string name="fingerprint_not_recognized">try again</string>
+
+    <!-- Dialog info -->
+    <string name="no_sensor_dialog_title">No fingerprint sensor </string>
+    <string name="no_sensor_dialog_message">No fingerprint sensor，please cancel it</string>
+    <string name="no_fingerprint_enrolled_dialog_title">open fingerprint in system settings </string>
+    <!--  <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
+          <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>-->
+    <string name="ok_btn_dialog">OK</string>
+    <string name="cancel_btn_dialog">cancel </string>
+    <string name="setti">no gesture password yet</string>
+
+    <!-- auth result error amd help code warning -->
+    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
+    <string name="AcquiredGood_warning">good</string>
+
+    <!-- <string name="logining">程序在后台执行, 请查看日志！</string>-->
+
+    <string name="AcquiredImageDirty_warning">try again</string>
+    <string name="AcquiredInsufficient_warning">try again</string>
+
+    <string name="AcquiredPartial_warning">try again</string>
+
+    <string name="AcquiredTooFast_warning">try again</string>
+
+    <string name="AcquiredToSlow_warning">try again</string>
+
+    <string name="ErrorCanceled_warning">verufy fingerprint</string>
+
+    <string name="ErrorHwUnavailable_warning">Fingerprint error,try later</string>
+
+    <string name="ErrorLockout_warning">Fingerprint verify is closed </string>
+
+    <string name="ErrorTimeout_warning">try again</string>
+
+    <string name="ErrorUnableToProcess_warning">try again</string>
+    <string name="ErrorNoSpace_warning">try again</string>
+    <string name="ErrorNoSpace_zai">please try later</string>
+
+    <string name="alias_hint">Alias is uppercase and lowercase letters, Numbers, underscores </string>
+    <string name="tag_hint">Tags are case letters, Numbers, underscores, Chinese, multiple comma separated </string>
+    <string name="style_hint">style is number</string>
+    <string name="error_style_empty">style can\'t be empty</string>
+    <string name="error_alias_empty">alias can\'t be empty</string>
+    <string name="error_tag_empty">tag can\'t be empty</string>
+    <string name="error_tag_gs_empty">Format error</string>
+    <string name="error_network">internet error</string>
+    <string name="logining">logining</string>
+    <string name="setting_su">Set successfully</string>
+    <string name="setting_error">fingerprint error,try later</string>
+
+    <string name="pull_to_refresh">refresh</string>
+    <string name="release_to_refresh">refresh</string>
+    <string name="refreshing">refreshing</string>
+    <string name="refresh_succeed">succeed</string>
+    <string name="refresh_fail">failed</string>
+    <string name="pullup_to_load">more</string>
+    <string name="release_to_load">loading </string>
+    <string name="load_succeed">succeed</string>
+    <string name="load_fail">failed</string>
+    <string name="loading">loading</string>
+
+    <string name="title1">Email</string>
+    <string name="title2">Change login password</string>
+    <string name="title3">Password security</string>
+    <string name="title4">Change payment password</string>
+    <string name="title5">Change phone number</string>
+    <string name="title6">Select region</string>
+    <string name="title7">Devices management</string>
+    <string name="title8">Fingerprint protection</string>
+    <string name="title9">Record</string>
+    <string name="title10">Set gesture password</string>
+    <string name="title11">About</string>
+    <string name="title12">Language</string>
+    <string name="title13">Login</string>
+    <string name="title14">Account security</string>
+    <string name="title15">Log</string>
+    <string name="title16">Identity authentication</string>
+    <string name="title16a">Real-name profile</string>
+    <string name="title17">QR Code</string>
+    <string name="title18">Phone number</string>
+    <string name="title19">Set  personal information</string>
+    <string name="title20">Message verify</string>
+    <string name="title21">Welcome back</string>
+    <string name="title22">Lock</string>
+    <string name="title23">Change phone number</string>
+    <string name="title24">FAQs</string>
+
+
+    <string name="lock1">set gesture password again</string>
+    <string name="lock2">confirm gesture password is different from the first gestured</string>
+    <string name="lock3">unset gesture password</string>
+    <string name="lock4">finished gesture password setting</string>
+    <string name="lock5">unset gesture password</string>
+    <string name="lock6">gesture password closed</string>
+    <string name="lock7">wrong gesture password, try again </string>
+    <string name="lock8">times</string>
+    <string name="lock9">confirm payment password is different from the first enter</string>
+    <string name="lock10">unset gesture password</string>
+    <string name="lock11">fingerprint password setting opened</string>
+    <string name="lock12">at least links 4 dots</string>
+
+
+    <string name="main1">Security</string>
+    <string name="main2">on</string>
+    <string name="main3">off</string>
+    <string name="main4">Account security</string>
+    <string name="main5">Gesture password</string>
+    <string name="main6">Fingerprint password </string>
+    <string name="main7">Language</string>
+    <string name="main8">About </string>
+    <string name="main9">Logout</string>
+    <string name="main10">Unauthorized</string>
+    <string name="main11">closed</string>
+    <string name="main12">explore</string>
+
+    <string name="china">China</string>
+    <string name="button">submit</string>
+    <string name="login">Login</string>
+    <string name="tishi1">original email</string>
+    <string name="tishi2">original password</string>
+    <string name="tishi3">new password (6-18),(Case sensitive)</string>
+    <string name="tishi3a">new password (6-18),(Case sensitive)</string>
+    <string name="tishi4">confirm new password</string>
+    <string name="tishi4a">confirm new password</string>
+    <string name="tishi5">lowest security</string>
+    <string name="tishi6">Please change the password in time</string>
+    <string name="tishi5a">Password security</string>
+    <string name="tishi6a">higher security\nplease keep it  and update it regularly</string>
+    <string name="tishi7a">Change password</string>
+    <string name="tishi7">change login password</string>
+    <string name="tishi8">change payment password</string>
+    <string name="tishi8a">reset payment password </string>
+    <string name="tishi9">verify original payment password</string>
+    <string name="tishi10">message verify</string>
+    <string name="tishi11">get code</string>
+    <string name="tishi12">logout</string>
+    <string name="tishi12a">Next</string>
+    <string name="tishi13">region</string>
+    <string name="tishi14">new phone number</string>
+    <string name="tishi15">If the original phone number can\'t receive message, you need to offer a new phone number and real  personally information submitted, after approval, you can change the phone number.</string>
+    <string name="tishi16">phone number </string>
+    <string name="tishi16a">name</string>
+    <string name="tishi16b">ID number</string>
+    <string name="tishi16c">account</string>
+    <string name="tishi16d">username </string>
+    <string name="tishi16e">verify account</string>
+    <string name="tishi17">camera</string>
+    <string name="tishi18">photos</string>
+    <string name="tishi19">message verify</string>
+    <string name="tishi20">searching in region </string>
+    <string name="tishi21">authorized devices</string>
+    <string name="tishi22">no authorized devices</string>
+    <string name="tishi23">login</string>
+    <string name="tishi24">record</string>
+    <string name="tishi25">using gesture password can improve your account security</string>
+    <string name="tishi26">original  gesture password </string>
+    <string name="tishi26c">verify gesture password </string>
+    <string name="tishi26b">verify gesture password </string>
+    <string name="tishi26d">confirm gesture password </string>
+    <string name="tishi26a">set gesture password</string>
+    <string name="tishi27">New version</string>
+    <string name="tishi28">Suggestion</string>
+    <string name="tishi29">Authorized  login</string>
+    <string name="tishi30">web login request</string>
+    <string name="tishi31">To ensure the security of the account, please confirm that it is yourself operation</string>
+    <string name="tishi32">Accept</string>
+    <string name="tishi33">Cancel</string>
+    <string name="tishi34">language</string>
+    <string name="tishi35">Simple Chinese</string>
+    <string name="tishi36">Traditional Chinese</string>
+    <string name="tishi37">English</string>
+    <string name="tishi38">Thai</string>
+    <string name="tishi39">the  gesture password is opened</string>
+    <string name="tishi40">change it regularly to protect account security </string>
+    <string name="tishi41">change gesture password</string>
+    <string name="tishi42">delete gesture password</string>
+    <string name="tishi43">password</string>
+    <string name="tishi43a">payment password</string>
+    <string name="tishi44">Forgot password</string>
+    <string name="tishi45">confirm password</string>
+    <string name="tishi46">set now</string>
+    <string name="tishi47">unset personal information</string>
+    <string name="tishi48">personal information set</string>
+    <string name="tishi48a">Submitted successfully</string>
+    <string name="tishi48b">real-name authentication failed</string>
+    <string name="tishi48c">authenticated finished</string>
+    <string name="tishi48d">real-name authentication can\'t change after authenticated</string>
+    <string name="tishi48e">please waiting patiently for the approving</string>
+    <string name="tishi48f">Please upload the image  according to the  requirement</string>
+    <string name="tishi48g">approved</string>
+    <string name="tishi48h">Reauthentication</string>
+    <string name="tishi48i">valid ID</string>
+    <string name="tishi49">change</string>
+    <string name="tishi50">email </string>
+    <string name="tishi51">If the current phone number is invalid, please change it in time </string>
+    <string name="tishi52">started A % ld business account authorization protection \ n if business account authorization  unopened. The system will ban authorization of the system";</string>
+    <string name="tishi53">ID information </string>
+    <string name="tishi54">ID type</string>
+    <string name="tishi55">name</string>
+    <string name="tishi56">ID number</string>
+    <string name="tishi57">Validity period</string>
+    <string name="tishi57a">The valid date of ID</string>
+    <string name="tishi57b">The invalid date of ID</string>
+    <string name="tishi58">changed phone number</string>
+    <string name="tishi59">Login mode</string>
+    <string name="tishi60">invalid fingerprint</string>
+    <string name="tishi60a">gesture password unavailable </string>
+    <string name="tishi61">set</string>
+    <string name="tishi62">unset</string>
+    <string name="tishi63">unauthorized</string>
+    <string name="tishi64">login</string>
+    <string name="tishi64a">Touch-ID </string>
+    <string name="tishi65">logout</string>
+    <string name="tishi66">original email</string>
+    <string name="tishi67"> set now</string>
+    <string name="tishia68">Please set the new login password of&#160;</string>
+    <string name="tishia68a">Please set the new payment password of&#160;</string>
+    <string name="tishi68">&#160;and suggest using Numbers, letters and characters combination</string>
+    <string name="tishi68a">&#160;and suggest using Numbers, letters and characters combination</string>
+    <string name="tishi69">original phone number</string>
+    <string name="tishi70">latest version</string>
+    <string name="tishi71">check internet or GPS whether opened</string>
+    <string name="tishi72">sever error </string>
+    <string name="tishi73">correct</string>
+    <string name="tishi74">enter valid phone number</string>
+    <string name="tishi75">resend</string>
+    <string name="tishi76">resend</string>
+    <string name="tishi77">correct</string>
+    <string name="tishi78">phone number</string>
+    <string name="tishi79">Makey username</string>
+    <string name="tishi80">verify existing fingerprint</string>
+    <string name="tishi80a">verify existing fingerprint</string>
+    <string name="tishi81">your account is login on another device </string>
+    <string name="tishi82">notice</string>
+    <string name="tishi83">failed</string>
+    <string name="tishi84"></string>
+    <string name="tishi85">login password changed, please try again</string>
+    <string name="tishi85a">password has been changed,please login again </string>
+    <string name="tishi86">authorized date：</string>
+    <string name="tishi87">login：</string>
+    <string name="tishi88">gesture password</string>
+    <string name="tishi89">email </string>
+    <string name="tishi90">change email</string>
+    <string name="tishi91">email</string>
+    <string name="tishi92">verufy fingerprint </string>
+    <string name="tishi93">Information submitted</string>
+    <string name="tishi94">Please be patient for platform approval</string>
+    <string name="tishi95">login</string>
+    <string name="tishi96">opened</string>
+    <string name="tishi97">types bussiness authorized protection</string>
+    <string name="tishi98">no authorized protection</string>
+    <string name="tishi99">delete</string>
+    <string name="tishi100">are you sure logout this account</string>
+    <string name="tishi101">logout notice</string>
+    <string name="tishi102">your account login&#160;</string>
+    <string name="tishi103">&#160;on another device</string>
+    <string name="tishi104">&#160;if you didn\'t operate it, please change password and login again.</string>
+    <string name="tishi105">whether you opened authorized to"</string>
+    <string name="tishi105a">whether you opened authorized to"</string>
+    <string name="tishi106">”or not</string>
+    <string name="tishi107">latest version</string>
+    <string name="tishi108">account is freezing</string>
+    <string name="tishi109">new password must be different from the original password </string>
+    <string name="tishi110">no data</string>
+    <string name="tishi111">login password set succeed. Please try again</string>
+    <string name="tishi112">is requesting a web login</string>
+    <string name="tishi113">You need to open the reminding permission to receive authorization remind，and then you can start  a key authorization and scan authorization</string>
+    <string name="tishi114">open</string>
+    <string name="tishi115">your login status is expired, please try again</string>
+    <string name="tishi116">internet error</string>
+    <string name="tishi117">updata</string>
+    <string name="tishi118">latest verision</string>
+    <string name="tishi119">please complete the information</string>
+    <string name="tishi119a">invalid date</string>
+    <string name="tishi120">birthday</string>
+    <string name="tishi121">select birthday</string>
+    <string name="tishi122">valid date</string>
+    <string name="tishi122a">Valid date of ID</string>
+    <string name="tishi122b">Invalid date of ID</string>
+    <string name="tishi123">ID</string>
+    <string name="tishi124">region</string>
+    <string name="tishi125">ID card</string>
+    <string name="tishi126">passport</string>
+    <string name="tishi127">drive license</string>
+    <string name="tishi128">start date</string>
+    <string name="tishi128a">invalid Makeys QR code</string>
+    <string name="tishi130">Passcode</string>
+    <string name="tishi131">One-button</string>
+    <string name="tishi132">Register</string>
+    <string name="tishi133a">Not working ? </string>
+    <string name="tishi133">Try resyncing</string>
+    <string name="tishi134">Copy Code</string>
+    <string name="tishi134a">Show Code</string>
+    <string name="tishi135">copied</string>
+    <string name="tishi136">cancel</string>
+    <string name="tishi137">successfully</string>
+    <string name="tishi138">authorized successfully</string>
+    <string name="tishi139">authorized failed</string>
+    <string name="tishi139a">authorize over time limited</string>
+    <string name="tishi140">守护安全 保障资产</string>
+    <string name="tishi141">What\'s the use of Makeys</string>
+    <string name="tishi142">how to verify login</string>
+    <string name="tishi143">how to change/retrieve password</string>
+    <string name="tishi144">how to change bound phone number</string>
+    <string name="tishi145">Album</string>
+    <string name="tishi146">No qr code was found</string>
+    <string name="tishi147">ID photo request</string>
+    <string name="tishi148">ID request</string>
+    <string name="tishi149">1、The photo must be clear、four corners are completely、and  the document is clearly visible</string>
+    <string name="tishi150">2、The ID information MUST NOT covered, altered and blurred</string>
+    <string name="tishi151">3、The person who holding the ID card must be consistent with the ID/ identification information</string>
+    <string name="tishi152">image is not clear</string>
+    <string name="tishi153">please follow the request when upload</string>
+    <string name="tishi154">the profile you entered must match your ID info</string>
+    <string name="tishi155">Please enter a region</string>
+    <string name="tishi156">please set fingerprint password</string>
+    <string name="tishi157">please set gesture/fingerprint password</string>
+    <string name="tishi159">delete the device？</string>
+    <string name="tishi160">reset</string>
+    <string name="tishi161">the image must less than 5M</string>
+
+    <string name="code1">succeed</string><!--20000-->
+    <string name="code2">failed</string><!--20001-->
+    <string name="code3">error</string><!--20002-->
+    <string name="code4">user not login</string><!--20003-->
+    <string name="code5">unauthorized</string><!--20004-->
+    <string name="code6">account isn\'t exist</string><!--20005-->
+    <string name="code7">Parameter can\'t be empty</string><!--10007-->
+    <string name="code8">Parameter error</string><!--10011-->
+    <string name="code9">account is locked</string><!--10013-->
+    <string name="code10">wrong password</string><!--10014-->
+    <string name="code11">wrong username</string><!--10015-->
+    <string name="code12">wrong payment password</string><!--10016-->
+    <string name="code13">wrong email verify code</string><!--10017-->
+    <string name="code14">confirm password is different from the first enter</string><!--10020-->
+    <string name="code15">email is exist</string><!--10021-->
+    <string name="code16">account is exist</string><!--10022-->
+    <string name="code17">wrong static verify code</string><!--10024-->
+    <string name="code18">signature verify failed</string><!--10025-->
+    <string name="code19">password enter times over limited</string><!--10026-->
+    <string name="code20">authentication failed</string><!--10027-->
+    <string name="code21">original payment password is unset</string><!--10028-->
+    <string name="code22">no data</string><!--10029-->
+    <string name="code23">payment password must be different from the login password</string><!--10033-->
+    <string name="code24">wrong email format</string><!--10034-->
+    <string name="code25">message verify failed</string><!--10036-->
+    <string name="code26">account is locked temporarily</string><!--10037-->
+    <string name="code27">account is locked  permanently</string><!--10038-->
+    <string name="code28">security service is unavailable</string><!--10500-->
+    <string name="code29">refresh token is  overdue</string><!--10501-->
+    <string name="code30">do sign fail</string><!--10502-->
+    <string name="code31">system is busy</string><!--10503-->
+    <string name="code32">wrong username or password</string><!--10504-->
+    <string name="code33">send sms failed</string><!--10505-->
+    <string name="code34">send email failed</string><!--10506-->
+    <string name="code35">unbound phone number</string><!--10508-->
+    <string name="code36">binding invalid phone number</string><!--10509-->
+    <string name="code37">invalid phone number</string><!--10510-->
+    <string name="code38">the phone number is exist</string><!--10511-->
+    <string name="code39">please login Makeys APP first</string><!--10512-->
+    <string name="code40">original payment password error</string><!--10513-->
+    <string name="code41">original login password error</string><!--10514-->
+    <string name="code42">Unauthorized equipment</string><!--10516-->
+    <string name="code43">QUIZ</string><!--1010-->
+    <string name="code44">MAIL</string><!--1011-->
+    <string name="code45">Incorrect  name format</string><!--80003-->
+    <string name="code46">The number format of ID is incorrect</string><!--80004-->
+    <string name="code47">Invalid ID number</string><!--90033-->
+    <string name="code48">Authenticate failed</string><!--90099-->
+    <string name="code49">the info is already existed</string><!--8088-->
+    <string name="code50">The ID number is exists</string><!--10538-->
+    <string name="code51">Incomplete parameters</string><!--80001-->
+    <string name="code52">ID card maintenance, please try again later</string><!--80008-->
+    <string name="code53">ID image over the size limited</string><!--10519-->
+    <string name="code54">ID card is not exist</string><!--10539-->
+    <string name="code55">ID card start date is wrong</string><!--10540-->
+    <string name="code56">ID card end date is wrong</string><!--10541-->
+
+    <string name="data0">unknown type</string>
+    <string name="data1">login</string>
+    <string name="data2">logout</string>
+    <string name="data3">register</string>
+    <string name="data4">add new user</string>
+    <string name="data5">edit account</string>
+    <string name="data6">change password</string>
+    <string name="data7">reset password</string>
+    <string name="data8">forget password</string>
+    <string name="data9">add administrator</string>
+    <string name="data10">edit administrator</string>
+    <string name="data11">transaction approving</string>
+    <string name="data12">exchange</string>
+    <string name="data13">change data</string>
+    <string name="data14">change payment password</string>
+    <string name="data15">reset payment password</string>
+    <string name="data16">forget payment password</string>
+    <string name="data17">delete security device</string>
+    <string name="data18">forced logout</string>
+    <string name="data19">change status of system protection</string>
+    <string name="data1000">WALLET</string>
+    <string name="data1001">WHEATFIELD</string>
+    <string name="data1002">FORCE</string>
+    <string name="data1003">AURORA</string>
+    <string name="data1004">Her-Mest</string>
+    <string name="data1009">ORE_XSG</string>
+    <string name="data2000">Makeys</string>
+    <string name="data2001">Makeys APP</string>
+    <string name="data2002">Makeys manager</string>
+    <string name="data1010">QUIZ</string><!--1010-->
+    <string name="data1011">MAIL</string><!--1011-->
+    <string name="data1012">AK_TRANS</string><!--1012-->
+
+
+
+   <!-- <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>
+    <string name="opensource_page_url" translatable="false">https://github.com/google/google-authenticator/</string>
+    <string name="terms_page_url" translatable="false">http://m.google.com/tospage</string>
+    <string name="privacy_page_url" translatable="false">http://www.google.com/policies/privacy/</string>-->
+    <string name="timesync_preference_screen_title" msgid="3022961447302189451">"校正用来生成验证码的时间"</string>
+    <string name="timesync_preference_screen_summary" msgid="4761393049788324525">"将身份验证器的内部时钟与 Google 服务器进行同步"</string>
+    <string name="timesync_sync_now_preference_title" msgid="3082679345742875442">"立即同步"</string>
+    <string name="timesync_about_feature_preference_title" msgid="8398618989030576453">"关于此功能"</string>
+    <string name="timesync_about_feature_screen_title" msgid="8248453942850581677">"关于此功能"</string>
+    <string name="timesync_about_feature_screen_details" msgid="1484703765964566915">"如果您按下&amp;ldquo;立即同步&amp;rdquo;，身份验证器就会尝试将其内部时钟与 Google 服务器同步一次。设备的日期和时间设置不会更改。&lt;p&gt;与 Google 服务器同步内部时钟时，身份验证器不会传输任何个人数据或帐户信息。&lt;p&gt; &lt;b&gt;这有什么作用&lt;/b&gt; &lt;p&gt;身份验证器需要根据以下信息生成两步验证码：1) 当前时间，2) 该应用与服务器联络时使用的暗号。&lt;p&gt;如果身份验证器和服务器上的时间不一致，那么当您尝试登录时，系统可能不会接受该应用生成的验证码。&lt;p&gt;默认情况下，身份验证器会使用设备的日期和时间设置，因此在大多数情况下，只要您确保您的时间、日期和时区设置配置正确，即可生成有效的验证码。但是，如果确实出现时间不匹配的情况，就很难排查出问题（尤其是当您使用网络提供的时间或时区时）。"</string>
+    <string name="timesync_sync_now_screen_title" msgid="3545642903720968544">"立即同步"</string>
+    <string name="timesync_sync_now_progress_dialog_title" msgid="7008645503609657769">"立即同步"</string>
+    <string name="timesync_sync_now_progress_dialog_details" msgid="307085676112612197">"正在连接服务器…"</string>
+    <string name="timesync_sync_now_time_corrected_dialog_title" msgid="556836185362910715">"时间已校正"</string>
+    <string name="timesync_sync_now_time_corrected_dialog_details" msgid="8542304823376488491">"身份验证器的内部时钟已按照 Google 服务器提供的时间进行调整。"\n\n"此设备上的日期和时间设置未更改。"</string>
+    <string name="timesync_sync_now_time_already_correct_dialog_title" msgid="4771431037030124374">"时间已正确"</string>
+    <string name="timesync_sync_now_time_already_correct_dialog_details" msgid="1783578393804196806">"身份验证器的内部时钟未作调整，因为该时钟已经与 Google 服务器同步。"</string>
+    <string name="timesync_sync_now_connectivity_error_dialog_title" msgid="3173165623567050563">"立即同步"</string>
+    <string name="timesync_sync_now_connectivity_error_dialog_details" msgid="7427576990969917093">"与 Google 服务器联系时出现问题。请检查您的网络设置，然后重试。"</string>
+
+    <string name="app_name_short" msgid="6268465073167241020">"身份验证器"</string>
+    <string name="enter_key_title" msgid="3762128630776563361">"手动输入帐户"</string>
+    <string name="enter_key_page_add_button" msgid="7145413404890383746">"添加"</string>
+    <string name="button_add_account" msgid="4301500554118934829">"添加帐户"</string>
+    <string name="button_how_it_works" msgid="5576563994507351533">"了解其工作原理"</string>
+    <string name="add_account_menu_item" msgid="6422163385921921789">"添加帐户"</string>
+    <string name="how_it_works_menu_item" msgid="7162080619184257276">"工作原理"</string>
+    <string name="main_preference_screen_title" msgid="5971154576421128196">"设置"</string>
+    <string name="about_preference_title" msgid="2797539814683187124">"关于"</string>
+    <string name="settings_menu_item" msgid="3175383868365284896">"设置"</string>
+    <string name="button_add_account_manual_entry" msgid="7234157710472604378">"手动添加帐户"</string>
+    <string name="button_add_account_scan_barcode" msgid="4400516455038574606">"扫描条形码"</string>
+    <string name="button_next" msgid="2321252361372851972">"下一页"</string>
+    <string name="button_back" msgid="414120249698283380">"上一页"</string>
+    <string name="enter_account_label" msgid="1488259241384211529">"输入帐户名称"</string>
+    <string name="enter_key_hint" msgid="480564521423532185">"输入您的密钥"</string>
+    <string name="enter_key_too_short" msgid="1883571748860519725">"密钥值太短"</string>
+    <string name="enter_key_illegal_char" msgid="5667180343359002748">"密钥值中含有非法字符"</string>
+    <string name="error_title" msgid="1784361744549854479">"错误"</string>
+    <string name="error_uri" msgid="8889749448317216536">"密钥无法识别。"</string>
+    <string name="error_qr" msgid="1076904454315180481">"无法解读 QR 码。"</string>
+    <string name="secret_saved" msgid="2201025202465443226">"密钥已保存"</string>
+    <string name="save_key_message" msgid="4427138629791380096">"保存以下帐户的密钥："</string>
+    <string name="error_empty_secret" msgid="1889970426144134666">"无法保存空密钥"</string>
+    <string name="enter_pin" msgid="2238539410253130912">"在登录帐户期间，如果提示输入验证码，请输入此验证码："</string>
+    <string name="check_code_title" msgid="6308604727562833139">"完整性校验值"</string>
+    <string name="check_code_menu_item" msgid="6851230890695316742">"检查密钥值"</string>
+    <string name="install_dialog_title" msgid="6389833865110438047">"要安装条形码扫描器吗？"</string>
+    <string name="install_dialog_message" msgid="4701150232869547399">"要扫描包含密钥的条形码，必须安装斑马线条形码扫描器。"</string>
+    <string name="install_button" msgid="5395462228740377795">"安装"</string>
+    <string name="about_preference_screen_title" msgid="8056864904503664711">"关于"</string>
+    <string name="version_preference_title" msgid="5388130414499892219">"版本"</string>
+    <string name="opensource_preference_title" msgid="9222719496327822081">"开放源代码项目"</string>
+    <string name="terms_preference_title" msgid="2016562579825643136">"服务条款"</string>
+    <string name="privacy_preference_title" msgid="5170441521661957179">"隐私权政策"</string>
+    <string name="check_code" msgid="8970489904648838257">"要检查 <xliff:g id="ACCOUNT">%1$s</xliff:g> 的密钥值是否正确，请验证此处的值是否与服务器提供的完整性校验值一致：&lt;br/&gt;"</string>
+    <string name="general_security_exception" msgid="2356961798953009046">"一般安全异常"</string>
+    <string name="decoding_exception" msgid="7778970130063776199">"解码异常"</string>
+    <string name="submit" msgid="1518558163262431303">"保存"</string>
+    <string name="cancel" msgid="5705561042616477184">"取消"</string>
+    <string name="context_menu_remove_account" msgid="2776049374428247354">"删除"</string>
+    <string name="remove_account_dialog_button_remove" msgid="1115752492175745669">"删除帐户"</string>
+    <string name="remove_account_dialog_title" msgid="3627142692332624397">"是否删除 <xliff:g id="ACCOUNT">%1$s</xliff:g>？"</string>
+    <string name="remove_account_dialog_message" msgid="5152134907192755352">"删除该帐户会&lt;b&gt;导致您无法&lt;/b&gt;生成验证码，但&lt;b&gt;不会&lt;/b&gt;关闭双重身份验证。您可能会因此无法登录自己的帐户。&lt;p&gt;在删除该帐户之前，请执行以下操作：&lt;ul&gt;&lt;li&gt;关闭该帐户的两双重身份验证功能，或者&lt;/li&gt;&lt;li&gt;确保您可以通过其他方法生成验证码。&lt;/li&gt; &lt;/ul&gt;"</string>
+    <string name="remove_google_account_dialog_message" msgid="5734774722876234898">"删除该帐户会&lt;b&gt;导致您无法&lt;/b&gt;生成验证码，但&lt;b&gt;不会&lt;/b&gt;关闭两步验证。您可能会因此无法登录自己的帐户。&lt;p&gt;在删除该帐户之前，请执行以下操作：&lt;ul&gt;&lt;li&gt;关闭该帐户的两步验证，或者&lt;/li&gt;&lt;li&gt;确保您可以通过其他方法生成验证码。&lt;/li&gt; &lt;/ul&gt;"</string>
+    <string name="rename" msgid="4407492613148938173">"重命名"</string>
+    <string name="rename_message" msgid="5929955206098259018">"重命名 <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="error_exists" msgid="9037595140877350695">"抱歉，此名称已在使用。"</string>
+    <string name="copy_to_clipboard" msgid="9220543434521756454">"复制到剪贴板"</string>
+    <string name="counter_pin" msgid="6520222181829297474">"获取代码"</string>
+    <string name="empty_pin" msgid="2123950169339395812">"_ _ _ _ _ _"</string>
+    <string name="ok" msgid="6406800116409689723">"确定"</string>
+    <string name="type_prompt" msgid="5595994960218859859">"密钥类型"</string>
+    <string-array name="type">
+        <item msgid="7456778849112065121">"基于时间"</item>
+        <item msgid="5212912099902129712">"基于计数器"</item>
+    </string-array>
+    <string name="dataimport_import_succeeded_uninstall_dialog_title" msgid="6215126097026112170">"已成功导入"</string>
+    <string name="dataimport_import_succeeded_uninstall_dialog_prompt" msgid="4298949858655509063">"已成功从弃用的 Google 身份验证器应用中导入您的数据。现在您可以点击下面的按钮放心地卸载该应用先前的版本。"</string>
+    <string name="button_uninstall_old_app" msgid="425412851508359894">"卸载"</string>
+    <string name="howitworks_page_enter_password_details" msgid="1637264390208452667">"但是，如果您是在新的计算机或设备上登录，Google 会要求您输入特殊的验证码来验证您的身份。"</string>
+    <string name="howitworks_page_enter_code_details" msgid="2285856515167753320">"该应用会生成必要的验证码供您继续登录。"</string>
+    <string name="howitworks_page_verify_device_details" msgid="9198940182976285367">"您还可以选择记住该计算机，这样，下次 Google 就不会再要求您在这台计算机上输入验证码了。"</string>
+    <string name="button_exit_howitworks_flow" msgid="6789714209015077393">"退出"</string>
+
+</resources>

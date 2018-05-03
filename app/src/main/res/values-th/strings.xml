@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Makeys</string>
+ <!-- TODO: Remove or change this placeholder text -->
+ <string name="hello_blank_fragment">สวัสดีค่ะ/ครับ</string>
+ <string name="loaddings">กำลังโหลด...</string>
+
+ <string name="scan_text">กรุณาแสกน QR CODE</string>
+
+ <string name="start_btn">เริ่ม</string>
+ <string name="cancel_btn">ยกเลิก</string>
+
+ <string name="fingerprint_success">การบันทึกลายนิ้วมือสำเร็จ</string>
+ <string name="fingerprint_not_recognized">กรุณาลองอีกครั้ง</string>
+
+ <!-- Dialog info -->
+ <string name="no_sensor_dialog_title">ไม่มีอุปกรณ์เซ็นเซอร์ลายนิ้วมือ</string>
+ <string name="no_sensor_dialog_message">อุปกรณ์ของคุณไม่มีอุปกรณ์เซ็นเซอร์ลายนิ้วมือ กรุณากดยกเลิก/ออก.</string>
+ <string name="no_fingerprint_enrolled_dialog_title">โปรดไปที่การตั้งค่าระบบ เปิดใช้งานลายนิ้วมือ</string>
+ <!--  <string name="no_fingerprint_enrolled_dialog_message">\ ไม่มีการเปิดใช้งานระบบเซ็นเซอร์ลายนิ้วมือ
+       <font fgcolor="green">ตั้งค่า- >ความปลอดภัย- > Nexus \เลือก</font>คลิกลงทะเบียนหรือกดออก</string>-->
+ <string name="ok_btn_dialog">OK</string>
+ <string name="cancel_btn_dialog">ยกเลิก</string>
+ <string name="setti">คุณยังไม่ได้ตั้งค่าการปลดล็อคแบบสัมผัสลากเส้น</string>
+
+ <!-- auth result error amd help code warning -->
+ <string name="AcquiredGood_warning">ความปลอดภัยสูง.</string>
+
+  <string name="AcquiredImageDirty_warning"> ลองอีกครั้ง</string>
+  <string name="AcquiredInsufficient_warning">ลองอีกครั้ง</string>
+
+  <string name="AcquiredPartial_warning">ลองอีกครั้ง</string>
+
+  <string name="AcquiredTooFast_warning">ลองอีกครั้ง</string>
+
+  <string name="AcquiredToSlow_warning">ลองอีกครั้ง</string>
+
+  <string name="ErrorCanceled_warning">โปรดยืนยันลายนิ้วมือของคุณ</string>
+
+  <string name="ErrorHwUnavailable_warning">อุปกรณ์ไม่พร้อมใช้งาน โปรดลองอีกครั้งในภายหลัง.</string>
+
+  <string name="ErrorLockout_warning">การยืนยันลายนิ้วมือถูกปิดอยู่</string>
+
+  <string name="ErrorTimeout_warning">ลองอีกครั้ง</string>
+ <string name="ErrorUnableToProcess_warning">ลองอีกครั้ง</string>
+ <string name="ErrorNoSpace_warning">ลองอีกครั้ง</string>
+ <string name="ErrorNoSpace_zai">กรุณาลองใหม่อีกครั้งในภายหลัง</string>
+
+ <string name="alias_hint">Alias ใช้ตัวอักษรเล็กใหญ่ ตัวเลข เครื่องหมาย (_)</string>
+ <string name="tag_hint">Tagใช้ตัวอักษรเล็กใหญ่ ตัวเลข เครื่องหมาย ภาษาจีน แบ่งคั่นด้วยเครื่องหมายจุลภาค</string>
+ <string name="style_hint">styleใช้ตัวเลข</string>
+ <string name="error_style_empty">styleห้ามเว้นวรรค</string>
+ <string name="error_alias_empty">aliasห้ามเว้นวรรค</string>
+ <string name="error_tag_empty">tagห้ามเว้นวรรค</string>
+ <string name="error_tag_gs_empty">รูปแบบไม่ถูกต้อง</string>
+ <string name="error_network">การเชื่อมต่อเครือข่ายผิดพลาด โปรดตรวจสอบการเชื่อมเครือข่ายอินเตอร์เน็ตอีกครั้ง！</string>
+ <string name="logining">ระบบปฎิบัติการBackendกำลังดำเนินการ โปรดตรวจสอบประวัติใช้งาน！</string>
+ <string name="setting_su">ตั้งค่าสำเร็จ</string>
+ <string name="setting_error">ลายนิ้วมือผิดพลาด !กรุณาลองใหม่อีกครั้ง!</string>
+
+ <string name="pull_to_refresh">รีเฟรชใหม่อีกครั้ง</string>
+ <string name="release_to_refresh">ทำการรีเฟรชใหม่ทันที</string>
+ <string name="refreshing">กำลังรีเฟรช...</string>
+ <string name="refresh_succeed">รีเฟรชสำเร็จ</string>
+ <string name="refresh_fail">รีเฟรชล้มเหลว</string>
+ <string name="pullup_to_load">ดาวน์โหลดเพิ่มเติม</string>
+ <string name="release_to_load">ดาวน์โหลดเพิ่มเติมทันที</string>
+ <string name="load_succeed">ดาวน์โหลดสำเร็จ</string>
+ <string name="load_fail">ดาวน์โหลดล้มเหลว</string>
+ <string name="loading">กำลังดาวน์โหลดข้อมูล...</string>
+
+ <string name="title1">ตั้งค่าอีเมล์</string>
+ <string name="title2">แก้ไขพาสเวิร์ด</string>
+ <string name="title3">ตั้งค่าพาสเวิร์ด</string>
+ <string name="title4">แก้ไขรหัสผ่านชำระเงิน</string>
+ <string name="title5">เปลี่ยนรหัส OTP</string>
+ <string name="title6">เลือกประเทศและภูมิภาค</string>
+ <string name="title7">ตั้งค่าอุปกรณ์</string>
+ <string name="title8">ตั้งค่าลายนิ้วมือ</string>
+ <string name="title9">ประวัติบัญชี</string>
+ <string name="title10">ตั้งค่าการสัมผัสแบบลากเส้น</string>
+ <string name="title11">เกี่ยวกับ</string>
+ <string name="title12">ภาษา</string>
+ <string name="title13">บัญชีล็อคอิน</string>
+ <string name="title14">ศูนย์ความปลอดภัยบัญชี</string>
+ <string name="title15">บันทึกการใช้งาน</string>
+ <string name="title16">ข้อมูลส่วนตัว</string>
+ <string name="title16a">โปรไฟล์ชื่อจริง</string>
+ <string name="title17">แสกนQR code</string>
+ <string name="title18">ตั้งค่ามือถือ</string>
+ <string name="title19">ตั้งค่าข้อมูลส่วนตัว</string>
+ <string name="title20">ยืนยันผ่านSMS </string>
+ <string name="title21">ยินดีต้อนรับ</string>
+ <string name="title22">รหัสผ่านหน้าจอlock screen </string>
+ <string name="title23">ผูกมือถือใหม่</string>
+ <string name="title24">explore</string>
+
+ <string name="lock1">โปรดวาดรูปแบบการปลดล็อกอีกครั้ง</string>
+ <string name="lock2">รูปแบบการล็อคอินไม่ถูกต้อง กรุณาล็อคอินใหม่อีกครั้ง</string>
+ <string name="lock3">คุณยังไม่ได้เปิดเข้าระบบใช้งานด้วยรหัสผ่านสัมผัสลากเส้น</string>
+ <string name="lock4">คุณได้ตั้งค่าความปลอดภัยเริ่มต้นสำหรับเข้าระบบใช้งานด้วยรหัสผ่านสัมผัสลากเส้นแล้ว</string>
+ <string name="lock5">คุณยังไม่ได้ตั้งค่าความปลอดภัยเริ่มต้นสำหรับเข้าระบบใช้งานด้วยรหัสผ่านสัมผัสลากเส้นแล้ว</string>
+ <string name="lock6">ระบบใช้งานด้วยรหัสผ่านสัมผัสลากเส้นถูกปิดลง</string>
+ <string name="lock7">รหัสผ่านผิด  กรุณากรอกใหม่,</string>
+ <string name="lock8">ครั้ง</string>
+ <string name="lock9">รหัสผ่านไม่ตรงกัน</string>
+ <string name="lock10">ยังไม่ได้เปิดใช้งานด้วยรหัสผ่านสัมผัสลากเส้น</string>
+ <string name="lock11">การยืนยันด้วยลายนิ้วมือได้เปิดใช้งานแล้ว</string>
+ <string name="lock12">กรุณาตั้งค่าใหม่ ลากเส้นสัมผัสอย่างน้อย 4จุด!</string>
+
+ <string name="main1">การรักษาด้านความปลอดภัย</string>
+ <string name="main2">เปิดใช้งาน</string>
+ <string name="main3">ยังไม่ได้เปิดใช้งาน</string>
+ <string name="main4">ความปลอดภัยบัญชี</string>
+ <string name="main5">แบบลากเส้นสัมผัส</string>
+ <string name="main6">แบบลายนิ้วมือ</string>
+ <string name="main7">ภาษา</string>
+ <string name="main8">เกี่ยวกับ</string>
+ <string name="main9">ออกจากบัญชีปัจจุบัน</string>
+ <string name="main10">ยังไม่ได้รับอนุญาต</string>
+ <string name="main11">ถูกปิดลง</string>
+ <string name="main12">explore</string>
+
+ <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"$%^*()\|~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
+
+ <string name="china">ประเทศจีน</string>
+ <string name="button">ยืนยัน</string>
+ <string name="login">ยืนยัน</string>
+ <string name="tishi1">กรุณากรอกอีเมลการรักษาความปลอดภัยเดิม</string>
+ <string name="tishi2">กรุณายืนยันรหัสผ่านเดิมสำหรับเข้าสู่ระะบบ</string>
+ <string name="tishi3">รหัสผ่านใหม่สำหรับเข้าสู่ระบบ 6-18 อักษร  แบ่งเป็นอักษรตัวเล็กตัวใหญ่</string>
+ <string name="tishi3a">รหัสผ่านใหม่สำหรับชำระเงิน 6-18 อักษร  แบ่งเป็นอักษรตัวเล็กตัวใหญ่</string>
+ <string name="tishi4">กรุณายืนยันรหัสผ่านใหม่สำหรับเข้าสู่ระะบบ</string>
+ <string name="tishi4a">กรุณายืนยันรหัสผ่านชำระเงินใหม่</string>
+ <string name="tishi5">บัญชีมีความเสี่ยง</string>
+ <string name="tishi6">กรุณาเปลี่ยนรหัสผ่านใหม่</string>
+ <string name="tishi5a">ตั้งค่ารหัสผ่าน</string>
+ <string name="tishi6a">รหัสผ่านบัญชีมีระดับความปลอดภัยสูง  กรุณารักษาระดับความปลอดภัยเช่นนี้ไว้สม่ำเสมอและอัพเดตรหัสผ่านเป็นประจำ</string>
+ <string name="tishi7a">เปลี่ยนรหัสผ่าน</string>
+ <string name="tishi7">กรุณาแก้ไขรหัสผ่านสำหรับเข้าสู่ระะบบ</string>
+ <string name="tishi8">กรุณาแก้ไขผ่านชำระเงินใหม่</string>
+ <string name="tishi8a">ตั้งค่ารหัสผ่านการชำระเงินใหม่</string>
+ <string name="tishi9">โปรดยืนยันรหัสผ่านการชำระเงินเดิม</string>
+ <string name="tishi10">กรุณากรอกรหัสยืนยัน</string>
+ <string name="tishi11">รับรหัสยืนยัน</string>
+ <string name="tishi12">ถัดไป</string>
+ <string name="tishi12a">ถัดไป</string>
+ <string name="tishi13">ประเทศ / ภูมิภาค</string>
+ <string name="tishi14">กรุณากรอกหมายเลขโทรศัพท์ใหม่</string>
+ <string name="tishi15">หากมีการเปลี่ยนแปลงหมายเลขโทรศัพท์เดิมที่ใช้รับรหัสOTPหรือเบอร์โทรศัพท์ไม่สามารถรับรหัสยืนยันผ่านSMSได้ ต้องแจ้งหมายเลขโทรศัพท์ใหม่ที่ใช้รับรหัสยืนยันOTP พร้อมทั้งข้อมูลที่ถูกต้องตามจริง หลังผ่านการตรวจสอบ หมายเลขโทรศัพท์มือถือใหม่ถึงจะสามารถใช้ลับรหัส OTPใหม่ได้</string>
+ <string name="tishi16">กรุณากรอกหมายเลขโทรศัพท์</string>
+ <string name="tishi16c">กรุณากรอกอีเมลเข้าสู่ระบบ</string>
+ <string name="tishi16a">กรุณากรอกชื่อสกุล</string>
+ <string name="tishi16b">โปรดป้อนหมายเลขประจำตัวประชาชน</string>
+ <string name="tishi16d">กรุณากรอกบัญชี</string>
+ <string name="tishi16e">กรุณายืนยันบัญชี</string>
+ <string name="tishi17">รูปถ่าย</string>
+ <string name="tishi18">เลือกจากอัลบั้ม</string>
+ <string name="tishi19">ยืนยันรหัส OTP</string>
+ <string name="tishi20">ป้อนข้อความค้นหาชื่อประเทศ</string>
+ <string name="tishi21">อนุญาตเข้าถึงอุปกรณ์</string>
+ <string name="tishi22">ยังไม่มีการอนุญาตเข้าถึงอุปกรณ์</string>
+ <string name="tishi23">เข้าสู่ระบบปัจจุบัน</string>
+ <string name="tishi24">บันทึกการเข้าระบบล่าสุด</string>
+ <string name="tishi25"> เมื่อเริ่มต้นเข้าสู่ระบบด้วยรหัสสัมผัสลากเส้น หากมีบุคคลอื่นใช้โทรศัพท์ของคณโดยไม่มีรหัสผ่านจะไม่สามารถเปิดใช้งานศูนย์ความปลอดภัยบัญชีของคุณได้</string>
+ <string name="tishi26">โปรดวาดการสัมผัสลากเส้นแบบเดิม</string>
+ <string name="tishi26b">กรุณายืนยันรูปภาพการสัมผัสลากเส้น </string>
+ <string name="tishi26c">ยืนยันรหัสภาพการสัมผัสลากเส้น</string>
+ <string name="tishi26a">โปรดวาดภาพสัมผัสลากเส้นสำหรับปลดล็อค</string>
+ <string name="tishi26d">โปรดยืนยันรหัสสัมผัสลากเส้นสำหรับปลดล็อค</string>
+ <string name="tishi27">ตรวจสอบเวอร์ชันใหม่</string>
+ <string name="tishi28">ประเมิน</string>
+ <string name="tishi29">การอนุมัติเข้าสู่ระบบ</string>
+ <string name="tishi30">กำลังเข้าสู่ระบบ</string>
+ <string name="tishi31">เพื่อความปลอดภัยบัญชี โปรดยืนยันตัวตน</string>
+ <string name="tishi32">ยืนยันสิทธิ์</string>
+ <string name="tishi33">ปฎิเสธการใช้สิทธิ์</string>
+ <string name="tishi34">ภาษาที่ใช้งานได้</string>
+ <string name="tishi35">ภาษาจีนตัวย่อ</string>
+ <string name="tishi36">ภาษาจีนดั้งเดิม</string>
+ <string name="tishi37">ภาษาอังกฤษ</string>
+ <string name="tishi38">ภาษาไทย</string>
+ <string name="tishi39">ล็อคอินรหัสสัมผัสลากเส้นเปิดใช้งาน</string>
+ <string name="tishi40">กำหนดเวลาแก้ไขรหัสผ่านเพื่อความปลอดภัยบัญชี </string>
+ <string name="tishi41">แก้ไขรหัสผ่าน</string>
+ <string name="tishi42">ยกเลิกการแก้ไขรหัสผ่าน</string>
+ <string name="tishi43">โปรดป้อนรหัสผ่านเข้าสู่ระบบ</string>
+ <string name="tishi43a">โปรดป้อนรหัสผ่านการชำระเงิน</string>
+ <string name="tishi44">เรียกคืนรหัสผ่าน</string>
+ <string name="tishi45">โปรดป้อนรหัสผ่านอีกครั้ง</string>
+ <string name="tishi46">ทำการตั้งค่า</string>
+ <string name="tishi47">ยังไม่ได้ตั้งค่าข้อมูลส่วนตัว</string>
+ <string name="tishi48">ตั้งค่าข้อมูลส่วนตัวเรียบร้อย</string>
+ <string name="tishi48a">ได้ทำการส่งข้อมูลเรียบร้อย</string>
+ <string name="tishi48b">การยืนยันข้อมูลส่วนตัวล้มเหลว</string>
+ <string name="tishi48c">ยืนยันสมบูรณ์</string>
+ <string name="tishi48d">หลังผ่านการยืนยันข้อมูลส่วนตัวจะไม่สามารถแก้ไขได้</string>
+ <string name="tishi48e">กรุณารอการอนุมัติ</string>
+ <string name="tishi48f">ขนาดภาพไม่ตรงตามเงื่อนไข กรุณาอัปโหลดอีกครั้ง</string>
+ <string name="tishi48g">ยินดีด้วย ข้อมูลส่วนตัวของคุณผ่านการอนุมัติแล้ว</string>
+ <string name="tishi48h">ยืนยันอีกครั้ง</string>
+ <string name="tishi48i">บัตรประชาชนตัวจริง</string>
+ <string name="tishi49">เปลี่ยนแปลง</string>
+ <string name="tishi50">อีเมล์ที่ทำการผูกไว้</string>
+ <string name="tishi51">กรุณาเปลี่ยนทันทีเมื่อมีการเปลี่ยนแปลงหมายเลขโทรศัพท์</string>
+ <string name="tishi52">ระบบจะไม่อนุญาติให้เข้าถึง หากยังไม่เปิดใช้งานระบบความปลอดภัย</string>
+ <string name="tishi53">ข้อมูลบัตรประชาชน</string>
+ <string name="tishi54">ประเภทเอกสาร</string>
+ <string name="tishi55">ชื่อสกุล</string>
+ <string name="tishi56">เลขประจำตัวประชาชน</string>
+ <string name="tishi57">มีอายุถึง</string>
+ <string name="tishi57a">วันที่เริ่มต้นเอกสาร</string>
+ <string name="tishi57b">วันที่บัตรหมดอายุ</string>
+ <string name="tishi58">เปลี่ยนแปลงหมายเลข</string>
+ <string name="tishi59">เปลี่ยนรูปแบบการเข้าสู่ระบบ</string>
+ <string name="tishi60">ระบบล็อคด้วยลายนิ้วมือล็อคไม่สามารถใช้งานได้</string>
+ <string name="tishi60a">รหัสผ่านไม่สามารถใช้งานได้</string>
+ <string name="tishi61">ตั้งค่าเรียบร้อย</string>
+ <string name="tishi62">ยังไม่ได้ตั้งค่า</string>
+ <string name="tishi63">ยังไม่ได้รับการยืนยัน</string>
+ <string name="tishi64">คลิกเข้าสู่ระบบ</string>
+ <string name="tishi64a">Touch-ID </string>
+ <string name="tishi65">ออกจากระบบ</string>
+ <string name="tishi66">กรุณาเพิ่มเติมอีเมล์：</string>
+ <string name="tishi67"></string>
+ <string name="tishia68">โปรดตั้งค่า</string>
+ <string name="tishia68a">โปรดตั้งค่า</string>
+ <string name="tishi68">กรุณาสร้างรหัสผ่านใหม่  ขอแนะนำให้ใช้ ตัวเลข ตัวอักษรและสัญลักษณ์ร่วมกัน เพื่อเพิ่มความปลอดภัยรหัสผ่าน</string>
+ <string name="tishi68a">กรุณาสร้างรหัสผ่านใหม่  ขอแนะนำให้ใช้ ตัวเลข ตัวอักษรและสัญลักษณ์ร่วมกัน เพื่อเพิ่มความปลอดภัยรหัสผ่าน</string>
+ <string name="tishi69">กรุณายืนยันเบอร์โทรศัพท์:</string>
+ <string name="tishi70">ศูนย์ความปลอดภัยข้อมูล</string>
+ <string name="tishi71">กรุณาตรวจสอบการเปิดใช้งานอินเตอร์เน็ตหรือGPS</string>
+ <string name="tishi72">เซิร์ฟเวอรืเกิดข้อผิดพลาด</string>
+ <string name="tishi73">กรุณากรอกให้ถูกต้อง</string>
+ <string name="tishi74">โปรดป้อนหมายเลขโทรศัพท์ที่ถูกต้อง</string>
+ <string name="tishi75">ที่สอง</string>
+ <string name="tishi76">ยื่นขออีกครั้ง</string>
+ <string name="tishi77">กรุณากรอกให้ถูกต้อง</string>
+ <string name="tishi78">หมายเลขโทรศัพท์ที่ใช้รับOTP ：</string>
+ <string name="tishi79">รหัส IDความปลอดภัย</string>
+ <string name="tishi80">ยืนยันรหัสผ่านลายนิ้วมือโทรศัพท์ด้วยลายนิ้วมือ</string>
+ <string name="tishi80a">ยืนยันรหัสผ่านลายนิ้วมือโทรศัพท์ด้วยลายนิ้วมือ</string>
+ <string name="tishi81">บัญชีของคุณได้ลงชื่อเข้าใช้ในอุปกรณ์อื่นอยู่</string>
+ <string name="tishi82">คำแนะนำ</string>
+ <string name="tishi83">ข้อมูลล้มเหลว</string>
+ <string name="tishi84">เปลี่ยนแปลงข้อมูล</string>
+ <string name="tishi85">รหัสผ่านเข้าสู่ระบบบัญชีมีการเปลี่ยนแปลง โปรดเข้าสู่ระบบอีกครั้ง</string>
+ <string name="tishi85a">รหัสผ่านการชำระเงินมีการเปลี่ยนแปลง โปรดเข้าสู่ระบบอีกครั้ง</string>
+ <string name="tishi86">อนุญาติเข้าถึงเวลา：</string>
+ <string name="tishi87">เข้าสู่ระบบล่าสุด：</string>
+ <string name="tishi88">ยืนยันรหัสผ่าน</string>
+ <string name="tishi89">อีเมล์ที่ทำการผูกไว้</string>
+ <string name="tishi90">เปลี่ยนอีเมลล์</string>
+ <string name="tishi91">กรุรากรอกอีเมล์</string>
+ <string name="tishi92">กรุณายืนยันรหัสผ่าน</string>
+ <string name="tishi93">ส่งข้อมูล</string>
+ <string name="tishi94">กรุณารอการตรวจสอบ</string>
+ <string name="tishi95">ล็อกอินอีกครั้ง</string>
+ <string name="tishi96">เปิดใช้งาน</string>
+ <string name="tishi97">การเข้าถึงรูปแบบความปลอดภัย</string>
+ <string name="tishi98">ยังไม่เปิดการอนุญาตเข้าถึงความปลอดภัยบัญชี</string>
+ <string name="tishi99">ยกเลิก</string>
+ <string name="tishi100">ยืนยันออกจากระบบ</string>
+ <string name="tishi101">แจ้งออกจากระบบ</string>
+ <string name="tishi102">บัญชีของคุณ</string>
+ <string name="tishi103">ลงชื่อเข้าใช้อุปกรณ์อื่น</string>
+ <string name="tishi104">\n หากคุณไม่ได้ดำเนินการเอง โปรดเปลี่ยนรหัสผ่านของคุณหรือเข้าสู่ระบบอีกครั้ง</string>
+ <string name="tishi105">ปิด“</string>
+ <string name="tishi105a">เปิด“</string>
+ <string name="tishi106">”การอนุญาตเข้าถึงทั้งหมด?</string>
+ <string name="tishi107">นี่คือเวอร์ชันล่าสุด</string>
+ <string name="tishi108">บัญชีถูกระงับ</string>
+ <string name="tishi109">รหัสผ่านใหม่ต้องห้ามซ้ำกับรหัสผ่านเดิม</string>
+ <string name="tishi110">ไม่มีข้อมูล</string>
+ <string name="tishi111">รีเซ็ตรหัสผ่านสำหรับเข้าสู่ระบบบัญชีสำเร็จแล้ว โปรดลงชื่อเข้าใช้อีกครั้ง</string>
+ <string name="tishi112">กำลังเข้าสู่หน้าระบบ</string>
+ <string name="tishi113">ต้องทำการเปิดรับข้อความแจ้งเตือนถึงจะได้รับข้อความที่ส่งไป เปิดฟังก์ชั่นการเข้าถึงและการสแกน</string>
+ <string name="tishi114">เปิดการใช้งาน</string>
+ <string name="tishi115">ข้อมูลการเข้าสู่ระบบของคุณอาจหมดอายุ  กรุณาเข้าสู่ระบบอีกครั้ง</string>
+ <string name="tishi116">เครือข่ายผิดพลาด</string>
+ <string name="tishi117">อัพเดต</string>
+ <string name="tishi118">เวอร์ชั่นล่าสุด：</string>
+ <string name="tishi119">กรุณากรอกข้อมูลให้สมบูรณ์</string>
+ <string name="tishi119a">วันที่ไม่ถูกต้อง</string>
+ <string name="tishi120">เลือกวันที่เกิด</string>
+ <string name="tishi121">เลือกวันเกิด</string>
+ <string name="tishi122">เลือกวันหมดอายุ</string>
+    <string name="tishi122a">โปรดเลือกวันที่ออก</string>
+    <string name="tishi122b">โปรดเลือกวันที่บัตรหมดอายุ</string>
+ <string name="tishi123">เลือกรูปแบบบัตร</string>
+ <string name="tishi124">เลือกที่อยู่</string>
+ <string name="tishi125">บัตรประชาชน</string>
+ <string name="tishi126">หนังสือเดินทาง</string>
+ <string name="tishi127">ใบอนุญาตขับขี่</string>
+ <string name="tishi128">วันเริ่มใช้</string>
+ <string name="tishi128a">QR CODE Makeys ไม่สามารถใช้งานได้</string>
+ <string name="tishi130">รหัสOTP</string>
+ <string name="tishi131">อนุญาต</string>
+ <string name="tishi132">ลงทะเบียน</string>
+ <string name="tishi133a">ทำงานไม่ได้?</string>
+ <string name="tishi133">ซิงค์ใหม่อีกครั้ง</string>
+ <string name="tishi134">คัดลอกรหัสผ่าน</string>
+ <string name="tishi134a">แสดงรหัสผ่าน</string>
+ <string name="tishi135">รหัสผ่านถูกคัดลอกไปยังคลิปบอร์ด</string>
+ <string name="tishi136">ยกเลิก</string>
+ <string name="tishi137">การซิงค์เวลาถูกต้อง</string>
+ <string name="tishi138">การอนุญาติเข้าถึงสำเร็จ</string>
+ <string name="tishi139">การอนุญาติเข้าถึงล้มเหลว</string>
+ <string name="tishi139a">การอนุญาติเข้าถึงเลยเวลาที่กำหนด</string>
+ <string name="tishi140">รักษาความปลอดภัย</string>
+ <string name="tishi141">ระบบดูแความปลอดภัยดีอย่างไร</string>
+ <string name="tishi142">จะทำการยืนยันเข้าสู่ระบบได้อย่างไร</string>
+ <string name="tishi143">ควรแก้ไขเปลี่ยนแปลงไหม/เรียกคืนรหัสผ่าน</string>
+ <string name="tishi144">วิธีเปลี่ยนแปลงเบอร์โทรศัพท์</string>
+ <string name="tishi145">แกลอรี่</string>
+ <string name="tishi146">ไม่รู้จักQR Code</string>
+ <string name="tishi147">คำขออัปโหลดเอกสาร</string>
+ <string name="tishi148">คำขออัปโหลดเอกสาร</string>
+ <string name="tishi149">1 ภาพมีความชัดเจนมุมเสร็จสมบูรณ์ข้อมูลเอกสารสามารถมองเห็นได้ชัดเจนเอกสารมีอยู่ทั้งหมดในภาพ</string>
+ <string name="tishi150">2, ข้อมูลประจำตัวโดยไม่ต้องครอบคลุม, เปลี่ยนแปลง, เบลอ</string>
+ <string name="tishi151">3, ใบหน้ามือถือให้สอดคล้องกับเอกสารและภาพถ่ายข้อมูลการรับรอง</string>
+ <string name="tishi152">ภาพไม่ชัดเจน</string>
+ <string name="tishi153">ไม่ได้อัปโหลดตามที่ต้องการ</string>
+ <string name="tishi154">ข้อมูลไม่ตรงกัน</string>
+ <string name="tishi155">กรุณาเลือกประเทศ/เขต</string>
+ <string name="tishi156">ตั้งลายนิ้วมือ</string>
+ <string name="tishi157">โปรดตั้งค่าล็อคท่าทาง / ล็อคลายนิ้วมือ</string>
+ <string name="tishi159">ต้องการลบหรือไม่?</string>
+ <string name="tishi160">รีเซ็ต</string>
+ <string name="tishi161">ภาพต้องน้อยกว่า 5M</string>
+
+ <string name="code1">สำเร็จ</string><!--20000-->
+ <string name="code2">ล้มเหลว</string><!--20001-->
+ <string name="code3">ผิดพลาด</string><!--20002-->
+ <string name="code4">ผู้ใช้ไม่ได้เข้าสู่ระบบ</string><!--20003-->
+ <string name="code5">ยังไม่ได้รับอนุญาติเข้าถึง</string><!--20004-->
+ <string name="code6">ไม่มีบัญชีผู้ใช้</string><!--20005-->
+ <string name="code7">ตัวเลขห้ามเว้นวรรค</string><!--10007-->
+ <string name="code8">ตัวเลขผิด</string><!--10011-->
+ <string name="code9">บัญชีถูกล็อค</string><!--10013-->
+ <string name="code10">รหัสผ่านผิด</string><!--10014-->
+ <string name="code11">ชื่อบัญชีผู้ใช้ผิด</string><!--10015-->
+ <string name="code12">รหัสผ่านความปลอดภัยไม่ถูกต้อง</string><!--10016-->
+ <string name="code13">ยืนยันรหัสผ่านอีเมล์ผิดพลาด</string><!--10017-->
+ <string name="code14">รหัสผ่านและการยืนยันรหัสผ่านไม่ถูกต้อง</string><!--10020-->
+ <string name="code15">มีอีเมลอยู่แล้ว</string><!--10021-->
+ <string name="code16">มีชื่อบัญชีผู้ใช้อยู่แล้ว</string><!--10022-->
+ <string name="code17">รหัสยืนยันผิดพลาด</string><!--10024-->
+ <string name="code18">การยืนยันล้มเหลว</string><!--10025-->
+ <string name="code19">รหัสผ่านไม่ถูกต้องเกินกว่าจำนวนครั้งที่กำหนด</string><!--10026-->
+ <string name="code20">ยืนยันล้มเหลว</string><!--10027-->
+ <string name="code21">ไม่มีบัญชีนี้</string><!--10028-->
+ <string name="code22">ไม่พบข้อมูลที่ระบุ！</string><!--10029-->
+ <string name="code23">รหัสผ่านความปลอดภัยและรหัสผ่านเข้าสู่ระบบเหมือนกัน！</string><!--10033-->
+ <string name="code24">รูปแบบอีเมล์ไม่ถูกต้อง！</string><!--10034-->
+ <string name="code25">รหัสยืนยัน SMSผิดพลาด！</string><!--10036-->
+ <string name="code26">ผู้ใช้ถูกระงับการใช้งานชั่วคราว！</string><!--10037-->
+ <string name="code27">ผู้ใช้ถูกระงับการใช้งานถาวร！</string><!--10038-->
+ <string name="code28">ศูนย์บริการความปลอดภัยไม่สามารถใช้งานได้！</string><!--10500-->
+ <string name="code29">รีเฟรชtokenเกินเวลาที่กำหนด</string><!--10501-->
+ <string name="code30">ล้มเหลว</string><!--10502-->
+ <string name="code31">ระบบขัดข้อง</string><!--10503-->
+ <string name="code32">บัญชีหรือรหัสผ่านไม่ถูกต้อง</string><!--10504-->
+ <string name="code33">การส่งข้อความล้มเหลว</string><!--10505-->
+ <string name="code34">การส่งอีเมล์ล้มเหลว</string><!--10506-->
+ <string name="code35">ยังไม่ได้ผูกเบอร์</string><!--10508-->
+ <string name="code36">ผู้ใช้ผูกเบอร์ที่ยังไม่เปิดใช้บริการ</string><!--10509-->
+ <string name="code37">เบอร์ที่ยังไม่เปิดใช้บริการ</string><!--10510-->
+ <string name="code38">มีเบอร์นี้ในระบบแล้ว</string><!--10511-->
+ <string name="code39">กรุณาลงชื่อเข้าใช้ศูนย์ความปลอดภัยapp</string><!--10512-->
+ <string name="code40">รหัสผ่านความปลอดภัยไม่ถุกต้อง</string><!--10513-->
+ <string name="code41">รหัสผ่านเข้าสู่ระบบไม่ถุกต้อง</string><!--10514-->
+ <string name="code42">ยังไม่ได้รับแนุญาติการเข้าถึงอุปกรณ์</string><!--10516-->
+ <string name="code43">QUIZ</string><!--1010-->
+ <string name="code44">MAIL</string><!--1011-->
+ <string name="code45">ชื่อไม่ได้อยู่ในรูปแบบที่ถูกต้อง</string><!--80003-->
+ <string name="code46">รูปแบบหมายเลขประจำตัวไม่ถูกต้อง</string><!--80004-->
+ <string name="code47">ไม่มีหมายเลขประจำตัวประชาชน</string><!--90033-->
+ <string name="code48">การรับรองไม่ผ่าน</string><!--90099-->
+ <string name="code49">the info is already existed</string><!--8088-->
+ <string name="code50">หมายเลขประจำตัวอยู่แล้ว!</string><!--10538-->
+ <string name="code51">พารามิเตอร์ที่ไม่สมบูรณ์</string><!--80001-->
+ <string name="code52">การบำรุงรักษาบัตรประจำตัวโปรดลองอีกครั้งในภายหลัง</string><!--80008-->
+ <string name="code53">ขนาดเอกสารเกินกว่าค่าที่ระบุ</string><!--10519-->
+ <string name="code54">ไม่มีหมายเลขประจำตัวประชาชน</string><!--10539-->
+ <string name="code55">วันที่เริ่มต้นไม่ถูกต้อง</string><!--10540-->
+ <string name="code56">ข้อผิดพลาดวันที่สิ้นสุด</string><!--10541-->
+
+
+ <string name="data0">ไม่รู้จักรูปแบบ</string>
+ <string name="data1">เข้าสู่ระบบ</string>
+ <string name="data2">ออกจากระบบ</string>
+ <string name="data3">สมัครสมาชิก</string>
+ <string name="data4">ผู้ดูแลเพิ่มสมาชิก</string>
+ <string name="data5">แก้ไขสมาชิก</string>
+ <string name="data6">เปลี่ยนแปลงรหัสผ่าน</string>
+ <string name="data7">ตั้งค่ารหัสผ่านใหม่</string>
+ <string name="data8">ลืมรหัสผ่าน</string>
+ <string name="data9">เพิ่มผู้ดูแลระบบ</string>
+ <string name="data10">เพิ่มผู้ดูแลระบบ</string>
+ <string name="data11">ตรวจสอบการทำธุรกรรม</string>
+ <string name="data12">แลกเปลี่ยน</string>
+ <string name="data13">แก้ไขข้อมูล</string>
+ <string name="data14">เปลี่ยนแปลงรหัสผ่านการชำระเงิน</string>
+ <string name="data15">ตั้งค่ารหัสผ่านการชำระเงิน</string>
+ <string name="data16">ลืมรหัสผ่านการชำระเงิน</string>
+ <string name="data17">นำออกอุปกรณ์รักษาความปลอดภัย</string>
+ <string name="data18">บังคับออกจากระบบ</string>
+ <string name="data19">แก้ไขสถานะความปลอดภัยระบบ</string>
+ <string name="data1000">บัญชี</string>
+ <string name="data1001">WHEATFIELD</string>
+ <string name="data1002">FORCE</string>
+ <string name="data1003">AURORA</string>
+ <string name="data1004">Her-Mest</string>
+ <string name="data1009">ORE_XSG</string>
+ <string name="data2000">ความปลอดภัยผู้ใช้งาน</string>
+ <string name="data1010">QUIZ</string><!--1010-->
+ <string name="data1011">ระบบอีเมล์</string><!--1011-->
+ <string name="data1012">AKระบบธุรกรรมการซื้อขายAK</string><!--1012-->
+ <string name="data2001">Makeys APP</string>
+ <string name="data2002">Makeys manager</string>
+
+
+ <!-- <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>
+  <string name="opensource_page_url" translatable="false">https://github.com/google/google-authenticator/</string>
+  <string name="terms_page_url" translatable="false">http://m.google.com/tospage</string>
+  <string name="privacy_page_url" translatable="false">http://www.google.com/policies/privacy/</string>-->
+  <string name="timesync_preference_screen_title" msgid="3022961447302189451">"แก้ไขเพื่อสร้างรหัสยืนยัน"</string>
+  <string name="timesync_preference_screen_summary" msgid="4761393049788324525">"อัพเดทนาฬิกาในอุปกรณ์ยืนยันตัวตน กับGoogleให้ตรงกัน"</string>
+  <string name="timesync_sync_now_preference_title" msgid="3082679345742875442">"อัพเดท"</string>
+  <string name="timesync_about_feature_preference_title" msgid="8398618989030576453">"เกี่ยวกับระบบ"</string>
+  <string name="timesync_about_feature_screen_title" msgid="8248453942850581677">"เกี่ยวกับระบบ"</string>
+  <string name="timesync_about_feature_screen_details" msgid="1484703765964566915">"หากคุณกด &amp;ldquo;อัพเดททันที&amp;rdquo;，ปกรณ์ยืนยันจะทำการอัพเดทเวลาตาม Googleก่อน。การตั้งค่าวันและเวลาอุปกรณ์จะไม่มีการเปลี่ยนแปลง。&lt;p&gt;เวลาที่ทำการอัพเดทกับทาง Google  อุปกรณ์ยืนยันจะไม่ทำการส่งข้อมูลบุคคลหรือบัญชีใดๆทั้งสิ้น。&lt;p&gt; &lt;b&gt;ดีอย่างไร &lt;/b&gt; &lt;p&gt;สร้างรหัสการยืนยันแบบ 2 ขั้นตอนตามข้อมูลต่อไปนี้：1) เวลาปัจจุบัน，2) รหัสลับของระบบนี้และเซิฟเวอร์ 。&lt;p&gt;หากเวลาอุปกรณ์ยืนยันและเซิฟเวอร์ไม่ตรงกัน，อาจจะทำให้ไม่ได้รับรหัสยืนยันขณะที่คุณทำการเข้าระบบ 。&lt;p&gt;ตามสถานะการนี้，การยืนยันจะใช้การตั้งค่าวันที่และเวลาของอุปกรณ์，ดังนั้นในกรณีส่วนใหญ่，เพียงแค่คุณตรวจสอบวันเวลาให้ถูกต้อง ก็จะสามารถรับรหัสยืนยันได้ แต่ว่า หากเกิดเวลาไม่ตรงกัน ก็จะทำให้ยากต่อการแก้ไข （โดยเฉพาะเมื่อคุณใช้เวลาหรือเขตเวลาที่เครือข่ายกำหนดให้）。"</string>
+  <string name="timesync_sync_now_screen_title" msgid="3545642903720968544">"อัพเดท"</string>
+  <string name="timesync_sync_now_progress_dialog_title" msgid="7008645503609657769">"อัพเดท"</string>
+  <string name="timesync_sync_now_progress_dialog_details" msgid="307085676112612197">"กำลังเชื่อมต่อเซิร์ฟเวอร์…"</string>
+  <string name="timesync_sync_now_time_corrected_dialog_title" msgid="556836185362910715">"แก้ไขเวลาแล้ว"</string>
+  <string name="timesync_sync_now_time_corrected_dialog_details" msgid="8542304823376488491">"นาฬิกาอุปกรณ์ยืนยันตัวตนถูกตั้งค่าตามเวลาของ Google"\n\n"วันและเวลาของอุปกรณ์นี้ยังไม่ได้ทำการแก้ไข "</string>
+  <string name="timesync_sync_now_time_already_correct_dialog_title" msgid="4771431037030124374">"เวลาถูกต้อง"</string>
+  <string name="timesync_sync_now_time_already_correct_dialog_details" msgid="1783578393804196806">"อุปกรณ์ยืนยันตัวตนยังไม่ตั้งค่านาฬิกา เวลานาฬิกาถูกอัพเดทตามเวลา Google"</string>
+  <string name="timesync_sync_now_connectivity_error_dialog_title" msgid="3173165623567050563">"อัพเดท"</string>
+  <string name="timesync_sync_now_connectivity_error_dialog_details" msgid="7427576990969917093">"เกิดข้อผิดพลาดในการติดต่อเซิร์ฟเวอร์ Google กรุณาตรวจสอบการติดตั้งอินเตอร์และลองใหม่อีกครั้ง"</string>-->
+   <string name="app_name_short" msgid="6268465073167241020">"เครื่องมือยืนยันตัวตน"</string>
+   <string name="enter_key_title" msgid="3762128630776563361">"กรอกบัญชีด้วยตนเอง"</string>
+   <string name="enter_key_page_add_button" msgid="7145413404890383746">"เพิ่มเติม"</string>
+   <string name="button_add_account" msgid="4301500554118934829">"เพิ่มเติมบัญชี"</string>
+   <string name="button_how_it_works" msgid="5576563994507351533">"ศึกษาหลักการทำงานอื่น "</string>
+   <string name="add_account_menu_item" msgid="6422163385921921789">"เพิ่มเติมบัญชี"</string>
+   <string name="how_it_works_menu_item" msgid="7162080619184257276">"หลักการทำงาน"</string>
+   <string name="main_preference_screen_title" msgid="5971154576421128196">"ตั้งค่า"</string>
+   <string name="about_preference_title" msgid="2797539814683187124">"เกี่ยวกับ"</string>
+   <string name="settings_menu_item" msgid="3175383868365284896">"ตั้งค่า"</string>
+   <string name="button_add_account_manual_entry" msgid="7234157710472604378">"เพิ่มบัญชี"</string>
+   <string name="button_add_account_scan_barcode" msgid="4400516455038574606">"สแกนบาร์โค้ด"</string>
+   <string name="button_next" msgid="2321252361372851972">"หน้าถัดไป"</string>
+   <string name="button_back" msgid="414120249698283380">"ก่อนหน้า"</string>
+   <string name="enter_account_label" msgid="1488259241384211529">"กรอกชื่อบัญชี"</string>
+   <string name="enter_key_hint" msgid="480564521423532185">"กรอกรหัสผ่าน"</string>
+   <string name="enter_key_too_short" msgid="1883571748860519725">"รหัสผ่านสั้นเกินไป"</string>
+   <string name="enter_key_illegal_char" msgid="5667180343359002748">"รหัสผ่านมีสํญลักษณ์ไม่ถูกต้อง"</string>
+   <string name="error_title" msgid="1784361744549854479">"ผิดพลาด"</string>
+   <string name="error_uri" msgid="8889749448317216536">"ไม่พบรหัสผ่านนี้"</string>
+   <string name="error_qr" msgid="1076904454315180481">"ไม่สามารถอ่านค่า QR CODE ได้ "</string>
+   <string name="secret_saved" msgid="2201025202465443226">"บันทึกรหัสผ่านเรียบร้อย"</string>
+   <string name="save_key_message" msgid="4427138629791380096">"บันทึกรหัสผ่านบัญชีเรียบร้อย："</string>
+   <string name="error_empty_secret" msgid="1889970426144134666">"ไม่สามารถบันทึกได้ กรุณากรอกรหัสผ่าน"</string>
+   <string name="enter_pin" msgid="2238539410253130912">"กรุณากรอกรหัสยืนยันที่ได้รับ เมื่อเข้าสู่ระบบ"</string>
+   <string name="check_code_title" msgid="6308604727562833139">"การตั้งค่าสมบูรณ์"</string>
+   <string name="check_code_menu_item" msgid="6851230890695316742">"ตรวจสอบรหัสผ่าน"</string>
+   <string name="install_dialog_title" msgid="6389833865110438047">"ทำการติดตั้งเครื่องสแกนบาร์โค้ดหรือไม่？"</string>
+   <string name="install_dialog_message" msgid="4701150232869547399">"หากต้องการสแกนรหัสผ่านบาร์โค้ด ต้องทำการติดครั้งเครื่องสแกนบาร์โค้ด"</string>
+   <string name="install_button" msgid="5395462228740377795">"ติดตั้ง"</string>
+   <string name="about_preference_screen_title" msgid="8056864904503664711">"เกี่ยวกับ"</string>
+   <string name="version_preference_title" msgid="5388130414499892219">"รุ่น"</string>
+   <string name="opensource_preference_title" msgid="9222719496327822081">"เปิดรหัสค้นหา"</string>
+   <string name="terms_preference_title" msgid="2016562579825643136">"เงื่อนไขการบริการ"</string>
+   <string name="privacy_preference_title" msgid="5170441521661957179">"นโยบายความเป็นส่วนตัว"</string>
+   <string name="check_code" msgid="8970489904648838257">"ทำการตรวจสอบรหัสผ่านของ <xliff:g id="ACCOUNT">%1$s</xliff:g> ว่าถูกต้องหรือไม่，กรุณาตรวจสอบค่าว่าตรงตามข้อมูลของเซิฟเวอร์หรือไม่  ：&lt;br/&gt;"</string>
+   <string name="general_security_exception" msgid="2356961798953009046">"ข้อยกเว้นด้านความปลอดภัย"</string>
+   <string name="decoding_exception" msgid="7778970130063776199">"รหัสไม่ถูกต้อง"</string>
+   <string name="submit" msgid="1518558163262431303">"บันทึก"</string>
+   <string name="cancel" msgid="5705561042616477184">"ยกเลิก"</string>
+   <string name="context_menu_remove_account" msgid="2776049374428247354">"ลบข้อมูล"</string>
+   <string name="remove_account_dialog_button_remove" msgid="1115752492175745669">"ลบบัญชี"</string>
+   <string name="remove_account_dialog_title" msgid="3627142692332624397">"ต้องการลบ<xliff:g id="ACCOUNT">%1$s</xliff:g>หรือไม่？"</string>
+   <string name="remove_account_dialog_message" msgid="5152134907192755352">"ลบบัญชีนี้ &lt;b&gt;จะทำให้ไม่สามารถขอรหัสยืนยัน&lt;/b&gt;นี้ได้，แต่&lt;b&gt;ไม่สามารถ&lt;/b&gt;ปิดค่าการยืนยัน 2 ขั้นตอน คุณอาจจะไม่สามารถเข้าสู่บัญชีนี้ได้。&lt;p&gt;ก่อนทำการลบบัญชีนี้ ，กรุณาดำเนินตามขั้นตอนต่อไปนี้：&lt;ul&gt;&lt;li&gt;ปิดระบบการยืนยันตัวตนอีกครั้ง หรือ &lt;/li&gt;&lt;li&gt;ตรวจสอบการรับรหัสยืนยันในรูปแบบอื่น &lt;/li&gt; &lt;/ul&gt;"</string>
+   <string name="remove_google_account_dialog_message" msgid="5734774722876234898">"ลบบัญชีนี้&lt;b&gt;จะทำให้ไม่สามารถขอรหัสยืนยัน&lt;/b&gt;นี้ได้，แต่&lt;b&gt;ไม่สามารถ&lt;/b&gt;ปิดการยืนยัน 2 ขั้นตอน。คุณอาจจะไม่สามารถเข้าสู่บัญชีนี้ได้。&lt;p&gt;ก่อนทำการลบบัญชีนี้，กรุณาดำเนินตามขั้นตอนต่อไปนี้：&lt;ul&gt;&lt;li&gt;ปิดการยืนยัน 2 ขั้นตอน，หรือ&lt;/li&gt;&lt;li&gt;ตรวจสอบการรับรหัสยืนยันในรูปแบบอื่น。&lt;/li&gt; &lt;/ul&gt;"</string>
+   <string name="rename" msgid="4407492613148938173">"เปลี่ยนชื่อ"</string>
+   <string name="rename_message" msgid="5929955206098259018">"เปลี่ยนชื่อ <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+   <string name="error_exists" msgid="9037595140877350695">"ขออภัย! มีผู้ใช้ชื่อนี้แล้ว"</string>
+   <string name="copy_to_clipboard" msgid="9220543434521756454">"คัดลอกไปยังคลิปบอร์ด"</string>
+   <string name="counter_pin" msgid="6520222181829297474">"รับรหัส"</string>
+   <string name="empty_pin" msgid="2123950169339395812">"_ _ _ _ _ _"</string>
+   <string name="ok" msgid="6406800116409689723">"ตกลง"</string>
+   <string name="type_prompt" msgid="5595994960218859859">"รูปแบบรหัสผ่าน"</string>
+   <string-array name="type">
+    <item msgid="7456778849112065121">"ขึ้นอยู่กับเวลา"</item>
+    <item msgid="5212912099902129712">"ขึ้นอยู่กับเครื่องนับจํานวน"</item>
+   </string-array>
+   <string name="dataimport_import_succeeded_uninstall_dialog_title" msgid="6215126097026112170">"นำเข้าเรียบร้อย"</string>
+   <string name="dataimport_import_succeeded_uninstall_dialog_prompt" msgid="4298949858655509063">"นำเข้าข้อมูลที่เลิกใช้ของคุณเรียบร้อย ขณะนี้คุณสามารถถอนการติดตั้งแอปเวอร์ชันก่อนหน้าได้อย่างปลอดภัยโดยคลิกที่ปุ่มด้านล่าง "</string>
+   <string name="button_uninstall_old_app" msgid="425412851508359894">"ถอนการติดตั้ง"</string>
+   <string name="howitworks_page_enter_password_details" msgid="1637264390208452667">"แต่หากคุณเข้าสู่ระบบผ่านคอมพิวเตอร์หรืออุปกรณ์อื่น Google จะทำการส่งรหัสยืนยันเพื่อให้คุณทำการยืนยันตัวตน"</string>
+   <string name="howitworks_page_enter_code_details" msgid="2285856515167753320">"ระบบนี้จะทำการส่งรหัสยืนยันเพื่อใช้ในการเข้าสู่ระบบ。"</string>
+   <string name="howitworks_page_verify_device_details" msgid="9198940182976285367">"คุณสามารถทำการจดจำคอมพิวเตอร์ เพื่อจะไม่ต้องกรอกรหัสยืนยันบนคอมพิวเตอร์เครื่องนี้อีกต่อไป"</string>
+   <string name="button_exit_howitworks_flow" msgid="6789714209015077393">"ออก"</string>
+</resources>

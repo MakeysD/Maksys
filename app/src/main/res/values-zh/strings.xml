@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Makeys</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">你好</string>
+    <string name="loaddings">努力加载...</string>
+
+    <string name="scan_text">请将二维码对准取景框</string>
+
+    <string name="start_btn">开始</string>
+    <string name="cancel_btn">取消</string>
+
+    <string name="fingerprint_success">指纹识别成功</string>
+    <string name="fingerprint_not_recognized">再试一次</string>
+
+    <!-- Dialog info -->
+    <string name="no_sensor_dialog_title">没有指纹传感器</string>
+    <string name="no_sensor_dialog_message">在你的设备上没有指纹传感器,点击取消退出.</string>
+    <string name="no_fingerprint_enrolled_dialog_title">请去系统设置开启指纹</string>
+  <!--  <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
+        <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>-->
+    <string name="ok_btn_dialog">OK</string>
+    <string name="cancel_btn_dialog">取消</string>
+    <string name="setti">您未设置过手势密码</string>
+
+    <!-- auth result error amd help code warning -->
+   <string name="AcquiredGood_warning">获得的图像很好.</string>
+
+   <!-- <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
+    <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂,无法处理检测到的情况(即干性皮肤)或可能是脏的传感器.</string>
+
+    <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来.在注册过程,用户应该了解需要发生什么才能解决这个问题.“紧紧地压在传感器上.”</string>
+
+    <string name="AcquiredTooFast_warning">由于快速移动,指纹图像不完整.虽然大多数情况下都适用于线性阵列传感器,但如果在采集过程中手指被移动,这种情况也可能发生.
+                                            用户应该被要求移动手指的速度较慢(线性),或者将手指放在传感器上的时间更长.</string>
+
+    <string name="AcquiredToSlow_warning">由于缺乏运动,指纹图像难以辨认.这对于需要滑动动作的线性阵列传感器来说是最合适的</string>
+
+    <string name="ErrorCanceled_warning">请验证你的指纹</string>
+
+    <string name="ErrorHwUnavailable_warning">硬件不可用,稍后再试.</string>
+
+    <string name="ErrorLockout_warning">指纹验证已关闭</string>
+
+    <string name="ErrorTimeout_warning">当当前请求运行得太长时,会返回错误状态.这是为了防止程序无限期地等待指纹传感器.超时是基于平台和传感器的,但通常是30秒.</string>
+
+    <string name="ErrorUnableToProcess_warning">当传感器无法处理当前图像时,会返回错误状态.</string>
+
+    <string name="ErrorNoSpace_warning">返回的错误状态,如注册;操作无法完成,因为没有足够的存储空间来完成操作.</string>-->
+    <string name="AcquiredImageDirty_warning">再试一次</string>
+    <string name="AcquiredInsufficient_warning">再试一次</string>
+
+    <string name="AcquiredPartial_warning">再试一次</string>
+
+    <string name="AcquiredTooFast_warning">再试一次</string>
+
+    <string name="AcquiredToSlow_warning">再试一次</string>
+
+    <string name="ErrorCanceled_warning">请稍后再试</string>
+
+    <string name="ErrorHwUnavailable_warning">指纹验证不可用</string>
+
+    <string name="ErrorLockout_warning">指纹验证已关闭</string>
+
+    <string name="ErrorTimeout_warning">再试一次</string>
+
+    <string name="ErrorUnableToProcess_warning">再试一次</string>
+
+    <string name="ErrorNoSpace_warning">再试一次</string>
+    <string name="ErrorNoSpace_zai">请稍后再试</string>
+
+    <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
+    <string name="tag_hint">Tag为大小写字母,数字,下划线,中文, 多个用以逗号分隔</string>
+    <string name="style_hint">style为数字</string>
+    <string name="error_style_empty">style不能为空</string>
+    <string name="error_alias_empty">alias不能为空</string>
+    <string name="error_tag_empty">tag不能为空</string>
+    <string name="error_tag_gs_empty">格式不对</string>
+    <string name="error_network">网络连接异常,初始化失败 请检查网络！</string>
+    <string name="logining">程序在后台执行, 请查看日志！</string>
+    <string name="setting_su">设置成功</string>
+    <string name="setting_error">指纹初始化失败!再试一次!</string>
+
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
+    <string name="loading">数据加载中...</string>
+
+    <string name="title1">安全邮箱</string>
+    <string name="title2">修改登录密码</string>
+    <string name="title3">密码安全</string>
+    <string name="title4">修改支付密码</string>
+    <string name="title5">更换密保手机</string>
+    <string name="title6">选择地区和国家</string>
+    <string name="title7">设备管理</string>
+    <string name="title8">指纹保护</string>
+    <string name="title9">账户足迹</string>
+    <string name="title10">手势锁设置</string>
+    <string name="title11">关于</string>
+    <string name="title12">语言</string>
+    <string name="title13">账号登录</string>
+    <string name="title14">账户安全管家</string>
+    <string name="title15">操作记录</string>
+    <string name="title16">身份认证</string>
+    <string name="title16a">实名信息</string>
+    <string name="title17">扫码认证</string>
+    <string name="title18">安全手机</string>
+    <string name="title19">设置实名信息</string>
+    <string name="title20">短信验证</string>
+    <string name="title21">欢迎回来</string>
+    <string name="title22">一键锁号</string>
+    <string name="title23">绑定新手机</string>
+    <string name="title24">探索</string>
+
+
+    <string name="lock1">请再次绘制解锁图案</string>
+    <string name="lock2">与上一次绘制不一致，请重新绘制</string>
+    <string name="lock3">你还未开启手势密码</string>
+    <string name="lock4">手势启动密码已设置</string>
+    <string name="lock5">安全锁手势密码未开启</string>
+    <string name="lock6">手势锁已关闭</string>
+    <string name="lock7">密码错误,还可以再输入</string>
+    <string name="lock8">次</string>
+    <string name="lock9">两次输入的密码不一致</string>
+    <string name="lock10">手势启动密码未开启</string>
+    <string name="lock11">已开启指纹验证</string>
+    <string name="lock12">连接至少4个点，请重新设定!</string>
+
+
+    <string name="main1">安全保护</string>
+    <string name="main2">已开启</string>
+    <string name="main3">未开启</string>
+    <string name="main4">账户安全</string>
+    <string name="main5">手势锁</string>
+    <string name="main6">指纹锁</string>
+    <string name="main7">语言</string>
+    <string name="main8">关于</string>
+    <string name="main9">退出当前账户</string>
+    <string name="main10">暂未授权</string>
+    <string name="main11">已关闭</string>
+    <string name="main12">探索</string>
+
+    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"$%^*()\|~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
+
+    <string name="china">中国</string>
+    <string name="button">确定</string>
+    <string name="login">确定</string>
+    <string name="tishi1">请输入原安全邮箱</string>
+    <string name="tishi2">请验证原登录密码</string>
+    <string name="tishi3">6-18位新登录密码，区分大小写</string>
+    <string name="tishi3a">6-18位新支付密码，区分大小写</string>
+    <string name="tishi4">请确认新登录密码</string>
+    <string name="tishi4a">请确认新支付密码</string>
+    <string name="tishi5">账户存在严重风险</string>
+    <string name="tishi6">请尽快修改密码</string>
+    <string name="tishi5a">密码安全</string>
+    <string name="tishi6a">账户密码安全等级较高\n请继续保持,并定期更新密码</string>
+    <string name="tishi7a">修改密码</string>
+    <string name="tishi7">修改登录密码</string>
+    <string name="tishi8">修改支付密码</string>
+    <string name="tishi8a">重置支付密码</string>
+    <string name="tishi9">请验证原支付密码</string>
+    <string name="tishi10">请输入验证码</string>
+    <string name="tishi11">获取验证码</string>
+    <string name="tishi12">下一步</string>
+    <string name="tishi12a">下一步</string>
+    <string name="tishi13">国家 / 地区</string>
+    <string name="tishi14">请输入新手机号</string>
+    <string name="tishi15">如果原密保手机已换号或不能接收到短信验证码，需提供一个能收验证码的新手机号和个人实名有效资料提交工作人员审核通过后才能更换新密保手机</string>
+    <string name="tishi16">请输入手机号</string>
+    <string name="tishi16c">请输入登录邮箱</string>
+    <string name="tishi16a">请输入姓名</string>
+    <string name="tishi16b">请输入证件号码</string>
+    <string name="tishi16d">请输入账户</string>
+    <string name="tishi16e">请验证账户</string>
+    <string name="tishi17">拍照</string>
+    <string name="tishi18">从相册选择</string>
+    <string name="tishi19">验证密保手机</string>
+    <string name="tishi20">输入国家名查询</string>
+    <string name="tishi21">已授权设备</string>
+    <string name="tishi22">暂无授权设备</string>
+    <string name="tishi23">当前登录</string>
+    <string name="tishi24">最近登录记录</string>
+    <string name="tishi25">启用手势锁后，他人在使用您手机时无密码将无法打开安全账户中心</string>
+    <string name="tishi26">请绘制原手势密码</string>
+    <string name="tishi26b">请验证解锁图案</string>
+    <string name="tishi26c">请验证手势密码</string>
+    <string name="tishi26a">请绘制解锁图案</string>
+    <string name="tishi26d">请重新验证解锁图案</string>
+    <string name="tishi27">检查新版本</string>
+    <string name="tishi28">去评价</string>
+    <string name="tishi29">授权登录</string>
+    <string name="tishi30">正在请求网页登录</string>
+    <string name="tishi31">为了确保账户安全，请确认是本人操作</string>
+    <string name="tishi32">确认授权</string>
+    <string name="tishi33">拒绝授权</string>
+    <string name="tishi34">支持语言</string>
+    <string name="tishi35">简体中文</string>
+    <string name="tishi36">繁体中文</string>
+    <string name="tishi37">英语</string>
+    <string name="tishi38">泰语</string>
+    <string name="tishi39">安全锁手势密码已启动</string>
+    <string name="tishi40">定期修改手势密码有效的保护账户安全</string>
+    <string name="tishi41">修改手势启动密码</string>
+    <string name="tishi42">删除手势启动密码</string>
+    <string name="tishi43">请输入登录密码</string>
+    <string name="tishi43a">请输入支付密码</string>
+    <string name="tishi44">找回密码</string>
+    <string name="tishi45">请再次输入密码</string>
+    <string name="tishi46">立即设置</string>
+    <string name="tishi47">暂未设置实名信息</string>
+    <string name="tishi48">实名信息已设置</string>
+    <string name="tishi48a">资料已提交</string>
+    <string name="tishi48b">实名认证失败</string>
+    <string name="tishi48c">认证完成</string>
+    <string name="tishi48d">实名信息认证后无法更改</string>
+    <string name="tishi48e">请耐心等待后台工作人员审核</string>
+    <string name="tishi48f">未按要求上传,请按比例要求重新上传</string>
+    <string name="tishi48g">恭喜你资料通过实名审核</string>
+    <string name="tishi48h">重新认证</string>
+    <string name="tishi48i">个人有效证件</string>
+    <string name="tishi49">更换</string>
+    <string name="tishi50">当前绑定的安全邮箱</string>
+    <string name="tishi51">如果当前手机已换号，请及时更换</string>
+    <string name="tishi52">未开启保护，系统将默认禁止对该系统的授权</string>
+    <string name="tishi53">证件信息</string>
+    <string name="tishi54">证件类型</string>
+    <string name="tishi55">姓名</string>
+    <string name="tishi56">证件号码</string>
+    <string name="tishi57">有效期</string>
+    <string name="tishi57a">证件开始日期</string>
+    <string name="tishi57b">证件结束日期</string>
+    <string name="tishi58">已换号</string>
+    <string name="tishi59">切换验证方式</string>
+    <string name="tishi60">指纹锁不可用</string>
+    <string name="tishi60a">手势密码不可用</string>
+    <string name="tishi61">已设置</string>
+    <string name="tishi62">未设置</string>
+    <string name="tishi63">暂未认证</string>
+    <string name="tishi64">点击登录</string>
+    <string name="tishi64a">Touch-ID </string>
+    <string name="tishi65">下线</string>
+    <string name="tishi66">请补全原绑定安全邮箱：</string>
+    <string name="tishi67"></string>
+    <string name="tishia68">请设置</string>
+    <string name="tishia68a">请设置</string>
+    <string name="tishi68">的新登录密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
+    <string name="tishi68a">的新支付密码,建议使用数字、字母、字符的组合密码，提高密码安全等级</string>
+    <string name="tishi69">请验证原绑定手机号:</string>
+    <string name="tishi70">账户安全中心</string>
+    <string name="tishi71">请检查网络或GPS是否打开</string>
+    <string name="tishi72">服务器异常</string>
+    <string name="tishi73">输入正确</string>
+    <string name="tishi74">请输入有效手机号</string>
+    <string name="tishi75">秒后重发</string>
+    <string name="tishi76">重新获取</string>
+    <string name="tishi77">输入正确</string>
+    <string name="tishi78">当前绑定的密保手机：</string>
+    <string name="tishi79">安全锁的ID</string>
+    <string name="tishi80">通过指纹键验证已有手机指纹</string>
+    <string name="tishi80a">请验证指纹</string>
+    <string name="tishi81">您的账号已在另一台设备登录</string>
+    <string name="tishi82">提示</string>
+    <string name="tishi83">数据获取失败</string>
+    <string name="tishi84">切换数据</string>
+    <string name="tishi85">账户登陆密码已修改，请重新登陆</string>
+    <string name="tishi85a">账户支付密码已修改，请重新登陆</string>
+    <string name="tishi86">授权时间：</string>
+    <string name="tishi87">最近登陆：</string>
+    <string name="tishi88">验证手势密码</string>
+    <string name="tishi89">当前绑定的安全邮箱</string>
+    <string name="tishi90">更换安全邮箱</string>
+    <string name="tishi91">请输入您的安全邮箱</string>
+    <string name="tishi92">请验证你的指纹</string>
+    <string name="tishi93">资料已提交</string>
+    <string name="tishi94">请耐心等待后台人员审核</string>
+    <string name="tishi95">重新登录</string>
+    <string name="tishi96">已开启</string>
+    <string name="tishi97">类授权保护</string>
+    <string name="tishi98">未开启账户授权保护</string>
+    <string name="tishi99">删除</string>
+    <string name="tishi100">确定退出账号</string>
+    <string name="tishi101">下线通知</string>
+    <string name="tishi102">您的账号于</string>
+    <string name="tishi103">在另外一台设备登陆</string>
+    <string name="tishi104">\n如非本人操作,请及时修改密码或者重新登陆</string>
+    <string name="tishi105">关闭对“</string>
+    <string name="tishi105a">开启对“</string>
+    <string name="tishi106">”的所有授权?</string>
+    <string name="tishi107">当前已是最新版本</string>
+    <string name="tishi108">已冻结平台</string>
+    <string name="tishi109">新密码不能和旧密码相同</string>
+    <string name="tishi110">暂无数据</string>
+    <string name="tishi111">账户登录密码重置成功，请重新登陆</string>
+    <string name="tishi112">正在请求网页登录</string>
+    <string name="tishi113">需要开启消息推送权限才能正常接收授权推送、启用一键授权和扫码授权推功能</string>
+    <string name="tishi114">去开启</string>
+    <string name="tishi115">您的登录信息可能过期失效，请重新登录后再浏览使用</string>
+    <string name="tishi116">网络错误</string>
+    <string name="tishi117">更新</string>
+    <string name="tishi118">发现最新版本：</string>
+    <string name="tishi119">请填写完整信息</string>
+    <string name="tishi119a">证件日期错误</string>
+    <string name="tishi120">出生日期</string>
+    <string name="tishi121">选择出生日期</string>
+    <string name="tishi122">选择有效期</string>
+    <string name="tishi122a">请选择签发日期</string>
+    <string name="tishi122b">请选择截止日期</string>
+    <string name="tishi123">选择证件类型</string>
+    <string name="tishi124">选择地区</string>
+    <string name="tishi125">身份证</string>
+    <string name="tishi126">护照</string>
+    <string name="tishi127">驾驶证</string>
+    <string name="tishi128">开始日期</string>
+    <string name="tishi128a">非Makeys有效二维码</string>
+    <string name="tishi130">动态密码</string>
+    <string name="tishi131">一键授权</string>
+    <string name="tishi132">注册账号</string>
+    <string name="tishi133a">无法工作?</string>
+    <string name="tishi133">试试重新同步</string>
+    <string name="tishi134">复制密码</string>
+    <string name="tishi134a">显示密码</string>
+    <string name="tishi135">密码已复制到粘贴板</string>
+    <string name="tishi136">撤销</string>
+    <string name="tishi137">时间同步成功</string>
+    <string name="tishi138">授权成功</string>
+    <string name="tishi139">授权失败</string>
+    <string name="tishi139a">等待授权超时</string>
+    <string name="tishi140">守护安全 保障资产</string>
+    <string name="tishi141">账户管家有什么用</string>
+    <string name="tishi142">怎么登陆验证</string>
+    <string name="tishi143">如何修改/找回密码</string>
+    <string name="tishi144">如何修改密保手机</string>
+    <string name="tishi145">相册</string>
+    <string name="tishi146">未识别到二维码</string>
+    <string name="tishi147">证件图片上传要求</string>
+    <string name="tishi148">证件上传要求</string>
+    <string name="tishi149">1、图片清晰，四角完整，证件信息清晰可见，证件完整包含在图片中</string>
+    <string name="tishi150">2、身份信息无遮挡、涂改、模糊</string>
+    <string name="tishi151">3、手持人脸须与证件及认证信息照片一致</string>
+    <string name="tishi152">图像不清晰,请按图例要求重新上传</string>
+    <string name="tishi153">未按照要求上传,请按图例要求重新上传</string>
+    <string name="tishi154">信息不匹配,请按图例要求重新上传</string>
+    <string name="tishi155">请选择国家/地区</string>
+    <string name="tishi156">请设置指纹锁</string>
+    <string name="tishi157">请设置手势锁/指纹锁</string>
+    <string name="tishi159">确定删除该设备?</string>
+    <string name="tishi160">重设</string>
+    <string name="tishi161">证件大小不能超过5M</string>
+
+    <string name="code1">成功</string><!--20000-->
+    <string name="code2">失败</string><!--20001-->
+    <string name="code3">错误</string><!--20002-->
+    <string name="code4">用户未登录</string><!--20003-->
+    <string name="code5">未授权</string><!--20004-->
+    <string name="code6">用户不存在</string><!--20005-->
+    <string name="code7">参数不能为空</string><!--10007-->
+    <string name="code8">参数错误</string><!--10011-->
+    <string name="code9">用户被锁定</string><!--10013-->
+    <string name="code10">密码错误</string><!--10014-->
+    <string name="code11">用户名称错误</string><!--10015-->
+    <string name="code12">安全密码错误</string><!--10016-->
+    <string name="code13">邮箱验证码错误</string><!--10017-->
+    <string name="code14">密码与确认密码不一致</string><!--10020-->
+    <string name="code15">邮箱已存在</string><!--10021-->
+    <string name="code16">用户名已存在</string><!--10022-->
+    <string name="code17">静态验证码错误</string><!--10024-->
+    <string name="code18">验签失败</string><!--10025-->
+    <string name="code19">超过密码错误次数</string><!--10026-->
+    <string name="code20">认证失败</string><!--10027-->
+    <string name="code21">用户不存在</string><!--10028-->
+    <string name="code22">没有找到指定数据！</string><!--10029-->
+    <string name="code23">安全密码与登录密码相同！</string><!--10033-->
+    <string name="code24">邮件格式错误！</string><!--10034-->
+    <string name="code25">短信验证码错误！</string><!--10036-->
+    <string name="code26">用户被临时锁定！</string><!--10037-->
+    <string name="code27">用户被永久锁定！</string><!--10038-->
+    <string name="code28">安全中心服务不可用！</string><!--10500-->
+    <string name="code29">刷新token已经过期</string><!--10501-->
+    <string name="code30">加签失败</string><!--10502-->
+    <string name="code31">系统繁忙</string><!--10503-->
+    <string name="code32">用户或者密码错误</string><!--10504-->
+    <string name="code33">短信发送失败</string><!--10505-->
+    <string name="code34">邮件发送失败</string><!--10506-->
+    <string name="code35">未绑定手机</string><!--10508-->
+    <string name="code36">用户绑定了无效手机</string><!--10509-->
+    <string name="code37">无效手机号</string><!--10510-->
+    <string name="code38">手机号已存在</string><!--10511-->
+    <string name="code39">请先登录安全中心app</string><!--10512-->
+    <string name="code40">原安全密码错误</string><!--10513-->
+    <string name="code41">原登录密码错误</string><!--10514-->
+    <string name="code42">未授权设备</string><!--10516-->
+    <string name="code43">QUIZ</string><!--1010-->
+    <string name="code44">MAIL</string><!--1011-->
+    <string name="code45">姓名格式不正确,请按图例要求重新上传</string><!--80003-->
+    <string name="code46">身份证号码格式不正确,请按图例要求重新上传</string><!--80004-->
+    <string name="code47">无此身份证号码,请按图例要求重新上传</string><!--90033-->
+    <string name="code48">认证不通过,请按图例要求重新上传</string><!--90099-->
+    <string name="code49">已存在</string><!--8088-->
+    <string name="code50">证件号已存在!</string><!--10538-->
+    <string name="code51">参数不完整</string><!--80001-->
+    <string name="code52">身份证中心维护,请稍后重试</string><!--80008-->
+    <string name="code53">证件大小超过规定值</string><!--10519-->
+    <string name="code54">无此身份证号码</string><!--10539-->
+    <string name="code55">证件开始日期错误!</string><!--10540-->
+    <string name="code56">证件结束日期错误!</string><!--10541-->
+
+
+    <string name="data0">未知类型</string>
+    <string name="data1">登录</string>
+    <string name="data2">退出</string>
+    <string name="data3">注册会员</string>
+    <string name="data4">管理员添加会员</string>
+    <string name="data5">编辑会员</string>
+    <string name="data6">修改密码</string>
+    <string name="data7">重置密码</string>
+    <string name="data8">忘记密码</string>
+    <string name="data9">添加后台管理员</string>
+    <string name="data10">编辑后台管理员</string>
+    <string name="data11">交易审核</string>
+    <string name="data12">兑换</string>
+    <string name="data13">修改数据调控</string>
+    <string name="data14">修改支付密码</string>
+    <string name="data15">重置支付密码</string>
+    <string name="data16">忘记支付密码</string>
+    <string name="data17">删除安全设备</string>
+    <string name="data18">强制下线</string>
+    <string name="data19">修改系统保护状态</string>
+    <string name="data1000">钱包</string>
+    <string name="data1001">麦田圈</string>
+    <string name="data1002">原力平台</string>
+    <string name="data1003">极光平台</string>
+    <string name="data1004">Her-mest</string>
+    <string name="data1009">新双轨</string>
+    <string name="data2000">用户安全中心</string>
+    <string name="data2001">用户安全中心APP</string>
+    <string name="data2002">用户安全中心后台</string>
+    <string name="data1010">竞猜系统</string><!--1010-->
+    <string name="data1011">邮件系统</string><!--1011-->
+    <string name="data1012">AK交易系统</string><!--1012-->
+
+
+    <!--<string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>
+    <string name="opensource_page_url" translatable="false">https://github.com/google/google-authenticator/</string>
+    <string name="terms_page_url" translatable="false">http://m.google.com/tospage</string>
+    <string name="privacy_page_url" translatable="false">http://www.google.com/policies/privacy/</string>-->
+    <string name="timesync_preference_screen_title" msgid="3022961447302189451">"校正用来生成验证码的时间"</string>
+    <string name="timesync_preference_screen_summary" msgid="4761393049788324525">"将身份验证器的内部时钟与 Google 服务器进行同步"</string>
+    <string name="timesync_sync_now_preference_title" msgid="3082679345742875442">"立即同步"</string>
+    <string name="timesync_about_feature_preference_title" msgid="8398618989030576453">"关于此功能"</string>
+    <string name="timesync_about_feature_screen_title" msgid="8248453942850581677">"关于此功能"</string>
+    <string name="timesync_about_feature_screen_details" msgid="1484703765964566915">"如果您按下&amp;ldquo;立即同步&amp;rdquo;，身份验证器就会尝试将其内部时钟与 Google 服务器同步一次。设备的日期和时间设置不会更改。&lt;p&gt;与 Google 服务器同步内部时钟时，身份验证器不会传输任何个人数据或帐户信息。&lt;p&gt; &lt;b&gt;这有什么作用&lt;/b&gt; &lt;p&gt;身份验证器需要根据以下信息生成两步验证码：1) 当前时间，2) 该应用与服务器联络时使用的暗号。&lt;p&gt;如果身份验证器和服务器上的时间不一致，那么当您尝试登录时，系统可能不会接受该应用生成的验证码。&lt;p&gt;默认情况下，身份验证器会使用设备的日期和时间设置，因此在大多数情况下，只要您确保您的时间、日期和时区设置配置正确，即可生成有效的验证码。但是，如果确实出现时间不匹配的情况，就很难排查出问题（尤其是当您使用网络提供的时间或时区时）。"</string>
+    <string name="timesync_sync_now_screen_title" msgid="3545642903720968544">"立即同步"</string>
+    <string name="timesync_sync_now_progress_dialog_title" msgid="7008645503609657769">"立即同步"</string>
+    <string name="timesync_sync_now_progress_dialog_details" msgid="307085676112612197">"正在连接服务器…"</string>
+    <string name="timesync_sync_now_time_corrected_dialog_title" msgid="556836185362910715">"时间已校正"</string>
+    <string name="timesync_sync_now_time_corrected_dialog_details" msgid="8542304823376488491">"身份验证器的内部时钟已按照 Google 服务器提供的时间进行调整。"\n\n"此设备上的日期和时间设置未更改。"</string>
+    <string name="timesync_sync_now_time_already_correct_dialog_title" msgid="4771431037030124374">"时间已正确"</string>
+    <string name="timesync_sync_now_time_already_correct_dialog_details" msgid="1783578393804196806">"身份验证器的内部时钟未作调整，因为该时钟已经与 Google 服务器同步。"</string>
+    <string name="timesync_sync_now_connectivity_error_dialog_title" msgid="3173165623567050563">"立即同步"</string>
+    <string name="timesync_sync_now_connectivity_error_dialog_details" msgid="7427576990969917093">"与 Google 服务器联系时出现问题。请检查您的网络设置，然后重试。"</string>
+
+    <string name="app_name_short" msgid="6268465073167241020">"身份验证器"</string>
+    <string name="enter_key_title" msgid="3762128630776563361">"手动输入帐户"</string>
+    <string name="enter_key_page_add_button" msgid="7145413404890383746">"添加"</string>
+    <string name="button_add_account" msgid="4301500554118934829">"添加帐户"</string>
+    <string name="button_how_it_works" msgid="5576563994507351533">"了解其工作原理"</string>
+    <string name="add_account_menu_item" msgid="6422163385921921789">"添加帐户"</string>
+    <string name="how_it_works_menu_item" msgid="7162080619184257276">"工作原理"</string>
+    <string name="main_preference_screen_title" msgid="5971154576421128196">"设置"</string>
+    <string name="about_preference_title" msgid="2797539814683187124">"关于"</string>
+    <string name="settings_menu_item" msgid="3175383868365284896">"设置"</string>
+    <string name="button_add_account_manual_entry" msgid="7234157710472604378">"手动添加帐户"</string>
+    <string name="button_add_account_scan_barcode" msgid="4400516455038574606">"扫描条形码"</string>
+    <string name="button_next" msgid="2321252361372851972">"下一页"</string>
+    <string name="button_back" msgid="414120249698283380">"上一页"</string>
+    <string name="enter_account_label" msgid="1488259241384211529">"输入帐户名称"</string>
+    <string name="enter_key_hint" msgid="480564521423532185">"输入您的密钥"</string>
+    <string name="enter_key_too_short" msgid="1883571748860519725">"密钥值太短"</string>
+    <string name="enter_key_illegal_char" msgid="5667180343359002748">"密钥值中含有非法字符"</string>
+    <string name="error_title" msgid="1784361744549854479">"错误"</string>
+    <string name="error_uri" msgid="8889749448317216536">"密钥无法识别。"</string>
+    <string name="error_qr" msgid="1076904454315180481">"无法解读 QR 码。"</string>
+    <string name="secret_saved" msgid="2201025202465443226">"密钥已保存"</string>
+    <string name="save_key_message" msgid="4427138629791380096">"保存以下帐户的密钥："</string>
+    <string name="error_empty_secret" msgid="1889970426144134666">"无法保存空密钥"</string>
+    <string name="enter_pin" msgid="2238539410253130912">"在登录帐户期间，如果提示输入验证码，请输入此验证码："</string>
+    <string name="check_code_title" msgid="6308604727562833139">"完整性校验值"</string>
+    <string name="check_code_menu_item" msgid="6851230890695316742">"检查密钥值"</string>
+    <string name="install_dialog_title" msgid="6389833865110438047">"要安装条形码扫描器吗？"</string>
+    <string name="install_dialog_message" msgid="4701150232869547399">"要扫描包含密钥的条形码，必须安装斑马线条形码扫描器。"</string>
+    <string name="install_button" msgid="5395462228740377795">"安装"</string>
+    <string name="about_preference_screen_title" msgid="8056864904503664711">"关于"</string>
+    <string name="version_preference_title" msgid="5388130414499892219">"版本"</string>
+    <string name="opensource_preference_title" msgid="9222719496327822081">"开放源代码项目"</string>
+    <string name="terms_preference_title" msgid="2016562579825643136">"服务条款"</string>
+    <string name="privacy_preference_title" msgid="5170441521661957179">"隐私权政策"</string>
+    <string name="check_code" msgid="8970489904648838257">"要检查 <xliff:g id="ACCOUNT">%1$s</xliff:g> 的密钥值是否正确，请验证此处的值是否与服务器提供的完整性校验值一致：&lt;br/&gt;"</string>
+    <string name="general_security_exception" msgid="2356961798953009046">"一般安全异常"</string>
+    <string name="decoding_exception" msgid="7778970130063776199">"解码异常"</string>
+    <string name="submit" msgid="1518558163262431303">"保存"</string>
+    <string name="cancel" msgid="5705561042616477184">"取消"</string>
+    <string name="context_menu_remove_account" msgid="2776049374428247354">"删除"</string>
+    <string name="remove_account_dialog_button_remove" msgid="1115752492175745669">"删除帐户"</string>
+    <string name="remove_account_dialog_title" msgid="3627142692332624397">"是否删除 <xliff:g id="ACCOUNT">%1$s</xliff:g>？"</string>
+    <string name="remove_account_dialog_message" msgid="5152134907192755352">"删除该帐户会&lt;b&gt;导致您无法&lt;/b&gt;生成验证码，但&lt;b&gt;不会&lt;/b&gt;关闭双重身份验证。您可能会因此无法登录自己的帐户。&lt;p&gt;在删除该帐户之前，请执行以下操作：&lt;ul&gt;&lt;li&gt;关闭该帐户的两双重身份验证功能，或者&lt;/li&gt;&lt;li&gt;确保您可以通过其他方法生成验证码。&lt;/li&gt; &lt;/ul&gt;"</string>
+    <string name="remove_google_account_dialog_message" msgid="5734774722876234898">"删除该帐户会&lt;b&gt;导致您无法&lt;/b&gt;生成验证码，但&lt;b&gt;不会&lt;/b&gt;关闭两步验证。您可能会因此无法登录自己的帐户。&lt;p&gt;在删除该帐户之前，请执行以下操作：&lt;ul&gt;&lt;li&gt;关闭该帐户的两步验证，或者&lt;/li&gt;&lt;li&gt;确保您可以通过其他方法生成验证码。&lt;/li&gt; &lt;/ul&gt;"</string>
+    <string name="rename" msgid="4407492613148938173">"重命名"</string>
+    <string name="rename_message" msgid="5929955206098259018">"重命名 <xliff:g id="ACCOUNT">%1$s</xliff:g>"</string>
+    <string name="error_exists" msgid="9037595140877350695">"抱歉，此名称已在使用。"</string>
+    <string name="copy_to_clipboard" msgid="9220543434521756454">"复制到剪贴板"</string>
+    <string name="counter_pin" msgid="6520222181829297474">"获取代码"</string>
+    <string name="empty_pin" msgid="2123950169339395812">"_ _ _ _ _ _"</string>
+    <string name="ok" msgid="6406800116409689723">"确定"</string>
+    <string name="type_prompt" msgid="5595994960218859859">"密钥类型"</string>
+    <string-array name="type">
+     <item msgid="7456778849112065121">"基于时间"</item>
+     <item msgid="5212912099902129712">"基于计数器"</item>
+    </string-array>
+    <string name="dataimport_import_succeeded_uninstall_dialog_title" msgid="6215126097026112170">"已成功导入"</string>
+    <string name="dataimport_import_succeeded_uninstall_dialog_prompt" msgid="4298949858655509063">"已成功从弃用的 Google 身份验证器应用中导入您的数据。现在您可以点击下面的按钮放心地卸载该应用先前的版本。"</string>
+    <string name="button_uninstall_old_app" msgid="425412851508359894">"卸载"</string>
+    <string name="howitworks_page_enter_password_details" msgid="1637264390208452667">"但是，如果您是在新的计算机或设备上登录，Google 会要求您输入特殊的验证码来验证您的身份。"</string>
+    <string name="howitworks_page_enter_code_details" msgid="2285856515167753320">"该应用会生成必要的验证码供您继续登录。"</string>
+    <string name="howitworks_page_verify_device_details" msgid="9198940182976285367">"您还可以选择记住该计算机，这样，下次 Google 就不会再要求您在这台计算机上输入验证码了。"</string>
+    <string name="button_exit_howitworks_flow" msgid="6789714209015077393">"退出"</string>
+</resources>
