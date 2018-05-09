@@ -63,10 +63,14 @@ public class AddUpdate implements Interceptor{
         Log.i("结果",s+"1");
         if(s.isEmpty()){
             throw  new MyThrow();
+
         }
         LoginBean result=null;
         try {
             result = mGson.fromJson(s, LoginBean.class);
+            if(MyApplication.map.get(result.getCode())==null){
+                throw  new MyThrow();
+            }
             List<String> b = originalResponse.headers("Set-Cookie");
             Log.i("Cookie1",b+"");
             for(int i=0;i<b.size();i++){
@@ -121,6 +125,7 @@ public class AddUpdate implements Interceptor{
                 }
             }
         }catch (Exception e){
+            throw  new MyThrow();
         }
         originalResponse = originalResponse.newBuilder()
                 .body(ResponseBody.create(null, s))
