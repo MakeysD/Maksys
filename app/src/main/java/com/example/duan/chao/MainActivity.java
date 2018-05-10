@@ -354,7 +354,6 @@ public class MainActivity extends BaseActivity{
         mRoundProcess = (MyRoundProcess) findViewById(R.id.my_round_process);
         // 开启动画
         mRoundProcess.runAnimate(MyApplication.DEFAULT_INTERVAL*1000);
-
         setViews();
         duration();//首页动画
         if (savedInstanceState != null) {
