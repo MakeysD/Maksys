@@ -16,14 +16,12 @@
 
 package com.example.duan.chao.zxing_code.android;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,29 +39,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_activity.BaseActivity;
-import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.ContentUtil;
-import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.R;
 import com.example.duan.chao.zxing_code.camera.CameraManager;
 import com.example.duan.chao.zxing_code.decode.DecodeFormatManager;
 import com.example.duan.chao.zxing_code.decode.DecodeHintManager;
 import com.example.duan.chao.zxing_code.view.ViewfinderView;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
-import com.google.zxing.LuminanceSource;
-import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Result;
-import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.qrcode.QRCodeReader;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Hashtable;
 import java.util.Map;
 
 import cn.bingoogolapple.qrcode.zxing.QRCodeDecoder;

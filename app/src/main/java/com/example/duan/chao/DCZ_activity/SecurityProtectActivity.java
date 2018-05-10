@@ -8,13 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.duan.chao.DCZ_adapter.EquipmentAdapter;
 import com.example.duan.chao.DCZ_adapter.SecurityAdapter;
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.EquipmentBean;
-import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;

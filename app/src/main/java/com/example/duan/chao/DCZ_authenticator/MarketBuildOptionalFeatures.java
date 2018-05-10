@@ -22,9 +22,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.util.Log;
-
-import com.example.duan.chao.MainActivity;
 
 /**
  * {@link OptionalFeatures} implementation used in Market builds.

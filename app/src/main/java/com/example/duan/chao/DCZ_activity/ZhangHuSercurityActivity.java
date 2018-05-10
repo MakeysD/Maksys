@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_bean.UserStateBean;
-import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -21,7 +18,6 @@ import com.example.duan.chao.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

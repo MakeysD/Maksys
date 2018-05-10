@@ -21,7 +21,6 @@ import android.util.Log;
 
 import com.example.duan.chao.DCZ_authenticator.TotpClock;
 import com.example.duan.chao.DCZ_authenticator.RunOnThisLooperThreadExecutor;
-import com.example.duan.chao.DCZ_authenticator.TotpClock;
 import com.example.duan.chao.DCZ_authenticator.Utilities;
 
 import java.io.IOException;

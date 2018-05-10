@@ -17,13 +17,11 @@
 package com.example.duan.chao.DCZ_authenticator;
 
 import android.os.Handler;
-import android.util.Log;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.MainActivity;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Task that periodically notifies its listener about the time remaining until the value of a TOTP

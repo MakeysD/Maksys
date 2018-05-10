@@ -3,34 +3,19 @@ package com.example.duan.chao.DCZ_activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.view.animation.Animation.AnimationListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.CityBean;
-import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-
-import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 
 /**

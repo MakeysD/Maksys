@@ -15,9 +15,7 @@ import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
-import com.example.duan.chao.DCZ_lockdemo.CustomLockView;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
-import com.example.duan.chao.DCZ_selft.PullToRefreshLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
@@ -31,7 +29,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Field;
 
 /**
  * Created by DELL on 2017/7/12.

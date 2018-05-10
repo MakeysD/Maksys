@@ -24,12 +24,10 @@ import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
-import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
-import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
 
@@ -41,7 +39,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

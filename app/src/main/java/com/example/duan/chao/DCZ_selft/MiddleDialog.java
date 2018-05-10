@@ -1,13 +1,8 @@
 package com.example.duan.chao.DCZ_selft;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.hardware.fingerprint.FingerprintManager;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
@@ -18,21 +13,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.duan.chao.DCZ_activity.LoginActivity;
-import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.HaveBean;
-import com.example.duan.chao.DCZ_jiguang.ExampleUtil;
-import com.example.duan.chao.DCZ_jiguang.LocalBroadcastManager;
-import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_zhiwen.CryptoObjectHelper;
 import com.example.duan.chao.DCZ_zhiwen.MyAuthCallback;
-import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.google.gson.Gson;
-
-import cn.jpush.android.api.JPushInterface;
 
 
 /**

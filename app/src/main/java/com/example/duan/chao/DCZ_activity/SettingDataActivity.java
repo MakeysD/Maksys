@@ -6,10 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,14 +32,11 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.jia.TimePickerView2;
 import com.bigkoo.pickerview.jia.TimePickerView3;
-import com.bigkoo.pickerview.model.IPickerViewData;
-import com.bigkoo.pickerview.utils.PickerViewAnimateUtil;
 import com.example.duan.chao.DCZ_ImageUtil.CompressHelper;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CardBean;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
-import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_bean.ProvinceBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
@@ -55,11 +49,8 @@ import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DateFormat;
@@ -67,10 +58,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,8 +69,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.example.duan.chao.DCZ_activity.CityListActivity.jsonToList;
 
 public class SettingDataActivity extends BaseActivity {
     private SettingDataActivity INSTANCE;

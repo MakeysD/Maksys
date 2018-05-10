@@ -2,18 +2,14 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_adapter.OperationRecordAdapter;
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;

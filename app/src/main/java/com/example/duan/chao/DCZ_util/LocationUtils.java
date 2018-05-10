@@ -15,7 +15,6 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.R;
 

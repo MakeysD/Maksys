@@ -9,8 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_bean.CountryBean;
 import com.example.duan.chao.R;
 

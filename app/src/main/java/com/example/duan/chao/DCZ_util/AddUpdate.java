@@ -1,25 +1,18 @@
 package com.example.duan.chao.DCZ_util;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.duan.chao.DCZ_activity.HavaMoneyActivity;
 import com.example.duan.chao.DCZ_activity.HaveScanActivity;
-import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.HttpBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
-import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.MainActivity;
-import com.example.duan.chao.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import okhttp3.FormBody;
 import okhttp3.Interceptor;

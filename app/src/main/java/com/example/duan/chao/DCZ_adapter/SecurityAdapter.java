@@ -12,9 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.duan.chao.DCZ_activity.LoginActivity;
 import com.example.duan.chao.DCZ_activity.LoginEmailActivity;
 import com.example.duan.chao.DCZ_activity.SecurityProtectActivity;
 import com.example.duan.chao.DCZ_application.MyApplication;

@@ -3,7 +3,6 @@ package com.example.duan.chao.DCZ_activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 /**
  *  验证密保手机

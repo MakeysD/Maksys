@@ -28,8 +28,6 @@ import android.util.Log;
 import com.example.duan.chao.DCZ_authenticator.PasscodeGenerator.Signer;
 import com.example.duan.chao.DCZ_authenticator.Base32String.DecodingException;
 
-import org.apache.shiro.codec.Base64;
-
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

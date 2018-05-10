@@ -1,7 +1,5 @@
 package com.example.duan.chao.DCZ_bean;
 
-import com.example.duan.chao.DCZ_activity.OperationRecordActivity;
-
 import java.util.List;
 
 /**

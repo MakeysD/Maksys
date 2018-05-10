@@ -31,9 +31,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.text.ClipboardManager;
-import android.text.Editable;
-import android.text.Html;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -44,15 +41,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.animation.Animation;
 import android.webkit.WebView;
-import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,11 +57,9 @@ import com.example.duan.chao.DCZ_authenticator.testability.DependencyInjector;
 import com.example.duan.chao.DCZ_authenticator.testability.StartActivityListener;
 import com.example.duan.chao.R;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
 public class AuthenticatorActivity extends BaseActivity {

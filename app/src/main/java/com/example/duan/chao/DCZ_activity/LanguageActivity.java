@@ -1,6 +1,5 @@
 package com.example.duan.chao.DCZ_activity;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,14 +11,10 @@ import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
-import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.R;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import butterknife.BindView;

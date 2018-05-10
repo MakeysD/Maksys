@@ -16,9 +16,7 @@ import android.widget.Toast;
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
 import com.example.duan.chao.DCZ_authenticator.FileUtilities;
 import com.example.duan.chao.DCZ_authenticator.testability.DependencyInjector;
-import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_jiguang.Logger;
-import com.example.duan.chao.DCZ_util.CodeUtil;
 import com.example.duan.chao.DCZ_util.DSA;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;
@@ -30,10 +28,7 @@ import com.tencent.bugly.beta.interfaces.BetaPatchListener;
 import com.tencent.bugly.beta.upgrade.UpgradeStateListener;
 import com.tencent.bugly.crashreport.CrashReport;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 import cn.jpush.android.api.JPushInterface;
 

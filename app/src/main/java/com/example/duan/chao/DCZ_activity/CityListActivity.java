@@ -15,7 +15,6 @@ import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_bean.CountryBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
-import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
 import com.example.duan.chao.R;

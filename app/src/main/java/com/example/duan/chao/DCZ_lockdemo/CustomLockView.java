@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 
 import com.example.duan.chao.R;

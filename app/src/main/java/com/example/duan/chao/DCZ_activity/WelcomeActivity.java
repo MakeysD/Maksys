@@ -19,10 +19,8 @@ import android.widget.RelativeLayout;
 
 
 import com.example.duan.chao.DCZ_adapter.ViewPagerApdater;
-import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DisplayUtil;
-import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
 
 import java.util.ArrayList;

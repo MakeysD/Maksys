@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 

@@ -12,17 +12,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb;
-import com.example.duan.chao.DCZ_authenticator.OtpProvider;
 import com.example.duan.chao.DCZ_bean.LoginOkBean;
 import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
-import com.example.duan.chao.DCZ_util.ContentUtil;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -196,7 +193,7 @@ public class SmsActivity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
-        MyApplication.rid="sidofugychfudisygrs";
+        //MyApplication.rid="sidofugychfudisygrs";
         HttpServiceClient.getInstance().login(phone,password,et_code.getText().toString(),MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {

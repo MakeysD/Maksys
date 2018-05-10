@@ -4,7 +4,6 @@ package com.example.duan.chao.DCZ_util;
 import com.example.duan.chao.DCZ_bean.CardBean;
 import com.example.duan.chao.DCZ_bean.CountryBean;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
-import com.example.duan.chao.DCZ_bean.ExitBean;
 import com.example.duan.chao.DCZ_bean.Footprints2Bean;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
 import com.example.duan.chao.DCZ_bean.LoginBean;
@@ -17,22 +16,15 @@ import com.example.duan.chao.DCZ_bean.TimeBean;
 import com.example.duan.chao.DCZ_bean.UserStateBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
 
-import java.io.File;
-import java.util.Map;
-
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 public interface InterfaceService {

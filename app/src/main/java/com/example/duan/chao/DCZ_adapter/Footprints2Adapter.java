@@ -1,7 +1,6 @@
 package com.example.duan.chao.DCZ_adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.FootprintsBean;
-import com.example.duan.chao.DCZ_selft.GridViewForScrollView;
 import com.example.duan.chao.R;
 
 import java.text.SimpleDateFormat;

@@ -1,14 +1,9 @@
 package com.example.duan.chao.DCZ_util;
 
 import android.content.Context;
-import android.text.InputFilter;
-import android.text.Spanned;
-import android.widget.EditText;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.R;
-
-import java.util.HashMap;
 
 /**
  * Created by DELL on 2017/8/30.

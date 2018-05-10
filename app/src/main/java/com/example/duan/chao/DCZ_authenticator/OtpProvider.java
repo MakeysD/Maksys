@@ -16,8 +16,6 @@
 
 package com.example.duan.chao.DCZ_authenticator;
 
-import android.util.Log;
-
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_authenticator.AccountDb.OtpType;
 import com.example.duan.chao.DCZ_authenticator.PasscodeGenerator.Signer;

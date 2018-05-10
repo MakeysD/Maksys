@@ -10,15 +10,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
-
-import java.math.BigDecimal;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.cos;
