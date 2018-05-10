@@ -100,6 +100,7 @@ public class MyApplication extends Application{
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
         Fresco.initialize(this);
+        bugly();
        // CodeUtil.pushcode(getApplicationContext());
         CrashReport.initCrashReport(getApplicationContext(), "87666fdd22", false);
         try {//authenticator
@@ -158,7 +159,6 @@ public class MyApplication extends Application{
         Log.i("dcz_手机版本",ShebeiUtil.getSystemVersion());
         device=DSA.md5(ShebeiUtil.getDeviceId(this));
         xinghao=ShebeiUtil.getPhoneModel();
-        bugly();
     }
     private void bugly(){
         setStrictMode();
@@ -229,7 +229,7 @@ public class MyApplication extends Application{
         };
         long start = System.currentTimeMillis();
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId,调试时将第三个参数设置为true
-        Bugly.init(this, "faded4c0db", true);
+        Bugly.init(this, "87666fdd22", true);
         long end = System.currentTimeMillis();
         Log.e("init time--->", end - start + "ms");
     }

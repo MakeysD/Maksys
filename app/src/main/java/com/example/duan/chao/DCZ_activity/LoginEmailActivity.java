@@ -119,6 +119,7 @@ public class LoginEmailActivity extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //ContentUtil.makeToast(INSTANCE,"更新成功");
         ShebeiUtil.setEdNoChinaese(phone);
         ShebeiUtil.setEdNoChinaese(mima);
         ShebeiUtil.setEdit(phone);
