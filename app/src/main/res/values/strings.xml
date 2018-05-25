@@ -18,16 +18,16 @@
     <string name="no_sensor_dialog_title">没有指纹传感器</string>
     <string name="no_sensor_dialog_message">在你的设备上没有指纹传感器,点击取消退出.</string>
     <string name="no_fingerprint_enrolled_dialog_title">请去系统设置开启指纹</string>
-  <!--  <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
+    <!--  <string name="no_fingerprint_enrolled_dialog_message">没有指纹登记,输入\ n
         <font fgcolor="green">设置- >安全- > Nexus \ n印记</font>到注册或单击cancel退出</string>-->
     <string name="ok_btn_dialog">OK</string>
     <string name="cancel_btn_dialog">取消</string>
     <string name="setti">您未设置过手势密码</string>
 
     <!-- auth result error amd help code warning -->
-   <string name="AcquiredGood_warning">获得的图像很好.</string>
+    <string name="AcquiredGood_warning">获得的图像很好.</string>
 
-   <!-- <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
+    <!-- <string name="AcquiredImageDirty_warning">由于传感器的可疑或检测到的灰尘,指纹图像太吵了.</string>
     <string name="AcquiredInsufficient_warning">指纹图像太过嘈杂,无法处理检测到的情况(即干性皮肤)或可能是脏的传感器.</string>
 
     <string name="AcquiredPartial_warning">只有部分指纹图像被检测出来.在注册过程,用户应该了解需要发生什么才能解决这个问题.“紧紧地压在传感器上.”</string>
@@ -521,8 +521,8 @@
     <string name="ok" msgid="6406800116409689723">"确定"</string>
     <string name="type_prompt" msgid="5595994960218859859">"密钥类型"</string>
     <string-array name="type">
-     <item msgid="7456778849112065121">"基于时间"</item>
-     <item msgid="5212912099902129712">"基于计数器"</item>
+        <item msgid="7456778849112065121">"基于时间"</item>
+        <item msgid="5212912099902129712">"基于计数器"</item>
     </string-array>
     <string name="dataimport_import_succeeded_uninstall_dialog_title" msgid="6215126097026112170">"已成功导入"</string>
     <string name="dataimport_import_succeeded_uninstall_dialog_prompt" msgid="4298949858655509063">"已成功从弃用的 Google 身份验证器应用中导入您的数据。现在您可以点击下面的按钮放心地卸载该应用先前的版本。"</string>
