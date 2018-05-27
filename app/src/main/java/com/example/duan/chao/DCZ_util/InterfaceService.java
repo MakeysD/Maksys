@@ -1,6 +1,7 @@
 package com.example.duan.chao.DCZ_util;
 
 
+import com.example.duan.chao.DCZ_bean.AuthorBean;
 import com.example.duan.chao.DCZ_bean.CardBean;
 import com.example.duan.chao.DCZ_bean.CountryBean;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
@@ -327,5 +328,14 @@ public interface InterfaceService {
     @FormUrlEncoded
     @POST("dict/getIDCardTypeList")
     Call<CardBean>getIDCard(@Field("mobile") String string);
+
+    @FormUrlEncoded
+    @POST("oauth/getAuthorizationCode ")
+    Call<AuthorBean> author(@Field("client_id") String client_id,
+                            @Field("nonce") String nonce,
+                            @Field("redirect_uri") String redirect_uri ,
+                            @Field("scope") String scope,
+                            @Field("sign") String sign,
+                            @Field("state") String state);
 
 }

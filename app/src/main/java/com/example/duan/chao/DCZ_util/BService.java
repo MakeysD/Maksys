@@ -13,6 +13,10 @@ import android.util.Log;
 public class BService extends Service {
     public static Messenger to;
     public static  Message message;
+    public static String App_key;
+    public static String redirect_uri;
+    public static String scope;
+    public static String state;
      /*try {
         if(BService.message==null||BService.to==null){
         }else {
@@ -24,11 +28,16 @@ public class BService extends Service {
     Messenger messenger = new Messenger(new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Log.e("kk", msg.getData().getString("data"));
+            App_key=msg.getData().getString("App_key");
+            redirect_uri=msg.getData().getString("redirect_uri");
+            scope=msg.getData().getString("scope");
+            state=msg.getData().getString("state");
+            Log.e("kk", msg.getData().getString("ceshi")+"+App_key:"+App_key+"+redirect_uri:"+redirect_uri+"+scope:"+scope+"+state:"+state);
+
             message = Message.obtain();
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putString("data","你要说什么？");
-            message.setData(bundle);
+            message.setData(bundle);*/
             to = msg.replyTo;
             super.handleMessage(msg);
         }
