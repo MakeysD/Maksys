@@ -1,5 +1,8 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -137,6 +140,19 @@ public class AuthorActivity extends BaseActivity{
             }
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
+        ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
+        String currentPackageName = cn.getPackageName();
+        //判断APP是否在前台
+        if(ActivityUtils.getInstance().isAppOnForeground(this)==false) {
+            Log.i("dcz","APP已进入后台");
+            ActivityUtils.getInstance().popActivity(INSTANCE);
         }
     }
 }
