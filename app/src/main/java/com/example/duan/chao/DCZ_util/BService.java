@@ -40,9 +40,9 @@ public class BService extends Service {
             Bundle bundle = new Bundle();
             bundle.putString("type","0");
             if(MyApplication.token.equals("")){
-                bundle.putString("intent","com.example.duan.chao.DCZ_activity.LoginEmailActivity");
+                bundle.putString("intent",MyApplication.pkge+".DCZ_activity.LoginEmailActivity");
             }else {
-                bundle.putString("intent","com.example.duan.chao.DCZ_activity.AuthorActivity");
+                bundle.putString("intent",MyApplication.pkge+".DCZ_activity.AuthorActivity");
             }
             message.setData(bundle);
             to = msg.replyTo;

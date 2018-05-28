@@ -98,7 +98,7 @@ public final class ViewfinderView extends View {
         mAngleLength = 40;
         mTipText = "";
 
-        laserLineResId=resources.getIdentifier("chat_sao","mipmap","com.example.duan.chao");
+        laserLineResId=resources.getIdentifier("chat_sao","mipmap",MyApplication.pkge);
     }
 
     public void setCameraManager(CameraManager cameraManager) {

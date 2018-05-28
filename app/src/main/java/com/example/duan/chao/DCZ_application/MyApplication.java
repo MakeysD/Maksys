@@ -54,6 +54,7 @@ public class MyApplication extends Application{
     public static String pub_key;//公钥
     public static String uri="";
     public static String ur="";
+    public static String pkge="com.example.duan.chao";
     private static final String TAG = "JIGUANG-Example";
     public static boolean zhiwen=false;
     public static int zhiwen_namber=0;
