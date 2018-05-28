@@ -390,6 +390,7 @@
     <string name="code54">ID card is not exist</string><!--10539-->
     <string name="code55">ID card start date is wrong</string><!--10540-->
     <string name="code56">ID card end date is wrong</string><!--10541-->
+    <string name="code57">OAuth2 authorization failed</string><!--10542-->
 
     <string name="data0">unknown type</string>
     <string name="data1">login</string>

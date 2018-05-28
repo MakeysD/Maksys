@@ -385,6 +385,7 @@
  <string name="code54">ไม่มีหมายเลขประจำตัวประชาชน</string><!--10539-->
  <string name="code55">วันที่เริ่มต้นไม่ถูกต้อง</string><!--10540-->
  <string name="code56">ข้อผิดพลาดวันที่สิ้นสุด</string><!--10541-->
+ <string name="code57">OAuth2 authorization failed</string><!--10542-->
 
 
  <string name="data0">ไม่รู้จักรูปแบบ</string>

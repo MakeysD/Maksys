@@ -411,6 +411,7 @@
     <string name="code54">无此身份证号码</string><!--10539-->
     <string name="code55">证件开始日期错误!</string><!--10540-->
     <string name="code56">证件结束日期错误!</string><!--10541-->
+    <string name="code57">OAuth2授权失败</string><!--10542-->
 
 
     <string name="data0">未知类型</string>
