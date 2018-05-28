@@ -65,7 +65,7 @@
                         android:divider="@null"
                         android:clickable="false"
                         android:scrollbars="none">
-                    </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
+                </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
                 <TextView
                         android:id="@+id/tv2"
                         android:layout_width="match_parent"
@@ -85,7 +85,7 @@
                         android:divider="@null"
                         android:clickable="false"
                         android:scrollbars="none">
-                    </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
+                </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

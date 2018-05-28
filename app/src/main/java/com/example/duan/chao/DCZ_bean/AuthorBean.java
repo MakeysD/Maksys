@@ -3,8 +3,6 @@ package com.example.duan.chao.DCZ_bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 /**
  * Created by DELL on 2017/8/3.
  */

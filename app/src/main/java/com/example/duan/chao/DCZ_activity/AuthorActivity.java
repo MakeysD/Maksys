@@ -4,9 +4,7 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.RemoteException;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.util.SortedList;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -14,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
 import com.example.duan.chao.DCZ_bean.AuthorBean;
-import com.example.duan.chao.DCZ_bean.LoginBean;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.BService;
