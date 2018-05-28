@@ -248,7 +248,8 @@
         <activity android:name=".DCZ_activity.HaveScanActivity" />
         <activity android:name=".DCZ_activity.HavaMoneyActivity" />
         <activity android:name=".DCZ_activity.LookPayPasswordActivity" />
-        <activity android:name=".DCZ_activity.LoginEmailActivity" />
+        <activity android:name=".DCZ_activity.LoginEmailActivity"
+            android:exported="true"/>
         <activity android:name=".DCZ_activity.LookPassword2Activity" />
         <activity android:name=".DCZ_activity.LookPayPassword2Activity" />
 

@@ -10,6 +10,8 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.example.duan.chao.DCZ_application.MyApplication;
+
 public class BService extends Service {
     public static Messenger to;
     public static  Message message;
@@ -32,13 +34,23 @@ public class BService extends Service {
             redirect_uri=msg.getData().getString("redirect_uri");
             scope=msg.getData().getString("scope");
             state=msg.getData().getString("state");
-            Log.e("kk", msg.getData().getString("ceshi")+"+App_key:"+App_key+"+redirect_uri:"+redirect_uri+"+scope:"+scope+"+state:"+state);
+            Log.e("kk","App_key:"+App_key+"+redirect_uri:"+redirect_uri+"+scope:"+scope+"+state:"+state);
 
             message = Message.obtain();
-            /*Bundle bundle = new Bundle();
-            bundle.putString("data","你要说什么？");
-            message.setData(bundle);*/
+            Bundle bundle = new Bundle();
+            bundle.putString("type","0");
+            if(MyApplication.token.equals("")){
+                bundle.putString("intent","com.example.duan.chao.DCZ_activity.LoginEmailActivity");
+            }else {
+                bundle.putString("intent","com.example.duan.chao.DCZ_activity.AuthorActivity");
+            }
+            message.setData(bundle);
             to = msg.replyTo;
+            try {
+                to.send(message);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
             super.handleMessage(msg);
         }
     });

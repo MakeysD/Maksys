@@ -20,6 +20,7 @@ import com.example.duan.chao.DCZ_lockdemo.LockUtil;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.BService;
 import com.example.duan.chao.DCZ_util.DialogUtil;
 import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.DCZ_util.ShebeiUtil;
@@ -228,8 +229,13 @@ public class SmsActivity extends BaseActivity {
                                 mode,
                                 AccountDb.DEFAULT_HOTP_COUNTER);
                         MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
-                        Intent intent=new Intent(INSTANCE,MainActivity.class);
-                        startActivity(intent);
+                        if(BService.App_key==null){
+                            Intent intent=new Intent(INSTANCE,MainActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Intent intent=new Intent(INSTANCE,AuthorActivity.class);
+                            startActivity(intent);
+                        }
                         ActivityUtils.getInstance().popAllActivities();
                     }else {
                         new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

@@ -18,11 +18,14 @@ import com.example.duan.chao.DCZ_bean.UserStateBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -329,13 +332,8 @@ public interface InterfaceService {
     @POST("dict/getIDCardTypeList")
     Call<CardBean>getIDCard(@Field("mobile") String string);
 
-    @FormUrlEncoded
+    @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("oauth/getAuthorizationCode ")
-    Call<AuthorBean> author(@Field("client_id") String client_id,
-                            @Field("nonce") String nonce,
-                            @Field("redirect_uri") String redirect_uri ,
-                            @Field("scope") String scope,
-                            @Field("sign") String sign,
-                            @Field("state") String state);
+    Call<AuthorBean> author(@Body RequestBody body);
 
 }

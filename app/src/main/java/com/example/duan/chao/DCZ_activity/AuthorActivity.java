@@ -21,8 +21,12 @@ import com.example.duan.chao.DCZ_util.RandomUtil;
 import com.example.duan.chao.R;
 import com.google.gson.Gson;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -74,6 +78,7 @@ public class AuthorActivity extends BaseActivity{
                 "&redirect_uri="+BService.redirect_uri/*+
                 "&scope="+ "a"+
                 "&state="+"a"*/;
+        Log.i("str",str);
         byte[] data = str.getBytes();
         String sign=null;
         try {
@@ -81,14 +86,19 @@ public class AuthorActivity extends BaseActivity{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HttpServiceClient.getInstance().author(BService.App_key,max,BService.redirect_uri,null,sign,null).enqueue(new Callback<AuthorBean>() {
+        Map<String,Object> map=new HashMap<>();
+        map.put("client_id",BService.App_key);
+        map.put("nonce",max);
+        map.put("redirect_uri",BService.redirect_uri);
+        map.put("sign",sign);
+        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),new Gson().toJson(map));
+        HttpServiceClient.getInstance().author(body).enqueue(new Callback<AuthorBean>() {
             @Override
             public void onResponse(Call<AuthorBean> call, Response<AuthorBean> response) {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
-                    send(response.body());
                     if(response.body().getCode().equals("20000")){
-
+                        send(response.body());
                     }else {
                         Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
                     }
@@ -111,16 +121,18 @@ public class AuthorActivity extends BaseActivity{
             if(BService.message==null||BService.to==null){
             }else {
                 bundle = new Bundle();
-                if(bean==null){
-                    bundle.putString("ceshi","你要说什么？取消了");
-                }else {
+                bundle.putString("type","1");  //传1对方会有回调消息，0则没有
+                if(bean!=null){
                     Gson mGson = new Gson();
-                    bundle.putString("ceshi","你要说什么？授权了");
+                    bundle.putString("type","1");
                     bundle.putString("json",mGson.toJson(bean));
                     Log.i("json对象",mGson.toJson(bean));
+                }else {
+                    bundle.putString("json",null);
                 }
                 BService.message.setData(bundle);
                 BService.to.send(BService.message);
+                BService.App_key=null;
                 ActivityUtils.getInstance().popActivity(INSTANCE);
             }
         } catch (RemoteException e) {
