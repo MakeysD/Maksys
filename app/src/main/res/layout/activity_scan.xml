@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg1"
-    tools:context="com.example.duan.chao.DCZ_activity.ScanActivity">
+    tools:context="com.example.duan.chao2.DCZ_activity.ScanActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.example.duan.chao.zxing_code.view.ViewfinderView
+        <com.example.duan.chao2.zxing_code.view.ViewfinderView
             android:id="@+id/capture_viewfinder"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />

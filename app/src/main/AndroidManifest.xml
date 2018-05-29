@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.duan.chao">
+    package="com.example.duan.chao2">
 
     <permission
-        android:name="com.example.duan.chao.permission.JPUSH_MESSAGE"
+        android:name="com.example.duan.chao2.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="android.permission.READ_LOGS" />
@@ -56,7 +56,7 @@
     <!-- android:hardwareAccelerated="false" -->
     <!-- android:persistent="true"设置进程优先级防止被回收 -->
     <application
-        android:name="com.example.duan.chao.DCZ_application.MyApplication"
+        android:name="com.example.duan.chao2.DCZ_application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
@@ -65,8 +65,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--适配长屏手机-->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.3" />
         <activity
-            android:name="com.example.duan.chao.DCZ_activity.AppStartActivity"
+            android:name="com.example.duan.chao2.DCZ_activity.AppStartActivity"
             android:theme="@style/Theme.AppStartLoadTranslucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,59 +79,55 @@
             </intent-filter>
         </activity>
         <!-- android:launchMode="singleInstance" -->
-        <service
-            android:name="com.example.duan.chao.DCZ_util.BService"
-            android:enabled="true"
-            android:exported="true"></service>
 
-        <activity android:name="com.example.duan.chao.DCZ_activity.WelcomeActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.SecurityProtectActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.GesturesLockActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.FingerprinProtectActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.GuanYuActivity" />
-        <activity android:name="com.example.duan.chao.MainActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ScanActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ChangePasswordActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.SecurityPhoneActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.SecurityEmailActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.WelcomeActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.SecurityProtectActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ZhangHuSercurityActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.GesturesLockActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.FingerprinProtectActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.GuanYuActivity" />
+        <activity android:name="com.example.duan.chao2.MainActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ScanActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ChangePasswordActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.SecurityPhoneActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.SecurityEmailActivity" />
         <activity
-            android:name="com.example.duan.chao.DCZ_activity.PersonDataActivity"
+            android:name="com.example.duan.chao2.DCZ_activity.PersonDataActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.SuohaoActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.EquipmentManageActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.OperationRecordActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.FootprintsActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ChangeLoginPasswordActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ChangePayPasswordActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.LookPasswordActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.SmsActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.LoginLockActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.LoginActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.LockActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ChangePhone1Activity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ChangePhone2Activity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.SuohaoActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.EquipmentManageActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.OperationRecordActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.FootprintsActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ChangeLoginPasswordActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ChangePayPasswordActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LookPasswordActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.SmsActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LoginLockActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LoginActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LockActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ChangePhone1Activity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ChangePhone2Activity" />
         <activity
-            android:name="com.example.duan.chao.DCZ_activity.ChangePhone3Activity"
+            android:name="com.example.duan.chao2.DCZ_activity.ChangePhone3Activity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ChangePhone4Activity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.CityListActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ZhiwenActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ChangePhone4Activity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.CityListActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ZhiwenActivity" />
         <activity
-            android:name="com.example.duan.chao.DCZ_activity.HaveActivity"
+            android:name="com.example.duan.chao2.DCZ_activity.HaveActivity"
             android:exported="true" />
         <!-- For test only 测试的主程序 -->
         <!-- For test only 测试高级功能 -->
         <activity
-            android:name="com.example.duan.chao.DCZ_jiguang.PushSetActivity"
+            android:name="com.example.duan.chao2.DCZ_jiguang.PushSetActivity"
             android:label="@string/app_name" />
         <!-- For test only 测试设置 -->
         <activity
-            android:name="com.example.duan.chao.DCZ_jiguang.SettingActivity"
+            android:name="com.example.duan.chao2.DCZ_jiguang.SettingActivity"
             android:label="@string/app_name" />
         <!-- For test only 测试状态通知栏，需要打开的Activity -->
         <activity
-            android:name="com.example.duan.chao.DCZ_jiguang.TestActivity"
+            android:name="com.example.duan.chao2.DCZ_jiguang.TestActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="jpush.testAction" />
@@ -206,7 +206,7 @@
             android:exported="false" />
         <!-- User defined. For test only 用户自定义的广播接收器 -->
         <receiver
-            android:name="com.example.duan.chao.DCZ_jiguang.MyReceiver"
+            android:name="com.example.duan.chao2.DCZ_jiguang.MyReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -224,7 +224,7 @@
             </intent-filter>
         </receiver>
         <!-- User defined. For test only 用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调 -->
-        <receiver android:name="com.example.duan.chao.DCZ_jiguang.MyJPushMessageReceiver">
+        <receiver android:name="com.example.duan.chao2.DCZ_jiguang.MyJPushMessageReceiver">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
 
@@ -239,19 +239,19 @@
             android:name="JPUSH_APPKEY"
             android:value="09c99878811909a4bf2a7b1a" />
         <!-- </>值来自开发者平台取得的AppKey -->
-        <activity android:name="com.example.duan.chao.DCZ_activity.StartLockActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ChangeEmailActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.StartLockActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ChangeEmailActivity" />
         <activity
-            android:name="com.example.duan.chao.DCZ_activity.SettingDataActivity"
+            android:name="com.example.duan.chao2.DCZ_activity.SettingDataActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.LanguageActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.HaveScanActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.HavaMoneyActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.LookPayPasswordActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.LoginEmailActivity"
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LanguageActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.HaveScanActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.HavaMoneyActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LookPayPasswordActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LoginEmailActivity"
             android:exported="true"/>
-        <activity android:name="com.example.duan.chao.DCZ_activity.LookPassword2Activity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.LookPayPassword2Activity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LookPassword2Activity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.LookPayPassword2Activity" />
 
         <receiver android:name="com.chiclam.android.receiver.ApkInstallReceiver">
             <intent-filter>
@@ -261,37 +261,37 @@
         </receiver>
 
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.AuthenticatorActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.AuthenticatorActivity"
             android:label="@string/app_name" />
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.SettingsAboutActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.SettingsAboutActivity"
             android:label="@string/about_preference_screen_title" />
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.AddOtherAccountActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.AddOtherAccountActivity"
             android:label="@string/add_account_menu_item" />
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.EnterKeyActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.EnterKeyActivity"
             android:label="@string/enter_key_title" />
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.CheckCodeActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.CheckCodeActivity"
             android:label="@string/check_code_title" />
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.SettingsActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.SettingsActivity"
             android:label="@string/main_preference_screen_title" />
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.timesync.SettingsTimeCorrectionActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.timesync.SettingsTimeCorrectionActivity"
             android:label="@string/timesync_preference_screen_title" />
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.timesync.AboutActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.timesync.AboutActivity"
             android:label="@string/timesync_about_feature_screen_title"
             android:theme="@style/AuthenticatorTheme.NoTitleBar" />
         <activity
-            android:name="com.example.duan.chao.DCZ_authenticator.timesync.SyncNowActivity"
+            android:name="com.example.duan.chao2.DCZ_authenticator.timesync.SyncNowActivity"
             android:label="@string/timesync_sync_now_screen_title"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.TanSuoActivity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.ZhiWen2Activity" />
-        <activity android:name="com.example.duan.chao.DCZ_activity.StartLock2Activity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.TanSuoActivity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.ZhiWen2Activity" />
+        <activity android:name="com.example.duan.chao2.DCZ_activity.StartLock2Activity" />
 
         <!-- Bugly升级SDK配置开始 -->
         <activity
@@ -300,7 +300,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.duan.chao.fileProvider"
+            android:authorities="com.example.duan.chao2.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -309,7 +309,7 @@
         </provider>
         <!-- Bugly升级SDK配置结束 -->
         <activity
-            android:name="com.example.duan.chao.DCZ_activity.AuthorActivity"
+            android:name="com.example.duan.chao2.DCZ_activity.AuthorActivity"
             android:exported="true" >
 
         </activity>

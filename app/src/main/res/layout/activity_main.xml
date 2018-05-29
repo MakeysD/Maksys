@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.duan.chao.DCZ_selft.DragLayout
+<com.example.duan.chao2.DCZ_selft.DragLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
@@ -302,7 +302,7 @@
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
                     android:text="@string/main6"/>
-                <com.example.duan.chao.DCZ_selft.SwitchButton
+                <com.example.duan.chao2.DCZ_selft.SwitchButton
                     android:id="@+id/button2"
                     style="@style/SwitchButtonStyle"
                     android:layout_width="wrap_content"
@@ -500,7 +500,7 @@
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
-    <com.example.duan.chao.DCZ_selft.DragRelativeLayout
+    <com.example.duan.chao2.DCZ_selft.DragRelativeLayout
         android:id="@+id/rl_main"
         android:background="#373b44"
         android:layout_width="match_parent"
@@ -576,7 +576,7 @@
                         android:background="@drawable/b_g2">
                     </RelativeLayout>
 
-                    <com.example.duan.chao.DCZ_util.MyRoundProcess
+                    <com.example.duan.chao2.DCZ_util.MyRoundProcess
                         android:layout_width="280dp"
                         android:layout_height="280dp"
                         android:layout_centerInParent="true"
@@ -734,5 +734,5 @@
                     android:text="@string/tishi136"/>
             </RelativeLayout>
         </RelativeLayout>
-    </com.example.duan.chao.DCZ_selft.DragRelativeLayout>
-</com.example.duan.chao.DCZ_selft.DragLayout>
+    </com.example.duan.chao2.DCZ_selft.DragRelativeLayout>
+</com.example.duan.chao2.DCZ_selft.DragLayout>

@@ -36,7 +36,7 @@
             android:layout_below="@id/tvDot"
             android:layout_height="10dp" />
     </RelativeLayout>
-    <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+    <com.example.duan.chao2.DCZ_selft.GridViewForScrollView
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,7 +44,7 @@
         android:divider="@null"
         android:clickable="false"
         android:scrollbars="none">
-    </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
+    </com.example.duan.chao2.DCZ_selft.GridViewForScrollView>
     <TextView
         android:id="@+id/xian3"
         android:layout_width="@dimen/xian2"

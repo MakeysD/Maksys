@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg1"
-    tools:context="com.example.duan.chao.DCZ_activity.FootprintsActivity">
+    tools:context="com.example.duan.chao2.DCZ_activity.FootprintsActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -33,12 +33,12 @@
             android:layout_marginRight="@dimen/xian_right"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
-    <com.example.duan.chao.DCZ_selft.PullToRefreshLayout
+    <com.example.duan.chao2.DCZ_selft.PullToRefreshLayout
         android:id="@+id/refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <include layout="@layout/refresh_head"/>
-        <com.example.duan.chao.DCZ_selft.BounceScrollView
+        <com.example.duan.chao2.DCZ_selft.BounceScrollView
             android:id="@+id/sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -58,14 +58,14 @@
                     android:paddingTop="7dp"
                     android:paddingBottom="7dp"
                     android:text="@string/tishi23"/>
-                <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+                <com.example.duan.chao2.DCZ_selft.GridViewForScrollView
                         android:id="@+id/lv1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:divider="@null"
                         android:clickable="false"
                         android:scrollbars="none">
-                </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
+                </com.example.duan.chao2.DCZ_selft.GridViewForScrollView>
                 <TextView
                         android:id="@+id/tv2"
                         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                         android:paddingLeft="@dimen/left"
                         android:paddingTop="7dp"
                         android:text="@string/tishi24"/>
-                <com.example.duan.chao.DCZ_selft.GridViewForScrollView
+                <com.example.duan.chao2.DCZ_selft.GridViewForScrollView
                         android:id="@+id/lv2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                         android:divider="@null"
                         android:clickable="false"
                         android:scrollbars="none">
-                </com.example.duan.chao.DCZ_selft.GridViewForScrollView>
+                </com.example.duan.chao2.DCZ_selft.GridViewForScrollView>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -100,8 +100,8 @@
                         android:text="暂无数据"/>
                 </RelativeLayout>
             </LinearLayout>
-        </com.example.duan.chao.DCZ_selft.BounceScrollView>
+        </com.example.duan.chao2.DCZ_selft.BounceScrollView>
         <include layout="@layout/load_more"/>
-    </com.example.duan.chao.DCZ_selft.PullToRefreshLayout>
+    </com.example.duan.chao2.DCZ_selft.PullToRefreshLayout>
 
 </LinearLayout>

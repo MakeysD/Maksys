@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.duan.chao.DCZ_activity.ZhangHuSercurityActivity">
+    tools:context="com.example.duan.chao2.DCZ_activity.ZhangHuSercurityActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"

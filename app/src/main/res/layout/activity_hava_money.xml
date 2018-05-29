@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg"
-    tools:context="com.example.duan.chao.DCZ_activity.HavaMoneyActivity">
+    tools:context="com.example.duan.chao2.DCZ_activity.HavaMoneyActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp" />

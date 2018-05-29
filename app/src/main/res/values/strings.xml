@@ -354,6 +354,8 @@
     <string name="tishi159">确定删除该设备?</string>
     <string name="tishi160">重设</string>
     <string name="tishi161">证件大小不能超过5M</string>
+    <string name="tishi162">俄语</string>
+    <string name="tishi163">越南语</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg1"
     android:orientation="vertical"
-    tools:context="com.example.duan.chao.DCZ_activity.StartLockActivity">
+    tools:context="com.example.duan.chao2.DCZ_activity.StartLockActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -81,7 +81,7 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_centerInParent="true">
-                    <com.example.duan.chao.DCZ_lockdemo.CustomLockView
+                    <com.example.duan.chao2.DCZ_lockdemo.CustomLockView
                         android:id="@+id/cl"
                         android:layout_width="230dp"
                         android:layout_height="230dp"

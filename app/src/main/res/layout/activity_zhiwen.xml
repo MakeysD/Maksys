@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg1"
     android:orientation="vertical"
-    tools:context="com.example.duan.chao.DCZ_activity.ZhiwenActivity">
+    tools:context="com.example.duan.chao2.DCZ_activity.ZhiwenActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

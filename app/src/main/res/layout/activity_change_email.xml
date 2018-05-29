@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg1"
-    tools:context="com.example.duan.chao.DCZ_activity.ChangeEmailActivity">
+    tools:context="com.example.duan.chao2.DCZ_activity.ChangeEmailActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

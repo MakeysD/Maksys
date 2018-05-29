@@ -49,7 +49,7 @@ http://www.apache.org/licenses/license - 2.0
           android:layout_width="fill_parent"
           android:layout_height="wrap_content" />
       </LinearLayout>
-      <com.example.duan.chao.DCZ_authenticator.CountdownIndicator
+      <com.example.duan.chao2.DCZ_authenticator.CountdownIndicator
           android:id="@+id/countdown_icon"
           android:layout_width="32dip"
           android:layout_height="32dip"

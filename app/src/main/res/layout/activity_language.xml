@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg1"
-    tools:context="com.example.duan.chao.DCZ_activity.LanguageActivity">
+    tools:context="com.example.duan.chao2.DCZ_activity.LanguageActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -95,8 +95,7 @@
             <RelativeLayout
                 android:id="@+id/rl2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone">
+                android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/tv2"
                     android:layout_width="wrap_content"
@@ -166,6 +165,62 @@
                     android:text="@string/tishi38"/>
                 <ImageView
                     android:id="@+id/iv4"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/select"
+                    android:visibility="gone"
+                    android:layout_marginRight="20dp" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xian"
+                android:background="@color/xian1"/>
+            <RelativeLayout
+                android:id="@+id/rl5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text07"
+                    android:textSize="@dimen/text00"
+                    android:paddingTop="17dp"
+                    android:paddingBottom="17dp"
+                    android:layout_marginLeft="@dimen/left"
+                    android:text="@string/tishi162"/>
+                <ImageView
+                    android:id="@+id/iv5"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/select"
+                    android:visibility="gone"
+                    android:layout_marginRight="20dp" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xian"
+                android:background="@color/xian1"/>
+            <RelativeLayout
+                android:id="@+id/rl6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text07"
+                    android:textSize="@dimen/text00"
+                    android:paddingTop="17dp"
+                    android:paddingBottom="17dp"
+                    android:layout_marginLeft="@dimen/left"
+                    android:text="@string/tishi163"/>
+                <ImageView
+                    android:id="@+id/iv6"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_alignParentRight="true"
