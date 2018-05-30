@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg1"
-    tools:context="com.example.duan.chao2.DCZ_activity.LoginLockActivity">
+    tools:context="com.example.duan.chao.DCZ_activity.LoginLockActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -48,7 +48,7 @@
             android:layout_marginBottom="15dp"
             android:id="@+id/tvWarn"/>
 
-        <com.example.duan.chao2.DCZ_lockdemo.CustomLockView
+        <com.example.duan.chao.DCZ_lockdemo.CustomLockView
             android:id="@+id/cl"
             android:layout_width="260dp"
             android:layout_height="260dp"

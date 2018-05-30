@@ -52,7 +52,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text01" />
 
-        <com.example.duan.chao2.DCZ_selft.SwitchButton
+        <com.example.duan.chao.DCZ_selft.SwitchButton
             android:id="@+id/button"
             style="@style/SwitchButtonStyle"
             android:layout_width="wrap_content"

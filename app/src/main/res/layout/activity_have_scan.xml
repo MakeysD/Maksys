@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg"
-    tools:context="com.example.duan.chao2.DCZ_activity.HaveScanActivity">
+    tools:context="com.example.duan.chao.DCZ_activity.HaveScanActivity">
     <RelativeLayout
         android:visibility="gone"
         style="@style/Title">

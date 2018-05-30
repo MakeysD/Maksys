@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/bg1"
     android:gravity="center_horizontal"
-    tools:context="com.example.duan.chao2.DCZ_activity.GuanYuActivity">
+    tools:context="com.example.duan.chao.DCZ_activity.GuanYuActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"

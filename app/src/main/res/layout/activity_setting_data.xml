@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@color/bg1"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.duan.chao2.DCZ_activity.SettingDataActivity">
+    tools:context="com.example.duan.chao.DCZ_activity.SettingDataActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,7 +40,7 @@
                     android:layout_marginRight="@dimen/xian_right"
                     android:layout_alignParentBottom="true"/>
             </RelativeLayout>
-            <com.example.duan.chao2.DCZ_selft.BounceScrollView
+            <com.example.duan.chao.DCZ_selft.BounceScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
@@ -694,7 +694,7 @@
                         android:layout_height="20dp">
                     </View>
                 </LinearLayout>
-            </com.example.duan.chao2.DCZ_selft.BounceScrollView>
+            </com.example.duan.chao.DCZ_selft.BounceScrollView>
         </LinearLayout>
     </LinearLayout>
     <RelativeLayout

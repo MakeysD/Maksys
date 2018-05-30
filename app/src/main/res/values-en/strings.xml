@@ -333,6 +333,8 @@
     <string name="tishi159">delete the device？</string>
     <string name="tishi160">reset</string>
     <string name="tishi161">the image must less than 5M</string>
+    <string name="tishi162">俄语</string>
+    <string name="tishi163">越南语</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->
@@ -431,7 +433,7 @@
     <string name="opensource_page_url" translatable="false">https://github.com/google/google-authenticator/</string>
     <string name="terms_page_url" translatable="false">http://m.google.com/tospage</string>
     <string name="privacy_page_url" translatable="false">http://www.google.com/policies/privacy/</string>-->
-    <string name="timesync_preference_screen_title" msgid="3022961447302189451">"校正用来生成验证码的时间"</string>
+<!--    <string name="timesync_preference_screen_title" msgid="3022961447302189451">"校正用来生成验证码的时间"</string>
     <string name="timesync_preference_screen_summary" msgid="4761393049788324525">"将身份验证器的内部时钟与 Google 服务器进行同步"</string>
     <string name="timesync_sync_now_preference_title" msgid="3082679345742875442">"立即同步"</string>
     <string name="timesync_about_feature_preference_title" msgid="8398618989030576453">"关于此功能"</string>
@@ -510,6 +512,6 @@
     <string name="howitworks_page_enter_password_details" msgid="1637264390208452667">"但是，如果您是在新的计算机或设备上登录，Google 会要求您输入特殊的验证码来验证您的身份。"</string>
     <string name="howitworks_page_enter_code_details" msgid="2285856515167753320">"该应用会生成必要的验证码供您继续登录。"</string>
     <string name="howitworks_page_verify_device_details" msgid="9198940182976285367">"您还可以选择记住该计算机，这样，下次 Google 就不会再要求您在这台计算机上输入验证码了。"</string>
-    <string name="button_exit_howitworks_flow" msgid="6789714209015077393">"退出"</string>
+    <string name="button_exit_howitworks_flow" msgid="6789714209015077393">"退出"</string>-->
 
 </resources>

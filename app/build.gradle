@@ -15,7 +15,7 @@ android {
     buildToolsVersion "27.0.3"
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
-        applicationId "com.example.duan.chao2"
+        applicationId "com.example.duan.chao"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1

@@ -18,21 +18,21 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
   <PreferenceScreen
     android:key="time_sync"
-    android:title="@string/timesync_preference_screen_title"
-    android:summary="@string/timesync_preference_screen_summary"
+    android:title="@string/title24"
+    android:summary="@string/title24"
     android:persistent="false">
     <intent
-      android:targetPackage="@string/app_package_name"
+      android:targetPackage="@string/app_name"
       android:targetClass="com.google.android.apps.authenticator.timesync.SettingsTimeCorrectionActivity">
     </intent>
   </PreferenceScreen>
 
   <PreferenceScreen
     android:key="about"
-    android:title="@string/about_preference_title"
+    android:title="@string/title24"
     android:persistent="false">
     <intent
-      android:targetPackage="@string/app_package_name"
+      android:targetPackage="@string/app_name"
       android:targetClass="com.google.android.apps.authenticator.SettingsAboutActivity">
     </intent>
   </PreferenceScreen>

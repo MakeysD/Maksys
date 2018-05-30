@@ -328,6 +328,8 @@
  <string name="tishi159">ต้องการลบหรือไม่?</string>
  <string name="tishi160">รีเซ็ต</string>
  <string name="tishi161">ภาพต้องน้อยกว่า 5M</string>
+ <string name="tishi162">俄语</string>
+ <string name="tishi163">越南语</string>
 
  <string name="code1">สำเร็จ</string><!--20000-->
  <string name="code2">ล้มเหลว</string><!--20001-->
@@ -426,7 +428,7 @@
   <string name="opensource_page_url" translatable="false">https://github.com/google/google-authenticator/</string>
   <string name="terms_page_url" translatable="false">http://m.google.com/tospage</string>
   <string name="privacy_page_url" translatable="false">http://www.google.com/policies/privacy/</string>-->
-  <string name="timesync_preference_screen_title" msgid="3022961447302189451">"แก้ไขเพื่อสร้างรหัสยืนยัน"</string>
+ <!-- <string name="timesync_preference_screen_title" msgid="3022961447302189451">"แก้ไขเพื่อสร้างรหัสยืนยัน"</string>
   <string name="timesync_preference_screen_summary" msgid="4761393049788324525">"อัพเดทนาฬิกาในอุปกรณ์ยืนยันตัวตน กับGoogleให้ตรงกัน"</string>
   <string name="timesync_sync_now_preference_title" msgid="3082679345742875442">"อัพเดท"</string>
   <string name="timesync_about_feature_preference_title" msgid="8398618989030576453">"เกี่ยวกับระบบ"</string>
@@ -440,7 +442,7 @@
   <string name="timesync_sync_now_time_already_correct_dialog_title" msgid="4771431037030124374">"เวลาถูกต้อง"</string>
   <string name="timesync_sync_now_time_already_correct_dialog_details" msgid="1783578393804196806">"อุปกรณ์ยืนยันตัวตนยังไม่ตั้งค่านาฬิกา เวลานาฬิกาถูกอัพเดทตามเวลา Google"</string>
   <string name="timesync_sync_now_connectivity_error_dialog_title" msgid="3173165623567050563">"อัพเดท"</string>
-  <string name="timesync_sync_now_connectivity_error_dialog_details" msgid="7427576990969917093">"เกิดข้อผิดพลาดในการติดต่อเซิร์ฟเวอร์ Google กรุณาตรวจสอบการติดตั้งอินเตอร์และลองใหม่อีกครั้ง"</string>-->
+  <string name="timesync_sync_now_connectivity_error_dialog_details" msgid="7427576990969917093">"เกิดข้อผิดพลาดในการติดต่อเซิร์ฟเวอร์ Google กรุณาตรวจสอบการติดตั้งอินเตอร์และลองใหม่อีกครั้ง"</string>&ndash;&gt;
    <string name="app_name_short" msgid="6268465073167241020">"เครื่องมือยืนยันตัวตน"</string>
    <string name="enter_key_title" msgid="3762128630776563361">"กรอกบัญชีด้วยตนเอง"</string>
    <string name="enter_key_page_add_button" msgid="7145413404890383746">"เพิ่มเติม"</string>
@@ -504,5 +506,5 @@
    <string name="howitworks_page_enter_password_details" msgid="1637264390208452667">"แต่หากคุณเข้าสู่ระบบผ่านคอมพิวเตอร์หรืออุปกรณ์อื่น Google จะทำการส่งรหัสยืนยันเพื่อให้คุณทำการยืนยันตัวตน"</string>
    <string name="howitworks_page_enter_code_details" msgid="2285856515167753320">"ระบบนี้จะทำการส่งรหัสยืนยันเพื่อใช้ในการเข้าสู่ระบบ。"</string>
    <string name="howitworks_page_verify_device_details" msgid="9198940182976285367">"คุณสามารถทำการจดจำคอมพิวเตอร์ เพื่อจะไม่ต้องกรอกรหัสยืนยันบนคอมพิวเตอร์เครื่องนี้อีกต่อไป"</string>
-   <string name="button_exit_howitworks_flow" msgid="6789714209015077393">"ออก"</string>
+   <string name="button_exit_howitworks_flow" msgid="6789714209015077393">"ออก"</string>-->
 </resources>

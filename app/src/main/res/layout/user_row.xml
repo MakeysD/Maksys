@@ -13,7 +13,7 @@
         -->
 <!--除了UserRowView之外，这个文件应该保持同步
 与user_row_legacy.xml-->
-<com.example.duan.chao2.DCZ_authenticator.UserRowView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.duan.chao.DCZ_authenticator.UserRowView xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content">
@@ -46,7 +46,7 @@
           android:layout_height="wrap_content"
           android:src="@drawable/refresh_button"
           android:background="@android:color/transparent" />
-      <com.example.duan.chao2.DCZ_authenticator.CountdownIndicator
+      <com.example.duan.chao.DCZ_authenticator.CountdownIndicator
           android:id="@+id/countdown_icon"
           android:layout_width="32dip"
           android:layout_height="32dip"
@@ -65,4 +65,4 @@
 </LinearLayout>
 
 
-</com.example.duan.chao2.DCZ_authenticator.UserRowView>
+</com.example.duan.chao.DCZ_authenticator.UserRowView>

@@ -18,11 +18,11 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
   <Preference
     android:key="version"
-    android:title="@string/version_preference_title"
+    android:title="@string/title24"
     android:persistent="false"
     android:enabled="false"
     android:shouldDisableView="false"/>
-  <PreferenceScreen
+<!--  <PreferenceScreen
     android:key="opensource"
     android:title="@string/opensource_preference_title">
     <intent
@@ -42,5 +42,5 @@
     <intent
       android:action="android.intent.action.VIEW"
       android:data="@string/privacy_page_url" />
-  </PreferenceScreen>
+  </PreferenceScreen>-->
 </PreferenceScreen>

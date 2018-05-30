@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="pickerview_cancel">cancel</string>
+    <string name="pickerview_submit">submit</string>
+    <string name="pickerview_year"><!--year--></string>
+    <string name="pickerview_month"><!--month--></string>
+    <string name="pickerview_day"><!--day--></string>
+    <string name="pickerview_hours">hours</string>
+    <string name="pickerview_minutes">minutes</string>
+    <string name="pickerview_seconds">seconds</string>
+    <string name="tishi128">start date</string>
+    <string name="tishi129">finish date</string>
+    <string name="tishi158">Long-term valid</string>
+</resources>

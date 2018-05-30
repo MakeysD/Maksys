@@ -24,7 +24,7 @@
 
     <TextView android:id="@+id/check_code" android:layout_width="fill_parent"
       android:layout_height="wrap_content" android:layout_marginLeft="10dip"
-      android:layout_marginTop="20dip" android:text="@string/check_code"
+      android:layout_marginTop="20dip" android:text="@string/button"
       style="?android:attr/textAppearanceMedium" android:visibility="invisible" />
 
     <LinearLayout android:id="@+id/code_area" android:orientation="horizontal"
