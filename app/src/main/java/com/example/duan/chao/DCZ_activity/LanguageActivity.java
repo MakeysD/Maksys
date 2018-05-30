@@ -90,6 +90,12 @@ public class LanguageActivity extends BaseActivity {
             a4();
         }else if(MyApplication.language.equals("ENGLISH")){
             a3();
+        }else if(MyApplication.language.equals("CHINESE_TW")){
+            a2();
+        }else if(MyApplication.language.equals("SK")){
+            a5();
+        }else if(MyApplication.language.equals("VI")){
+            a6();
         }else if(MyApplication.language.equals("")){
             if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
                 a3();
@@ -143,6 +149,10 @@ public class LanguageActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 a2();
+                MyApplication.type=1;
+                MyApplication.language="CHINESE_TW";MyApplication.sf.edit().putString("language","CHINESE_TW").commit();
+                MyApplication.status=true;
+                recreate();
             }
         });
         rl3.setOnClickListener(new View.OnClickListener() {
@@ -169,12 +179,20 @@ public class LanguageActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 a5();
+                MyApplication.type=1;
+                MyApplication.language="SK";MyApplication.sf.edit().putString("language","SK").commit();
+                recreate();//刷新页面
+                MyApplication.status=true;
             }
         });
         rl6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 a6();
+                MyApplication.type=1;
+                MyApplication.language="VI";MyApplication.sf.edit().putString("language","VI").commit();
+                recreate();//刷新页面
+                MyApplication.status=true;
             }
         });
     }

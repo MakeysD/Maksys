@@ -198,6 +198,12 @@ public class SettingDataActivity extends BaseActivity {
             zheng.setBackgroundResource(R.mipmap.shenfenzhengtai);
             fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
             shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
+        }else if(MyApplication.language.equals("CHINESE_TW")){
+
+        }else if(MyApplication.language.equals("SK")){
+
+        }else if(MyApplication.language.equals("VI")){
+
         }else if(MyApplication.language.equals("")){
             if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
                 zheng.setBackgroundResource(R.mipmap.shenfenzhengen);

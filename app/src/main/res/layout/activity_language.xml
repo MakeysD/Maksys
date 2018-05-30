@@ -120,7 +120,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/xian"
-                android:visibility="gone"
                 android:background="@color/xian1"/>
             <RelativeLayout
                 android:id="@+id/rl3"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">test</string>
+    <string name="app_name">Makeys</string>
  <!-- TODO: Remove or change this placeholder text -->
  <string name="hello_blank_fragment">привет</string>
  <string name="loaddings">старательно ...</string>
@@ -329,8 +329,8 @@
  <string name="tishi159">удалить данное оборуд.?</string>
  <string name="tishi160">переустан.</string>
  <string name="tishi161">размер докум. не больше 5M</string>
- <string name="tishi162">俄语</string>
- <string name="tishi163">越南语</string>
+ <string name="tishi162">русский</string>
+ <string name="tishi163">вьетнамский </string>
 
  <string name="code1">удач.</string><!--20000-->
  <string name="code2">неудач.</string><!--20001-->

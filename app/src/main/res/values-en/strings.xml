@@ -333,8 +333,8 @@
     <string name="tishi159">delete the device？</string>
     <string name="tishi160">reset</string>
     <string name="tishi161">the image must less than 5M</string>
-    <string name="tishi162">俄语</string>
-    <string name="tishi163">越南语</string>
+    <string name="tishi162">Russian</string>
+    <string name="tishi163">Vietnamese</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->

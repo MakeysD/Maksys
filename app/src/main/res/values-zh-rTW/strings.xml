@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">test</string>
+    <string name="app_name">Makeys</string>
  <!-- TODO: Remove or change this placeholder text -->
  <string name="hello_blank_fragment">你好</string>
  <string name="loaddings">努力加載...</string>
@@ -329,8 +329,8 @@
  <string name="tishi159">確定刪除該設備?</string>
  <string name="tishi160">重設</string>
  <string name="tishi161">證件大小不能超過5M</string>
- <string name="tishi162">俄语</string>
- <string name="tishi163">越南语</string>
+ <string name="tishi162">俄語</string>
+ <string name="tishi163">越南語</string>
 
  <string name="code1">成功</string><!--20000-->
  <string name="code2">失敗</string><!--20001-->

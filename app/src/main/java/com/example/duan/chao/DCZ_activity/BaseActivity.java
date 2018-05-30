@@ -50,6 +50,7 @@ public class BaseActivity extends Activity{
         String yu = getBaseContext().getResources().getConfiguration().locale.toString();
         Log.i("dcz_系统语言2",yu);
         Log.i("dcz_系统语言3",MyApplication.xitong);
+        Log.i("dcz_系统语言4",Locale.getDefault().getLanguage()+Locale.getDefault().getCountry());
         if(yu.equals("en_US")){     //对于多机型，这个为了保存系统语言
             MyApplication.xitong="en_US";MyApplication.sf.edit().putString("xitong","en_US").commit();
         }else if(yu.equals("en_GB")){
@@ -88,6 +89,24 @@ public class BaseActivity extends Activity{
             /*Configuration config = getBaseContext().getResources().getConfiguration();
             config.locale = Locale.ENGLISH;*/
             Locale locale = new Locale("en");
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale =locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        }else if(MyApplication.language.equals("CHINESE_TW")){
+            Configuration config = getResources().getConfiguration();
+            config.locale = Locale.TRADITIONAL_CHINESE;//将语言更改为繁体中文
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+            /*Locale locale = new Locale("zh_rtw");
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale =locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());*/
+        }else if(MyApplication.language.equals("SK")){
+            Locale locale = new Locale("sk");
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale =locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        }else if(MyApplication.language.equals("VI")){
+            Locale locale = new Locale("vi");
             Configuration config = getBaseContext().getResources().getConfiguration();
             config.locale =locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());

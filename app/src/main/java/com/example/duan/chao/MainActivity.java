@@ -821,6 +821,10 @@ public class MainActivity extends BaseActivity{
             language.setText(R.string.tishi37);
         }else if(MyApplication.language.equals("TAI")){
             language.setText(R.string.tishi38);
+        }else if(MyApplication.language.equals("SK")){
+            language.setText(R.string.tishi162);
+        }else if(MyApplication.language.equals("VI")){
+            language.setText(R.string.tishi163);
         }else if(MyApplication.language.equals("")){
             if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
                 language.setText(R.string.tishi37);
