@@ -270,7 +270,13 @@ public class LookPayPasswordActivity extends BaseActivity {
                                 guo.setText(list.get(i).getCountry_name_en());
                             }else if(MyApplication.language.equals("TAI")){
                                 guo.setText(list.get(i).getCountry_name_tai());
-                            }else if(MyApplication.language.equals("")){
+                            }/*else if(MyApplication.language.equals("CHINESE_TW")){
+
+                            }else if(MyApplication.language.equals("SK")){
+
+                            }else if(MyApplication.language.equals("VI")){
+
+                            }*/else if(MyApplication.language.equals("")){
                                 if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
                                     guo.setText(list.get(i).getCountry_name_en());
                                 }else if(MyApplication.xitong.equals("th_TH")){

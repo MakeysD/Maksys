@@ -199,11 +199,17 @@ public class SettingDataActivity extends BaseActivity {
             fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
             shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
         }else if(MyApplication.language.equals("CHINESE_TW")){
-
+            zheng.setBackgroundResource(R.mipmap.shenfenzhengf);
+            fan.setBackgroundResource(R.mipmap.shenfenzhengf2);
+            shou.setBackgroundResource(R.mipmap.shenfenzhengf3);
         }else if(MyApplication.language.equals("SK")){
-
+            zheng.setBackgroundResource(R.mipmap.shenfenzhenge);
+            fan.setBackgroundResource(R.mipmap.shenfenzhenge2);
+            shou.setBackgroundResource(R.mipmap.shenfenzhenge3);
         }else if(MyApplication.language.equals("VI")){
-
+            zheng.setBackgroundResource(R.mipmap.shenfenzhengy);
+            fan.setBackgroundResource(R.mipmap.shenfenzhengy2);
+            shou.setBackgroundResource(R.mipmap.shenfenzhengy3);
         }else if(MyApplication.language.equals("")){
             if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
                 zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
@@ -213,6 +219,18 @@ public class SettingDataActivity extends BaseActivity {
                 zheng.setBackgroundResource(R.mipmap.shenfenzhengtai);
                 fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
                 shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
+            }else if(MyApplication.language.equals("CHINESE_TW")){
+                zheng.setBackgroundResource(R.mipmap.shenfenzhengf);
+                fan.setBackgroundResource(R.mipmap.shenfenzhengf2);
+                shou.setBackgroundResource(R.mipmap.shenfenzhengf3);
+            }else if(MyApplication.language.equals("SK")){
+                zheng.setBackgroundResource(R.mipmap.shenfenzhenge);
+                fan.setBackgroundResource(R.mipmap.shenfenzhenge2);
+                shou.setBackgroundResource(R.mipmap.shenfenzhenge3);
+            }else if(MyApplication.language.equals("VI")){
+                zheng.setBackgroundResource(R.mipmap.shenfenzhengy);
+                fan.setBackgroundResource(R.mipmap.shenfenzhengy2);
+                shou.setBackgroundResource(R.mipmap.shenfenzhengy3);
             }else {
                 zheng.setBackgroundResource(R.mipmap.shenfenzheng);
                 fan.setBackgroundResource(R.mipmap.shenfenzheng2);

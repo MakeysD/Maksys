@@ -19,7 +19,6 @@ package com.example.duan.chao.DCZ_authenticator;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 

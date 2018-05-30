@@ -17,7 +17,6 @@
 package com.example.duan.chao.DCZ_authenticator.timesync;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;

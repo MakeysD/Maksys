@@ -39,6 +39,12 @@ public class AddUpdate implements Interceptor{
                 originalRequest = originalRequest.newBuilder().addHeader("lang","en").build();
             }else if(MyApplication.xitong.equals("th_TH")){
                 originalRequest = originalRequest.newBuilder().addHeader("lang","th").build();
+            }else if(MyApplication.xitong.equals("zh_TW")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","zh_TW").build();
+            }else if(MyApplication.xitong.equals("sk")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","sk").build();
+            }else if(MyApplication.xitong.equals("vi")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","vi").build();
             }else {
                 originalRequest = originalRequest.newBuilder().addHeader("lang","zh").build();
             }
@@ -47,6 +53,12 @@ public class AddUpdate implements Interceptor{
                 originalRequest = originalRequest.newBuilder().addHeader("lang","zh").build();
             }else if(MyApplication.language.equals("ENGLISH")){
                 originalRequest = originalRequest.newBuilder().addHeader("lang","en").build();
+            }else if(MyApplication.language.equals("CHINESE_TW")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","zh_TW").build();
+            }else if(MyApplication.language.equals("SK")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","sk").build();
+            }else if(MyApplication.language.equals("VI")){
+                originalRequest = originalRequest.newBuilder().addHeader("lang","vi").build();
             }else {
                 originalRequest = originalRequest.newBuilder().addHeader("lang","th").build();
             }
