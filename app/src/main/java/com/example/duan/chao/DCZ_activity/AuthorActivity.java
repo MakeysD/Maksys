@@ -118,11 +118,18 @@ public class AuthorActivity extends BaseActivity{
 
     public void ceshi(){
         String max= RandomUtil.RandomNumber();
-        String str ="client_id="+MyApplication.App_key+
-                "&nonce="+max+
-                "&redirect_uri="+MyApplication.redirect_uri/*+
-                "&scope="+ "a"+
-                "&state="+"a"*/;
+        String str=null;
+        if(MyApplication.scope==null&&MyApplication.state==null){
+            str ="client_id="+MyApplication.App_key+ "&nonce="+max+ "&redirect_uri="+MyApplication.redirect_uri;
+        }else {
+            if(MyApplication.scope==null){
+                str ="client_id="+MyApplication.App_key+ "&nonce="+max+ "&redirect_uri="+MyApplication.redirect_uri+"&state="+MyApplication.state;
+            }else if(MyApplication.state==null){
+                str ="client_id="+MyApplication.App_key+ "&nonce="+max+ "&redirect_uri="+MyApplication.redirect_uri+ "&scope="+MyApplication.scope;
+            }else {
+                str ="client_id="+MyApplication.App_key+ "&nonce="+max+ "&redirect_uri="+MyApplication.redirect_uri+ "&scope="+MyApplication.scope+ "&state="+MyApplication.state;
+            }
+        }
         Log.i("str",str);
         byte[] data = str.getBytes();
         String sign=null;
@@ -135,6 +142,7 @@ public class AuthorActivity extends BaseActivity{
         map.put("client_id",MyApplication.App_key);
         map.put("nonce",max);
         map.put("redirect_uri",MyApplication.redirect_uri);
+        map.put("scope",MyApplication.scope);map.put("state",MyApplication.state);
         map.put("sign",sign);
         RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),new Gson().toJson(map));
         HttpServiceClient.getInstance().author(body).enqueue(new Callback<AuthorBean>() {
@@ -142,11 +150,12 @@ public class AuthorActivity extends BaseActivity{
             public void onResponse(Call<AuthorBean> call, Response<AuthorBean> response) {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
-                    if(response.body().getCode().equals("20000")){
+                    send(response.body());
+                    /*if(response.body().getCode().equals("20000")){
                         send(response.body());
                     }else {
                         Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                 }else {
                     Toast.makeText(INSTANCE,"尚未登录设备", Toast.LENGTH_SHORT).show();
                     Log.d("dcz_数据获取失败",response.message());
