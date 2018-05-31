@@ -72,6 +72,7 @@ import retrofit2.Response;
 
 public class SettingDataActivity extends BaseActivity {
     private SettingDataActivity INSTANCE;
+    private String type_code="0";
     private String format="2018-12-31";
     private String sign;
     private Boolean select=false;
@@ -320,7 +321,7 @@ public class SettingDataActivity extends BaseActivity {
                     MultipartBody.Part a = MultipartBody.Part.createFormData("frontFile",x.getName(),requestBody);
                     MultipartBody.Part b = MultipartBody.Part.createFormData("reverseFile",y.getName(),requestBody2);
                     MultipartBody.Part c = MultipartBody.Part.createFormData("holdingFile",z.getName(),requestBody3);
-                    getData(getType(Type.getText().toString()),a,b,c,MyApplication.code);
+                    getData(a,b,c,MyApplication.code);
                 }else {
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi119),R.style.registDialog).show();
                 }
@@ -543,13 +544,13 @@ public class SettingDataActivity extends BaseActivity {
         });
     }
 
-    private void setPicker(List<CardBean.DataBean> data){
+    private void setPicker(final List<CardBean.DataBean> data){
         options1Items.clear();
         //选项选择器
         pvOptions = new OptionsPickerView(this);
         //选项1
         for(CardBean.DataBean b:data){
-            options1Items.add(new ProvinceBean(0,b.getValue(),"",""));
+            options1Items.add(new ProvinceBean(0,b.getCode(),b.getValue(),"",""));
             Log.i("qqq",b.getValue());
         }
 
@@ -573,6 +574,7 @@ public class SettingDataActivity extends BaseActivity {
                 //返回的分别是三个级别的选中位置
                 String tx = options1Items.get(options1).getPickerViewText();
                 Type.setText(tx);Type.setTextColor(Color.WHITE);
+                type_code=options1Items.get(options1).getCode();
             }
         });
         //点击弹出选项选择器
@@ -737,6 +739,7 @@ public class SettingDataActivity extends BaseActivity {
                                 ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
                             }else {
                                 zheng.setImageURI(uri);
+                                Log.i("dcz","1");
                                 x1.setVisibility(View.VISIBLE);
                             }
                             break;
@@ -747,7 +750,8 @@ public class SettingDataActivity extends BaseActivity {
                                 ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
                             }else {
                                 fan.setImageURI(uri);
-                                x2.setVisibility(View.VISIBLE);
+                                x2.setVisibility(View.VISIBLE);   Log.i("dcz","2");
+
                             }
                             break;
                         case "3":
@@ -756,6 +760,7 @@ public class SettingDataActivity extends BaseActivity {
                                 photo3=null;
                                 ContentUtil.makeToast(INSTANCE,getString(R.string.tishi161));
                             }else {
+                                Log.i("dcz","3");
                                 shou.setImageURI(uri);
                                 x3.setVisibility(View.VISIBLE);
                             }
@@ -821,6 +826,8 @@ public class SettingDataActivity extends BaseActivity {
             ActivityCompat.requestPermissions(INSTANCE, new String[]{Manifest.permission.CAMERA}, 1);
         } else {
             //跳转到调用系统相机
+            tempFile = new File(checkDirPath(Environment.getExternalStorageDirectory().getPath() + "/image/"),
+                    System.currentTimeMillis() + ".jpg");
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
             startActivityForResult(intent, REQUEST_CAPTURE);
@@ -931,7 +938,7 @@ public class SettingDataActivity extends BaseActivity {
     /***
      * 调取接口拿到服务器数据
      * */
-    public void getData(Integer type,MultipartBody.Part x,MultipartBody.Part y,MultipartBody.Part z,String code){
+    public void getData(MultipartBody.Part x,MultipartBody.Part y,MultipartBody.Part z,String code){
         if(ShebeiUtil.wang(INSTANCE).equals("0")){
             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
             return;
@@ -942,17 +949,18 @@ public class SettingDataActivity extends BaseActivity {
         String max= RandomUtil.RandomNumber();
         String end_time=null;
         end_time=time2.getText().toString();
+        Integer ccc= Integer.valueOf(type_code);
         if(end_time.equals(getString(R.string.tishi158))){
             end_time="9999-12-31";
         }
-        String str ="certNum="+et_number.getText().toString()+"&certType="+type+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+end_time.trim()+"&validityStart="+time1.getText().toString().trim();
+        String str ="certNum="+et_number.getText().toString()+"&certType="+ccc+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+end_time.trim()+"&validityStart="+time1.getText().toString().trim();
         byte[] data = str.getBytes();
         try {
             sign = DSA.sign(data, MyApplication.pri_key);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HttpServiceClient.getInstance().UserInfo(x,y,z,code,type,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),end_time,"2001",max,sign).enqueue(new Callback<LoginBean>() {
+        HttpServiceClient.getInstance().UserInfo(x,y,z,code,ccc,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),end_time,"2001",max,sign).enqueue(new Callback<LoginBean>() {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();
@@ -977,7 +985,7 @@ public class SettingDataActivity extends BaseActivity {
                             ActivityUtils.getInstance().popActivity(INSTANCE);
                         }else {
                             if(!response.body().getCode().equals("20003")){
-                                new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                                new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();
                             }
                         }
                     }else {
@@ -989,6 +997,7 @@ public class SettingDataActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<LoginBean> call, Throwable t) {
+                dialog.dismiss();Log.i("异常",t.getMessage()+"");
                 if(ActivityUtils.getInstance().getCurrentActivity() instanceof SettingDataActivity){
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
                 }

@@ -180,7 +180,7 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
     public void addAction(CountryBean.DataBean bean) {
         ChangePhone3Activity.guo_name=bean.getCountryName();
         MyApplication.city=bean.getCountryName();
-        MyApplication.code=bean.getPhoneCode()+"";
+        MyApplication.code=bean.getCountryCode()+"";
         ActivityUtils.getInstance().popActivity(INSTANCE);
     }
 

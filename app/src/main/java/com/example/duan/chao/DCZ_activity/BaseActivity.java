@@ -51,6 +51,7 @@ public class BaseActivity extends Activity{
         Log.i("dcz_系统语言2",yu);
         Log.i("dcz_系统语言3",MyApplication.xitong);
         Log.i("dcz_系统语言4",Locale.getDefault().getLanguage()+Locale.getDefault().getCountry());
+        Log.i("dcz_系统语言5",getResources().getConfiguration().locale.getCountry()+"z");
         if(yu.equals("en_US")){     //对于多机型，这个为了保存系统语言
             MyApplication.xitong="en_US";MyApplication.sf.edit().putString("xitong","en_US").commit();
         }else if(yu.equals("en_GB")){
@@ -68,6 +69,16 @@ public class BaseActivity extends Activity{
                 getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
             }else if(MyApplication.xitong.equals("th_TH")){
                 Locale locale = new Locale("th");
+                Configuration config = getBaseContext().getResources().getConfiguration();
+                config.locale =locale;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            }else if(MyApplication.xitong.equals("sk")){
+                Locale locale = new Locale("sk");
+                Configuration config = getBaseContext().getResources().getConfiguration();
+                config.locale =locale;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            }else if(MyApplication.xitong.equals("vi")){
+                Locale locale = new Locale("vi");
                 Configuration config = getBaseContext().getResources().getConfiguration();
                 config.locale =locale;
                 getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());

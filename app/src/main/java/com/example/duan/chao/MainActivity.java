@@ -357,7 +357,6 @@ public class MainActivity extends BaseActivity{
             importDataFromOldAppIfNecessary();
             handleIntent(getIntent());
         }
-        getVersion();//版本更新
         setListener();
         initHandler();
         MyApplication.status=false;
@@ -366,6 +365,7 @@ public class MainActivity extends BaseActivity{
         }else {
             tv.setText(R.string.title14);
         }
+        getVersion();//版本更新
     }
     private void duration(){
         iv.setImageResource(R.drawable.progress4);
