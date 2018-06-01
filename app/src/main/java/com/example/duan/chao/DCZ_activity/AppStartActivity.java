@@ -45,6 +45,7 @@ public class AppStartActivity extends BaseActivity {
          */
         setContentView(rootView);
         MyApplication.App_key=getIntent().getStringExtra("App_key");
+        MyApplication.App_name=getIntent().getStringExtra("App_name");
         MyApplication.packname=getIntent().getStringExtra("packname");
         MyApplication.pathName=getIntent().getStringExtra("pathname");
         MyApplication.redirect_uri = getIntent().getStringExtra("redirect_uri");

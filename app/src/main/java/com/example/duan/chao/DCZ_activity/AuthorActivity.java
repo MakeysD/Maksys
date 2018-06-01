@@ -44,6 +44,8 @@ public class AuthorActivity extends BaseActivity{
     TextView no;
     @BindView(R.id.back)
     View back;
+    @BindView(R.id.textView7)
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class AuthorActivity extends BaseActivity{
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(ok).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(no).rippleCorner(MyApplication.dp2Px()).create();
+        tv.setText(MyApplication.App_name+"正在请求授权");
         setViews();
         setListener();
     }
@@ -157,14 +160,14 @@ public class AuthorActivity extends BaseActivity{
                         Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
                     }*/
                 }else {
-                    Toast.makeText(INSTANCE,"尚未登录设备", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                     Log.d("dcz_数据获取失败",response.message());
                 }
             }
             @Override
             public void onFailure(Call<AuthorBean> call, Throwable t) {
                 Log.i("dcz异常",call.toString());
-                Toast.makeText(INSTANCE, "服务器异常", Toast.LENGTH_SHORT).show();
+                Toast.makeText(INSTANCE,t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
