@@ -60,12 +60,14 @@ public class BaseActivity extends Activity{
             MyApplication.xitong="th_TH";MyApplication.sf.edit().putString("xitong","th_TH").commit();
         }else if(yu.equals("zh_CN")){
             MyApplication.xitong="zh_CN";MyApplication.sf.edit().putString("xitong","zh_CN").commit();
-        }else if(yu.equals("sk")){
-            MyApplication.xitong="sk";MyApplication.sf.edit().putString("xitong","sk").commit();
-        }else if(yu.equals("vi")){
-            MyApplication.xitong="vi";MyApplication.sf.edit().putString("xitong","vi").commit();
+        }else if(yu.equals("sk_SK")){
+            MyApplication.xitong="sk_SK";MyApplication.sf.edit().putString("xitong","sk_SK").commit();
+        }else if(yu.equals("vi_rVN")||yu.equals("vi_VN")){
+            MyApplication.xitong="vi_VN";MyApplication.sf.edit().putString("xitong","vi_VN").commit();
         }else if(yu.equals("zh_TW")){
             MyApplication.xitong="zh_TW";MyApplication.sf.edit().putString("xitong","zh_TW").commit();
+        }else if(yu.equals("zh_CN")){
+            MyApplication.xitong="zh_CN";MyApplication.sf.edit().putString("xitong","zh_CN").commit();
         }
         if(MyApplication.language.equals("")){
             if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){

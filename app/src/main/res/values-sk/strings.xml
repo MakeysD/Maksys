@@ -142,7 +142,7 @@
  <string name="tishi8">исправ.пароль платежа</string>
  <string name="tishi8a">переустан. пароль платежа</string>
  <string name="tishi9">провер. бывш.пароль платежа</string>
- <string name="tishi10">вводите идентиф. код</string>
+ <string name="tishi10">проверки кода</string>
  <string name="tishi11">получ. идентиф. код</string>
  <string name="tishi12">след.шаг</string>
  <string name="tishi12a">след. шаг</string>
@@ -234,7 +234,7 @@
  <string name="tishi72">данные необыч.</string>
  <string name="tishi73">ввод прав.</string>
  <string name="tishi74">вводите дейст.№ моб.</string>
- <string name="tishi75">через сек. еще раз посылать</string>
+ <string name="tishi75">s волосы</string>
  <string name="tishi76">снова получ.</string>
  <string name="tishi77">ввод прав.</string>
  <string name="tishi78">текущ. связ. секрет. моб.：</string>

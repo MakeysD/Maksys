@@ -94,7 +94,6 @@
                 android:background="@color/xian1"/>
             <RelativeLayout
                 android:id="@+id/rl2"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
@@ -179,7 +178,6 @@
                 android:background="@color/xian1"/>
             <RelativeLayout
                 android:id="@+id/rl5"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
@@ -208,7 +206,6 @@
                 android:background="@color/xian1"/>
             <RelativeLayout
                 android:id="@+id/rl6"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
