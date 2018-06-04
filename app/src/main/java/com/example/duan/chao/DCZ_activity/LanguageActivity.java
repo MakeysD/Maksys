@@ -101,6 +101,12 @@ public class LanguageActivity extends BaseActivity {
                 a3();
             }else if(MyApplication.xitong.equals("th_TH")){
                 a4();
+            }else if(MyApplication.xitong.equals("sk")){
+                a5();
+            }else if(MyApplication.xitong.equals("vi")){
+                a6();
+            }else if(MyApplication.xitong.equals("zh_TW")){
+                a2();
             }else {
                 a1();
             }

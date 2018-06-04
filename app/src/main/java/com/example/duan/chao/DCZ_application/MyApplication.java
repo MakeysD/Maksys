@@ -142,6 +142,12 @@ public class MyApplication extends Application{
             xitong=sf.getString("xitong","th_TH");
         }else if(yu.equals("zh_CN")){
             xitong=sf.getString("xitong","zh_CN");
+        }else if(yu.equals("sk")){
+            xitong=sf.getString("xitong","sk");
+        }else if(yu.equals("vi")){
+            xitong=sf.getString("xitong","vi");
+        }else if(yu.equals("zh_TW")){
+            xitong=sf.getString("xitong","zh_TW");
         }else {
             xitong=sf.getString("xitong","zh_CN");
         }

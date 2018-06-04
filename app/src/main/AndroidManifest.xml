@@ -62,7 +62,7 @@
         android:label="Makeys"
         android:largeHeap="true"
         android:persistent="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--适配长屏手机-->
