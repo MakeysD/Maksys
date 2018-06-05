@@ -176,10 +176,17 @@ public class ZhangHuSercurityActivity extends BaseActivity {
                         }
                         if(response.body().getCode().equals("20000")){
                             Log.i("dcz_code",response.body().getData().getCode());
-                            Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
-                            intent.putExtra("state",response.body().getData().getCode());
-                            intent.putExtra("content",response.body().getData().getDescription()+"");
-                            startActivity(intent);
+                            if(response.body().getData().getStep()==0){
+                                Intent intent=new Intent(INSTANCE,PersonData2Activity.class);
+                                intent.putExtra("state",response.body().getData().getCode());
+                                intent.putExtra("content",response.body().getData().getDescription()+"");
+                                startActivity(intent);
+                            }else {
+                                Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
+                                intent.putExtra("state",response.body().getData().getCode());
+                                intent.putExtra("content",response.body().getData().getDescription()+"");
+                                startActivity(intent);
+                            }
                         }else {
                             if(!response.body().getCode().equals("20003")){
                                 new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();

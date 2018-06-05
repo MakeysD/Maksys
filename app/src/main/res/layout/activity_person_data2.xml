@@ -72,7 +72,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:visibility="gone"
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/iv"
@@ -116,19 +115,6 @@
                 android:layout_marginRight="@dimen/right">
 
                 <TextView
-                    android:id="@+id/button_hui"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/yuanjiaohui"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:text="@string/button"
-                    android:textColor="@color/text02"
-                    android:textSize="@dimen/title" />
-
-                <TextView
                     android:id="@+id/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,11 +129,13 @@
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/ll_y"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:orientation="vertical"
+            android:visibility="gone"
             android:gravity="center_horizontal">
             <TextView
                 android:layout_width="wrap_content"

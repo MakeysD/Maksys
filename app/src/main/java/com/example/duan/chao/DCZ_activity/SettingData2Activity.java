@@ -177,6 +177,12 @@ public class SettingData2Activity extends BaseActivity {
     ImageView x;
     @BindView(R.id.pop2)
     LinearLayout pop2;
+    @BindView(R.id.ti)
+    TextView tv1;
+    @BindView(R.id.ti2)
+    TextView tv2;
+    @BindView(R.id.ti3)
+    TextView tv3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,57 +198,7 @@ public class SettingData2Activity extends BaseActivity {
         }).start();
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         ShebeiUtil.setEdNoChinaese(et_number);
-        if(MyApplication.language.equals("ENGLISH")){
-            zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
-            fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
-            shou.setBackgroundResource(R.mipmap.shenfenzheng3en);
-        }else if(MyApplication.language.equals("TAI")){
-            zheng.setBackgroundResource(R.mipmap.shenfenzhengtai);
-            fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
-            shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
-        }else if(MyApplication.language.equals("CHINESE_TW")){
-            zheng.setBackgroundResource(R.mipmap.shenfenzhengf);
-            fan.setBackgroundResource(R.mipmap.shenfenzhengf2);
-            shou.setBackgroundResource(R.mipmap.shenfenzhengf3);
-        }else if(MyApplication.language.equals("SK")){
-            zheng.setBackgroundResource(R.mipmap.shenfenzhenge);
-            fan.setBackgroundResource(R.mipmap.shenfenzhenge2);
-            shou.setBackgroundResource(R.mipmap.shenfenzhenge3);
-        }else if(MyApplication.language.equals("VI")){
-            zheng.setBackgroundResource(R.mipmap.shenfenzhengy);
-            fan.setBackgroundResource(R.mipmap.shenfenzhengy2);
-            shou.setBackgroundResource(R.mipmap.shenfenzhengy3);
-        }else if(MyApplication.language.equals("")){
-            if(MyApplication.xitong.equals("en_US")||MyApplication.xitong.equals("en_GB")){
-                zheng.setBackgroundResource(R.mipmap.shenfenzhengen);
-                fan.setBackgroundResource(R.mipmap.shenfenzheng2en);
-                shou.setBackgroundResource(R.mipmap.shenfenzheng3en);
-            }else if(MyApplication.xitong.equals("th_TH")){
-                zheng.setBackgroundResource(R.mipmap.shenfenzhengtai);
-                fan.setBackgroundResource(R.mipmap.shenfenzheng2tai);
-                shou.setBackgroundResource(R.mipmap.shenfenzheng3tai);
-            }else if(MyApplication.language.equals("CHINESE_TW")){
-                zheng.setBackgroundResource(R.mipmap.shenfenzhengf);
-                fan.setBackgroundResource(R.mipmap.shenfenzhengf2);
-                shou.setBackgroundResource(R.mipmap.shenfenzhengf3);
-            }else if(MyApplication.language.equals("SK")){
-                zheng.setBackgroundResource(R.mipmap.shenfenzhenge);
-                fan.setBackgroundResource(R.mipmap.shenfenzhenge2);
-                shou.setBackgroundResource(R.mipmap.shenfenzhenge3);
-            }else if(MyApplication.language.equals("VI")){
-                zheng.setBackgroundResource(R.mipmap.shenfenzhengy);
-                fan.setBackgroundResource(R.mipmap.shenfenzhengy2);
-                shou.setBackgroundResource(R.mipmap.shenfenzhengy3);
-            }else {
-                zheng.setBackgroundResource(R.mipmap.shenfenzheng);
-                fan.setBackgroundResource(R.mipmap.shenfenzheng2);
-                shou.setBackgroundResource(R.mipmap.shenfenzheng3);
-            }
-        }else {
-            zheng.setBackgroundResource(R.mipmap.shenfenzheng);
-            fan.setBackgroundResource(R.mipmap.shenfenzheng2);
-            shou.setBackgroundResource(R.mipmap.shenfenzheng3);
-        }
+        tv1.setText(R.string.tishi174); tv2.setText(R.string.tishi175); tv3.setText(R.string.tishi175);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
         setListener();

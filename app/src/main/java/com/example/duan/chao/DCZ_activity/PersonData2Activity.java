@@ -30,13 +30,14 @@ import retrofit2.Response;
  * */
 public class PersonData2Activity extends BaseActivity {
     private PersonData2Activity INSTANCE;
-    private String state="789";
-    private Dialog dialog;
+    private String state="3";//0:信用卡认证中、1：信用卡认证成功、2：信用卡认证失败、3：待提交信用卡信息
     private String content;     //错误原因
+    @BindView(R.id.back)
+    View back;
     @BindView(R.id.ll_state)
     LinearLayout ll_state;
-    @BindView(R.id.ll_start)
-    LinearLayout ll_start;
+    @BindView(R.id.ll_y)
+    LinearLayout ll_y;
     @BindView(R.id.iv)
     ImageView iv;
     @BindView(R.id.state_tv)
@@ -45,18 +46,97 @@ public class PersonData2Activity extends BaseActivity {
     TextView tv2;
     @BindView(R.id.button2)
     TextView button2;       //认证信用卡
+    @BindView(R.id.button)
+    TextView button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_person_data2);
         INSTANCE=this;
         ButterKnife.bind(this);
-        setContentView(R.layout.activity_person_data2);
+        state=getIntent().getStringExtra("state");
+        Log.i("dcz",state+"z");
+        content=getIntent().getStringExtra("content");
         setViews();
         setListener();
     }
 
     private void setViews() {
+        switch (state){
+            case "0":state0();break;
+            case "1":state1();break;
+            case "2":state2();break;
+            case "3":state3();break;
+        }
+    }
 
+    /**
+     * 信用卡认证中
+     * */
+    private void state0(){
+        iv.setVisibility(View.GONE);
+        ll_y.setVisibility(View.GONE);
+        ll_state.setVisibility(View.VISIBLE);
+        state_tv.setText(INSTANCE.getString(R.string.tishi48a));
+        state_tv.setTextColor(getResources().getColor(R.color.text09));
+        tv2.setText(R.string.tishi48e);
+        button.setText(R.string.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().popActivity(INSTANCE);
+            }
+        });
+    }
+    /**
+     * 信用卡认证成功
+     * */
+    private void state1(){
+        iv.setVisibility(View.VISIBLE);
+        iv.setImageResource(R.mipmap.tw_ok);
+        ll_y.setVisibility(View.GONE);
+        ll_state.setVisibility(View.VISIBLE);
+        state_tv.setText(R.string.tishi165);
+        tv2.setText(INSTANCE.getString(R.string.tishi166)+content);
+        button.setText(R.string.tishi167);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(INSTANCE,SettingData2Activity.class);
+                startActivity(intent);
+                ActivityUtils.getInstance().popActivity(INSTANCE);
+            }
+        });
+    }
+
+    /**
+     * 信用卡认证失败
+     * */
+    private void state2(){
+        iv.setVisibility(View.VISIBLE);
+        iv.setImageResource(R.mipmap.tw_no);
+        ll_y.setVisibility(View.GONE);
+        ll_state.setVisibility(View.VISIBLE);
+        state_tv.setText(R.string.tishi169);
+        tv2.setText(INSTANCE.getString(R.string.tishi168)+content);
+        button.setVisibility(View.VISIBLE);button.setText(R.string.tishi48h);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse("https://www.quicklylinking.com/HPPET/cart_check_request.php");
+                intent.setData(content_url);
+                startActivity(intent);
+            }
+        });
+    }
+    /**
+     * 待提交信用卡信息
+     * */
+    private void state3(){
+        ll_y.setVisibility(View.VISIBLE);
+        ll_state.setVisibility(View.GONE);
     }
 
     private void setListener() {
@@ -70,6 +150,18 @@ public class PersonData2Activity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityUtils.getInstance().popActivity(INSTANCE);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
     }
 
     /***
@@ -80,11 +172,9 @@ public class PersonData2Activity extends BaseActivity {
             new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
             return;
         }
-        dialog.show();
         HttpServiceClient.getInstance().userState(null).enqueue(new Callback<UserStateBean>() {
             @Override
             public void onResponse(Call<UserStateBean> call, Response<UserStateBean> response) {
-                dialog.dismiss();
                 if(response.isSuccessful()){
                     if(response.body()!=null){
                         if(response.body().getCode().equals("10516")){
@@ -101,8 +191,8 @@ public class PersonData2Activity extends BaseActivity {
                             return;
                         }
                         if(response.body().getCode().equals("20000")){
-                            Log.i("dcz_code",response.body().getData().getCode()+"z");
-                            state=response.body().getData().getCode();
+                            Log.i("dcz_code",response.body().getData().getStep()+"z");
+                            state=response.body().getData().getCode()+"";
                             content=response.body().getData().getDescription()+"";
                             Log.i("dcz",content+"123");
                             setViews();

@@ -7,8 +7,17 @@ package com.example.duan.chao.DCZ_bean;
 
 public class UserStateBean extends LoginBean<UserStateBean>{
     private String codeX;
+    private Integer step;
     private String name;
     private Object description;
+
+    public Integer getStep() {
+        return step;
+    }
+
+    public void setStep(Integer step) {
+        this.step = step;
+    }
 
     public String getCodeX() {
         return codeX;
