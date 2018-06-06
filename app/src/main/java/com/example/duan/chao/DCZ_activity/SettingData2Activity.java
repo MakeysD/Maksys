@@ -113,10 +113,10 @@ public class SettingData2Activity extends BaseActivity {
     LinearLayout ll_start;
     @BindView(R.id.time1)
     TextView time1;
-    @BindView(R.id.ll_end)
+   /* @BindView(R.id.ll_end)
     LinearLayout ll_end;
     @BindView(R.id.time2)
-    TextView time2;
+    TextView time2;*/
     @BindView(R.id.ll1)
     LinearLayout ll1;       //国家地区
     @BindView(R.id.ll2)
@@ -135,8 +135,8 @@ public class SettingData2Activity extends BaseActivity {
     TextView xian3;
     @BindView(R.id.xian4)
     TextView xian4;
-    @BindView(R.id.xian5)
-    TextView xian5;
+  /*  @BindView(R.id.xian5)
+    TextView xian5;*/
     @BindView(R.id.xian7)
     TextView xian7;
     @BindView(R.id.ll6)
@@ -198,7 +198,7 @@ public class SettingData2Activity extends BaseActivity {
         }).start();
         CanRippleLayout.Builder.on(button).rippleCorner(MyApplication.dp2Px()).create();
         ShebeiUtil.setEdNoChinaese(et_number);
-        tv1.setText(R.string.tishi174); tv2.setText(R.string.tishi175); tv3.setText(R.string.tishi175);
+        tv1.setText(R.string.tishi174); tv2.setText(R.string.tishi175); tv3.setText(R.string.tishi176);
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
         setListener();
@@ -249,7 +249,7 @@ public class SettingData2Activity extends BaseActivity {
                     }
                 }*/
                 if(photo1!=null&&photo2!=null&&photo3!=null&&!tv_guo.getText().toString().equals(INSTANCE.getString(R.string.tishi124))&&!Type.getText().equals(getString(R.string.tishi123))&&et_name.getText().length()>0&&
-                        et_number.getText().length()>0&&!time1.getText().equals(getString(R.string.tishi122a))&&!time2.getText().equals(getString(R.string.tishi122b))){
+                        et_number.getText().length()>0&&!time1.getText().equals(getString(R.string.tishi122a))){
                     File x=null;    File y=null;    File z=null;
                     if(photo1.length()/1024>1000){
                         x = CompressHelper.getDefault(getApplicationContext()).compressToFile(photo1);
@@ -403,14 +403,14 @@ public class SettingData2Activity extends BaseActivity {
                 type5();
             }
         });
-        ll_end.setOnClickListener(new View.OnClickListener() {
+        /*ll_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(INSTANCE.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 pvTime3.show();
                 type7();
             }
-        });
+        });*/
     }
 
     private void setTime(){
@@ -490,13 +490,13 @@ public class SettingData2Activity extends BaseActivity {
             @Override
             public void onTimeSelect(Date date) {
                 Log.i("qwe",date+"");
-                if(getTime(date).equals("9999-12-31")){
+                /*if(getTime(date).equals("9999-12-31")){
                     time2.setText(getString(R.string.tishi158));
                     time2.setTextColor(Color.WHITE);
                 }else {
                     time2.setText(getTime(date));
                     time2.setTextColor(Color.WHITE);
-                }
+                }*/
             }
         });
     }
@@ -604,7 +604,7 @@ public class SettingData2Activity extends BaseActivity {
         xian2.setBackgroundColor(Color.parseColor("#343436"));
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
+       // xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
         xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
@@ -613,7 +613,7 @@ public class SettingData2Activity extends BaseActivity {
         xian2.setBackgroundColor(Color.parseColor("#0581c6"));
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
+       // xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
         xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
@@ -622,7 +622,7 @@ public class SettingData2Activity extends BaseActivity {
         xian2.setBackgroundColor(Color.parseColor("#343436"));
         xian3.setBackgroundColor(Color.parseColor("#0581c6"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
+       // xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
         xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
@@ -631,7 +631,7 @@ public class SettingData2Activity extends BaseActivity {
         xian2.setBackgroundColor(Color.parseColor("#343436"));
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#0581c6"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
+      //  xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
         xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
@@ -640,7 +640,7 @@ public class SettingData2Activity extends BaseActivity {
         xian2.setBackgroundColor(Color.parseColor("#343436"));
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#0581c6"));
+       // xian5.setBackgroundColor(Color.parseColor("#0581c6"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
         xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
@@ -649,7 +649,7 @@ public class SettingData2Activity extends BaseActivity {
         xian2.setBackgroundColor(Color.parseColor("#343436"));
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
+      //  xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#0581c6"));
         xian7.setBackgroundColor(Color.parseColor("#343436"));
     }
@@ -658,7 +658,7 @@ public class SettingData2Activity extends BaseActivity {
         xian2.setBackgroundColor(Color.parseColor("#343436"));
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
+      //  xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian7.setBackgroundColor(Color.parseColor("#0581c6"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
     }
@@ -904,20 +904,20 @@ public class SettingData2Activity extends BaseActivity {
        /* String[]  strs= tv_time.getText().toString().split("to");
         Log.i("dcz",strs[0].trim()); Log.i("dcz",strs[1].trim());*/
         String max= RandomUtil.RandomNumber();
-        String end_time=null;
+        /*String end_time=null;
         end_time=time2.getText().toString();
-        Integer ccc= Integer.valueOf(type_code);
         if(end_time.equals(getString(R.string.tishi158))){
             end_time="9999-12-31";
-        }
-        String str ="certNum="+et_number.getText().toString()+"&certType="+ccc+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+end_time.trim()+"&validityStart="+time1.getText().toString().trim();
+        }*/
+        Integer ccc= Integer.valueOf(type_code);
+        String str ="certNum="+et_number.getText().toString()+"&certType="+ccc+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityStart="+time1.getText().toString().trim();
         byte[] data = str.getBytes();
         try {
             sign = DSA.sign(data, MyApplication.pri_key);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HttpServiceClient.getInstance().UserInfo(x,y,z,code,ccc,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),end_time,"2001",max,sign).enqueue(new Callback<LoginBean>() {
+        HttpServiceClient.getInstance().UserInfo2(x,y,z,code,ccc,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),"2001",max,sign).enqueue(new Callback<LoginBean>() {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();

@@ -69,6 +69,12 @@ public class PersonData2Activity extends BaseActivity {
             case "3":state3();break;
         }
     }
+/*    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.i("dcz","onNewIntent");
+        getData();
+    }*/
 
     /**
      * 信用卡认证中
@@ -97,6 +103,7 @@ public class PersonData2Activity extends BaseActivity {
         ll_y.setVisibility(View.GONE);
         ll_state.setVisibility(View.VISIBLE);
         state_tv.setText(R.string.tishi165);
+        state_tv.setTextColor(getResources().getColor(R.color.text09));
         tv2.setText(INSTANCE.getString(R.string.tishi166)+content);
         button.setText(R.string.tishi167);
         button.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +125,7 @@ public class PersonData2Activity extends BaseActivity {
         ll_y.setVisibility(View.GONE);
         ll_state.setVisibility(View.VISIBLE);
         state_tv.setText(R.string.tishi169);
+        state_tv.setTextColor(getResources().getColor(R.color.text_red));
         tv2.setText(INSTANCE.getString(R.string.tishi168)+content);
         button.setVisibility(View.VISIBLE);button.setText(R.string.tishi48h);
         button.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +145,7 @@ public class PersonData2Activity extends BaseActivity {
     private void state3(){
         ll_y.setVisibility(View.VISIBLE);
         ll_state.setVisibility(View.GONE);
+        state_tv.setTextColor(getResources().getColor(R.color.white));
     }
 
     private void setListener() {
