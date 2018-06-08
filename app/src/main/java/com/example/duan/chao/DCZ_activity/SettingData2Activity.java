@@ -904,20 +904,17 @@ public class SettingData2Activity extends BaseActivity {
        /* String[]  strs= tv_time.getText().toString().split("to");
         Log.i("dcz",strs[0].trim()); Log.i("dcz",strs[1].trim());*/
         String max= RandomUtil.RandomNumber();
-        /*String end_time=null;
-        end_time=time2.getText().toString();
-        if(end_time.equals(getString(R.string.tishi158))){
-            end_time="9999-12-31";
-        }*/
+        String end_time=null;
+        end_time="9999-12-31";
         Integer ccc= Integer.valueOf(type_code);
-        String str ="certNum="+et_number.getText().toString()+"&certType="+ccc+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityStart="+time1.getText().toString().trim();
+        String str ="certNum="+et_number.getText().toString()+"&certType="+ccc+"&countryCode="+code+"&nonce="+max+"&realName="+et_name.getText().toString()+"&systemId="+"2001"+"&validityEnd="+end_time.trim()+"&validityStart="+time1.getText().toString().trim();
         byte[] data = str.getBytes();
         try {
             sign = DSA.sign(data, MyApplication.pri_key);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HttpServiceClient.getInstance().UserInfo2(x,y,z,code,ccc,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),"2001",max,sign).enqueue(new Callback<LoginBean>() {
+        HttpServiceClient.getInstance().UserInfo(x,y,z,code,ccc,et_name.getText().toString(),et_number.getText().toString(),time1.getText().toString(),end_time,"2001",max,sign).enqueue(new Callback<LoginBean>() {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 dialog.dismiss();

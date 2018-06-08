@@ -304,24 +304,6 @@ public interface InterfaceService {
                              @Query("sign") String sign);
 
     /**
-     *  会员身份信息上传
-     * */
-
-    @Multipart
-    @POST("userinfo/saveUserInfoForApp")
-    Call<LoginBean> UserInfo2(@Part MultipartBody.Part file,
-                             @Part MultipartBody.Part file2,
-                             @Part MultipartBody.Part file3,
-                             @Query("countryCode") String countryCode,
-                             @Query("certType") Integer certType,
-                             @Query("realName") String realName,
-                             @Query("certNum") String certNum,
-                             @Query("validityStart") String validityStart,
-                             @Query("systemId") String systemId,
-                             @Query("nonce") String nonce,
-                             @Query("sign") String sign);
-
-    /**
      *  会员信息审核状态
      */
     @FormUrlEncoded

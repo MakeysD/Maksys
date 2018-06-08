@@ -334,6 +334,22 @@
  <string name="tishi161"> Dung lượng ID không được vượt quá 5M </string>
  <string name="tishi162">Tiếng Nga</string>
  <string name="tishi163">Tiếng Việt</string>
+ <string name="tishi164">认证信用卡</string>
+ <string name="tishi165">信用卡认证完成</string>
+ <string name="tishi166">您认证的卡号为：</string>
+ <string name="tishi167">提交实名资料</string>
+ <string name="tishi168">失败原因为：</string>
+ <string name="tishi169">信用卡认证失败</string>
+ <string name="tishi170">信用卡实名认证</string>
+ <string name="tishi171">1、认证过程统一在财团法人联合信用卡处理中心完成，充分保障信用卡信息安全。\n\n2、认证过程产生的1块台币，将会在认证完成后返回到对应的信用卡。\n\n3、请确认使用本人的信用卡进行认证，冒用他们人信用卡认证将作封号处理。</string>
+ <string name="tishi172">统一编号</string>
+ <string name="tishi173">请输入统一编号</string>
+ <string name="tishi174">证件正面</string>
+ <string name="tishi175">证件反面</string>
+ <string name="tishi176">手持证件</string>
+ <string name="tishi177">手持身份证正面及已认证信用卡正面</string>
+ <string name="tishi178">为了您的信用卡安全一定不要上传信用卡反面照，我们工作人员也不会以任何理由要求您提供信用卡反面照</string>
+ <string name="tishi179">发证日期</string>
 
  <string name="code1"> Thành công </string><!--20000-->
  <string name="code2"> Thất bại </string><!--20001-->
