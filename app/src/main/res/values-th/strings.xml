@@ -405,6 +405,8 @@
  <string name="code55">วันที่เริ่มต้นไม่ถูกต้อง</string><!--10540-->
  <string name="code56">ข้อผิดพลาดวันที่สิ้นสุด</string><!--10541-->
  <string name="code57">OAuth2 authorization failed</string><!--10542-->
+ <string name="code58">จำนวนการส่งผ่านบัตรเครดิตเกินขีด จำกัด ทั้งหมด</string><!--10543-->
+ <string name="code59">ส่งการรับรองบ่อยเกินไปโปรดลองอีกครั้งในภายหลัง</string><!--10544-->
 
 
  <string name="data0">ไม่รู้จักรูปแบบ</string>

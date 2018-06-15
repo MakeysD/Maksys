@@ -14,7 +14,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -952,9 +951,7 @@ public class SettingData2Activity extends BaseActivity {
             @Override
             public void onFailure(Call<LoginBean> call, Throwable t) {
                 dialog.dismiss();Log.i("异常",t.getMessage()+"");
-                if(ActivityUtils.getInstance().getCurrentActivity() instanceof SettingDataActivity){
-                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
-                }
+                new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
             }
         });
     }

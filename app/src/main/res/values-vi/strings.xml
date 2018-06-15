@@ -408,6 +408,8 @@
  <string name="code55"> ngày bắt đầu ID không chính xác!</string><!--10540-->
  <string name="code56"> ngày kết thúc ID không chính xác!</string><!--10541-->
  <string name="code57">OAuth2 authorization failed</string><!--10542-->
+ <string name="code58">Số lần gửi thẻ tín dụng vượt quá tổng giới hạn</string><!--10543-->
+ <string name="code59">Gửi chứng nhận quá thường xuyên, vui lòng thử lại sau</string><!--10544-->
 
 
  <string name="data0"> không biết loại hình </string>

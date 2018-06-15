@@ -1,7 +1,5 @@
 package com.example.duan.chao.DCZ_activity;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

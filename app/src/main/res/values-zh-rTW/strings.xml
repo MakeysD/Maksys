@@ -407,6 +407,8 @@
  <string name="code55">證件開始日期錯誤!</string><!--10540-->
  <string name="code56">證件結束日期錯誤!</string><!--10541-->
  <string name="code57">OAuth2 authorization failed</string><!--10542-->
+ <string name="code58">信用卡提交次數超過了總限定</string><!--10543-->
+ <string name="code59">提交認證過於頻繁,請稍後再試</string><!--10544-->
 
 
  <string name="data0">未知類型</string>

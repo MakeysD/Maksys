@@ -410,6 +410,8 @@
     <string name="code55">ID card start date is wrong</string><!--10540-->
     <string name="code56">ID card end date is wrong</string><!--10541-->
     <string name="code57">OAuth2 authorization failed</string><!--10542-->
+    <string name="code58">The number of credit card submissions exceeds the total limit</string><!--10543-->
+    <string name="code59">Submitting a certificate is too frequent. Please try again later</string><!--10544-->
 
     <string name="data0">unknown type</string>
     <string name="data1">login</string>
