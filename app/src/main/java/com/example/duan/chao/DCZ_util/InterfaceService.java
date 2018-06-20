@@ -13,6 +13,7 @@ import com.example.duan.chao.DCZ_bean.NewsBean;
 import com.example.duan.chao.DCZ_bean.OperationRecordBean;
 import com.example.duan.chao.DCZ_bean.SecurityBean;
 import com.example.duan.chao.DCZ_bean.StatusBean;
+import com.example.duan.chao.DCZ_bean.StrBean;
 import com.example.duan.chao.DCZ_bean.TimeBean;
 import com.example.duan.chao.DCZ_bean.UserStateBean;
 import com.example.duan.chao.DCZ_bean.VersionBean;
@@ -335,5 +336,12 @@ public interface InterfaceService {
     @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("oauth/getAuthorizationCode ")
     Call<AuthorBean> author(@Body RequestBody body);
+
+    /**
+     * 获取证件列表
+     */
+    @FormUrlEncoded
+    @POST("creditcard/flow/getSerialNum")
+    Call<StrBean>getSerialNum(@Field("mobile") String string);
 
 }

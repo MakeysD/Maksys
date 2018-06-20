@@ -372,6 +372,7 @@
     <string name="tishi177">手持身份证正面及已认证信用卡正面</string>
     <string name="tishi178">为了您的信用卡安全一定不要上传信用卡反面照，我们工作人员也不会以任何理由要求您提供信用卡反面照</string>
     <string name="tishi179">发证日期</string>
+    <string name="tishi180">信用卡认证中</string>
 
     <string name="code1">成功</string><!--20000-->
     <string name="code2">失败</string><!--20001-->

@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.CardBean;
+import com.example.duan.chao.DCZ_bean.StrBean;
 import com.example.duan.chao.DCZ_bean.UserStateBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
@@ -78,10 +80,11 @@ public class PersonData2Activity extends BaseActivity {
      * 信用卡认证中
      * */
     private void state0(){
-        iv.setVisibility(View.GONE);
+        iv.setVisibility(View.VISIBLE);
+        iv.setImageResource(R.mipmap.tw);
         ll_y.setVisibility(View.GONE);
         ll_state.setVisibility(View.VISIBLE);
-        state_tv.setText(INSTANCE.getString(R.string.tishi48a));
+        state_tv.setText(INSTANCE.getString(R.string.tishi180));
         state_tv.setTextColor(getResources().getColor(R.color.text09));
         tv2.setText(R.string.tishi48e);
         button.setText(R.string.button);
@@ -129,11 +132,7 @@ public class PersonData2Activity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse("https://www.quicklylinking.com/HPPET/cart_check_request.php");
-                intent.setData(content_url);
-                startActivity(intent);
+                getSeria();
             }
         });
     }
@@ -150,11 +149,7 @@ public class PersonData2Activity extends BaseActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse("https://www.quicklylinking.com/HPPET/cart_check_request.php");
-                intent.setData(content_url);
-                startActivity(intent);
+                getSeria();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -217,6 +212,45 @@ public class PersonData2Activity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<UserStateBean> call, Throwable t) {
+                if(ActivityUtils.getInstance().getCurrentActivity() instanceof SettingDataActivity){
+                    new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
+                }
+            }
+        });
+    }
+
+    /***
+     * 调取接口拿到服务器数据
+     * */
+    public void getSeria(){
+        if(ShebeiUtil.wang(INSTANCE).equals("0")){
+            new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi116),R.style.registDialog).show();
+            return;
+        }
+        HttpServiceClient.getInstance().getSerialNum(null).enqueue(new Callback<StrBean>() {
+            @Override
+            public void onResponse(Call<StrBean> call, Response<StrBean> response) {
+                if(response.isSuccessful()){
+                    if(response.body()!=null){
+                        if(response.body().getCode().equals("20000")){
+                            Intent intent= new Intent();
+                            intent.setAction("android.intent.action.VIEW");
+                            Log.i("url","https://www.quicklylinking.com/HPPET/cart_check_request.php?serialNum="+response.body().getData());
+                            Uri content_url = Uri.parse("https://www.quicklylinking.com/HPPET/cart_check_request.php?serialNum="+response.body().getData());
+                            intent.setData(content_url);
+                            startActivity(intent);
+                        }else {
+                            new MiddleDialog(INSTANCE,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                        }
+                    }else {
+                        Log.d("dcz","返回的数据是空的");
+                    }
+                }else {
+                    Log.d("dcz","获取数据失败");
+                }
+            }
+            @Override
+            public void onFailure(Call<StrBean> call, Throwable t) {
                 if(ActivityUtils.getInstance().getCurrentActivity() instanceof SettingDataActivity){
                     new MiddleDialog(INSTANCE,INSTANCE.getString(R.string.tishi72),R.style.registDialog).show();
                 }
