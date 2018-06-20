@@ -178,10 +178,10 @@
  <string name="tishi32">確認授權</string>
  <string name="tishi33">拒絕授權</string>
  <string name="tishi34">支援語言</string>
- <string name="tishi35">簡體中文</string>
- <string name="tishi36">繁體中文</string>
- <string name="tishi37">英語</string>
- <string name="tishi38">泰語</string>
+ <string name="tishi35">中文(简体)</string>
+ <string name="tishi36">中文(台灣)</string>
+ <string name="tishi37">English</string>
+ <string name="tishi38">ภาษาไทย</string>
  <string name="tishi39">安全鎖手勢密碼已啟動</string>
  <string name="tishi40">定期修改手勢密碼有效的保護帳戶安全</string>
  <string name="tishi41">修改手勢啟動密碼</string>
@@ -330,8 +330,8 @@
  <string name="tishi159">確定刪除該設備?</string>
  <string name="tishi160">重設</string>
  <string name="tishi161">證件大小不能超過5M</string>
- <string name="tishi162">俄語</string>
- <string name="tishi163">越南語</string>
+ <string name="tishi162">русский</string>
+ <string name="tishi163">Tiếng Việt</string>
 
  <string name="tishi164">認證信用卡</string>8
  <string name="tishi165">信用卡實名認證完成</string>2

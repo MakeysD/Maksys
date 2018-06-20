@@ -179,10 +179,10 @@
  <string name="tishi32"> Xác nhận ủy quyền </string>
  <string name="tishi33"> Từ chối ủy quyền </string>
  <string name="tishi34"> Ngôn ngữ hỗ trợ </string>
- <string name="tishi35"> Tiếng Trung giản thể </string>
- <string name="tishi36"> Tiếng Trung phồn thể </string>
- <string name="tishi37"> Tiếng anh </string>
- <string name="tishi38"> Tiếng Thái </string>
+ <string name="tishi35">中文(简体)</string>
+ <string name="tishi36">中文(台灣)</string>
+ <string name="tishi37">English</string>
+ <string name="tishi38">ภาษาไทย</string>
  <string name="tishi39"> Đã khởi động mật khẩu khóa tay bảo mật </string>
  <string name="tishi40"> Thường xuyên đổi mật khẩu tay để bảo vệ tài khoản hiệu quả </string>
  <string name="tishi41"> đổi mật khẩu khởi động tay </string>
@@ -332,7 +332,7 @@
  <string name="tishi159"> xác nhận xóa thiết bị này?</string>
  <string name="tishi160"> Đặt lại </string>
  <string name="tishi161"> Dung lượng ID không được vượt quá 5M </string>
- <string name="tishi162">Tiếng Nga</string>
+ <string name="tishi162">русский</string>
  <string name="tishi163">Tiếng Việt</string>
  <string name="tishi164">Xác thực thẻ tín dụng</string>8
  <string name="tishi165">Thẻ tín dụng hoàn thành xác thực tên thật</string>2

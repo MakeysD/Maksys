@@ -177,9 +177,9 @@
  <string name="tishi32">ยืนยันสิทธิ์</string>
  <string name="tishi33">ปฎิเสธการใช้สิทธิ์</string>
  <string name="tishi34">ภาษาที่ใช้งานได้</string>
- <string name="tishi35">ภาษาจีนตัวย่อ</string>
- <string name="tishi36">ภาษาจีนดั้งเดิม</string>
- <string name="tishi37">ภาษาอังกฤษ</string>
+ <string name="tishi35">中文(简体)</string>
+ <string name="tishi36">中文(台灣)</string>
+ <string name="tishi37">English</string>
  <string name="tishi38">ภาษาไทย</string>
  <string name="tishi39">ล็อคอินรหัสสัมผัสลากเส้นเปิดใช้งาน</string>
  <string name="tishi40">กำหนดเวลาแก้ไขรหัสผ่านเพื่อความปลอดภัยบัญชี </string>
@@ -329,8 +329,8 @@
  <string name="tishi159">ต้องการลบหรือไม่?</string>
  <string name="tishi160">รีเซ็ต</string>
  <string name="tishi161">ภาพต้องน้อยกว่า 5M</string>
- <string name="tishi162">ภาษารัสเซีย</string>
- <string name="tishi163">ภาษาเวียดนาม</string>
+ <string name="tishi162">русский</string>
+ <string name="tishi163">Tiếng Việt</string>
  <string name="tishi164">รองรองบัตรเครดิต</string>
  <string name="tishi165">บัตรเครดิตรับรองชื่อจริงเสร็จสมบูรณ์แล้ว</string>
  <string name="tishi166">หมายเลขบัตรที่ได้รับการรับรองของคุณคือ:</string>

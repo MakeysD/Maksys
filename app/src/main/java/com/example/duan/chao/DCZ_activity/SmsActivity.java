@@ -193,7 +193,7 @@ public class SmsActivity extends BaseActivity {
         if(MyApplication.rid==null||MyApplication.rid.equals("")){
             MyApplication.rid = JPushInterface.getRegistrationID(getApplicationContext());
         }
-        //MyApplication.rid="sidofugychfudisygrs";
+        MyApplication.rid="sidofugychfudisygrs";
         HttpServiceClient.getInstance().login(phone,password,et_code.getText().toString(),MyApplication.pub_key,MyApplication.device,MyApplication.xinghao,MyApplication.rid).enqueue(new Callback<LoginOkBean>() {
             @Override
             public void onResponse(Call<LoginOkBean> call, Response<LoginOkBean> response) {

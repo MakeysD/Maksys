@@ -65,7 +65,7 @@ public class BaseActivity extends Activity{
         }else if(yu.equals("vi_rVN")||yu.equals("vi_VN")){
             MyApplication.xitong="vi_VN";MyApplication.sf.edit().putString("xitong","vi_VN").commit();
         }else if(yu.equals("zh_TW")){
-            MyApplication.xitong="zh_TW";MyApplication.sf.edit().putString("xitong","zh_TW").commit();
+            //MyApplication.xitong="zh_TW";MyApplication.sf.edit().putString("xitong","zh_TW").commit();
         }else if(yu.equals("zh_CN")){
             MyApplication.xitong="zh_CN";MyApplication.sf.edit().putString("xitong","zh_CN").commit();
         }
@@ -90,7 +90,11 @@ public class BaseActivity extends Activity{
                 Configuration config = getBaseContext().getResources().getConfiguration();
                 config.locale =locale;
                 getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-            }else {
+            }else if(MyApplication.xitong.equals("zh_TW")){
+                Configuration config = getResources().getConfiguration();
+                config.locale = Locale.TRADITIONAL_CHINESE;//将语言更改为繁体中文
+                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+            }else{
                 Locale locale = new Locale("zh");
                 Configuration config = getBaseContext().getResources().getConfiguration();
                 config.locale =locale;

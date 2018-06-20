@@ -178,10 +178,10 @@
  <string name="tishi32">утверд.уполном.</string>
  <string name="tishi33">отказаться от уполном.</string>
  <string name="tishi34">поддержив. язык</string>
- <string name="tishi35">китайский иерогл. прощен. письма</string>
- <string name="tishi36">китайский иерогл. слож. письма</string>
- <string name="tishi37">анг.</string>
- <string name="tishi38">таиланд.</string>
+ <string name="tishi35">中文(简体)</string>
+ <string name="tishi36">中文(台灣)</string>
+ <string name="tishi37">English</string>
+ <string name="tishi38">ภาษาไทย</string>
  <string name="tishi39">пароль жеста безопас.замка запущен</string>
  <string name="tishi40">период. исправ. пароль жеста, эффект. защит. безопас. счета</string>
  <string name="tishi41">исправ.жест, запуст.пароль</string>
@@ -331,7 +331,7 @@
  <string name="tishi160">переустан.</string>
  <string name="tishi161">размер докум. не больше 5M</string>
  <string name="tishi162">русский</string>
- <string name="tishi163">вьетнамский </string>
+ <string name="tishi163">Tiếng Việt</string>
  <string name="tishi164">сертификация</string>
  <string name="tishi165">завершения сертификации</string>
  <string name="tishi166">№ вашей легализированной карты:</string>

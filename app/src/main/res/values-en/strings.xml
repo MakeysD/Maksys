@@ -182,10 +182,10 @@
     <string name="tishi32">Accept</string>
     <string name="tishi33">Cancel</string>
     <string name="tishi34">language</string>
-    <string name="tishi35">Simple Chinese</string>
-    <string name="tishi36">Traditional Chinese</string>
+    <string name="tishi35">中文(简体)</string>
+    <string name="tishi36">中文(台灣)</string>
     <string name="tishi37">English</string>
-    <string name="tishi38">Thai</string>
+    <string name="tishi38">ภาษาไทย</string>
     <string name="tishi39">the  gesture password is opened</string>
     <string name="tishi40">change it regularly to protect account security </string>
     <string name="tishi41">change gesture password</string>
@@ -334,8 +334,8 @@
     <string name="tishi159">delete the device？</string>
     <string name="tishi160">reset</string>
     <string name="tishi161">the image must less than 5M</string>
-    <string name="tishi162">Russian</string>
-    <string name="tishi163">Vietnamese</string>
+    <string name="tishi162">русский</string>
+    <string name="tishi163">Tiếng Việt</string>
     <string name="tishi164">Authentication of credit card</string>
     <string name="tishi165">Completion of real name authentication of credit card</string>
     <string name="tishi166">The card number authenticated by you is:</string>

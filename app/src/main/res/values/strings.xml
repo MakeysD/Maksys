@@ -202,10 +202,10 @@
     <string name="tishi32">确认授权</string>
     <string name="tishi33">拒绝授权</string>
     <string name="tishi34">支持语言</string>
-    <string name="tishi35">简体中文</string>
-    <string name="tishi36">繁体中文</string>
-    <string name="tishi37">英语</string>
-    <string name="tishi38">泰语</string>
+    <string name="tishi35">中文(简体)</string>
+    <string name="tishi36">中文(台灣)</string>
+    <string name="tishi37">English</string>
+    <string name="tishi38">ภาษาไทย</string>
     <string name="tishi39">安全锁手势密码已启动</string>
     <string name="tishi40">定期修改手势密码有效的保护账户安全</string>
     <string name="tishi41">修改手势启动密码</string>
@@ -354,8 +354,8 @@
     <string name="tishi159">确定删除该设备?</string>
     <string name="tishi160">重设</string>
     <string name="tishi161">证件大小不能超过5M</string>
-    <string name="tishi162">俄语</string>
-    <string name="tishi163">越南语</string>
+    <string name="tishi162">русский</string>
+    <string name="tishi163">Tiếng Việt</string>
     <string name="tishi164">认证信用卡</string>
     <string name="tishi165">信用卡认证完成</string>
     <string name="tishi166">您认证的卡号为：</string>
