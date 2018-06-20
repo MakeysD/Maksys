@@ -1,7 +1,5 @@
 package com.example.duan.chao.DCZ_bean;
 
-import java.util.List;
-
 /**
  * Created by DELL on 2018/4/26.
  */

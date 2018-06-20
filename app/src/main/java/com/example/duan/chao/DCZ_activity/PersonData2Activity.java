@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.CardBean;
 import com.example.duan.chao.DCZ_bean.StrBean;
 import com.example.duan.chao.DCZ_bean.UserStateBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
