@@ -1,4 +1,4 @@
 <resources>
-    <string name="system_download_component_disable">can\'t download, please use</string>
-    <string name="system_download_description">version updating</string>
+    <string name="system_download_component_disable">下載服務不可用，請您啟用</string>
+    <string name="system_download_description">立即更新</string>
 </resources>

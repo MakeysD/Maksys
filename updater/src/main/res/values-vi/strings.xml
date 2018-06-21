@@ -1,4 +1,4 @@
 <resources>
-    <string name="system_download_component_disable">can\'t download, please use</string>
-    <string name="system_download_description">version updating</string>
+    <string name="system_download_component_disable">Tải về dịch vụ không có sẵn, làm ơn bật</string>
+    <string name="system_download_description">Cập nhật</string>
 </resources>
