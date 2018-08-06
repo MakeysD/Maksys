@@ -446,6 +446,7 @@
  <string name="data2000"> Trung tâm bảo mật tên truy cập </string>
  <string name="data2001"> Trung tâm bảo mật tên truy cập APP</string>
  <string name="data2002"> Hậu đài trung tâm bảo mật tên truy cập </string>
+ <string name="data2003">EXCHANGE</string>
 
 
 <!-- <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>

@@ -445,6 +445,7 @@
  <string name="data2000">用戶安全中心</string>
  <string name="data2001">用戶安全中心APP</string>
  <string name="data2002">用戶安全中心後臺</string>
+ <string name="data2003">兌換平臺</string>
 
 
 <!-- <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>
