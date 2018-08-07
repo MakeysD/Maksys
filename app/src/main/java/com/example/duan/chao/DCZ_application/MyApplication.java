@@ -45,7 +45,7 @@ public class MyApplication extends Application{
     public static int type=0;//判断刷新界面是否放入栈中
     public static HashMap map=new HashMap();
     public static String classname;
-    public static String code="86";
+    public static String code="CN";
     public static  Dialog dialog;
     public static int x;
     public static int y;
