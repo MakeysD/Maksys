@@ -351,6 +351,7 @@
  <string name="tishi178">Để đảm bảo sự an toàn của thẻ tín dụng bạn nhất định không tải lên bức ảnh mặt sau của thẻ tín dụng, nhân viên của chúng tôi cũng không lấy lý do nào để yêu cầu bạn cung cấp bức ảnh mặt sau của thẻ tín dụng</string>10
  <string name="tishi179">Ngày</string>
  <string name="tishi180">Thẻ tín dụng trong xác thực</string>
+ <string name="tishi181">Xin cho phép</string>
 
  <string name="code1"> Thành công </string><!--20000-->
  <string name="code2"> Thất bại </string><!--20001-->

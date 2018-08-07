@@ -353,6 +353,7 @@
     <string name="tishi178">For safety of your credit card, do not upload the photo of the reverse side of the credit card and our staff will also not require you to provide the photo of the reverse side of the credit card for any reason</string>
     <string name="tishi179">Date of issuing</string>
     <string name="tishi180">Credit card is under authentication</string>
+    <string name="tishi181">is asking for authorization</string>
 
     <string name="code1">succeed</string><!--20000-->
     <string name="code2">failed</string><!--20001-->

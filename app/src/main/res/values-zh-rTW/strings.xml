@@ -350,6 +350,7 @@
  <string name="tishi178">為了您的信用卡安全，千萬不要上傳信用卡背面照，我們的工作人員也不會以任何理由要求您提供信用卡背面照</string>10
  <string name="tishi179">發證日期</string>
  <string name="tishi180">信用卡認證中</string>
+ <string name="tishi181">正在請求授權</string>
 
  <string name="code1">成功</string><!--20000-->
  <string name="code2">失敗</string><!--20001-->

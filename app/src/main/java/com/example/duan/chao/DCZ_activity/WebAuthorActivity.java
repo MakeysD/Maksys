@@ -3,12 +3,13 @@ package com.example.duan.chao.DCZ_activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -34,10 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class AuthorActivity extends BaseActivity{
-    private AuthorActivity INSTANCE;
-    Messenger messenger;
+public class WebAuthorActivity extends BaseActivity {
+    private WebAuthorActivity INSTANCE;
     @BindView(R.id.ok)
     TextView ok;
     @BindView(R.id.no)
@@ -49,54 +48,14 @@ public class AuthorActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_author);
+        setContentView(R.layout.activity_web_author);
         INSTANCE=this;
         ButterKnife.bind(this);
         CanRippleLayout.Builder.on(ok).rippleCorner(MyApplication.dp2Px()).create();
         CanRippleLayout.Builder.on(no).rippleCorner(MyApplication.dp2Px()).create();
         tv.setText(MyApplication.App_name+getString(R.string.tishi181));
-        setViews();
         setListener();
     }
-
-    private void setViews() {
-        ServiceConnection serviceConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-                messenger = new Messenger(service);
-                Log.e("kk", "链接开启！");
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                Log.e("kk", "链接断开！");
-            }
-        };
-        Intent intent = new Intent();
-        intent.setComponent(new ComponentName(MyApplication.packname, "com.example.authorlibrary.BService"));
-        startService(intent);
-        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
-    }
-    public void sendMessageToB(String string) {
-        Message message = Message.obtain(null, 1);
-        message.replyTo = replyMessenger;
-        Bundle bundle = new Bundle();
-        bundle.putString("data", string);
-        message.setData(bundle);
-        try {
-            messenger.send(message);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    Messenger replyMessenger = new Messenger(new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            Log.e("kk", msg.getData().getString("data"));
-            super.handleMessage(msg);
-        }
-    });
 
     private void setListener() {
         ok.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +132,7 @@ public class AuthorActivity extends BaseActivity{
     }
 
     private void send(AuthorBean bean){
-        String content=null;
+        /*String content=null;
         Gson mGson = new Gson();
         Intent intent = new Intent();
         intent.setComponent(new ComponentName(MyApplication.packname,MyApplication.pathName));
@@ -183,8 +142,7 @@ public class AuthorActivity extends BaseActivity{
             content="error";
         }
         intent.putExtra("json",content);
-        startActivity(intent);
-        sendMessageToB(content);
+        startActivity(intent);*/
         ActivityUtils.getInstance().popAllActivities();
     }
 
@@ -197,11 +155,5 @@ public class AuthorActivity extends BaseActivity{
             ActivityUtils.getInstance().popActivity(INSTANCE);
             MyApplication.App_key=null;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        MyApplication.App_key=null;
     }
 }
