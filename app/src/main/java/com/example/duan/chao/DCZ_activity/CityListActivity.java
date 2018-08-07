@@ -168,7 +168,6 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
         Gson gson = builder.create();
         return gson.fromJson(json, type);
     }
-
     /**
      * json解析回ArrayList,参数为new TypeToken<ArrayList<T>>() {},必须加泛型
      */
@@ -184,7 +183,7 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
         ActivityUtils.getInstance().popActivity(INSTANCE);
     }
 
-    private String geCity(){
+   /* private String geCity(){
         String city=null;
         try {
             content = ShebeiUtil.ToString(INSTANCE.getAssets().open("city.json"), "UTF-8");
@@ -195,5 +194,5 @@ public class CityListActivity extends BaseActivity  implements CityAdapter.CityC
             e.printStackTrace();
         }
         return city;
-    }
+    }*/
 }
