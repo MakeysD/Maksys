@@ -3,6 +3,7 @@ package com.example.duan.chao.DCZ_activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
@@ -112,7 +113,19 @@ public class AppStartActivity extends BaseActivity {
                 intent.putExtra("type","1");
                 startActivity(intent);
             }else {*/
-            if(MyApplication.App_key!=null){
+            Intent i_getvalue = getIntent();
+            String action = i_getvalue.getAction();
+            if(Intent.ACTION_VIEW.equals(action)){
+                Uri uri = i_getvalue.getData();
+                if(uri != null){
+                    String name = uri.getQueryParameter("name");
+                    String age= uri.getQueryParameter("age");
+                    Intent intent = new Intent(this,WebAuthorActivity.class);
+                    intent.putExtra("name",name);
+                    startActivity(intent);
+                    Log.i("zzz",name+"+"+age);
+                }
+            }else if(MyApplication.App_key!=null){
                 Intent intent = new Intent(this,AuthorActivity.class);
                 startActivity(intent);
             }else {
