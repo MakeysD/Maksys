@@ -67,13 +67,13 @@ public class WebAuthorActivity extends BaseActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                send(null);
+                ActivityUtils.getInstance().popAllActivities();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                send(null);
+                ActivityUtils.getInstance().popAllActivities();
             }
         });
     }
@@ -112,12 +112,7 @@ public class WebAuthorActivity extends BaseActivity {
             public void onResponse(Call<AuthorBean> call, Response<AuthorBean> response) {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
-                    send(response.body());
-                    /*if(response.body().getCode().equals("20000")){
-                        send(response.body());
-                    }else {
-                        Toast.makeText(INSTANCE,"失败", Toast.LENGTH_SHORT).show();
-                    }*/
+                    ActivityUtils.getInstance().popAllActivities();
                 }else {
                     Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
                     Log.d("dcz_数据获取失败",response.message());
@@ -131,21 +126,6 @@ public class WebAuthorActivity extends BaseActivity {
         });
     }
 
-    private void send(AuthorBean bean){
-        /*String content=null;
-        Gson mGson = new Gson();
-        Intent intent = new Intent();
-        intent.setComponent(new ComponentName(MyApplication.packname,MyApplication.pathName));
-        if(bean!=null){
-            content = mGson.toJson(bean);
-        }else {
-            content="error";
-        }
-        intent.putExtra("json",content);
-        startActivity(intent);*/
-        ActivityUtils.getInstance().popAllActivities();
-    }
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -153,7 +133,12 @@ public class WebAuthorActivity extends BaseActivity {
         if(ActivityUtils.getInstance().isAppOnForeground(this)==false) {
             Log.i("dcz","APP已进入后台");
             ActivityUtils.getInstance().popActivity(INSTANCE);
-            MyApplication.App_key=null;
+            MyApplication.App_key=null;MyApplication.Webkey=null;
         }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyApplication.App_key=null;MyApplication.Webkey=null;
     }
 }

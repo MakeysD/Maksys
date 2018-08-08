@@ -92,7 +92,10 @@ public class AppStartActivity extends BaseActivity {
         Intent i_getvalue = getIntent();
         String action = i_getvalue.getAction();
         if(Intent.ACTION_VIEW.equals(action)){
-            MyApplication.Webkey="1";
+            Log.i("dcz_flag",i_getvalue.getFlags()+"");
+            if(i_getvalue.getFlags()!=269484032){
+                MyApplication.Webkey="1";
+            }
         }
         //判断是否登录
         if(MyApplication.token.equals("")){
