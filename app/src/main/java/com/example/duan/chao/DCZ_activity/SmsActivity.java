@@ -228,11 +228,15 @@ public class SmsActivity extends BaseActivity {
                                 mode,
                                 AccountDb.DEFAULT_HOTP_COUNTER);
                         MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
-                        if(MyApplication.App_key==null){
-                            Intent intent=new Intent(INSTANCE,MainActivity.class);
+                        if(MyApplication.Webkey!=null){
+                            MyApplication.Webkey=null;
+                            Intent intent=new Intent(INSTANCE,WebAuthorActivity.class);
+                            startActivity(intent);
+                        }else if(MyApplication.App_key!=null){
+                            Intent intent=new Intent(INSTANCE,AuthorActivity.class);
                             startActivity(intent);
                         }else {
-                            Intent intent=new Intent(INSTANCE,AuthorActivity.class);
+                            Intent intent=new Intent(INSTANCE,MainActivity.class);
                             startActivity(intent);
                         }
                         ActivityUtils.getInstance().popAllActivities();

@@ -89,6 +89,11 @@ public class AppStartActivity extends BaseActivity {
     }
 
     private void suo() {
+        Intent i_getvalue = getIntent();
+        String action = i_getvalue.getAction();
+        if(Intent.ACTION_VIEW.equals(action)){
+            MyApplication.Webkey="1";
+        }
         //判断是否登录
         if(MyApplication.token.equals("")){
             Intent intent = new Intent(AppStartActivity.this, LoginEmailActivity.class);
@@ -113,17 +118,14 @@ public class AppStartActivity extends BaseActivity {
                 intent.putExtra("type","1");
                 startActivity(intent);
             }else {*/
-            Intent i_getvalue = getIntent();
-            String action = i_getvalue.getAction();
-            if(Intent.ACTION_VIEW.equals(action)){
+            if(MyApplication.Webkey!=null){
                 Uri uri = i_getvalue.getData();
                 if(uri != null){
-                    String name = uri.getQueryParameter("name");
-                    String age= uri.getQueryParameter("age");
+                    MyApplication.App_key=uri.getQueryParameter("appKey");
+                    MyApplication.App_name=uri.getQueryParameter("displayName");
+                    MyApplication.redirect_uri=uri.getQueryParameter("redirectURI");
                     Intent intent = new Intent(this,WebAuthorActivity.class);
-                    intent.putExtra("name",name);
                     startActivity(intent);
-                    Log.i("zzz",name+"+"+age);
                 }
             }else if(MyApplication.App_key!=null){
                 Intent intent = new Intent(this,AuthorActivity.class);
