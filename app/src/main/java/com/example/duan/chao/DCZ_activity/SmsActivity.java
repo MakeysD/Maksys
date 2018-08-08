@@ -232,7 +232,8 @@ public class SmsActivity extends BaseActivity {
                             MyApplication.Webkey=null;
                             Intent intent=new Intent(INSTANCE,WebAuthorActivity.class);
                             startActivity(intent);
-                        }else if(MyApplication.App_key!=null){
+                        }else if(MyApplication.Ssokey!=null){
+                            MyApplication.Ssokey=null;
                             Intent intent=new Intent(INSTANCE,AuthorActivity.class);
                             startActivity(intent);
                         }else {

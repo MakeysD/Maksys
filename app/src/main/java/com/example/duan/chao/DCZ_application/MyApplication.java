@@ -69,6 +69,7 @@ public class MyApplication extends Application{
 
     public static String App_key;
     public static String Webkey;
+    public static String Ssokey;
     public static String App_name;
     public static String redirect_uri;
     public static String scope;

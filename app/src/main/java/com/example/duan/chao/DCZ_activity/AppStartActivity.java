@@ -46,6 +46,9 @@ public class AppStartActivity extends BaseActivity {
          */
         setContentView(rootView);
         MyApplication.App_key=getIntent().getStringExtra("App_key");
+        if(MyApplication.App_key!=null){
+            MyApplication.Ssokey="1";
+        }
         MyApplication.App_name=getIntent().getStringExtra("App_name");
         MyApplication.packname=getIntent().getStringExtra("packname");
         MyApplication.pathName=getIntent().getStringExtra("pathname");
@@ -93,6 +96,11 @@ public class AppStartActivity extends BaseActivity {
         String action = i_getvalue.getAction();
         if(Intent.ACTION_VIEW.equals(action)){
             Log.i("dcz_flag",i_getvalue.getFlags()+"");
+            Uri uri = i_getvalue.getData();
+            Log.i("dcz_uri",uri+"");
+            MyApplication.App_key=uri.getQueryParameter("appKey");
+            MyApplication.App_name=uri.getQueryParameter("displayName");
+            MyApplication.redirect_uri=uri.getQueryParameter("redirectURI");
             if(i_getvalue.getFlags()!=269484032){
                 MyApplication.Webkey="1";
             }
@@ -122,16 +130,9 @@ public class AppStartActivity extends BaseActivity {
                 startActivity(intent);
             }else {*/
             if(MyApplication.Webkey!=null){
-                Uri uri = i_getvalue.getData();
-                Log.i("dcz_uri",uri+"");
-                if(uri != null){
-                    MyApplication.App_key=uri.getQueryParameter("appKey");
-                    MyApplication.App_name=uri.getQueryParameter("displayName");
-                    MyApplication.redirect_uri=uri.getQueryParameter("redirectURI");
-                    Intent intent = new Intent(this,WebAuthorActivity.class);
-                    startActivity(intent);
-                }
-            }else if(MyApplication.App_key!=null){
+                Intent intent = new Intent(this,WebAuthorActivity.class);
+                startActivity(intent);
+            }else if(MyApplication.Ssokey!=null){
                 Intent intent = new Intent(this,AuthorActivity.class);
                 startActivity(intent);
             }else {

@@ -132,13 +132,13 @@ public class WebAuthorActivity extends BaseActivity {
         //判断APP是否在前台
         if(ActivityUtils.getInstance().isAppOnForeground(this)==false) {
             Log.i("dcz","APP已进入后台");
-            ActivityUtils.getInstance().popActivity(INSTANCE);
-            MyApplication.App_key=null;MyApplication.Webkey=null;
+            MyApplication.Webkey=null;
+            ActivityUtils.getInstance().popAllActivities();
         }
     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyApplication.App_key=null;MyApplication.Webkey=null;
+        MyApplication.Webkey=null;
     }
 }

@@ -195,13 +195,13 @@ public class AuthorActivity extends BaseActivity{
         if(ActivityUtils.getInstance().isAppOnForeground(this)==false) {
             Log.i("dcz","APP已进入后台");
             ActivityUtils.getInstance().popActivity(INSTANCE);
-            MyApplication.App_key=null;
+            MyApplication.Ssokey=null;
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyApplication.App_key=null;
+        MyApplication.Ssokey=null;
     }
 }
