@@ -120,6 +120,7 @@ public class AppStartActivity extends BaseActivity {
             }else {*/
             if(MyApplication.Webkey!=null){
                 Uri uri = i_getvalue.getData();
+                Log.i("dcz_uri",uri+"");
                 if(uri != null){
                     MyApplication.App_key=uri.getQueryParameter("appKey");
                     MyApplication.App_name=uri.getQueryParameter("displayName");
