@@ -56,7 +56,11 @@ public class WebAuthorActivity extends BaseActivity {
         tv.setText(MyApplication.App_name+getString(R.string.tishi181));
         setListener();
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ActivityUtils.getInstance().popAllActivities();
+    }
     private void setListener() {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
