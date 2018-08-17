@@ -470,7 +470,8 @@
     <string name="data1011">邮件系统</string><!--1011-->
     <string name="data1012">AK交易系统</string>
     <string name="zhanghaobuyizhi">当前帐号与第三方平台帐号不一致，请重新登录</string>
-    <string name="tijiaochenggong">提交成功</string><!--1012-->
+    <string name="tijiaochenggong">提交成功</string>
+    <string name="qingantuliyaoqiu">请按图例要求重新上传</string><!--1012-->
 
 
     <!-- <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>

@@ -101,7 +101,7 @@ public class PersonDataActivity extends BaseActivity {
             state3();
         }
         if(state.equals("2")){
-            tv2.setText(TextUtils.isEmpty(content)|| content.equals("null")?getString(R.string.tishi152):content);
+            tv2.setText(TextUtils.isEmpty(content)|| content.equals("null")?getString(R.string.qingantuliyaoqiu):content);
         }else {
             if(content!=null){
                 switch (content){

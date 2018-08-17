@@ -449,7 +449,8 @@
     <string name="data1011">MAIL</string><!--1011-->
     <string name="data1012">AK_TRANS</string>
     <string name="zhanghaobuyizhi">The current account is inconsistent with the third-party platform account. Please log in again.</string>
-    <string name="tijiaochenggong">Submitted successfully</string><!--1012-->
+    <string name="tijiaochenggong">Submitted successfully</string>
+    <string name="qingantuliyaoqiu">Please re-upload as required by the legend</string><!--1012-->
 
 
 

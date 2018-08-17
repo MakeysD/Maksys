@@ -450,12 +450,13 @@
  <string name="data2003">EXCHANGE</string>
     <string name="zhanghaobuyizhi">Tài khoản hiện tại không phù hợp với tài khoản nền tảng của bên thứ ba. Vui lòng đăng nhập lại.</string>
  <string name="tijiaochenggong">Đã gửi thành công</string>
+    <string name="qingantuliyaoqiu">Vui lòng tải lên lại theo yêu cầu của chú giải</string>
 
 
- <!-- <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>
-  <string name="opensource_page_url" translatable="false">https://github.com/google/google-authenticator/</string>
-  <string name="terms_page_url" translatable="false">http://m.google.com/tospage</string>
-  <string name="privacy_page_url" translatable="false">http://www.google.com/policies/privacy/</string>-->
+    <!-- <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>
+     <string name="opensource_page_url" translatable="false">https://github.com/google/google-authenticator/</string>
+     <string name="terms_page_url" translatable="false">http://m.google.com/tospage</string>
+     <string name="privacy_page_url" translatable="false">http://www.google.com/policies/privacy/</string>-->
 <!-- <string name="timesync_preference_screen_title" msgid="3022961447302189451">"校正用来生成验证码的时间"</string>
  <string name="timesync_preference_screen_summary" msgid="4761393049788324525">"将身份验证器的内部时钟与 Google 服务器进行同步"</string>
  <string name="timesync_sync_now_preference_title" msgid="3082679345742875442">"立即同步"</string>
