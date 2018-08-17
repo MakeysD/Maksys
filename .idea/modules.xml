@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D:\WJDome\Makeys\Maksys\Chao.iml" filepath="D:\WJDome\Makeys\Maksys\Chao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Chao.iml" filepath="$PROJECT_DIR$/Chao.iml" />
+      <module fileurl="file://D:/WJDome/Makeys/Maksys/Chao.iml" filepath="D:/WJDome/Makeys/Maksys/Chao.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Maksys.iml" filepath="$PROJECT_DIR$/.idea/Maksys.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" />

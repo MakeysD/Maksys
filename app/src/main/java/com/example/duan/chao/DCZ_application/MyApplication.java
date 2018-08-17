@@ -159,10 +159,10 @@ public class MyApplication extends Application{
         }
         offset=sf.getLong("offset",0);
         cookie=sf.getString("cookie","");
-        uri=sf.getString("uri","http://110.79.11.5/user-safe-api/");
-        ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");
-        /*uri=sf.getString("uri","http://api.qeveworld.com/user-safe-api/");
-        ur=sf.getString("ur","http://makeys.qeveworld.com/#/register");*/
+        /*uri=sf.getString("uri","http://110.79.11.5/user-safe-api/");
+        ur=sf.getString("ur","http://test-makeys.qeveworld.com/#/register");*/
+        uri=sf.getString("uri","http://api.qeveworld.com/user-safe-api/");
+        ur=sf.getString("ur","http://makeys.qeveworld.com/#/register");
         PIN_LENGTH=sf.getInt("PIN_LENGTH",8);
         DEFAULT_INTERVAL=sf.getInt("DEFAULT_INTERVAL",30);
         Log.i("dcz_first",first+"");
