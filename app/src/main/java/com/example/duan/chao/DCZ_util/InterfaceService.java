@@ -2,6 +2,7 @@ package com.example.duan.chao.DCZ_util;
 
 
 import com.example.duan.chao.DCZ_bean.AuthorBean;
+import com.example.duan.chao.DCZ_bean.AuthorModel;
 import com.example.duan.chao.DCZ_bean.CardBean;
 import com.example.duan.chao.DCZ_bean.CountryBean;
 import com.example.duan.chao.DCZ_bean.EquipmentBean;
@@ -336,6 +337,10 @@ public interface InterfaceService {
     @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("oauth/getAuthorizationCode ")
     Call<AuthorBean> author(@Body RequestBody body);
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("oauth/getAuthorizationCode ")
+    Call<AuthorModel> authorWeb(@Body RequestBody body);
 
     /**
      * 获取证件列表

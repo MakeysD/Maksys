@@ -1,8 +1,12 @@
 package com.example.duan.chao.DCZ_activity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -55,7 +59,28 @@ public class PersonDataActivity extends BaseActivity {
         dialog= DialogUtil.createLoadingDialog(this,getString(R.string.loaddings),"1");
         setViews();
         setListener();
+        checkUserName();
     }
+
+    private void checkUserName(){
+        if (!TextUtils.isEmpty(MyApplication.webUserName)) {
+            if (!MyApplication.webUserName.equals(MyApplication.username)) {
+                new AlertDialog.Builder(this).setMessage(R.string.zhanghaobuyizhi)
+                        .setPositiveButton(R.string.button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Uri uri = Uri.parse(MyApplication.redirect_uri);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                intent.setPackage(MyApplication.webPackName);
+                                startActivity(intent);
+                                ActivityUtils.getInstance().popAllActivities();
+                            }
+                        }).create().show();
+                //new MiddleDialog(SettingDataActivity.this,"","当前帐号与第三方平台帐号不一致，请重新登录","",)
+            }
+        }
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -76,7 +101,7 @@ public class PersonDataActivity extends BaseActivity {
             state3();
         }
         if(state.equals("2")){
-            tv2.setText(content+"");
+            tv2.setText(TextUtils.isEmpty(content)|| content.equals("null")?getString(R.string.tishi152):content);
         }else {
             if(content!=null){
                 switch (content){
@@ -125,7 +150,16 @@ public class PersonDataActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityUtils.getInstance().popActivity(INSTANCE);
+                if (TextUtils.isEmpty(MyApplication.redirect_uri)) {
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
+                }else {
+                    Uri uri = Uri.parse(MyApplication.redirect_uri);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.setPackage(MyApplication.webPackName);
+                    startActivity(intent);
+                    MyApplication.redirect_uri="";
+                    ActivityUtils.getInstance().popAllActivities();
+                }
             }
         });
     }
@@ -140,7 +174,16 @@ public class PersonDataActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityUtils.getInstance().popActivity(INSTANCE);
+                if (TextUtils.isEmpty(MyApplication.redirect_uri)) {
+                    ActivityUtils.getInstance().popActivity(INSTANCE);
+                }else {
+                    Uri uri = Uri.parse(MyApplication.redirect_uri);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.setPackage(MyApplication.webPackName);
+                    startActivity(intent);
+                    MyApplication.redirect_uri="";
+                    ActivityUtils.getInstance().popAllActivities();
+                }
             }
         });
     }

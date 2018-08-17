@@ -1,14 +1,7 @@
 package com.example.duan.chao.DCZ_activity;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.AuthorBean;
+import com.example.duan.chao.DCZ_bean.AuthorModel;
 import com.example.duan.chao.DCZ_selft.CanRippleLayout;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
 import com.example.duan.chao.DCZ_util.DSA;
@@ -111,19 +104,24 @@ public class WebAuthorActivity extends BaseActivity {
         map.put("scope",MyApplication.scope);map.put("state",MyApplication.state);
         map.put("sign",sign);
         RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),new Gson().toJson(map));
-        HttpServiceClient.getInstance().author(body).enqueue(new Callback<AuthorBean>() {
+        HttpServiceClient.getInstance().authorWeb(body).enqueue(new Callback<AuthorModel>() {
             @Override
-            public void onResponse(Call<AuthorBean> call, Response<AuthorBean> response) {
+            public void onResponse(Call<AuthorModel> call, Response<AuthorModel> response) {
                 if(response.isSuccessful()){
                     Log.d("dcz","获取数据成功");
+                    Uri uri = Uri.parse(response.body().getData().getRedirect_uri()+"?code="+response.body().getData().getCode());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.setPackage(MyApplication.webPackName);
+                    startActivity(intent);
                     ActivityUtils.getInstance().popAllActivities();
-                }else {
-                    Toast.makeText(INSTANCE,response.body().getDesc(), Toast.LENGTH_SHORT).show();
+               }else {
+                    Toast.makeText(INSTANCE,response.body().getDesc(),   Toast.LENGTH_SHORT).show();
                     Log.d("dcz_数据获取失败",response.message());
                 }
             }
+
             @Override
-            public void onFailure(Call<AuthorBean> call, Throwable t) {
+            public void onFailure(Call<AuthorModel> call, Throwable t) {
                 Log.i("dcz异常",call.toString());
                 Toast.makeText(INSTANCE,t.getMessage(), Toast.LENGTH_SHORT).show();
             }

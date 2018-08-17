@@ -11,7 +11,6 @@ import android.widget.ListView;
 
 import com.example.duan.chao.DCZ_adapter.CityAdapter;
 import com.example.duan.chao.DCZ_application.MyApplication;
-import com.example.duan.chao.DCZ_bean.CityBean;
 import com.example.duan.chao.DCZ_bean.CountryBean;
 import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;

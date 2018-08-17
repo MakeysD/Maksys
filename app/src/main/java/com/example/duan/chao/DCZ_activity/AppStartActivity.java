@@ -14,9 +14,16 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.duan.chao.DCZ_application.MyApplication;
+import com.example.duan.chao.DCZ_bean.UserStateBean;
+import com.example.duan.chao.DCZ_selft.MiddleDialog;
 import com.example.duan.chao.DCZ_util.ActivityUtils;
+import com.example.duan.chao.DCZ_util.HttpServiceClient;
 import com.example.duan.chao.MainActivity;
 import com.example.duan.chao.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -49,6 +56,7 @@ public class AppStartActivity extends BaseActivity {
         if(MyApplication.App_key!=null){
             MyApplication.Ssokey="1";
         }
+
         MyApplication.App_name=getIntent().getStringExtra("App_name");
         MyApplication.packname=getIntent().getStringExtra("packname");
         MyApplication.pathName=getIntent().getStringExtra("pathname");
@@ -56,6 +64,17 @@ public class AppStartActivity extends BaseActivity {
         MyApplication.scope = getIntent().getStringExtra("scope");
         MyApplication.state=getIntent().getStringExtra("state");
         Log.i("App_key",MyApplication.App_key+"zzz");
+   //     if (!TextUtils.isEmpty(MyApplication.redirect_uri) ){
+//        if(this.getReferrer() != null) {
+//            MyApplication.webPackName = this.getReferrer().getAuthority();
+//            Log.e("包名", "getAuthority=" + this.getReferrer().getAuthority() + "    getEncodedPath=" +
+//                    this.getReferrer().getEncodedPath() + "    getHost=" + this.getReferrer().getHost() + "   getPath= "
+//                    + this.getReferrer().getPath() + "     getScheme=" + this.getReferrer().getScheme() + "   getEncodedAuthority="
+//            +this.getReferrer().getEncodedAuthority()+"   getEncodedUserInfo="+this.getReferrer().getEncodedUserInfo()+"   getFragment="+
+//            this.getReferrer().getFragment()+"    getEncodedSchemeSpecificPart="+this.getReferrer().getEncodedSchemeSpecificPart()+"     getUserInfo="
+//            +this.getReferrer().getUserInfo()+"     getQuery="+this.getReferrer().getQuery());//mReferrer
+//        }
+   //     }
         Log.e("kk","App_key:"+MyApplication.App_key+"+redirect_uri:"+MyApplication.redirect_uri+"+scope:"+MyApplication.scope+"+state:"+MyApplication.state);
         quan();
        /* mHandler = new Handler();
@@ -98,9 +117,15 @@ public class AppStartActivity extends BaseActivity {
             Log.i("dcz_flag",i_getvalue.getFlags()+"");
             Uri uri = i_getvalue.getData();
             Log.i("dcz_uri",uri+"");
-            MyApplication.App_key=uri.getQueryParameter("appKey");
-            MyApplication.App_name=uri.getQueryParameter("displayName");
-            MyApplication.redirect_uri=uri.getQueryParameter("redirectURI");
+            MyApplication.webWay = uri.toString();
+            if (MyApplication.webWay.startsWith("makeys://AppStartActivity/identityauthorize")){
+                MyApplication.webUserName = uri.getQueryParameter("username");
+                MyApplication.redirect_uri = uri.getQueryParameter("redirectURI");
+            }else {
+                MyApplication.App_key = uri.getQueryParameter("appKey");
+                MyApplication.App_name = uri.getQueryParameter("displayName");
+                MyApplication.redirect_uri = uri.getQueryParameter("redirectURI");
+            }
             if(i_getvalue.getFlags()!=269484032){
                 MyApplication.Webkey="1";
             }
@@ -130,8 +155,62 @@ public class AppStartActivity extends BaseActivity {
                 startActivity(intent);
             }else {*/
             if(MyApplication.Webkey!=null){
-                Intent intent = new Intent(this,WebAuthorActivity.class);
-                startActivity(intent);
+                if (MyApplication.webWay.startsWith("makeys://AppStartActivity/identityauthorize")) {
+                    HttpServiceClient.getInstance().userState(null).enqueue(new Callback<UserStateBean>() {
+                        @Override
+                        public void onResponse(Call<UserStateBean> call, Response<UserStateBean> response) {
+                            if(response.isSuccessful()){
+                                if(response.body()!=null){
+                                    if(response.body().getCode().equals("10516")){
+                                        MyApplication.sf.edit().putString("cookie","").commit();
+                                        MyApplication.token="";MyApplication.sf.edit().putString("token","").commit();
+                                        MyApplication.language="";MyApplication.sf.edit().putString("language","").commit();
+                                        new MiddleDialog(ActivityUtils.getInstance().getCurrentActivity(),getString(R.string.tishi101),getString(R.string.code42),"",new MiddleDialog.onButtonCLickListener2() {
+                                            @Override
+                                            public void onActivieButtonClick(Object bean, int position) {
+                                                ActivityUtils.getInstance().getCurrentActivity().startActivity(new Intent(ActivityUtils.getInstance().getCurrentActivity(), LoginEmailActivity.class));
+                                                ActivityUtils.getInstance().popAllActivities();
+                                            }
+                                        }, R.style.registDialog).show();
+                                        return;
+                                    }
+                                    if(response.body().getCode().equals("20000")){
+                                        Log.i("dcz_code",response.body().getData().getCode());
+                                        if(response.body().getData().getStep()==0){
+                                            Intent intent=new Intent(AppStartActivity.this,PersonData2Activity.class);
+                                            intent.putExtra("state",response.body().getData().getCode());
+                                            intent.putExtra("content",response.body().getData().getDescription()+"");
+                                            startActivity(intent);
+                                        }else {
+                                            Intent intent=new Intent(AppStartActivity.this,PersonDataActivity.class);
+                                            intent.putExtra("state",response.body().getData().getCode());
+                                            intent.putExtra("content",response.body().getData().getDescription()+"");
+                                            startActivity(intent);
+                                        }
+                                    }else {
+                                        if(!response.body().getCode().equals("20003")){
+                                            new MiddleDialog(AppStartActivity.this,MyApplication.map.get(response.body().getCode()).toString(),R.style.registDialog).show();
+                                        }
+                                    }
+                                }else {
+                                    Log.d("dcz","返回的数据是空的");
+                                }
+                            }else {
+                                Log.d("dcz","获取数据失败");
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<UserStateBean> call, Throwable t) {
+                            if(ActivityUtils.getInstance().getCurrentActivity() instanceof ZhangHuSercurityActivity){
+                                new MiddleDialog(AppStartActivity.this,getString(R.string.tishi72),R.style.registDialog).show();
+                            }
+                        }
+                    });
+                }else {
+                    Intent intent = new Intent(this, WebAuthorActivity.class);
+                    startActivity(intent);
+                }
+                MyApplication.Webkey=null;
             }else if(MyApplication.Ssokey!=null){
                 Intent intent = new Intent(this,AuthorActivity.class);
                 startActivity(intent);

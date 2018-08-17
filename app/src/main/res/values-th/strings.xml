@@ -444,6 +444,8 @@
  <string name="data2001">Makeys APP</string>
  <string name="data2002">Makeys manager</string>
  <string name="data2003">EXCHANGE</string>
+    <string name="zhanghaobuyizhi">บัญชีปัจจุบันไม่สอดคล้องกับบัญชีแพลตฟอร์มของบุคคลที่สามโปรดเข้าสู่ระบบอีกครั้ง</string>
+ <string name="tijiaochenggong">ส่งเรียบร้อยแล้ว</string>
 
 
  <!-- <string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>

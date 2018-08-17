@@ -446,6 +446,8 @@
  <string name="data2001">APP безопас.центра абонента</string>
  <string name="data2002">кулисы безопас.центра абонента</string>
  <string name="data2003">EXCHANGE</string>
+    <string name="zhanghaobuyizhi">Текущая учетная запись несовместима с учетной записью сторонней платформы. Войдите в систему еще раз.</string>
+ <string name="tijiaochenggong">Отправлено успешно</string>
 
 
  <!--<string name="app_package_name" translatable="false">com.google.android.apps.authenticator2</string>

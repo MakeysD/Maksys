@@ -230,8 +230,13 @@ public class SmsActivity extends BaseActivity {
                         MyApplication.offset= Long.valueOf(0);MyApplication.sf.edit().putLong("offset",0).commit();
                         if(MyApplication.Webkey!=null){
                             MyApplication.Webkey=null;
-                            Intent intent=new Intent(INSTANCE,WebAuthorActivity.class);
-                            startActivity(intent);
+                            if (MyApplication.webWay.startsWith("makeys://AppStartActivity/identityauthorize")){
+                                Intent intent = new Intent(INSTANCE, PersonDataActivity.class);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent(INSTANCE, WebAuthorActivity.class);
+                                startActivity(intent);
+                            }
                         }else if(MyApplication.Ssokey!=null){
                             MyApplication.Ssokey=null;
                             Intent intent=new Intent(INSTANCE,AuthorActivity.class);

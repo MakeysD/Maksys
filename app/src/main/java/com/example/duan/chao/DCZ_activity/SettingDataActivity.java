@@ -2,8 +2,10 @@ package com.example.duan.chao.DCZ_activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -330,7 +332,7 @@ public class SettingDataActivity extends BaseActivity {
         ll1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                type1();
+                setType(1);
                 Intent intent=new Intent(INSTANCE,CityListActivity.class);
                 startActivity(intent);
             }
@@ -340,7 +342,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(select==true){
-                    type3();
+                    setType(3);
                 }else {
                     select=true;
                 }
@@ -349,13 +351,13 @@ public class SettingDataActivity extends BaseActivity {
         et_number.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                type4();
+                setType(4);
             }
         });
         et_number.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                type4();
+                setType(4);
             }
         });
 
@@ -443,7 +445,7 @@ public class SettingDataActivity extends BaseActivity {
             public void onClick(View v) {
                 ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(INSTANCE.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 pvTime2.show();
-                type5();
+                setType(5);
             }
         });
         ll_end.setOnClickListener(new View.OnClickListener() {
@@ -451,7 +453,7 @@ public class SettingDataActivity extends BaseActivity {
             public void onClick(View v) {
                 ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(INSTANCE.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 pvTime3.show();
-                type7();
+                setType(7);
             }
         });
     }
@@ -517,7 +519,7 @@ public class SettingDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(INSTANCE.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                type6();
+                setType(6);
                 pvTime3.show();
             }
         });
@@ -642,69 +644,103 @@ public class SettingDataActivity extends BaseActivity {
             tv_guo.setTextColor(Color.WHITE);
         }
     }
-    private void type1(){
-        xian1.setBackgroundColor(Color.parseColor("#0581c6"));
+
+    private void setType(int type){
+        xian1.setBackgroundColor(Color.parseColor("#343436"));
         xian2.setBackgroundColor(Color.parseColor("#343436"));
         xian3.setBackgroundColor(Color.parseColor("#343436"));
         xian4.setBackgroundColor(Color.parseColor("#343436"));
         xian5.setBackgroundColor(Color.parseColor("#343436"));
         xian6.setBackgroundColor(Color.parseColor("#343436"));
         xian7.setBackgroundColor(Color.parseColor("#343436"));
+        switch (type){
+            case 1:
+                xian1.setBackgroundColor(Color.parseColor("#0581c6"));
+                break;
+            case 2:
+                xian2.setBackgroundColor(Color.parseColor("#0581c6"));
+                break;
+            case 3:
+                xian3.setBackgroundColor(Color.parseColor("#0581c6"));
+                break;
+            case 4:
+                xian4.setBackgroundColor(Color.parseColor("#0581c6"));
+                break;
+            case 5:
+                xian5.setBackgroundColor(Color.parseColor("#0581c6"));
+                break;
+            case 6:
+                xian6.setBackgroundColor(Color.parseColor("#0581c6"));
+                break;
+            case 7:
+                xian7.setBackgroundColor(Color.parseColor("#0581c6"));
+                break;
+        }
     }
-    private void type2(){
-        xian1.setBackgroundColor(Color.parseColor("#343436"));
-        xian2.setBackgroundColor(Color.parseColor("#0581c6"));
-        xian3.setBackgroundColor(Color.parseColor("#343436"));
-        xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
-        xian6.setBackgroundColor(Color.parseColor("#343436"));
-        xian7.setBackgroundColor(Color.parseColor("#343436"));
-    }
-    private void type3(){
-        xian1.setBackgroundColor(Color.parseColor("#343436"));
-        xian2.setBackgroundColor(Color.parseColor("#343436"));
-        xian3.setBackgroundColor(Color.parseColor("#0581c6"));
-        xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
-        xian6.setBackgroundColor(Color.parseColor("#343436"));
-        xian7.setBackgroundColor(Color.parseColor("#343436"));
-    }
-    private void type4(){
-        xian1.setBackgroundColor(Color.parseColor("#343436"));
-        xian2.setBackgroundColor(Color.parseColor("#343436"));
-        xian3.setBackgroundColor(Color.parseColor("#343436"));
-        xian4.setBackgroundColor(Color.parseColor("#0581c6"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
-        xian6.setBackgroundColor(Color.parseColor("#343436"));
-        xian7.setBackgroundColor(Color.parseColor("#343436"));
-    }
-    private void type5(){
-        xian1.setBackgroundColor(Color.parseColor("#343436"));
-        xian2.setBackgroundColor(Color.parseColor("#343436"));
-        xian3.setBackgroundColor(Color.parseColor("#343436"));
-        xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#0581c6"));
-        xian6.setBackgroundColor(Color.parseColor("#343436"));
-        xian7.setBackgroundColor(Color.parseColor("#343436"));
-    }
-    private void type6(){
-        xian1.setBackgroundColor(Color.parseColor("#343436"));
-        xian2.setBackgroundColor(Color.parseColor("#343436"));
-        xian3.setBackgroundColor(Color.parseColor("#343436"));
-        xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
-        xian6.setBackgroundColor(Color.parseColor("#0581c6"));
-        xian7.setBackgroundColor(Color.parseColor("#343436"));
-    }
-    private void type7(){
-        xian1.setBackgroundColor(Color.parseColor("#343436"));
-        xian2.setBackgroundColor(Color.parseColor("#343436"));
-        xian3.setBackgroundColor(Color.parseColor("#343436"));
-        xian4.setBackgroundColor(Color.parseColor("#343436"));
-        xian5.setBackgroundColor(Color.parseColor("#343436"));
-        xian7.setBackgroundColor(Color.parseColor("#0581c6"));
-        xian6.setBackgroundColor(Color.parseColor("#343436"));
-    }
+
+//    private void type1(){
+//        xian1.setBackgroundColor(Color.parseColor("#0581c6"));
+//        xian2.setBackgroundColor(Color.parseColor("#343436"));
+//        xian3.setBackgroundColor(Color.parseColor("#343436"));
+//        xian4.setBackgroundColor(Color.parseColor("#343436"));
+//        xian5.setBackgroundColor(Color.parseColor("#343436"));
+//        xian6.setBackgroundColor(Color.parseColor("#343436"));
+//        xian7.setBackgroundColor(Color.parseColor("#343436"));
+//    }
+//    private void type2(){
+//        xian1.setBackgroundColor(Color.parseColor("#343436"));
+//        xian2.setBackgroundColor(Color.parseColor("#0581c6"));
+//        xian3.setBackgroundColor(Color.parseColor("#343436"));
+//        xian4.setBackgroundColor(Color.parseColor("#343436"));
+//        xian5.setBackgroundColor(Color.parseColor("#343436"));
+//        xian6.setBackgroundColor(Color.parseColor("#343436"));
+//        xian7.setBackgroundColor(Color.parseColor("#343436"));
+//    }
+//    private void type3(){
+//        xian1.setBackgroundColor(Color.parseColor("#343436"));
+//        xian2.setBackgroundColor(Color.parseColor("#343436"));
+//        xian3.setBackgroundColor(Color.parseColor("#0581c6"));
+//        xian4.setBackgroundColor(Color.parseColor("#343436"));
+//        xian5.setBackgroundColor(Color.parseColor("#343436"));
+//        xian6.setBackgroundColor(Color.parseColor("#343436"));
+//        xian7.setBackgroundColor(Color.parseColor("#343436"));
+//    }
+//    private void type4(){
+//        xian1.setBackgroundColor(Color.parseColor("#343436"));
+//        xian2.setBackgroundColor(Color.parseColor("#343436"));
+//        xian3.setBackgroundColor(Color.parseColor("#343436"));
+//        xian4.setBackgroundColor(Color.parseColor("#0581c6"));
+//        xian5.setBackgroundColor(Color.parseColor("#343436"));
+//        xian6.setBackgroundColor(Color.parseColor("#343436"));
+//        xian7.setBackgroundColor(Color.parseColor("#343436"));
+//    }
+//    private void type5(){
+//        xian1.setBackgroundColor(Color.parseColor("#343436"));
+//        xian2.setBackgroundColor(Color.parseColor("#343436"));
+//        xian3.setBackgroundColor(Color.parseColor("#343436"));
+//        xian4.setBackgroundColor(Color.parseColor("#343436"));
+//        xian5.setBackgroundColor(Color.parseColor("#0581c6"));
+//        xian6.setBackgroundColor(Color.parseColor("#343436"));
+//        xian7.setBackgroundColor(Color.parseColor("#343436"));
+//    }
+//    private void type6(){
+//        xian1.setBackgroundColor(Color.parseColor("#343436"));
+//        xian2.setBackgroundColor(Color.parseColor("#343436"));
+//        xian3.setBackgroundColor(Color.parseColor("#343436"));
+//        xian4.setBackgroundColor(Color.parseColor("#343436"));
+//        xian5.setBackgroundColor(Color.parseColor("#343436"));
+//        xian6.setBackgroundColor(Color.parseColor("#0581c6"));
+//        xian7.setBackgroundColor(Color.parseColor("#343436"));
+//    }
+//    private void type7(){
+//        xian1.setBackgroundColor(Color.parseColor("#343436"));
+//        xian2.setBackgroundColor(Color.parseColor("#343436"));
+//        xian3.setBackgroundColor(Color.parseColor("#343436"));
+//        xian4.setBackgroundColor(Color.parseColor("#343436"));
+//        xian5.setBackgroundColor(Color.parseColor("#343436"));
+//        xian7.setBackgroundColor(Color.parseColor("#0581c6"));
+//        xian6.setBackgroundColor(Color.parseColor("#343436"));
+//    }
     public static void verifyStoragePermissions(Activity activity) {
         try {
             //检测是否有写的权限
@@ -980,9 +1016,23 @@ public class SettingDataActivity extends BaseActivity {
                             return;
                         }
                         if(response.body().getCode().equals("20000")){
-                            Intent intent=new Intent(INSTANCE,PersonDataActivity.class);
-                            startActivity(intent);
-                            ActivityUtils.getInstance().popActivity(INSTANCE);
+                           // if (TextUtils.isEmpty(MyApplication.redirect_uri)) {
+                                Intent intent = new Intent(INSTANCE, PersonDataActivity.class);
+                                startActivity(intent);
+                                ActivityUtils.getInstance().popActivity(INSTANCE);
+//                            }else {
+//                                new AlertDialog.Builder(SettingDataActivity.this).setMessage(R.string.tijiaochenggong)
+//                                        .setPositiveButton(R.string.button, new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                                Uri uri = Uri.parse(MyApplication.redirect_uri);
+//                                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                                                intent.setPackage(MyApplication.webPackName);
+//                                                startActivity(intent);
+//                                                ActivityUtils.getInstance().popAllActivities();
+//                                            }
+//                                        }).create().show();
+//                            }
                         }else {
                             if(!response.body().getCode().equals("20003")){
                                 new MiddleDialog(INSTANCE,response.body().getDesc(),R.style.registDialog).show();

@@ -97,6 +97,10 @@ public class MyApplication extends Application{
     public static Long offset;
     public static Integer PIN_LENGTH;
     public static Integer DEFAULT_INTERVAL;
+
+    public static String webPackName;
+    public static String webWay;
+    public static String webUserName;
     @Override
     public void onCreate() {
         super.onCreate();

@@ -31,7 +31,7 @@ android {
     signingConfigs {
         release {
             try {
-                storeFile file('D:/Work/chao.jks')
+                storeFile file('D:/WJDome/Makeys/chao.jks')
                 //storeFile file('./keystore/chao.jks')
                 storePassword "857999639"
                 keyAlias "key0"
@@ -41,11 +41,15 @@ android {
             }
         }
         debug {
-            storeFile file('D:/Work/chao.jks')
+            storeFile file('D:/WJDome/Makeys/chao.jks')
             keyAlias 'key0'
             keyPassword '857999639'
             storePassword '857999639'
         }
+    }
+    packagingOptions{
+        doNotStrip '*/mips/*.so'
+        doNotStrip '*/mips64/*.so'
     }
     buildTypes {
         release {

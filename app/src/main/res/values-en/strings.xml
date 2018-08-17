@@ -447,7 +447,9 @@
     <string name="data2003">EXCHANGE</string>
     <string name="data1010">QUIZ</string><!--1010-->
     <string name="data1011">MAIL</string><!--1011-->
-    <string name="data1012">AK_TRANS</string><!--1012-->
+    <string name="data1012">AK_TRANS</string>
+    <string name="zhanghaobuyizhi">The current account is inconsistent with the third-party platform account. Please log in again.</string>
+    <string name="tijiaochenggong">Submitted successfully</string><!--1012-->
 
 
 
